@@ -1,0 +1,58 @@
+export const blogCategories = ["RPO", "Talent Acquisition", "Recrutement Tech", "Sourcing", "Marque employeur", "Structuration du recrutement"];
+
+export const blogPosts = [
+  {
+    slug: "rpo-definition-avantages-entreprises-tech",
+    title: "RPO : définition, avantages et pourquoi les entreprises Tech l'adoptent",
+    excerpt: "Le Recruitment Process Outsourcing (RPO) s'impose comme un levier stratégique pour les entreprises Tech en croissance. Décryptage complet.",
+    category: "RPO",
+    date: "15 mars 2026",
+    readTime: "8 min",
+    content: "Le RPO, ou Recruitment Process Outsourcing, consiste à externaliser tout ou partie de votre processus de recrutement à un partenaire spécialisé...",
+  },
+  {
+    slug: "talent-acquisition-temps-partage-guide-complet",
+    title: "Talent Acquisition à temps partagé : le guide complet pour les scale-ups",
+    excerpt: "Comment un TA à temps partagé peut transformer votre capacité de recrutement sans exploser votre budget. Guide pratique.",
+    category: "Talent Acquisition",
+    date: "10 mars 2026",
+    readTime: "6 min",
+    content: "Le modèle de Talent Acquisition à temps partagé séduit de plus en plus de scale-ups Tech...",
+  },
+  {
+    slug: "sourcing-tech-techniques-avancees-2026",
+    title: "Sourcing Tech en 2026 : techniques avancées pour trouver les meilleurs développeurs",
+    excerpt: "Les techniques de sourcing classiques ne suffisent plus. Voici les méthodes avancées pour identifier les profils tech les plus recherchés.",
+    category: "Sourcing",
+    date: "5 mars 2026",
+    readTime: "7 min",
+    content: "Le marché tech reste tendu et les techniques de sourcing évoluent rapidement...",
+  },
+  {
+    slug: "structurer-processus-recrutement-startup",
+    title: "Comment structurer son processus de recrutement en startup",
+    excerpt: "Scorecard, pipeline, KPIs : les fondamentaux pour passer d'un recrutement opportuniste à une machine de recrutement efficace.",
+    category: "Structuration du recrutement",
+    date: "28 février 2026",
+    readTime: "9 min",
+    content: "Structurer son processus de recrutement est un enjeu critique pour les startups en croissance...",
+  },
+  {
+    slug: "marque-employeur-tech-guide-pratique",
+    title: "Marque employeur Tech : guide pratique pour attirer les meilleurs talents",
+    excerpt: "Comment construire une marque employeur authentique et différenciante dans l'écosystème Tech français.",
+    category: "Marque employeur",
+    date: "20 février 2026",
+    readTime: "6 min",
+    content: "La marque employeur n'est pas qu'un sujet de communication...",
+  },
+  {
+    slug: "recruter-account-executive-saas",
+    title: "Recruter un Account Executive SaaS : les critères qui comptent vraiment",
+    excerpt: "Au-delà du CV, quels sont les vrais indicateurs de succès d'un Account Executive SaaS ? Notre grille d'évaluation.",
+    category: "Recrutement Tech",
+    date: "15 février 2026",
+    readTime: "5 min",
+    content: "Recruter un Account Executive performant dans le SaaS est un exercice qui demande une méthodologie rigoureuse...",
+  },
+];
