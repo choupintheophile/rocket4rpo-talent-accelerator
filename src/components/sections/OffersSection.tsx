@@ -13,7 +13,7 @@ const offers = [
   {
     icon: UserPlus,
     title: "TA à temps plein",
-    description: "Un expert Talent Acquisition dédié à 100% à vos recrutements. Immersion totale dans votre culture et vos processus.",
+    description: "Un expert Talent Acquisition dédié à 100% à vos recrutements. Immersion totale dans votre culture et vos processus pour une forte croissance de vos effectifs",
     to: "/offre/talent-acquisition-temps-plein",
   },
   {
