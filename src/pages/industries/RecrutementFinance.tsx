@@ -60,7 +60,7 @@ const roles = [
 
 const financialChallenges = [
   { icon: BarChart3, title: "Pilotage de la croissance", text: "Construire des modèles financiers qui accompagnent la croissance tout en maintenant la visibilité sur le cash et la rentabilité." },
-  { icon: Gauge, title: "Métriques SaaS", text: "Maîtrise des KPIs spécifiques : ARR, MRR, Net Revenue Retention, LTV/CAC, Rule of 40, cash burn rate." },
+  
   { icon: Scale, title: "Structuration financière", text: "Mise en place des process, outils et reportings adaptés au stade de maturité de l'entreprise." },
   { icon: Target, title: "Reporting investisseurs", text: "Capacité à produire des reportings clairs, fiables et adaptés aux attentes des investisseurs et du board." },
   { icon: ShieldCheck, title: "Conformité & audit", text: "Rigueur dans la gestion comptable, fiscale et réglementaire, même dans un environnement à forte vélocité." },
