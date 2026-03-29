@@ -243,7 +243,7 @@ const TalentAcquisitionTempsPlein = () => (
               <h4 className="font-bold text-lg mb-4 text-foreground">Ce qu'apporte un TA senior dédié</h4>
               <ul className="space-y-3">
                 {[
-                  "Gestion simultanée de plusieurs recrutements",
+                  "Gestion d'important volume de recrutement",
                   "Priorisation stratégique des postes ouverts",
                   "Sourcing ciblé et chasse directe efficace",
                   "Shortlists pertinentes dès les premiers jours",
