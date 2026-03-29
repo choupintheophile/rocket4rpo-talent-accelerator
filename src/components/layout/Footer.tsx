@@ -18,9 +18,9 @@ export const Footer = () => (
         <div>
           <h4 className="font-semibold text-sm mb-4">Offre</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link to="/offre/talent-acquisition-temps-partage" className="hover:text-primary transition-colors">TA temps partagé</Link></li>
-            <li><Link to="/offre/talent-acquisition-temps-plein" className="hover:text-primary transition-colors">TA temps plein</Link></li>
-            <li><Link to="/offre/recrutement-talent-acquisition" className="hover:text-primary transition-colors">Recrutement de TA</Link></li>
+            <li><Link to="/offre/talent-acquisition-temps-partage" className="hover:text-primary transition-colors">Talent Acquisition à temps partagé</Link></li>
+            <li><Link to="/offre/talent-acquisition-temps-plein" className="hover:text-primary transition-colors">Talent Acquisition à temps plein</Link></li>
+            <li><Link to="/offre/recrutement-talent-acquisition" className="hover:text-primary transition-colors">Recrutement de Recruteurs</Link></li>
             <li><Link to="/offre/outils-sourcing-enablement" className="hover:text-primary transition-colors">Outils & enablement</Link></li>
           </ul>
         </div>
