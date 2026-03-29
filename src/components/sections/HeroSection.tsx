@@ -30,7 +30,7 @@ export const HeroSection = () => (
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mt-6 text-lg md:text-xl text-background/60 leading-relaxed max-w-3xl"
         >
-          Rocket4RPO met à disposition des Talent Acquisition Specialists experts de la chasse, du marché de la Tech et de la structuration du recrutement, pour accompagner vos recrutements Sales, IT, Finance, Marketing et fonctions support.
+          Rocket4RPO met à disposition des Talent Acquisition Specialists experts de la chasse de candidat, de la gestion de candidature à fort volume, du marché de la Tech et de la structuration du recrutement, pour accompagner vos recrutements de Sales, IT, Marketing et fonctions supports (Finance, Chief of Staff, C-level)
         </motion.p>
 
         <motion.div
