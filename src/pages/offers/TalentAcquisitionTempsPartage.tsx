@@ -416,7 +416,7 @@ const TalentAcquisitionTempsPartage = () => (
               {[
                 { icon: Rocket, label: "Startups & PME en croissance", desc: "qui doivent recruter vite et bien, quel que soit leur secteur d'activité, sans avoir encore structuré leur fonction TA en interne." },
                 { icon: TrendingUp, label: "ETI & Grands Groupes", desc: "qui souhaitent renforcer ponctuellement leur capacité de recrutement avec une expertise senior, sans alourdir leurs effectifs internes." },
-                { icon: Building2, label: "Tous secteurs d'activité", desc: "Tech, Industrie, Services, Finance, Santé, Retail… Notre méthodologie s'adapte à chaque marché et à ses spécificités." },
+                { icon: Building2, label: "Multi Sectoriel", desc: "Tech, Industrie, Services, Finance, Santé, Retail… Notre méthodologie ainsi que nos experts issu de votre secteur s'adapte à chaque marché et à ses spécificités." },
                 { icon: RefreshCw, label: "Besoins récurrents mais non constants", desc: "qui ne justifient pas un poste de TA interne à temps plein." },
                 { icon: ShieldCheck, label: "Renfort senior immédiat", desc: "pour des organisations qui ont besoin de résultats rapides sur des recrutements stratégiques." },
               ].map((item, i) => (
