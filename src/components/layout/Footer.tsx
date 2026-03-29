@@ -60,7 +60,7 @@ export const Footer = () => (
       <div className="mt-16 pt-8 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-xs text-background/40">© {new Date().getFullYear()} Rocket4RPO. Tous droits réservés.</p>
         <div className="flex items-center gap-6">
-          <a href="https://www.linkedin.com/company/rocket4sales/" target="_blank" rel="noopener noreferrer" className="text-background/40 hover:text-primary transition-colors text-sm">
+          <a href="https://www.linkedin.com/company/rocket4rpo" target="_blank" rel="noopener noreferrer" className="text-background/40 hover:text-primary transition-colors text-sm">
             LinkedIn
           </a>
           <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="text-background/40 hover:text-primary transition-colors text-sm">

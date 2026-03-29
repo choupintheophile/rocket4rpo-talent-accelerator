@@ -48,7 +48,7 @@ export const organizationSchema = {
     "@type": "Organization",
     name: "Rocket4GTM",
   },
-  sameAs: ["https://www.linkedin.com/company/rocket4sales/"],
+  sameAs: ["https://www.linkedin.com/company/rocket4rpo"],
 };
 
 export const breadcrumbSchema = (items: { name: string; url: string }[]) => ({
