@@ -8,6 +8,7 @@ export const Footer = () => (
         <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
           <Link to="/" className="flex items-center">
             <img src={logoRocket4RPO} alt="Rocket4RPO" className="h-[5.625rem] w-auto" />
+          </Link>
           <p className="mt-4 text-sm text-background/60 leading-relaxed max-w-xs">
             Talent Acquisition experts intégrés à vos équipes pour accélérer vos recrutements.
           </p>
