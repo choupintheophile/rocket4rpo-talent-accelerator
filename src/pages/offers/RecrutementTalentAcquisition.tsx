@@ -468,7 +468,7 @@ const RecrutementTalentAcquisition = () => (
       <div className="container-wide">
         <motion.div {...fadeUp} className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-            Les profils que nous identifions
+            A chaque besoin son Recruteur 
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             Un vivier diversifié et constamment enrichi de Talent Acquisition de haut niveau.
