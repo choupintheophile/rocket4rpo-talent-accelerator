@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 const steps = [
   { num: "01", title: "Audit", text: "Analyse de vos besoins, processus existants et culture d'entreprise." },
   { num: "02", title: "Scorecard", text: "Définition précise du profil recherché avec critères objectifs." },
-  { num: "03", title: "Sourcing", text: "Approche directe multicanale, chasse de profils passifs et actifs." },
+  { num: "03", title: "Sourcing", text: "Approche directe multicanale (Linkedin, Réseaux, Candidature), chasse de profils passifs et actifs." },
   { num: "04", title: "Qualification", text: "Entretiens de pré-qualification approfondis selon vos critères." },
   { num: "05", title: "Coordination", text: "Pilotage du process avec les hiring managers, planification des entretiens." },
   { num: "06", title: "Reporting", text: "Suivi des KPIs, pipeline de candidats et optimisation continue." },
