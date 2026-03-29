@@ -32,9 +32,11 @@ const Equipe = () => (
               viewport={{ once: true }}
               className="flex flex-col md:flex-row gap-6 p-8 rounded-2xl border border-border"
             >
-              <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <span className="text-3xl font-bold text-primary">{m.initials}</span>
-              </div>
+              <img
+                src={m.photo}
+                alt={m.name}
+                className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
+              />
               <div>
                 <h2 className="text-xl font-bold">{m.name}</h2>
                 <p className="text-sm text-primary font-medium">{m.role}</p>
