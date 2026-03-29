@@ -135,7 +135,7 @@ const profileTypes = [
   {
     icon: Database,
     title: "Profils tech & data-driven",
-    text: "TA Specialists maîtrisant les outils modernes de sourcing, ATS, CRM recrutement et capables de piloter leur performance par la data.",
+    text: "TA Specialists maîtrisant les outils modernes de sourcing, ATS, recrutement et capables de piloter leur performance par la data.",
   },
   {
     icon: Crosshair,
