@@ -36,8 +36,8 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container-wide flex items-center justify-between h-16 lg:h-20">
-        <Link to="/" className="font-display font-bold text-xl lg:text-2xl tracking-tight">
-          ROCKET<span className="text-gradient">4</span>RPO
+        <Link to="/">
+          <img src={logoImg} alt="Rocket4RPO" className="h-8 lg:h-10 w-auto" />
         </Link>
 
         {/* Desktop nav */}
