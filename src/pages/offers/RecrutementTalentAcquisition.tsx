@@ -188,7 +188,7 @@ const RecrutementTalentAcquisition = () => (
               <span className="text-gradient">identifiez les recruteurs capables de délivrer réellement</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
-              Rocket4RPO recrute pour vous des Talent Acquisition Specialists et Managers capables de structurer, piloter et accélérer vos recrutements. Notre approche repose sur une compréhension fine du métier et une sélection exigeante basée sur la performance réelle des profils.
+              Rocket4RPO en plus du placement en RPO, notre société recrute pour vous des Talent Acquisition Specialists et Managers capables de structurer, piloter et accélérer vos recrutements. Notre approche repose sur une compréhension fine du métier et une sélection exigeante basée sur la performance réelle des profils.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
