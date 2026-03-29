@@ -34,7 +34,7 @@ export const TrustSection = () => (
         viewport={{ once: true }}
         className="text-center text-sm text-muted-foreground mt-8 max-w-2xl mx-auto"
       >
-        Fondée sur l'expertise opérationnelle des équipes Rocket4Sales en Talent Acquisition au sein de l'écosystème Tech.
+        Fondée sur l'expertise opérationnelle des équipes <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-current">Rocket4Sales</a> en Talent Acquisition au sein de l'écosystème Tech.
       </motion.p>
     </div>
   </section>

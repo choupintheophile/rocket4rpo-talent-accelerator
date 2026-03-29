@@ -8,7 +8,7 @@ const MentionsLegales = () => (
       <div className="container-tight prose max-w-none">
         <h1>Mentions légales</h1>
         <h2>Éditeur du site</h2>
-        <p>Rocket4RPO, filiale de Rocket4Sales, groupe Rocket4GTM.</p>
+        <p>Rocket4RPO, filiale de <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-current">Rocket4Sales</a>, groupe Rocket4GTM.</p>
         <p>Siège social : [Adresse à compléter]</p>
         <p>SIRET : [À compléter]</p>
         <p>Directeur de la publication : Clément Martin</p>
