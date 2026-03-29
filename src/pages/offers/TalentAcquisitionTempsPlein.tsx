@@ -265,7 +265,7 @@ const TalentAcquisitionTempsPlein = () => (
               Une fonction recrutement au service de la performance business
             </h3>
             <p className="text-muted-foreground leading-relaxed text-lg">
-              Le recrutement n'est pas une fonction support. C'est un levier de croissance. Un Talent Acquisition Specialist senior transforme votre capacité de recrutement en avantage concurrentiel : meilleure qualité de profils, time-to-hire réduit, managers libérés du recrutement opérationnel et processus qui s'améliorent continuellement.
+              Le recrutement n'est pas une fonction support. C'est un vrai levier de croissance. Un Talent Acquisition Specialist senior transforme votre capacité de recrutement en avantage concurrentiel : meilleure qualité de profils, time-to-hire réduit, managers libérés du recrutement opérationnel et processus qui s'améliorent continuellement.
             </p>
           </motion.div>
         </div>
