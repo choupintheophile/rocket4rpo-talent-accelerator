@@ -29,7 +29,7 @@ export const teamMembers = [
     role: "Sales Director",
     shortBio: "Expert en développement commercial B2B et en structuration d'offres de services RH pour l'écosystème Tech.",
     fullBio: "Julien pilote le développement commercial de Rocket4RPO. Sa connaissance fine des enjeux de croissance des entreprises Tech lui permet d'identifier les besoins en Talent Acquisition et de proposer des modèles d'intervention adaptés à chaque contexte.",
-    linkedin: "https://www.linkedin.com/in/julien-regnacq/",
+    linkedin: "https://www.linkedin.com/in/julien-regnacq-a3a6851a6/",
   },
   {
     name: "Marion Longo",
