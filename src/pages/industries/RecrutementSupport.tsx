@@ -285,7 +285,7 @@ const RecrutementSupport = () => (
     <FAQSection faqs={faqs} />
 
     {/* CTA */}
-    <CTASection title="Structurer votre organisation" description="Échangeons sur vos besoins en recrutement fonctions support. Premier échange sans engagement." buttonText="Structurer mon recrutement" />
+    <CTASection title="Structurer votre organisation" subtitle="Échangeons sur vos besoins en recrutement fonctions support. Premier échange sans engagement." ctaLabel="Structurer mon recrutement" />
 
     {/* INTERNAL LINKS */}
     <section className="section-padding bg-secondary">
