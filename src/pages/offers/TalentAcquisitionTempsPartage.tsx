@@ -37,7 +37,7 @@ const TalentAcquisitionTempsPartage = () => (
               Un expert Talent Acquisition intégré à vos équipes, <span className="text-gradient">à votre rythme</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Vous avez des recrutements à mener mais pas besoin d'un recruteur à temps plein ? Notre modèle de Talent Acquisition à temps partagé vous donne accès à une expertise senior, quelques jours par semaine, avec une immersion totale dans votre culture.
+              Vous avez des recrutements à mener mais pas besoin d'un recruteur à temps plein ? Notre modèle de Talent Acquisition à temps partagé vous donne accès à une expertise de recruteur senior, quelques jours par semaine, avec une immersion totale dans votre culture.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
