@@ -329,7 +329,7 @@ const TalentAcquisitionTempsPartage = () => (
               <span className="absolute top-6 right-6 text-5xl font-bold text-muted/30 select-none">{item.step}</span>
               <item.icon className="w-7 h-7 text-primary mb-4" />
               <h3 className="text-lg font-bold mb-3 pr-12">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+               <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
             </motion.div>
           ))}
         </div>
@@ -384,7 +384,7 @@ const TalentAcquisitionTempsPartage = () => (
             { icon: TrendingUp, title: "Coût optimisé", text: "Vous bénéficiez d'une expertise de haut niveau sans supporter immédiatement le coût d'un poste interne à temps plein." },
             { icon: Timer, title: "Intégration rapide", text: "Opérationnel en quelques jours grâce à une phase d'onboarding structurée et une méthode immédiatement activable." },
             { icon: FileCheck, title: "Meilleure qualité de shortlist", text: "Des profils plus pertinents, mieux qualifiés et plus alignés avec les attentes du poste et du manager." },
-            { icon: BarChart3, title: "Gain de temps pour les opérationnels", text: "Un TA senior structure le process, filtre les candidatures et évite aux managers des entretiens inutiles." },
+             { icon: BarChart3, title: "Gain de temps pour les opérationnels", text: "Un Talent Acquisition senior structure le process, filtre les candidatures et évite aux managers des entretiens inutiles." },
           ].map((item, i) => (
             <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.08 }} className="p-6 rounded-xl bg-background border border-border hover:border-primary/30 transition-colors">
               <item.icon className="w-8 h-8 text-primary mb-4" />
