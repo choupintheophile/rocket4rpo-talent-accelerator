@@ -18,7 +18,7 @@ const offers = [
   },
   {
     icon: Search,
-    title: "Recrutement de TA",
+    title: "Recrutement de Talent Acquisition",
     description: "Nous recrutons pour vous des Talent Acquisition Managers et Specialists adaptés à vos enjeux de croissance.",
     to: "/offre/recrutement-talent-acquisition",
   },
