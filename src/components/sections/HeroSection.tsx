@@ -16,7 +16,7 @@ export const HeroSection = () => (
         >
           <div className="flex items-center gap-2 mb-6">
             <Rocket className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium text-background/60">Groupe Rocket4GTM · Filiale de Rocket4Sales</span>
+            <span className="text-sm font-medium text-background/60">Groupe Rocket4GTM · Filiale de <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-current">Rocket4Sales</a></span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight">
             Talent Acquisition à temps partagé ou à temps plein pour{" "}

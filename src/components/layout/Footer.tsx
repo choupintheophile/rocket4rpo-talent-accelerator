@@ -12,7 +12,7 @@ export const Footer = () => (
             Talent Acquisition experts intégrés à vos équipes pour accélérer vos recrutements.
           </p>
           <p className="mt-4 text-xs text-background/40">
-            Filiale de Rocket4Sales · Groupe Rocket4GTM
+            Filiale de <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-current">Rocket4Sales</a> · Groupe Rocket4GTM
           </p>
         </div>
         <div>
