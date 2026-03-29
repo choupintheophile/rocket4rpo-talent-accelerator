@@ -60,7 +60,7 @@ const roles = [
 
 const financialChallenges = [
   { icon: BarChart3, title: "Pilotage de la croissance", text: "Construire des modèles financiers qui accompagnent la croissance tout en maintenant la visibilité sur le cash et la rentabilité." },
-  { icon: Gauge, title: "Métriques SaaS", text: "Maîtrise des KPIs spécifiques : ARR, MRR, Net Revenue Retention, LTV/CAC, Rule of 40, cash burn rate." },
+  
   { icon: Scale, title: "Structuration financière", text: "Mise en place des process, outils et reportings adaptés au stade de maturité de l'entreprise." },
   { icon: Target, title: "Reporting investisseurs", text: "Capacité à produire des reportings clairs, fiables et adaptés aux attentes des investisseurs et du board." },
   { icon: ShieldCheck, title: "Conformité & audit", text: "Rigueur dans la gestion comptable, fiscale et réglementaire, même dans un environnement à forte vélocité." },
@@ -237,22 +237,6 @@ const RecrutementFinance = () => (
       </div>
     </section>
 
-    {/* SAAS SPECIFICITY */}
-    <section className="section-padding">
-      <div className="container-wide">
-        <div className="max-w-3xl mx-auto">
-          <motion.div {...fadeUp}>
-            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Spécificité SaaS</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">La Finance SaaS : un métier à part</h2>
-            <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>La Finance dans une entreprise SaaS obéit à des règles spécifiques. Le modèle de revenue récurrent, les métriques de rétention, le pilotage du cash burn et la relation avec les investisseurs exigent des compétences que la Finance traditionnelle ne couvre pas.</p>
-              <p>Nos recruteurs comprennent ces spécificités et évaluent chaque candidat sur sa maîtrise des métriques SaaS : ARR, MRR, Net Revenue Retention, LTV/CAC, Rule of 40, runway et unit economics.</p>
-              <p className="font-semibold text-foreground">Résultat : des profils Finance qui comprennent votre modèle et sont capables de piloter votre croissance dès le premier jour.</p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
 
     {/* RPO INTEGRATION */}
     <section className="section-padding bg-secondary">
