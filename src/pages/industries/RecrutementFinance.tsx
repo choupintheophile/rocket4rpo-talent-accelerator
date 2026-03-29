@@ -135,7 +135,7 @@ const RecrutementFinance = () => (
       <div className="container-wide">
         <div className="max-w-3xl mx-auto">
           <motion.div {...fadeUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Le recrutement Finance en Tech exige bien plus qu'un bon CV</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Le recrutement Finance exige bien plus qu'un bon CV</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>La fonction Finance dans une entreprise Tech n'a rien à voir avec la Finance traditionnelle. Elle doit accompagner une croissance rapide, piloter des métriques spécifiques (ARR, burn rate, runway), structurer des process dans un environnement en mouvement permanent et dialoguer avec des investisseurs exigeants.</p>
               <p>Un recruteur généraliste ne peut pas évaluer la capacité d'un profil Finance à opérer dans cet environnement. Il faut comprendre les enjeux business, la structuration financière et les spécificités du modèle SaaS.</p>
