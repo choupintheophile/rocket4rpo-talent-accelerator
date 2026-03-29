@@ -215,29 +215,32 @@ const RecrutementTalentAcquisition = () => (
         <div className="max-w-3xl mx-auto">
           <motion.div {...fadeUp}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Recruter un Talent Acquisition : un enjeu sous-estimé
+              Recruter un Talent Acquisition : un enjeu stratégique souvent sous-estimé
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>
-                La plupart des entreprises recrutent leurs Talent Acquisition comme n'importe quel autre profil : en se basant sur le CV, les entreprises précédentes et les années d'expérience. C'est une erreur fondamentale.
+                Recruter un Talent Acquisition en CDI est une décision structurante pour votre organisation. Pourtant, ce recrutement est encore trop souvent abordé comme celui de n'importe quel autre profil : analyse du CV, entreprises précédentes, nombre d'années d'expérience. Cette approche est insuffisante.
               </p>
               <p>
-                <strong className="text-foreground">Un CV bien structuré ne dit rien de la capacité réelle d'un recruteur à délivrer.</strong> Il ne révèle ni la précision du sourcing, ni la rigueur de la qualification, ni la qualité de l'interaction avec les hiring managers, ni la capacité à maintenir un niveau d'exécution constant sous pression.
+                <strong className="text-foreground">Un CV bien construit ne permet pas d'évaluer la capacité réelle d'un recruteur à délivrer dans votre contexte.</strong> Il ne reflète ni la précision de son sourcing, ni la rigueur de sa qualification, ni sa capacité à collaborer efficacement avec vos managers, ni son aptitude à maintenir un haut niveau d'exécution dans la durée.
               </p>
               <p>
-                Les conséquences d'un mauvais recrutement de TA sont concrètes et coûteuses :{" "}
+                Les conséquences d'un mauvais recrutement sont immédiates :{" "}
                 <strong className="text-foreground">
-                  sourcing imprécis, shortlists décalées, temps managérial gaspillé, process qui s'enlisent et postes qui restent ouverts trop longtemps.
+                  pipelines candidats peu qualifiés, shortlists décalées, mobilisation excessive des équipes opérationnelles, ralentissement des processus et difficulté à atteindre vos objectifs de recrutement.
                 </strong>
               </p>
               <p>
-                Un Talent Acquisition junior à bas coût peut sembler économique, mais crée en réalité des inefficiences cachées et une performance de recrutement faible. Un Talent Acquisition expérimenté, sélectionné sur sa capacité réelle de delivery, crée de la{" "}
+                Chez Rocket4RPO, nous abordons le recrutement de Talent Acquisition comme un métier à part entière. Grâce à un screening continu de profils et à une méthodologie propriétaire, nous sommes en mesure d'identifier des recruteurs capables de performer réellement dans votre environnement et de s'inscrire durablement dans votre organisation.
+              </p>
+              <p>
+                Nous recrutons pour vous des Talent Acquisition Specialists et Managers destinés à être intégrés en CDI, sélectionnés non pas sur leur parcours uniquement, mais sur leur{" "}
                 <strong className="text-foreground">
-                  structure, de la vitesse, de la qualité de shortlist et une meilleure collaboration avec les managers.
+                  capacité concrète à structurer, exécuter et faire progresser votre fonction recrutement.
                 </strong>
               </p>
               <p>
-                C'est exactement ce que Rocket4RPO vous apporte : une sélection basée sur la performance, pas sur le parcours.
+                <strong className="text-foreground">Notre approche est simple : recruter des recruteurs capables de délivrer, pas seulement de présenter.</strong>
               </p>
             </div>
           </motion.div>
