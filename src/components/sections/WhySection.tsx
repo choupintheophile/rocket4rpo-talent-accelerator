@@ -5,7 +5,7 @@ import { Target, Crosshair, Monitor, Shuffle, Zap, Network } from "lucide-react"
 const reasons = [
   { icon: Target, title: "Compréhension profonde du rôle de TA", text: "Nous connaissons les attentes, les KPIs et les défis quotidiens d'un Talent Acquisition Manager." },
   { icon: Crosshair, title: "Expertise chasse & approche directe", text: "Nos recruteurs spécialisés maîtrisent le sourcing avancé, le cold outreach et l'identification de talents passifs de part leur connaissance marché. " },
-  { icon: Monitor, title: "Connaissance du marché Tech", text: "7 ans d'immersion dans l'écosystème SaaS et Tech nous donnent une lecture fine du marché des talents." },
+  { icon: Monitor, title: "Connaissance du métier cross sectoriel", text: "7 ans d'immersion dans le métier de recruteur, avec des expériences variés pour chaque industrie." },
   { icon: Shuffle, title: "Matching sélectif", text: "Nous ne plaçons que des profils qui correspondent à votre culture, votre stack et vos ambitions." },
   { icon: Zap, title: "Flexibilité opérationnelle", text: "Temps partagé, temps plein, mission ponctuelle : nous nous adaptons à vos contraintes." },
   { icon: Network, title: "Écosystème Rocket4GTM", text: "Accédez à un réseau d'experts Sales, Marketing et GTM pour une approche complète de votre croissance." },
