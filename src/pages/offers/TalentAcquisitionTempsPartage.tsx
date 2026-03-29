@@ -408,15 +408,15 @@ const TalentAcquisitionTempsPartage = () => (
               À qui s'adresse le Talent Acquisition à temps partagé ?
             </h2>
             <p className="text-muted-foreground leading-relaxed text-lg mb-6">
-              Notre modèle de recruteur senior externalisé s'adapte aux entreprises qui ont besoin de performance de recrutement sans rigidité structurelle.
+              Notre modèle de recruteur senior externalisé s'adapte à toutes les industries et à toutes les entreprises qui ont besoin de performance de recrutement sans rigidité structurelle.
             </p>
           </motion.div>
           <motion.div {...fadeUp} transition={{ delay: 0.15 }}>
             <div className="space-y-4">
               {[
-                { icon: Rocket, label: "Startups en croissance", desc: "qui doivent recruter vite et bien, sans avoir encore structuré leur fonction TA en interne." },
-                { icon: TrendingUp, label: "Scale-ups", desc: "qui accélèrent leurs recrutements et ont besoin d'un renfort senior immédiat." },
-                { icon: Building2, label: "Entreprises Tech", desc: "qui structurent leur hiring et veulent une méthodologie éprouvée dès le départ." },
+                { icon: Rocket, label: "Startups & PME en croissance", desc: "qui doivent recruter vite et bien, quel que soit leur secteur d'activité, sans avoir encore structuré leur fonction TA en interne." },
+                { icon: TrendingUp, label: "ETI & Grands Groupes", desc: "qui souhaitent renforcer ponctuellement leur capacité de recrutement avec une expertise senior, sans alourdir leurs effectifs internes." },
+                { icon: Building2, label: "Tous secteurs d'activité", desc: "Tech, Industrie, Services, Finance, Santé, Retail… Notre méthodologie s'adapte à chaque marché et à ses spécificités." },
                 { icon: RefreshCw, label: "Besoins récurrents mais non constants", desc: "qui ne justifient pas un poste de TA interne à temps plein." },
                 { icon: ShieldCheck, label: "Renfort senior immédiat", desc: "pour des organisations qui ont besoin de résultats rapides sur des recrutements stratégiques." },
               ].map((item, i) => (
