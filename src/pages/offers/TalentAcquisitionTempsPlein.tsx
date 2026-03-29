@@ -232,7 +232,7 @@ const TalentAcquisitionTempsPlein = () => (
               </h3>
               <div className="space-y-3 text-muted-foreground leading-relaxed">
                 <p>
-                  Un Talent Acquisition à temps plein doit être en mesure de gérer simultanément plusieurs recrutements, de prioriser en fonction des enjeux business et de maintenir un niveau d'exécution constant dans la durée.
+                  Un Talent Acquisition à temps plein doit être en mesure de gérer simultanément plusieurs recrutements (8 à 15), de prioriser en fonction des enjeux business et de maintenir un niveau d'exécution constant dans la durée.
                 </p>
                 <p>
                   C'est une capacité que seul un profil expérimenté peut offrir : autonomie, rigueur méthodologique, maîtrise du sourcing avancé et capacité à construire une relation de confiance durable avec les hiring managers.
