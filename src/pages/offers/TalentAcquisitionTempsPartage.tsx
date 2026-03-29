@@ -380,11 +380,11 @@ const TalentAcquisitionTempsPartage = () => (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             { icon: Clock, title: "Flexibilité", text: "1 à 4 jours par semaine, ajustables selon vos besoins de recrutement et vos priorités business." },
-            { icon: Users, title: "Expertise senior", text: "Des Talent Acquisition Specialists expérimentés, capables de sourcer, qualifier et piloter des recrutements exigeants." },
+             { icon: Users, title: "Expertise senior", text: "Des recruteurs expérimentés, capables de sourcer, qualifier et piloter des recrutements exigeants. Ils peuvent également coupler leur expertise marché leur donnant un coup d'avance." },
             { icon: TrendingUp, title: "Coût optimisé", text: "Vous bénéficiez d'une expertise de haut niveau sans supporter immédiatement le coût d'un poste interne à temps plein." },
             { icon: Timer, title: "Intégration rapide", text: "Opérationnel en quelques jours grâce à une phase d'onboarding structurée et une méthode immédiatement activable." },
             { icon: FileCheck, title: "Meilleure qualité de shortlist", text: "Des profils plus pertinents, mieux qualifiés et plus alignés avec les attentes du poste et du manager." },
-             { icon: BarChart3, title: "Gain de temps pour les opérationnels", text: "Un Talent Acquisition senior structure le process, filtre les candidatures et évite aux managers des entretiens inutiles." },
+             { icon: BarChart3, title: "Gain de temps pour les opérationnels", text: "Un Talent Acquisition senior est en mesure de structurer le process, filtrer les candidatures et éviter aux managers des entretiens inutiles." },
           ].map((item, i) => (
             <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.08 }} className="p-6 rounded-xl bg-background border border-border hover:border-primary/30 transition-colors">
               <item.icon className="w-8 h-8 text-primary mb-4" />
