@@ -171,7 +171,7 @@ const RecrutementFinance = () => (
       <div className="container-wide">
         <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">Compréhension des enjeux financiers</h2>
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">Nos recruteurs comprennent les défis financiers spécifiques aux entreprises Tech et SaaS.</p>
+          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">Nos recruteurs comprennent les défis financiers dans l'ensemble des industries</p>
         </motion.div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {financialChallenges.map((item, i) => (
