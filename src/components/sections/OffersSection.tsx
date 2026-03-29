@@ -7,7 +7,7 @@ const offers = [
   {
     icon: Users,
     title: "TA à temps partagé",
-    description: "Vous êtes exigeants, nous aussi, nous mettons la barre très haute pour être certain de vous proposer les meilleurs  Talent Acquisition Specialist qui seront intégrés à vos équipes quelques jours par semaine ou à plein temps. Flexibilité maximale, expertise immédiate.",
+    description: "Vous êtes exigeants, nous aussi, nous mettons la barre très haute pour être certain de vous proposer les meilleurs  Talent Acquisition Specialist qui seront intégrés à vos équipes quelques jours par semaine. Flexibilité maximale, expertise immédiate.",
     to: "/offre/talent-acquisition-temps-partage",
   },
   {
