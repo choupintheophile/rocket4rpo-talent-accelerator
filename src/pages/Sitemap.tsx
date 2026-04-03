@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { SEO } from "@/lib/seo";
 import { sitemapRoutes } from "@/data/routes";
-import { Map } from "lucide-react";
+import { MapIcon } from "lucide-react";
 import { useMemo } from "react";
 
 const Sitemap = () => {
   const grouped = useMemo(() => {
-    const map = new Map<string, typeof sitemapRoutes>();
+    const categories = new globalThis.Map<string, typeof sitemapRoutes>();
     sitemapRoutes.forEach((route) => {
-      if (!map.has(route.category)) map.set(route.category, []);
-      map.get(route.category)!.push(route);
+      if (!categories.has(route.category)) categories.set(route.category, []);
+      categories.get(route.category)!.push(route);
     });
     return Array.from(map.entries());
   }, []);
