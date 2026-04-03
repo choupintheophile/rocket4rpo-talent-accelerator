@@ -12,7 +12,7 @@ const Sitemap = () => {
       if (!categories.has(route.category)) categories.set(route.category, []);
       categories.get(route.category)!.push(route);
     });
-    return Array.from(map.entries());
+    return Array.from(categories.entries());
   }, []);
 
   return (
