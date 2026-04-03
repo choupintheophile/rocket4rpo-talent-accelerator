@@ -27,7 +27,7 @@ const Sitemap = () => {
       <section className="pt-32 pb-20">
         <div className="container-wide">
           <div className="flex items-center gap-3 mb-8">
-            <Map className="h-8 w-8 text-primary" />
+            <MapIcon className="h-8 w-8 text-primary" />
             <h1 className="text-3xl md:text-4xl font-bold text-foreground">
               Plan du site
             </h1>
