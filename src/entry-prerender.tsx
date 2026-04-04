@@ -29,7 +29,8 @@ import PolitiqueConfidentialite from "./pages/legal/PolitiqueConfidentialite";
 import CGU from "./pages/legal/CGU";
 import Sitemap from "./pages/Sitemap";
 
-const helmetContext = {} as { helmet?: { title?: { toString(): string }; meta?: { toString(): string }; link?: { toString(): string }; script?: { toString(): string } } };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const helmetContext: any = {};
 
 export async function prerender(data: { url: string }) {
   const queryClient = new QueryClient();
