@@ -14,8 +14,8 @@ import { CTASection } from "@/components/shared/CTASection";
 const Index = () => (
   <Layout>
     <SEO
-      title="Talent Acquisition à temps partagé ou plein — RPO expert Tech"
-      description="Rocket4RPO met à disposition des Talent Acquisition Specialists experts pour accélérer vos recrutements Sales, IT, Finance, Marketing et fonctions support."
+      title="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech"
+      description="Recruteur RPO dédié pour startups et scale-ups tech. Talent Acquisition à temps partagé ou plein. Réduisez vos coûts de recrutement de 40%."
       canonical="/"
       schema={organizationSchema}
     />
