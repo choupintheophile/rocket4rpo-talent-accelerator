@@ -393,7 +393,7 @@ const TalentAcquisitionTempsPlein = () => (
               className="text-primary font-medium hover:underline"
             >
               Découvrez notre offre de recrutement de Talent Acquisition
-            </a>
+            </Link>
           </p>
         </motion.div>
       </div>
