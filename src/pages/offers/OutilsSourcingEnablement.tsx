@@ -4,7 +4,6 @@ import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SEO, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle,
@@ -239,18 +238,16 @@ const OutilsSourcingEnablement = () => (
               Les outils ne créent pas la performance. Ce sont les process structurés et les équipes formées qui font la différence. Rocket4RPO vous accompagne pour bâtir une fonction recrutement capable de délivrer dans la durée.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/contact"
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Structurer mon recrutement <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors"
               >
                 Demander un audit
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

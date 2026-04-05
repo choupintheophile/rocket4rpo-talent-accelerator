@@ -39,12 +39,14 @@ export const HeroSection = () => (
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-10 flex flex-col sm:flex-row gap-4"
         >
-          <Link
-            to="/contact"
+          <a
+            href="https://bit.ly/4bJGsuZ"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Parler à un expert <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
           <Link
             to="/offre/talent-acquisition-temps-partage"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors"

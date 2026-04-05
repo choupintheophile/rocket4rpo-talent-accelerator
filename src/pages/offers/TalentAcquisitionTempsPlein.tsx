@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SEO, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle,
@@ -120,12 +120,11 @@ const TalentAcquisitionTempsPlein = () => (
               Rocket4RPO met à disposition des Talent Acquisition Specialists expérimentés à temps plein pour piloter vos recrutements avec exigence, rapidité et méthode. Vous bénéficiez d'une ressource dédiée, capable de structurer vos process, d'accélérer vos recrutements et de collaborer efficacement avec vos équipes opérationnelles.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/contact"
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Parler à un expert <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
               <a
                 href="#notre-vision"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors"

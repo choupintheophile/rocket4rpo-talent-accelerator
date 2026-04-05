@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SEO, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle,
@@ -191,18 +191,16 @@ const RecrutementTalentAcquisition = () => (
               Rocket4RPO en plus du placement en RPO, notre société recrute pour vous des Talent Acquisition Specialists et Managers capables de structurer, piloter et accélérer vos recrutements. Notre approche repose sur une compréhension fine du métier et une sélection exigeante basée sur la performance réelle des profils.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/contact"
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Confier un recrutement <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to="/contact"
+              </a>
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors"
               >
                 Échanger avec un expert
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

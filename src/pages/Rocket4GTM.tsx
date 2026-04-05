@@ -61,9 +61,9 @@ const Rocket4GTM = () => (
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
           En combinant l'expertise commerciale de <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-current">Rocket4Sales</a> et l'expertise Talent Acquisition de Rocket4RPO, le groupe Rocket4GTM offre une réponse complète aux enjeux de croissance des entreprises Tech.
         </p>
-        <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+        <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
           Échanger avec le groupe <ArrowRight className="w-4 h-4" />
-        </Link>
+        </a>
       </div>
     </section>
   </Layout>

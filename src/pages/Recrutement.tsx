@@ -3,7 +3,6 @@ import { SEO } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Star, Users, Target } from "lucide-react";
 
 const Recrutement = () => (
@@ -78,9 +77,9 @@ const Recrutement = () => (
       <div className="container-tight text-center">
         <h2 className="text-3xl font-bold mb-4">Intéressé(e) ?</h2>
         <p className="text-lg text-muted-foreground mb-8">Contactez-nous pour discuter des opportunités disponibles.</p>
-        <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+        <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
           Postuler ou rejoindre le réseau <ArrowRight className="w-4 h-4" />
-        </Link>
+        </a>
       </div>
     </section>
   </Layout>
