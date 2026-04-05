@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { SEO, organizationSchema } from "@/lib/seo";
+import { SEO, organizationSchema, professionalServiceSchema } from "@/lib/seo";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { OffersSection } from "@/components/sections/OffersSection";
@@ -17,7 +17,7 @@ const Index = () => (
       title="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech"
       description="Recruteur RPO dédié pour startups et scale-ups tech. Talent Acquisition à temps partagé ou plein. Réduisez vos coûts de recrutement de 40%."
       canonical="/"
-      schema={organizationSchema}
+      schema={[organizationSchema, professionalServiceSchema]}
     />
     <HeroSection />
     <TrustSection />
