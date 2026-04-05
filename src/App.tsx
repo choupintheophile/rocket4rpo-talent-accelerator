@@ -27,6 +27,9 @@ const Contact = lazy(() => import("./pages/Contact"));
 const MentionsLegales = lazy(() => import("./pages/legal/MentionsLegales"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/legal/PolitiqueConfidentialite"));
 const CGU = lazy(() => import("./pages/legal/CGU"));
+const RPOTempsPartage = lazy(() => import("./pages/RPOTempsPartage"));
+const RPOTempsPlein = lazy(() => import("./pages/RPOTempsPlein"));
+const RecrutementTechStartup = lazy(() => import("./pages/RecrutementTechStartup"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -67,6 +70,9 @@ const App = () => (
               <Route path="/mentions-legales" element={<MentionsLegales />} />
               <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
               <Route path="/cgu" element={<CGU />} />
+              <Route path="/rpo-temps-partage" element={<RPOTempsPartage />} />
+              <Route path="/rpo-temps-plein" element={<RPOTempsPlein />} />
+              <Route path="/recrutement-tech-startup" element={<RecrutementTechStartup />} />
               <Route path="/sitemap" element={<Sitemap />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
