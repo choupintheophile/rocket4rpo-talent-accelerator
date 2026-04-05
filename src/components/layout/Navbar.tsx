@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logoRocket4RPO from "@/assets/logo-rocket4rpo.png";
+import logoRocket4RPO from "@/assets/logo-rocket4rpo.webp";
 import { motion, AnimatePresence } from "framer-motion";
 
 const offerLinks = [
@@ -37,7 +37,7 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container-wide flex items-center justify-between h-16 lg:h-20">
         <Link to="/" className="flex items-center">
-          <img src={logoRocket4RPO} alt="Rocket4RPO" className="h-36 lg:h-[11.25rem] w-auto" />
+          <img src={logoRocket4RPO} alt="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech" width={384} height={256} className="h-36 lg:h-[11.25rem] w-auto" />
         </Link>
 
         {/* Desktop nav */}

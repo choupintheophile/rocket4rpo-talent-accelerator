@@ -1,7 +1,7 @@
-import clementPhoto from "@/assets/team/clement-martin.jpeg";
-import theophilePhoto from "@/assets/team/theophile-choupin.jpeg";
-import marionPhoto from "@/assets/team/marion-longo.jpeg";
-import julienPhoto from "@/assets/team/julien-regnacq.jpeg";
+import clementPhoto from "@/assets/team/clement-martin.webp";
+import theophilePhoto from "@/assets/team/theophile-choupin.webp";
+import marionPhoto from "@/assets/team/marion-longo.webp";
+import julienPhoto from "@/assets/team/julien-regnacq.webp";
 
 export const teamMembers = [
   {
