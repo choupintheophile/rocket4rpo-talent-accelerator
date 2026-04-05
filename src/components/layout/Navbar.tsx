@@ -157,13 +157,15 @@ export const Navbar = () => {
                 Nous rejoindre
               </Link>
               <div className="pt-2 px-3">
-                <Link
-                  to="/contact"
+                <a
+                  href="https://bit.ly/4bJGsuZ"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
                   className="block w-full text-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground"
                 >
                   Parler à un expert
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>
