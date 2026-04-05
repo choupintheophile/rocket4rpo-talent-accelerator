@@ -17,7 +17,7 @@ const Index = () => (
       title="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech"
       description="Recruteur RPO dédié pour startups et scale-ups tech. Talent Acquisition à temps partagé ou plein. Réduisez vos coûts de recrutement de 40%."
       canonical="/"
-      schema={organizationSchema}
+      schema={[organizationSchema, professionalServiceSchema]}
     />
     <HeroSection />
     <TrustSection />
