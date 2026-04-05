@@ -109,12 +109,14 @@ export const Navbar = () => {
           <Link to="/recrutement" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             Nous rejoindre
           </Link>
-          <Link
-            to="/contact"
+          <a
+            href="https://bit.ly/4bJGsuZ"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Parler à un expert
-          </Link>
+          </a>
         </div>
 
         {/* Mobile toggle */}
