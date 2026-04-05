@@ -4,7 +4,6 @@ import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SEO, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle,
@@ -122,12 +121,12 @@ const RecrutementMarketing = () => (
               Rocket4RPO s'appuie sur des Talent Acquisition spécialisés en marketing pour identifier les profils qui génèrent de la croissance réelle, pas seulement ceux qui présentent bien sur un CV.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 Parler à un expert <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors">
+              </a>
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors">
                 Confier un recrutement
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

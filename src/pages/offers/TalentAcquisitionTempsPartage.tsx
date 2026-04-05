@@ -106,9 +106,9 @@ const TalentAcquisitionTempsPartage = () => (
               Rocket4RPO met à disposition des Talent Acquisition Specialists expérimentés, capables de piloter vos recrutements avec méthode, exigence et compréhension du marché. Vous bénéficiez d'une expertise senior, sans supporter immédiatement le coût d'un recrutement interne à temps plein.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 Parler à un expert <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
               <a href="#notre-vision" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors">
                 Découvrir notre approche
               </a>
@@ -338,7 +338,7 @@ const TalentAcquisitionTempsPartage = () => (
             Vous souhaitez en savoir plus sur notre méthodologie ?{" "}
             <Link to="/offre/recrutement-talent-acquisition" className="text-primary font-medium hover:underline">
               Découvrez notre offre de recrutement de Talent Acquisition
-            </Link>
+            </a>
           </p>
         </motion.div>
       </div>
@@ -445,7 +445,7 @@ const TalentAcquisitionTempsPartage = () => (
             ].map((link) => (
               <Link key={link.to} to={link.to} className="px-4 py-2 text-sm font-medium rounded-lg border border-border bg-background text-foreground hover:border-primary/30 hover:text-primary transition-colors">
                 {link.label}
-              </Link>
+              </a>
             ))}
           </div>
         </motion.div>

@@ -4,7 +4,6 @@ import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SEO, serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle,
@@ -196,13 +195,13 @@ const RecrutementTalentAcquisition = () => (
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Confier un recrutement <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors"
               >
                 Échanger avec un expert
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -701,7 +700,7 @@ const RecrutementTalentAcquisition = () => (
                 className="px-4 py-2 text-sm font-medium rounded-lg border border-border bg-background text-foreground hover:border-primary/30 hover:text-primary transition-colors"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </div>
         </motion.div>

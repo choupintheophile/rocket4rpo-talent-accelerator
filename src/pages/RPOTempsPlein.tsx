@@ -3,7 +3,6 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { SEO, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { ArrowRight, Users, TrendingUp, Target, CheckCircle, Layers, ShieldCheck } from "lucide-react";
 
 const fadeUp = { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-60px" }, transition: { duration: 0.5 } };
@@ -40,9 +39,9 @@ const RPOTempsPlein = () => (
               Un Talent Acquisition Specialist senior intégré à 100% dans votre organisation pour structurer, accélérer et piloter l'ensemble de vos recrutements.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 Parler à un expert <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

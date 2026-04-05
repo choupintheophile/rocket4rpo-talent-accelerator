@@ -111,9 +111,9 @@ const RecrutementSupport = () => (
               Structurer votre organisation avec des profils fiables, polyvalents et adaptés à votre contexte.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 Recruter un profil support <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -303,7 +303,7 @@ const RecrutementSupport = () => (
             <Link key={link.to} to={link.to} className="flex items-center justify-between p-4 rounded-lg border bg-card hover:shadow-md transition-shadow group">
               <span className="font-medium">{link.label}</span>
               <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </a>
           ))}
         </div>
       </div>
