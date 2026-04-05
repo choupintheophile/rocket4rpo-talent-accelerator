@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoRocket4RPO from "@/assets/logo-rocket4rpo-white.png";
+import logoRocket4RPO from "@/assets/logo-rocket4rpo-white.webp";
 
 export const Footer = () => (
   <footer className="bg-foreground text-background">
