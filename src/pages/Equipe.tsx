@@ -34,7 +34,9 @@ const Equipe = () => (
             >
               <img
                 src={m.photo}
-                alt={m.name}
+                alt={`${m.name} — ${m.role} chez Rocket4RPO`}
+                width={96}
+                height={96}
                 className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
               />
               <div>

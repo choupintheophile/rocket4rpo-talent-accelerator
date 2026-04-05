@@ -22,7 +22,9 @@ export const TeamPreview = () => (
           >
             <img
               src={m.photo}
-              alt={m.name}
+              alt={`${m.name} — ${m.role} chez Rocket4RPO`}
+              width={80}
+              height={80}
               className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
             />
             <h3 className="font-bold text-lg">{m.name}</h3>
