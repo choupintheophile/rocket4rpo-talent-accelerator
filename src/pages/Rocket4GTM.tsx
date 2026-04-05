@@ -49,7 +49,7 @@ const Rocket4GTM = () => (
             <p className="text-muted-foreground leading-relaxed mb-4">Talent Acquisition as a Service : experts TA intégrés à vos équipes, recrutement de profils TA, sourcing enablement.</p>
             <Link to="/" className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
               Vous êtes ici <ArrowRight className="w-3 h-3" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

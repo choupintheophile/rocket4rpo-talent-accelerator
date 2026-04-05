@@ -303,7 +303,7 @@ const RecrutementSupport = () => (
             <Link key={link.to} to={link.to} className="flex items-center justify-between p-4 rounded-lg border bg-card hover:shadow-md transition-shadow group">
               <span className="font-medium">{link.label}</span>
               <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
           ))}
         </div>
       </div>

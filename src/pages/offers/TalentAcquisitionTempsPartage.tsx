@@ -338,7 +338,7 @@ const TalentAcquisitionTempsPartage = () => (
             Vous souhaitez en savoir plus sur notre méthodologie ?{" "}
             <Link to="/offre/recrutement-talent-acquisition" className="text-primary font-medium hover:underline">
               Découvrez notre offre de recrutement de Talent Acquisition
-            </a>
+            </Link>
           </p>
         </motion.div>
       </div>
@@ -445,7 +445,7 @@ const TalentAcquisitionTempsPartage = () => (
             ].map((link) => (
               <Link key={link.to} to={link.to} className="px-4 py-2 text-sm font-medium rounded-lg border border-border bg-background text-foreground hover:border-primary/30 hover:text-primary transition-colors">
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </motion.div>
