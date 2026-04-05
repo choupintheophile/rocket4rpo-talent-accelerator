@@ -27,6 +27,9 @@ const Contact = lazy(() => import("./pages/Contact"));
 const MentionsLegales = lazy(() => import("./pages/legal/MentionsLegales"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/legal/PolitiqueConfidentialite"));
 const CGU = lazy(() => import("./pages/legal/CGU"));
+const RPOTempsPartage = lazy(() => import("./pages/RPOTempsPartage"));
+const RPOTempsPlein = lazy(() => import("./pages/RPOTempsPlein"));
+const RecrutementTechStartup = lazy(() => import("./pages/RecrutementTechStartup"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
