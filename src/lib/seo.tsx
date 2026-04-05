@@ -59,12 +59,22 @@ export const professionalServiceSchema = {
   url: "https://rocket4rpo.com",
   logo: "https://rocket4rpo.com/logo.png",
   image: "https://rocket4rpo.com/logo.png",
-  telephone: "+33 1 00 00 00 00",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Paris",
-    addressCountry: "FR",
-  },
+  address: [
+    {
+      "@type": "PostalAddress",
+      streetAddress: "22 rue de l'Échiquier",
+      postalCode: "75010",
+      addressLocality: "Paris",
+      addressCountry: "FR",
+    },
+    {
+      "@type": "PostalAddress",
+      streetAddress: "70 cours Tolstoï",
+      postalCode: "69100",
+      addressLocality: "Villeurbanne",
+      addressCountry: "FR",
+    },
+  ],
   areaServed: {
     "@type": "Country",
     name: "France",
