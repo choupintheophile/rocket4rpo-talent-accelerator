@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { SEO, organizationSchema } from "@/lib/seo";
+import { SEO, organizationSchema, professionalServiceSchema } from "@/lib/seo";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { OffersSection } from "@/components/sections/OffersSection";
