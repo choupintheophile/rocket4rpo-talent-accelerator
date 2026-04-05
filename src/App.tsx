@@ -70,6 +70,9 @@ const App = () => (
               <Route path="/mentions-legales" element={<MentionsLegales />} />
               <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
               <Route path="/cgu" element={<CGU />} />
+              <Route path="/rpo-temps-partage" element={<RPOTempsPartage />} />
+              <Route path="/rpo-temps-plein" element={<RPOTempsPlein />} />
+              <Route path="/recrutement-tech-startup" element={<RecrutementTechStartup />} />
               <Route path="/sitemap" element={<Sitemap />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
