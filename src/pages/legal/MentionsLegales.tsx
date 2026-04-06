@@ -3,7 +3,7 @@ import { SEO } from "@/lib/seo";
 
 const MentionsLegales = () => (
   <Layout>
-    <SEO title="Mentions légales" description="Mentions légales du site Rocket4RPO." canonical="/mentions-legales" noindex />
+    <SEO title="Mentions légales" description="Mentions légales du site Rocket4RPO." canonical="/mentions-legales" />
     <section className="section-padding">
       <div className="container-tight prose max-w-none">
         <h1>Mentions légales</h1>

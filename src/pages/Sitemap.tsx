@@ -21,7 +21,7 @@ const Sitemap = () => {
         title="Plan du site"
         description="Retrouvez l'ensemble des pages de Rocket4RPO : offres, métiers, ressources et informations légales."
         canonical="/sitemap"
-        noindex
+        
       />
 
       <section className="pt-32 pb-20">
