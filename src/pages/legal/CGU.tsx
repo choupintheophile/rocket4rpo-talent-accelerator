@@ -3,7 +3,7 @@ import { SEO } from "@/lib/seo";
 
 const CGU = () => (
   <Layout>
-    <SEO title="Conditions Générales d'Utilisation" description="CGU du site Rocket4RPO." canonical="/cgu" noindex />
+    <SEO title="Conditions Générales d'Utilisation" description="CGU du site Rocket4RPO." canonical="/cgu" />
     <section className="section-padding">
       <div className="container-tight prose max-w-none">
         <h1>Conditions Générales d'Utilisation</h1>

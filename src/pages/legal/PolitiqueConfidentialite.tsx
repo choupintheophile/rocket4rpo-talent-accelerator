@@ -3,7 +3,7 @@ import { SEO } from "@/lib/seo";
 
 const PolitiqueConfidentialite = () => (
   <Layout>
-    <SEO title="Politique de confidentialité" description="Politique de confidentialité et protection des données personnelles de Rocket4RPO." canonical="/politique-confidentialite" noindex />
+    <SEO title="Politique de confidentialité" description="Politique de confidentialité et protection des données personnelles de Rocket4RPO." canonical="/politique-confidentialite" />
     <section className="section-padding">
       <div className="container-tight prose max-w-none">
         <h1>Politique de confidentialité</h1>
