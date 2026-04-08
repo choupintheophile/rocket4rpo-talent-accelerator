@@ -23,11 +23,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
-  const posts = await getBlogPosts();
-  return posts.map((post) => ({ slug: post.slug }));
-}
-
 export default async function BlogArticlePage({ params }: Props) {
   const { slug } = await params;
   const post = await getBlogPostBySlug(slug);

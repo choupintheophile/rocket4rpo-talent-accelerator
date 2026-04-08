@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
 import { notFound } from "next/navigation";
-import { getCaseStudies, getCaseStudyBySlug } from "@/lib/db";
+import { getCaseStudyBySlug } from "@/lib/db";
 import CaseStudyClient from "./CaseStudyClient";
 
 interface Props {
   params: Promise<{ slug: string }>;
-}
-
-export async function generateStaticParams() {
-  const studies = await getCaseStudies();
-  return studies.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
