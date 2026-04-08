@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getBlogPosts } from "@/lib/db";
+import { blogCategories } from "@/data/blog";
 import BlogPageClient from "./PageClient";
 
 export const metadata: Metadata = {
@@ -7,6 +9,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
-export default function Page() {
-  return <BlogPageClient />;
+export default async function Page() {
+  const posts = await getBlogPosts();
+  const serializedPosts = posts.map((p) => ({
+    ...p,
+    date: p.date.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" }),
+    createdAt: p.createdAt.toISOString(),
+    updatedAt: p.updatedAt.toISOString(),
+  }));
+  return <BlogPageClient posts={serializedPosts} categories={blogCategories} />;
 }

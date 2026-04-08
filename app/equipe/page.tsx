@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTeamMembers } from "@/lib/db";
 import EquipePageClient from "./PageClient";
 
 export const metadata: Metadata = {
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/equipe" },
 };
 
-export default function Page() {
-  return <EquipePageClient />;
+export default async function Page() {
+  const members = await getTeamMembers();
+  return <EquipePageClient members={members} />;
 }

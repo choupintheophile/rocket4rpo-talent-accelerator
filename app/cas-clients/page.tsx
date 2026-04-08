@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getCaseStudies } from "@/lib/db";
 import CasClientsPageClient from "./PageClient";
 
 export const metadata: Metadata = {
@@ -7,6 +8,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/cas-clients" },
 };
 
-export default function Page() {
-  return <CasClientsPageClient />;
+export default async function Page() {
+  const studies = await getCaseStudies();
+  const serialized = studies.map((s) => ({
+    ...s,
+    metrics: s.metrics as { value: string; label: string }[],
+    createdAt: s.createdAt.toISOString(),
+  }));
+  return <CasClientsPageClient studies={serialized} />;
 }

@@ -3,18 +3,27 @@
 import { personSchema } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
-import { teamMembers } from "@/data/team";
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
 import Image from "next/image";
 
-export default function EquipePageClient() {
+interface TeamMember {
+  name: string;
+  initials: string;
+  role: string;
+  shortBio: string;
+  fullBio: string;
+  photoUrl: string | null;
+  linkedin: string | null;
+}
+
+export default function EquipePageClient({ members }: { members: TeamMember[] }) {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(teamMembers.map((m) => personSchema(m.name, m.role, m.shortBio, m.linkedin))),
+          __html: JSON.stringify(members.map((m) => personSchema(m.name, m.role, m.shortBio, m.linkedin || undefined))),
         }}
       />
       <Breadcrumbs items={[{ label: "Équipe" }]} />
@@ -29,21 +38,23 @@ export default function EquipePageClient() {
           </div>
 
           <div className="space-y-12 max-w-3xl">
-            {teamMembers.map((m, i) => (
+            {members.map((m, i) => (
               <motion.div
-                key={i}
+                key={m.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 className="flex flex-col md:flex-row gap-6 p-8 rounded-2xl border border-border"
               >
-                <Image
-                  src={m.photo}
-                  alt={`${m.name} — ${m.role} chez Rocket4RPO`}
-                  width={96}
-                  height={96}
-                  className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
-                />
+                {m.photoUrl && (
+                  <Image
+                    src={m.photoUrl}
+                    alt={`${m.name} — ${m.role} chez Rocket4RPO`}
+                    width={96}
+                    height={96}
+                    className="w-24 h-24 rounded-2xl object-cover flex-shrink-0"
+                  />
+                )}
                 <div>
                   <h2 className="text-xl font-bold">{m.name}</h2>
                   <p className="text-sm text-primary font-medium">{m.role}</p>

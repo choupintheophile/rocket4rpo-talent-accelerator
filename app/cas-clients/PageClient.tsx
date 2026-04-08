@@ -2,10 +2,18 @@
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
-import { caseStudies } from "@/data/caseStudies";
 import { motion } from "framer-motion";
 
-export default function CasClientsPageClient() {
+interface CaseStudy {
+  slug: string;
+  company: string;
+  industry: string;
+  challenge: string;
+  intervention: string;
+  metrics: { value: string; label: string }[];
+}
+
+export default function CasClientsPageClient({ studies }: { studies: CaseStudy[] }) {
   return (
     <>
       <Breadcrumbs items={[{ label: "Cas clients" }]} />
@@ -20,9 +28,9 @@ export default function CasClientsPageClient() {
           </div>
 
           <div className="space-y-8">
-            {caseStudies.map((cs, i) => (
+            {studies.map((cs, i) => (
               <motion.div
-                key={i}
+                key={cs.slug}
                 id={cs.slug}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
