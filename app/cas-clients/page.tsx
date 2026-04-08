@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+export const dynamic = "force-dynamic";
 import { getCaseStudies } from "@/lib/db";
 import CasClientsPageClient from "./PageClient";
 

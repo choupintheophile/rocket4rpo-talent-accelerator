@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+export const dynamic = "force-dynamic";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { ProblemSection } from "@/components/sections/ProblemSection";

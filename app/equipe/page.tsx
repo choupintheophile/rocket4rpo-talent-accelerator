@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+export const dynamic = "force-dynamic";
 import { getTeamMembers } from "@/lib/db";
 import EquipePageClient from "./PageClient";
 

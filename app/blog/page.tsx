@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+export const dynamic = "force-dynamic";
 import { getBlogPosts } from "@/lib/db";
 import { blogCategories } from "@/data/blog";
 import BlogPageClient from "./PageClient";
