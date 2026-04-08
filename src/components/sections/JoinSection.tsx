@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -20,7 +22,7 @@ export const JoinSection = () => (
           />
           <div className="text-center">
             <Link
-              to="/recrutement"
+              href="/recrutement"
               className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               Découvrir les opportunités <ArrowRight className="w-4 h-4" />

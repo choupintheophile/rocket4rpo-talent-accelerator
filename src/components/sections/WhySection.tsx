@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { Target, Crosshair, Monitor, Shuffle, Zap, Network } from "lucide-react";

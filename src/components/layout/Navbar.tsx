@@ -1,43 +1,46 @@
+"use client";
+
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logoRocket4RPO from "@/assets/logo-rocket4rpo.webp";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const offerLinks = [
-  { to: "/offre/talent-acquisition-temps-partage", label: "TA temps partagé" },
-  { to: "/offre/talent-acquisition-temps-plein", label: "TA temps plein" },
-  { to: "/offre/recrutement-talent-acquisition", label: "Recrutement de TA" },
-  { to: "/offre/outils-sourcing-enablement", label: "Outils & enablement" },
+  { href: "/offre/talent-acquisition-temps-partage", label: "TA temps partagé" },
+  { href: "/offre/talent-acquisition-temps-plein", label: "TA temps plein" },
+  { href: "/offre/recrutement-talent-acquisition", label: "Recrutement de TA" },
+  { href: "/offre/outils-sourcing-enablement", label: "Outils & enablement" },
 ];
 
 const industryLinks = [
-  { to: "/metiers/recrutement-sales", label: "Sales" },
-  { to: "/metiers/recrutement-it", label: "IT / Tech" },
-  { to: "/metiers/recrutement-finance", label: "Finance" },
-  { to: "/metiers/recrutement-marketing", label: "Marketing" },
-  { to: "/metiers/recrutement-support", label: "Support" },
+  { href: "/metiers/recrutement-sales", label: "Sales" },
+  { href: "/metiers/recrutement-it", label: "IT / Tech" },
+  { href: "/metiers/recrutement-finance", label: "Finance" },
+  { href: "/metiers/recrutement-marketing", label: "Marketing" },
+  { href: "/metiers/recrutement-support", label: "Support" },
 ];
 
 const mainLinks = [
-  { to: "/cas-clients", label: "Cas clients" },
-  { to: "/blog", label: "Blog" },
-  { to: "/equipe", label: "Équipe" },
-  { to: "/rocket4gtm", label: "Rocket4GTM" },
+  { href: "/cas-clients", label: "Cas clients" },
+  { href: "/blog", label: "Blog" },
+  { href: "/equipe", label: "Équipe" },
+  { href: "/rocket4gtm", label: "Rocket4GTM" },
 ];
 
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
-  const location = useLocation();
+  const pathname = usePathname();
 
-  const isActive = (path: string) => location.pathname.startsWith(path);
+  const isActive = (path: string) => pathname.startsWith(path);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container-wide flex items-center justify-between h-16 lg:h-20">
-        <Link to="/" className="flex items-center">
-          <img src={logoRocket4RPO} alt="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech" width={384} height={256} className="h-36 lg:h-[11.25rem] w-auto" />
+        <Link href="/" className="flex items-center">
+          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech" width={384} height={256} className="h-36 lg:h-[11.25rem] w-auto" priority />
         </Link>
 
         {/* Desktop nav */}
@@ -59,7 +62,7 @@ export const Navbar = () => {
                   className="absolute top-full left-0 w-64 bg-card border border-border rounded-lg shadow-xl p-2 mt-1"
                 >
                   {offerLinks.map((l) => (
-                    <Link key={l.to} to={l.to} className="block px-3 py-2.5 text-sm rounded-md hover:bg-secondary transition-colors">
+                    <Link key={l.href} href={l.href} className="block px-3 py-2.5 text-sm rounded-md hover:bg-secondary transition-colors">
                       {l.label}
                     </Link>
                   ))}
@@ -85,7 +88,7 @@ export const Navbar = () => {
                   className="absolute top-full left-0 w-56 bg-card border border-border rounded-lg shadow-xl p-2 mt-1"
                 >
                   {industryLinks.map((l) => (
-                    <Link key={l.to} to={l.to} className="block px-3 py-2.5 text-sm rounded-md hover:bg-secondary transition-colors">
+                    <Link key={l.href} href={l.href} className="block px-3 py-2.5 text-sm rounded-md hover:bg-secondary transition-colors">
                       {l.label}
                     </Link>
                   ))}
@@ -96,9 +99,9 @@ export const Navbar = () => {
 
           {mainLinks.map((l) => (
             <Link
-              key={l.to}
-              to={l.to}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${isActive(l.to) ? "text-primary" : "text-foreground/70 hover:text-foreground"}`}
+              key={l.href}
+              href={l.href}
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${isActive(l.href) ? "text-primary" : "text-foreground/70 hover:text-foreground"}`}
             >
               {l.label}
             </Link>
@@ -106,7 +109,7 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Link to="/recrutement" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
+          <Link href="/recrutement" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             Nous rejoindre
           </Link>
           <a
@@ -137,23 +140,23 @@ export const Navbar = () => {
             <div className="container-wide py-4 space-y-1">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 pt-2 pb-1">Offre</p>
               {offerLinks.map((l) => (
-                <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
+                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
                   {l.label}
                 </Link>
               ))}
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 pt-4 pb-1">Métiers</p>
               {industryLinks.map((l) => (
-                <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
+                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
                   {l.label}
                 </Link>
               ))}
               <div className="border-t border-border my-2" />
               {mainLinks.map((l) => (
-                <Link key={l.to} to={l.to} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
+                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
                   {l.label}
                 </Link>
               ))}
-              <Link to="/recrutement" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
+              <Link href="/recrutement" onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
                 Nous rejoindre
               </Link>
               <div className="pt-2 px-3">

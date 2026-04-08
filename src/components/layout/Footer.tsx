@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import logoRocket4RPO from "@/assets/logo-rocket4rpo-white.webp";
+import Link from "next/link";
+import Image from "next/image";
 
 export const Footer = () => (
   <footer className="bg-foreground text-background">
     <div className="container-wide section-padding">
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
         <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
-          <Link to="/" className="flex items-center">
-            <img src={logoRocket4RPO} alt="Rocket4RPO — experts Talent Acquisition intégrés" width={384} height={256} className="h-36 md:h-[11.25rem] w-auto" />
+          <Link href="/" className="flex items-center">
+            <Image src="/logo-rocket4rpo-white.webp" alt="Rocket4RPO — experts Talent Acquisition intégrés" width={384} height={256} className="h-36 md:h-[11.25rem] w-auto" />
           </Link>
           <p className="mt-4 text-sm text-background/60 leading-relaxed max-w-xs">
             Talent Acquisition experts intégrés à vos équipes pour accélérer vos recrutements.
@@ -19,42 +19,42 @@ export const Footer = () => (
         <div>
           <h4 className="font-semibold text-sm mb-4">Offre</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link to="/offre/talent-acquisition-temps-partage" className="hover:text-primary transition-colors">Talent Acquisition à temps partagé</Link></li>
-            <li><Link to="/offre/talent-acquisition-temps-plein" className="hover:text-primary transition-colors">Talent Acquisition à temps plein</Link></li>
-            <li><Link to="/offre/recrutement-talent-acquisition" className="hover:text-primary transition-colors">Recrutement de Recruteurs</Link></li>
-            <li><Link to="/offre/outils-sourcing-enablement" className="hover:text-primary transition-colors">Outils & enablement</Link></li>
+            <li><Link href="/offre/talent-acquisition-temps-partage" className="hover:text-primary transition-colors">Talent Acquisition à temps partagé</Link></li>
+            <li><Link href="/offre/talent-acquisition-temps-plein" className="hover:text-primary transition-colors">Talent Acquisition à temps plein</Link></li>
+            <li><Link href="/offre/recrutement-talent-acquisition" className="hover:text-primary transition-colors">Recrutement de Recruteurs</Link></li>
+            <li><Link href="/offre/outils-sourcing-enablement" className="hover:text-primary transition-colors">Outils & enablement</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="font-semibold text-sm mb-4">Métiers</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link to="/metiers/recrutement-sales" className="hover:text-primary transition-colors">Sales</Link></li>
-            <li><Link to="/metiers/recrutement-it" className="hover:text-primary transition-colors">IT / Tech</Link></li>
-            <li><Link to="/metiers/recrutement-finance" className="hover:text-primary transition-colors">Finance</Link></li>
-            <li><Link to="/metiers/recrutement-marketing" className="hover:text-primary transition-colors">Marketing</Link></li>
-            <li><Link to="/metiers/recrutement-support" className="hover:text-primary transition-colors">Support</Link></li>
+            <li><Link href="/metiers/recrutement-sales" className="hover:text-primary transition-colors">Sales</Link></li>
+            <li><Link href="/metiers/recrutement-it" className="hover:text-primary transition-colors">IT / Tech</Link></li>
+            <li><Link href="/metiers/recrutement-finance" className="hover:text-primary transition-colors">Finance</Link></li>
+            <li><Link href="/metiers/recrutement-marketing" className="hover:text-primary transition-colors">Marketing</Link></li>
+            <li><Link href="/metiers/recrutement-support" className="hover:text-primary transition-colors">Support</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="font-semibold text-sm mb-4">Ressources</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link to="/cas-clients" className="hover:text-primary transition-colors">Cas clients</Link></li>
-            <li><Link to="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-            <li><Link to="/equipe" className="hover:text-primary transition-colors">Équipe</Link></li>
-            <li><Link to="/rocket4gtm" className="hover:text-primary transition-colors">Rocket4GTM</Link></li>
+            <li><Link href="/cas-clients" className="hover:text-primary transition-colors">Cas clients</Link></li>
+            <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
+            <li><Link href="/equipe" className="hover:text-primary transition-colors">Équipe</Link></li>
+            <li><Link href="/rocket4gtm" className="hover:text-primary transition-colors">Rocket4GTM</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="font-semibold text-sm mb-4">Contact</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link to="/contact" className="hover:text-primary transition-colors">Nous contacter</Link></li>
-            <li><Link to="/recrutement" className="hover:text-primary transition-colors">Nous rejoindre</Link></li>
+            <li><Link href="/contact" className="hover:text-primary transition-colors">Nous contacter</Link></li>
+            <li><Link href="/recrutement" className="hover:text-primary transition-colors">Nous rejoindre</Link></li>
           </ul>
           <h4 className="font-semibold text-sm mb-4 mt-6">Légal</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link to="/mentions-legales" className="hover:text-primary transition-colors">Mentions légales</Link></li>
-            <li><Link to="/politique-confidentialite" className="hover:text-primary transition-colors">Confidentialité</Link></li>
-            <li><Link to="/cgu" className="hover:text-primary transition-colors">CGU</Link></li>
+            <li><Link href="/mentions-legales" className="hover:text-primary transition-colors">Mentions légales</Link></li>
+            <li><Link href="/politique-confidentialite" className="hover:text-primary transition-colors">Confidentialité</Link></li>
+            <li><Link href="/cgu" className="hover:text-primary transition-colors">CGU</Link></li>
           </ul>
         </div>
       </div>

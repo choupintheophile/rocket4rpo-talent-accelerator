@@ -1,13 +1,8 @@
-import clementPhoto from "@/assets/team/clement-martin.webp";
-import theophilePhoto from "@/assets/team/theophile-choupin.webp";
-import marionPhoto from "@/assets/team/marion-longo.webp";
-import julienPhoto from "@/assets/team/julien-regnacq.webp";
-
 export const teamMembers = [
   {
     name: "Clément Martin",
     initials: "CM",
-    photo: clementPhoto,
+    photo: "/team/clement-martin.webp",
     role: "CEO, Rocket4Sales",
     shortBio: "Fondateur de Rocket4Sales, 7+ ans d'expertise en recrutement Tech & SaaS. Architecte de la vision Rocket4GTM.",
     fullBio: "Clément a fondé Rocket4Sales avec la conviction que le recrutement de talents commerciaux dans la Tech méritait une approche radicalement différente. Après 7 ans à structurer des équipes Sales pour les scale-ups les plus ambitieuses, il lance Rocket4RPO pour étendre cette expertise au Talent Acquisition en tant que service.",
@@ -16,7 +11,7 @@ export const teamMembers = [
   {
     name: "Théophile Choupin",
     initials: "TC",
-    photo: theophilePhoto,
+    photo: "/team/theophile-choupin.webp",
     role: "Sales Director",
     shortBio: "Expert en développement commercial B2B et en structuration d'offres de services RH pour l'écosystème Tech.",
     fullBio: "Théophile pilote le développement commercial de Rocket4RPO. Sa connaissance fine des enjeux de croissance des entreprises Tech lui permet d'identifier les besoins en Talent Acquisition et de proposer des modèles d'intervention adaptés à chaque contexte.",
@@ -25,7 +20,7 @@ export const teamMembers = [
   {
     name: "Julien Regnacq",
     initials: "JR",
-    photo: julienPhoto,
+    photo: "/team/julien-regnacq.webp",
     role: "Sales Director",
     shortBio: "Expert en développement commercial B2B et en structuration d'offres de services RH pour l'écosystème Tech.",
     fullBio: "Julien pilote le développement commercial de Rocket4RPO. Sa connaissance fine des enjeux de croissance des entreprises Tech lui permet d'identifier les besoins en Talent Acquisition et de proposer des modèles d'intervention adaptés à chaque contexte.",
@@ -34,7 +29,7 @@ export const teamMembers = [
   {
     name: "Marion Longo",
     initials: "ML",
-    photo: marionPhoto,
+    photo: "/team/marion-longo.webp",
     role: "Chief of Staff",
     shortBio: "Garante de l'excellence opérationnelle, de la coordination des équipes et de la qualité de service Rocket4RPO.",
     fullBio: "Marion assure la coordination opérationnelle entre les TA Specialists, les clients et les équipes internes. Son approche structurée et orientée résultats garantit un niveau de service irréprochable sur chaque mission.",

@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
 const scopes = [
-  { label: "Sales", to: "/metiers/recrutement-sales", emoji: "🎯" },
-  { label: "IT / Tech", to: "/metiers/recrutement-it", emoji: "💻" },
-  { label: "Finance", to: "/metiers/recrutement-finance", emoji: "📊" },
-  { label: "Marketing", to: "/metiers/recrutement-marketing", emoji: "📣" },
-  { label: "Support", to: "/metiers/recrutement-support", emoji: "🤝" },
+  { label: "Sales", href: "/metiers/recrutement-sales", emoji: "🎯" },
+  { label: "IT / Tech", href: "/metiers/recrutement-it", emoji: "💻" },
+  { label: "Finance", href: "/metiers/recrutement-finance", emoji: "📊" },
+  { label: "Marketing", href: "/metiers/recrutement-marketing", emoji: "📣" },
+  { label: "Support", href: "/metiers/recrutement-support", emoji: "🤝" },
 ];
 
 export const ScopeSection = () => (
@@ -28,7 +30,7 @@ export const ScopeSection = () => (
             transition={{ delay: i * 0.08 }}
           >
             <Link
-              to={s.to}
+              href={s.href}
               className="flex flex-col items-center p-6 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md transition-all text-center group"
             >
               <span className="text-3xl mb-3">{s.emoji}</span>
