@@ -8,5 +8,27 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Rocket4GTMPageClient />;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Rocket4GTM",
+    description:
+      "Rocket4GTM est un groupe d'experts go-to-market qui aide les entreprises Tech à accélérer leur croissance via le recrutement, le Talent Acquisition et le consulting GTM.",
+    url: "https://www.rocket4rpo.com/rocket4gtm",
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Rocket4Sales",
+      url: "https://www.rocket4sales.com",
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <Rocket4GTMPageClient />
+    </>
+  );
 }

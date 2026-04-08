@@ -8,5 +8,42 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <RecrutementPageClient />;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Rocket4RPO",
+    description:
+      "Rocket4RPO recrute des Talent Acquisition Managers et Specialists pour accompagner les entreprises Tech dans leurs recrutements.",
+    url: "https://www.rocket4rpo.com/recrutement",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Postes ouverts chez Rocket4RPO",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Talent Acquisition Manager",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Talent Acquisition Specialist",
+          },
+        },
+      ],
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <RecrutementPageClient />
+    </>
+  );
 }

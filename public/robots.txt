@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /mentions-legales
-Disallow: /politique-confidentialite
-Disallow: /cgu
 
 Sitemap: https://rocket4rpo.com/sitemap.xml

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales du site Rocket4RPO.",
   alternates: { canonical: "/mentions-legales" },
+  robots: { index: false },
 };
 
 export default function MentionsLegalesPage() {

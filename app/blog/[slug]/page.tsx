@@ -12,10 +12,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getBlogPostBySlug(slug);
   if (!post) return { title: "Article non trouvé" };
 
+  const isStub = !post.content || post.content.length < 200;
+
   return {
     title: post.title,
     description: post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` },
+    ...(isStub && { robots: { index: false } }),
   };
 }
 

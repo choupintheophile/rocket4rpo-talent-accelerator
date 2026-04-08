@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Conditions Générales d'Utilisation",
   description: "CGU du site Rocket4RPO.",
   alternates: { canonical: "/cgu" },
+  robots: { index: false },
 };
 
 export default function CGUPage() {
