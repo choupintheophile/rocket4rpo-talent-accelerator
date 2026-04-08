@@ -24,6 +24,18 @@ export async function getCaseStudies() {
   return prisma.caseStudy.findMany({ orderBy: { createdAt: "desc" } });
 }
 
+export async function getCaseStudyBySlug(slug: string) {
+  return prisma.caseStudy.findUnique({ where: { slug } });
+}
+
 export async function getTeamMembers() {
   return prisma.teamMember.findMany({ orderBy: { order: "asc" } });
+}
+
+export async function getTestimonials() {
+  return prisma.testimonial.findMany({ orderBy: { order: "asc" } });
+}
+
+export async function getClientLogos() {
+  return prisma.clientLogo.findMany({ orderBy: { order: "asc" } });
 }

@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 interface CaseStudy {
   slug: string;
@@ -49,13 +51,19 @@ export default function CasClientsPageClient({ studies }: { studies: CaseStudy[]
                     <p className="text-muted-foreground leading-relaxed">{cs.intervention}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-8 mt-6 pt-6 border-t border-border">
+                <div className="flex flex-wrap items-center gap-8 mt-6 pt-6 border-t border-border">
                   {cs.metrics.map((m, j) => (
                     <div key={j}>
                       <p className="text-2xl font-bold text-primary">{m.value}</p>
                       <p className="text-sm text-muted-foreground">{m.label}</p>
                     </div>
                   ))}
+                  <Link
+                    href={`/cas-clients/${cs.slug}`}
+                    className="ml-auto inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                  >
+                    Voir le cas complet <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
               </motion.div>
             ))}

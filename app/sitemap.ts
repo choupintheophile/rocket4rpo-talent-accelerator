@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { sitemapRoutes } from "@/data/routes";
 import { blogPosts } from "@/data/blog";
+import { getCaseStudies } from "@/lib/db";
 
 const SITE_URL = "https://rocket4rpo.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = sitemapRoutes.map((route) => ({
     url: `${SITE_URL}${route.path}`,
     lastModified: new Date(),
@@ -19,5 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...blogRoutes];
+  const caseStudies = await getCaseStudies();
+  const caseStudyRoutes: MetadataRoute.Sitemap = caseStudies.map((study) => ({
+    url: `${SITE_URL}/cas-clients/${study.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...blogRoutes, ...caseStudyRoutes];
 }

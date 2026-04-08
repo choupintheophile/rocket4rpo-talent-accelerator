@@ -24,9 +24,9 @@ const industryLinks = [
 
 const mainLinks = [
   { href: "/cas-clients", label: "Cas clients" },
+  { href: "/calculateur", label: "Calculateur ROI" },
   { href: "/blog", label: "Blog" },
   { href: "/equipe", label: "Équipe" },
-  { href: "/rocket4gtm", label: "Rocket4GTM" },
 ];
 
 export const Navbar = () => {
@@ -40,7 +40,7 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container-wide flex items-center justify-between h-16 lg:h-20">
         <Link href="/" className="flex items-center">
-          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech" width={384} height={256} className="h-36 lg:h-[11.25rem] w-auto" priority />
+          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech" width={384} height={256} className="h-10 lg:h-12 w-auto" priority />
         </Link>
 
         {/* Desktop nav */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface Props {
   title?: string;
@@ -11,9 +11,9 @@ interface Props {
 }
 
 export const CTASection = ({
-  title = "Besoin de structurer ou accélérer vos recrutements ?",
-  subtitle = "Nos experts Talent Acquisition sont prêts à s'intégrer à vos équipes.",
-  ctaLabel = "Échanger avec Rocket4RPO",
+  title = "Pr\u00eat \u00e0 acc\u00e9l\u00e9rer vos recrutements\u00a0?",
+  subtitle = "Recevez un diagnostic gratuit de votre processus de recrutement en 48\u00a0h.",
+  ctaLabel = "\u00c9changer avec Rocket4RPO",
   ctaHref = "https://bit.ly/4bJGsuZ",
 }: Props) => (
   <section className="section-padding bg-foreground text-background">
@@ -24,16 +24,44 @@ export const CTASection = ({
       transition={{ duration: 0.5 }}
       className="container-tight text-center"
     >
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{title}</h2>
-      <p className="mt-4 text-lg text-background/60 max-w-2xl mx-auto">{subtitle}</p>
-      <a
-        href={ctaHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 mt-8 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        {title}
+      </h2>
+      <p className="mt-4 text-lg text-background/60 max-w-2xl mx-auto">
+        {subtitle}
+      </p>
+
+      {/* Email form */}
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="mt-8 flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
       >
-        {ctaLabel} <ArrowRight className="w-4 h-4" />
-      </a>
+        <input
+          type="email"
+          placeholder="votre@email.com"
+          className="flex-1 px-4 py-3.5 rounded-lg bg-background/10 border border-background/20 text-background placeholder:text-background/40 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+        <button
+          type="submit"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap"
+        >
+          {"Recevoir un diagnostic gratuit"}
+        </button>
+      </form>
+
+      {/* Secondary CTA */}
+      <div className="mt-6 flex items-center justify-center gap-2 text-sm text-background/50">
+        <Phone className="w-4 h-4" />
+        <span>{"Ou planifiez un appel directement"}</span>
+        <a
+          href={ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-primary hover:underline font-medium"
+        >
+          {ctaLabel} <ArrowRight className="w-3.5 h-3.5" />
+        </a>
+      </div>
     </motion.div>
   </section>
 );

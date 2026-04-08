@@ -8,27 +8,35 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 const offers = [
   {
     icon: Users,
-    title: "TA à temps partagé",
-    description: "Vous êtes exigeants, nous aussi, nous mettons la barre très haute pour être certain de vous proposer les meilleurs  Talent Acquisition Specialist qui seront intégrés à vos équipes quelques jours par semaine. Flexibilité maximale, expertise immédiate.",
+    title: "TA \u00e0 temps partag\u00e9",
+    description:
+      "Un Talent Acquisition Specialist senior int\u00e9gr\u00e9 \u00e0 vos \u00e9quipes quelques jours par semaine. Flexibilit\u00e9 maximale, expertise imm\u00e9diate.",
     href: "/offre/talent-acquisition-temps-partage",
+    popular: true,
   },
   {
     icon: UserPlus,
-    title: "TA à temps plein",
-    description: "Un expert Talent Acquisition dédié à 100% à vos recrutements. Immersion totale dans votre culture et vos processus pour une forte croissance de vos effectifs",
+    title: "TA \u00e0 temps plein",
+    description:
+      "Un expert Talent Acquisition d\u00e9di\u00e9 \u00e0 100\u00a0% \u00e0 vos recrutements. Immersion totale dans votre culture et vos processus.",
     href: "/offre/talent-acquisition-temps-plein",
+    popular: false,
   },
   {
     icon: Search,
     title: "Recrutement de Talent Acquisition",
-    description: "Nous recrutons pour vous des Talent Acquisition Managers et Specialists adaptés à vos enjeux de croissance.",
+    description:
+      "Nous recrutons pour vous des Talent Acquisition Managers et Specialists adapt\u00e9s \u00e0 vos enjeux de croissance.",
     href: "/offre/recrutement-talent-acquisition",
+    popular: false,
   },
   {
     icon: Wrench,
     title: "Outils de sourcing & enablement",
-    description: "Sélection d'outils de sourcing abordables, formation de vos équipes et optimisation de votre stack recrutement.",
+    description:
+      "S\u00e9lection d\u2019outils de sourcing abordables, formation de vos \u00e9quipes et optimisation de votre stack recrutement.",
     href: "/offre/outils-sourcing-enablement",
+    popular: false,
   },
 ];
 
@@ -37,8 +45,15 @@ export const OffersSection = () => (
     <div className="container-wide">
       <SectionHeading
         badge="Notre offre"
-        title={<>Des solutions de Talent Acquisition <span className="text-gradient">adaptées à chaque besoin</span></>}
-        description="Du temps partagé au recrutement en passant par l'outillage, nous couvrons l'ensemble de vos besoins en Talent Acquisition."
+        title={
+          <>
+            {"Des solutions de Talent Acquisition "}
+            <span className="text-gradient">
+              {"adapt\u00e9es \u00e0 chaque besoin"}
+            </span>
+          </>
+        }
+        description="Du temps partag\u00e9 au recrutement en passant par l\u2019outillage, nous couvrons l\u2019ensemble de vos besoins en Talent Acquisition."
       />
       <div className="grid md:grid-cols-2 gap-6">
         {offers.map((offer, i) => (
@@ -51,15 +66,22 @@ export const OffersSection = () => (
           >
             <Link
               href={offer.href}
-              className="group block p-8 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full"
+              className="group relative block p-8 rounded-2xl border border-border hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                <offer.icon className="w-5 h-5 text-primary" />
+              {offer.popular && (
+                <span className="absolute top-4 right-4 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground">
+                  Le plus populaire
+                </span>
+              )}
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                <offer.icon className="w-6 h-6 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-3">{offer.title}</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">{offer.description}</p>
+              <p className="text-muted-foreground leading-relaxed mb-5">
+                {offer.description}
+              </p>
               <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
-                En savoir plus <ArrowRight className="w-4 h-4" />
+                {"En savoir plus"} <ArrowRight className="w-4 h-4" />
               </span>
             </Link>
           </motion.div>

@@ -50,3 +50,28 @@ model TeamMember {
 
   @@map("team_members")
 }
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  company   String
+  quote     String   @db.Text
+  photoUrl  String?
+  rating    Int      @default(5)
+  industry  String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@map("testimonials")
+}
+
+model ClientLogo {
+  id      String  @id @default(cuid())
+  name    String
+  logoUrl String
+  url     String?
+  order   Int     @default(0)
+
+  @@map("client_logos")
+}

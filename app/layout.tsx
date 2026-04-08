@@ -66,9 +66,12 @@ export default function RootLayout({
           />
         </noscript>
         <Providers>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg">
+            Aller au contenu principal
+          </a>
           <div className="min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex-1 pt-16 lg:pt-20">{children}</main>
+            <main id="main-content" className="flex-1 pt-16 lg:pt-20">{children}</main>
             <Footer />
           </div>
         </Providers>
