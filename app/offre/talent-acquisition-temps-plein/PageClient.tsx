@@ -115,7 +115,7 @@ export default function TalentAcquisitionTempsPleinPageClient() {
               Rocket4RPO met à disposition des Talent Acquisition Specialists expérimentés à temps plein pour piloter vos recrutements avec exigence, rapidité et méthode. Vous bénéficiez d'une ressource dédiée, capable de structurer vos process, d'accélérer vos recrutements et de collaborer efficacement avec vos équipes opérationnelles.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
+              <a href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Parler à un expert <ArrowRight className="w-4 h-4" />
@@ -128,6 +128,22 @@ export default function TalentAcquisitionTempsPleinPageClient() {
               </a>
             </div>
           </motion.div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Social proof ── */}
+    <section className="py-12 bg-primary/5 border-y border-primary/10">
+      <div className="container-wide">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1">
+            <p className="text-lg italic text-muted-foreground">&ldquo;En 4 mois, 8 postes Sales pourvus. Le TA Rocket4RPO s&apos;est intégré à nos rituels comme un membre de l&apos;équipe.&rdquo;</p>
+            <p className="mt-2 text-sm font-semibold">&mdash; S.D., VP People, Scale-up SaaS (120 pers.)</p>
+          </div>
+          <div className="flex gap-6 text-center">
+            <div><p className="text-3xl font-bold text-primary">8 postes</p><p className="text-xs text-muted-foreground">pourvus en 4 mois</p></div>
+            <div><p className="text-3xl font-bold text-primary">92%</p><p className="text-xs text-muted-foreground">rétention 12 mois</p></div>
+          </div>
         </div>
       </div>
     </section>

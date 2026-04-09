@@ -186,18 +186,34 @@ export default function RecrutementTalentAcquisitionPageClient() {
               Rocket4RPO en plus du placement en RPO, notre société recrute pour vous des Talent Acquisition Specialists et Managers capables de structurer, piloter et accélérer vos recrutements. Notre approche repose sur une compréhension fine du métier et une sélection exigeante basée sur la performance réelle des profils.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
+              <a href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Confier un recrutement <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
+              <a href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors"
               >
                 Échanger avec un expert
               </a>
             </div>
           </motion.div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Social proof ── */}
+    <section className="py-12 bg-primary/5 border-y border-primary/10">
+      <div className="container-wide">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1">
+            <p className="text-lg italic text-muted-foreground">&ldquo;La méthodologie structurée nous a donné une visibilité inédite sur notre pipeline. 4 recrutements signés en 5 semaines.&rdquo;</p>
+            <p className="mt-2 text-sm font-semibold">&mdash; J.M., DRH, Éditeur logiciel (200 pers.)</p>
+          </div>
+          <div className="flex gap-6 text-center">
+            <div><p className="text-3xl font-bold text-primary">5 sem.</p><p className="text-xs text-muted-foreground">délai moyen</p></div>
+            <div><p className="text-3xl font-bold text-primary">100%</p><p className="text-xs text-muted-foreground">satisfaction client</p></div>
+          </div>
         </div>
       </div>
     </section>

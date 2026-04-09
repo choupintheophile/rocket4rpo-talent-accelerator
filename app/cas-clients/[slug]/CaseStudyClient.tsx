@@ -20,6 +20,21 @@ interface CaseStudy {
   metrics: Metric[];
 }
 
+const testimonialQuotes: Record<string, { quote: string; author: string }> = {
+  "saas-scale-up-sales": {
+    quote: "Le TA Rocket4RPO s\u2019est intégré à nos rituels comme un membre de l\u2019équipe. La qualité des shortlists grâce à leur base de profils Sales est incomparable.",
+    author: "S.D., VP People",
+  },
+  "fintech-engineering": {
+    quote: "Le premier CV pertinent est arrivé en 3 jours. Sans fonction TA en interne, nous étions bloqués \u2014 le modèle temps partagé a tout débloqué.",
+    author: "M.L., CTO",
+  },
+  "editeur-logiciel-marketing": {
+    quote: "La méthodologie structurée nous a donné une visibilité inédite sur notre pipeline.",
+    author: "J.M., DRH",
+  },
+};
+
 export default function CaseStudyClient({ study }: { study: CaseStudy }) {
   return (
     <>
@@ -116,12 +131,34 @@ export default function CaseStudyClient({ study }: { study: CaseStudy }) {
         </div>
       </section>
 
+      {/* Testimonial quote */}
+      {testimonialQuotes[study.slug] && (
+        <section className="section-padding bg-primary/5 border-y border-primary/10">
+          <div className="container-wide">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <p className="text-xl md:text-2xl italic text-muted-foreground leading-relaxed">
+                &ldquo;{testimonialQuotes[study.slug].quote}&rdquo;
+              </p>
+              <p className="mt-4 text-sm font-semibold">
+                &mdash; {testimonialQuotes[study.slug].author}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <CTASection
         title="Obtenez les mêmes résultats"
         subtitle="Nos experts Talent Acquisition sont prêts à transformer vos recrutements."
         ctaLabel="Échanger avec Rocket4RPO"
-        ctaHref="https://bit.ly/4bJGsuZ"
+        ctaHref="/contact"
       />
 
       {/* Back link */}

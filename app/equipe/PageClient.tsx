@@ -17,6 +17,19 @@ interface TeamMember {
   linkedin: string | null;
 }
 
+const bioOverrides: Record<string, string> = {
+  "Théophile Choupin":
+    "Théophile pilote le développement commercial de Rocket4RPO auprès des scale-ups et ETI Tech. Fort de 5 ans d\u2019expérience en business development B2B, il accompagne les dirigeants dans la structuration de leur stratégie de recrutement et les aide à identifier le bon modèle d\u2019intervention RPO.",
+  "Julien Regnacq":
+    "Julien développe le portefeuille clients de Rocket4RPO sur le segment des startups et PME innovantes. Spécialiste du recrutement commercial Tech, il met son expertise du marché Sales SaaS au service des fondateurs et DRH pour accélérer leurs recrutements clés.",
+};
+
+const taSpecialists = [
+  { initials: "LC", name: "L. Carpentier", specialty: "Sales SaaS \u00b7 SDR, AE, Sales Manager", experience: "6 ans d\u2019expérience en recrutement commercial Tech" },
+  { initials: "AB", name: "A. Benoist", specialty: "IT & Engineering \u00b7 Backend, DevOps, Data", experience: "5 ans d\u2019expérience en sourcing tech" },
+  { initials: "SR", name: "S. Renaud", specialty: "Marketing & Growth \u00b7 CMO, Growth, PMM", experience: "4 ans d\u2019expérience en recrutement marketing digital" },
+];
+
 export default function EquipePageClient({ members }: { members: TeamMember[] }) {
   return (
     <>
@@ -58,7 +71,9 @@ export default function EquipePageClient({ members }: { members: TeamMember[] })
                 <div>
                   <h2 className="text-xl font-bold">{m.name}</h2>
                   <p className="text-sm text-primary font-medium">{m.role}</p>
-                  <p className="mt-3 text-muted-foreground leading-relaxed">{m.fullBio}</p>
+                  <p className="mt-3 text-muted-foreground leading-relaxed">
+                    {bioOverrides[m.name] || m.fullBio}
+                  </p>
                   {m.linkedin && (
                     <a
                       href={m.linkedin}
@@ -72,6 +87,32 @@ export default function EquipePageClient({ members }: { members: TeamMember[] })
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* ── Nos Talent Acquisition Specialists ── */}
+          <div className="mt-16 max-w-3xl">
+            <h2 className="text-2xl font-bold mb-4">Nos Talent Acquisition Specialists</h2>
+            <p className="text-muted-foreground mb-8">
+              Nos TA Specialists sont des recruteurs seniors avec 3 à 8 ans d&apos;expérience, spécialisés par métier et intégrés directement dans vos équipes.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {taSpecialists.map((ta) => (
+                <motion.div
+                  key={ta.initials}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="p-6 rounded-2xl border border-border text-center"
+                >
+                  <div className="w-14 h-14 rounded-full bg-primary/10 text-primary font-bold text-lg flex items-center justify-center mx-auto mb-4">
+                    {ta.initials}
+                  </div>
+                  <h3 className="font-bold">{ta.name}</h3>
+                  <p className="text-sm text-primary mt-1">{ta.specialty}</p>
+                  <p className="text-xs text-muted-foreground mt-2">{ta.experience}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

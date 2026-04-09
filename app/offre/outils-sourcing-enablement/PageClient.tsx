@@ -233,18 +233,34 @@ export default function OutilsSourcingEnablementPageClient() {
               Les outils ne créent pas la performance. Ce sont les process structurés et les équipes formées qui font la différence. Rocket4RPO vous accompagne pour bâtir une fonction recrutement capable de délivrer dans la durée.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
+              <a href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Structurer mon recrutement <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
+              <a href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors"
               >
                 Demander un audit
               </a>
             </div>
           </motion.div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Social proof ── */}
+    <section className="py-12 bg-primary/5 border-y border-primary/10">
+      <div className="container-wide">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex-1">
+            <p className="text-lg italic text-muted-foreground">&ldquo;En phase de scaling, on avait besoin de recruter vite ET bien. Le ROI est évident quand on compare au coût d&apos;un cabinet.&rdquo;</p>
+            <p className="mt-2 text-sm font-semibold">&mdash; T.B., CEO, Start-up HealthTech (30 pers.)</p>
+          </div>
+          <div className="flex gap-6 text-center">
+            <div><p className="text-3xl font-bold text-primary">3x</p><p className="text-xs text-muted-foreground">moins cher</p></div>
+            <div><p className="text-3xl font-bold text-primary">+40%</p><p className="text-xs text-muted-foreground">taux réponse</p></div>
+          </div>
         </div>
       </div>
     </section>
