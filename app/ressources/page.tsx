@@ -29,7 +29,7 @@ export default function Page() {
       {
         "@type": "ListItem",
         position: 3,
-        name: "Étude : Grille de rémunération Sales & Tech 2026",
+        name: "Étude : Grille de rémunération Tech 2026",
       },
       {
         "@type": "ListItem",

@@ -399,7 +399,7 @@ export default function RecrutementSalesPageClient() {
                 {
                   icon: Database,
                   title: "Profils déjà qualifiés",
-                  text: "Chaque profil de notre vivier a été évalué sur ses compétences réelles : % d'atteinte de quota, deal size, taux de conversion. Pas uniquement sur son CV.",
+                  text: "Chaque candidat est évalué sur ses compétences réelles : % d'atteinte de quota, deal size, taux de conversion. Pas uniquement sur son CV.",
                 },
                 {
                   icon: Brain,
@@ -448,7 +448,7 @@ export default function RecrutementSalesPageClient() {
               </h2>
               <p className="mt-4 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 Là où un cabinet classique met 2 à 3 semaines pour produire une
-                shortlist, nous livrons en 48h grâce à notre vivier pré-qualifié.
+                shortlist, nous livrons en 48h grâce à notre réseau et nos outils de sourcing avancés.
               </p>
             </motion.div>
             <div className="max-w-3xl mx-auto space-y-0">
@@ -460,7 +460,7 @@ export default function RecrutementSalesPageClient() {
                 },
                 {
                   step: "J1",
-                  title: "Activation du vivier",
+                  title: "Sourcing & approche directe",
                   text: "Sourcing ciblé via nos outils et notre réseau de profils commerciaux. Identification des candidats correspondant au contexte. Premiers contacts.",
                 },
                 {
@@ -575,7 +575,7 @@ export default function RecrutementSalesPageClient() {
             </h2>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
               Chaque stade de maturité nécessite un profil commercial différent.
-              Notre vivier couvre tous les contextes.
+              Nos TA Specialists couvrent tous les contextes.
             </p>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -590,7 +590,7 @@ export default function RecrutementSalesPageClient() {
                 icon: TrendingUp,
                 stage: "Scale-up",
                 profile: "Profils structurés",
-                text: "Des commerciaux qui exécutent dans un cadre en construction tout en contribuant à sa structuration. Le sweet spot de notre vivier.",
+                text: "Des commerciaux qui exécutent dans un cadre en construction tout en contribuant à sa structuration. Le sweet spot de notre expertise.",
               },
               {
                 icon: Building2,
