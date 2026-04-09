@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { sitemapRoutes } from "@/data/routes";
-import { caseStudies } from "@/data/caseStudies";
 import { getBlogPosts } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route.priority ?? 0.5,
   }));
 
-  // Fetch ALL blog posts from database (not just the 6 static ones)
   let blogRoutes: MetadataRoute.Sitemap = [];
   try {
     const posts = await getBlogPosts();
@@ -26,7 +24,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }));
   } catch {
-    // Fallback to static data if DB unreachable (build time)
     const { blogPosts } = await import("@/data/blog");
     blogRoutes = blogPosts.map((post) => ({
       url: `${SITE_URL}/blog/${post.slug}`,
@@ -36,12 +33,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
   }
 
-  const caseStudyRoutes: MetadataRoute.Sitemap = caseStudies.map((study) => ({
-    url: `${SITE_URL}/cas-clients/${study.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
-  return [...staticRoutes, ...blogRoutes, ...caseStudyRoutes];
+  return [...staticRoutes, ...blogRoutes];
 }

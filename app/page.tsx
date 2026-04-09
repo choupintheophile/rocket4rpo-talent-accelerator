@@ -7,7 +7,6 @@ import { OffersSection } from "@/components/sections/OffersSection";
 import { MethodSection } from "@/components/sections/MethodSection";
 import { ComparisonSection } from "@/components/sections/ComparisonSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { CaseStudiesPreview } from "@/components/sections/CaseStudiesPreview";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
@@ -116,7 +115,6 @@ export default async function HomePage({
       <MethodSection />
       <ComparisonSection />
       <TestimonialsSection testimonials={serializedTestimonials} />
-      <CaseStudiesPreview />
       <BlogPreview posts={serializedPosts} />
       <FAQSection faqs={homepageFaqs} />
       <CTASection />

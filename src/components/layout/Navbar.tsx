@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 const offerLinks = [
   { href: "/offre/talent-acquisition-temps-partage", label: "TA temps partagé" },
@@ -15,23 +14,13 @@ const offerLinks = [
   { href: "/offre/outils-sourcing-enablement", label: "Outils & enablement" },
 ];
 
-const industryLinks = [
-  { href: "/metiers/recrutement-sales", label: "Sales" },
-  { href: "/metiers/recrutement-it", label: "IT / Tech" },
-  { href: "/metiers/recrutement-finance", label: "Finance" },
-  { href: "/metiers/recrutement-marketing", label: "Marketing" },
-  { href: "/metiers/recrutement-support", label: "Support" },
-];
-
 const mainLinks = [
-  { href: "/cas-clients", label: "Cas clients" },
   { href: "/demo", label: "Démo" },
   { href: "/comparateur", label: "Comparateur" },
   { href: "/calculateur", label: "Calculateur ROI" },
   { href: "/assessment", label: "Diagnostic" },
   { href: "/blog", label: "Blog" },
   { href: "/ressources", label: "Ressources" },
-  { href: "/equipe", label: "Équipe" },
 ];
 
 export const Navbar = () => {
@@ -76,32 +65,6 @@ export const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          <div
-            className="relative"
-            onMouseEnter={() => setDropdownOpen("metiers")}
-            onMouseLeave={() => setDropdownOpen(null)}
-          >
-            <button className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${isActive("/metiers") ? "text-primary" : "text-foreground/70 hover:text-foreground"}`}>
-              Métiers <ChevronDown className="w-3 h-3" />
-            </button>
-            <AnimatePresence>
-              {dropdownOpen === "metiers" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  className="absolute top-full left-0 w-56 bg-card border border-border rounded-lg shadow-xl p-2 mt-1"
-                >
-                  {industryLinks.map((l) => (
-                    <Link key={l.href} href={l.href} className="block px-3 py-2.5 text-sm rounded-md hover:bg-secondary transition-colors">
-                      {l.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
           {mainLinks.map((l) => (
             <Link
               key={l.href}
@@ -114,7 +77,6 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <ThemeToggle />
           <Link href="/recrutement" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             Nous rejoindre
           </Link>
@@ -146,12 +108,6 @@ export const Navbar = () => {
             <div className="container-wide py-4 space-y-1">
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 pt-2 pb-1">Offre</p>
               {offerLinks.map((l) => (
-                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
-                  {l.label}
-                </Link>
-              ))}
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 pt-4 pb-1">Métiers</p>
-              {industryLinks.map((l) => (
                 <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
                   {l.label}
                 </Link>

@@ -701,7 +701,7 @@ export default function RecrutementTalentAcquisitionPageClient() {
               { label: "Talent Acquisition à temps plein", href: "/offre/talent-acquisition-temps-plein" },
               { label: "Talent Acquisition à temps partagé", href: "/offre/talent-acquisition-temps-partage" },
               { label: "Sourcing & Enablement", href: "/offre/outils-sourcing-enablement" },
-              { label: "Cas clients", href: "/cas-clients" },
+              { label: "Comparateur", href: "/comparateur" },
               { label: "Nous contacter", href: "/contact" },
             ].map((link) => (
               <Link

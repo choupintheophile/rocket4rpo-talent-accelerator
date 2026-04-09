@@ -469,7 +469,7 @@ export default function TalentAcquisitionTempsPartagePageClient() {
               { label: "Nos offres", href: "/offre/talent-acquisition-temps-plein" },
               { label: "Recrutement de Talent Acquisition", href: "/offre/recrutement-talent-acquisition" },
               { label: "Sourcing & Enablement", href: "/offre/outils-sourcing-enablement" },
-              { label: "Cas clients", href: "/cas-clients" },
+              { label: "Comparateur", href: "/comparateur" },
               { label: "Nous contacter", href: "/contact" },
             ].map((link) => (
               <Link key={link.href} href={link.href} className="px-4 py-2 text-sm font-medium rounded-lg border border-border bg-background text-foreground hover:border-primary/30 hover:text-primary transition-colors">

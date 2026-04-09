@@ -6,14 +6,14 @@ export const Footer = () => (
   <footer className="bg-foreground text-background">
     <div className="container-wide section-padding">
       {/* Main grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
         {/* Brand + addresses */}
         <div className="col-span-2 mb-4 lg:mb-0">
           <Link href="/" className="flex items-center">
             <Image src="/logo-rocket4rpo-white.webp" alt="Rocket4RPO — experts Talent Acquisition intégrés" width={384} height={256} className="h-10 md:h-12 w-auto" />
           </Link>
           <p className="mt-4 text-sm text-background/60 leading-relaxed max-w-xs">
-            Talent Acquisition experts intégrés à vos équipes pour accélérer vos recrutements Tech.
+            Talent Acquisition experts intégrés à vos équipes pour accélérer vos recrutements.
           </p>
           <div className="mt-4 space-y-2 text-xs text-background/40">
             <p className="flex items-start gap-1.5"><MapPin className="w-3 h-3 mt-0.5 shrink-0" /> 22 rue de l&apos;Échiquier, 75010 Paris</p>
@@ -35,26 +35,16 @@ export const Footer = () => (
           </ul>
         </div>
 
-        {/* Métiers */}
-        <div>
-          <h4 className="font-semibold text-sm mb-4">Métiers</h4>
-          <ul className="space-y-2 text-sm text-background/60">
-            <li><Link href="/metiers/recrutement-sales" className="hover:text-primary transition-colors">Sales</Link></li>
-            <li><Link href="/metiers/recrutement-it" className="hover:text-primary transition-colors">IT / Tech</Link></li>
-            <li><Link href="/metiers/recrutement-finance" className="hover:text-primary transition-colors">Finance</Link></li>
-            <li><Link href="/metiers/recrutement-marketing" className="hover:text-primary transition-colors">Marketing</Link></li>
-            <li><Link href="/metiers/recrutement-support" className="hover:text-primary transition-colors">Support</Link></li>
-          </ul>
-        </div>
-
         {/* Ressources */}
         <div>
           <h4 className="font-semibold text-sm mb-4">Ressources</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link href="/cas-clients" className="hover:text-primary transition-colors">Cas clients</Link></li>
+            <li><Link href="/comparateur" className="hover:text-primary transition-colors">Comparateur RPO</Link></li>
             <li><Link href="/calculateur" className="hover:text-primary transition-colors">Calculateur ROI</Link></li>
+            <li><Link href="/demo" className="hover:text-primary transition-colors">Démo interactive</Link></li>
+            <li><Link href="/assessment" className="hover:text-primary transition-colors">Diagnostic recrutement</Link></li>
             <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-            <li><Link href="/equipe" className="hover:text-primary transition-colors">Équipe</Link></li>
+            <li><Link href="/ressources" className="hover:text-primary transition-colors">Guides & templates</Link></li>
           </ul>
         </div>
 
