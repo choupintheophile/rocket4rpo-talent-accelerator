@@ -10,7 +10,7 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CaseStudiesPreview } from "@/components/sections/CaseStudiesPreview";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { CTASection } from "@/components/shared/CTASection";
-import { organizationSchema, professionalServiceSchema } from "@/lib/seo";
+import { organizationSchema, professionalServiceSchema, faqSchema } from "@/lib/seo";
 import { getTestimonials, getBlogPosts } from "@/lib/db";
 
 export const metadata: Metadata = {
@@ -19,6 +19,34 @@ export const metadata: Metadata = {
     "Recruteur RPO dédié pour startups et scale-ups tech. Talent Acquisition à temps partagé ou plein. Réduisez vos coûts de recrutement de 40%.",
   alternates: { canonical: "/" },
 };
+
+const homepageFaqs = [
+  {
+    question: "Qu'est-ce que le RPO (Recruitment Process Outsourcing) ?",
+    answer:
+      "Le RPO consiste à externaliser tout ou partie de votre processus de recrutement auprès d'un expert Talent Acquisition intégré à votre équipe. Contrairement à un cabinet, le RPO travaille en continu depuis vos outils (ATS, Slack) et participe à vos rituels d'équipe.",
+  },
+  {
+    question: "Combien coûte un RPO ?",
+    answer:
+      "Chez Rocket4RPO, le tarif est un TJM de 550 €/jour, ajustable de 1 à 4 jours par semaine. Pour 10 recrutements, cela représente environ 44 000 €, contre 60 000 à 200 000 € pour un cabinet facturant 15-25 % du salaire annuel.",
+  },
+  {
+    question: "Quelle est la différence entre un RPO et un cabinet de recrutement ?",
+    answer:
+      "Le RPO s'intègre dans votre équipe et travaille en continu sur vos recrutements avec vos outils. Le cabinet intervient ponctuellement, mission par mission, sans intégration à vos process internes. Le RPO offre plus de flexibilité et un coût prévisible.",
+  },
+  {
+    question: "En combien de temps un RPO peut-il démarrer ?",
+    answer:
+      "Chez Rocket4RPO, le démarrage se fait en 48 h après signature. Votre recruteur RPO dédié est opérationnel immédiatement avec accès à un vivier de 40 000 profils qualifiés.",
+  },
+  {
+    question: "Le RPO remplace-t-il mon équipe RH interne ?",
+    answer:
+      "Non, le RPO complète votre équipe RH. Il prend en charge le sourcing, la pré-qualification et la coordination des entretiens, permettant à vos RH de se concentrer sur les sujets stratégiques (marque employeur, onboarding, rétention).",
+  },
+];
 
 export default async function HomePage() {
   const [testimonials, blogPosts] = await Promise.all([
@@ -50,6 +78,12 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([organizationSchema, professionalServiceSchema]),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema(homepageFaqs)),
         }}
       />
       <HeroSection />
