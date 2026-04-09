@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
+const akaru = [0.165, 0.84, 0.44, 1] as const;
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -25,7 +27,7 @@ export const BlogPreview = ({ posts }: Props) => (
         badge="Blog"
         title={
           <>
-            {"Derni\u00e8res "}
+            {"Dernières "}
             <span className="text-gradient">ressources</span>
           </>
         }
@@ -33,25 +35,46 @@ export const BlogPreview = ({ posts }: Props) => (
 
       {posts.length === 0 ? (
         <p className="text-center text-muted-foreground">
-          {"Nos articles arrivent bient\u00f4t. Restez connect\u00e9s\u00a0!"}
+          {"Nos articles arrivent bientôt. Restez connectés\u00a0!"}
         </p>
       ) : (
         <div className="grid md:grid-cols-3 gap-6">
           {posts.slice(0, 3).map((post, i) => (
             <motion.div
               key={post.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60, skewY: 2 }}
+              whileInView={{ opacity: 1, y: 0, skewY: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{
+                duration: 0.8,
+                delay: i * 0.15,
+                ease: akaru,
+              }}
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group block p-6 rounded-2xl border border-border bg-background hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full flex flex-col"
+                className="group block p-6 rounded-2xl border border-border bg-background hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full flex flex-col overflow-hidden"
               >
-                <span className="inline-block self-start px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">
+                {/* Category badge with scale bounce */}
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.5,
+                    delay: i * 0.15 + 0.3,
+                    ease: akaru,
+                    scale: {
+                      type: "spring",
+                      stiffness: 400,
+                      damping: 15,
+                      delay: i * 0.15 + 0.3,
+                    },
+                  }}
+                  className="inline-block self-start px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4"
+                >
                   {post.category}
-                </span>
+                </motion.span>
                 <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
                   {post.title}
                 </h3>
@@ -73,14 +96,20 @@ export const BlogPreview = ({ posts }: Props) => (
         </div>
       )}
 
-      <div className="mt-10 text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.6, ease: akaru }}
+        className="mt-10 text-center"
+      >
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
         >
           {"Voir toutes les ressources"} <ArrowRight className="w-4 h-4" />
         </Link>
-      </div>
+      </motion.div>
     </div>
   </section>
 );

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Check, X, Minus } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
+const akaru = [0.165, 0.84, 0.44, 1] as const;
+
 type CellValue = "check" | "x" | "minus" | string;
 
 interface Row {
@@ -15,13 +17,13 @@ interface Row {
 
 const rows: Row[] = [
   {
-    label: "Co\u00fbt pour 10 recrutements",
+    label: "Coût pour 10 recrutements",
     rpo: "~44\u00a0000\u00a0\u20ac",
     internal: "50\u00a0000-70\u00a0000\u00a0\u20ac",
     cabinet: "60\u00a0000-200\u00a0000\u00a0\u20ac",
   },
   {
-    label: "Flexibilit\u00e9 (arr\u00eat sans pr\u00e9avis)",
+    label: "Flexibilité (arrêt sans préavis)",
     rpo: "check",
     internal: "x",
     cabinet: "minus",
@@ -33,13 +35,13 @@ const rows: Row[] = [
     cabinet: "8-10 semaines",
   },
   {
-    label: "Expertise march\u00e9 du recrutement",
+    label: "Expertise marché du recrutement",
     rpo: "check",
     internal: "minus",
     cabinet: "minus",
   },
   {
-    label: "Int\u00e9gration dans votre \u00e9quipe",
+    label: "Intégration dans votre équipe",
     rpo: "check",
     internal: "check",
     cabinet: "x",
@@ -57,7 +59,7 @@ const rows: Row[] = [
     cabinet: "Par mission",
   },
   {
-    label: "R\u00e9tention \u00e0 12 mois",
+    label: "Rétention à 12 mois",
     rpo: "92\u00a0%",
     internal: "Variable",
     cabinet: "Non garanti",
@@ -90,19 +92,30 @@ export const ComparisonSection = () => (
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 60, skewY: 1 }}
+        whileInView={{ opacity: 1, y: 0, skewY: 0 }}
         viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: akaru }}
         className="overflow-x-auto"
       >
         <table className="w-full min-w-[640px] border-collapse">
           <thead>
             <tr>
               <th className="text-left text-sm font-medium text-muted-foreground p-4 w-1/4" />
-              <th className="text-center p-4 w-1/4 rounded-t-xl bg-primary/5 border-x-2 border-t-2 border-primary/20">
+              <th className="text-center p-4 w-1/4 rounded-t-xl bg-primary/5 border-x-2 border-t-2 border-primary/20 relative overflow-hidden">
                 <span className="text-base font-bold text-primary">
                   RPO Rocket4RPO
                 </span>
+                {/* Pulsing border on RPO column header */}
+                <motion.div
+                  animate={{ opacity: [0.15, 0.4, 0.15] }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute inset-0 border-2 border-primary rounded-t-xl pointer-events-none"
+                />
               </th>
               <th className="text-center p-4 w-1/4">
                 <span className="text-sm font-semibold text-foreground">
@@ -120,11 +133,15 @@ export const ComparisonSection = () => (
             {rows.map((row, i) => (
               <motion.tr
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className={`${i % 2 === 0 ? "bg-muted/30" : ""} hover:bg-primary/5 transition-colors duration-200`}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.08,
+                  ease: akaru,
+                }}
+                className={`${i % 2 === 0 ? "bg-muted/30" : ""} hover:bg-primary/5 transition-all duration-300 hover:translate-x-1`}
               >
                 <td className="text-sm font-medium p-4">{row.label}</td>
                 <td className="p-4 bg-primary/5 border-x-2 border-primary/20">
@@ -143,11 +160,21 @@ export const ComparisonSection = () => (
           <tfoot>
             <tr>
               <td colSpan={4} className="pt-6 pb-2">
-                <div className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 30, skewY: 1 }}
+                  whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.8,
+                    delay: rows.length * 0.08 + 0.2,
+                    ease: akaru,
+                  }}
+                  className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-center"
+                >
                   <p className="text-sm font-semibold text-primary">
-                    {"Verdict\u00a0: le RPO est recommand\u00e9 si vous recrutez 3+ postes par trimestre. Co\u00fbt pr\u00e9visible, expertise imm\u00e9diate, z\u00e9ro engagement long terme."}
+                    {"Verdict\u00a0: le RPO est recommandé si vous recrutez 3+ postes par trimestre. Coût prévisible, expertise immédiate, zéro engagement long terme."}
                   </p>
-                </div>
+                </motion.div>
               </td>
             </tr>
           </tfoot>

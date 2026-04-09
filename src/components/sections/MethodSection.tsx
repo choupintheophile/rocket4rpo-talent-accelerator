@@ -5,6 +5,8 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ClipboardCheck, Users, Rocket, Target } from "lucide-react";
 
+const akaru = [0.165, 0.84, 0.44, 1] as const;
+
 const steps = [
   {
     num: "01",
@@ -53,6 +55,7 @@ function TimelineStep({
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isEven = index % 2 === 0;
   const Icon = step.icon;
+  const staggerDelay = index * 0.2;
 
   return (
     <div
@@ -67,9 +70,9 @@ function TimelineStep({
       >
         {isEven && (
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, x: -50, skewY: 1.5 }}
+            animate={isInView ? { opacity: 1, x: 0, skewY: 0 } : {}}
+            transition={{ duration: 0.8, delay: staggerDelay + 0.2, ease: akaru }}
             className="text-right pr-8"
           >
             <StepContent step={step} Icon={Icon} align="right" />
@@ -83,19 +86,28 @@ function TimelineStep({
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={isInView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+            delay: staggerDelay + 0.1,
+          }}
           className="relative z-10 w-14 h-14 rounded-full border-2 border-primary bg-foreground flex items-center justify-center shadow-lg shadow-primary/20"
         >
           <Icon className="w-6 h-6 text-primary" />
         </motion.div>
 
-        {/* Connector line (not on last step) */}
+        {/* Connector line — animated with Akaru easing, slight delay after step */}
         {!isLast && (
           <div className="w-px flex-1 min-h-[60px] bg-border relative overflow-hidden">
             <motion.div
               initial={{ scaleY: 0 }}
               animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              transition={{
+                duration: 0.8,
+                delay: staggerDelay + 0.5,
+                ease: akaru,
+              }}
               className="absolute inset-0 bg-primary origin-top"
             />
           </div>
@@ -108,9 +120,9 @@ function TimelineStep({
       >
         {!isEven && (
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            initial={{ opacity: 0, x: 50, skewY: -1.5 }}
+            animate={isInView ? { opacity: 1, x: 0, skewY: 0 } : {}}
+            transition={{ duration: 0.8, delay: staggerDelay + 0.2, ease: akaru }}
             className="pl-8"
           >
             <StepContent step={step} Icon={Icon} align="left" />
@@ -120,9 +132,9 @@ function TimelineStep({
 
       {/* Mobile content (always to the right) */}
       <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={isInView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        initial={{ opacity: 0, x: 30, skewY: 1 }}
+        animate={isInView ? { opacity: 1, x: 0, skewY: 0 } : {}}
+        transition={{ duration: 0.7, delay: staggerDelay + 0.2, ease: akaru }}
         className="md:hidden col-start-1 row-start-1 pl-20"
       >
         <StepContent step={step} Icon={Icon} align="left" />
@@ -133,7 +145,12 @@ function TimelineStep({
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={isInView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+            delay: staggerDelay + 0.1,
+          }}
           className="relative z-10 w-14 h-14 rounded-full border-2 border-primary bg-foreground flex items-center justify-center shadow-lg shadow-primary/20"
         >
           <Icon className="w-6 h-6 text-primary" />
@@ -143,7 +160,11 @@ function TimelineStep({
             <motion.div
               initial={{ scaleY: 0 }}
               animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              transition={{
+                duration: 0.8,
+                delay: staggerDelay + 0.5,
+                ease: akaru,
+              }}
               className="absolute inset-0 bg-primary origin-top"
             />
           </div>
