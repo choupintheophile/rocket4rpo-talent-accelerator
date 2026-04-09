@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
+import { useInView } from "framer-motion";
 import { Rocket, TrendingUp, Landmark, Heart, ShoppingCart, Store } from "lucide-react";
 
 const industries = [
@@ -12,10 +14,44 @@ const industries = [
 ];
 
 const metrics = [
-  { value: "200+", label: "recrutements Sales & Tech" },
-  { value: "92%", label: "r\u00e9tention 12 mois" },
-  { value: "48h", label: "premi\u00e8re shortlist" },
+  { target: 200, suffix: "+", label: "recrutements Sales & Tech" },
+  { target: 92, suffix: "%", label: "r\u00e9tention 12 mois" },
+  { target: 48, suffix: "h", label: "premi\u00e8re shortlist" },
 ];
+
+function AnimatedCounter({
+  target,
+  suffix = "",
+  duration = 2,
+}: {
+  target: number;
+  suffix?: string;
+  duration?: number;
+}) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const end = target;
+    const stepTime = (duration * 1000) / end;
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start >= end) clearInterval(timer);
+    }, Math.max(stepTime, 16));
+    return () => clearInterval(timer);
+  }, [inView, target, duration]);
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+}
 
 export const TrustSection = () => (
   <section className="py-12 md:py-16 border-b border-border">
@@ -30,10 +66,12 @@ export const TrustSection = () => (
         {industries.map((ind, i) => (
           <div
             key={i}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-muted/50 hover:bg-muted transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-muted/50 transition-all duration-200 hover:bg-muted hover:scale-105 hover:shadow-md cursor-default"
           >
             <ind.icon className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">{ind.label}</span>
+            <span className="text-sm font-medium text-foreground">
+              {ind.label}
+            </span>
           </div>
         ))}
       </div>
@@ -43,7 +81,11 @@ export const TrustSection = () => (
         {metrics.map((m, i) => (
           <div key={i} className="text-center">
             <p className="text-3xl md:text-4xl font-bold text-primary">
-              {m.value}
+              <AnimatedCounter
+                target={m.target}
+                suffix={m.suffix}
+                duration={2}
+              />
             </p>
             <p className="text-sm text-muted-foreground mt-1">{m.label}</p>
           </div>
