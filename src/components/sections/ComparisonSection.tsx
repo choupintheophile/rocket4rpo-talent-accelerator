@@ -33,7 +33,7 @@ const rows: Row[] = [
     cabinet: "8-10 semaines",
   },
   {
-    label: "Expertise march\u00e9 Sales SaaS",
+    label: "Expertise march\u00e9 du recrutement",
     rpo: "check",
     internal: "minus",
     cabinet: "minus",
@@ -145,7 +145,7 @@ export const ComparisonSection = () => (
               <td colSpan={4} className="pt-6 pb-2">
                 <div className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-center">
                   <p className="text-sm font-semibold text-primary">
-                    {"Verdict\u00a0: le RPO est recommand\u00e9 si vous recrutez 3+ postes Sales par trimestre. Co\u00fbt pr\u00e9visible, expertise imm\u00e9diate, z\u00e9ro engagement long terme."}
+                    {"Verdict\u00a0: le RPO est recommand\u00e9 si vous recrutez 3+ postes par trimestre. Co\u00fbt pr\u00e9visible, expertise imm\u00e9diate, z\u00e9ro engagement long terme."}
                   </p>
                 </div>
               </td>

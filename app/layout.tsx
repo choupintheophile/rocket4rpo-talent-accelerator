@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s | Rocket4RPO",
   },
   description:
-    "Rocket4RPO met à disposition des Talent Acquisition Specialists experts pour accélérer vos recrutements Sales, IT, Finance, Marketing et fonctions support.",
+    "Rocket4RPO met à disposition des Talent Acquisition Specialists experts pour accélérer vos recrutements. RPO à temps partagé ou à temps plein pour startups, scale-ups et ETI.",
   metadataBase: new URL("https://rocket4rpo.com"),
   openGraph: {
     type: "website",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: "/og-default.png",
         width: 1200,
         height: 630,
-        alt: "Rocket4RPO — Le seul RPO spécialisé Sales SaaS en France",
+        alt: "Rocket4RPO — Recrutement externalisé sur-mesure pour startups, scale-ups et ETI",
       },
     ],
   },

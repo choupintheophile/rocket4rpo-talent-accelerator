@@ -1,5 +1,5 @@
 // Segment detection from URL params and referrer
-export type VisitorSegment = "sales" | "tech" | "drh" | "ceo" | "default";
+export type VisitorSegment = "tech" | "drh" | "ceo" | "default";
 
 export function detectSegment(
   searchParams: Record<string, string | undefined>,
@@ -9,8 +9,6 @@ export function detectSegment(
   const utmContent = searchParams.utm_content || "";
   const utmCampaign = searchParams.utm_campaign || "";
 
-  if (utmContent.includes("sales") || utmCampaign.includes("sales"))
-    return "sales";
   if (
     utmContent.includes("tech") ||
     utmCampaign.includes("tech") ||
@@ -36,39 +34,32 @@ export interface HeroContent {
 }
 
 export const heroContent: Record<VisitorSegment, HeroContent> = {
-  sales: {
-    badge: "Le seul RPO spécialisé Sales SaaS en France",
-    headline: "Vos postes Sales SaaS restent ouverts trop longtemps ?",
+  tech: {
+    badge: "RPO — Recrutement externalisé sur-mesure",
+    headline: "Vos postes Tech restent ouverts trop longtemps\u00a0?",
     highlightedText: "Première shortlist en 48h",
     subtitle:
-      "40 000 profils Sales pré-qualifiés. Un TA Specialist senior intégré à votre équipe. 92% de rétention à 12 mois.",
-  },
-  tech: {
-    badge: "RPO spécialisé recrutement Tech & IT",
-    headline: "Votre prochain dev senior signe dans 6 semaines",
-    highlightedText: "pas dans 6 mois",
-    subtitle:
-      "Nos TA parlent votre stack. Sourcing GitHub, communautés tech, approche directe. 100% de rétention sur nos placements IT.",
+      "Nos TA parlent votre stack. Sourcing GitHub, communautés tech, approche directe. 200+ recrutements réalisés, 92\u00a0% de rétention à 12 mois.",
   },
   drh: {
-    badge: "Le RPO qui donne des résultats mesurables",
-    headline: "Vos KPIs recrutement méritent mieux qu'un tableur",
+    badge: "RPO — Recrutement externalisé sur-mesure",
+    headline: "Vos KPIs recrutement méritent mieux qu\u2019un tableur",
     highlightedText: "Reporting hebdomadaire inclus",
     subtitle:
       "Process structuré, scorecards, dashboards. 200+ recrutements réalisés avec une méthodologie éprouvée. Diagnostic gratuit en 30 min.",
   },
   ceo: {
-    badge: "3x moins cher qu'un cabinet. 2x plus rapide.",
+    badge: "3x moins cher qu\u2019un cabinet. 2x plus rapide.",
     headline: "Arrêtez de brûler du cash en frais de recrutement",
-    highlightedText: "~44 000€ pour 10 recrutements",
+    highlightedText: "~44\u00a0000\u20ac pour 10 recrutements",
     subtitle:
-      "vs 60 000 à 200 000€ avec un cabinet. Budget prévisible, résultats en 48h, zéro engagement long terme.",
+      "vs 60\u00a0000 à 200\u00a0000\u20ac avec un cabinet. Budget prévisible, résultats en 48h, zéro engagement long terme.",
   },
   default: {
-    badge: "Le seul RPO spécialisé Sales SaaS en France",
-    headline: "Vos postes Sales SaaS restent ouverts trop longtemps ?",
-    highlightedText: "Première shortlist en 48h",
+    badge: "RPO — Recrutement externalisé sur-mesure",
+    headline: "Vos recrutements freinent votre ",
+    highlightedText: "croissance\u00a0?",
     subtitle:
-      "Rocket4RPO intègre un Talent Acquisition Specialist senior dans votre équipe, armé d'une base de 40 000 profils Sales pré-qualifiés. Résultat : un time-to-hire divisé par 2 et un coût 3x inférieur aux cabinets.",
+      "Rocket4RPO intègre des Talent Acquisition Specialists seniors directement dans vos équipes. Résultat\u00a0: des recrutements plus rapides, des profils mieux qualifiés, et un coût maîtrisé.",
   },
 };

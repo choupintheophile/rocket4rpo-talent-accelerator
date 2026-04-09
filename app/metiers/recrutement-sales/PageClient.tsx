@@ -31,39 +31,34 @@ import {
 
 const faqs = [
   {
-    question: "Qu'est-ce que le vivier de 40 000 profils Sales ?",
-    answer:
-      "Depuis 2017, Rocket4Sales a constitué une base de données propriétaire de plus de 40 000 profils commerciaux pré-qualifiés dans l'écosystème Tech et SaaS en France. Chaque profil a été sourcé, contacté et évalué sur ses compétences réelles. Ce vivier est directement exploité par Rocket4RPO pour accélérer vos recrutements Sales.",
-  },
-  {
     question: "Quels profils commerciaux recrutez-vous ?",
     answer:
-      "Nous couvrons l'intégralité de la chaîne commerciale SaaS : SDR, BDR, Account Executive, Account Manager, Customer Success Manager, Sales Manager, Head of Sales, VP Sales et CRO. Du profil opérationnel junior (30-40K) au profil stratégique C-level (120K+).",
+      "Nous couvrons l'intégralité de la chaîne commerciale : SDR, BDR, Account Executive, Account Manager, Customer Success Manager, Sales Manager, Head of Sales, VP Sales et CRO. Du profil opérationnel junior (30-40K) au profil stratégique C-level (120K+).",
   },
   {
     question: "Comment livrez-vous une shortlist en 48h ?",
     answer:
-      "Grâce à notre vivier de 40 000 profils Sales déjà qualifiés, nous n'avons pas besoin de partir de zéro. Dès le cadrage de votre besoin, nous activons immédiatement les profils correspondants dans notre base. C'est ce qui nous permet de vous présenter une première shortlist qualifiée en 48h, là où un cabinet classique met 2 à 3 semaines.",
+      "Nos TA Specialists disposent d'un réseau étendu et d'outils de sourcing avancés. Dès le cadrage de votre besoin, nous activons immédiatement les profils correspondants. C'est ce qui nous permet de vous présenter une première shortlist qualifiée en 48h, là où un cabinet classique met 2 à 3 semaines.",
   },
   {
-    question: "Travaillez-vous uniquement avec des entreprises SaaS ?",
+    question: "Travaillez-vous uniquement avec des entreprises Tech ?",
     answer:
-      "Notre expertise historique est dans le SaaS et la Tech, mais notre méthodologie et notre vivier s'appliquent à toutes les entreprises qui recrutent des profils commerciaux B2B avec un cycle de vente complexe : fintech, healthtech, legaltech, proptech, etc.",
+      "Notre expertise couvre la Tech, le SaaS, mais aussi tous les secteurs qui recrutent des profils commerciaux B2B avec un cycle de vente complexe : fintech, healthtech, legaltech, proptech, industrie, services, etc.",
   },
   {
     question: "Quelle est la différence avec un cabinet de recrutement classique ?",
     answer:
-      "Un cabinet classique facture 15-25% du salaire annuel par poste et part d'une feuille blanche à chaque mission. Rocket4RPO fonctionne en modèle RPO (coût fixe mensuel), s'intègre à votre équipe, et s'appuie sur 7 ans de données et 40 000 profils pré-qualifiés. Résultat : shortlist en 48h au lieu de 3 semaines, et un coût total divisé par 2 à 4 sur un plan de recrutement de 10 postes.",
+      "Un cabinet classique facture 15-25% du salaire annuel par poste et part d'une feuille blanche à chaque mission. Rocket4RPO fonctionne en modèle RPO (coût fixe mensuel), s'intègre à votre équipe et s'appuie sur une méthodologie éprouvée. Résultat : shortlist en 48h au lieu de 3 semaines, et un coût total divisé par 2 à 4 sur un plan de recrutement de 10 postes.",
   },
   {
     question: "Comment évaluez-vous les candidats commerciaux ?",
     answer:
-      "Nous allons au-delà du CV. Chaque profil de notre base est évalué sur sa performance réelle : % d'atteinte de quota, taux de conversion, deal size moyen, maîtrise du cycle de vente SaaS, compréhension go-to-market. C'est la différence entre un profil qui a un beau CV et un profil qui délivre.",
+      "Nous allons au-delà du CV. Chaque profil est évalué sur sa performance réelle : % d'atteinte de quota, taux de conversion, deal size moyen, maîtrise du cycle de vente, compréhension go-to-market. C'est la différence entre un profil qui a un beau CV et un profil qui délivre.",
   },
   {
     question: "Quel est le coût d'un recrutement Sales avec Rocket4RPO ?",
     answer:
-      "En modèle RPO, le coût moyen par recrutement est d'environ 4 400 euros sur un plan de 10 postes Sales. À comparer avec 6 000 à 20 000 euros par poste via un cabinet classique (15-25% du salaire). Le modèle est particulièrement rentable pour les plans de recrutement de 5 postes et plus.",
+      "En modèle RPO, le coût moyen par recrutement est d'environ 4 400 euros sur un plan de 10 postes. À comparer avec 6 000 à 20 000 euros par poste via un cabinet classique (15-25% du salaire). Le modèle est particulièrement rentable pour les plans de recrutement de 5 postes et plus.",
   },
   {
     question: "Combien de temps prend un recrutement de profil commercial ?",
@@ -73,7 +68,7 @@ const faqs = [
   {
     question: "Comment démarrer avec Rocket4RPO pour un recrutement Sales ?",
     answer:
-      "Réservez un diagnostic Sales gratuit de 30 minutes. Nous analysons votre besoin, votre contexte go-to-market, votre cycle de vente et vos fourchettes salariales. Vous recevez un plan d'action chiffré sous 48h. Premier échange sans engagement.",
+      "Réservez un diagnostic gratuit de 30 minutes. Nous analysons votre besoin, votre contexte go-to-market, votre cycle de vente et vos fourchettes salariales. Vous recevez un plan d'action chiffré sous 48h. Premier échange sans engagement.",
   },
 ];
 
@@ -136,24 +131,24 @@ const salesRoles = [
   },
 ];
 
-const synergyPoints = [
+const expertisePoints = [
   {
     icon: Database,
-    number: "40 000",
-    title: "Profils Sales pré-qualifiés",
-    text: "Chaque profil a été sourcé, contacté et évalué sur ses compétences réelles par l'équipe Rocket4Sales depuis 2017.",
+    number: "200+",
+    title: "Recrutements commerciaux réalisés",
+    text: "Nos TA Specialists ont placé des centaines de profils Sales dans des entreprises de toutes tailles et secteurs.",
   },
   {
     icon: Clock,
     number: "7 ans",
-    title: "D'expertise Sales SaaS",
-    text: "7 années de recrutement exclusivement Sales dans l'écosystème Tech et SaaS en France. Pas de généralisme.",
+    title: "D'expertise en recrutement commercial",
+    text: "7 années d'expérience dans le recrutement de profils commerciaux nous donnent une compréhension fine de chaque rôle.",
   },
   {
     icon: BarChart3,
     number: "48h",
     title: "Pour la 1re shortlist",
-    text: "Grâce au vivier existant, nous activons immédiatement les profils correspondants. Pas besoin de partir de zéro.",
+    text: "Grâce à nos outils de sourcing avancés et notre réseau, nous activons immédiatement les profils correspondants.",
   },
   {
     icon: Star,
@@ -170,7 +165,7 @@ const costComparison = [
     detail: "Pour 10 recrutements Sales",
     perHire: "~4 400 \u20ac / poste",
     pros: [
-      "Vivier de 40K profils",
+      "Réseau étendu de profils",
       "Shortlist en 48h",
       "Intégration à votre équipe",
       "KPIs hebdomadaires",
@@ -208,15 +203,15 @@ const costComparison = [
 export default function RecrutementSalesPageClient() {
   const schemas = [
     serviceSchema(
-      "Recrutement Sales SaaS - RPO spécialisé avec 40 000 profils pré-qualifiés",
-      "Le seul RPO en France spécialisé Sales SaaS avec un vivier de 40 000 profils commerciaux pré-qualifiés. Shortlist en 48h. Héritage Rocket4Sales.",
+      "Recrutement de profils Sales & Commerciaux — RPO Rocket4RPO",
+      "Nos Talent Acquisition Specialists recrutent vos profils commerciaux : SDR, AE, Sales Manager, VP Sales, CRO. Expertise sectorielle et sourcing ciblé.",
       "/metiers/recrutement-sales"
     ),
     faqSchema(faqs),
     breadcrumbSchema([
       { name: "Accueil", url: "/" },
       { name: "Métiers", url: "/metiers/recrutement-sales" },
-      { name: "Recrutement Sales SaaS", url: "/metiers/recrutement-sales" },
+      { name: "Recrutement Sales & Commerciaux", url: "/metiers/recrutement-sales" },
     ]),
   ];
 
@@ -229,7 +224,7 @@ export default function RecrutementSalesPageClient() {
       <Breadcrumbs
         items={[
           { label: "Métiers", href: "/metiers/recrutement-sales" },
-          { label: "Recrutement Sales SaaS" },
+          { label: "Recrutement Sales & Commerciaux" },
         ]}
       />
 
@@ -239,50 +234,39 @@ export default function RecrutementSalesPageClient() {
           <div className="max-w-4xl">
             <motion.div {...fadeUp}>
               <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-6 border border-primary/20">
-                Notre spécialité #1
+                Métier : Sales & Commerciaux
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Recrutement Sales SaaS : le seul RPO en France avec un vivier de{" "}
+                Recrutement de profils{" "}
                 <span className="text-gradient">
-                  40 000 profils pré-qualifiés
+                  Sales & Commerciaux
                 </span>
               </h1>
               <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
-                Depuis 2017,{" "}
-                <a
-                  href="https://www.rocket4sales.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-current underline underline-offset-2 hover:text-primary transition-colors font-medium"
-                >
-                  Rocket4Sales
-                </a>{" "}
-                a recruté des centaines de profils commerciaux dans la Tech et le
-                SaaS. Aujourd'hui, ce vivier de 40 000 profils et 7 ans
-                d'expertise terrain sont directement intégrés dans Rocket4RPO
-                pour vous offrir un avantage compétitif unique : des shortlists
-                qualifiées en 48h, pas en 3 semaines.
+                Nos Talent Acquisition Specialists recrutent vos profils commerciaux : SDR, AE, Sales Manager, VP Sales, CRO.
+                Expertise sectorielle et sourcing ciblé pour vous livrer
+                des shortlists qualifiées en 48h, pas en 3 semaines.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
                   href="https://meetings.hubspot.com/theophile-choupin/rpo" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
-                  Réserver un diagnostic Sales gratuit{" "}
+                  Réserver un diagnostic gratuit{" "}
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <Link
                   href="/cas-clients"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors"
                 >
-                  Voir nos cas clients Sales
+                  Voir nos cas clients
                 </Link>
               </div>
               {/* Trust indicators */}
               <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Database className="w-4 h-4 text-primary" />
-                  <span>40 000 profils Sales</span>
+                  <span>200+ recrutements réalisés</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Timer className="w-4 h-4 text-primary" />
@@ -305,7 +289,7 @@ export default function RecrutementSalesPageClient() {
             <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
               <p className="text-sm font-semibold text-primary mb-2">En bref</p>
               <p className="text-foreground font-medium">
-                Rocket4RPO est le seul cabinet RPO en France spécialisé dans le recrutement de profils Sales SaaS (SDR, AE, Sales Manager, VP Sales). Grâce à un vivier de 40 000 profils commerciaux pré-qualifiés hérité de 7 ans d'expertise Rocket4Sales, les entreprises Tech reçoivent leur première shortlist qualifiée en 48h.
+                Rocket4RPO place des Talent Acquisition Specialists experts dans vos équipes pour recruter vos profils commerciaux (SDR, AE, Sales Manager, VP Sales, CRO). Grâce à 7 ans d'expertise en recrutement commercial et une méthodologie éprouvée, les entreprises reçoivent leur première shortlist qualifiée en 48h.
               </p>
             </div>
           </div>
@@ -320,27 +304,19 @@ export default function RecrutementSalesPageClient() {
             className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
           >
             <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-              La synergie Rocket4Sales
+              Notre expertise
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              7 ans de recrutement Sales = votre avantage compétitif
+              7 ans de recrutement commercial = votre avantage compétitif
             </h2>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-              Aucun autre RPO en France ne dispose d'un vivier propriétaire de
-              profils commerciaux SaaS. C'est l'héritage direct de{" "}
-              <a
-                href="https://www.rocket4sales.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-current underline underline-offset-2 hover:text-primary transition-colors"
-              >
-                Rocket4Sales
-              </a>
-              , et c'est ce qui change tout.
+              Nos TA Specialists sont spécialisés dans le recrutement de profils
+              commerciaux. Cette expertise terrain, construite sur des centaines
+              de missions, fait toute la différence.
             </p>
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {synergyPoints.map((point, i) => (
+            {expertisePoints.map((point, i) => (
               <motion.div
                 key={i}
                 {...fadeUp}
@@ -372,10 +348,10 @@ export default function RecrutementSalesPageClient() {
               Profils recrutés
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              Du SDR au CRO : tous les profils Sales SaaS
+              Du SDR au CRO : tous les profils commerciaux
             </h2>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-              Nous recrutons l'intégralité de la chaîne commerciale SaaS, du
+              Nous recrutons l'intégralité de la chaîne commerciale, du
               profil opérationnel au profil stratégique C-level.
             </p>
           </motion.div>
@@ -414,8 +390,8 @@ export default function RecrutementSalesPageClient() {
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
                 Un cabinet classique part d'une feuille blanche à chaque
-                mission. Nous, nous partons de 40 000 profils déjà sourcés,
-                contactés et évalués sur leur performance réelle.
+                mission. Nos TA Specialists s'appuient sur un réseau étendu
+                et des profils déjà évalués sur leur performance réelle.
               </p>
             </motion.div>
             <div className="grid sm:grid-cols-2 gap-6">
@@ -428,7 +404,7 @@ export default function RecrutementSalesPageClient() {
                 {
                   icon: Brain,
                   title: "Connaissance métier profonde",
-                  text: "7 ans de recrutement Sales SaaS nous donnent une compréhension fine de chaque rôle, chaque cycle de vente, chaque contexte go-to-market.",
+                  text: "7 ans de recrutement commercial nous donnent une compréhension fine de chaque rôle, chaque cycle de vente, chaque contexte go-to-market.",
                 },
                 {
                   icon: UserCheck,
@@ -485,7 +461,7 @@ export default function RecrutementSalesPageClient() {
                 {
                   step: "J1",
                   title: "Activation du vivier",
-                  text: "Recherche ciblée dans notre base de 40 000 profils Sales. Identification des candidats correspondant au contexte. Premiers contacts.",
+                  text: "Sourcing ciblé via nos outils et notre réseau de profils commerciaux. Identification des candidats correspondant au contexte. Premiers contacts.",
                 },
                 {
                   step: "J2",
@@ -648,9 +624,9 @@ export default function RecrutementSalesPageClient() {
 
       {/* CTA */}
       <CTASection
-        title="Prêt à recruter vos profils Sales plus vite ?"
-        subtitle="Réservez un diagnostic Sales gratuit de 30 min. Recevez un plan d'action chiffré sous 48h."
-        ctaLabel="Réserver un diagnostic Sales gratuit"
+        title="Prêt à recruter vos profils commerciaux plus vite ?"
+        subtitle="Réservez un diagnostic gratuit de 30 min. Recevez un plan d'action chiffré sous 48h."
+        ctaLabel="Réserver un diagnostic gratuit"
               />
     </>
   );

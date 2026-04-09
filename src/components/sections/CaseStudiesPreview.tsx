@@ -23,7 +23,7 @@ export const CaseStudiesPreview = () => (
             <span className="text-gradient">{"Pas des promesses."}</span>
           </>
         }
-        description="Chaque cas client ci-dessous repr\u00e9sente une \u00e9quipe Sales qui a recrut\u00e9 plus vite, pour moins cher, avec un taux de r\u00e9tention de 92\u00a0% \u00e0 12 mois."
+        description="Chaque cas client ci-dessous repr\u00e9sente une \u00e9quipe qui a recrut\u00e9 plus vite, pour moins cher, avec un taux de r\u00e9tention de 92\u00a0% \u00e0 12 mois."
       />
       <div className="grid md:grid-cols-3 gap-6">
         {caseStudies.slice(0, 3).map((cs, i) => (

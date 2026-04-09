@@ -34,7 +34,7 @@ const rows: Row[] = [
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Sp\u00e9cialiste Sales SaaS + vivier 40 000 profils",
+    rpo: "Expert recrutement tous secteurs + m\u00e9thodologie \u00e9prouv\u00e9e",
     interim: "G\u00e9n\u00e9raliste multi-secteurs",
     rpoIcon: "check",
     interimIcon: "minus",
@@ -102,12 +102,12 @@ const faqs = [
   {
     question: "Le RPO apporte-t-il un vivier de candidats ?",
     answer:
-      "Oui. Rocket4RPO donne acc\u00e8s \u00e0 un vivier de 40 000 profils qualifi\u00e9s en Sales, IT et fonctions support SaaS. L\u2019int\u00e9rimaire ne dispose g\u00e9n\u00e9ralement pas de vivier propre.",
+      "Oui. Rocket4RPO s\u2019appuie sur une m\u00e9thodologie de sourcing \u00e9prouv\u00e9e sur 200+ recrutements tous secteurs. L\u2019int\u00e9rimaire ne dispose g\u00e9n\u00e9ralement pas de cette expertise.",
   },
   {
-    question: "L\u2019int\u00e9rim est-il adapt\u00e9 pour recruter des profils commerciaux SaaS ?",
+    question: "L\u2019int\u00e9rim est-il adapt\u00e9 pour recruter des profils sp\u00e9cialis\u00e9s ?",
     answer:
-      "L\u2019int\u00e9rim est peu adapt\u00e9 au recrutement de profils sp\u00e9cialis\u00e9s comme les commerciaux SaaS. Ces profils demandent une connaissance approfondie du march\u00e9, des comp\u00e9tences de sourcing avanc\u00e9es et un r\u00e9seau sectoriel que seul un RPO sp\u00e9cialis\u00e9 peut offrir.",
+      "L\u2019int\u00e9rim est peu adapt\u00e9 au recrutement de profils sp\u00e9cialis\u00e9s. Ces profils demandent une connaissance approfondie du march\u00e9, des comp\u00e9tences de sourcing avanc\u00e9es et un r\u00e9seau sectoriel que seul un RPO exp\u00e9riment\u00e9 peut offrir.",
   },
 ];
 
@@ -208,7 +208,7 @@ export default function RpoVsInterimPage() {
                 {[
                   "Vous avez besoin d\u2019un expert qui pilote le process de recrutement",
                   "L\u2019int\u00e9gration \u00e0 votre \u00e9quipe et vos outils est essentielle",
-                  "Vous recrutez des profils sp\u00e9cialis\u00e9s (Sales SaaS, Tech)",
+                  "Vous recrutez des profils sp\u00e9cialis\u00e9s (Tech, Sales, Finance, Marketing)",
                   "Vous voulez un suivi KPI structur\u00e9 et un transfert de comp\u00e9tences",
                   "Vous recherchez un partenaire strat\u00e9gique, pas un ex\u00e9cutant",
                 ].map((item, i) => (
@@ -256,7 +256,7 @@ export default function RpoVsInterimPage() {
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Expert s&eacute;nior d&eacute;di&eacute;</li>
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Pilotage autonome du process</li>
-                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Vivier de 40 000 profils inclus</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> M\u00e9thodologie \u00e9prouv\u00e9e sur 200+ recrutements</li>
               </ul>
             </div>
             <div className="rounded-xl border border-border bg-card p-6">

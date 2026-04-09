@@ -48,7 +48,7 @@ const rows: Row[] = [
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Sp\u00e9cialiste Sales SaaS + vivier 40 000 profils",
+    rpo: "Expert recrutement tous secteurs + m\u00e9thodologie \u00e9prouv\u00e9e",
     interne: "D\u00e9pend du profil recrut\u00e9",
     rpoIcon: "check",
     interneIcon: "minus",
@@ -107,7 +107,7 @@ const faqs = [
   {
     question: "Le RPO est-il adapt\u00e9 pour une startup qui recrute ses premiers commerciaux ?",
     answer:
-      "C\u2019est m\u00eame le cas d\u2019usage id\u00e9al. La startup b\u00e9n\u00e9ficie imm\u00e9diatement d\u2019un expert Sales SaaS sans prendre le risque d\u2019un CDI recruteur, avec une flexibilit\u00e9 totale pour adapter la mission \u00e0 sa croissance.",
+      "C\u2019est m\u00eame le cas d\u2019usage id\u00e9al. La startup b\u00e9n\u00e9ficie imm\u00e9diatement d\u2019un expert recrutement sans prendre le risque d\u2019un CDI recruteur, avec une flexibilit\u00e9 totale pour adapter la mission \u00e0 sa croissance.",
   },
 ];
 
@@ -208,7 +208,7 @@ export default function RpoVsRecrutementInternePage() {
                 {[
                   "Votre besoin de recrutement est temporaire ou fluctuant (3-12 mois)",
                   "Vous ne pouvez pas attendre 2-3 mois pour recruter un recruteur",
-                  "Vous avez besoin d\u2019une expertise Sales SaaS imm\u00e9diate",
+                  "Vous avez besoin d\u2019une expertise recrutement imm\u00e9diate",
                   "Votre budget ne justifie pas un CDI \u00e0 temps plein",
                   "Vous voulez pouvoir scaler ou r\u00e9duire rapidement",
                 ].map((item, i) => (

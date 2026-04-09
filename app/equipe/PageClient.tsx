@@ -21,11 +21,11 @@ const bioOverrides: Record<string, string> = {
   "Théophile Choupin":
     "Théophile pilote le développement commercial de Rocket4RPO auprès des scale-ups et ETI Tech. Fort de 5 ans d\u2019expérience en business development B2B, il accompagne les dirigeants dans la structuration de leur stratégie de recrutement et les aide à identifier le bon modèle d\u2019intervention RPO.",
   "Julien Regnacq":
-    "Julien développe le portefeuille clients de Rocket4RPO sur le segment des startups et PME innovantes. Spécialiste du recrutement commercial Tech, il met son expertise du marché Sales SaaS au service des fondateurs et DRH pour accélérer leurs recrutements clés.",
+    "Julien développe le portefeuille clients de Rocket4RPO sur le segment des startups et PME innovantes. Fort de son expertise en recrutement, il accompagne les fondateurs et DRH pour accélérer leurs recrutements clés.",
 };
 
 const taSpecialists = [
-  { initials: "LC", name: "L. Carpentier", specialty: "Sales SaaS \u00b7 SDR, AE, Sales Manager", experience: "6 ans d\u2019expérience en recrutement commercial Tech" },
+  { initials: "LC", name: "L. Carpentier", specialty: "Commercial & Business Development \u00b7 SDR, AE, Sales Manager", experience: "6 ans d\u2019expérience en recrutement commercial" },
   { initials: "AB", name: "A. Benoist", specialty: "IT & Engineering \u00b7 Backend, DevOps, Data", experience: "5 ans d\u2019expérience en sourcing tech" },
   { initials: "SR", name: "S. Renaud", specialty: "Marketing & Growth \u00b7 CMO, Growth, PMM", experience: "4 ans d\u2019expérience en recrutement marketing digital" },
 ];

@@ -22,7 +22,7 @@ interface CaseStudy {
 
 const testimonialQuotes: Record<string, { quote: string; author: string }> = {
   "saas-scale-up-sales": {
-    quote: "Le TA Rocket4RPO s\u2019est intégré à nos rituels comme un membre de l\u2019équipe. La qualité des shortlists grâce à leur base de profils Sales est incomparable.",
+    quote: "Le TA Rocket4RPO s\u2019est intégré à nos rituels comme un membre de l\u2019équipe. La qualité des shortlists est incomparable.",
     author: "S.D., VP People",
   },
   "fintech-engineering": {

@@ -55,7 +55,7 @@ const rows: Row[] = [
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Sp\u00e9cialiste Sales SaaS + vivier 40 000 profils",
+    rpo: "Expert recrutement tous secteurs + m\u00e9thodologie \u00e9prouv\u00e9e",
     cabinet: "G\u00e9n\u00e9raliste ou niche",
     rpoIcon: "check",
     cabinetIcon: "minus",
@@ -208,7 +208,7 @@ export default function RpoVsCabinetPage() {
               <ul className="space-y-3">
                 {[
                   "Vous avez 5 \u00e0 15+ recrutements \u00e0 r\u00e9aliser sur 3-6 mois",
-                  "Vous recherchez une expertise Sales / SaaS cibl\u00e9e",
+                  "Vous recherchez une expertise sectorielle cibl\u00e9e",
                   "Vous souhaitez un d\u00e9marrage rapide (48 h) sans processus d\u2019achat long",
                   "Vous voulez un suivi KPI hebdomadaire et une transparence totale",
                   "Votre budget ne permet pas un success fee de 15-25 % par poste",

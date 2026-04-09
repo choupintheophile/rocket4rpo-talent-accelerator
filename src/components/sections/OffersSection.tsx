@@ -10,7 +10,7 @@ const offers = [
     icon: Users,
     title: "Expertise senior sans le co\u00fbt d\u2019un CDI",
     description:
-      "Un Talent Acquisition Specialist senior int\u00e9gr\u00e9 \u00e0 vos \u00e9quipes quelques jours par semaine. Vous acc\u00e9dez \u00e0 7 ans d\u2019expertise Sales SaaS, sans charges fixes. Id\u00e9al pour 3 \u00e0 8 recrutements par trimestre.",
+      "Un recruteur senior dans votre \u00e9quipe quelques jours par semaine. Vous acc\u00e9dez \u00e0 7 ans d\u2019expertise en recrutement, sans charges fixes. Id\u00e9al pour 3 \u00e0 8 recrutements par trimestre.",
     href: "/offre/talent-acquisition-temps-partage",
     popular: true,
   },
@@ -18,7 +18,7 @@ const offers = [
     icon: UserPlus,
     title: "Une \u00e9quipe TA d\u00e9di\u00e9e, imm\u00e9diatement op\u00e9rationnelle",
     description:
-      "Un expert TA \u00e0 100\u00a0% sur vos recrutements, immerg\u00e9 dans votre culture. Pour les scale-ups qui recrutent 10+ profils Sales par trimestre et veulent un time-to-hire garanti.",
+      "Un recruteur d\u00e9di\u00e9 \u00e0 100\u00a0% int\u00e9gr\u00e9 dans vos \u00e9quipes, immerg\u00e9 dans votre culture. Pour les entreprises qui recrutent 10+ profils par trimestre et veulent un time-to-hire garanti.",
     href: "/offre/talent-acquisition-temps-plein",
     popular: false,
   },
@@ -26,7 +26,7 @@ const offers = [
     icon: Search,
     title: "Recrutez votre propre TA sans risque d\u2019erreur",
     description:
-      "Nous identifions et qualifions les meilleurs Talent Acquisition Managers et Specialists du march\u00e9. Des profils qui connaissent le recrutement Sales SaaS, pas des g\u00e9n\u00e9ralistes.",
+      "Nous identifions et qualifions les meilleurs Talent Acquisition Managers et Specialists du march\u00e9. Des profils exp\u00e9riment\u00e9s, adapt\u00e9s \u00e0 vos enjeux de croissance.",
     href: "/offre/recrutement-talent-acquisition",
     popular: false,
   },
@@ -47,7 +47,7 @@ export const OffersSection = () => (
         badge="Notre offre"
         title={
           <>
-            {"4 fa\u00e7ons d\u2019acc\u00e9l\u00e9rer vos recrutements Sales, "}
+            {"4 fa\u00e7ons d\u2019acc\u00e9l\u00e9rer vos recrutements, "}
             <span className="text-gradient">
               {"sans les prix d\u2019un cabinet"}
             </span>

@@ -1,21 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Calculator, Database, Clock, Target } from "lucide-react";
+import { ArrowRight, Calculator, CheckCircle, Clock, Target } from "lucide-react";
 import type { HeroContent } from "@/lib/personalization";
 
 const stats = [
-  { icon: Database, value: "40 000", label: "profils Sales pré-qualifiés" },
-  { icon: Clock, value: "48h", label: "première shortlist garantie" },
-  { icon: Target, value: "~44K€", label: "pour 10 recrutements (vs 60-200K€ cabinet)" },
+  { icon: CheckCircle, value: "200+", label: "recrutements réalisés" },
+  { icon: Clock, value: "48h", label: "première shortlist" },
+  { icon: Target, value: "92%", label: "rétention à 12 mois" },
 ];
 
 const defaultContent: HeroContent = {
-  badge: "Le seul RPO en France 100\u00a0% spécialisé Sales SaaS",
-  headline: "Vos postes Sales SaaS restent ouverts trop longtemps\u00a0? ",
-  highlightedText: "Première shortlist en 48h.",
+  badge: "RPO — Recrutement externalisé sur-mesure",
+  headline: "Vos recrutements freinent votre ",
+  highlightedText: "croissance\u00a0?",
   subtitle:
-    "Chaque semaine sans votre Sales coûte en pipeline et en croissance. Rocket4RPO intègre un expert TA senior dans votre équipe, avec accès à 40\u00a0000 profils Sales pré-qualifiés. Résultat concret\u00a0: time-to-hire divisé par 2, coût 3x inférieur aux cabinets, 92\u00a0% de rétention à 12 mois.",
+    "Rocket4RPO intègre des Talent Acquisition Specialists seniors directement dans vos équipes. Résultat\u00a0: des recrutements plus rapides, des profils mieux qualifiés, et un coût maîtrisé.",
 };
 
 export const HeroSection = ({ content }: { content?: HeroContent }) => {
@@ -105,7 +105,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
-              {"Réserver mon diagnostic gratuit →"} <ArrowRight className="w-4 h-4" />
+              {"Réserver un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
             </a>
             <a
               href="/calculateur"
@@ -123,7 +123,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-10 text-sm text-background/40"
           >
-            {"Sans engagement. Diagnostic gratuit. Réponse sous 24h. — Issu de Rocket4Sales, 7 ans d\u2019expertise et 200+ recrutements réalisés."}
+            {"Sans engagement. Diagnostic gratuit. Réponse sous 24h. — 7 ans d\u2019expertise et 200+ recrutements réalisés."}
           </motion.p>
 
           {/* Urgency indicator */}
@@ -137,7 +137,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <span>12 missions RPO actives au T2 2026 — 3 créneaux disponibles ce mois</span>
+            <span>15 missions RPO actives — 3 créneaux disponibles ce mois</span>
           </motion.div>
         </div>
       </div>

@@ -416,7 +416,7 @@ export default function DemoClient() {
             <span className="text-gradient">en 4 étapes</span>
           </h1>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Découvrez comment nous trouvons vos meilleurs candidats Sales SaaS en 48h, du brief
+            Découvrez comment nous trouvons vos meilleurs candidats en 48h, du brief
             initial à la shortlist qualifiée.
           </p>
         </motion.div>

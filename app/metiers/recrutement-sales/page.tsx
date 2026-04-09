@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import RecrutementSalesPageClient from "./PageClient";
 
 export const metadata: Metadata = {
-  title: "Recrutement Sales SaaS — RPO spécialisé 40 000 profils",
-  description: "Rocket4RPO : le seul RPO en France spécialisé Sales SaaS avec un vivier de 40 000 profils commerciaux pré-qualifiés (héritage Rocket4Sales). Shortlist en 48h. SDR, AE, Sales Manager, VP Sales, CRO.",
+  title: "Recrutement de profils Sales & Commerciaux — RPO Rocket4RPO",
+  description: "Nos Talent Acquisition Specialists recrutent vos profils commerciaux : SDR, AE, Sales Manager, VP Sales, CRO. Expertise sectorielle, sourcing ciblé et shortlist en 48h.",
   alternates: { canonical: "/metiers/recrutement-sales" },
 };
 

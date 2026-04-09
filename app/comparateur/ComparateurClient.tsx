@@ -60,7 +60,7 @@ const rows: Row[] = [
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Spécialiste Sales SaaS + vivier 40 K",
+    rpo: "Expert recrutement tous secteurs + méthodologie éprouvée",
     cabinet: "Généraliste",
     interne: "Dépend du profil",
     rpoIcon: "check",
@@ -141,7 +141,7 @@ const choiceCards: ChoiceCard[] = [
     accent: "border-primary",
     items: [
       "Vous avez 5 à 10 recrutements à réaliser sur 3-6 mois",
-      "Vous recherchez une expertise Sales / SaaS ciblée",
+      "Vous recherchez une expertise sectorielle ciblée",
       "Votre budget ne permet pas un recruteur interne à temps plein",
       "Vous avez besoin d'un démarrage rapide (48 h)",
       "Vous souhaitez un suivi KPI hebdomadaire transparent",

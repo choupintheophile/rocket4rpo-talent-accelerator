@@ -4,7 +4,7 @@ import RessourcesClient from "./RessourcesClient";
 export const metadata: Metadata = {
   title: "Ressources gratuites — guides, templates, études recrutement",
   description:
-    "Téléchargez nos guides gratuits sur le RPO, le recrutement Sales SaaS, les scorecards, et les KPIs recrutement. Conçus par des experts avec 7+ ans d'expérience.",
+    "Téléchargez nos guides gratuits sur le RPO, les scorecards, et les KPIs recrutement. Conçus par des experts avec 7+ ans d'expérience.",
   alternates: { canonical: "/ressources" },
 };
 
@@ -24,7 +24,7 @@ export default function Page() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Template : Scorecard de recrutement Sales SaaS",
+        name: "Template : Scorecard de recrutement",
       },
       {
         "@type": "ListItem",

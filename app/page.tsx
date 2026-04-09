@@ -41,7 +41,7 @@ const homepageFaqs = [
   {
     question: "En combien de temps un RPO peut-il démarrer ?",
     answer:
-      "Chez Rocket4RPO, le démarrage se fait en 48 h après signature. Votre recruteur RPO dédié est opérationnel immédiatement avec accès à un vivier de 40 000 profils qualifiés.",
+      "Chez Rocket4RPO, le démarrage se fait en 48 h après signature. Votre recruteur RPO dédié est opérationnel immédiatement grâce à une méthodologie éprouvée sur 200+ recrutements.",
   },
   {
     question: "Le RPO remplace-t-il mon équipe RH interne ?",
@@ -104,7 +104,7 @@ export default async function HomePage({
           <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
             <p className="text-sm font-semibold text-primary mb-2">En bref</p>
             <p className="text-foreground font-medium">
-              Rocket4RPO est le seul RPO (Recruitment Process Outsourcing) en France spécialisé dans le recrutement Sales SaaS. Avec une base de 40 000 profils pré-qualifiés et un délai de première shortlist de 48h, Rocket4RPO accompagne les scale-ups et ETI Tech dans leurs recrutements commerciaux. Coût moyen : ~44 000€ pour 10 recrutements, soit 3x moins qu'un cabinet traditionnel.
+              Rocket4RPO est un cabinet RPO (Recruitment Process Outsourcing) qui intègre des Talent Acquisition Specialists seniors dans les entreprises pour accélérer leurs recrutements. Avec 200+ recrutements réalisés et 92% de rétention à 12 mois, Rocket4RPO accompagne les startups, scale-ups et ETI dans le recrutement de tous types de profils.
             </p>
           </div>
         </div>

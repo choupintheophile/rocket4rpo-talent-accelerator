@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const CTASection = ({
-  title = "Vos prochains recrutements méritent mieux qu\u2019un cabinet à 20\u00a0%",
+  title = "Prêt à accélérer vos recrutements\u00a0?",
   subtitle = "30 minutes de diagnostic gratuit. Sans engagement. Première shortlist en 48h.",
   ctaLabel = "Réserver mon diagnostic gratuit",
 }: Props) => {

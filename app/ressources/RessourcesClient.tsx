@@ -21,17 +21,17 @@ const resources = [
     downloads: "Téléchargé 800+ fois",
   },
   {
-    title: "Template : Scorecard de recrutement Sales SaaS",
+    title: "Template : Scorecard de recrutement",
     description:
-      "Notre modèle de scorecard utilisé pour évaluer les profils SDR, AE et Sales Manager dans l'écosystème SaaS.",
+      "Notre modèle de scorecard utilisé pour évaluer les candidats de manière structurée, quel que soit le poste.",
     badge: "Template",
     icon: ClipboardCheck,
     downloads: "Téléchargé 450+ fois",
   },
   {
-    title: "Étude : Grille de rémunération Sales & Tech 2026",
+    title: "Étude : Grille de rémunération Tech 2026",
     description:
-      "Fourchettes salariales actualisées pour 30+ postes Sales et Tech en Île-de-France et région.",
+      "Fourchettes salariales actualisées pour 30+ postes Tech en Île-de-France et région.",
     badge: "Étude",
     icon: BarChart3,
     downloads: "Téléchargé 1 200+ fois",
