@@ -15,17 +15,19 @@ export default function MentionsLegalesPage() {
         <h1>Mentions légales</h1>
         <h2>Éditeur du site</h2>
         <p>
-          Rocket4RPO, filiale de{" "}
+          Rocket4RPO est une marque de{" "}
           <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-current">
-            Rocket4Sales
+            Rocket4Sales SAS
           </a>
-          , groupe Rocket4GTM.
+          .
         </p>
-        <p>Siège social : [Adresse à compléter]</p>
-        <p>SIRET : [À compléter]</p>
+        <p>Siège social : 22 rue de l&apos;Échiquier, 75010 Paris</p>
+        <p>SIRET : SIRET en cours d&apos;immatriculation</p>
         <p>Directeur de la publication : Clément Martin</p>
         <h2>Hébergement</h2>
-        <p>Ce site est hébergé par [Hébergeur à compléter].</p>
+        <p>
+          Ce site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA.
+        </p>
         <h2>Propriété intellectuelle</h2>
         <p>
           L&apos;ensemble du contenu de ce site (textes, images, logos) est protégé par le droit d&apos;auteur. Toute reproduction est interdite sans

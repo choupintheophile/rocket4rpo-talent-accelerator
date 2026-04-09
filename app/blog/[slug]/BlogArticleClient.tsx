@@ -36,7 +36,6 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
             </div>
             <div className="mt-8 prose prose-lg max-w-none text-foreground">
               <p className="text-lg leading-relaxed">{post.content}</p>
-              <p className="text-muted-foreground mt-6">Cet article sera complété prochainement avec un contenu détaillé. Revenez bientôt !</p>
             </div>
           </motion.div>
         </div>
