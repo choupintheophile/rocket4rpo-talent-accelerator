@@ -18,5 +18,19 @@ export default async function Page() {
     createdAt: p.createdAt.toISOString(),
     updatedAt: p.updatedAt.toISOString(),
   }));
-  return <BlogPageClient posts={serializedPosts} categories={blogCategories} />;
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Blog Rocket4RPO",
+    description: "Articles sur le Talent Acquisition, le RPO et le recrutement Tech",
+    url: "https://www.rocket4rpo.com/blog",
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
+      <BlogPageClient posts={serializedPosts} categories={blogCategories} />
+    </>
+  );
 }

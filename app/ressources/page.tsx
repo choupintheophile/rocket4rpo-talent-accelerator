@@ -9,5 +9,40 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <RessourcesClient />;
+  const ressourcesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Ressources gratuites Rocket4RPO",
+    url: "https://www.rocket4rpo.com/ressources",
+    numberOfItems: 4,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Guide : RPO vs Cabinet — Le comparatif complet",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Template : Scorecard de recrutement Sales SaaS",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Étude : Grille de rémunération Sales & Tech 2026",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Checklist : Les 10 étapes d'un onboarding réussi",
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ressourcesSchema) }} />
+      <RessourcesClient />
+    </>
+  );
 }

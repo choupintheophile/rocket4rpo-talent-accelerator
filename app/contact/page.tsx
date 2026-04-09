@@ -9,5 +9,34 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <ContactClient />;
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Rocket4RPO",
+    address: [
+      {
+        "@type": "PostalAddress",
+        streetAddress: "22 rue de l'Échiquier",
+        postalCode: "75010",
+        addressLocality: "Paris",
+        addressCountry: "FR",
+      },
+      {
+        "@type": "PostalAddress",
+        streetAddress: "70 cours Tolstoï",
+        postalCode: "69100",
+        addressLocality: "Villeurbanne",
+        addressCountry: "FR",
+      },
+    ],
+    email: "contact@rocket4rpo.com",
+    url: "https://www.rocket4rpo.com",
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
+      <ContactClient />
+    </>
+  );
 }
