@@ -25,6 +25,7 @@ import {
   Lightbulb,
   MousePointerClick,
   Handshake,
+  Rocket,
 } from "lucide-react";
 
 const faqs = [
@@ -106,6 +107,18 @@ export default function RecrutementMarketingPageClient() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }} />
 <Breadcrumbs items={[{ label: "Métiers", href: "/metiers/recrutement-marketing" }, { label: "Recrutement Marketing" }]} />
 
+    {/* CONTEXTUALIZATION */}
+    <section className="py-4">
+      <div className="container-wide">
+        <div className="flex items-start gap-3 p-4 rounded-xl border border-primary/20 bg-primary/5">
+          <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Dans l&apos;écosystème Tech, le marketing est un moteur de croissance au même titre que les Sales. Nos TA Specialists recrutent les profils marketing qui parlent le langage SaaS : CAC, LTV, pipeline, product-led growth.
+          </p>
+        </div>
+      </div>
+    </section>
+
     {/* HERO */}
     <section className="section-padding pt-8">
       <div className="container-wide">
@@ -120,10 +133,10 @@ export default function RecrutementMarketingPageClient() {
               Rocket4RPO s'appuie sur des Talent Acquisition spécialisés en marketing pour identifier les profils qui génèrent de la croissance réelle, pas seulement ceux qui présentent bien sur un CV.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 Parler à un expert <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors">
+              <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors">
                 Confier un recrutement
               </a>
             </div>
@@ -165,6 +178,43 @@ export default function RecrutementMarketingPageClient() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+
+    {/* Grille de rémunération Marketing 2026 */}
+    <section className="section-padding bg-secondary">
+      <div className="container-wide">
+        <h2 className="text-3xl font-bold mb-8 text-center">Grille de rémunération Marketing 2026</h2>
+        <p className="text-center text-muted-foreground mb-8">Fourchettes observées en Île-de-France pour des profils Marketing en environnement Tech / SaaS.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead><tr className="border-b border-border">
+              <th className="text-left p-3 font-semibold">Poste</th>
+              <th className="text-center p-3 font-semibold">Junior (0-3 ans)</th>
+              <th className="text-center p-3 font-semibold">Confirmé (3-6 ans)</th>
+              <th className="text-center p-3 font-semibold">Senior (6+ ans)</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ["CMO / Head of Marketing", "—", "—", "75-120K€"],
+                ["Growth Manager", "38-48K€", "48-65K€", "65-85K€"],
+                ["Performance Marketing", "35-45K€", "45-60K€", "60-80K€"],
+                ["Product Marketing Manager", "40-50K€", "50-65K€", "65-85K€"],
+                ["Content Manager", "32-40K€", "40-52K€", "52-68K€"],
+                ["Demand Gen Manager", "38-48K€", "48-62K€", "62-80K€"],
+                ["Brand Manager", "35-45K€", "45-58K€", "58-75K€"],
+              ].map(([role, junior, mid, senior], i) => (
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/50">
+                  <td className="p-3 font-medium">{role}</td>
+                  <td className="p-3 text-center text-muted-foreground">{junior}</td>
+                  <td className="p-3 text-center">{mid}</td>
+                  <td className="p-3 text-center font-semibold text-primary">{senior}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-muted-foreground mt-4 text-center">* Salaires bruts annuels fixes, hors variable. Source : données Rocket4RPO, avril 2026.</p>
       </div>
     </section>
 

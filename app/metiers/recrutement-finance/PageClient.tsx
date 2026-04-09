@@ -18,6 +18,7 @@ import {
   UserCheck,
   Settings,
   Briefcase,
+  Rocket,
   LineChart,
   Gauge,
   Calculator,
@@ -102,6 +103,18 @@ export default function RecrutementFinancePageClient() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }} />
 <Breadcrumbs items={[{ label: "Métiers", href: "/metiers/recrutement-finance" }, { label: "Recrutement Finance" }]} />
 
+    {/* CONTEXTUALIZATION */}
+    <section className="py-4">
+      <div className="container-wide">
+        <div className="flex items-start gap-3 p-4 rounded-xl border border-primary/20 bg-primary/5">
+          <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Les fonctions Finance sont le pilier de la croissance d&apos;une entreprise Tech. Nos TA Specialists recrutent les profils finance qui comprennent les enjeux SaaS : ARR, MRR, fundraising, unit economics.
+          </p>
+        </div>
+      </div>
+    </section>
+
     {/* HERO */}
     <section className="section-padding pt-8">
       <div className="container-wide">
@@ -116,10 +129,10 @@ export default function RecrutementFinancePageClient() {
               Rocket4RPO s'appuie sur des Talent Acquisition spécialisés en Finance pour identifier les profils capables de structurer, piloter et sécuriser la croissance financière de votre entreprise.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 Parler à un expert <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors">
+              <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors">
                 Confier un recrutement
               </a>
             </div>
@@ -161,6 +174,43 @@ export default function RecrutementFinancePageClient() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+
+    {/* Grille de rémunération Finance 2026 */}
+    <section className="section-padding bg-secondary">
+      <div className="container-wide">
+        <h2 className="text-3xl font-bold mb-8 text-center">Grille de rémunération Finance 2026</h2>
+        <p className="text-center text-muted-foreground mb-8">Fourchettes observées en Île-de-France pour des profils Finance en environnement Tech / SaaS.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead><tr className="border-b border-border">
+              <th className="text-left p-3 font-semibold">Poste</th>
+              <th className="text-center p-3 font-semibold">Junior (0-3 ans)</th>
+              <th className="text-center p-3 font-semibold">Confirmé (3-6 ans)</th>
+              <th className="text-center p-3 font-semibold">Senior (6+ ans)</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ["CFO / DAF", "—", "—", "90-130K€"],
+                ["Directeur Financier", "—", "65-85K€", "85-120K€"],
+                ["FP&A Manager", "38-48K€", "48-65K€", "65-85K€"],
+                ["Contrôleur de gestion", "35-45K€", "45-58K€", "58-75K€"],
+                ["Comptable senior", "32-40K€", "40-50K€", "50-62K€"],
+                ["Revenue Operations", "38-48K€", "48-62K€", "62-80K€"],
+                ["Trésorier", "35-45K€", "45-58K€", "58-72K€"],
+              ].map(([role, junior, mid, senior], i) => (
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/50">
+                  <td className="p-3 font-medium">{role}</td>
+                  <td className="p-3 text-center text-muted-foreground">{junior}</td>
+                  <td className="p-3 text-center">{mid}</td>
+                  <td className="p-3 text-center font-semibold text-primary">{senior}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-muted-foreground mt-4 text-center">* Salaires bruts annuels fixes, hors variable. Source : données Rocket4RPO, avril 2026.</p>
       </div>
     </section>
 

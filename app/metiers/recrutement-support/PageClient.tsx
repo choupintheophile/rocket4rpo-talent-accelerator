@@ -26,6 +26,7 @@ import {
   Scale,
   Search,
   Puzzle,
+  Rocket,
 } from "lucide-react";
 
 const faqs = [
@@ -97,6 +98,18 @@ export default function RecrutementSupportPageClient() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }} />
 <Breadcrumbs items={[{ label: "Métiers", href: "/metiers/recrutement-support" }, { label: "Recrutement fonctions support" }]} />
 
+    {/* CONTEXTUALIZATION */}
+    <section className="py-4">
+      <div className="container-wide">
+        <div className="flex items-start gap-3 p-4 rounded-xl border border-primary/20 bg-primary/5">
+          <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Les fonctions support sont le socle opérationnel qui permet à vos équipes Sales, Tech et Marketing de performer. Nos TA Specialists recrutent les profils qui structurent votre organisation en phase de scaling.
+          </p>
+        </div>
+      </div>
+    </section>
+
     {/* HERO */}
     <section className="section-padding pt-8">
       <div className="container-wide">
@@ -110,7 +123,7 @@ export default function RecrutementSupportPageClient() {
               Structurer votre organisation avec des profils fiables, polyvalents et adaptés à votre contexte.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
+              <a href="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
                 Recruter un profil support <ArrowRight className="w-4 h-4" />
               </a>
             </div>

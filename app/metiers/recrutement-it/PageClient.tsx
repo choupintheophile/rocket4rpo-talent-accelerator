@@ -213,6 +213,18 @@ export default function RecrutementITPageClient() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }} />
 <Breadcrumbs items={[{ label: "Métiers", href: "/metiers/recrutement-it" }, { label: "Recrutement IT & Tech" }]} />
 
+    {/* CONTEXTUALIZATION */}
+    <section className="py-4">
+      <div className="container-wide">
+        <div className="flex items-start gap-3 p-4 rounded-xl border border-primary/20 bg-primary/5">
+          <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Parce qu&apos;une scale-up SaaS ne recrute pas que des commerciaux. Nos Talent Acquisition Specialists couvrent l&apos;ensemble de vos besoins IT &amp; Tech pour accompagner votre croissance.
+          </p>
+        </div>
+      </div>
+    </section>
+
     {/* HERO */}
     <section className="section-padding pt-8">
       <div className="container-wide">
@@ -229,12 +241,12 @@ export default function RecrutementITPageClient() {
               Rocket4RPO s'appuie sur un pool de Talent Acquisition spécialisés dans le recrutement IT. Ils comprennent les métiers techniques, maîtrisent les stacks et savent qualifier des profils que les recruteurs généralistes ne peuvent pas évaluer.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
+              <a href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Parler à un expert <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="https://bit.ly/4bJGsuZ" target="_blank" rel="noopener noreferrer"
+              <a href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors"
               >
                 Confier un recrutement
@@ -297,6 +309,44 @@ export default function RecrutementITPageClient() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+
+    {/* Grille de rémunération IT 2026 */}
+    <section className="section-padding bg-secondary">
+      <div className="container-wide">
+        <h2 className="text-3xl font-bold mb-8 text-center">Grille de rémunération IT & Tech 2026</h2>
+        <p className="text-center text-muted-foreground mb-8">Fourchettes observées en Île-de-France pour des profils Tech en startup/scale-up SaaS.</p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead><tr className="border-b border-border">
+              <th className="text-left p-3 font-semibold">Poste</th>
+              <th className="text-center p-3 font-semibold">Junior (0-3 ans)</th>
+              <th className="text-center p-3 font-semibold">Confirmé (3-6 ans)</th>
+              <th className="text-center p-3 font-semibold">Senior (6+ ans)</th>
+            </tr></thead>
+            <tbody>
+              {[
+                ["Développeur Backend", "38-48K€", "48-62K€", "62-80K€"],
+                ["Développeur Full-Stack", "40-50K€", "50-65K€", "65-85K€"],
+                ["DevOps / SRE", "42-52K€", "52-68K€", "68-90K€"],
+                ["Data Engineer", "40-52K€", "52-70K€", "70-90K€"],
+                ["Data Scientist", "42-55K€", "55-72K€", "72-95K€"],
+                ["Product Manager", "40-50K€", "50-65K€", "65-85K€"],
+                ["Engineering Manager", "—", "60-75K€", "75-100K€"],
+                ["CTO / VP Engineering", "—", "—", "80-130K€"],
+              ].map(([role, junior, mid, senior], i) => (
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/50">
+                  <td className="p-3 font-medium">{role}</td>
+                  <td className="p-3 text-center text-muted-foreground">{junior}</td>
+                  <td className="p-3 text-center">{mid}</td>
+                  <td className="p-3 text-center font-semibold text-primary">{senior}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs text-muted-foreground mt-4 text-center">* Salaires bruts annuels fixes, hors variable. Source : données Rocket4RPO, avril 2026.</p>
       </div>
     </section>
 
