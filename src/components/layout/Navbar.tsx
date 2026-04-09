@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeToggle } from "@/components/shared/ThemeToggle";
 
 const offerLinks = [
   { href: "/offre/talent-acquisition-temps-partage", label: "TA temps partagé" },
@@ -26,6 +27,7 @@ const mainLinks = [
   { href: "/cas-clients", label: "Cas clients" },
   { href: "/comparateur", label: "Comparateur" },
   { href: "/calculateur", label: "Calculateur ROI" },
+  { href: "/assessment", label: "Diagnostic" },
   { href: "/blog", label: "Blog" },
   { href: "/equipe", label: "Équipe" },
 ];
@@ -110,6 +112,7 @@ export const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
+          <ThemeToggle />
           <Link href="/recrutement" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             Nous rejoindre
           </Link>
