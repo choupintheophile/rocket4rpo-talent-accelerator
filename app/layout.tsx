@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/shared/CookieBanner";
 import { SocialProofWidget } from "@/components/shared/SocialProofWidget";
 import { StickyCTA } from "@/components/shared/StickyCTA";
+import { UrgencyBanner } from "@/components/shared/UrgencyBanner";
+import { ExitIntentPopup } from "@/components/shared/ExitIntentPopup";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -90,6 +92,7 @@ export default function RootLayout({
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg">
             Aller au contenu principal
           </a>
+          <UrgencyBanner />
           <div className="min-h-screen flex flex-col">
             <Navbar />
             <main id="main-content" className="flex-1 pt-16 lg:pt-20">{children}</main>
@@ -97,6 +100,9 @@ export default function RootLayout({
           </div>
           <SocialProofWidget />
           <StickyCTA />
+          <div className="hidden lg:block">
+            <ExitIntentPopup />
+          </div>
           <CookieBanner />
         </Providers>
       </body>

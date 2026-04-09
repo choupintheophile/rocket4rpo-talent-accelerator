@@ -30,6 +30,7 @@ const resources = [
       "12 pages pour comprendre les différences de coût, flexibilité et efficacité entre RPO et cabinet de recrutement traditionnel.",
     badge: "Guide PDF",
     icon: FileText,
+    downloads: "Téléchargé 800+ fois",
   },
   {
     title: "Template : Scorecard de recrutement Sales SaaS",
@@ -37,6 +38,7 @@ const resources = [
       "Notre modèle de scorecard utilisé pour évaluer les profils SDR, AE et Sales Manager dans l'écosystème SaaS.",
     badge: "Template",
     icon: ClipboardCheck,
+    downloads: "Téléchargé 450+ fois",
   },
   {
     title: "Étude : Grille de rémunération Sales & Tech 2026",
@@ -44,6 +46,7 @@ const resources = [
       "Fourchettes salariales actualisées pour 30+ postes Sales et Tech en Île-de-France et région.",
     badge: "Étude",
     icon: BarChart3,
+    downloads: "Téléchargé 1 200+ fois",
   },
   {
     title: "Checklist : Les 10 étapes d'un onboarding réussi",
@@ -51,6 +54,7 @@ const resources = [
       "La checklist utilisée par nos Talent Acquisition Specialists pour intégrer un nouveau collaborateur efficacement.",
     badge: "Checklist",
     icon: CheckSquare,
+    downloads: "Téléchargé 350+ fois",
   },
 ];
 
@@ -58,11 +62,13 @@ export default function RessourcesClient() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedResource, setSelectedResource] = useState<string | null>(null);
   const [email, setEmail] = useState("");
+  const [prenom, setPrenom] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleDownloadClick = (title: string) => {
     setSelectedResource(title);
     setEmail("");
+    setPrenom("");
     setDialogOpen(true);
   };
 
@@ -73,7 +79,7 @@ export default function RessourcesClient() {
     }
 
     setIsSubmitting(true);
-    console.log("Lead magnet download:", { email, resource: selectedResource });
+    console.log("Lead magnet download:", { email, prenom, resource: selectedResource });
 
     // Simulate async submission
     await new Promise((r) => setTimeout(r, 600));
@@ -131,12 +137,15 @@ export default function RessourcesClient() {
                 <p className="text-sm text-muted-foreground leading-relaxed flex-1">
                   {resource.description}
                 </p>
+                <p className="mt-2 text-xs text-muted-foreground/70">
+                  {resource.downloads}
+                </p>
                 <Button
-                  className="mt-5 w-full"
+                  className="mt-3 w-full"
                   onClick={() => handleDownloadClick(resource.title)}
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Télécharger gratuitement
+                  Recevoir par email
                 </Button>
               </motion.div>
             ))}
@@ -156,7 +165,17 @@ export default function RessourcesClient() {
           </DialogHeader>
           <div className="space-y-4 pt-2">
             <div className="space-y-2">
-              <Label htmlFor="lead-email">Email professionnel</Label>
+              <Label htmlFor="lead-prenom">Prénom (optionnel)</Label>
+              <Input
+                id="lead-prenom"
+                type="text"
+                placeholder="Jean"
+                value={prenom}
+                onChange={(e) => setPrenom(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="lead-email">Email professionnel *</Label>
               <Input
                 id="lead-email"
                 type="email"
