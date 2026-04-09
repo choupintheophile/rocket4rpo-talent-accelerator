@@ -219,7 +219,7 @@ export default function RecrutementITPageClient() {
         <div className="flex items-start gap-3 p-4 rounded-xl border border-primary/20 bg-primary/5">
           <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Parce qu&apos;une scale-up SaaS ne recrute pas que des commerciaux. Nos Talent Acquisition Specialists couvrent l&apos;ensemble de vos besoins IT &amp; Tech pour accompagner votre croissance.
+            Parce qu&apos;une entreprise Tech ne recrute pas que des développeurs. Nos Talent Acquisition Specialists couvrent l&apos;ensemble de vos besoins IT &amp; Tech pour accompagner votre croissance.
           </p>
         </div>
       </div>
@@ -234,9 +234,11 @@ export default function RecrutementITPageClient() {
               Expertise métier
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Recrutement de profils IT et Tech{" "}
-              <span className="text-gradient">: une expertise portée par des Talent Acquisition spécialisés</span>
+              Recrutement de profils IT et Tech
             </h1>
+            <p className="mt-4 text-xl md:text-2xl text-muted-foreground font-medium">
+              Une expertise portée par des Talent Acquisition spécialisés
+            </p>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
               Rocket4RPO s'appuie sur un pool de Talent Acquisition spécialisés dans le recrutement IT. Ils comprennent les métiers techniques, maîtrisent les stacks et savent qualifier des profils que les recruteurs généralistes ne peuvent pas évaluer.
             </p>

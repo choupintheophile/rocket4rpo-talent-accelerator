@@ -97,7 +97,7 @@ const gains = [
 
 export default function RecrutementMarketingPageClient() {
   const schemas = [
-      serviceSchema("Recrutement de profils marketing Tech et SaaS", "Recrutez vos profils marketing avec Rocket4RPO. Talent Acquisition spécialisés pour identifier des marketeurs performants dans l'écosystème Tech.", "/metiers/recrutement-marketing"),
+      serviceSchema("Recrutement de profils marketing Tech", "Recrutez vos profils marketing avec Rocket4RPO. Talent Acquisition spécialisés pour identifier des marketeurs performants dans l'écosystème Tech.", "/metiers/recrutement-marketing"),
       faqSchema(faqs),
       breadcrumbSchema([{ name: "Accueil", url: "/" }, { name: "Métiers", url: "/metiers/recrutement-marketing" }, { name: "Recrutement Marketing", url: "/metiers/recrutement-marketing" }]),
     ];
@@ -113,7 +113,7 @@ export default function RecrutementMarketingPageClient() {
         <div className="flex items-start gap-3 p-4 rounded-xl border border-primary/20 bg-primary/5">
           <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Dans l&apos;écosystème Tech, le marketing est un moteur de croissance au même titre que les Sales. Nos TA Specialists recrutent les profils marketing qui parlent le langage SaaS : CAC, LTV, pipeline, product-led growth.
+            Dans l&apos;écosystème Tech, le marketing est un moteur de croissance au même titre que les Sales. Nos TA Specialists recrutent les profils marketing qui parlent le langage Tech : CAC, LTV, pipeline, product-led growth.
           </p>
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function RecrutementMarketingPageClient() {
           <motion.div {...fadeUp}>
             <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-6">Expertise métier</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Recrutement de profils marketing dans la Tech et le SaaS{" "}
+              Recrutement de profils marketing Tech{" "}
               <span className="text-gradient">: au-delà du CV, l'impact business</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
@@ -224,9 +224,9 @@ export default function RecrutementMarketingPageClient() {
         <div className="max-w-3xl mx-auto">
           <motion.div {...fadeUp}>
             <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Profil hybride</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Le profil hybride Marketing SaaS</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Le profil hybride Marketing Tech</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
-              <p>Le marketing SaaS exige une combinaison rare : la rigueur analytique de la data et la créativité de la marque. Les meilleurs profils marketing Tech ne sont pas des spécialistes purs — ce sont des hybrides capables de passer du dashboard analytics à la création de contenu en une même journée.</p>
+              <p>Le marketing Tech exige une combinaison rare : la rigueur analytique de la data et la créativité de la marque. Les meilleurs profils marketing Tech ne sont pas des spécialistes purs — ce sont des hybrides capables de passer du dashboard analytics à la création de contenu en une même journée.</p>
               <p>Cette dualité est ce qui rend ces profils difficiles à recruter avec une approche généraliste. Il ne suffit pas de vérifier la maîtrise d&apos;un outil ou d&apos;un canal : il faut évaluer la capacité à combiner plusieurs expertises pour générer un impact business mesurable.</p>
             </div>
             <div className="mt-8 grid sm:grid-cols-3 gap-4">

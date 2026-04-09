@@ -78,7 +78,7 @@ const rigorAspects = [
 const methodology = [
   { step: "01", title: "Analyse du contexte financier", text: "Compréhension de votre stade de maturité, de vos outils, de vos enjeux de structuration et de vos attentes en termes de reporting." },
   { step: "02", title: "Évaluation de la rigueur", text: "Au-delà des compétences techniques, nous évaluons la fiabilité, la précision et la capacité à structurer des process financiers robustes." },
-  { step: "03", title: "Vérification de l'expertise SaaS", text: "Nous vérifions la compréhension des métriques SaaS, des modèles de revenue récurrent et des enjeux spécifiques aux entreprises Tech." },
+  { step: "03", title: "Vérification de l'expertise Tech", text: "Nous vérifions la compréhension des métriques Tech (ARR, MRR, NRR), des modèles de revenue récurrent et des enjeux spécifiques aux entreprises en croissance." },
   { step: "04", title: "Alignement avec votre organisation", text: "Nous vérifions la compatibilité avec votre culture, votre stade de croissance et les attentes de votre direction et de vos investisseurs." },
 ];
 
@@ -93,7 +93,7 @@ const gains = [
 
 export default function RecrutementFinancePageClient() {
   const schemas = [
-      serviceSchema("Recrutement de profils Finance Tech et SaaS", "Recrutez vos profils Finance avec Rocket4RPO. Talent Acquisition spécialisés pour identifier des profils financiers performants dans l'écosystème Tech.", "/metiers/recrutement-finance"),
+      serviceSchema("Recrutement de profils Finance Tech", "Recrutez vos profils Finance avec Rocket4RPO. Talent Acquisition spécialisés pour identifier des profils financiers performants dans l'écosystème Tech.", "/metiers/recrutement-finance"),
       faqSchema(faqs),
       breadcrumbSchema([{ name: "Accueil", url: "/" }, { name: "Métiers", url: "/metiers/recrutement-finance" }, { name: "Recrutement Finance", url: "/metiers/recrutement-finance" }]),
     ];
@@ -109,7 +109,7 @@ export default function RecrutementFinancePageClient() {
         <div className="flex items-start gap-3 p-4 rounded-xl border border-primary/20 bg-primary/5">
           <Rocket className="w-5 h-5 text-primary shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Les fonctions Finance sont le pilier de la croissance d&apos;une entreprise Tech. Nos TA Specialists recrutent les profils finance qui comprennent les enjeux SaaS : ARR, MRR, fundraising, unit economics.
+            Les fonctions Finance sont le pilier de la croissance d&apos;une entreprise Tech. Nos TA Specialists recrutent les profils finance qui comprennent les enjeux Tech : ARR, MRR, fundraising, unit economics.
           </p>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function RecrutementFinancePageClient() {
           <motion.div {...fadeUp}>
             <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-6">Expertise métier</span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Recrutement de profils Finance dans la Tech et le SaaS{" "}
+              Recrutement de profils Finance Tech{" "}
               <span className="text-gradient">: rigueur, fiabilité et vision croissance</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
