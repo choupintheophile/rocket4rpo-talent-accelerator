@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ROICalculatorClient from "./ROICalculatorClient";
+import { faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Calculateur ROI RPO — estimez vos économies",
@@ -7,6 +8,24 @@ export const metadata: Metadata = {
     "Calculez combien vous pouvez économiser en passant au RPO avec Rocket4RPO. Comparez le coût du recrutement interne, cabinet et RPO.",
   alternates: { canonical: "/calculateur" },
 };
+
+const calculatorFaqs = [
+  {
+    question: "Comment est calculé le coût RPO ?",
+    answer:
+      "Le calculateur compare votre coût actuel de recrutement (basé sur un pourcentage du salaire annuel brut) avec le modèle RPO Rocket4RPO. Le RPO utilise un taux fixe de 10% du salaire annuel, ce qui le rend significativement moins cher que les cabinets classiques qui facturent 15 à 25% du salaire. Par exemple, pour 10 postes à 55 000€ de salaire moyen, le RPO coûte environ 55 000€ contre 99 000 à 137 500€ avec un cabinet.",
+  },
+  {
+    question: "Le calculateur est-il fiable ?",
+    answer:
+      "Le calculateur fournit une estimation basée sur les données réelles de tarification de Rocket4RPO et les moyennes du marché du recrutement en France. Les résultats sont indicatifs et chaque situation est unique. Pour une estimation personnalisée tenant compte de vos spécificités (secteur, séniorité des postes, localisation), nous recommandons de réserver un diagnostic gratuit avec un expert Rocket4RPO.",
+  },
+  {
+    question: "Puis-je obtenir une estimation personnalisée ?",
+    answer:
+      "Oui. Réservez un diagnostic gratuit de 30 minutes avec un expert Rocket4RPO. Nous analysons votre contexte spécifique (volumétrie, types de postes, urgence, budget) et vous fournissons un chiffrage détaillé sous 48h, sans engagement. Le diagnostic inclut une recommandation sur le modèle le plus adapté : RPO à temps partagé, RPO à temps plein, ou accompagnement ponctuel.",
+  },
+];
 
 export default function Page() {
   const calcSchema = {
@@ -22,7 +41,8 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(calcSchema) }} />
-      <ROICalculatorClient />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(calculatorFaqs)) }} />
+      <ROICalculatorClient faqs={calculatorFaqs} />
     </>
   );
 }

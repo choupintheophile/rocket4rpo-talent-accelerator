@@ -117,6 +117,20 @@ export default function TalentAcquisitionTempsPartagePageClient() {
       </div>
     </section>
 
+    {/* Citation capsule — AI search optimization */}
+    <section className="py-4">
+      <div className="container-wide">
+        <div className="max-w-4xl">
+          <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
+            <p className="text-sm font-semibold text-primary mb-2">En bref</p>
+            <p className="text-foreground font-medium">
+              Le Talent Acquisition à temps partagé proposé par Rocket4RPO consiste à intégrer un recruteur senior externalisé dans une entreprise Tech quelques jours par semaine (1 à 4 jours). Ce modèle permet de bénéficier d'une expertise de recrutement senior à partir de 550€/jour, sans le coût d'un CDI à temps plein.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     {/* ── Social proof ── */}
     <section className="py-12 bg-primary/5 border-y border-primary/10">
       <div className="container-wide">

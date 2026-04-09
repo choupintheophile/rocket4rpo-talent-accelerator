@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { CTASection } from "@/components/shared/CTASection";
+import { FAQSection } from "@/components/shared/FAQSection";
 
 function formatCurrency(value: number) {
   return new Intl.NumberFormat("fr-FR", {
@@ -16,7 +17,12 @@ function formatCurrency(value: number) {
   }).format(value);
 }
 
-export default function ROICalculatorClient() {
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
   const [postes, setPostes] = useState(5);
   const [salaire, setSalaire] = useState(55000);
   const [coutPct, setCoutPct] = useState(18);
@@ -369,6 +375,7 @@ export default function ROICalculatorClient() {
         </div>
       </section>
 
+      <FAQSection faqs={faqs} />
       <CTASection />
     </>
   );

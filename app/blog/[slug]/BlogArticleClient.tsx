@@ -4,8 +4,6 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { motion } from "framer-motion";
 
-
-
 interface BlogPost {
   slug: string;
   title: string;
@@ -35,6 +33,15 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
               </div>
               <span>Par <a href="https://www.linkedin.com/in/clement-martin-rocket4sales/" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">Clément Martin</a>, CEO Rocket4Sales</span>
             </div>
+
+            {/* Key Takeaways box — AI citation optimization */}
+            {post.excerpt && (
+              <div className="mt-8 p-6 rounded-xl bg-primary/5 border border-primary/20">
+                <p className="text-sm font-semibold text-primary mb-2">En bref</p>
+                <p className="text-foreground font-medium leading-relaxed">{post.excerpt}</p>
+              </div>
+            )}
+
             <div className="mt-8 prose prose-lg max-w-none text-foreground">
               <p className="text-lg leading-relaxed">{post.content}</p>
             </div>
