@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, ArrowRight, CheckCircle } from "lucide-react";
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 
 const steps = [
@@ -255,13 +255,15 @@ export function ConversationalCTA() {
                       </div>
                     )}
 
-                    <Link
-                      href="/contact"
+                    <a
+                      href="https://meetings.hubspot.com/theophile-choupin/rpo"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
                     >
                       Réserver mon diagnostic gratuit
                       <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    </a>
 
                     <button
                       onClick={handleReset}

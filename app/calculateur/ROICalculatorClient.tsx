@@ -345,7 +345,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
                     <a
-                      href="/contact"
+                      href="https://meetings.hubspot.com/theophile-choupin/rpo"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
@@ -354,7 +354,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                       <ArrowRight className="w-4 h-4" />
                     </a>
                     <a
-                      href="/contact"
+                      href="https://meetings.hubspot.com/theophile-choupin/rpo"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg border border-primary text-primary hover:bg-primary/5 transition-colors"

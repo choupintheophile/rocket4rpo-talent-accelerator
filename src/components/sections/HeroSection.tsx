@@ -100,7 +100,9 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
             <a
-              href="/contact"
+              href="https://meetings.hubspot.com/theophile-choupin/rpo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               {"Réserver mon diagnostic gratuit →"} <ArrowRight className="w-4 h-4" />

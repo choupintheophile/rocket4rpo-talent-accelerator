@@ -70,13 +70,15 @@ export const ExitIntentPopup = () => {
               >
                 Faire le diagnostic (2 min)
               </Link>
-              <Link
-                href="/contact"
+              <a
+                href="https://meetings.hubspot.com/theophile-choupin/rpo"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setShow(false)}
                 className="flex-1 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold rounded-lg border border-border hover:bg-secondary"
               >
                 Parler à un expert
-              </Link>
+              </a>
             </div>
             <p className="text-xs text-muted-foreground mt-4 text-center">
               Gratuit · Sans engagement · Résultat immédiat

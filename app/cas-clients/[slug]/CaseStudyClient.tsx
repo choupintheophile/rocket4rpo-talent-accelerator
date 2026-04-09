@@ -158,7 +158,6 @@ export default function CaseStudyClient({ study }: { study: CaseStudy }) {
         title="Obtenez les mêmes résultats"
         subtitle="Nos experts Talent Acquisition sont prêts à transformer vos recrutements."
         ctaLabel="Échanger avec Rocket4RPO"
-        ctaHref="/contact"
       />
 
       {/* Back link */}

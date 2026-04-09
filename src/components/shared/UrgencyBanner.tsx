@@ -14,7 +14,9 @@ export const UrgencyBanner = () => {
       </span>
       <span className="hidden sm:inline"> — </span>
       <a
-        href="/contact"
+        href="https://meetings.hubspot.com/theophile-choupin/rpo"
+        target="_blank"
+        rel="noopener noreferrer"
         className="underline font-semibold hidden sm:inline"
       >
         Réserver maintenant

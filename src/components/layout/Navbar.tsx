@@ -118,12 +118,14 @@ export const Navbar = () => {
           <Link href="/recrutement" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             Nous rejoindre
           </Link>
-          <Link
-            href="/contact"
+          <a
+            href="https://meetings.hubspot.com/theophile-choupin/rpo"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Parler à un expert
-          </Link>
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -164,13 +166,15 @@ export const Navbar = () => {
                 Nous rejoindre
               </Link>
               <div className="pt-2 px-3">
-                <Link
-                  href="/contact"
+                <a
+                  href="https://meetings.hubspot.com/theophile-choupin/rpo"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
                   className="block w-full text-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground"
                 >
                   Parler à un expert
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

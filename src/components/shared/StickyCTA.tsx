@@ -40,12 +40,14 @@ export const StickyCTA = () => {
             transition={{ duration: 0.25, ease: "easeOut" }}
             className="bg-background/95 backdrop-blur-lg border-t border-border px-4 py-2 flex items-center gap-2 h-14"
           >
-            <Link
-              href="/contact"
+            <a
+              href="https://meetings.hubspot.com/theophile-choupin/rpo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex-1 inline-flex items-center justify-center h-10 px-4 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               Diagnostic gratuit
-            </Link>
+            </a>
             <Link
               href="/calculateur"
               className="flex-1 inline-flex items-center justify-center h-10 px-4 text-sm font-semibold rounded-lg border border-border text-foreground hover:bg-secondary transition-colors"

@@ -284,13 +284,15 @@ export default function RpoVsCabinetPage() {
             En 30 minutes, un expert Rocket4RPO analyse votre contexte de recrutement
             et vous recommande le mod&egrave;le le plus adapt&eacute;.
           </p>
-          <Link
-            href="/contact"
+          <a
+            href="https://meetings.hubspot.com/theophile-choupin/rpo"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             R&eacute;server mon diagnostic gratuit
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
         </div>
       </section>
 

@@ -362,12 +362,12 @@ export default function AssessmentClient() {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button asChild size="lg" className="gap-2 px-8 py-6 text-base">
-                  <Link href="/contact">
+                  <a href="https://meetings.hubspot.com/theophile-choupin/rpo" target="_blank" rel="noopener noreferrer">
                     Recevoir votre rapport detaille <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="gap-2 px-8 py-6 text-base">
-                  <Link href="/contact">Parler a un expert</Link>
+                  <a href="https://meetings.hubspot.com/theophile-choupin/rpo" target="_blank" rel="noopener noreferrer">Parler a un expert</a>
                 </Button>
                 <Button variant="ghost" size="sm" onClick={handleRestart} className="gap-2 mt-2 sm:mt-0">
                   <RotateCcw className="w-4 h-4" /> Recommencer

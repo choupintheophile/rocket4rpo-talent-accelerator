@@ -115,7 +115,7 @@ export default function TalentAcquisitionTempsPleinPageClient() {
               Rocket4RPO met à disposition des Talent Acquisition Specialists expérimentés à temps plein pour piloter vos recrutements avec exigence, rapidité et méthode. Vous bénéficiez d'une ressource dédiée, capable de structurer vos process, d'accélérer vos recrutements et de collaborer efficacement avec vos équipes opérationnelles.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a href="/contact"
+              <a href="https://meetings.hubspot.com/theophile-choupin/rpo" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
               >
                 Parler à un expert <ArrowRight className="w-4 h-4" />

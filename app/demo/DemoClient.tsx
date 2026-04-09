@@ -377,12 +377,14 @@ function StepResults() {
           Nos clients recrutent leur premier Sales en 28 jours en moyenne. Réservez un appel de 15
           min pour voir comment on peut faire pareil pour vous.
         </p>
-        <Link
-          href="/contact"
+        <a
+          href="https://meetings.hubspot.com/theophile-choupin/rpo"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
         >
           Parler à un expert <ArrowRight className="w-4 h-4" />
-        </Link>
+        </a>
       </div>
     </motion.div>
   );

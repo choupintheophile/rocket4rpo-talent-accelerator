@@ -1,27 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FileText,
   ClipboardCheck,
   BarChart3,
   CheckSquare,
-  Download,
+  ArrowRight,
 } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { toast } from "sonner";
 
 const resources = [
   {
@@ -59,36 +47,6 @@ const resources = [
 ];
 
 export default function RessourcesClient() {
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [selectedResource, setSelectedResource] = useState<string | null>(null);
-  const [email, setEmail] = useState("");
-  const [prenom, setPrenom] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleDownloadClick = (title: string) => {
-    setSelectedResource(title);
-    setEmail("");
-    setPrenom("");
-    setDialogOpen(true);
-  };
-
-  const handleSubmit = async () => {
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast.error("Veuillez entrer une adresse email valide.");
-      return;
-    }
-
-    setIsSubmitting(true);
-    console.log("Lead magnet download:", { email, prenom, resource: selectedResource });
-
-    // Simulate async submission
-    await new Promise((r) => setTimeout(r, 600));
-
-    setIsSubmitting(false);
-    setDialogOpen(false);
-    toast.success("Document envoyé à votre email !");
-  };
-
   return (
     <>
       <Breadcrumbs items={[{ label: "Ressources" }]} />
@@ -140,75 +98,24 @@ export default function RessourcesClient() {
                 <p className="mt-2 text-xs text-muted-foreground/70">
                   {resource.downloads}
                 </p>
-                <Button
-                  className="mt-3 w-full"
-                  onClick={() => handleDownloadClick(resource.title)}
+                <a
+                  href="https://meetings.hubspot.com/theophile-choupin/rpo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
-                  <Download className="w-4 h-4 mr-2" />
-                  Recevoir par email
-                </Button>
+                  Demander le document <ArrowRight className="w-4 h-4" />
+                </a>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Lead capture dialog */}
-      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Recevoir le document</DialogTitle>
-            <DialogDescription>
-              Entrez votre email professionnel pour recevoir le document
-              gratuitement.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 pt-2">
-            <div className="space-y-2">
-              <Label htmlFor="lead-prenom">Prénom (optionnel)</Label>
-              <Input
-                id="lead-prenom"
-                type="text"
-                placeholder="Jean"
-                value={prenom}
-                onChange={(e) => setPrenom(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="lead-email">Email professionnel *</Label>
-              <Input
-                id="lead-email"
-                type="email"
-                placeholder="jean@entreprise.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    handleSubmit();
-                  }
-                }}
-              />
-            </div>
-            <Button
-              className="w-full"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Envoi en cours..." : "Recevoir le document"}
-            </Button>
-            <p className="text-xs text-muted-foreground text-center">
-              Pas de spam. Vos données restent confidentielles.
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
-
       <CTASection
         title="Besoin d'un accompagnement sur mesure ?"
         subtitle="Discutez avec un expert Talent Acquisition et recevez un diagnostic gratuit de votre processus de recrutement."
         ctaLabel="Parler à un expert"
-        ctaHref="/contact"
       />
     </>
   );

@@ -264,14 +264,14 @@ export default function RecrutementSalesPageClient() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="/contact"
+                  href="https://meetings.hubspot.com/theophile-choupin/rpo" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
                   Réserver un diagnostic Sales gratuit{" "}
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
-                  href="/contact"
+                  href="https://meetings.hubspot.com/theophile-choupin/rpo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors"
@@ -652,8 +652,7 @@ export default function RecrutementSalesPageClient() {
         title="Prêt à recruter vos profils Sales plus vite ?"
         subtitle="Réservez un diagnostic Sales gratuit de 30 min. Recevez un plan d'action chiffré sous 48h."
         ctaLabel="Réserver un diagnostic Sales gratuit"
-        ctaHref="/contact"
-      />
+              />
     </>
   );
 }
