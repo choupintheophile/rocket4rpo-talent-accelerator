@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1d2b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1119;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d9488;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Decorative elements -->
+  <circle cx="1050" cy="120" r="200" fill="#14b8a6" opacity="0.06" />
+  <circle cx="150" cy="500" r="150" fill="#14b8a6" opacity="0.04" />
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)" />
+
+  <!-- Logo / Brand -->
+  <text x="100" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="800" fill="#ffffff" letter-spacing="-1">
+    Rocket4RPO
+  </text>
+
+  <!-- Subtitle -->
+  <text x="100" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="500" fill="#14b8a6">
+    Le seul RPO sp&#233;cialis&#233; Sales SaaS en France
+  </text>
+
+  <!-- Separator line -->
+  <rect x="100" y="320" width="120" height="3" fill="#14b8a6" rx="1.5" />
+
+  <!-- Stats -->
+  <text x="100" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="600" fill="#94a3b8">
+    <tspan fill="#ffffff">40 000</tspan> profils
+    <tspan dx="40" fill="#ffffff">48h</tspan> shortlist
+    <tspan dx="40" fill="#ffffff">200+</tspan> recrutements
+  </text>
+
+  <!-- Bottom decorative dots -->
+  <circle cx="100" cy="530" r="4" fill="#14b8a6" opacity="0.5" />
+  <circle cx="120" cy="530" r="4" fill="#14b8a6" opacity="0.4" />
+  <circle cx="140" cy="530" r="4" fill="#14b8a6" opacity="0.3" />
+
+  <!-- URL -->
+  <text x="100" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#64748b">
+    rocket4rpo.com
+  </text>
+</svg>

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Rocket4RPO",
     images: [
       {
-        url: "/og-default.png",
+        url: "/og-default.svg",
         width: 1200,
         height: 630,
         alt: "Rocket4RPO — Le seul RPO spécialisé Sales SaaS en France",
