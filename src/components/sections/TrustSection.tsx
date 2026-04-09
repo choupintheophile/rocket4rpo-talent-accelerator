@@ -14,9 +14,9 @@ const industries = [
 ];
 
 const metrics = [
-  { target: 200, suffix: "+", label: "recrutements Sales & Tech" },
-  { target: 92, suffix: "%", label: "r\u00e9tention 12 mois" },
-  { target: 48, suffix: "h", label: "premi\u00e8re shortlist" },
+  { target: 200, suffix: "+", label: "recrutements r\u00e9alis\u00e9s pour des scale-ups SaaS" },
+  { target: 92, suffix: "%", label: "de r\u00e9tention \u00e0 12 mois (vs 70\u00a0% en moyenne march\u00e9)" },
+  { target: 48, suffix: "h", label: "pour recevoir votre premi\u00e8re shortlist qualifi\u00e9e" },
 ];
 
 function AnimatedCounter({
@@ -58,7 +58,7 @@ export const TrustSection = () => (
     <div className="container-wide">
       {/* Section title */}
       <p className="text-center text-sm font-medium text-muted-foreground uppercase tracking-wider mb-8">
-        {"Ils nous font confiance"}
+        {"Des scale-ups comme la v\u00f4tre nous font d\u00e9j\u00e0 confiance"}
       </p>
 
       {/* Industry badges */}
@@ -94,7 +94,7 @@ export const TrustSection = () => (
 
       {/* Heritage line */}
       <p className="mt-8 text-center text-sm text-muted-foreground">
-        {"H\u00e9ritier de 7 ans d\u2019expertise Rocket4Sales dans le recrutement commercial Tech"}
+        {"7 ans d\u2019expertise h\u00e9rit\u00e9e de Rocket4Sales \u2014 le recrutement commercial Tech, c\u2019est notre seul m\u00e9tier."}
       </p>
 
       {/* Separator */}

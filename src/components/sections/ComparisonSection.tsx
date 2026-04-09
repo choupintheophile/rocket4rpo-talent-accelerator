@@ -15,37 +15,37 @@ interface Row {
 
 const rows: Row[] = [
   {
-    label: "Co\u00fbt mensuel",
-    rpo: "Forfait fixe",
-    internal: "Salaire + charges",
-    cabinet: "15-25\u00a0% du salaire",
+    label: "Co\u00fbt pour 10 recrutements",
+    rpo: "~44\u00a0000\u00a0\u20ac",
+    internal: "50\u00a0000-70\u00a0000\u00a0\u20ac",
+    cabinet: "60\u00a0000-200\u00a0000\u00a0\u20ac",
   },
   {
-    label: "Flexibilit\u00e9",
+    label: "Flexibilit\u00e9 (arr\u00eat sans pr\u00e9avis)",
     rpo: "check",
-    internal: "minus",
-    cabinet: "x",
+    internal: "x",
+    cabinet: "minus",
   },
   {
-    label: "Time-to-hire",
+    label: "Time-to-hire moyen",
     rpo: "6 semaines",
     internal: "8-12 semaines",
     cabinet: "8-10 semaines",
   },
   {
-    label: "Expertise march\u00e9",
+    label: "Expertise march\u00e9 Sales SaaS",
     rpo: "check",
     internal: "minus",
-    cabinet: "check",
+    cabinet: "minus",
   },
   {
-    label: "Int\u00e9gration \u00e9quipe",
+    label: "Int\u00e9gration dans votre \u00e9quipe",
     rpo: "check",
     internal: "check",
     cabinet: "x",
   },
   {
-    label: "Suivi KPIs",
+    label: "Reporting & KPIs hebdomadaires",
     rpo: "check",
     internal: "minus",
     cabinet: "x",
@@ -55,6 +55,12 @@ const rows: Row[] = [
     rpo: "1 mois",
     internal: "CDI / 12 mois",
     cabinet: "Par mission",
+  },
+  {
+    label: "R\u00e9tention \u00e0 12 mois",
+    rpo: "92\u00a0%",
+    internal: "Variable",
+    cabinet: "Non garanti",
   },
 ];
 
@@ -77,9 +83,8 @@ export const ComparisonSection = () => (
         badge="Comparatif"
         title={
           <>
-            {"Pourquoi choisir le "}
-            <span className="text-gradient">RPO</span>
-            {"\u00a0?"}
+            {"RPO vs cabinet vs recruteur interne\u00a0: "}
+            <span className="text-gradient">{"les chiffres parlent"}</span>
           </>
         }
       />
@@ -134,13 +139,16 @@ export const ComparisonSection = () => (
               </motion.tr>
             ))}
           </tbody>
-          {/* Bottom border for RPO column */}
+          {/* Verdict row */}
           <tfoot>
             <tr>
-              <td />
-              <td className="border-x-2 border-b-2 border-primary/20 rounded-b-xl h-1 bg-primary/5" />
-              <td />
-              <td />
+              <td colSpan={4} className="pt-6 pb-2">
+                <div className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-center">
+                  <p className="text-sm font-semibold text-primary">
+                    {"Verdict\u00a0: le RPO est recommand\u00e9 si vous recrutez 3+ postes Sales par trimestre. Co\u00fbt pr\u00e9visible, expertise imm\u00e9diate, z\u00e9ro engagement long terme."}
+                  </p>
+                </div>
+              </td>
             </tr>
           </tfoot>
         </table>

@@ -8,33 +8,33 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 const offers = [
   {
     icon: Users,
-    title: "TA \u00e0 temps partag\u00e9",
+    title: "Expertise senior sans le co\u00fbt d\u2019un CDI",
     description:
-      "Un Talent Acquisition Specialist senior int\u00e9gr\u00e9 \u00e0 vos \u00e9quipes quelques jours par semaine. Flexibilit\u00e9 maximale, expertise imm\u00e9diate.",
+      "Un Talent Acquisition Specialist senior int\u00e9gr\u00e9 \u00e0 vos \u00e9quipes quelques jours par semaine. Vous acc\u00e9dez \u00e0 7 ans d\u2019expertise Sales SaaS, sans charges fixes. Id\u00e9al pour 3 \u00e0 8 recrutements par trimestre.",
     href: "/offre/talent-acquisition-temps-partage",
     popular: true,
   },
   {
     icon: UserPlus,
-    title: "TA \u00e0 temps plein",
+    title: "Une \u00e9quipe TA d\u00e9di\u00e9e, imm\u00e9diatement op\u00e9rationnelle",
     description:
-      "Un expert Talent Acquisition d\u00e9di\u00e9 \u00e0 100\u00a0% \u00e0 vos recrutements. Immersion totale dans votre culture et vos processus.",
+      "Un expert TA \u00e0 100\u00a0% sur vos recrutements, immerg\u00e9 dans votre culture. Pour les scale-ups qui recrutent 10+ profils Sales par trimestre et veulent un time-to-hire garanti.",
     href: "/offre/talent-acquisition-temps-plein",
     popular: false,
   },
   {
     icon: Search,
-    title: "Recrutement de Talent Acquisition",
+    title: "Recrutez votre propre TA sans risque d\u2019erreur",
     description:
-      "Nous recrutons pour vous des Talent Acquisition Managers et Specialists adapt\u00e9s \u00e0 vos enjeux de croissance.",
+      "Nous identifions et qualifions les meilleurs Talent Acquisition Managers et Specialists du march\u00e9. Des profils qui connaissent le recrutement Sales SaaS, pas des g\u00e9n\u00e9ralistes.",
     href: "/offre/recrutement-talent-acquisition",
     popular: false,
   },
   {
     icon: Wrench,
-    title: "Outils de sourcing & enablement",
+    title: "Divisez vos co\u00fbts de sourcing par 2",
     description:
-      "S\u00e9lection d\u2019outils de sourcing abordables, formation de vos \u00e9quipes et optimisation de votre stack recrutement.",
+      "Audit de votre stack recrutement, s\u00e9lection d\u2019outils performants et abordables, formation de vos \u00e9quipes. R\u00e9sultat\u00a0: plus de candidats qualifi\u00e9s, moins de d\u00e9penses outils.",
     href: "/offre/outils-sourcing-enablement",
     popular: false,
   },
@@ -47,13 +47,13 @@ export const OffersSection = () => (
         badge="Notre offre"
         title={
           <>
-            {"Des solutions de Talent Acquisition "}
+            {"4 fa\u00e7ons d\u2019acc\u00e9l\u00e9rer vos recrutements Sales, "}
             <span className="text-gradient">
-              {"adapt\u00e9es \u00e0 chaque besoin"}
+              {"sans les prix d\u2019un cabinet"}
             </span>
           </>
         }
-        description="Du temps partag\u00e9 au recrutement en passant par l\u2019outillage, nous couvrons l\u2019ensemble de vos besoins en Talent Acquisition."
+        description="Chaque entreprise a des besoins diff\u00e9rents. Toutes m\u00e9ritent un recrutement rapide, pr\u00e9visible et rentable. Choisissez la formule qui correspond \u00e0 votre rythme de croissance."
       />
       <div className="grid md:grid-cols-2 gap-6">
         {offers.map((offer, i) => (

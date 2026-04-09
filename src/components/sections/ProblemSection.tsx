@@ -7,26 +7,26 @@ import { SectionHeading } from "@/components/shared/SectionHeading";
 const problems = [
   {
     icon: Clock,
-    title: "Vos recrutements tra\u00eenent",
+    title: "67 jours pour recruter un Sales\u00a0: votre pipeline n\u2019attend pas",
     description:
-      "Le time-to-hire moyen est de 42 jours dans la Tech. Chaque jour sans le bon profil co\u00fbte en productivit\u00e9 et en opportunit\u00e9s manqu\u00e9es.",
-    solution: "Nous r\u00e9duisons le d\u00e9lai moyen \u00e0 6 semaines, sourcing inclus.",
+      "En France, le time-to-hire moyen d\u2019un profil commercial Tech d\u00e9passe 9 semaines. Chaque semaine de poste vacant, c\u2019est 15\u00a0000\u00a0\u20ac de pipeline non g\u00e9n\u00e9r\u00e9 et un objectif trimestriel compromis.",
+    solution: "R\u00e9sultat Rocket4RPO\u00a0: premi\u00e8re shortlist en 48h, time-to-hire ramen\u00e9 \u00e0 6 semaines.",
   },
   {
     icon: Users,
-    title: "Vos managers perdent du temps",
+    title: "Vos managers passent 30\u00a0% de leur temps \u00e0 recruter au lieu de vendre",
     description:
-      "Tris de CVs, entretiens non qualifi\u00e9s, allers-retours avec les cabinets. Vos op\u00e9rationnels consacrent 30\u00a0% de leur temps au recrutement.",
+      "Tris de CVs non qualifi\u00e9s, entretiens improductifs, relances cabinets. Pendant ce temps, vos deals stagnent et votre \u00e9quipe compense les postes vacants.",
     solution:
-      "Notre TA g\u00e8re le pipe de A \u00e0 Z\u00a0: vos managers ne voient que les meilleurs profils.",
+      "Notre TA senior g\u00e8re 100\u00a0% du pipe\u00a0: vos managers ne voient que les 3 meilleurs profils par poste.",
   },
   {
     icon: Banknote,
-    title: "Les cabinets co\u00fbtent trop cher",
+    title: "60\u00a0000 \u00e0 200\u00a0000\u00a0\u20ac pour 10 recrutements en cabinet\u00a0: il existe mieux",
     description:
-      "15-25\u00a0% du salaire annuel par recrutement, soit 60\u00a0000 \u00e0 200\u00a0000\u00a0\u20ac pour 10 postes. Avec le RPO Rocket4RPO\u00a0: ~44\u00a0000\u00a0\u20ac pour les m\u00eames 10 recrutements.",
+      "Les cabinets facturent 15 \u00e0 25\u00a0% du salaire brut annuel par recrutement. Pour 10 postes Sales, la facture atteint facilement six chiffres. Avec Rocket4RPO\u00a0: ~44\u00a0000\u00a0\u20ac pour les m\u00eames 10 recrutements.",
     solution:
-      "Le RPO co\u00fbte 2 \u00e0 3x moins cher qu\u2019un cabinet, avec un engagement flexible.",
+      "Co\u00fbt 3x inf\u00e9rieur aux cabinets. Engagement flexible \u00e0 partir d\u20191 mois. Budget pr\u00e9visible.",
   },
 ];
 
@@ -37,8 +37,8 @@ export const ProblemSection = () => (
         badge="Le probl\u00e8me"
         title={
           <>
-            {"Recruter dans la Tech, c\u2019est "}
-            <span className="text-gradient">{"de plus en plus complexe"}</span>
+            {"Recruter des Sales SaaS en 2026\u00a0: "}
+            <span className="text-gradient">{"3 probl\u00e8mes qui co\u00fbtent cher"}</span>
           </>
         }
       />

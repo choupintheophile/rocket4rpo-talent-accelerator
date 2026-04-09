@@ -11,9 +11,9 @@ interface Props {
 }
 
 export const CTASection = ({
-  title = "Pr\u00eat \u00e0 acc\u00e9l\u00e9rer vos recrutements\u00a0?",
-  subtitle = "Recevez un diagnostic gratuit de votre processus de recrutement en 48\u00a0h.",
-  ctaLabel = "\u00c9changer avec Rocket4RPO",
+  title = "Vos prochains recrutements m\u00e9ritent mieux qu\u2019un cabinet \u00e0 20\u00a0%",
+  subtitle = "30 minutes de diagnostic gratuit. Sans engagement. Premi\u00e8re shortlist en 48h.",
+  ctaLabel = "R\u00e9server mon diagnostic gratuit",
   ctaHref = "/contact",
 }: Props) => (
   <section className="section-padding bg-foreground text-background">
@@ -45,12 +45,17 @@ export const CTASection = ({
           type="submit"
           className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors whitespace-nowrap"
         >
-          {"Recevoir un diagnostic gratuit"}
+          {"R\u00e9server mon diagnostic gratuit \u2192"}
         </button>
       </form>
 
+      {/* Risk reversal */}
+      <p className="mt-6 text-sm text-background/50">
+        {"Pas de frais cach\u00e9s. Pas d\u2019engagement. Juste des r\u00e9sultats."}
+      </p>
+
       {/* Secondary CTA */}
-      <div className="mt-6 flex items-center justify-center gap-2 text-sm text-background/50">
+      <div className="mt-4 flex items-center justify-center gap-2 text-sm text-background/50">
         <Phone className="w-4 h-4" />
         <span>{"Ou planifiez un appel directement"}</span>
         <a

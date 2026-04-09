@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Calculator, Database, Clock, Target } from "lucide-react";
 
 const stats = [
-  { icon: Database, value: "40 000", label: "profils Sales" },
-  { icon: Clock, value: "48h", label: "premiere shortlist" },
-  { icon: Target, value: "~44K\u20ac", label: "pour 10 recrutements" },
+  { icon: Database, value: "40 000", label: "profils Sales pr\u00e9-qualifi\u00e9s" },
+  { icon: Clock, value: "48h", label: "premi\u00e8re shortlist garantie" },
+  { icon: Target, value: "~44K\u20ac", label: "pour 10 recrutements (vs 60-200K\u20ac cabinet)" },
 ];
 
 export const HeroSection = () => (
@@ -20,7 +20,7 @@ export const HeroSection = () => (
           transition={{ duration: 0.5 }}
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-primary/15 text-primary border border-primary/20">
-            {"Le seul RPO sp\u00e9cialis\u00e9 Sales SaaS en France"}
+            {"Le seul RPO en France 100\u00a0% sp\u00e9cialis\u00e9 Sales SaaS"}
           </span>
         </motion.div>
 
@@ -31,8 +31,8 @@ export const HeroSection = () => (
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-6 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight"
         >
-          {"Recrutez vos profils Sales SaaS en "}
-          <span className="text-gradient">{"48h"}</span>
+          {"Vos postes Sales SaaS restent ouverts trop longtemps\u00a0? "}
+          <span className="text-gradient">{"Premi\u00e8re shortlist en 48h."}</span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -42,7 +42,7 @@ export const HeroSection = () => (
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg md:text-xl text-background/60 leading-relaxed max-w-3xl"
         >
-          {"Rocket4RPO int\u00e8gre un Talent Acquisition Specialist senior dans votre \u00e9quipe, arm\u00e9 d\u2019une base de 40\u00a0000 profils Sales pr\u00e9-qualifi\u00e9s. R\u00e9sultat\u00a0: des shortlists pertinentes sous 48h, un time-to-hire divis\u00e9 par 2, et un co\u00fbt 3x inf\u00e9rieur aux cabinets."}
+{"Chaque semaine sans votre Sales co\u00fbte en pipeline et en croissance. Rocket4RPO int\u00e8gre un expert TA senior dans votre \u00e9quipe, avec acc\u00e8s \u00e0 40\u00a0000 profils Sales pr\u00e9-qualifi\u00e9s. R\u00e9sultat concret\u00a0: time-to-hire divis\u00e9 par 2, co\u00fbt 3x inf\u00e9rieur aux cabinets, 92\u00a0% de r\u00e9tention \u00e0 12 mois."}
         </motion.p>
 
         {/* Mini-stats pills */}
@@ -73,7 +73,7 @@ export const HeroSection = () => (
             href="/contact"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
           >
-            {"R\u00e9server un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
+            {"R\u00e9server mon diagnostic gratuit \u2192"} <ArrowRight className="w-4 h-4" />
           </a>
           <a
             href="/calculateur"
@@ -91,7 +91,7 @@ export const HeroSection = () => (
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-10 text-sm text-background/40"
         >
-          {"Issu de Rocket4Sales \u2014 7 ans d\u2019expertise, 200+ recrutements Tech r\u00e9alis\u00e9s"}
+{"Sans engagement. Diagnostic gratuit. R\u00e9ponse sous 24h. \u2014 Issu de Rocket4Sales, 7 ans d\u2019expertise et 200+ recrutements r\u00e9alis\u00e9s."}
         </motion.p>
 
         {/* Urgency indicator */}

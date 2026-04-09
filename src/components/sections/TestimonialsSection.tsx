@@ -48,7 +48,13 @@ export const TestimonialsSection = ({ testimonials }: Props) => {
       <div className="container-wide">
         <SectionHeading
           badge="T\u00e9moignages"
-          title="Ce que nos clients disent"
+          title={
+            <>
+              {"Ils ont choisi Rocket4RPO. "}
+              <span className="text-gradient">{"Voici ce qui a chang\u00e9."}</span>
+            </>
+          }
+          description="Des DRH, des CEO et des Head of Sales partagent leur exp\u00e9rience. Des r\u00e9sultats concrets, pas des promesses."
         />
 
         <motion.div
