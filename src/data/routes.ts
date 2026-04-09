@@ -26,6 +26,7 @@ export const sitemapRoutes: SitemapRoute[] = [
   { path: "/rpo-vs-interim", label: "RPO vs Intérim", category: "Comparatifs", priority: 0.8 },
   { path: "/calculateur", label: "Calculateur ROI RPO", category: "Ressources", priority: 0.7 },
   { path: "/assessment", label: "Diagnostic recrutement", category: "Ressources", priority: 0.7 },
+  { path: "/ressources", label: "Ressources", category: "Ressources", priority: 0.7 },
   { path: "/contact", label: "Nous contacter", category: "Contact", priority: 0.7 },
   { path: "/recrutement", label: "Nous rejoindre", category: "Contact", priority: 0.7 },
 ];

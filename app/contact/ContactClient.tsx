@@ -10,7 +10,6 @@ import {
   Mail,
   ArrowRight,
   ArrowLeft,
-  ExternalLink,
   Check,
 } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
@@ -405,21 +404,18 @@ export default function ContactClient() {
                 </form>
               )}
 
-              {/* Calendly fallback */}
-              <div className="mt-6 p-4 rounded-xl border border-border bg-muted/50 flex items-center gap-3">
-                <ExternalLink className="w-5 h-5 text-primary flex-shrink-0" />
-                <div>
-                  <p className="text-sm font-medium">
-                    {"Ou réservez directement un créneau"}
-                  </p>
-                  <a
-                    href="/contact"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-primary hover:underline"
-                  >
-                    {"Planifier un appel de 30 min \u2192"}
-                  </a>
+              {/* Calendly embed */}
+              <div className="mt-12 pt-8 border-t border-border">
+                <h3 className="text-lg font-bold mb-4">Ou réservez directement un créneau</h3>
+                <div className="rounded-xl overflow-hidden border border-border bg-background">
+                  <iframe
+                    src="https://meetings.hubspot.com/theophile-choupin?embed=true"
+                    width="100%"
+                    height="650"
+                    frameBorder="0"
+                    title="Réserver un créneau avec Rocket4RPO"
+                    className="w-full"
+                  />
                 </div>
               </div>
             </motion.div>

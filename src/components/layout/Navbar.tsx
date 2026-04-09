@@ -29,6 +29,7 @@ const mainLinks = [
   { href: "/calculateur", label: "Calculateur ROI" },
   { href: "/assessment", label: "Diagnostic" },
   { href: "/blog", label: "Blog" },
+  { href: "/ressources", label: "Ressources" },
   { href: "/equipe", label: "Équipe" },
 ];
 
