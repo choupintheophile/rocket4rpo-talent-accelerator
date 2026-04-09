@@ -210,7 +210,7 @@ export default function ContactClient() {
                     {"Ou r\u00e9servez directement un cr\u00e9neau"}
                   </p>
                   <a
-                    href="https://bit.ly/4bJGsuZ"
+                    href="/contact"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-primary hover:underline"
@@ -284,7 +284,7 @@ export default function ContactClient() {
         title="Pr\u00eat \u00e0 diviser vos co\u00fbts de recrutement par 3\u00a0?"
         subtitle="Recevez un diagnostic gratuit et d\u00e9couvrez combien vous pouvez \u00e9conomiser avec le RPO."
         ctaLabel="R\u00e9server un appel"
-        ctaHref="https://bit.ly/4bJGsuZ"
+        ctaHref="/contact"
       />
     </>
   );

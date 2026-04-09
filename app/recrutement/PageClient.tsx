@@ -80,7 +80,7 @@ export default function RecrutementPageClient() {
           <h2 className="text-3xl font-bold mb-4">Intéressé(e) ?</h2>
           <p className="text-lg text-muted-foreground mb-8">Contactez-nous pour discuter des opportunités disponibles.</p>
           <a
-            href="https://bit.ly/4bJGsuZ"
+            href="/contact"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"

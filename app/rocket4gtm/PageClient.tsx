@@ -77,7 +77,7 @@ export default function Rocket4GTMPageClient() {
             entreprises Tech.
           </p>
           <a
-            href="https://bit.ly/4bJGsuZ"
+            href="/contact"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"

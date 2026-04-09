@@ -14,7 +14,7 @@ export const CTASection = ({
   title = "Pr\u00eat \u00e0 acc\u00e9l\u00e9rer vos recrutements\u00a0?",
   subtitle = "Recevez un diagnostic gratuit de votre processus de recrutement en 48\u00a0h.",
   ctaLabel = "\u00c9changer avec Rocket4RPO",
-  ctaHref = "https://bit.ly/4bJGsuZ",
+  ctaHref = "/contact",
 }: Props) => (
   <section className="section-padding bg-foreground text-background">
     <motion.div

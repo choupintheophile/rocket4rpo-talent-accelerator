@@ -271,7 +271,7 @@ export default function RecrutementSalesPageClient() {
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://bit.ly/4bJGsuZ"
+                  href="/contact"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors"

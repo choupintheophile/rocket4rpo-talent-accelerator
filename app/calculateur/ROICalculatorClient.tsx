@@ -339,7 +339,7 @@ export default function ROICalculatorClient() {
                   {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
                     <a
-                      href="https://bit.ly/4bJGsuZ"
+                      href="/contact"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
@@ -348,7 +348,7 @@ export default function ROICalculatorClient() {
                       <ArrowRight className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://bit.ly/4bJGsuZ"
+                      href="/contact"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg border border-primary text-primary hover:bg-primary/5 transition-colors"

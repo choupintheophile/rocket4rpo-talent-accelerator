@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://rocket4rpo.vercel.app/sitemap.xml
+Sitemap: https://www.rocket4rpo.com/sitemap.xml
