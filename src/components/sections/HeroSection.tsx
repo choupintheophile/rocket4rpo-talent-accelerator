@@ -95,6 +95,20 @@ export const HeroSection = () => (
         >
           {"Issu de Rocket4Sales \u2014 7 ans d\u2019expertise, 200+ recrutements Tech r\u00e9alis\u00e9s"}
         </motion.p>
+
+        {/* Urgency indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-4 flex items-center gap-2 text-sm text-background/40"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+          </span>
+          <span>12 missions RPO actives au T2 2026 — 3 créneaux disponibles ce mois</span>
+        </motion.div>
       </div>
     </div>
   </section>

@@ -279,6 +279,16 @@ export default function ContactClient() {
         </div>
       </section>
 
+      {/* Mini-testimonial */}
+      <section className="py-12 bg-muted/30">
+        <div className="container-tight text-center">
+          <p className="text-lg italic text-muted-foreground max-w-2xl mx-auto">
+            &ldquo;En 30 minutes de diagnostic, l&apos;équipe Rocket4RPO a identifié 3 optimisations immédiates dans notre process de recrutement. Pragmatique et sans bullshit.&rdquo;
+          </p>
+          <p className="mt-3 text-sm font-semibold">— T.B., CEO, Start-up HealthTech (30 pers.)</p>
+        </div>
+      </section>
+
       {/* CTA Section with custom text */}
       <CTASection
         title="Pr\u00eat \u00e0 diviser vos co\u00fbts de recrutement par 3\u00a0?"

@@ -4,6 +4,7 @@ import Script from "next/script";
 import "@/index.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CookieBanner } from "@/components/shared/CookieBanner";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -81,6 +82,7 @@ export default function RootLayout({
             <main id="main-content" className="flex-1 pt-16 lg:pt-20">{children}</main>
             <Footer />
           </div>
+          <CookieBanner />
         </Providers>
       </body>
     </html>
