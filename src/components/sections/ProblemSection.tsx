@@ -24,7 +24,7 @@ const problems = [
     icon: Banknote,
     title: "Les cabinets co\u00fbtent trop cher",
     description:
-      "15-25\u00a0% du salaire annuel par recrutement. Pour une \u00e9quipe de 5, cela repr\u00e9sente 50\u00a0000 \u00e0 100\u00a0000\u00a0\u20ac en frais de recrutement.",
+      "15-25\u00a0% du salaire annuel par recrutement, soit 60\u00a0000 \u00e0 200\u00a0000\u00a0\u20ac pour 10 postes. Avec le RPO Rocket4RPO\u00a0: ~44\u00a0000\u00a0\u20ac pour les m\u00eames 10 recrutements.",
     solution:
       "Le RPO co\u00fbte 2 \u00e0 3x moins cher qu\u2019un cabinet, avec un engagement flexible.",
   },

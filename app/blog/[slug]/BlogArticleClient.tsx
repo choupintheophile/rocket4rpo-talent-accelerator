@@ -3,6 +3,7 @@
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { motion } from "framer-motion";
+import { Rocket } from "lucide-react";
 
 interface BlogPost {
   slug: string;
@@ -27,6 +28,12 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
             <p className="mt-4 text-muted-foreground">
               {post.date} · {post.readTime}
             </p>
+            <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/10">
+                <Rocket className="w-3.5 h-3.5 text-primary" />
+              </span>
+              <span>Par l&apos;équipe <strong className="text-foreground">Rocket4RPO</strong></span>
+            </div>
             <div className="mt-8 prose prose-lg max-w-none text-foreground">
               <p className="text-lg leading-relaxed">{post.content}</p>
               <p className="text-muted-foreground mt-6">Cet article sera complété prochainement avec un contenu détaillé. Revenez bientôt !</p>

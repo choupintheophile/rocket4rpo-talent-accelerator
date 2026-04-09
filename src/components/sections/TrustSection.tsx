@@ -1,26 +1,39 @@
 "use client";
 
-const logos = Array.from({ length: 7 }, (_, i) => `Client ${i + 1}`);
+import { Rocket, TrendingUp, Landmark, Heart, ShoppingCart, Store } from "lucide-react";
+
+const industries = [
+  { icon: Rocket, label: "Scale-ups SaaS" },
+  { icon: Landmark, label: "Fintech" },
+  { icon: TrendingUp, label: "\u00c9diteurs logiciel" },
+  { icon: Heart, label: "HealthTech" },
+  { icon: ShoppingCart, label: "E-commerce" },
+  { icon: Store, label: "Marketplace" },
+];
 
 const metrics = [
-  { value: "200+", label: "recrutements" },
+  { value: "200+", label: "recrutements Sales & Tech" },
   { value: "92%", label: "r\u00e9tention 12 mois" },
-  { value: "6 sem.", label: "d\u00e9lai moyen" },
+  { value: "48h", label: "premi\u00e8re shortlist" },
 ];
 
 export const TrustSection = () => (
   <section className="py-12 md:py-16 border-b border-border">
     <div className="container-wide">
-      {/* Client logos row */}
-      <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-10">
-        {logos.map((name, i) => (
+      {/* Section title */}
+      <p className="text-center text-sm font-medium text-muted-foreground uppercase tracking-wider mb-8">
+        {"Ils nous font confiance"}
+      </p>
+
+      {/* Industry badges */}
+      <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-10">
+        {industries.map((ind, i) => (
           <div
             key={i}
-            className="w-28 h-10 rounded-md bg-muted flex items-center justify-center"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-muted/50 hover:bg-muted transition-colors"
           >
-            <span className="text-xs text-muted-foreground font-medium">
-              Logo {name}
-            </span>
+            <ind.icon className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-foreground">{ind.label}</span>
           </div>
         ))}
       </div>
@@ -36,6 +49,11 @@ export const TrustSection = () => (
           </div>
         ))}
       </div>
+
+      {/* Heritage line */}
+      <p className="mt-8 text-center text-sm text-muted-foreground">
+        {"H\u00e9ritier de 7 ans d\u2019expertise Rocket4Sales dans le recrutement commercial Tech"}
+      </p>
 
       {/* Separator */}
       <div className="mt-10 border-t border-border" />

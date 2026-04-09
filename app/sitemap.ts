@@ -3,7 +3,7 @@ import { sitemapRoutes } from "@/data/routes";
 import { blogPosts } from "@/data/blog";
 import { caseStudies } from "@/data/caseStudies";
 
-const SITE_URL = "https://rocket4rpo.com";
+const SITE_URL = "https://rocket4rpo.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = sitemapRoutes.map((route) => ({

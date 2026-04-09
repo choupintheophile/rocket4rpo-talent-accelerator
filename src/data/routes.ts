@@ -20,6 +20,7 @@ export const sitemapRoutes: SitemapRoute[] = [
   { path: "/blog", label: "Blog", category: "Ressources", priority: 0.7 },
   { path: "/equipe", label: "Équipe", category: "Ressources", priority: 0.7 },
   { path: "/rocket4gtm", label: "Rocket4GTM", category: "Ressources", priority: 0.6 },
+  { path: "/comparateur", label: "Comparateur RPO vs Cabinet vs Interne", category: "Ressources", priority: 0.8 },
   { path: "/calculateur", label: "Calculateur ROI RPO", category: "Ressources", priority: 0.7 },
   { path: "/contact", label: "Nous contacter", category: "Contact", priority: 0.7 },
   { path: "/recrutement", label: "Nous rejoindre", category: "Contact", priority: 0.7 },
