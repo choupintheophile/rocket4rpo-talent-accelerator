@@ -66,7 +66,7 @@ export const OffersSection = () => (
           >
             <Link
               href={offer.href}
-              className={`group relative block p-8 rounded-2xl border hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full ${offer.popular ? "border-primary/30 shadow-[0_0_20px_-5px_rgba(var(--primary-rgb,99,102,241),0.15)] hover:shadow-[0_0_30px_-5px_rgba(var(--primary-rgb,99,102,241),0.25)]" : "border-border"}`}
+              className={`group relative block p-8 rounded-2xl border hover:border-primary/40 hover:-translate-y-1 hover:shadow-[0_8px_30px_-8px_hsl(var(--rocket-teal)/0.3)] transition-all duration-300 h-full ${offer.popular ? "border-primary/30 shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.2)]" : "border-border"}`}
             >
               {offer.popular && (
                 <span className="absolute top-4 right-4 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground">

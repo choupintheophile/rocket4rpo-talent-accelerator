@@ -22,31 +22,43 @@ const metrics = [
 function AnimatedCounter({
   target,
   suffix = "",
-  duration = 2,
 }: {
   target: number;
   suffix?: string;
   duration?: number;
 }) {
   const [count, setCount] = useState(0);
+  const [done, setDone] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!inView) return;
-    let start = 0;
-    const end = target;
-    const stepTime = (duration * 1000) / end;
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start >= end) clearInterval(timer);
-    }, Math.max(stepTime, 16));
-    return () => clearInterval(timer);
-  }, [inView, target, duration]);
+    const duration = 2000;
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        setDone(true);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [inView, target]);
 
   return (
-    <span ref={ref}>
+    <span
+      ref={ref}
+      className={`inline-block transition-transform duration-300 ${done ? "scale-110" : ""}`}
+      onTransitionEnd={() => setDone(false)}
+    >
       {count}
       {suffix}
     </span>
@@ -80,7 +92,7 @@ export const TrustSection = () => (
       <div className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16">
         {metrics.map((m, i) => (
           <div key={i} className="text-center">
-            <p className="text-3xl md:text-4xl font-bold text-primary">
+            <p className="text-4xl md:text-5xl font-bold text-primary">
               <AnimatedCounter
                 target={m.target}
                 suffix={m.suffix}

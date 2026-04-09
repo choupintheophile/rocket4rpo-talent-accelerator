@@ -11,6 +11,24 @@ const stats = [
 
 export const HeroSection = () => (
   <section className="relative overflow-hidden bg-foreground text-background section-padding pt-28 md:pt-36 lg:pt-44">
+    {/* Floating particles */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-primary/10"
+          style={{
+            width: `${Math.random() * 4 + 2}px`,
+            height: `${Math.random() * 4 + 2}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animation: `float-particle ${Math.random() * 10 + 10}s linear infinite`,
+            animationDelay: `${Math.random() * 5}s`,
+          }}
+        />
+      ))}
+    </div>
+
     <div className="container-wide relative z-10">
       <div className="max-w-4xl">
         {/* Badge */}
@@ -32,7 +50,7 @@ export const HeroSection = () => (
           className="mt-6 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight"
         >
           {"Vos postes Sales SaaS restent ouverts trop longtemps\u00a0? "}
-          <span className="text-gradient">{"Premi\u00e8re shortlist en 48h."}</span>
+          <span className="text-gradient-animated">{"Premi\u00e8re shortlist en 48h."}</span>
         </motion.h1>
 
         {/* Subtitle */}
