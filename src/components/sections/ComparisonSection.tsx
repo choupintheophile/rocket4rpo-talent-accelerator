@@ -113,9 +113,13 @@ export const ComparisonSection = () => (
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr
+              <motion.tr
                 key={i}
-                className={i % 2 === 0 ? "bg-muted/30" : ""}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className={`${i % 2 === 0 ? "bg-muted/30" : ""} hover:bg-primary/5 transition-colors duration-200`}
               >
                 <td className="text-sm font-medium p-4">{row.label}</td>
                 <td className="p-4 bg-primary/5 border-x-2 border-primary/20">
@@ -127,7 +131,7 @@ export const ComparisonSection = () => (
                 <td className="p-4">
                   <CellIcon value={row.cabinet} />
                 </td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
           {/* Bottom border for RPO column */}

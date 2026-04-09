@@ -347,6 +347,20 @@ export default function RecrutementITPageClient() {
           </table>
         </div>
         <p className="text-xs text-muted-foreground mt-4 text-center">* Salaires bruts annuels fixes, hors variable. Source : données Rocket4RPO, avril 2026.</p>
+
+        {/* Mini case study */}
+        <div className="my-12 p-8 rounded-2xl bg-primary/5 border border-primary/20">
+          <p className="text-sm font-semibold text-primary mb-2">Cas client — Fintech (60 pers.)</p>
+          <p className="text-lg font-bold mb-2">5 développeurs recrutés en 6 mois</p>
+          <p className="text-muted-foreground">Mission TA à temps partagé (3j/semaine). Création de la marque employeur technique, sourcing ciblé sur GitHub et communautés tech.</p>
+          <div className="flex gap-6 mt-4">
+            <div><span className="text-2xl font-bold text-primary">120j</span><br/><span className="text-xs text-muted-foreground">time-to-hire moyen</span></div>
+            <div><span className="text-2xl font-bold text-primary">100%</span><br/><span className="text-xs text-muted-foreground">rétention à 6 mois</span></div>
+          </div>
+          <a href="/cas-clients/fintech-engineering" className="inline-flex items-center gap-1 mt-4 text-sm font-medium text-primary hover:underline">
+            Voir le cas complet →
+          </a>
+        </div>
       </div>
     </section>
 

@@ -62,11 +62,11 @@ export const OffersSection = () => (
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
           >
             <Link
               href={offer.href}
-              className="group relative block p-8 rounded-2xl border border-border hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full"
+              className={`group relative block p-8 rounded-2xl border hover:border-primary/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full ${offer.popular ? "border-primary/30 shadow-[0_0_20px_-5px_rgba(var(--primary-rgb,99,102,241),0.15)] hover:shadow-[0_0_30px_-5px_rgba(var(--primary-rgb,99,102,241),0.25)]" : "border-border"}`}
             >
               {offer.popular && (
                 <span className="absolute top-4 right-4 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground">

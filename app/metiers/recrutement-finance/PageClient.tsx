@@ -214,6 +214,52 @@ export default function RecrutementFinancePageClient() {
       </div>
     </section>
 
+    {/* WHY FINANCE TECH IS DIFFERENT */}
+    <section className="section-padding">
+      <div className="container-wide">
+        <div className="max-w-3xl mx-auto">
+          <motion.div {...fadeUp}>
+            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Finance Tech</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Pourquoi les profils Finance Tech sont différents</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>La Finance dans une entreprise SaaS ne se résume pas à la comptabilité et au contrôle de gestion. Elle exige une compréhension fine des métriques récurrentes : ARR, MRR, Net Revenue Retention, unit economics, LTV/CAC ratio.</p>
+              <p>Un profil Finance Tech doit savoir modéliser un plan de croissance SaaS, piloter un cash runway post-levée, produire un board deck pour des investisseurs exigeants et structurer le passage d&apos;une comptabilité startup à une comptabilité ETI.</p>
+              <p>Ces compétences ne s&apos;acquièrent pas dans un environnement corporate traditionnel. Il faut des profils qui ont vécu la croissance, compris les modèles de revenus récurrents et collaboré avec des équipes produit, Sales et C-level.</p>
+              <p className="font-semibold text-foreground">C&apos;est cette différence fondamentale que nos recruteurs spécialisés Finance savent identifier et évaluer.</p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
+    {/* INTERVIEW QUESTIONS */}
+    <section className="section-padding bg-secondary">
+      <div className="container-wide">
+        <div className="max-w-3xl mx-auto">
+          <motion.div {...fadeUp}>
+            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Qualification</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Questions d&apos;entretien Finance Tech</h2>
+            <p className="text-muted-foreground mb-8">Voici le type de questions que nos Talent Acquisition posent pour évaluer la profondeur d&apos;expertise Finance Tech des candidats :</p>
+            <div className="space-y-4">
+              {[
+                "Comment calculeriez-vous le LTV/CAC ratio d'un produit SaaS ?",
+                "Quelle est votre expérience avec le reporting investisseurs (board deck) ?",
+                "Comment piloteriez-vous le cash runway d'une startup post-Série A ?",
+                "Quelle méthodologie utilisez-vous pour la prévision de revenus récurrents ?",
+                "Comment structureriez-vous le passage d'un modèle de comptabilité startup à ETI ?",
+              ].map((question, i) => (
+                <motion.div key={i} {...fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="flex gap-4 p-5 rounded-xl border border-border bg-card">
+                  <span className="text-2xl font-bold text-primary/30 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="text-sm font-medium leading-relaxed">&ldquo;{question}&rdquo;</p>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground mt-6">Ces questions permettent de distinguer un profil Finance classique d&apos;un profil Finance Tech capable de structurer la croissance d&apos;une entreprise SaaS.</p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
     {/* FINANCIAL CHALLENGES */}
     <section className="section-padding bg-secondary">
       <div className="container-wide">

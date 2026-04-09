@@ -218,6 +218,60 @@ export default function RecrutementMarketingPageClient() {
       </div>
     </section>
 
+    {/* HYBRID SaaS MARKETING PROFILE */}
+    <section className="section-padding">
+      <div className="container-wide">
+        <div className="max-w-3xl mx-auto">
+          <motion.div {...fadeUp}>
+            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Profil hybride</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Le profil hybride Marketing SaaS</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>Le marketing SaaS exige une combinaison rare : la rigueur analytique de la data et la créativité de la marque. Les meilleurs profils marketing Tech ne sont pas des spécialistes purs — ce sont des hybrides capables de passer du dashboard analytics à la création de contenu en une même journée.</p>
+              <p>Cette dualité est ce qui rend ces profils difficiles à recruter avec une approche généraliste. Il ne suffit pas de vérifier la maîtrise d&apos;un outil ou d&apos;un canal : il faut évaluer la capacité à combiner plusieurs expertises pour générer un impact business mesurable.</p>
+            </div>
+            <div className="mt-8 grid sm:grid-cols-3 gap-4">
+              {[
+                { combo: "Growth + Product", desc: "Acquisition pilotée par la compréhension produit et les boucles de rétention." },
+                { combo: "Performance + Brand", desc: "Campagnes paid scalables soutenues par une marque forte et différenciante." },
+                { combo: "Content + SEO", desc: "Contenu éditorial expert optimisé pour le référencement organique durable." },
+              ].map((item, i) => (
+                <motion.div key={i} {...fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="p-5 rounded-xl border border-primary/20 bg-primary/5 text-center">
+                  <p className="text-sm font-bold text-primary mb-2">{item.combo}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
+    {/* TOOLS STACK GRID */}
+    <section className="section-padding bg-secondary">
+      <div className="container-wide">
+        <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto mb-12">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Stack outils</span>
+          <h2 className="text-3xl md:text-4xl font-bold">Stack tools que nos candidats maîtrisent</h2>
+          <p className="mt-4 text-lg text-muted-foreground">Les outils que nous vérifions en profondeur lors de la qualification des profils marketing.</p>
+        </motion.div>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 max-w-4xl mx-auto">
+          {[
+            "HubSpot", "Salesforce", "Google Ads", "Meta Ads", "SEMrush", "Mixpanel",
+            "Amplitude", "Notion", "Figma", "Webflow", "Intercom", "Segment",
+          ].map((tool, i) => (
+            <motion.div
+              key={tool}
+              {...fadeUp}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="flex items-center justify-center p-4 rounded-xl border border-border bg-card hover:border-primary/30 hover:shadow-md transition-all duration-300"
+            >
+              <span className="text-sm font-semibold text-center">{tool}</span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+
     {/* PERFORMANCE LEVERS */}
     <section className="section-padding bg-secondary">
       <div className="container-wide">

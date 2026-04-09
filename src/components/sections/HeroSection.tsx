@@ -46,23 +46,21 @@ export const HeroSection = () => (
         </motion.p>
 
         {/* Mini-stats pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 flex flex-wrap gap-3"
-        >
+        <div className="mt-8 flex flex-wrap gap-3">
           {stats.map((s, i) => (
-            <div
+            <motion.div
               key={i}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/5 border border-background/10"
             >
               <s.icon className="w-4 h-4 text-primary flex-shrink-0" />
               <span className="text-sm font-semibold text-background">{s.value}</span>
               <span className="text-sm text-background/50">{s.label}</span>
-            </div>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Double CTA */}
         <motion.div

@@ -188,6 +188,64 @@ export default function RecrutementSupportPageClient() {
       </div>
     </section>
 
+    {/* IMPACT ON SALES PERFORMANCE */}
+    <section className="section-padding">
+      <div className="container-wide">
+        <div className="max-w-3xl mx-auto">
+          <motion.div {...fadeUp}>
+            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Impact business</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">L&apos;impact des fonctions support sur la performance Sales</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>Les fonctions support ne sont pas des centres de coût isolés. Elles sont directement connectées à la performance commerciale de votre entreprise. Un Office Manager qui structure l&apos;onboarding réduit le ramp-up des commerciaux. Un People Ops qui gère le comp &amp; benefits améliore la rétention des top performers. Un Legal qui accélère la revue des contrats raccourcit le cycle de vente.</p>
+              <p>Dans une scale-up, chaque friction organisationnelle coûte du revenu. Les fonctions support éliminent ces frictions et créent les conditions de la performance.</p>
+            </div>
+            <div className="mt-8 grid sm:grid-cols-3 gap-4">
+              {[
+                { role: "Office Manager", impact: "Structure l'onboarding et réduit le ramp-up commercial de 30%" },
+                { role: "People / RH Ops", impact: "Pilote le comp & benefits pour retenir les top performers Sales" },
+                { role: "Legal", impact: "Accélère la revue contractuelle et raccourcit le cycle de vente" },
+              ].map((item, i) => (
+                <motion.div key={i} {...fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="p-5 rounded-xl border border-primary/20 bg-primary/5">
+                  <p className="text-sm font-bold text-primary mb-2">{item.role}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.impact}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
+    {/* MOST SOUGHT-AFTER SUPPORT PROFILES */}
+    <section className="section-padding bg-secondary">
+      <div className="container-wide">
+        <div className="max-w-3xl mx-auto">
+          <motion.div {...fadeUp}>
+            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">Tendances</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Profils support les plus recherchés en scale-up</h2>
+            <p className="text-muted-foreground mb-8">Classement basé sur le volume de demandes reçues par Rocket4RPO au T1 2026.</p>
+            <div className="space-y-3">
+              {[
+                { rank: 1, title: "People / RH Ops", detail: "Structuration de la fonction RH, onboarding, comp & benefits, culture" },
+                { rank: 2, title: "Office Manager multi-site", detail: "Coordination logistique, gestion administrative, accueil sur plusieurs bureaux" },
+                { rank: 3, title: "Legal (contrats SaaS)", detail: "Revue contractuelle, RGPD, CGV/CGU, négociation fournisseurs et clients" },
+                { rank: 4, title: "Operations Manager", detail: "Process, efficacité opérationnelle, coordination transverse, outils internes" },
+                { rank: 5, title: "Executive Assistant bilingue", detail: "Support C-level, gestion d'agendas complexes, coordination internationale" },
+              ].map((item, i) => (
+                <motion.div key={i} {...fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card">
+                  <span className="text-3xl font-black text-primary/20 w-10 text-center shrink-0">{item.rank}</span>
+                  <div>
+                    <p className="font-bold">{item.title}</p>
+                    <p className="text-sm text-muted-foreground">{item.detail}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+
     {/* VERSATILITY */}
     <section className="section-padding">
       <div className="container-wide">
