@@ -27,6 +27,7 @@ export const sitemapRoutes: SitemapRoute[] = [
   { path: "/calculateur", label: "Calculateur ROI RPO", category: "Ressources", priority: 0.7 },
   { path: "/assessment", label: "Diagnostic recrutement", category: "Ressources", priority: 0.7 },
   { path: "/ressources", label: "Ressources", category: "Ressources", priority: 0.7 },
+  { path: "/demo", label: "Demo interactive RPO", category: "Ressources", priority: 0.7 },
   { path: "/contact", label: "Nous contacter", category: "Contact", priority: 0.7 },
   { path: "/recrutement", label: "Nous rejoindre", category: "Contact", priority: 0.7 },
 ];

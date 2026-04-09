@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
@@ -270,14 +271,12 @@ export default function RecrutementSalesPageClient() {
                   Réserver un diagnostic Sales gratuit{" "}
                   <ArrowRight className="w-4 h-4" />
                 </a>
-                <a
-                  href="https://meetings.hubspot.com/theophile-choupin/rpo"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/cas-clients"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background hover:bg-accent transition-colors"
                 >
                   Voir nos cas clients Sales
-                </a>
+                </Link>
               </div>
               {/* Trust indicators */}
               <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-muted-foreground">

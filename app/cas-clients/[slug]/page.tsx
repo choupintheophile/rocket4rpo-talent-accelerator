@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!study) return { title: "Cas client non trouvé" };
 
   return {
-    title: `${study.company} — cas client RPO | Rocket4RPO`,
+    title: `${study.company} — cas client RPO`,
     description: study.challenge,
     alternates: { canonical: `/cas-clients/${study.slug}` },
   };
