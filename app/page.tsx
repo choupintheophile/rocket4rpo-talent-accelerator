@@ -13,6 +13,7 @@ import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { organizationSchema, professionalServiceSchema, faqSchema } from "@/lib/seo";
 import { getTestimonials, getBlogPosts } from "@/lib/db";
+import { detectSegment, heroContent } from "@/lib/personalization";
 
 export const metadata: Metadata = {
   title: "Rocket4RPO — Talent Acquisition RPO pour entreprises Tech",
@@ -49,7 +50,15 @@ const homepageFaqs = [
   },
 ];
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
+  const params = await searchParams;
+  const segment = detectSegment(params);
+  const hero = heroContent[segment];
+
   const [testimonials, blogPosts] = await Promise.all([
     getTestimonials(),
     getBlogPosts(),
@@ -87,7 +96,7 @@ export default async function HomePage() {
           __html: JSON.stringify(faqSchema(homepageFaqs)),
         }}
       />
-      <HeroSection />
+      <HeroSection content={hero} />
 
       {/* Citation capsule — AI search optimization */}
       <section className="py-4">

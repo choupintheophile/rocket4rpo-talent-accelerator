@@ -55,7 +55,7 @@ export const OffersSection = () => (
         }
         description="Chaque entreprise a des besoins diff\u00e9rents. Toutes m\u00e9ritent un recrutement rapide, pr\u00e9visible et rentable. Choisissez la formule qui correspond \u00e0 votre rythme de croissance."
       />
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {offers.map((offer, i) => (
           <motion.div
             key={i}
@@ -63,19 +63,36 @@ export const OffersSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
+            className={offer.popular ? "md:col-span-2" : ""}
           >
             <Link
               href={offer.href}
-              className={`group relative block p-8 rounded-2xl border hover:border-primary/40 hover:-translate-y-1 hover:shadow-[0_8px_30px_-8px_hsl(var(--rocket-teal)/0.3)] transition-all duration-300 h-full ${offer.popular ? "border-primary/30 shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.2)]" : "border-border"}`}
+              className={`group relative block p-8 rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 hover:bg-background/90 hover:border-primary/30 hover:shadow-[0_8px_32px_-8px_hsl(var(--rocket-teal)/0.25)] transition-all duration-300 hover:-translate-y-1 h-full ${
+                offer.popular
+                  ? "shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.15)] border-primary/20 animate-pulse-border"
+                  : ""
+              }`}
             >
+              {/* Gradient top accent */}
+              <div
+                className={`absolute top-0 left-6 right-6 h-0.5 rounded-full ${
+                  offer.popular
+                    ? "bg-gradient-to-r from-transparent via-primary to-transparent"
+                    : "bg-gradient-to-r from-transparent via-border to-transparent"
+                }`}
+              />
+
               {offer.popular && (
-                <span className="absolute top-4 right-4 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground">
+                <span className="absolute -top-3 right-6 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground">
                   Le plus populaire
                 </span>
               )}
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                <offer.icon className="w-6 h-6 text-primary" />
+
+              {/* Icon with background circle */}
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+                <offer.icon className="w-7 h-7 text-primary" />
               </div>
+
               <h3 className="text-xl font-bold mb-3">{offer.title}</h3>
               <p className="text-muted-foreground leading-relaxed mb-5">
                 {offer.description}

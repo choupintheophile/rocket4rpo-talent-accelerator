@@ -25,6 +25,7 @@ const industryLinks = [
 
 const mainLinks = [
   { href: "/cas-clients", label: "Cas clients" },
+  { href: "/demo", label: "Démo" },
   { href: "/comparateur", label: "Comparateur" },
   { href: "/calculateur", label: "Calculateur ROI" },
   { href: "/assessment", label: "Diagnostic" },

@@ -9,6 +9,7 @@ import { SocialProofWidget } from "@/components/shared/SocialProofWidget";
 import { StickyCTA } from "@/components/shared/StickyCTA";
 import { UrgencyBanner } from "@/components/shared/UrgencyBanner";
 import { ExitIntentPopup } from "@/components/shared/ExitIntentPopup";
+import { ConversationalCTA } from "@/components/shared/ConversationalCTA";
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -102,6 +103,9 @@ export default function RootLayout({
           <StickyCTA />
           <div className="hidden lg:block">
             <ExitIntentPopup />
+          </div>
+          <div className="hidden lg:block">
+            <ConversationalCTA />
           </div>
           <CookieBanner />
         </Providers>
