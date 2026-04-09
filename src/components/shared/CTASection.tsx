@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { SplitText } from "@/components/shared/SplitText";
 
 interface Props {
   title?: string;
@@ -17,32 +18,36 @@ export const CTASection = ({
   return (
     <section className="section-padding bg-foreground text-background">
       <div className="container-tight text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-            {title}
-          </h2>
+        <SplitText
+          text={title}
+          as="h2"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+        />
+        <ScrollReveal delay={0.2}>
           <p className="mt-4 text-lg text-background/60 max-w-2xl mx-auto">
             {subtitle}
           </p>
+        </ScrollReveal>
+        <ScrollReveal delay={0.4}>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="https://meetings.hubspot.com/theophile-choupin/rpo"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              className="btn-reveal inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border-2 border-primary text-primary hover:text-primary-foreground transition-colors"
+              data-cursor
             >
-              {ctaLabel} <ArrowRight className="w-4 h-4" />
+              <span className="inline-flex items-center gap-2">
+                {ctaLabel} <ArrowRight className="w-4 h-4" />
+              </span>
             </a>
           </div>
+        </ScrollReveal>
+        <ScrollReveal delay={0.5}>
           <p className="mt-4 text-sm text-background/40">
             Pas de frais cachés. Pas de relance non souhaitée. Juste des résultats.
           </p>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

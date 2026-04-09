@@ -122,12 +122,12 @@ html {
 }
 
 @keyframes page-enter {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(12px) skewY(1deg); }
+  to { opacity: 1; transform: translateY(0) skewY(0); }
 }
 
 main {
-  animation: page-enter 0.4s ease-out;
+  animation: page-enter 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 @keyframes float-particle {
@@ -144,4 +144,47 @@ main {
 
 .animate-pulse-border {
   animation: pulse-border 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar - Akaru style */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--rocket-teal));
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--rocket-teal-glow));
+}
+
+/* Button hover reveal effect - Akaru style */
+.btn-reveal {
+  @apply relative overflow-hidden;
+}
+.btn-reveal::before {
+  content: '';
+  @apply absolute inset-0 bg-primary;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-reveal:hover::before {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+.btn-reveal span {
+  @apply relative z-10;
+  transition: color 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn-reveal:hover span {
+  @apply text-primary-foreground;
+}
+
+/* Akaru signature easing as CSS custom property */
+:root {
+  --ease-akaru: cubic-bezier(0.165, 0.84, 0.44, 1);
 }

@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Calculator, CheckCircle, Clock, Target } from "lucide-react";
 import type { HeroContent } from "@/lib/personalization";
+import { SplitText } from "@/components/shared/SplitText";
+import { ScrollReveal } from "@/components/shared/ScrollReveal";
 
 const stats = [
   { icon: CheckCircle, value: "200+", label: "recrutements réalisés" },
@@ -23,15 +25,15 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
 
   return (
     <section className="relative overflow-hidden bg-foreground text-background section-padding pt-28 md:pt-36 lg:pt-44">
-      {/* Floating particles */}
+      {/* Floating particles - subtle */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-primary/10"
+            className="absolute rounded-full bg-primary/5"
             style={{
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
+              width: `${Math.random() * 3 + 1.5}px`,
+              height: `${Math.random() * 3 + 1.5}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animation: `float-particle ${Math.random() * 10 + 10}s linear infinite`,
@@ -54,67 +56,63 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             </span>
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-6 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight"
-          >
-            {hero.headline}{" "}
-            <span className="text-gradient-animated">{hero.highlightedText}</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-lg md:text-xl text-background/60 leading-relaxed max-w-3xl"
-          >
-            {hero.subtitle}
-          </motion.p>
-
-          {/* Mini-stats pills */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            {stats.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/5 border border-background/10"
-              >
-                <s.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-sm font-semibold text-background">{s.value}</span>
-                <span className="text-sm text-background/50">{s.label}</span>
-              </motion.div>
-            ))}
+          {/* Headline with SplitText */}
+          <div className="mt-6">
+            <SplitText
+              text={`${hero.headline}${hero.highlightedText}`}
+              as="h1"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight"
+              delay={0.1}
+            />
           </div>
 
+          {/* Subtitle */}
+          <ScrollReveal delay={0.3}>
+            <p className="mt-6 text-lg md:text-xl text-background/60 leading-relaxed max-w-3xl">
+              {hero.subtitle}
+            </p>
+          </ScrollReveal>
+
+          {/* Mini-stats pills */}
+          <ScrollReveal delay={0.7}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {stats.map((s, i) => (
+                <div
+                  key={i}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/5 border border-background/10"
+                >
+                  <s.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm font-semibold text-background">{s.value}</span>
+                  <span className="text-sm text-background/50">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
+
           {/* Double CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
-          >
-            <a
-              href="https://meetings.hubspot.com/theophile-choupin/rpo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-            >
-              {"Réserver un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="/calculateur"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors"
-            >
-              <Calculator className="w-4 h-4" />
-              {"Calculer mes économies"}
-            </a>
-          </motion.div>
+          <ScrollReveal delay={0.5}>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://meetings.hubspot.com/theophile-choupin/rpo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-reveal inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border-2 border-primary text-primary hover:text-primary-foreground transition-colors"
+                data-cursor
+              >
+                <span className="inline-flex items-center gap-2">
+                  {"Réserver un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
+                </span>
+              </a>
+              <a
+                href="/calculateur"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors"
+                data-cursor
+              >
+                <Calculator className="w-4 h-4" />
+                {"Calculer mes économies"}
+              </a>
+            </div>
+          </ScrollReveal>
 
           {/* Social proof */}
           <motion.p
