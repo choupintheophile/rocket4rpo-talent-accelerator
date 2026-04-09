@@ -2,11 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-
-const akaru = [0.165, 0.84, 0.44, 1] as const;
 
 export interface Testimonial {
   id: string;
@@ -29,13 +27,11 @@ export const TestimonialsSection = ({ testimonials }: Props) => {
   });
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setCanPrev(emblaApi.canScrollPrev());
     setCanNext(emblaApi.canScrollNext());
-    setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
   useEffect(() => {
@@ -62,10 +58,10 @@ export const TestimonialsSection = ({ testimonials }: Props) => {
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 60, skewY: 1 }}
-          whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: akaru }}
+          transition={{ duration: 0.5 }}
           className="relative"
         >
           <div ref={emblaRef} className="overflow-hidden">
@@ -76,76 +72,40 @@ export const TestimonialsSection = ({ testimonials }: Props) => {
                   className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_33.333%]"
                 >
                   <motion.div
-                    initial={{ opacity: 0, y: 40, skewY: 1.5 }}
-                    whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{
-                      duration: 0.7,
-                      delay: i * 0.1,
-                      ease: akaru,
-                    }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
                     className="bg-background rounded-2xl border border-border p-8 h-full flex flex-col"
                   >
                     {/* Stars */}
                     <div className="flex gap-0.5 mb-4">
                       {Array.from({ length: 5 }).map((_, j) => (
-                        <motion.div
+                        <Star
                           key={j}
-                          initial={{ opacity: 0, scale: 0 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 0.3,
-                            delay: i * 0.1 + j * 0.05 + 0.3,
-                            ease: akaru,
-                          }}
-                        >
-                          <Star
-                            className={`w-4 h-4 ${
-                              j < t.rating
-                                ? "fill-primary text-primary"
-                                : "text-border"
-                            }`}
-                          />
-                        </motion.div>
+                          className={`w-4 h-4 ${
+                            j < t.rating
+                              ? "fill-primary text-primary"
+                              : "text-border"
+                          }`}
+                        />
                       ))}
                     </div>
 
-                    {/* Quote — fade in with translateY */}
-                    <motion.blockquote
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.7,
-                        delay: i * 0.1 + 0.2,
-                        ease: akaru,
-                      }}
-                      className="text-foreground/80 italic leading-relaxed flex-1 mb-6"
-                    >
+                    <blockquote className="text-foreground/80 italic leading-relaxed flex-1 mb-6">
                       {"\u00ab\u00a0"}
                       {t.quote}
                       {"\u00a0\u00bb"}
-                    </motion.blockquote>
+                    </blockquote>
 
-                    {/* Author — appears after quote */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 0.6,
-                        delay: i * 0.1 + 0.5,
-                        ease: akaru,
-                      }}
-                    >
+                    <div>
                       <p className="font-semibold text-sm">{t.name}</p>
                       <p className="text-xs text-muted-foreground">
                         {t.role}
                         {" \u2014 "}
                         {t.company}
                       </p>
-                    </motion.div>
+                    </div>
                   </motion.div>
                 </div>
               ))}
@@ -154,26 +114,22 @@ export const TestimonialsSection = ({ testimonials }: Props) => {
 
           {/* Navigation arrows */}
           <div className="flex justify-center gap-3 mt-8">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={() => emblaApi?.scrollPrev()}
               disabled={!canPrev}
-              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors disabled:opacity-30"
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors duration-200 disabled:opacity-30"
               aria-label="Précédent"
             >
               <ChevronLeft className="w-4 h-4" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+            </button>
+            <button
               onClick={() => emblaApi?.scrollNext()}
               disabled={!canNext}
-              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors disabled:opacity-30"
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-muted transition-colors duration-200 disabled:opacity-30"
               aria-label="Suivant"
             >
               <ChevronRight className="w-4 h-4" />
-            </motion.button>
+            </button>
           </div>
         </motion.div>
       </div>

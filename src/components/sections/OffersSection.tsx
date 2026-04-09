@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, Users, UserPlus, Search, Wrench } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
-const akaru = [0.165, 0.84, 0.44, 1] as const;
-
 const offers = [
   {
     icon: Users,
@@ -61,22 +59,18 @@ export const OffersSection = () => (
         {offers.map((offer, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 60, skewY: 2 }}
-            whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{
-              duration: 0.8,
-              delay: i * 0.12,
-              ease: akaru,
-            }}
+            transition={{ duration: 0.5, delay: i * 0.08 }}
             className={offer.popular ? "md:col-span-2" : ""}
           >
             <Link
               href={offer.href}
-              className={`group relative block p-8 rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 hover:bg-background/90 hover:border-primary/30 hover:shadow-[0_8px_32px_-8px_hsl(var(--rocket-teal)/0.25)] transition-all duration-300 hover:-translate-y-1 h-full ${
+              className={`group relative block p-8 rounded-2xl bg-background/80 backdrop-blur-xl border hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 h-full ${
                 offer.popular
-                  ? "shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.15)] border-primary/20"
-                  : ""
+                  ? "border-primary/20 shadow-sm"
+                  : "border-border/50 hover:border-primary/30"
               }`}
             >
               {/* Gradient top accent */}
@@ -89,54 +83,23 @@ export const OffersSection = () => (
               />
 
               {offer.popular && (
-                <motion.span
-                  animate={{
-                    boxShadow: [
-                      "0 0 0 0 hsl(var(--rocket-teal) / 0.4)",
-                      "0 0 12px 4px hsl(var(--rocket-teal) / 0.15)",
-                      "0 0 0 0 hsl(var(--rocket-teal) / 0.4)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -top-3 right-6 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground"
-                >
+                <span className="absolute -top-3 right-6 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground">
                   Le plus populaire
-                </motion.span>
+                </span>
               )}
 
-              {/* Breathing border animation for popular card */}
-              {offer.popular && (
-                <motion.div
-                  animate={{ opacity: [0.2, 0.5, 0.2] }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 rounded-2xl border-2 border-primary pointer-events-none"
-                />
-              )}
-
-              {/* Icon with hover scale */}
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-[1.15]">
-                <offer.icon className="w-7 h-7 text-primary transition-transform duration-300 group-hover:scale-[1.15]" />
+              {/* Icon */}
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors duration-200">
+                <offer.icon className="w-7 h-7 text-primary" />
               </div>
 
               <h3 className="text-xl font-bold mb-3">{offer.title}</h3>
               <p className="text-muted-foreground leading-relaxed mb-5">
                 {offer.description}
               </p>
-              {/* En savoir plus with btn-reveal effect */}
-              <span className="relative inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all overflow-hidden">
-                <span className="relative z-10 transition-colors duration-300">
-                  {"En savoir plus"}
-                </span>
-                <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                <span className="absolute inset-0 -left-2 -right-2 bg-primary/10 rounded-md scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all duration-200">
+                {"En savoir plus"}
+                <ArrowRight className="w-4 h-4" />
               </span>
             </Link>
           </motion.div>

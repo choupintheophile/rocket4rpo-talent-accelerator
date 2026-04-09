@@ -10,7 +10,7 @@ import { StickyCTA } from "@/components/shared/StickyCTA";
 import { UrgencyBanner } from "@/components/shared/UrgencyBanner";
 import { ExitIntentPopup } from "@/components/shared/ExitIntentPopup";
 import { ConversationalCTA } from "@/components/shared/ConversationalCTA";
-import { CustomCursor } from "@/components/shared/CustomCursor";
+
 import { Providers } from "./providers";
 
 const inter = Inter({
@@ -79,7 +79,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="font-sans antialiased">
-        <CustomCursor />
+
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-P6DMKRLC"

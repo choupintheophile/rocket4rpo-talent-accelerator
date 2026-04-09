@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Check, X, Minus } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
-const akaru = [0.165, 0.84, 0.44, 1] as const;
-
 type CellValue = "check" | "x" | "minus" | string;
 
 interface Row {
@@ -92,30 +90,20 @@ export const ComparisonSection = () => (
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 60, skewY: 1 }}
-        whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: akaru }}
+        transition={{ duration: 0.5 }}
         className="overflow-x-auto"
       >
         <table className="w-full min-w-[640px] border-collapse">
           <thead>
             <tr>
               <th className="text-left text-sm font-medium text-muted-foreground p-4 w-1/4" />
-              <th className="text-center p-4 w-1/4 rounded-t-xl bg-primary/5 border-x-2 border-t-2 border-primary/20 relative overflow-hidden">
+              <th className="text-center p-4 w-1/4 rounded-t-xl bg-primary/5 border-x-2 border-t-2 border-primary/20">
                 <span className="text-base font-bold text-primary">
                   RPO Rocket4RPO
                 </span>
-                {/* Pulsing border on RPO column header */}
-                <motion.div
-                  animate={{ opacity: [0.15, 0.4, 0.15] }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 border-2 border-primary rounded-t-xl pointer-events-none"
-                />
               </th>
               <th className="text-center p-4 w-1/4">
                 <span className="text-sm font-semibold text-foreground">
@@ -131,17 +119,9 @@ export const ComparisonSection = () => (
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <motion.tr
+              <tr
                 key={i}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.08,
-                  ease: akaru,
-                }}
-                className={`${i % 2 === 0 ? "bg-muted/30" : ""} hover:bg-primary/5 transition-all duration-300 hover:translate-x-1`}
+                className={`${i % 2 === 0 ? "bg-muted/30" : ""} hover:bg-primary/5 transition-colors duration-200`}
               >
                 <td className="text-sm font-medium p-4">{row.label}</td>
                 <td className="p-4 bg-primary/5 border-x-2 border-primary/20">
@@ -153,22 +133,17 @@ export const ComparisonSection = () => (
                 <td className="p-4">
                   <CellIcon value={row.cabinet} />
                 </td>
-              </motion.tr>
+              </tr>
             ))}
           </tbody>
-          {/* Verdict row */}
           <tfoot>
             <tr>
               <td colSpan={4} className="pt-6 pb-2">
                 <motion.div
-                  initial={{ opacity: 0, y: 30, skewY: 1 }}
-                  whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{
-                    duration: 0.8,
-                    delay: rows.length * 0.08 + 0.2,
-                    ease: akaru,
-                  }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
                   className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-center"
                 >
                   <p className="text-sm font-semibold text-primary">

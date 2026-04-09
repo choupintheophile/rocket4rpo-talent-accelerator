@@ -1,11 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ClipboardCheck, Users, Rocket, Target } from "lucide-react";
-
-const akaru = [0.165, 0.84, 0.44, 1] as const;
 
 const steps = [
   {
@@ -38,10 +36,6 @@ const steps = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Single timeline step                                               */
-/* ------------------------------------------------------------------ */
-
 function TimelineStep({
   step,
   index,
@@ -55,7 +49,7 @@ function TimelineStep({
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isEven = index % 2 === 0;
   const Icon = step.icon;
-  const staggerDelay = index * 0.2;
+  const staggerDelay = index * 0.15;
 
   return (
     <div
@@ -65,14 +59,12 @@ function TimelineStep({
       }`}
     >
       {/* Left content (visible on desktop for even steps) */}
-      <div
-        className={`hidden md:block ${isEven ? "" : "order-3"}`}
-      >
+      <div className={`hidden md:block ${isEven ? "" : "order-3"}`}>
         {isEven && (
           <motion.div
-            initial={{ opacity: 0, x: -50, skewY: 1.5 }}
-            animate={isInView ? { opacity: 1, x: 0, skewY: 0 } : {}}
-            transition={{ duration: 0.8, delay: staggerDelay + 0.2, ease: akaru }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: staggerDelay + 0.1 }}
             className="text-right pr-8"
           >
             <StepContent step={step} Icon={Icon} align="right" />
@@ -82,32 +74,21 @@ function TimelineStep({
 
       {/* Center node + connector */}
       <div className="flex flex-col items-center relative">
-        {/* Node circle */}
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={isInView ? { scale: 1, opacity: 1 } : {}}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
-            delay: staggerDelay + 0.1,
-          }}
+          transition={{ duration: 0.4, delay: staggerDelay }}
           className="relative z-10 w-14 h-14 rounded-full border-2 border-primary bg-foreground flex items-center justify-center shadow-lg shadow-primary/20"
         >
           <Icon className="w-6 h-6 text-primary" />
         </motion.div>
 
-        {/* Connector line — animated with Akaru easing, slight delay after step */}
         {!isLast && (
           <div className="w-px flex-1 min-h-[60px] bg-border relative overflow-hidden">
             <motion.div
               initial={{ scaleY: 0 }}
               animate={isInView ? { scaleY: 1 } : {}}
-              transition={{
-                duration: 0.8,
-                delay: staggerDelay + 0.5,
-                ease: akaru,
-              }}
+              transition={{ duration: 0.5, delay: staggerDelay + 0.3 }}
               className="absolute inset-0 bg-primary origin-top"
             />
           </div>
@@ -115,14 +96,12 @@ function TimelineStep({
       </div>
 
       {/* Right content (visible on desktop for odd steps) */}
-      <div
-        className={`hidden md:block ${isEven ? "order-3" : ""}`}
-      >
+      <div className={`hidden md:block ${isEven ? "order-3" : ""}`}>
         {!isEven && (
           <motion.div
-            initial={{ opacity: 0, x: 50, skewY: -1.5 }}
-            animate={isInView ? { opacity: 1, x: 0, skewY: 0 } : {}}
-            transition={{ duration: 0.8, delay: staggerDelay + 0.2, ease: akaru }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: staggerDelay + 0.1 }}
             className="pl-8"
           >
             <StepContent step={step} Icon={Icon} align="left" />
@@ -130,27 +109,22 @@ function TimelineStep({
         )}
       </div>
 
-      {/* Mobile content (always to the right) */}
+      {/* Mobile content */}
       <motion.div
-        initial={{ opacity: 0, x: 30, skewY: 1 }}
-        animate={isInView ? { opacity: 1, x: 0, skewY: 0 } : {}}
-        transition={{ duration: 0.7, delay: staggerDelay + 0.2, ease: akaru }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: staggerDelay + 0.1 }}
         className="md:hidden col-start-1 row-start-1 pl-20"
       >
         <StepContent step={step} Icon={Icon} align="left" />
       </motion.div>
 
-      {/* Mobile node overlay (positioned absolutely on the left) */}
+      {/* Mobile node overlay */}
       <div className="md:hidden absolute left-0 top-0 flex flex-col items-center">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
           animate={isInView ? { scale: 1, opacity: 1 } : {}}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
-            delay: staggerDelay + 0.1,
-          }}
+          transition={{ duration: 0.4, delay: staggerDelay }}
           className="relative z-10 w-14 h-14 rounded-full border-2 border-primary bg-foreground flex items-center justify-center shadow-lg shadow-primary/20"
         >
           <Icon className="w-6 h-6 text-primary" />
@@ -160,11 +134,7 @@ function TimelineStep({
             <motion.div
               initial={{ scaleY: 0 }}
               animate={isInView ? { scaleY: 1 } : {}}
-              transition={{
-                duration: 0.8,
-                delay: staggerDelay + 0.5,
-                ease: akaru,
-              }}
+              transition={{ duration: 0.5, delay: staggerDelay + 0.3 }}
               className="absolute inset-0 bg-primary origin-top"
             />
           </div>
@@ -173,10 +143,6 @@ function TimelineStep({
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Step content card                                                  */
-/* ------------------------------------------------------------------ */
 
 function StepContent({
   step,
@@ -203,20 +169,7 @@ function StepContent({
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Main section                                                       */
-/* ------------------------------------------------------------------ */
-
 export const MethodSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Overall progress line opacity
-  const lineOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
-
   return (
     <section className="section-padding bg-foreground text-background">
       <div className="container-wide">
@@ -226,7 +179,7 @@ export const MethodSection = () => {
           description="De l'audit initial aux recrutements signes, chaque etape est pensee pour maximiser la qualite et la rapidite."
         />
 
-        <div ref={containerRef} className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto">
           {steps.map((step, i) => (
             <TimelineStep
               key={step.num}

@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
-const akaru = [0.165, 0.84, 0.44, 1] as const;
-
 export interface BlogPost {
   slug: string;
   title: string;
@@ -42,40 +40,19 @@ export const BlogPreview = ({ posts }: Props) => (
           {posts.slice(0, 3).map((post, i) => (
             <motion.div
               key={post.slug}
-              initial={{ opacity: 0, y: 60, skewY: 2 }}
-              whileInView={{ opacity: 1, y: 0, skewY: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                delay: i * 0.15,
-                ease: akaru,
-              }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group block p-6 rounded-2xl border border-border bg-background hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full flex flex-col overflow-hidden"
+                className="group block p-6 rounded-2xl border border-border bg-background hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 h-full flex flex-col"
               >
-                {/* Category badge with scale bounce */}
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.7 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: i * 0.15 + 0.3,
-                    ease: akaru,
-                    scale: {
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 15,
-                      delay: i * 0.15 + 0.3,
-                    },
-                  }}
-                  className="inline-block self-start px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4"
-                >
+                <span className="inline-block self-start px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">
                   {post.category}
-                </motion.span>
-                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                </span>
+                <h3 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors duration-200 line-clamp-2">
                   {post.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1 line-clamp-3">
@@ -86,7 +63,7 @@ export const BlogPreview = ({ posts }: Props) => (
                     {post.date}
                     {post.readTime && ` · ${post.readTime}`}
                   </time>
-                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all duration-200">
                     {"Lire \u2192"}
                   </span>
                 </div>
@@ -100,12 +77,12 @@ export const BlogPreview = ({ posts }: Props) => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.6, ease: akaru }}
+        transition={{ duration: 0.5, delay: 0.3 }}
         className="mt-10 text-center"
       >
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200"
         >
           {"Voir toutes les ressources"} <ArrowRight className="w-4 h-4" />
         </Link>
