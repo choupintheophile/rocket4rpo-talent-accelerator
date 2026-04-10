@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 import { notFound } from "next/navigation";
 import { getBlogPosts, getBlogPostBySlug } from "@/lib/db";
 import BlogArticleClient from "./BlogArticleClient";

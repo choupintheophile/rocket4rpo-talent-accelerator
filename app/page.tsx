@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // revalidate every hour
 import { organizationSchema, professionalServiceSchema, faqSchema } from "@/lib/seo";
 import { getBlogPosts } from "@/lib/db";
 import { detectSegment, heroContent } from "@/lib/personalization";
