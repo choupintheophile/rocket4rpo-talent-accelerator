@@ -266,11 +266,10 @@ export default function LoginPage() {
             G{"\u00e9"}rez votre vivier de Talent Acquisition Specialists. Scoring, classement et grille de questions d{"'"}entretien.
           </p>
 
-          <div className="mt-10 grid grid-cols-3 gap-4">
+          <div className="mt-10 grid grid-cols-2 gap-4">
             {[
               { value: "4 100+", label: "profils \u00e9valu\u00e9s" },
               { value: "32", label: "crit\u00e8res" },
-              { value: "48h", label: "matching" },
             ].map((stat) => (
               <div key={stat.label} className="p-3 rounded-xl bg-white/5 border border-white/10">
                 <div className="text-white font-bold font-mono text-lg">{stat.value}</div>
