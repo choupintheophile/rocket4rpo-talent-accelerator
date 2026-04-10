@@ -604,8 +604,28 @@ export default function HomepageSections() {
             </div>
           </div>
 
+          {/* Photo: closing / handshake */}
+          <FadeIn delay={0.5}>
+            <div className="mt-14 max-w-2xl mx-auto">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+                <Image
+                  src="/photos/perso-home-bureau-main.jpg"
+                  alt="Recrutement sign{'\u00e9'} — poign{'\u00e9'}e de main"
+                  width={1000}
+                  height={500}
+                  className="w-full h-[200px] md:h-[240px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between">
+                  <p className="text-white text-sm font-medium">Recrutement sign{"\u00e9"}. Mission accomplie.</p>
+                  <span className="text-xs text-white/60 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">35 jours en moyenne</span>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+
           <FadeIn delay={0.6}>
-            <div className="mt-12 text-center">
+            <div className="mt-10 text-center">
               <Link
                 href={HUBSPOT}
                 target="_blank"

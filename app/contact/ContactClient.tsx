@@ -19,6 +19,7 @@ import {
   Zap,
   TrendingUp,
 } from "lucide-react";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 
@@ -339,6 +340,25 @@ export default function ContactClient() {
             <h2 className="text-2xl md:text-3xl font-bold">
               Ils nous ont fait confiance
             </h2>
+          </motion.div>
+
+          {/* Team photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={socialInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-10 max-w-3xl mx-auto"
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-lg border border-border/40">
+              <Image
+                src="/photos/image.webp"
+                alt="L'{'\u00e9'}quipe Rocket4RPO en r{'\u00e9'}union"
+                width={1200}
+                height={500}
+                className="w-full h-[200px] md:h-[260px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
           </motion.div>
 
           {/* Testimonials */}

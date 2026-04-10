@@ -449,6 +449,30 @@ export default function OffreClient() {
               Un process rod{"\u00e9"}, transparent et rapide. Pas de surprise.
             </p>
           </div>
+
+          {/* Photo: open space en action */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 max-w-3xl mx-auto"
+          >
+            <div className="relative rounded-2xl overflow-hidden border border-white/10">
+              <Image
+                src="/photos/bureau-travail.webp"
+                alt="L'{'\u00e9'}quipe en action dans l'open space"
+                width={1200}
+                height={500}
+                className="w-full h-[200px] md:h-[260px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute bottom-4 left-5 text-white/70 text-xs font-medium">
+                Nos {"\u00e9"}quipes en mission
+              </div>
+            </div>
+          </motion.div>
+
           <div className="grid md:grid-cols-4 gap-8 relative">
             {/* Connecting line */}
             <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-rocket-teal/20 via-rocket-teal/40 to-rocket-teal/20" />

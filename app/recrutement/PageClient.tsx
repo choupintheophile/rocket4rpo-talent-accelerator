@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import {
   ArrowRight,
@@ -223,6 +224,7 @@ export default function RecrutementPageClient() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[hsl(var(--rocket-teal))] opacity-[0.04] blur-[120px]" />
 
         <div className="relative container-wide section-padding pt-8">
+          <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-center">
           <div className="max-w-4xl">
             {/* Badge */}
             <motion.div
@@ -306,6 +308,30 @@ export default function RecrutementPageClient() {
                 </div>
               ))}
             </motion.div>
+          </div>
+
+          {/* Team photo */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="hidden lg:block"
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10">
+              <Image
+                src="/photos/equipe-escalier.webp"
+                alt="L'{'\u00e9'}quipe Rocket4RPO"
+                width={760}
+                height={900}
+                className="w-full h-[480px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="text-white text-sm font-medium">L'{"\u00e9"}quipe Rocket4RPO</p>
+                <p className="text-white/60 text-xs mt-0.5">50+ TA Specialists dans le r{"\u00e9"}seau</p>
+              </div>
+            </div>
+          </motion.div>
           </div>
         </div>
 

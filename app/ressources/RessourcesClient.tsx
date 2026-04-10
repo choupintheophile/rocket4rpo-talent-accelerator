@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FileText,
   ClipboardCheck,
@@ -438,7 +439,23 @@ export default function RessourcesClient() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
+              {/* Expert photo */}
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+                <Image
+                  src="/photos/header-rocket4sales.webp"
+                  alt="Nos experts en action"
+                  width={800}
+                  height={400}
+                  className="w-full h-[200px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-3 left-4 text-white/80 text-xs font-medium">
+                  Expertise et rigueur au quotidien
+                </div>
+              </div>
+
+              <div className="space-y-4">
               {[
                 { icon: Eye, title: "Bas\u00e9 sur des donn\u00e9es r\u00e9elles", desc: "Chiffres issus de nos propres recrutements et benchmarks march\u00e9 — pas de donn\u00e9es g\u00e9n\u00e9riques" },
                 { icon: Target, title: "Actionnable imm\u00e9diatement", desc: "Chaque ressource inclut des templates pr\u00eats \u00e0 l'emploi que vous pouvez utiliser d\u00e8s aujourd'hui" },
@@ -461,6 +478,7 @@ export default function RessourcesClient() {
                   </div>
                 </motion.div>
               ))}
+              </div>
             </div>
           </div>
         </div>
