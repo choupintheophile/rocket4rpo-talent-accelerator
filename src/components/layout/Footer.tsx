@@ -38,10 +38,7 @@ export const Footer = () => (
         <div>
           <h4 className="font-semibold text-sm mb-4">Ressources</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link href="/comparateur" className="hover:text-primary transition-colors">Comparateur RPO</Link></li>
-            <li><Link href="/calculateur" className="hover:text-primary transition-colors">Calculateur ROI</Link></li>
-            <li><Link href="/demo" className="hover:text-primary transition-colors">Démo interactive</Link></li>
-            <li><Link href="/assessment" className="hover:text-primary transition-colors">Diagnostic recrutement</Link></li>
+            <li><Link href="/outils" className="hover:text-primary transition-colors">Outils gratuits</Link></li>
             <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
             <li><Link href="/ressources" className="hover:text-primary transition-colors">Guides & templates</Link></li>
           </ul>

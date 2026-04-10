@@ -7,6 +7,7 @@ export interface SitemapRoute {
 
 export const sitemapRoutes: SitemapRoute[] = [
   { path: "/", label: "Accueil", category: "Principal", priority: 1.0 },
+  { path: "/outils", label: "Outils RPO gratuits", category: "Ressources", priority: 0.8 },
   { path: "/offre/rpo", label: "RPO — Recruteur intégré à votre équipe", category: "Offre", priority: 0.9 },
   { path: "/offre/recrutement-ta", label: "Recrutez votre futur Talent Acquisition", category: "Offre", priority: 0.9 },
   { path: "/offre/audit-recrutement", label: "Audit & structuration de votre recrutement", category: "Offre", priority: 0.9 },

@@ -19,6 +19,7 @@ const resources = [
     badge: "Guide PDF",
     icon: FileText,
     downloads: "Téléchargé 800+ fois",
+    file: "/resources/guide-rpo-vs-cabinet.html",
   },
   {
     title: "Template : Scorecard de recrutement",
@@ -27,6 +28,7 @@ const resources = [
     badge: "Template",
     icon: ClipboardCheck,
     downloads: "Téléchargé 450+ fois",
+    file: "/resources/scorecard-recrutement.html",
   },
   {
     title: "Étude : Grille de rémunération Tech 2026",
@@ -35,6 +37,7 @@ const resources = [
     badge: "Étude",
     icon: BarChart3,
     downloads: "Téléchargé 1 200+ fois",
+    file: "/resources/grille-remuneration-tech-2026.html",
   },
   {
     title: "Checklist : Les 10 étapes d'un onboarding réussi",
@@ -43,6 +46,7 @@ const resources = [
     badge: "Checklist",
     icon: CheckSquare,
     downloads: "Téléchargé 350+ fois",
+    file: "/resources/checklist-onboarding.html",
   },
 ];
 
@@ -99,12 +103,11 @@ export default function RessourcesClient() {
                   {resource.downloads}
                 </p>
                 <a
-                  href="https://meetings.hubspot.com/theophile-choupin/rpo"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={resource.file}
+                  download
                   className="mt-3 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                 >
-                  Demander le document <ArrowRight className="w-4 h-4" />
+                  Télécharger le PDF <ArrowRight className="w-4 h-4" />
                 </a>
               </motion.div>
             ))}

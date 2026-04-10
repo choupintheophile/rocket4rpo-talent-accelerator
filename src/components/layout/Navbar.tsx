@@ -14,10 +14,7 @@ const offerLinks = [
 ];
 
 const mainLinks = [
-  { href: "/demo", label: "Démo" },
-  { href: "/comparateur", label: "Comparateur" },
-  { href: "/calculateur", label: "Calculateur ROI" },
-  { href: "/assessment", label: "Diagnostic" },
+  { href: "/outils", label: "Outils" },
   { href: "/blog", label: "Blog" },
   { href: "/ressources", label: "Ressources" },
 ];
