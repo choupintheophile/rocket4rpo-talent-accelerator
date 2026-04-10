@@ -268,8 +268,8 @@ export default function LoginPage() {
 
           <div className="mt-10 grid grid-cols-3 gap-4">
             {[
-              { value: "50+", label: "TA \u00e9valu\u00e9s" },
-              { value: "7", label: "crit\u00e8res" },
+              { value: "4 100+", label: "profils \u00e9valu\u00e9s" },
+              { value: "32", label: "crit\u00e8res" },
               { value: "48h", label: "matching" },
             ].map((stat) => (
               <div key={stat.label} className="p-3 rounded-xl bg-white/5 border border-white/10">
