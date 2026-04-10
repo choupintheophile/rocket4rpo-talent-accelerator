@@ -10,7 +10,7 @@ export const Footer = () => (
         {/* Brand + addresses */}
         <div className="col-span-2 mb-4 lg:mb-0">
           <Link href="/" className="flex items-center">
-            <Image src="/logo-rocket4rpo-white.webp" alt="Rocket4RPO — experts Talent Acquisition intégrés" width={384} height={256} className="h-10 md:h-12 w-auto" />
+            <Image src="/logo-rocket4rpo-white.webp" alt="Rocket4RPO — experts Talent Acquisition intégrés" width={384} height={256} className="h-20 md:h-24 w-auto" />
           </Link>
           <p className="mt-4 text-sm text-background/60 leading-relaxed max-w-xs">
             Talent Acquisition experts intégrés à vos équipes pour accélérer vos recrutements.
@@ -28,10 +28,9 @@ export const Footer = () => (
         <div>
           <h4 className="font-semibold text-sm mb-4">Offre</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link href="/offre/talent-acquisition-temps-partage" className="hover:text-primary transition-colors">TA temps partagé</Link></li>
-            <li><Link href="/offre/talent-acquisition-temps-plein" className="hover:text-primary transition-colors">TA temps plein</Link></li>
-            <li><Link href="/offre/recrutement-talent-acquisition" className="hover:text-primary transition-colors">Recrutement de TA</Link></li>
-            <li><Link href="/offre/outils-sourcing-enablement" className="hover:text-primary transition-colors">Outils & enablement</Link></li>
+            <li><Link href="/offre/rpo" className="hover:text-primary transition-colors">RPO — Recruteur intégré</Link></li>
+            <li><Link href="/offre/recrutement-ta" className="hover:text-primary transition-colors">Recrutez votre TA</Link></li>
+            <li><Link href="/offre/audit-recrutement" className="hover:text-primary transition-colors">Audit & structuration</Link></li>
           </ul>
         </div>
 

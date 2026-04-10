@@ -8,10 +8,9 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const offerLinks = [
-  { href: "/offre/talent-acquisition-temps-partage", label: "TA temps partagé" },
-  { href: "/offre/talent-acquisition-temps-plein", label: "TA temps plein" },
-  { href: "/offre/recrutement-talent-acquisition", label: "Recrutement de TA" },
-  { href: "/offre/outils-sourcing-enablement", label: "Outils & enablement" },
+  { href: "/offre/rpo", label: "RPO — Recruteur intégré" },
+  { href: "/offre/recrutement-ta", label: "Recrutez votre TA" },
+  { href: "/offre/audit-recrutement", label: "Audit & structuration" },
 ];
 
 const mainLinks = [
@@ -34,7 +33,7 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container-wide flex items-center justify-between h-16 lg:h-20">
         <Link href="/" className="flex items-center">
-          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech" width={384} height={256} className="h-10 lg:h-12 w-auto" priority />
+          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Talent Acquisition RPO pour entreprises Tech" width={384} height={256} className="h-20 lg:h-24 w-auto" priority />
         </Link>
 
         {/* Desktop nav */}

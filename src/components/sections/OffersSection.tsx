@@ -2,40 +2,32 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Users, UserPlus, Search, Wrench } from "lucide-react";
+import { ArrowRight, Users, UserPlus, ClipboardCheck } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
 const offers = [
   {
     icon: Users,
-    title: "Expertise senior sans le coût d\u2019un CDI",
+    title: "Un recruteur int\u00e9gr\u00e9 \u00e0 votre \u00e9quipe",
     description:
-      "Un recruteur senior dans votre équipe quelques jours par semaine. Vous accédez à 7 ans d\u2019expertise en recrutement, sans charges fixes. Idéal pour 3 à 8 recrutements par trimestre.",
-    href: "/offre/talent-acquisition-temps-partage",
+      "Int\u00e9grez un Talent Acquisition senior dans vos outils, vos rituels et votre culture. De 1 \u00e0 5 jours par semaine, sans CDI. Premi\u00e8re shortlist en 48h.",
+    href: "/offre/rpo",
     popular: true,
   },
   {
     icon: UserPlus,
-    title: "Une équipe TA dédiée, immédiatement opérationnelle",
+    title: "Trouvez votre futur TA",
     description:
-      "Un recruteur dédié à 100\u00a0% intégré dans vos équipes, immergé dans votre culture. Pour les entreprises qui recrutent 10+ profils par trimestre et veulent un time-to-hire garanti.",
-    href: "/offre/talent-acquisition-temps-plein",
+      "Vous voulez internaliser votre recrutement\u00a0? On vous trouve LE bon profil Talent Acquisition en CDI. Shortlist en 2-3 semaines, suivi d\u2019int\u00e9gration inclus.",
+    href: "/offre/recrutement-ta",
     popular: false,
   },
   {
-    icon: Search,
-    title: "Recrutez votre propre TA sans risque d\u2019erreur",
+    icon: ClipboardCheck,
+    title: "Auditez votre process recrutement",
     description:
-      "Nous identifions et qualifions les meilleurs Talent Acquisition Managers et Specialists du marché. Des profils expérimentés, adaptés à vos enjeux de croissance.",
-    href: "/offre/recrutement-talent-acquisition",
-    popular: false,
-  },
-  {
-    icon: Wrench,
-    title: "Divisez vos coûts de sourcing par 2",
-    description:
-      "Audit de votre stack recrutement, sélection d\u2019outils performants et abordables, formation de vos équipes. Résultat\u00a0: plus de candidats qualifiés, moins de dépenses outils.",
-    href: "/offre/outils-sourcing-enablement",
+      "Diagnostic complet de votre organisation recrutement\u00a0: process, outils, KPIs, exp\u00e9rience candidat. Plan d\u2019action concret en 2 semaines.",
+    href: "/offre/audit-recrutement",
     popular: false,
   },
 ];
@@ -47,15 +39,15 @@ export const OffersSection = () => (
         badge="Notre offre"
         title={
           <>
-            {"4 façons d\u2019accélérer vos recrutements, "}
+            {"3 fa\u00e7ons d\u2019acc\u00e9l\u00e9rer vos recrutements, "}
             <span className="text-gradient">
               {"sans les prix d\u2019un cabinet"}
             </span>
           </>
         }
-        description="Chaque entreprise a des besoins différents. Toutes méritent un recrutement rapide, prévisible et rentable. Choisissez la formule qui correspond à votre rythme de croissance."
+        description="Chaque entreprise a des besoins diff\u00e9rents. Toutes m\u00e9ritent un recrutement rapide, pr\u00e9visible et rentable. Choisissez la formule qui correspond \u00e0 votre rythme de croissance."
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {offers.map((offer, i) => (
           <motion.div
             key={i}
@@ -63,7 +55,6 @@ export const OffersSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className={offer.popular ? "md:col-span-2" : ""}
           >
             <Link
               href={offer.href}
