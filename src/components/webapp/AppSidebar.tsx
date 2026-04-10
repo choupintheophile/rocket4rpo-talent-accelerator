@@ -39,12 +39,24 @@ export function AppSidebar() {
       </nav>
 
       <div className="border-t border-white/10">
-        <Link
-          href="/"
-          className="flex items-center gap-2.5 px-5 py-3 text-[12px] text-white/40 hover:text-white/70 transition-colors"
+        <button
+          onClick={() => {
+            document.cookie = "r4rpo_auth=; path=/; max-age=0";
+            window.location.href = "/webapp-testing/login";
+          }}
+          className="flex items-center gap-2.5 px-5 py-3 text-[12px] text-red-400/70 hover:text-red-400 transition-colors w-full text-left"
         >
           <LogOut className="w-[14px] h-[14px]" />
-          <span>Retour au site</span>
+          <span>Déconnexion</span>
+        </button>
+      </div>
+
+      <div className="border-t border-white/10">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 px-5 py-2.5 text-[11px] text-white/30 hover:text-white/50 transition-colors"
+        >
+          <span>← Retour au site</span>
         </Link>
       </div>
 
