@@ -100,7 +100,7 @@ export default function RootLayout({
           </a>
           <div className="min-h-screen flex flex-col">
             <Navbar />
-            <main id="main-content" className="flex-1 pt-16 lg:pt-20">{children}</main>
+            <main id="main-content" className="flex-1 pt-14 lg:pt-16">{children}</main>
             <Footer />
           </div>
           <StickyCTA />

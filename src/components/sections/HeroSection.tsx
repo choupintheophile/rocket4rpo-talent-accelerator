@@ -22,7 +22,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
   const hero = content || defaultContent;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[hsl(var(--rocket-navy-soft))] text-background pt-8 md:pt-12 lg:pt-16 pb-14 md:pb-20 lg:pb-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[hsl(var(--rocket-navy-soft))] text-background pt-6 md:pt-8 lg:pt-10 pb-10 md:pb-14 lg:pb-16">
       {/* Subtle radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--rocket-teal)/0.08),transparent_60%)]" />
       <div className="container-wide relative z-10">
