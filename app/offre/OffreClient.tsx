@@ -497,6 +497,169 @@ export default function OffreClient() {
         </div>
       </section>
 
+      {/* ── TÉMOIGNAGES ── */}
+      <section className="section-padding bg-white">
+        <div className="container-wide">
+          <div className="text-center mb-14">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-4">
+              <Star className="w-3 h-3" />
+              Ce qu{"'"}ils en disent
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-3">
+              Ils nous font confiance
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                quote: "En 3 semaines, notre TA avait d\u00e9j\u00e0 pr\u00e9sent\u00e9 8 candidats qualifi\u00e9s. On a recrut\u00e9 notre Head of Sales en 28 jours. Avec un cabinet, on en aurait eu pour 3 mois.",
+                name: "Sarah L.",
+                role: "VP People",
+                company: "Scale-up SaaS B2B",
+                metric: "28 jours",
+                metricLabel: "time-to-hire",
+              },
+              {
+                quote: "Ce qui m'a convaincu, c'est la qualit\u00e9 du sourcing. Pas de CV g\u00e9n\u00e9riques — chaque profil \u00e9tait cibl\u00e9 et valid\u00e9. On sentait qu'ils connaissaient notre march\u00e9.",
+                name: "Thomas R.",
+                role: "CEO",
+                company: "Fintech, 45 collaborateurs",
+                metric: "92%",
+                metricLabel: "r\u00e9tention 12 mois",
+              },
+              {
+                quote: "On avait besoin de 5 d\u00e9veloppeurs en 4 mois. Le TA s'est int\u00e9gr\u00e9 \u00e0 notre \u00e9quipe comme s'il avait toujours \u00e9t\u00e9 l\u00e0. R\u00e9sultat : 5 recrutements, 0 d\u00e9part \u00e0 12 mois.",
+                name: "Marion D.",
+                role: "CTO",
+                company: "\u00c9diteur logiciel",
+                metric: "5/5",
+                metricLabel: "recrutements r\u00e9ussis",
+              },
+            ].map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="p-7 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col"
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  ))}
+                </div>
+                <p className="text-sm text-foreground leading-relaxed flex-1 mb-5">
+                  {"\u00ab"} {t.quote} {"\u00bb"}
+                </p>
+                <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                  <div>
+                    <div className="text-sm font-semibold">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}, {t.company}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-primary font-mono">{t.metric}</div>
+                    <div className="text-[10px] text-muted-foreground">{t.metricLabel}</div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── POURQUOI ROCKET4RPO ── */}
+      <section className="py-20 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 right-[10%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[150px]" />
+        </div>
+        <div className="relative container-wide">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Pourquoi les meilleurs nous choisissent
+            </h2>
+            <p className="mt-4 text-white/50 max-w-2xl mx-auto">
+              Ce n{"'"}est pas du marketing. Ce sont des faits.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[
+              {
+                icon: Crown,
+                title: "Le top 1% des TA de France",
+                desc: "Nos recruteurs sont s\u00e9lectionn\u00e9s sur 7 crit\u00e8res exigeants. Seuls les profils 80%+ int\u00e8grent notre vivier. Vous ne travaillez qu'avec l'\u00e9lite.",
+              },
+              {
+                icon: Zap,
+                title: "Op\u00e9rationnel en 48h, pas en 3 mois",
+                desc: "Quand un cabinet met 2-3 semaines \u00e0 d\u00e9marrer et qu'un CDI prend 3 mois \u00e0 recruter, nous sommes op\u00e9rationnels en 48h. Premi\u00e8re shortlist le jour m\u00eame.",
+              },
+              {
+                icon: Shield,
+                title: "Z\u00e9ro risque, flexibilit\u00e9 totale",
+                desc: "Pas de success fee. Pas d'engagement long. Si le TA ne convient pas, on le remplace en 48h. Ajustez votre rythme \u00e0 tout moment.",
+              },
+              {
+                icon: Building2,
+                title: "Un vivier de 50+ experts, pas un seul recruteur",
+                desc: "Derri\u00e8re chaque mission, c'est toute la force de notre vivier. Le moindre besoin, la moindre recherche — on a le profil qu'il vous faut, imm\u00e9diatement.",
+              },
+              {
+                icon: Target,
+                title: "200+ recrutements, 92% de r\u00e9tention",
+                desc: "Nos chiffres parlent : 200+ recrutements r\u00e9alis\u00e9s, 92% de r\u00e9tention \u00e0 12 mois. Ce n'est pas du volume — c'est de la pr\u00e9cision.",
+              },
+              {
+                icon: TrendingUp,
+                title: "5x moins cher qu'un cabinet",
+                desc: "Pour 10 recrutements : ~44K\u20ac vs 120-200K\u20ac en cabinet. M\u00eame qualit\u00e9 (voire meilleure), 5x moins cher. Les chiffres sont l\u00e0.",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="flex gap-4 p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <div className="w-12 h-12 rounded-xl bg-rocket-teal/20 flex items-center justify-center shrink-0">
+                  <item.icon className="w-6 h-6 text-rocket-teal-glow" />
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold mb-1.5">{item.title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Urgency */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 max-w-2xl mx-auto text-center p-6 rounded-2xl bg-rocket-teal/10 border border-rocket-teal/20"
+          >
+            <p className="text-white/80 text-sm leading-relaxed">
+              <strong className="text-rocket-teal-glow">Disponibilit{"\u00e9"} limit{"\u00e9"}e</strong> — Nos meilleurs TA sont tr{"\u00e8"}s demand{"\u00e9"}s.
+              Plus vous attendez, plus le d{"\u00e9"}lai de matching s{"'"}allonge.
+              R{"\u00e9"}servez votre diagnostic gratuit maintenant pour bloquer un cr{"\u00e9"}neau.
+            </p>
+            <a
+              href={HUBSPOT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 mt-4 px-8 py-3 text-sm font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
+              R{"\u00e9"}server mon cr{"\u00e9"}neau <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── FAQ ── */}
       <FAQSection faqs={faqs} className="bg-rocket-cream" />
 
