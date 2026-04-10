@@ -14,7 +14,7 @@ export default function Page() {
     name: "Rocket4GTM",
     description:
       "Rocket4GTM est un groupe d'experts go-to-market qui aide les entreprises Tech à accélérer leur croissance via le recrutement, le Talent Acquisition et le consulting GTM.",
-    url: "https://www.rocket4rpo.com/rocket4gtm",
+    url: "https://rocket4rpo.com/rocket4gtm",
     parentOrganization: {
       "@type": "Organization",
       name: "Rocket4Sales",

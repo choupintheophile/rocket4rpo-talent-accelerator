@@ -55,11 +55,11 @@ export default async function BlogArticlePage({ params }: Props) {
     publisher: {
       "@type": "Organization",
       name: "Rocket4RPO",
-      url: "https://www.rocket4rpo.com",
+      url: "https://rocket4rpo.com",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://www.rocket4rpo.com/blog/${post.slug}`,
+      "@id": `https://rocket4rpo.com/blog/${post.slug}`,
     },
   };
 

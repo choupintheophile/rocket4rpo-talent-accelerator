@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://www.rocket4rpo.com/sitemap.xml
+Sitemap: https://rocket4rpo.com/sitemap.xml

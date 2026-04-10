@@ -4,7 +4,7 @@ import { getBlogPosts } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
-const SITE_URL = "https://www.rocket4rpo.com";
+const SITE_URL = "https://rocket4rpo.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = sitemapRoutes.map((route) => ({

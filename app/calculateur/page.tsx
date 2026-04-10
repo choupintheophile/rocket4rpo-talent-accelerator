@@ -33,7 +33,7 @@ export default function Page() {
     "@type": "WebApplication",
     name: "Calculateur ROI RPO — Rocket4RPO",
     description: "Calculez combien vous pouvez économiser avec le RPO",
-    url: "https://www.rocket4rpo.com/calculateur",
+    url: "https://rocket4rpo.com/calculateur",
     applicationCategory: "BusinessApplication",
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
   };

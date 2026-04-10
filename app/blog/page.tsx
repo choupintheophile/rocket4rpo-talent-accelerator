@@ -5,7 +5,7 @@ import { blogCategories } from "@/data/blog";
 import BlogPageClient from "./PageClient";
 
 export const metadata: Metadata = {
-  title: "Blog — Talent Acquisition, RPO, sourcing et recrutement Tech",
+  title: "Blog RPO & Recrutement Tech",
   description: "Articles, guides et analyses sur le Talent Acquisition, le RPO, le sourcing et le recrutement dans l'écosystème Tech. Par les experts Rocket4RPO.",
   alternates: { canonical: "/blog" },
 };
@@ -24,7 +24,7 @@ export default async function Page() {
     "@type": "CollectionPage",
     name: "Blog Rocket4RPO",
     description: "Articles sur le Talent Acquisition, le RPO et le recrutement Tech",
-    url: "https://www.rocket4rpo.com/blog",
+    url: "https://rocket4rpo.com/blog",
   };
 
   return (

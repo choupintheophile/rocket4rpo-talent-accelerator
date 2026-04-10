@@ -30,7 +30,7 @@ export default function Page() {
       },
     ],
     email: "contact@rocket4rpo.com",
-    url: "https://www.rocket4rpo.com",
+    url: "https://rocket4rpo.com",
   };
 
   return (

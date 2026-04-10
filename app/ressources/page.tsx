@@ -13,7 +13,7 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Ressources gratuites Rocket4RPO",
-    url: "https://www.rocket4rpo.com/ressources",
+    url: "https://rocket4rpo.com/ressources",
     numberOfItems: 4,
     itemListElement: [
       {

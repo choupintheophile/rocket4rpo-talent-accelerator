@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import RecrutementPageClient from "./PageClient";
 
 export const metadata: Metadata = {
-  title: "Devenir freelance TA/TAM chez Rocket4RPO — missions RPO",
+  title: "Missions RPO Freelance TA — TJM 350-550€",
   description:
     "Rejoignez le réseau Rocket4RPO. Missions RPO de 3 à 12 mois, TJM 350-550€/jour, remote-friendly. Postulez en 15 minutes.",
   alternates: { canonical: "/recrutement" },
@@ -15,7 +15,7 @@ export default function Page() {
     name: "Rocket4RPO",
     description:
       "Rocket4RPO sélectionne les meilleurs Talent Acquisition et TAM freelance pour des missions RPO chez des entreprises ambitieuses.",
-    url: "https://www.rocket4rpo.com/recrutement",
+    url: "https://rocket4rpo.com/recrutement",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Missions freelance TA/TAM chez Rocket4RPO",

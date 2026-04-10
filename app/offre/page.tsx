@@ -3,9 +3,9 @@ import OffreClient from "./OffreClient";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Notre offre — Recruteur externalisé intégré à votre équipe",
+  title: "Offre RPO — Recruteur senior dès 550€/j",
   description:
-    "Rocket4RPO intègre un Talent Acquisition Specialist senior dans votre équipe pour recruter à votre place. De 1 à 5 jours par semaine, première shortlist en 48h, à partir de 550€/jour.",
+    "TA senior intégré 1 à 5j/semaine. Shortlist en 48h, dès 550€/j. Sans engagement. Réservez votre diagnostic gratuit →",
   alternates: { canonical: "/offre" },
 };
 
