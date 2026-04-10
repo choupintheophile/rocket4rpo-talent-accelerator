@@ -121,7 +121,7 @@ export default function RecrutementPageClient() {
               <motion.div
                 key={i}
                 {...fadeInDelay(i * 0.1)}
-                className="p-6 rounded-xl border border-border bg-card"
+                className="p-6 rounded-xl border border-border/60 bg-background hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <card.icon className="w-5 h-5 text-primary" />
@@ -202,7 +202,7 @@ export default function RecrutementPageClient() {
               <motion.div
                 key={i}
                 {...fadeInDelay(i * 0.1)}
-                className="relative p-5 rounded-xl border border-border bg-card text-center"
+                className="relative p-5 rounded-xl border border-border/60 bg-background text-center"
               >
                 <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold mx-auto mb-3">
                   {item.step}

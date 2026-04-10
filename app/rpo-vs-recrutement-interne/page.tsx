@@ -221,7 +221,7 @@ export default function RpoVsRecrutementInternePage() {
             </div>
 
             {/* Internal */}
-            <div className="rounded-xl border-2 border-muted-foreground/30 p-6 bg-card">
+            <div className="rounded-xl border-2 border-muted-foreground/30 p-6 bg-background">
               <h2 className="text-xl font-bold mb-4">Quand choisir un recruteur interne</h2>
               <ul className="space-y-3">
                 {[
@@ -259,7 +259,7 @@ export default function RpoVsRecrutementInternePage() {
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Ajustable ou arr&ecirc;table chaque mois</li>
               </ul>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6">
+            <div className="rounded-xl border border-border/60 bg-background p-6">
               <h3 className="font-bold text-lg mb-2">Recruteur interne (CDI)</h3>
               <p className="text-3xl font-bold">40-55 K&euro;/an</p>
               <p className="text-sm text-muted-foreground mt-1">+ charges patronales = 60-75 K&euro; co&ucirc;t total</p>
@@ -303,7 +303,7 @@ export default function RpoVsRecrutementInternePage() {
           </h2>
           <div className="space-y-6">
             {faqs.map((faq, i) => (
-              <details key={i} className="group rounded-lg border border-border bg-card p-4">
+              <details key={i} className="group rounded-lg border border-border/60 bg-background p-4">
                 <summary className="font-semibold cursor-pointer list-none flex items-center justify-between">
                   {faq.question}
                   <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">

@@ -31,13 +31,13 @@ export default function ContactPageClient() {
                 votre écoute.
               </p>
               <div className="mt-8 space-y-6">
-                <div className="p-5 rounded-xl border border-border">
+                <div className="p-5 rounded-xl border border-border/60">
                   <h3 className="font-bold mb-1">Vous recrutez</h3>
                   <p className="text-sm text-muted-foreground">
                     Décrivez vos besoins en recrutement et nous vous proposerons le modèle d&apos;accompagnement le plus adapté.
                   </p>
                 </div>
-                <div className="p-5 rounded-xl border border-border">
+                <div className="p-5 rounded-xl border border-border/60">
                   <h3 className="font-bold mb-1">Vous êtes Talent Acquisition</h3>
                   <p className="text-sm text-muted-foreground">
                     Rejoignez notre réseau de TA Specialists et accédez à des missions variées dans l&apos;écosystème Tech.
@@ -46,7 +46,7 @@ export default function ContactPageClient() {
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="p-8 rounded-2xl border border-border bg-card">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="p-8 rounded-xl border border-border/60 bg-background">
               <h2 className="text-2xl font-bold mb-6">Échanger avec Rocket4RPO</h2>
               <div className="hs-form-frame" data-region="na1" data-form-id="2ed3b551-f739-4e1c-a5d8-b999d64f735f" data-portal-id="4718727" />
             </motion.div>

@@ -81,14 +81,14 @@ export default function RessourcesClient() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * (i + 1) }}
-                className="p-6 rounded-xl border border-border bg-card flex flex-col"
+                className="p-6 rounded-xl border border-border/60 bg-background flex flex-col hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <resource.icon className="w-6 h-6 text-primary" />
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <resource.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="flex-1">
-                    <span className="inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary mb-2">
+                    <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary mb-2">
                       {resource.badge}
                     </span>
                     <h2 className="text-lg font-bold leading-snug">

@@ -34,7 +34,7 @@ export default function Rocket4GTMPageClient() {
         <div className="container-wide">
           <h2 className="text-3xl font-bold mb-12 text-center">L&apos;écosystème Rocket4GTM</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            <div className="p-8 rounded-2xl bg-background border border-border">
+            <div className="p-8 rounded-xl bg-background border border-border/60">
               <h3 className="text-xl font-bold mb-3">
                 <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-current">
                   Rocket4Sales
@@ -52,7 +52,7 @@ export default function Rocket4GTMPageClient() {
                 Découvrir <ArrowRight className="w-3 h-3" />
               </a>
             </div>
-            <div className="p-8 rounded-2xl bg-background border border-primary/30">
+            <div className="p-8 rounded-xl bg-background border border-primary/30">
               <h3 className="text-xl font-bold mb-3">Rocket4RPO</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Talent Acquisition as a Service : experts TA intégrés à vos équipes, recrutement de profils TA, sourcing enablement.

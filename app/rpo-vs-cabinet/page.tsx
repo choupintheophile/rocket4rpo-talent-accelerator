@@ -222,7 +222,7 @@ export default function RpoVsCabinetPage() {
             </div>
 
             {/* Cabinet */}
-            <div className="rounded-xl border-2 border-muted-foreground/30 p-6 bg-card">
+            <div className="rounded-xl border-2 border-muted-foreground/30 p-6 bg-background">
               <h2 className="text-xl font-bold mb-4">Quand choisir un cabinet</h2>
               <ul className="space-y-3">
                 {[
@@ -260,7 +260,7 @@ export default function RpoVsCabinetPage() {
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Plus le volume augmente, plus le co&ucirc;t unitaire baisse</li>
               </ul>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6">
+            <div className="rounded-xl border border-border/60 bg-background p-6">
               <h3 className="font-bold text-lg mb-2">Cabinet classique</h3>
               <p className="text-3xl font-bold">120 000 &ndash; 200 000 &euro;</p>
               <p className="text-sm text-muted-foreground mt-1">Pour 10 recrutements (15-25 % du salaire)</p>
@@ -304,7 +304,7 @@ export default function RpoVsCabinetPage() {
           </h2>
           <div className="space-y-6">
             {faqs.map((faq, i) => (
-              <details key={i} className="group rounded-lg border border-border bg-card p-4">
+              <details key={i} className="group rounded-lg border border-border/60 bg-background p-4">
                 <summary className="font-semibold cursor-pointer list-none flex items-center justify-between">
                   {faq.question}
                   <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">

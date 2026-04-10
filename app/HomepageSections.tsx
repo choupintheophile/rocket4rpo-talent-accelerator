@@ -144,7 +144,7 @@ export default function HomepageSections() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="flex gap-4 p-5 rounded-xl border border-border/40 bg-background shadow-[0_1px_3px_0_rgb(0_0_0/0.04)] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_-2px_rgb(0_0_0/0.08)] hover:border-primary/20 transition-all duration-300"
+                className="flex gap-4 p-5 rounded-xl border border-border/60 bg-background shadow-[0_1px_3px_0_rgb(0_0_0/0.04)] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_-2px_rgb(0_0_0/0.08)] hover:border-primary/20 transition-all duration-300"
               >
                 <item.icon className="w-6 h-6 text-primary shrink-0 mt-0.5" />
                 <div>
@@ -211,7 +211,7 @@ export default function HomepageSections() {
                 </div>
                 <span className="text-xs font-mono text-primary/80">{item.time}</span>
                 <h3 className="font-bold text-lg mt-1 mb-2">{item.title}</h3>
-                <p className="text-sm text-background/80 leading-relaxed">{item.text}</p>
+                <p className="text-sm text-background/85 leading-relaxed">{item.text}</p>
               </motion.div>
             ))}
           </div>

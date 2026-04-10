@@ -241,7 +241,7 @@ export default function AssessmentClient() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => handleAnswer(i)}
-                    className="w-full text-left px-5 py-4 rounded-xl border-2 border-border bg-card hover:border-primary hover:bg-primary/5 transition-colors font-medium text-sm md:text-base"
+                    className="w-full text-left px-5 py-4 rounded-xl border-2 border-border/60 bg-background hover:border-primary hover:bg-primary/5 transition-colors font-medium text-sm md:text-base"
                   >
                     <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-secondary text-xs font-bold mr-3">
                       {String.fromCharCode(65 + i)}
@@ -342,7 +342,7 @@ export default function AssessmentClient() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 1 + rank * 0.15 }}
-                        className="flex gap-4 p-5 rounded-xl border border-border bg-card"
+                        className="flex gap-4 p-5 rounded-xl border border-border/60 bg-background"
                       >
                         <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                           <Icon className="w-5 h-5 text-primary" />

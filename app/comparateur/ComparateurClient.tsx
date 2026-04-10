@@ -289,7 +289,7 @@ export default function ComparateurClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`rounded-xl border-2 ${card.accent} p-6 ${i === 0 ? "bg-primary/5" : "bg-card"}`}
+                className={`rounded-xl border-2 ${card.accent} p-6 ${i === 0 ? "bg-primary/5" : "bg-background"}`}
               >
                 <h3 className="text-lg font-bold mb-4">{card.title}</h3>
                 <ul className="space-y-3">

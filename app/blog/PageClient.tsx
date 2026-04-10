@@ -43,8 +43,8 @@ export default function BlogPageClient({ posts, categories }: { posts: BlogPost[
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post, i) => (
               <motion.div key={post.slug} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
-                <Link href={`/blog/${post.slug}`} className="group block p-6 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg transition-all h-full">
-                  <span className="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-primary/10 text-primary mb-3">{post.category}</span>
+                <Link href={`/blog/${post.slug}`} className="group block p-6 rounded-xl border border-border/60 bg-background hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200 h-full">
+                  <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary mb-3">{post.category}</span>
                   <h2 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{post.title}</h2>
                   <p className="text-sm text-muted-foreground leading-relaxed">{post.excerpt}</p>
                   <p className="text-xs text-muted-foreground mt-4">

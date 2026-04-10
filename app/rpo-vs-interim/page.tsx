@@ -221,7 +221,7 @@ export default function RpoVsInterimPage() {
             </div>
 
             {/* Interim */}
-            <div className="rounded-xl border-2 border-muted-foreground/30 p-6 bg-card">
+            <div className="rounded-xl border-2 border-muted-foreground/30 p-6 bg-background">
               <h2 className="text-xl font-bold mb-4">Quand choisir l&rsquo;int&eacute;rim</h2>
               <ul className="space-y-3">
                 {[
@@ -259,7 +259,7 @@ export default function RpoVsInterimPage() {
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> \u00c9quipe cumulant 200+ recrutements d\u2019exp\u00e9rience</li>
               </ul>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6">
+            <div className="rounded-xl border border-border/60 bg-background p-6">
               <h3 className="font-bold text-lg mb-2">Int&eacute;rim / Staffing</h3>
               <p className="text-3xl font-bold">TJM × coeff. 1.8-2.2</p>
               <p className="text-sm text-muted-foreground mt-1">Co&ucirc;t r&eacute;el souvent opaque</p>
@@ -303,7 +303,7 @@ export default function RpoVsInterimPage() {
           </h2>
           <div className="space-y-6">
             {faqs.map((faq, i) => (
-              <details key={i} className="group rounded-lg border border-border bg-card p-4">
+              <details key={i} className="group rounded-lg border border-border/60 bg-background p-4">
                 <summary className="font-semibold cursor-pointer list-none flex items-center justify-between">
                   {faq.question}
                   <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">

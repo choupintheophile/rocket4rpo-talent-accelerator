@@ -161,8 +161,8 @@ export default function OffreClient() {
                 transition={{ duration: 0.5 }}
                 className="relative text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-primary" />
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-6 h-6 text-primary" />
                 </div>
                 <span className="text-xs font-mono text-primary font-bold">{item.time}</span>
                 <h3 className="font-bold text-lg mt-2 mb-2">{item.title}</h3>
@@ -212,7 +212,7 @@ export default function OffreClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className={`relative p-8 rounded-2xl border text-center backdrop-blur-sm ${
+                className={`relative p-8 rounded-xl border text-center backdrop-blur-sm ${
                   format.popular
                     ? "border-primary/30 bg-background/95 shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.15)] ring-1 ring-primary/10"
                     : "border-border/60 bg-background/95 shadow-[0_2px_8px_-2px_rgb(0_0_0/0.06)]"
@@ -265,7 +265,7 @@ export default function OffreClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className={`p-8 rounded-2xl text-center ${
+                className={`p-8 rounded-xl text-center ${
                   item.highlight
                     ? "bg-primary/10 border border-primary/30"
                     : "bg-background/5 border border-background/10"
@@ -275,7 +275,7 @@ export default function OffreClient() {
                 <p className={`text-3xl font-bold mb-2 ${item.highlight ? "text-primary" : "text-background"}`}>
                   {item.price}
                 </p>
-                <p className="text-sm text-background/75">{item.detail}</p>
+                <p className="text-sm text-background/70">{item.detail}</p>
                 {item.highlight && (
                   <a
                     href={HUBSPOT}

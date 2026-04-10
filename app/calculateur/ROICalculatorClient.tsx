@@ -247,7 +247,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   className="space-y-8"
                 >
                   {/* Bar chart */}
-                  <div className="rounded-xl border bg-card p-6 space-y-5">
+                  <div className="rounded-xl border border-border/60 bg-background p-6 space-y-5">
                     <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
                       Comparaison des coûts
                     </h3>
@@ -295,7 +295,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
                   {/* KPI cards */}
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="rounded-xl border bg-card p-6 text-center space-y-2">
+                    <div className="rounded-xl border border-border/60 bg-background p-6 text-center space-y-2">
                       <Euro className="w-6 h-6 mx-auto text-primary" />
                       <p className="text-sm text-muted-foreground">
                         Économie estimée
@@ -310,7 +310,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                       </p>
                     </div>
 
-                    <div className="rounded-xl border bg-card p-6 text-center space-y-2">
+                    <div className="rounded-xl border border-border/60 bg-background p-6 text-center space-y-2">
                       <Clock className="w-6 h-6 mx-auto text-primary" />
                       <p className="text-sm text-muted-foreground">
                         Gain de temps estimé
@@ -320,7 +320,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                       </p>
                     </div>
 
-                    <div className="rounded-xl border bg-card p-6 text-center space-y-2">
+                    <div className="rounded-xl border border-border/60 bg-background p-6 text-center space-y-2">
                       <TrendingDown className="w-6 h-6 mx-auto text-primary" />
                       <p className="text-sm text-muted-foreground">
                         Réduction du coût
@@ -332,7 +332,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                       </p>
                     </div>
 
-                    <div className="rounded-xl border bg-card p-6 text-center space-y-2">
+                    <div className="rounded-xl border border-border/60 bg-background p-6 text-center space-y-2">
                       <Clock className="w-6 h-6 mx-auto text-primary" />
                       <p className="text-sm text-muted-foreground">
                         Délai moyen RPO

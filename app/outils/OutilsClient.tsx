@@ -80,16 +80,16 @@ export default function OutilsClient() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * (i + 1) }}
-                className="relative p-6 rounded-2xl border border-border bg-card flex flex-col hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200"
+                className="relative p-6 rounded-xl border border-border/60 bg-background flex flex-col hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200"
               >
                 {/* Badge */}
-                <span className="absolute top-4 right-4 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary">
+                <span className="absolute top-4 right-4 text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary">
                   {tool.badge}
                 </span>
 
                 {/* Icon */}
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                  <tool.icon className="w-6 h-6 text-primary" />
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <tool.icon className="w-5 h-5 text-primary" />
                 </div>
 
                 {/* Content */}

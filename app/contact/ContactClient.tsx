@@ -54,7 +54,7 @@ export default function ContactClient() {
               {infoCards.map((card, i) => (
                 <div
                   key={i}
-                  className="p-5 rounded-xl border border-border bg-card flex gap-4"
+                  className="p-5 rounded-xl border border-border/60 bg-background flex gap-4"
                 >
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <card.icon className="w-5 h-5 text-primary" />
@@ -69,7 +69,7 @@ export default function ContactClient() {
               ))}
 
               {/* Addresses */}
-              <div className="p-5 rounded-xl border border-border bg-card space-y-4">
+              <div className="p-5 rounded-xl border border-border/60 bg-background space-y-4">
                 <h3 className="font-bold">Nos bureaux</h3>
                 <div className="flex gap-3">
                   <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
@@ -92,7 +92,7 @@ export default function ContactClient() {
               </div>
 
               {/* Email */}
-              <div className="p-5 rounded-xl border border-border bg-card flex gap-3 items-center">
+              <div className="p-5 rounded-xl border border-border/60 bg-background flex gap-3 items-center">
                 <Mail className="w-5 h-5 text-primary flex-shrink-0" />
                 <a
                   href="mailto:contact@rocket4rpo.com"
@@ -110,7 +110,7 @@ export default function ContactClient() {
               transition={{ delay: 0.2 }}
               className="lg:col-span-3"
             >
-              <div className="rounded-xl overflow-hidden border border-border">
+              <div className="rounded-xl overflow-hidden border border-border/60">
                 <iframe
                   src="https://meetings.hubspot.com/theophile-choupin/rpo?embed=true"
                   width="100%"

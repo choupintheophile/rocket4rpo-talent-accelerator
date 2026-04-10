@@ -106,7 +106,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
       exit={{ opacity: 0, x: -40 }}
       className="space-y-6"
     >
-      <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 p-6 md:p-8 space-y-6">
+      <div className="rounded-xl bg-background/90 backdrop-blur-xl border border-border/60 p-6 md:p-8 space-y-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
             <FileText className="w-5 h-5 text-primary" />
@@ -207,7 +207,7 @@ function StepSourcing({ onNext }: { onNext: () => void }) {
       className="space-y-6"
     >
       {/* Progress bar */}
-      <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 p-6">
+      <div className="rounded-xl bg-background/90 backdrop-blur-xl border border-border/60 p-6">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Search className="w-4 h-4 text-primary" />
@@ -234,7 +234,7 @@ function StepSourcing({ onNext }: { onNext: () => void }) {
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="rounded-xl bg-background/80 backdrop-blur-xl border border-border/50 p-4 flex items-center justify-between"
+              className="rounded-xl bg-background/90 backdrop-blur-xl border border-border/60 p-4 flex items-center justify-between"
             >
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
@@ -286,7 +286,7 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
       exit={{ opacity: 0, x: -40 }}
       className="space-y-6"
     >
-      <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 p-6">
+      <div className="rounded-xl bg-background/90 backdrop-blur-xl border border-border/60 p-6">
         <div className="flex items-center gap-2 mb-1">
           <Clock className="w-4 h-4 text-primary" />
           <span className="text-sm font-semibold text-primary">48h écoulées</span>
@@ -301,7 +301,7 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.15 }}
-            className="rounded-xl bg-background/80 backdrop-blur-xl border border-border/50 p-5 space-y-3"
+            className="rounded-xl bg-background/90 backdrop-blur-xl border border-border/60 p-5 space-y-3"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -358,7 +358,7 @@ function StepResults() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: i * 0.12 }}
-            className="rounded-xl bg-background/80 backdrop-blur-xl border border-border/50 p-5 text-center space-y-2"
+            className="rounded-xl bg-background/90 backdrop-blur-xl border border-border/60 p-5 text-center space-y-2"
           >
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
               <kpi.icon className="w-5 h-5 text-primary" />
@@ -371,7 +371,7 @@ function StepResults() {
         ))}
       </div>
 
-      <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-primary/20 p-6 text-center space-y-4">
+      <div className="rounded-xl bg-background/90 backdrop-blur-xl border border-primary/20 p-6 text-center space-y-4">
         <h3 className="text-lg font-bold">Prêt à vivre ça pour de vrai ?</h3>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
           Nos clients recrutent leur premier Sales en 35 jours en moyenne. Réservez un appel de 15
