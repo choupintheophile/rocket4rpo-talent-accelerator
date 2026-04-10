@@ -1,14 +1,18 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Navbar } from "./Navbar";
-import { Footer } from "./Footer";
-import { StickyCTA } from "@/components/shared/StickyCTA";
-import { ExitIntentPopup } from "@/components/shared/ExitIntentPopup";
-import { ConversationalCTA } from "@/components/shared/ConversationalCTA";
-import { CookieBanner } from "@/components/shared/CookieBanner";
 
-export function MarketingShell({ children }: { children: React.ReactNode }) {
+export function MarketingShell({
+  children,
+  navbar,
+  footer,
+  extras,
+}: {
+  children: React.ReactNode;
+  navbar: React.ReactNode;
+  footer: React.ReactNode;
+  extras: React.ReactNode;
+}) {
   const pathname = usePathname();
   const isWebapp = pathname.startsWith("/webapp-testing");
 
@@ -19,18 +23,11 @@ export function MarketingShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="min-h-screen flex flex-col">
-        <Navbar />
+        {navbar}
         <main id="main-content" className="flex-1 pt-20 lg:pt-24">{children}</main>
-        <Footer />
+        {footer}
       </div>
-      <StickyCTA />
-      <div className="hidden lg:block">
-        <ExitIntentPopup />
-      </div>
-      <div className="hidden lg:block">
-        <ConversationalCTA />
-      </div>
-      <CookieBanner />
+      {extras}
     </>
   );
 }
