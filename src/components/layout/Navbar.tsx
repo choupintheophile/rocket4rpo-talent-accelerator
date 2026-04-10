@@ -7,13 +7,8 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const offerLinks = [
-  { href: "/offre/rpo", label: "RPO — Recruteur intégré" },
-  { href: "/offre/recrutement-ta", label: "Recrutez votre TA" },
-  { href: "/offre/audit-recrutement", label: "Audit & structuration" },
-];
-
 const mainLinks = [
+  { href: "/offre", label: "Notre offre" },
   { href: "/outils", label: "Outils" },
   { href: "/blog", label: "Blog" },
   { href: "/ressources", label: "Ressources" },
@@ -35,32 +30,6 @@ export const Navbar = () => {
 
         {/* Desktop nav */}
         <div className="hidden lg:flex items-center gap-1">
-          <div
-            className="relative"
-            onMouseEnter={() => setDropdownOpen("offre")}
-            onMouseLeave={() => setDropdownOpen(null)}
-          >
-            <button className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-1 ${isActive("/offre") ? "text-primary" : "text-foreground/70 hover:text-foreground"}`}>
-              Offre <ChevronDown className="w-3 h-3" />
-            </button>
-            <AnimatePresence>
-              {dropdownOpen === "offre" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  className="absolute top-full left-0 w-64 bg-card border border-border rounded-lg shadow-xl p-2 mt-1"
-                >
-                  {offerLinks.map((l) => (
-                    <Link key={l.href} href={l.href} className="block px-3 py-2.5 text-sm rounded-md hover:bg-secondary transition-colors">
-                      {l.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
           {mainLinks.map((l) => (
             <Link
               key={l.href}
@@ -102,13 +71,6 @@ export const Navbar = () => {
             className="lg:hidden border-t border-border bg-background overflow-hidden"
           >
             <div className="container-wide py-4 space-y-1">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-3 pt-2 pb-1">Offre</p>
-              {offerLinks.map((l) => (
-                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
-                  {l.label}
-                </Link>
-              ))}
-              <div className="border-t border-border my-2" />
               {mainLinks.map((l) => (
                 <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-2 text-sm rounded-md hover:bg-secondary">
                   {l.label}

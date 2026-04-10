@@ -28,9 +28,9 @@ export const Footer = () => (
         <div>
           <h4 className="font-semibold text-sm mb-4">Offre</h4>
           <ul className="space-y-2 text-sm text-background/60">
-            <li><Link href="/offre/rpo" className="hover:text-primary transition-colors">RPO — Recruteur intégré</Link></li>
-            <li><Link href="/offre/recrutement-ta" className="hover:text-primary transition-colors">Recrutez votre TA</Link></li>
-            <li><Link href="/offre/audit-recrutement" className="hover:text-primary transition-colors">Audit & structuration</Link></li>
+            <li><Link href="/offre" className="hover:text-primary transition-colors">Notre offre RPO</Link></li>
+            <li><Link href="/comparateur" className="hover:text-primary transition-colors">Comparateur RPO vs Cabinet</Link></li>
+            <li><Link href="/calculateur" className="hover:text-primary transition-colors">Calculateur ROI</Link></li>
           </ul>
         </div>
 

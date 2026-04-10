@@ -47,33 +47,15 @@ export const professionalServiceSchema = {
   serviceType: "Recruitment Process Outsourcing",
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Offres RPO Rocket4RPO",
+    name: "Offre RPO Rocket4RPO",
     itemListElement: [
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: "RPO — Recruteur externalisé intégré à votre équipe",
-          description: "Intégrez un Talent Acquisition senior dans vos équipes de 1 à 5 jours par semaine. Première shortlist en 48h, engagement flexible.",
-          url: "https://rocket4rpo.com/offre/rpo",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Recrutez votre futur Talent Acquisition",
-          description: "Vous voulez internaliser votre recrutement ? On vous trouve LE bon profil TA en CDI. Shortlist en 2-3 semaines, suivi d'intégration inclus.",
-          url: "https://rocket4rpo.com/offre/recrutement-ta",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Audit & structuration de votre recrutement",
-          description: "Diagnostic complet de votre process recrutement : outils, méthode, organisation. Plan d'action concret en 2 semaines.",
-          url: "https://rocket4rpo.com/offre/audit-recrutement",
+          description: "Un Talent Acquisition Specialist senior intégré dans vos équipes de 1 à 5 jours par semaine. Première shortlist en 48h, tous types de postes, à partir de 550€/jour.",
+          url: "https://rocket4rpo.com/offre",
         },
       },
     ],
