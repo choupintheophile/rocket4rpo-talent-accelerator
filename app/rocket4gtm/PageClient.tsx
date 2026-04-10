@@ -1,7 +1,6 @@
 "use client";
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
-import { motion } from "framer-motion";
 import { Rocket, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -13,7 +12,7 @@ export default function Rocket4GTMPageClient() {
       <section className="section-padding pt-8">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <div>
               <div className="flex items-center gap-2 mb-6">
                 <Rocket className="w-5 h-5 text-primary" />
                 <span className="text-sm font-medium text-muted-foreground">Le groupe</span>
@@ -25,7 +24,7 @@ export default function Rocket4GTMPageClient() {
                 Rocket4GTM est un groupe d&apos;experts qui accompagne les entreprises Tech dans leur performance go-to-market : recrutement
                 commercial, Talent Acquisition, stratégie de croissance.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

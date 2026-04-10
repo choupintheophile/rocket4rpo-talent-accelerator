@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import {
   Play,
   Scale,
@@ -58,11 +57,7 @@ export default function OutilsClient() {
 
       <section className="pt-8 pb-8 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               {"Nos outils "}
               <span className="text-gradient">{"gratuits"}</span>
@@ -71,15 +66,12 @@ export default function OutilsClient() {
               Évaluez vos besoins, calculez vos économies, et découvrez notre
               process — en quelques minutes.
             </p>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid sm:grid-cols-2 gap-6">
-            {tools.map((tool, i) => (
-              <motion.div
+            {tools.map((tool) => (
+              <div
                 key={tool.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * (i + 1) }}
                 className="relative p-6 rounded-xl border border-border/60 bg-background flex flex-col hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200"
               >
                 {/* Badge */}
@@ -107,7 +99,7 @@ export default function OutilsClient() {
                 >
                   {tool.cta} <ArrowRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle,
@@ -15,20 +14,6 @@ import {
 const HUBSPOT_LINK =
   "https://meetings.hubspot.com/theophile-choupin/rpo";
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
-};
-
-function fadeInDelay(delay: number) {
-  return {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, delay },
-  };
-}
-
 export default function RecrutementPageClient() {
   return (
     <>
@@ -38,7 +23,7 @@ export default function RecrutementPageClient() {
       <section className="section-padding pt-8 bg-[hsl(var(--rocket-navy-soft))] text-background">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <motion.div {...fadeIn}>
+            <div>
               <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/20 text-primary mb-4">
                 Rejoignez le réseau Rocket4RPO
               </span>
@@ -62,13 +47,10 @@ export default function RecrutementPageClient() {
               >
                 Postuler — prendre RDV <ArrowRight className="w-4 h-4" />
               </a>
-            </motion.div>
+            </div>
 
             {/* Stats */}
-            <motion.div
-              {...fadeInDelay(0.2)}
-              className="mt-10 grid grid-cols-3 gap-6 max-w-lg"
-            >
+            <div className="mt-10 grid grid-cols-3 gap-6 max-w-lg">
               {[
                 { value: "15+", label: "missions actives" },
                 { value: "350-550€", label: "TJM / jour" },
@@ -81,7 +63,7 @@ export default function RecrutementPageClient() {
                   <p className="text-sm text-background/60">{stat.label}</p>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -89,12 +71,9 @@ export default function RecrutementPageClient() {
       {/* ── Pourquoi rejoindre Rocket4RPO ── */}
       <section className="section-padding">
         <div className="container-wide">
-          <motion.h2
-            {...fadeIn}
-            className="text-3xl font-bold mb-8 text-center"
-          >
+          <h2 className="text-3xl font-bold mb-8 text-center">
             Pourquoi rejoindre Rocket4RPO
-          </motion.h2>
+          </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {[
               {
@@ -118,9 +97,8 @@ export default function RecrutementPageClient() {
                 text: "Rejoignez un réseau de TA seniors. Échanges, entraide, événements.",
               },
             ].map((card, i) => (
-              <motion.div
+              <div
                 key={i}
-                {...fadeInDelay(i * 0.1)}
                 className="p-6 rounded-xl border border-border/60 bg-background hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -128,7 +106,7 @@ export default function RecrutementPageClient() {
                 </div>
                 <h3 className="font-bold mb-2">{card.title}</h3>
                 <p className="text-sm text-muted-foreground">{card.text}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -138,9 +116,9 @@ export default function RecrutementPageClient() {
       <section className="section-padding bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <div className="max-w-3xl mx-auto">
-            <motion.h2 {...fadeIn} className="text-3xl font-bold mb-8">
+            <h2 className="text-3xl font-bold mb-8">
               Le profil que nous recherchons
-            </motion.h2>
+            </h2>
             <ul className="space-y-4">
               {[
                 "2+ ans d'expérience en Talent Acquisition ou recrutement",
@@ -149,14 +127,13 @@ export default function RecrutementPageClient() {
                 "Autonomie et capacité à s'intégrer rapidement dans une équipe",
                 "Statut freelance/indépendant (micro-entreprise, portage, etc.)",
               ].map((item, i) => (
-                <motion.li
+                <li
                   key={i}
-                  {...fadeInDelay(i * 0.08)}
                   className="flex items-start gap-3"
                 >
                   <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <span className="text-muted-foreground">{item}</span>
-                </motion.li>
+                </li>
               ))}
             </ul>
           </div>
@@ -166,12 +143,9 @@ export default function RecrutementPageClient() {
       {/* ── Process de sélection ── */}
       <section className="section-padding">
         <div className="container-wide">
-          <motion.h2
-            {...fadeIn}
-            className="text-3xl font-bold mb-8 text-center"
-          >
+          <h2 className="text-3xl font-bold mb-8 text-center">
             Notre process de sélection
-          </motion.h2>
+          </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {[
               {
@@ -199,9 +173,8 @@ export default function RecrutementPageClient() {
                 desc: "Accès aux missions et matching avec les clients",
               },
             ].map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                {...fadeInDelay(i * 0.1)}
                 className="relative p-5 rounded-xl border border-border/60 bg-background text-center"
               >
                 <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold mx-auto mb-3">
@@ -212,7 +185,7 @@ export default function RecrutementPageClient() {
                   {item.duration}
                 </p>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -221,10 +194,7 @@ export default function RecrutementPageClient() {
       {/* ── Témoignage ── */}
       <section className="section-padding bg-secondary">
         <div className="container-tight">
-          <motion.div
-            {...fadeIn}
-            className="max-w-2xl mx-auto text-center"
-          >
+          <div className="max-w-2xl mx-auto text-center">
             <Quote className="w-8 h-8 text-primary/40 mx-auto mb-4" />
             <blockquote className="text-lg italic text-muted-foreground leading-relaxed">
               &ldquo;Depuis que j&apos;ai rejoint Rocket4RPO, j&apos;enchaîne
@@ -235,14 +205,14 @@ export default function RecrutementPageClient() {
             <p className="text-sm text-muted-foreground">
               TA Specialist freelance, 4 ans d&apos;expérience
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ── CTA final ── */}
       <section className="section-padding">
         <div className="container-tight text-center">
-          <motion.div {...fadeIn}>
+          <div>
             <h2 className="text-3xl font-bold mb-4">
               Prêt à rejoindre le réseau ?
             </h2>
@@ -267,7 +237,7 @@ export default function RecrutementPageClient() {
                 recrutement@rocket4rpo.com
               </a>
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
     </>

@@ -2,7 +2,6 @@
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
-import { motion } from "framer-motion";
 import { Check, X, Minus, ArrowRight, Rocket } from "lucide-react";
 import Link from "next/link";
 
@@ -118,13 +117,6 @@ function Icon({ type }: { type?: "check" | "x" | "minus" }) {
   return null;
 }
 
-const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5 },
-};
-
 /* ------------------------------------------------------------------ */
 /*  Cards for "Dans quel cas choisir..."                               */
 /* ------------------------------------------------------------------ */
@@ -181,7 +173,7 @@ export default function ComparateurClient() {
       {/* Hero */}
       <section className="section-padding pt-8 bg-[hsl(var(--rocket-cream))]">
         <div className="container-tight">
-          <motion.div {...fadeUp}>
+          <div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               RPO vs Cabinet de recrutement vs Recruteur interne : le comparatif
               complet
@@ -194,7 +186,7 @@ export default function ComparateurClient() {
               pilote le recrutement en CDI depuis vos bureaux. Voici un
               comparatif factuel pour vous aider à choisir.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -213,11 +205,7 @@ export default function ComparateurClient() {
       {/* Comparison Table */}
       <section className="section-padding pt-0 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
-          <motion.div
-            {...fadeUp}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="overflow-x-auto -mx-4 px-4"
-          >
+          <div className="overflow-x-auto -mx-4 px-4">
             <table className="w-full min-w-[720px] border-collapse text-sm">
               <thead>
                 <tr>
@@ -267,28 +255,21 @@ export default function ComparateurClient() {
                 ))}
               </tbody>
             </table>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Decision cards */}
       <section className="section-padding">
         <div className="container-wide">
-          <motion.h2
-            {...fadeUp}
-            className="text-2xl md:text-3xl font-bold text-center mb-10"
-          >
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
             Dans quel cas choisir chaque modèle ?
-          </motion.h2>
+          </h2>
 
           <div className="grid md:grid-cols-3 gap-6">
             {choiceCards.map((card, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
                 className={`rounded-xl border-2 ${card.accent} p-6 ${i === 0 ? "bg-primary/5" : "bg-background"}`}
               >
                 <h3 className="text-lg font-bold mb-4">{card.title}</h3>
@@ -302,7 +283,7 @@ export default function ComparateurClient() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -311,7 +292,7 @@ export default function ComparateurClient() {
       {/* CTA */}
       <section className="section-padding bg-secondary/30">
         <div className="container-tight text-center">
-          <motion.div {...fadeUp}>
+          <div>
             <h2 className="text-2xl md:text-3xl font-bold">
               Pas sûr du bon modèle ?
             </h2>
@@ -329,7 +310,7 @@ export default function ComparateurClient() {
               Réserver mon diagnostic gratuit
               <ArrowRight className="w-4 h-4" />
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 

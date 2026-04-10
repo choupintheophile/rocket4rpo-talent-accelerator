@@ -46,24 +46,15 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       {/* Hero */}
       <section className="section-padding pt-8">
         <div className="container-tight text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
-          >
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             Calculez vos économies avec le{" "}
             <span className="text-gradient">RPO</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
+          </h1>
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
             Comparez le coût de votre recrutement actuel avec une solution RPO.
             Ajustez les curseurs et visualisez instantanément le retour sur
             investissement.
-          </motion.p>
+          </p>
         </div>
       </section>
 
@@ -72,12 +63,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
         <div className="container-tight">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Inputs */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="space-y-10"
-            >
+            <div className="space-y-10">
               <h2 className="text-2xl font-bold">Vos paramètres</h2>
 
               {/* Postes */}
@@ -226,15 +212,10 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   <span>120 jours</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Results */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="space-y-8"
-            >
+            <div className="space-y-8">
               <h2 className="text-2xl font-bold">Résultats estimés</h2>
 
               <AnimatePresence mode="wait">
@@ -371,7 +352,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   </p>
                 </motion.div>
               </AnimatePresence>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

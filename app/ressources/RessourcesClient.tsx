@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   FileText,
   ClipboardCheck,
@@ -57,11 +56,7 @@ export default function RessourcesClient() {
 
       <section className="section-padding pt-8 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               {"Ressources gratuites pour "}
               <span className="text-gradient">
@@ -72,15 +67,12 @@ export default function RessourcesClient() {
               Guides, templates et études conçus par nos experts Talent
               Acquisition
             </p>
-          </motion.div>
+          </div>
 
           <div className="mt-12 grid sm:grid-cols-2 gap-6">
-            {resources.map((resource, i) => (
-              <motion.div
+            {resources.map((resource) => (
+              <div
                 key={resource.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * (i + 1) }}
                 className="p-6 rounded-xl border border-border/60 bg-background flex flex-col hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200"
               >
                 <div className="flex items-start gap-4 mb-4">
@@ -109,7 +101,7 @@ export default function RessourcesClient() {
                 >
                   Télécharger le PDF <ArrowRight className="w-4 h-4" />
                 </a>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -3,7 +3,6 @@
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle,
@@ -52,13 +51,6 @@ const faqs = [
   },
 ];
 
-const fade = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5 },
-};
-
 export default function OffreClient() {
   return (
     <>
@@ -68,7 +60,7 @@ export default function OffreClient() {
       <section className="section-padding pt-8">
         <div className="container-wide">
           <div className="max-w-4xl">
-            <motion.div {...fade}>
+            <div>
               <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
                 Notre offre
               </span>
@@ -97,7 +89,7 @@ export default function OffreClient() {
                   Calculer mes économies
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -105,12 +97,12 @@ export default function OffreClient() {
       {/* ── CE QUE VOUS OBTENEZ ── */}
       <section className="section-padding bg-secondary">
         <div className="container-wide">
-          <motion.div {...fade} className="text-center mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Ce que vous obtenez concrètement</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Pas de jargon. Voici exactement ce qui se passe quand vous travaillez avec nous.
             </p>
-          </motion.div>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Search, title: "Sourcing multi-canal", text: "LinkedIn, approche directe, réseau, communautés. Votre TA source activement les meilleurs profils, pas des CVs de job boards." },
@@ -120,18 +112,14 @@ export default function OffreClient() {
               { icon: Users, title: "Intégration totale", text: "Le TA rejoint vos outils (ATS, Slack, Teams), vos rituels d'équipe et votre culture. Il représente VOTRE marque employeur, pas Rocket4RPO." },
               { icon: Shield, title: "Marque employeur protégée", text: "Chaque message, chaque approche candidat est faite au nom de votre entreprise. Votre image est entre de bonnes mains." },
             ].map((item) => (
-              <motion.div
+              <div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
                 className="p-6 rounded-xl bg-background border border-border/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
               >
                 <item.icon className="w-8 h-8 text-primary mb-4" />
                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -140,12 +128,12 @@ export default function OffreClient() {
       {/* ── COMMENT ÇA MARCHE ── */}
       <section className="section-padding">
         <div className="container-wide">
-          <motion.div {...fade} className="text-center mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Comment ça marche</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               De votre premier appel à vos premiers recrutements signés.
             </p>
-          </motion.div>
+          </div>
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { step: "01", icon: Target, title: "Brief & scorecard", text: "On analyse vos besoins et on construit une scorecard précise avec vos managers. Durée : 1 jour.", time: "J0" },
@@ -153,12 +141,8 @@ export default function OffreClient() {
               { step: "03", icon: Rocket, title: "Intégration", text: "Le TA rejoint vos outils et rituels. Opérationnel en 48h. Première shortlist immédiate.", time: "J2" },
               { step: "04", icon: CheckCircle, title: "Résultats", text: "Sourcing ciblé, shortlists qualifiées, recrutements signés. KPIs suivis chaque semaine.", time: "S2-S4" },
             ].map((item) => (
-              <motion.div
+              <div
                 key={item.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
                 className="relative text-center"
               >
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
@@ -167,7 +151,7 @@ export default function OffreClient() {
                 <span className="text-xs font-mono text-primary font-bold">{item.time}</span>
                 <h3 className="font-bold text-lg mt-2 mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -176,12 +160,12 @@ export default function OffreClient() {
       {/* ── CHOISISSEZ VOTRE RYTHME ── */}
       <section className="section-padding bg-rocket-cream">
         <div className="container-wide">
-          <motion.div {...fade} className="text-center mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Choisissez votre rythme</h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Un seul service, plusieurs formats. Vous ajustez selon votre volume de recrutement.
             </p>
-          </motion.div>
+          </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               {
@@ -206,12 +190,8 @@ export default function OffreClient() {
                 popular: false,
               },
             ].map((format) => (
-              <motion.div
+              <div
                 key={format.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
                 className={`relative p-8 rounded-xl border text-center backdrop-blur-sm ${
                   format.popular
                     ? "border-primary/30 bg-background/95 shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.15)] ring-1 ring-primary/10"
@@ -235,36 +215,32 @@ export default function OffreClient() {
                 >
                   Choisir ce format
                 </a>
-              </motion.div>
+              </div>
             ))}
           </div>
-          <motion.p {...fade} className="mt-8 text-center text-sm text-muted-foreground">
+          <p className="mt-8 text-center text-sm text-muted-foreground">
             Engagement minimum recommandé : 3 mois. Préavis : 1 mois. Facturation mensuelle.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       {/* ── COÛT COMPARÉ ── */}
       <section className="section-padding bg-rocket-navy-soft text-background">
         <div className="container-wide">
-          <motion.div {...fade} className="text-center mb-12">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Combien ça coûte vraiment ?</h2>
             <p className="mt-4 text-lg text-background/85 max-w-2xl mx-auto">
               Comparaison pour 10 recrutements sur 4 mois.
             </p>
-          </motion.div>
+          </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               { model: "RPO Rocket4RPO", price: "~44 000€", detail: "TJM prévisible, tout inclus", highlight: true },
               { model: "Cabinet classique", price: "120 000 – 200 000€", detail: "15-25% du salaire par recrutement", highlight: false },
               { model: "Recruteur interne (CDI)", price: "40 – 55 000€/an + charges", detail: "3 mois pour le recruter", highlight: false },
             ].map((item) => (
-              <motion.div
+              <div
                 key={item.model}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
                 className={`p-8 rounded-xl text-center ${
                   item.highlight
                     ? "bg-primary/10 border border-primary/30"
@@ -286,7 +262,7 @@ export default function OffreClient() {
                     Choisir le RPO <ArrowRight className="w-4 h-4" />
                   </a>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

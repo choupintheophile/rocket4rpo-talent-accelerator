@@ -1,7 +1,6 @@
 "use client";
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
-import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 export default function ContactPageClient() {
@@ -22,7 +21,7 @@ export default function ContactPageClient() {
       <section className="section-padding pt-8">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-16">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <div>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight">
                 Parlons de vos <span className="text-gradient">recrutements</span>
               </h1>
@@ -44,12 +43,12 @@ export default function ContactPageClient() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="p-8 rounded-xl border border-border/60 bg-background">
+            <div className="p-8 rounded-xl border border-border/60 bg-background">
               <h2 className="text-2xl font-bold mb-6">Échanger avec Rocket4RPO</h2>
               <div className="hs-form-frame" data-region="na1" data-form-id="2ed3b551-f739-4e1c-a5d8-b999d64f735f" data-portal-id="4718727" />
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

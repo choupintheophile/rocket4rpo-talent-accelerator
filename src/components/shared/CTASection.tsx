@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 interface Props {
@@ -20,13 +19,7 @@ export const CTASection = ({
     <section className="section-padding bg-rocket-navy-soft text-background">
       <div className="container-tight text-center">
         {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
-        >
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
           {gradientWord && title.includes(gradientWord)
             ? <>
                 {title.split(gradientWord)[0]}
@@ -34,27 +27,15 @@ export const CTASection = ({
                 {title.split(gradientWord)[1]}
               </>
             : title}
-        </motion.h2>
+        </h2>
 
         {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-4 text-lg text-background/85 max-w-2xl mx-auto"
-        >
+        <p className="mt-4 text-lg text-background/85 max-w-2xl mx-auto">
           {subtitle}
-        </motion.p>
+        </p>
 
         {/* CTA button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
-        >
+        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="https://meetings.hubspot.com/theophile-choupin/rpo"
             target="_blank"
@@ -64,18 +45,12 @@ export const CTASection = ({
             {ctaLabel}
             <ArrowRight className="w-4 h-4" />
           </a>
-        </motion.div>
+        </div>
 
         {/* Risk reversal */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-4 text-sm text-background/70"
-        >
+        <p className="mt-4 text-sm text-background/70">
           Pas de frais cachés. Pas de relance non souhaitée. Juste des résultats.
-        </motion.p>
+        </p>
       </div>
     </section>
   );

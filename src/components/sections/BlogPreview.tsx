@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
@@ -37,14 +36,8 @@ export const BlogPreview = ({ posts }: Props) => (
         </p>
       ) : (
         <div className="grid md:grid-cols-3 gap-6">
-          {posts.slice(0, 3).map((post, i) => (
-            <motion.div
-              key={post.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
+          {posts.slice(0, 3).map((post) => (
+            <div key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
                 className="group block p-6 rounded-2xl border border-border bg-background hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 h-full flex flex-col"
@@ -68,25 +61,19 @@ export const BlogPreview = ({ posts }: Props) => (
                   </span>
                 </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       )}
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="mt-10 text-center"
-      >
+      <div className="mt-10 text-center">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200"
         >
           {"Voir toutes les ressources"} <ArrowRight className="w-4 h-4" />
         </Link>
-      </motion.div>
+      </div>
     </div>
   </section>
 );

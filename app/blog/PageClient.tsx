@@ -3,7 +3,6 @@
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 interface BlogPost {
   slug: string;
@@ -41,8 +40,8 @@ export default function BlogPageClient({ posts, categories }: { posts: BlogPost[
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post, i) => (
-              <motion.div key={post.slug} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
+            {posts.map((post) => (
+              <div key={post.slug}>
                 <Link href={`/blog/${post.slug}`} className="group block p-6 rounded-xl border border-border/60 bg-background hover:-translate-y-0.5 hover:shadow-md hover:border-primary/20 transition-all duration-200 h-full">
                   <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary mb-3">{post.category}</span>
                   <h2 className="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{post.title}</h2>
@@ -51,7 +50,7 @@ export default function BlogPageClient({ posts, categories }: { posts: BlogPost[
                     {post.date} · {post.readTime}
                   </p>
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

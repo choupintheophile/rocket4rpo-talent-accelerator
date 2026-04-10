@@ -2,7 +2,6 @@
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
-import { motion } from "framer-motion";
 
 interface BlogPost {
   slug: string;
@@ -21,7 +20,7 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
 
       <article className="section-padding pt-8 bg-[hsl(var(--rocket-cream))]">
         <div className="container-tight">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <div>
             <span className="inline-block px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">{post.category}</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">{post.title}</h1>
             <p className="mt-4 text-muted-foreground">
@@ -45,7 +44,7 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
             <div className="mt-8 prose prose-lg max-w-none text-foreground">
               <p className="text-lg leading-relaxed">{post.content}</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </article>
 
