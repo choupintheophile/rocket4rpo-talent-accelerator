@@ -155,7 +155,8 @@ export default function HomepageSections() {
             ))}
           </div>
 
-          <div className="mt-8 p-6 rounded-xl bg-rocket-cream border border-border/60 max-w-2xl mx-auto">
+          <div className="mt-8 p-6 rounded-xl bg-background border-2 border-primary/20 shadow-sm max-w-2xl mx-auto">
+            <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-4">Résultat concret</p>
             <div className="grid grid-cols-2 gap-6 text-center">
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-1">Sans RPO</p>

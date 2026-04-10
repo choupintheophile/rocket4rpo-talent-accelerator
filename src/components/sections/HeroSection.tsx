@@ -22,7 +22,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
   const hero = content || defaultContent;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[hsl(var(--rocket-navy-soft))] text-background section-padding pt-28 md:pt-36 lg:pt-44">
+    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[hsl(var(--rocket-navy-soft))] text-background section-padding pt-16 md:pt-20 lg:pt-24">
       {/* Subtle radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--rocket-teal)/0.08),transparent_60%)]" />
       <div className="container-wide relative z-10">
@@ -43,7 +43,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-6 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight"
+            className="mt-6 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.08] tracking-tight"
           >
             {hero.headline}
             {hero.highlightedText}

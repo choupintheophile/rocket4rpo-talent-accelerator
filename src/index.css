@@ -109,7 +109,7 @@
     animation: gradient-shift 6s ease-in-out infinite;
   }
   .section-padding {
-    @apply py-20 md:py-28 lg:py-32;
+    @apply py-14 md:py-20 lg:py-24;
   }
   .container-tight {
     @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;

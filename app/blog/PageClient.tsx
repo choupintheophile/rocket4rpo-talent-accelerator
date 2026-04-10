@@ -22,7 +22,7 @@ export default function BlogPageClient({ posts, categories }: { posts: BlogPost[
       <section className="section-padding pt-8">
         <div className="container-wide">
           <div className="max-w-3xl mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold">Blog Talent Acquisition, RPO & Recrutement Tech</h1>
+            <h1 className="text-3xl md:text-4xl font-bold">Blog Talent Acquisition, RPO & Recrutement Tech</h1>
             <p className="mt-4 text-lg text-muted-foreground">
               Analyses, guides et retours d&apos;expérience sur le Talent Acquisition et le recrutement Tech.
             </p>

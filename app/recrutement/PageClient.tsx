@@ -42,7 +42,7 @@ export default function RecrutementPageClient() {
               <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/20 text-primary mb-4">
                 Rejoignez le réseau Rocket4RPO
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                 Vous êtes{" "}
                 <span className="text-gradient">
                   Talent Acquisition freelance
