@@ -220,51 +220,6 @@ export default function HomepageSections() {
         </div>
       </section>
 
-      {/* ── PRIX — Simple et direct ── */}
-      <section className="section-padding bg-rocket-cream">
-        <div className="container-wide">
-          <motion.div {...fade} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Combien ça coûte ?</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Transparent. Prévisible. 3x moins cher qu'un cabinet.
-            </p>
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <motion.div {...fade} className="p-8 rounded-2xl bg-background ring-2 ring-primary/30 text-center shadow-sm">
-              <p className="text-sm font-medium text-primary mb-2">RPO Rocket4RPO</p>
-              <p className="text-4xl font-bold text-primary mb-2">~44 000€</p>
-              <p className="text-sm text-muted-foreground mb-4">pour 10 recrutements</p>
-              <p className="text-xs text-muted-foreground">TJM à partir de 550€/jour<br />Facturation mensuelle</p>
-              <a
-                href={HUBSPOT}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 mt-6 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-full"
-              >
-                Réserver un diagnostic
-              </a>
-            </motion.div>
-            <motion.div {...fade} transition={{ delay: 0.1 }} className="p-8 rounded-2xl bg-background border border-border/60 text-center">
-              <p className="text-sm font-medium text-muted-foreground mb-2">Cabinet classique</p>
-              <p className="text-4xl font-bold mb-2">120-240K€</p>
-              <p className="text-sm text-muted-foreground mb-4">pour 10 recrutements</p>
-              <p className="text-xs text-muted-foreground">15-25% du salaire annuel<br />Facturé au succès</p>
-            </motion.div>
-            <motion.div {...fade} transition={{ delay: 0.2 }} className="p-8 rounded-2xl bg-background border border-border/60 text-center">
-              <p className="text-sm font-medium text-muted-foreground mb-2">Recruteur interne (CDI)</p>
-              <p className="text-4xl font-bold mb-2">40-55K€</p>
-              <p className="text-sm text-muted-foreground mb-4">par an + charges</p>
-              <p className="text-xs text-muted-foreground">2-3 mois pour le recruter<br />CDI rigide</p>
-            </motion.div>
-          </div>
-          <motion.div {...fade} className="mt-8 text-center">
-            <p className="text-sm text-muted-foreground">
-              ✓ Pas de frais cachés · ✓ Facturation mensuelle · ✓ Préavis 1 mois · ✓ Remplacement sous 48h
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* ── OUTILS GRATUITS ── */}
       <section className="section-padding">
         <div className="container-wide">
