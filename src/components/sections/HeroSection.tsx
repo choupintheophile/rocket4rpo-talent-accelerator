@@ -15,7 +15,7 @@ const defaultContent: HeroContent = {
   headline: "Vos recrutements freinent votre ",
   highlightedText: "croissance\u00a0?",
   subtitle:
-    "Rocket4RPO intègre des Talent Acquisition Specialists seniors directement dans vos équipes. Résultat\u00a0: des recrutements plus rapides, des profils mieux qualifiés, et un coût maîtrisé.",
+    "Première shortlist qualifiée en 48h. 92\u00a0% de rétention à 12 mois. ~44\u00a0000\u00a0€ pour 10 recrutements.",
 };
 
 export const HeroSection = ({ content }: { content?: HeroContent }) => {
@@ -67,10 +67,10 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             {stats.map((s, i) => (
               <div
                 key={i}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/5 border border-background/10"
+                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-background/5 border border-background/10"
               >
-                <s.icon className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-sm font-semibold text-background">{s.value}</span>
+                <s.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-base font-bold text-background">{s.value}</span>
                 <span className="text-sm text-background/50">{s.label}</span>
               </div>
             ))}
@@ -83,14 +83,17 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
-            <a
-              href="https://meetings.hubspot.com/theophile-choupin/rpo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
-            >
-              {"Réserver un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
-            </a>
+            <div className="flex flex-col items-start">
+              <a
+                href="https://meetings.hubspot.com/theophile-choupin/rpo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
+              >
+                {"Réserver un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
+              </a>
+              <span className="mt-2 text-xs text-background/40">Gratuit · 30 min · Sans engagement</span>
+            </div>
             <a
               href="/calculateur"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors duration-200"
@@ -107,7 +110,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="mt-10 text-sm text-background/40"
           >
-            {"Sans engagement. Diagnostic gratuit. Réponse sous 24h. — 7 ans d\u2019expertise et 200+ recrutements réalisés."}
+            {"Déjà 200+ entreprises accompagnées. Réponse sous 24h."}
           </motion.p>
 
           {/* Urgency indicator */}
@@ -117,11 +120,11 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             transition={{ duration: 0.5, delay: 0.55 }}
             className="mt-4 flex items-center gap-2 text-sm text-background/40"
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
             </span>
-            <span>15 missions RPO actives — 3 créneaux disponibles ce mois</span>
+            <span>3 créneaux restants en avril</span>
           </motion.div>
         </div>
       </div>

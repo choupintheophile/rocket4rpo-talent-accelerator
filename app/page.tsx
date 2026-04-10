@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const homepageFaqs = [
-  { question: "C'est quoi le RPO exactement ?", answer: "Le RPO (Recruitment Process Outsourcing) consiste à intégrer un recruteur externe directement dans votre équipe. Il utilise vos outils, participe à vos rituels et recrute au nom de votre entreprise — pas au nom de Rocket4RPO." },
+  { question: "En quoi le RPO est différent d'un cabinet de recrutement ?", answer: "Le RPO (Recruitment Process Outsourcing) consiste à intégrer un recruteur externe directement dans votre équipe. Il utilise vos outils, participe à vos rituels et recrute au nom de votre entreprise — pas au nom de Rocket4RPO." },
   { question: "Combien ça coûte ?", answer: "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€. Un cabinet classique facturerait entre 60 000 et 200 000€ pour les mêmes recrutements." },
   { question: "Combien de temps pour démarrer ?", answer: "48h. Le Talent Acquisition Specialist rejoint vos outils et vos équipes sous 48h. Première shortlist qualifiée le même jour." },
   { question: "Quels postes pouvez-vous recruter ?", answer: "Tous. Sales, Tech, Finance, Marketing, Support, Product, Data, Management. Nos TA sont des généralistes expérimentés." },
@@ -66,8 +66,8 @@ export default async function HomePage({
         <FAQSection faqs={homepageFaqs} />
       </section>
       <CTASection
-        title="30 minutes pour transformer vos recrutements"
-        subtitle="Un diagnostic gratuit, sans engagement. On analyse votre besoin et on vous dit si le RPO est fait pour vous — honnêtement."
+        title="Votre prochain recrutement commence ici"
+        subtitle="30 min de diagnostic gratuit avec un expert RPO. On analyse votre besoin, on vous dit honnêtement si le RPO est fait pour vous."
         ctaLabel="Réserver mon créneau"
       />
     </>

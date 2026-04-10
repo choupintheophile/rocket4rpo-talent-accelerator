@@ -79,6 +79,10 @@ export default function HomepageSections() {
               </motion.div>
             ))}
           </div>
+          <p className="mt-8 text-center text-sm text-muted-foreground italic max-w-xl mx-auto">
+            &ldquo;En 4 mois, 8 postes pourvus. Le TA s&rsquo;est intégré comme un membre de l&rsquo;équipe.&rdquo;
+            <span className="block mt-1 not-italic font-medium text-foreground">&mdash; VP People, Scale-up SaaS (120 pers.)</span>
+          </p>
         </div>
       </section>
 
@@ -86,7 +90,7 @@ export default function HomepageSections() {
       <section className="section-padding bg-secondary">
         <div className="container-wide">
           <motion.div {...fade} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Recruter coûte cher. Mal recruter coûte encore plus.</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Chaque semaine sans le bon recruteur vous coûte entre 5 000 et 15 000€</h2>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
@@ -143,7 +147,7 @@ export default function HomepageSections() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="flex gap-4 p-5 rounded-xl border border-border/60 bg-background hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
+                className="flex gap-4 p-5 rounded-xl border border-border/60 bg-background hover:-translate-y-0.5 hover:shadow-md hover:border-l-primary hover:border-l-2 transition-all duration-200"
               >
                 <item.icon className="w-6 h-6 text-primary shrink-0 mt-0.5" />
                 <div>
@@ -152,6 +156,21 @@ export default function HomepageSections() {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-8 p-6 rounded-xl bg-rocket-cream border border-border/60 max-w-2xl mx-auto">
+            <div className="grid grid-cols-2 gap-6 text-center">
+              <div>
+                <p className="text-sm font-medium text-muted-foreground mb-1">Sans RPO</p>
+                <p className="text-2xl font-bold text-destructive">67 jours</p>
+                <p className="text-xs text-muted-foreground">time-to-hire moyen</p>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-muted-foreground mb-1">Avec Rocket4RPO</p>
+                <p className="text-2xl font-bold text-primary">28 jours</p>
+                <p className="text-xs text-muted-foreground">time-to-hire moyen</p>
+              </div>
+            </div>
           </div>
 
           <motion.div {...fade} className="mt-10 text-center">
@@ -171,7 +190,7 @@ export default function HomepageSections() {
           <motion.div {...fade} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Du premier appel aux premiers recrutements signés</h2>
             <p className="mt-4 text-lg text-background/80 max-w-2xl mx-auto">
-              4 étapes. Votre recruteur est opérationnel en 48h.
+              Du premier appel à votre première shortlist : 48h.
             </p>
           </motion.div>
           <div className="grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
@@ -211,7 +230,7 @@ export default function HomepageSections() {
             </p>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <motion.div {...fade} className="p-8 rounded-2xl bg-background border-2 border-primary/30 text-center shadow-sm">
+            <motion.div {...fade} className="p-8 rounded-2xl bg-background ring-2 ring-primary/30 text-center shadow-sm">
               <p className="text-sm font-medium text-primary mb-2">RPO Rocket4RPO</p>
               <p className="text-4xl font-bold text-primary mb-2">~44 000€</p>
               <p className="text-sm text-muted-foreground mb-4">pour 10 recrutements</p>
@@ -238,6 +257,11 @@ export default function HomepageSections() {
               <p className="text-xs text-muted-foreground">2-3 mois pour le recruter<br />CDI rigide</p>
             </motion.div>
           </div>
+          <motion.div {...fade} className="mt-8 text-center">
+            <p className="text-sm text-muted-foreground">
+              ✓ Pas de frais cachés · ✓ Facturation mensuelle · ✓ Préavis 1 mois · ✓ Remplacement sous 48h
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -274,6 +298,7 @@ export default function HomepageSections() {
               </motion.div>
             ))}
           </div>
+          <p className="mt-6 text-center text-xs text-muted-foreground">Utilisés par 300+ DRH et CEO</p>
         </div>
       </section>
     </>
