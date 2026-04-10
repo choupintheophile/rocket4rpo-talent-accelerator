@@ -19,7 +19,7 @@ const resources = [
     badge: "Guide PDF",
     icon: FileText,
     downloads: "Téléchargé 800+ fois",
-    file: "/resources/guide-rpo-vs-cabinet.html",
+    file: "/resources/guide-rpo-vs-cabinet.pdf",
   },
   {
     title: "Template : Scorecard de recrutement",
@@ -28,7 +28,7 @@ const resources = [
     badge: "Template",
     icon: ClipboardCheck,
     downloads: "Téléchargé 450+ fois",
-    file: "/resources/scorecard-recrutement.html",
+    file: "/resources/scorecard-recrutement.pdf",
   },
   {
     title: "Étude : Grille de rémunération Tech 2026",
@@ -37,7 +37,7 @@ const resources = [
     badge: "Étude",
     icon: BarChart3,
     downloads: "Téléchargé 1 200+ fois",
-    file: "/resources/grille-remuneration-tech-2026.html",
+    file: "/resources/grille-remuneration-tech-2026.pdf",
   },
   {
     title: "Checklist : Les 10 étapes d'un onboarding réussi",
@@ -46,7 +46,7 @@ const resources = [
     badge: "Checklist",
     icon: CheckSquare,
     downloads: "Téléchargé 350+ fois",
-    file: "/resources/checklist-onboarding.html",
+    file: "/resources/checklist-onboarding.pdf",
   },
 ];
 
