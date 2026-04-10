@@ -10,9 +10,9 @@ import { CTASection } from "@/components/shared/CTASection";
 import HomepageSections from "./HomepageSections";
 
 export const metadata: Metadata = {
-  title: "Rocket4RPO — Recruteur externalisé intégré à votre équipe",
+  title: "Rocket4RPO — Recruteur externalisé intégré à votre équipe | RPO France",
   description:
-    "Rocket4RPO intègre un Talent Acquisition Specialist senior dans votre équipe. Première shortlist en 48h, tous types de postes, à partir de 550€/jour. Une équipe cumulant 200+ recrutements.",
+    "Intégrez un recruteur senior dans votre équipe dès 48h. Jusqu'à 5x moins cher qu'un cabinet (à partir de 550€/jour). Tous types de postes. 200+ recrutements. Sans engagement.",
   alternates: { canonical: "/" },
 };
 

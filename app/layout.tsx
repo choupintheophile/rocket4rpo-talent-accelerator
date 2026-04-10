@@ -33,11 +33,11 @@ const dmSerif = DM_Serif_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Rocket4RPO — Talent Acquisition RPO pour entreprises Tech",
+    default: "Rocket4RPO — Recruteur externalisé intégré à votre équipe",
     template: "%s | Rocket4RPO",
   },
   description:
-    "Rocket4RPO met à disposition des Talent Acquisition Specialists experts pour accélérer vos recrutements. RPO à temps partagé ou à temps plein pour startups, scale-ups et ETI.",
+    "Recruteur externalisé intégré dans votre équipe. Première shortlist en 48h. Jusqu'à 5x moins cher qu'un cabinet. 200+ recrutements réalisés. À partir de 550€/jour.",
   metadataBase: new URL("https://rocket4rpo.com"),
   openGraph: {
     type: "website",
