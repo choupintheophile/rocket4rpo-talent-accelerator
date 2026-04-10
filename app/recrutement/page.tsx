@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import RecrutementPageClient from "./PageClient";
 
 export const metadata: Metadata = {
-  title: "Rejoignez Rocket4RPO — postes Talent Acquisition",
-  description: "Rocket4RPO recrute des Talent Acquisition Managers et Specialists. Rejoignez un réseau d'experts, des missions variées et des entreprises ambitieuses.",
+  title: "Devenir freelance TA/TAM chez Rocket4RPO — missions RPO",
+  description:
+    "Rejoignez le réseau Rocket4RPO. Missions RPO de 3 à 12 mois, TJM 350-550€/jour, remote-friendly. Postulez en 15 minutes.",
   alternates: { canonical: "/recrutement" },
 };
 
@@ -13,24 +14,24 @@ export default function Page() {
     "@type": "Organization",
     name: "Rocket4RPO",
     description:
-      "Rocket4RPO recrute des Talent Acquisition Managers et Specialists pour accompagner les entreprises Tech dans leurs recrutements.",
+      "Rocket4RPO sélectionne les meilleurs Talent Acquisition et TAM freelance pour des missions RPO chez des entreprises ambitieuses.",
     url: "https://www.rocket4rpo.com/recrutement",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Postes ouverts chez Rocket4RPO",
+      name: "Missions freelance TA/TAM chez Rocket4RPO",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Talent Acquisition Manager",
+            name: "Talent Acquisition Manager — Mission RPO freelance",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Talent Acquisition Specialist",
+            name: "Talent Acquisition Specialist — Mission RPO freelance",
           },
         },
       ],

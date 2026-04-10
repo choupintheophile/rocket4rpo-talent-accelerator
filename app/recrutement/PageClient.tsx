@@ -2,133 +2,272 @@
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Star, Users, Target } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle,
+  DollarSign,
+  Target,
+  Home,
+  Rocket,
+  Quote,
+} from "lucide-react";
+
+const HUBSPOT_LINK =
+  "https://meetings.hubspot.com/theophile-choupin/rpo";
+
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+function fadeInDelay(delay: number) {
+  return {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay },
+  };
+}
 
 export default function RecrutementPageClient() {
   return (
     <>
       <Breadcrumbs items={[{ label: "Nous rejoindre" }]} />
 
-      <section className="section-padding pt-8">
+      {/* ── Hero ── */}
+      <section className="section-padding pt-8 bg-secondary">
         <div className="container-wide">
           <div className="max-w-3xl">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <motion.div {...fadeIn}>
               <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-                Carrières
+                Rejoignez le réseau Rocket4RPO
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Vous êtes <span className="text-gradient">Talent Acquisition</span> ? Rejoignez le réseau Rocket4RPO
+                Vous êtes{" "}
+                <span className="text-gradient">
+                  Talent Acquisition freelance
+                </span>{" "}
+                ? Rejoignez les meilleurs.
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Nous recherchons en permanence des Talent Acquisition Managers et Specialists d&apos;exception pour accompagner les entreprises Tech
-                les plus ambitieuses.
+              <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                Rocket4RPO sélectionne les meilleurs TA et TAM freelance pour
+                des missions RPO chez des entreprises ambitieuses. Missions
+                longues, variées, et bien rémunérées.
               </p>
+              <a
+                href={HUBSPOT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                Postuler — prendre RDV <ArrowRight className="w-4 h-4" />
+              </a>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              {...fadeInDelay(0.2)}
+              className="mt-10 grid grid-cols-3 gap-6 max-w-lg"
+            >
+              {[
+                { value: "15+", label: "missions actives" },
+                { value: "350-550€", label: "TJM / jour" },
+                { value: "3 à 12", label: "mois de mission" },
+              ].map((stat, i) => (
+                <div key={i} className="text-center">
+                  <p className="text-2xl font-bold text-primary">
+                    {stat.value}
+                  </p>
+                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Salary / Contract info */}
-      <section className="section-padding bg-primary/5 border-y border-primary/10">
-        <div className="container-wide">
-          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl">
-            <div className="p-5 rounded-xl bg-background border border-border">
-              <h3 className="font-bold mb-1">TJM indicatif</h3>
-              <p className="text-2xl font-bold text-primary">350 – 550€/jour</p>
-              <p className="text-sm text-muted-foreground mt-1">Selon expérience et spécialisation</p>
-            </div>
-            <div className="p-5 rounded-xl bg-background border border-border">
-              <h3 className="font-bold mb-1">Type de contrat</h3>
-              <p className="text-lg font-semibold">Missions freelance de 3 à 12 mois</p>
-              <p className="text-sm text-muted-foreground mt-1">Remote-friendly (Paris, Lyon, full remote)</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-secondary">
-        <div className="container-wide">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Le profil que nous recherchons</h2>
-              <ul className="space-y-4">
-                {[
-                  "2+ ans d'expérience en Talent Acquisition ou recrutement",
-                  "Maîtrise des techniques d'approche directe et de sourcing avancé",
-                  "Connaissance de l'écosystème Tech / SaaS français",
-                  "Rigueur dans le suivi de process et le reporting",
-                  "Capacité à s'intégrer rapidement dans des cultures d'entreprise variées",
-                  "Excellent relationnel avec les hiring managers",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Ce que nous offrons</h2>
-              <div className="space-y-4">
-                {[
-                  { icon: Star, title: "Missions variées", text: "Travaillez avec des startups, scale-ups et grands groupes Tech." },
-                  { icon: Users, title: "Communauté d'experts", text: "Intégrez un réseau de TA Specialists qui partagent leurs bonnes pratiques." },
-                  {
-                    icon: Target,
-                    title: "Développement",
-                    text: "Montez en compétences sur les dernières techniques de sourcing et de recrutement.",
-                  },
-                ].map((item, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-background border border-border">
-                    <div className="flex items-center gap-3 mb-2">
-                      <item.icon className="w-5 h-5 text-primary" />
-                      <h3 className="font-bold">{item.title}</h3>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Recruitment process */}
+      {/* ── Pourquoi rejoindre Rocket4RPO ── */}
       <section className="section-padding">
         <div className="container-wide">
-          <h2 className="text-3xl font-bold mb-8 text-center">Notre process de recrutement</h2>
+          <motion.h2
+            {...fadeIn}
+            className="text-3xl font-bold mb-8 text-center"
+          >
+            Pourquoi rejoindre Rocket4RPO
+          </motion.h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {[
-              { step: "1", title: "Call découverte", duration: "30 min", desc: "Échange sur votre parcours et vos spécialités" },
-              { step: "2", title: "Mise en situation", duration: "Cas pratique", desc: "Cas pratique de sourcing et qualification" },
-              { step: "3", title: "Rencontre équipe", duration: "Échange", desc: "Échange avec un membre de l'équipe Rocket4RPO" },
-              { step: "4", title: "Proposition", duration: "Sous 48h", desc: "Offre sous 48h après validation" },
-            ].map((item, i) => (
-              <div key={i} className="relative p-5 rounded-xl border border-border bg-card text-center">
-                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold mx-auto mb-3">
-                  {item.step}
+              {
+                icon: DollarSign,
+                title: "TJM attractif",
+                text: "350 à 550\u00a0€/jour selon expérience et spécialisation. Paiement à 30 jours.",
+              },
+              {
+                icon: Target,
+                title: "Missions variées",
+                text: "Startups, scale-ups, ETI, grands groupes. Tous secteurs, tous types de postes.",
+              },
+              {
+                icon: Home,
+                title: "Flexibilité totale",
+                text: "Remote-friendly. Paris, Lyon, ou full remote. Missions de 3 à 12 mois.",
+              },
+              {
+                icon: Rocket,
+                title: "Communauté d'experts",
+                text: "Rejoignez un réseau de TA seniors. Échanges, entraide, événements.",
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={i}
+                {...fadeInDelay(i * 0.1)}
+                className="p-6 rounded-xl border border-border bg-card"
+              >
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <card.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-bold mb-1">{item.title}</h3>
-                <p className="text-xs font-medium text-primary mb-2">{item.duration}</p>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
-              </div>
+                <h3 className="font-bold mb-2">{card.title}</h3>
+                <p className="text-sm text-muted-foreground">{card.text}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ── Profil recherché ── */}
       <section className="section-padding bg-secondary">
-        <div className="container-tight text-center">
-          <h2 className="text-3xl font-bold mb-4">Intéressé(e) ?</h2>
-          <p className="text-lg text-muted-foreground mb-8">Contactez-nous pour discuter des opportunités disponibles.</p>
-          <a
-            href="https://meetings.hubspot.com/theophile-choupin/rpo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+        <div className="container-wide">
+          <div className="max-w-3xl mx-auto">
+            <motion.h2 {...fadeIn} className="text-3xl font-bold mb-8">
+              Le profil que nous recherchons
+            </motion.h2>
+            <ul className="space-y-4">
+              {[
+                "2+ ans d'expérience en Talent Acquisition ou recrutement",
+                "Maîtrise du sourcing (LinkedIn Recruiter, Boolean, approche directe)",
+                "Expérience en entreprise Tech/SaaS (un plus, pas obligatoire)",
+                "Autonomie et capacité à s'intégrer rapidement dans une équipe",
+                "Statut freelance/indépendant (micro-entreprise, portage, etc.)",
+              ].map((item, i) => (
+                <motion.li
+                  key={i}
+                  {...fadeInDelay(i * 0.08)}
+                  className="flex items-start gap-3"
+                >
+                  <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Process de sélection ── */}
+      <section className="section-padding">
+        <div className="container-wide">
+          <motion.h2
+            {...fadeIn}
+            className="text-3xl font-bold mb-8 text-center"
           >
-            Postuler ou rejoindre le réseau <ArrowRight className="w-4 h-4" />
-          </a>
+            Notre process de sélection
+          </motion.h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                step: "1",
+                title: "Call découverte",
+                duration: "30 min",
+                desc: "Échange sur votre parcours et vos spécialités",
+              },
+              {
+                step: "2",
+                title: "Mise en situation",
+                duration: "Cas pratique",
+                desc: "Cas pratique de sourcing et qualification",
+              },
+              {
+                step: "3",
+                title: "Rencontre équipe",
+                duration: "Échange",
+                desc: "Échange avec l'équipe Rocket4RPO",
+              },
+              {
+                step: "4",
+                title: "Intégration au réseau",
+                duration: "Bienvenue",
+                desc: "Accès aux missions et matching avec les clients",
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                {...fadeInDelay(i * 0.1)}
+                className="relative p-5 rounded-xl border border-border bg-card text-center"
+              >
+                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold mx-auto mb-3">
+                  {item.step}
+                </div>
+                <h3 className="font-bold mb-1">{item.title}</h3>
+                <p className="text-xs font-medium text-primary mb-2">
+                  {item.duration}
+                </p>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Témoignage ── */}
+      <section className="section-padding bg-secondary">
+        <div className="container-tight">
+          <motion.div
+            {...fadeIn}
+            className="max-w-2xl mx-auto text-center"
+          >
+            <Quote className="w-8 h-8 text-primary/40 mx-auto mb-4" />
+            <blockquote className="text-lg italic text-muted-foreground leading-relaxed">
+              &ldquo;Depuis que j&apos;ai rejoint Rocket4RPO, j&apos;enchaîne
+              les missions sans interruption. Le matching est rapide, les
+              clients sont quali, et le TJM est juste.&rdquo;
+            </blockquote>
+            <p className="mt-4 font-semibold">L.C.</p>
+            <p className="text-sm text-muted-foreground">
+              TA Specialist freelance, 4 ans d&apos;expérience
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── CTA final ── */}
+      <section className="section-padding">
+        <div className="container-tight text-center">
+          <motion.div {...fadeIn}>
+            <h2 className="text-3xl font-bold mb-4">
+              Prêt à rejoindre le réseau ?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+              Un call de 15 minutes suffit pour comprendre votre profil et vous
+              proposer des missions adaptées.
+            </p>
+            <a
+              href={HUBSPOT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Prendre RDV maintenant <ArrowRight className="w-4 h-4" />
+            </a>
+            <p className="mt-6 text-sm text-muted-foreground">
+              Pas encore prêt ? Envoyez votre CV à{" "}
+              <a
+                href="mailto:recrutement@rocket4rpo.com"
+                className="text-primary hover:underline"
+              >
+                recrutement@rocket4rpo.com
+              </a>
+            </p>
+          </motion.div>
         </div>
       </section>
     </>
