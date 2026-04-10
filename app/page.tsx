@@ -1,51 +1,27 @@
 import type { Metadata } from "next";
 export const dynamic = "force-dynamic";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { TrustSection } from "@/components/sections/TrustSection";
-import { ProblemSection } from "@/components/sections/ProblemSection";
-import { OffersSection } from "@/components/sections/OffersSection";
-import { MethodSection } from "@/components/sections/MethodSection";
-import { ComparisonSection } from "@/components/sections/ComparisonSection";
-import { BlogPreview } from "@/components/sections/BlogPreview";
-import { CTASection } from "@/components/shared/CTASection";
-import { FAQSection } from "@/components/shared/FAQSection";
 import { organizationSchema, professionalServiceSchema, faqSchema } from "@/lib/seo";
 import { getBlogPosts } from "@/lib/db";
 import { detectSegment, heroContent } from "@/lib/personalization";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { BlogPreview } from "@/components/sections/BlogPreview";
+import { FAQSection } from "@/components/shared/FAQSection";
+import { CTASection } from "@/components/shared/CTASection";
+import HomepageSections from "./HomepageSections";
 
 export const metadata: Metadata = {
-  title: "Rocket4RPO — Talent Acquisition RPO pour entreprises Tech",
+  title: "Rocket4RPO — Recruteur externalisé intégré à votre équipe",
   description:
-    "Recruteur RPO dédié pour startups et scale-ups tech. Talent Acquisition à temps partagé ou plein. Réduisez vos coûts de recrutement de 40%.",
+    "Rocket4RPO intègre un Talent Acquisition Specialist senior dans votre équipe. Première shortlist en 48h, tous types de postes, à partir de 550€/jour. 200+ recrutements réalisés.",
   alternates: { canonical: "/" },
 };
 
 const homepageFaqs = [
-  {
-    question: "Qu'est-ce que le RPO (Recruitment Process Outsourcing) ?",
-    answer:
-      "Le RPO consiste à externaliser tout ou partie de votre processus de recrutement auprès d'un expert Talent Acquisition intégré à votre équipe. Contrairement à un cabinet, le RPO travaille en continu depuis vos outils (ATS, Slack) et participe à vos rituels d'équipe.",
-  },
-  {
-    question: "Combien coûte un RPO ?",
-    answer:
-      "Chez Rocket4RPO, le tarif est un TJM de 550 €/jour, ajustable de 1 à 4 jours par semaine. Pour 10 recrutements, cela représente environ 44 000 €, contre 60 000 à 200 000 € pour un cabinet facturant 15-25 % du salaire annuel.",
-  },
-  {
-    question: "Quelle est la différence entre un RPO et un cabinet de recrutement ?",
-    answer:
-      "Le RPO s'intègre dans votre équipe et travaille en continu sur vos recrutements avec vos outils. Le cabinet intervient ponctuellement, mission par mission, sans intégration à vos process internes. Le RPO offre plus de flexibilité et un coût prévisible.",
-  },
-  {
-    question: "En combien de temps un RPO peut-il démarrer ?",
-    answer:
-      "Chez Rocket4RPO, le démarrage se fait en 48 h après signature. Votre recruteur RPO dédié est opérationnel immédiatement grâce à une méthodologie éprouvée sur 200+ recrutements.",
-  },
-  {
-    question: "Le RPO remplace-t-il mon équipe RH interne ?",
-    answer:
-      "Non, le RPO complète votre équipe RH. Il prend en charge le sourcing, la pré-qualification et la coordination des entretiens, permettant à vos RH de se concentrer sur les sujets stratégiques (marque employeur, onboarding, rétention).",
-  },
+  { question: "C'est quoi le RPO exactement ?", answer: "Le RPO (Recruitment Process Outsourcing) consiste à intégrer un recruteur externe directement dans votre équipe. Il utilise vos outils, participe à vos rituels et recrute au nom de votre entreprise — pas au nom de Rocket4RPO." },
+  { question: "Combien ça coûte ?", answer: "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€. Un cabinet classique facturerait entre 60 000 et 200 000€ pour les mêmes recrutements." },
+  { question: "Combien de temps pour démarrer ?", answer: "48h. Le Talent Acquisition Specialist rejoint vos outils et vos équipes sous 48h. Première shortlist qualifiée le même jour." },
+  { question: "Quels postes pouvez-vous recruter ?", answer: "Tous. Sales, Tech, Finance, Marketing, Support, Product, Data, Management. Nos TA sont des généralistes expérimentés." },
+  { question: "Et si le recruteur ne convient pas ?", answer: "On le remplace sous 48h. Notre réseau de freelances TA seniors nous permet de réagir immédiatement." },
 ];
 
 export default async function HomePage({
@@ -82,30 +58,18 @@ export default async function HomePage({
           __html: JSON.stringify(faqSchema(homepageFaqs)),
         }}
       />
+
       <HeroSection content={hero} />
-
-      {/* Citation capsule — AI search optimization */}
-      <section className="py-4">
-        <div className="container-tight">
-          <div className="p-6 rounded-xl bg-rocket-cream border border-primary/20">
-            <p className="text-sm font-semibold text-primary mb-2">En bref</p>
-            <p className="text-foreground font-medium">
-              Rocket4RPO est un cabinet RPO (Recruitment Process Outsourcing) qui intègre des Talent Acquisition Specialists seniors dans les entreprises pour accélérer leurs recrutements. Avec 200+ recrutements réalisés et 92% de rétention à 12 mois, Rocket4RPO accompagne les startups, scale-ups et ETI dans le recrutement de tous types de profils.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <TrustSection />
-      <ProblemSection />
-      <OffersSection />
-      <MethodSection />
-      <ComparisonSection />
+      <HomepageSections />
       <BlogPreview posts={serializedPosts} />
       <section className="bg-rocket-cream">
         <FAQSection faqs={homepageFaqs} />
       </section>
-      <CTASection />
+      <CTASection
+        title="30 minutes pour transformer vos recrutements"
+        subtitle="Un diagnostic gratuit, sans engagement. On analyse votre besoin et on vous dit si le RPO est fait pour vous — honnêtement."
+        ctaLabel="Réserver mon créneau"
+      />
     </>
   );
 }
