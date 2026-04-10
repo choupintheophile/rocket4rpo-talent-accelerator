@@ -19,7 +19,7 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
     <>
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
 
-      <article className="section-padding pt-8">
+      <article className="section-padding pt-8 bg-[hsl(var(--rocket-cream))]">
         <div className="container-tight">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="inline-block px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">{post.category}</span>

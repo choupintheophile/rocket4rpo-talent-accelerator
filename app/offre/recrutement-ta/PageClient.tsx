@@ -146,7 +146,7 @@ export default function RecrutementTAPageClient() {
       </section>
 
       {/* ── 2. POURQUOI NOUS ── */}
-      <section className="section-padding bg-secondary">
+      <section className="section-padding bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <motion.div {...fadeUp} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -203,7 +203,7 @@ export default function RecrutementTAPageClient() {
       </section>
 
       {/* ── 4. PROCESS ── */}
-      <section className="section-padding bg-foreground text-background">
+      <section className="section-padding bg-[hsl(var(--rocket-navy-soft))] text-background">
         <div className="container-wide">
           <motion.div {...fadeUp} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -234,7 +234,7 @@ export default function RecrutementTAPageClient() {
       </section>
 
       {/* ── 5. FAQ ── */}
-      <FAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} className="bg-[hsl(var(--rocket-cream))]" />
 
       {/* ── 6. CTA ── */}
       <CTASection

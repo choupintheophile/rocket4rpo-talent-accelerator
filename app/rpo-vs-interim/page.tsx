@@ -296,7 +296,7 @@ export default function RpoVsInterimPage() {
       </section>
 
       {/* FAQ */}
-      <section className="section-padding bg-secondary/30">
+      <section className="section-padding bg-[hsl(var(--rocket-cream))]">
         <div className="container-tight">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
             Questions fr&eacute;quentes : RPO vs Int&eacute;rim

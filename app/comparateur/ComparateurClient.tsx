@@ -179,7 +179,7 @@ export default function ComparateurClient() {
       <Breadcrumbs items={[{ label: "Comparateur RPO" }]} />
 
       {/* Hero */}
-      <section className="section-padding pt-8">
+      <section className="section-padding pt-8 bg-[hsl(var(--rocket-cream))]">
         <div className="container-tight">
           <motion.div {...fadeUp}>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
@@ -199,7 +199,7 @@ export default function ComparateurClient() {
       </section>
 
       {/* Citation capsule — AI search optimization */}
-      <section className="py-4">
+      <section className="py-4 bg-[hsl(var(--rocket-cream))]">
         <div className="container-tight">
           <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
             <p className="text-sm font-semibold text-primary mb-2">En bref</p>
@@ -211,7 +211,7 @@ export default function ComparateurClient() {
       </section>
 
       {/* Comparison Table */}
-      <section className="section-padding pt-0">
+      <section className="section-padding pt-0 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <motion.div
             {...fadeUp}

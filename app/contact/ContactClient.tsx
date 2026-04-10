@@ -40,7 +40,7 @@ export default function ContactClient() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="lg:col-span-2 space-y-5"
+              className="lg:col-span-2 space-y-5 p-6 rounded-2xl bg-[hsl(var(--rocket-cream))]"
             >
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                 {"Réservez votre "}

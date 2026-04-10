@@ -55,7 +55,7 @@ export default function RessourcesClient() {
     <>
       <Breadcrumbs items={[{ label: "Ressources" }]} />
 
-      <section className="section-padding pt-8">
+      <section className="section-padding pt-8 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

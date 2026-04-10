@@ -161,7 +161,7 @@ export default function AuditRecrutementPageClient() {
       </section>
 
       {/* ── 3. FORMATS D'INTERVENTION ── */}
-      <section className="section-padding">
+      <section className="section-padding bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <motion.div {...fadeUp} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">

@@ -35,11 +35,11 @@ export default function RecrutementPageClient() {
       <Breadcrumbs items={[{ label: "Nous rejoindre" }]} />
 
       {/* ── Hero ── */}
-      <section className="section-padding pt-8 bg-secondary">
+      <section className="section-padding pt-8 bg-[hsl(var(--rocket-navy-soft))] text-background">
         <div className="container-wide">
           <div className="max-w-3xl">
             <motion.div {...fadeIn}>
-              <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
+              <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/20 text-primary mb-4">
                 Rejoignez le réseau Rocket4RPO
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
@@ -49,7 +49,7 @@ export default function RecrutementPageClient() {
                 </span>{" "}
                 ? Rejoignez les meilleurs.
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              <p className="mt-6 text-lg text-background/70 leading-relaxed max-w-2xl">
                 Rocket4RPO sélectionne les meilleurs TA et TAM freelance pour
                 des missions RPO chez des entreprises ambitieuses. Missions
                 longues, variées, et bien rémunérées.
@@ -78,7 +78,7 @@ export default function RecrutementPageClient() {
                   <p className="text-2xl font-bold text-primary">
                     {stat.value}
                   </p>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
+                  <p className="text-sm text-background/60">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -135,7 +135,7 @@ export default function RecrutementPageClient() {
       </section>
 
       {/* ── Profil recherché ── */}
-      <section className="section-padding bg-secondary">
+      <section className="section-padding bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <div className="max-w-3xl mx-auto">
             <motion.h2 {...fadeIn} className="text-3xl font-bold mb-8">

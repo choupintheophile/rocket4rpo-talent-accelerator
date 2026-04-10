@@ -67,7 +67,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       </section>
 
       {/* Calculator */}
-      <section className="pb-20 md:pb-28">
+      <section className="pb-20 md:pb-28 bg-[hsl(var(--rocket-cream))]">
         <div className="container-tight">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Inputs */}

@@ -271,7 +271,7 @@ export default function RPOPageClient() {
       </section>
 
       {/* ── 4. CE QUE VOUS OBTENEZ ── */}
-      <section className="section-padding bg-foreground text-background">
+      <section className="section-padding bg-[hsl(var(--rocket-navy-soft))] text-background">
         <div className="container-wide">
           <motion.div {...fadeUp} className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -295,7 +295,7 @@ export default function RPOPageClient() {
       </section>
 
       {/* ── 5. T\u00c9MOIGNAGE ── */}
-      <section className="py-16 bg-primary/5 border-y border-primary/10">
+      <section className="py-16 bg-[hsl(var(--rocket-cream))] border-y border-primary/10">
         <div className="container-wide">
           <motion.div {...fadeUp} className="max-w-3xl mx-auto text-center">
             <p className="text-xl md:text-2xl italic text-muted-foreground leading-relaxed">
@@ -310,7 +310,7 @@ export default function RPOPageClient() {
       </section>
 
       {/* ── 6. FAQ ── */}
-      <FAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} className="bg-[hsl(var(--rocket-cream))]" />
 
       {/* ── 7. CTA ── */}
       <CTASection

@@ -6,8 +6,8 @@ interface FAQ {
   answer: string;
 }
 
-export const FAQSection = ({ faqs, title = "Questions fréquentes" }: { faqs: FAQ[]; title?: string }) => (
-  <section className="section-padding">
+export const FAQSection = ({ faqs, title = "Questions fréquentes", className }: { faqs: FAQ[]; title?: string; className?: string }) => (
+  <section className={`section-padding ${className ?? ""}`}>
     <div className="container-tight">
       <SectionHeading title={title} />
       <Accordion type="single" collapsible className="max-w-2xl mx-auto">
