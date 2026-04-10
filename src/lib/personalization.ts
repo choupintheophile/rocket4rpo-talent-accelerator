@@ -36,30 +36,30 @@ export interface HeroContent {
 export const heroContent: Record<VisitorSegment, HeroContent> = {
   tech: {
     badge: "RPO — Recrutement externalisé sur-mesure",
-    headline: "Vos postes Tech restent ouverts trop longtemps\u00a0?",
+    headline: "Vos postes Tech restent ouverts trop longtemps\ ?",
     highlightedText: "Première shortlist en 48h",
     subtitle:
-      "Nos TA parlent votre stack. Sourcing GitHub, communautés tech, approche directe. Une équipe cumulant 200+ recrutements, 92\u00a0% de rétention à 12 mois.",
+      "Nos TA parlent votre stack. Sourcing GitHub, communautés tech, approche directe. Une équipe cumulant 200+ recrutements, 92\ % de rétention à 12 mois.",
   },
   drh: {
     badge: "RPO — Recrutement externalisé sur-mesure",
-    headline: "Vos KPIs recrutement méritent mieux qu\u2019un tableur",
+    headline: "Vos KPIs recrutement méritent mieux qu\’un tableur",
     highlightedText: "Reporting hebdomadaire inclus",
     subtitle:
       "Process structuré, scorecards, dashboards. Une équipe cumulant 200+ recrutements avec une méthodologie éprouvée. Diagnostic gratuit en 30 min.",
   },
   ceo: {
-    badge: "Jusqu\u2019à 5x moins cher qu\u2019un cabinet. 2x plus rapide.",
+    badge: "Jusqu\’à 5x moins cher qu\’un cabinet. 2x plus rapide.",
     headline: "Arrêtez de brûler du cash en frais de recrutement",
-    highlightedText: "~44\u00a0000\u20ac pour 10 recrutements",
+    highlightedText: "~44\ 000€ pour 10 recrutements",
     subtitle:
-      "vs 120\u00a0000 à 200\u00a0000\u20ac avec un cabinet. Budget prévisible, résultats en 48h, zéro engagement long terme.",
+      "vs 120\ 000 à 200\ 000€ avec un cabinet. Budget prévisible, résultats en 48h, zéro engagement long terme.",
   },
   default: {
     badge: "RPO — Recrutement externalisé sur-mesure",
     headline: "Vos recrutements freinent votre ",
-    highlightedText: "croissance\u00a0?",
+    highlightedText: "croissance\ ?",
     subtitle:
-      "Rocket4RPO intègre des Talent Acquisition Specialists seniors directement dans vos équipes. Résultat\u00a0: des recrutements plus rapides, des profils mieux qualifiés, et un coût maîtrisé.",
+      "Rocket4RPO intègre des Talent Acquisition Specialists seniors directement dans vos équipes. Résultat\ : des recrutements plus rapides, des profils mieux qualifiés, et un coût maîtrisé.",
   },
 };

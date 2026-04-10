@@ -125,7 +125,7 @@ export default function LoginPage() {
 
           <h1 className="text-2xl font-bold mb-2">Connexion</h1>
           <p className="text-muted-foreground text-sm mb-8">
-            Acc{"\é"}dez au vivier TA/TAM Rocket4RPO
+            Acc{"é"}dez au vivier TA/TAM Rocket4RPO
           </p>
 
           {GOOGLE_CLIENT_ID && (
@@ -178,7 +178,7 @@ export default function LoginPage() {
 
           <div className="mt-8 flex items-center gap-2 text-xs text-muted-foreground">
             <Shield className="w-3.5 h-3.5" />
-            <span>Acc{"\è"}s r{"\é"}serv{"\é"} aux {"\é"}quipes @rocket4rpo.com</span>
+            <span>Acc{"è"}s r{"é"}serv{"é"} aux {"é"}quipes @rocket4rpo.com</span>
           </div>
         </motion.div>
       </div>
@@ -196,8 +196,8 @@ export default function LoginPage() {
           <h2 className="text-2xl font-bold text-white mb-8">Vivier TA/TAM</h2>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { value: "4 100+", label: "profils \évalu\és" },
-              { value: "32", label: "crit\ères" },
+              { value: "4 100+", label: "profils évalués" },
+              { value: "32", label: "critères" },
             ].map((stat) => (
               <div key={stat.label} className="p-3 rounded-xl bg-white/5 border border-white/10">
                 <div className="text-white font-bold font-mono text-lg">{stat.value}</div>

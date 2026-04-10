@@ -297,7 +297,7 @@ export default function AssessmentClient() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto"
                   >
-                    {"\É"}valuez votre maturité Talent Acquisition et recevez des
+                    {"É"}valuez votre maturité Talent Acquisition et recevez des
                     recommandations personnalisées pour améliorer vos recrutements.
                   </motion.p>
 

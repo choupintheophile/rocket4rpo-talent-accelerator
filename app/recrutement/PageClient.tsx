@@ -66,77 +66,77 @@ function useSectionInView() {
 const BENEFITS = [
   {
     icon: Briefcase,
-    title: "Missions r\éguli\ères",
+    title: "Missions régulières",
     description:
-      "Pas de prospection. Nous vous proposons des missions RPO align\ées avec votre expertise et vos pr\éf\érences.",
-    highlight: "Z\éro prospection",
+      "Pas de prospection. Nous vous proposons des missions RPO alignées avec votre expertise et vos préférences.",
+    highlight: "Zéro prospection",
   },
   {
     icon: Zap,
-    title: "TJM comp\étitifs",
+    title: "TJM compétitifs",
     description:
-      "350 \à 600\ \€/jour selon votre exp\érience et sp\écialisation. Paiement \à 30\ jours, sans surprise.",
-    highlight: "350-600\€/jour",
+      "350 à 600\ €/jour selon votre expérience et spécialisation. Paiement à 30\ jours, sans surprise.",
+    highlight: "350-600€/jour",
   },
   {
     icon: Globe,
     title: "Autonomie totale",
     description:
-      "Full remote, horaires flexibles. Travaillez o\ù et quand vous le souhaitez. Paris, Lyon, ou ailleurs.",
+      "Full remote, horaires flexibles. Travaillez où et quand vous le souhaitez. Paris, Lyon, ou ailleurs.",
     highlight: "Full remote",
   },
   {
     icon: Users,
-    title: "Communaut\é de TA seniors",
+    title: "Communauté de TA seniors",
     description:
-      "\Échanges, entraide, \év\énements. Rejoignez un r\éseau de recruteurs exp\ériment\és qui partagent vos ambitions.",
+      "Échanges, entraide, événements. Rejoignez un réseau de recruteurs expérimentés qui partagent vos ambitions.",
     highlight: "50+ membres",
   },
   {
     icon: Shield,
     title: "Support administratif",
     description:
-      "Facturation, contrats, aspects juridiques : on g\ère tout l\’administratif pour que vous vous concentriez sur le recrutement.",
-    highlight: "Z\éro admin",
+      "Facturation, contrats, aspects juridiques : on gère tout l\’administratif pour que vous vous concentriez sur le recrutement.",
+    highlight: "Zéro admin",
   },
   {
     icon: GraduationCap,
-    title: "Mont\ée en comp\étences",
+    title: "Montée en compétences",
     description:
-      "Formations r\éguli\ères, partage de bonnes pratiques, acc\ès aux derniers outils et m\éthodes du march\é.",
+      "Formations régulières, partage de bonnes pratiques, accès aux derniers outils et méthodes du marché.",
     highlight: "Formation continue",
   },
 ];
 
 const CRITERIA = [
   {
-    text: "3+ ans d\’exp\érience en Talent Acquisition ou RPO",
-    detail: "Vous avez g\ér\é des missions de bout en bout avec des r\ésultats mesurables.",
+    text: "3+ ans d\’expérience en Talent Acquisition ou RPO",
+    detail: "Vous avez géré des missions de bout en bout avec des résultats mesurables.",
   },
   {
-    text: "Sourcing multicanal ma\îtris\é",
+    text: "Sourcing multicanal maîtrisé",
     detail:
-      "LinkedIn Recruiter, Boolean search, approche directe, chasse\… vous savez o\ù trouver les talents.",
+      "LinkedIn Recruiter, Boolean search, approche directe, chasse… vous savez où trouver les talents.",
   },
   {
-    text: "Autonome et orient\é r\ésultats",
+    text: "Autonome et orienté résultats",
     detail:
       "Vous pilotez vos KPIs, anticipez les besoins clients et prenez des initiatives.",
   },
   {
     text: "Stack outils solide",
     detail:
-      "LinkedIn Recruiter, ATS (Lever, Greenhouse, Teamtailor\…), CRM, outils de sourcing.",
+      "LinkedIn Recruiter, ATS (Lever, Greenhouse, Teamtailor…), CRM, outils de sourcing.",
   },
   {
-    text: "Fran\çais courant, anglais professionnel",
+    text: "Français courant, anglais professionnel",
     detail:
       "Vous interagissez avec des candidats et stakeholders dans les deux langues.",
   },
   {
     text: "Statut freelance ou portage salarial",
     detail:
-      "Micro-entreprise, SASU, portage\… vous \êtes d\éj\à ind\épendant ou pr\êt \à le devenir.",
+      "Micro-entreprise, SASU, portage… vous êtes déjà indépendant ou prêt à le devenir.",
   },
 ];
 
@@ -154,23 +154,23 @@ const PROCESS_STEPS = [
     title: "Entretien de qualification",
     duration: "30 min",
     description:
-      "\Échange en visio avec notre \équipe. On parle de votre exp\érience, vos sp\écialisations et vos attentes.",
+      "Échange en visio avec notre équipe. On parle de votre expérience, vos spécialisations et vos attentes.",
     icon: Calendar,
   },
   {
     step: "03",
-    title: "\Évaluation sur 7 crit\ères",
+    title: "Évaluation sur 7 critères",
     duration: "Score 80%+ requis",
     description:
-      "Sourcing, outils, autonomie, KPIs, qualification, posture conseil, exp\érience RPO.",
+      "Sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO.",
     icon: Target,
   },
   {
     step: "04",
-    title: "Int\égration au vivier",
+    title: "Intégration au vivier",
     duration: "Bienvenue !",
     description:
-      "Acc\ès aux missions, onboarding personnalis\é, et int\égration dans la communaut\é Rocket4RPO.",
+      "Accès aux missions, onboarding personnalisé, et intégration dans la communauté Rocket4RPO.",
     icon: Handshake,
   },
 ];
@@ -178,26 +178,26 @@ const PROCESS_STEPS = [
 const TESTIMONIALS = [
   {
     quote:
-      "Depuis que j\’ai rejoint Rocket4RPO, j\’encha\îne les missions sans interruption. Le matching est rapide, les clients sont quali, et le TJM est juste. C\’est exactement ce que je cherchais en freelance.",
+      "Depuis que j\’ai rejoint Rocket4RPO, j\’enchaîne les missions sans interruption. Le matching est rapide, les clients sont quali, et le TJM est juste. C\’est exactement ce que je cherchais en freelance.",
     name: "L.C.",
     role: "TA Specialist freelance",
-    experience: "4 ans d\’exp\érience",
+    experience: "4 ans d\’expérience",
     rating: 5,
   },
   {
     quote:
-      "Ce qui fait la diff\érence, c\’est la communaut\é. On \échange sur nos pratiques, on se recommande des outils, et l\’\équipe Rocket4RPO est toujours dispo pour nous aider. On ne se sent jamais seul.",
+      "Ce qui fait la différence, c\’est la communauté. On échange sur nos pratiques, on se recommande des outils, et l\’équipe Rocket4RPO est toujours dispo pour nous aider. On ne se sent jamais seul.",
     name: "M.R.",
     role: "TAM freelance",
-    experience: "6 ans d\’exp\érience",
+    experience: "6 ans d\’expérience",
     rating: 5,
   },
   {
     quote:
-      "J\’ai test\é plusieurs plateformes de freelance en recrutement. Rocket4RPO est de loin la plus s\érieuse : missions longues, clients engag\és, et z\éro galère administrative.",
+      "J\’ai testé plusieurs plateformes de freelance en recrutement. Rocket4RPO est de loin la plus sérieuse : missions longues, clients engagés, et zéro galère administrative.",
     name: "S.B.",
     role: "TA Specialist freelance",
-    experience: "5 ans d\’exp\érience",
+    experience: "5 ans d\’expérience",
     rating: 5,
   },
 ];
@@ -245,7 +245,7 @@ export default function RecrutementPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
             >
-              Vous \êtes un expert du recrutement ?{" "}
+              Vous êtes un expert du recrutement ?{" "}
               <span className="text-gradient">
                 Nous cherchons les meilleurs.
               </span>
@@ -258,9 +258,9 @@ export default function RecrutementPageClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Rocket4RPO s\électionne les meilleurs Talent Acquisition freelance
+              Rocket4RPO sélectionne les meilleurs Talent Acquisition freelance
               pour des missions RPO chez des entreprises ambitieuses. Rejoignez
-              un r\éseau d\’\élite, acc\édez \à des missions longues et bien r\émun\ér\ées.
+              un réseau d\’élite, accédez à des missions longues et bien rémunérées.
             </motion.p>
 
             {/* Dual CTA */}
@@ -296,9 +296,9 @@ export default function RecrutementPageClient() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               {[
-                { value: "50+", label: "TA dans le r\éseau" },
+                { value: "50+", label: "TA dans le réseau" },
                 { value: "15+", label: "missions actives" },
-                { value: "350-600\€", label: "TJM / jour" },
+                { value: "350-600€", label: "TJM / jour" },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <p className="text-3xl md:text-4xl font-bold text-[hsl(var(--rocket-teal-glow))]">
@@ -320,15 +320,15 @@ export default function RecrutementPageClient() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10">
               <Image
                 src="/photos/equipe-escalier.webp"
-                alt="L'{'\é'}quipe Rocket4RPO"
+                alt="L'{'é'}quipe Rocket4RPO"
                 width={760}
                 height={900}
                 className="w-full h-[480px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
               <div className="absolute bottom-5 left-5 right-5">
-                <p className="text-white text-sm font-medium">L'{"\é"}quipe Rocket4RPO</p>
-                <p className="text-white/60 text-xs mt-0.5">50+ TA Specialists dans le r{"\é"}seau</p>
+                <p className="text-white text-sm font-medium">L'{"é"}quipe Rocket4RPO</p>
+                <p className="text-white/60 text-xs mt-0.5">50+ TA Specialists dans le r{"é"}seau</p>
               </div>
             </div>
           </motion.div>
@@ -359,8 +359,8 @@ export default function RecrutementPageClient() {
               <span className="text-gradient">Rocket4RPO</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Tout ce dont vous avez besoin pour r\éussir en freelance, sans les
-              inconv\énients.
+              Tout ce dont vous avez besoin pour réussir en freelance, sans les
+              inconvénients.
             </p>
           </motion.div>
 
@@ -409,15 +409,15 @@ export default function RecrutementPageClient() {
               custom={0}
             >
               <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-                Profil recherch\é
+                Profil recherché
               </span>
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">
                 Le profil que nous{" "}
                 <span className="text-gradient">recherchons</span>
               </h2>
               <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
-                Nous ne cherchons pas des CV, mais des experts autonomes, passionn\és
-                par le recrutement et capables de g\én\érer un impact imm\édiat chez nos
+                Nous ne cherchons pas des CV, mais des experts autonomes, passionnés
+                par le recrutement et capables de générer un impact immédiat chez nos
                 clients.
               </p>
               <div className="mt-8 p-5 rounded-xl bg-background border border-border/60">
@@ -485,13 +485,13 @@ export default function RecrutementPageClient() {
             custom={0}
           >
             <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-[hsl(var(--rocket-teal))]/10 text-[hsl(var(--rocket-teal-glow))] border border-[hsl(var(--rocket-teal))]/20 mb-4">
-              Process de s\élection
+              Process de sélection
             </span>
             <h2 className="text-3xl md:text-4xl font-bold">
-              4 \étapes pour rejoindre le r\éseau
+              4 étapes pour rejoindre le réseau
             </h2>
             <p className="mt-4 text-white/50 text-lg">
-              Un process transparent et rapide. De la candidature \à l\’int\égration
+              Un process transparent et rapide. De la candidature à l\’intégration
               en moins de 2 semaines.
             </p>
           </motion.div>
@@ -518,7 +518,7 @@ export default function RecrutementPageClient() {
                   </div>
 
                   <span className="text-xs font-bold tracking-widest uppercase text-[hsl(var(--rocket-teal-glow))]">
-                    \Étape {item.step}
+                    Étape {item.step}
                   </span>
                   <h3 className="mt-2 text-lg font-bold">{item.title}</h3>
                   <p className="mt-1 text-xs font-medium text-[hsl(var(--rocket-teal-glow))]/60">
@@ -546,7 +546,7 @@ export default function RecrutementPageClient() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold rounded-xl bg-[hsl(var(--rocket-teal))] text-white hover:bg-[hsl(var(--rocket-teal-glow))] transition-all duration-300 shadow-lg shadow-[hsl(var(--rocket-teal))]/20"
             >
-              D\émarrer ma candidature
+              Démarrer ma candidature
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
@@ -566,14 +566,14 @@ export default function RecrutementPageClient() {
             custom={0}
           >
             <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-              T\émoignages
+              Témoignages
             </span>
             <h2 className="text-3xl md:text-4xl font-bold">
               Ce que disent nos{" "}
               <span className="text-gradient">TA freelances</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Ils ont rejoint le r\éseau. Voici leur exp\érience.
+              Ils ont rejoint le réseau. Voici leur expérience.
             </p>
           </motion.div>
 
@@ -646,7 +646,7 @@ export default function RecrutementPageClient() {
             animate={cta.isInView ? "visible" : "hidden"}
             custom={1}
           >
-            Pr\êt \à rejoindre le r\éseau{" "}
+            Prêt à rejoindre le réseau{" "}
             <span className="text-gradient">Rocket4RPO</span> ?
           </motion.h2>
 
@@ -657,8 +657,8 @@ export default function RecrutementPageClient() {
             animate={cta.isInView ? "visible" : "hidden"}
             custom={2}
           >
-            Un \échange de 30 minutes suffit pour comprendre votre profil et vous
-            proposer des missions align\ées avec vos ambitions.
+            Un échange de 30 minutes suffit pour comprendre votre profil et vous
+            proposer des missions alignées avec vos ambitions.
           </motion.p>
 
           <motion.div
@@ -693,7 +693,7 @@ export default function RecrutementPageClient() {
             animate={cta.isInView ? "visible" : "hidden"}
             custom={5}
           >
-            Ou \écrivez-nous \à{" "}
+            Ou écrivez-nous à{" "}
             <a
               href="mailto:recrutement@rocket4rpo.com"
               className="text-[hsl(var(--rocket-teal-glow))] hover:underline"

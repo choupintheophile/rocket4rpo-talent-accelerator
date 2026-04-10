@@ -27,27 +27,27 @@ interface Row {
 const rows: Row[] = [
   {
     criteria: "Cou\̂t pour 10 recrutements",
-    rpo: "~44 000 \€ (TJM 550 \€/j)",
-    cabinet: "120 000 \– 200 000 \€ (15-25 % du salaire)",
+    rpo: "~44 000 € (TJM 550 €/j)",
+    cabinet: "120 000 \– 200 000 € (15-25 % du salaire)",
     rpoIcon: "check",
     cabinetIcon: "x",
   },
   {
-    criteria: "Mod\èle de facturation",
-    rpo: "TJM pr\évisible, ajustable",
+    criteria: "Modèle de facturation",
+    rpo: "TJM prévisible, ajustable",
     cabinet: "Success fee au pourcentage",
     rpoIcon: "check",
     cabinetIcon: "minus",
   },
   {
-    criteria: "D\élai premi\ère shortlist",
+    criteria: "Délai première shortlist",
     rpo: "48 h",
     cabinet: "2-3 semaines",
     rpoIcon: "check",
     cabinetIcon: "x",
   },
   {
-    criteria: "Int\égration \équipe",
+    criteria: "Intégration équipe",
     rpo: "Totale (rituels, outils, Slack)",
     cabinet: "Externe ponctuel",
     rpoIcon: "check",
@@ -55,13 +55,13 @@ const rows: Row[] = [
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Expert recrutement tous secteurs + m\éthodologie \éprouv\ée",
-    cabinet: "G\én\éraliste ou niche",
+    rpo: "Expert recrutement tous secteurs + méthodologie éprouvée",
+    cabinet: "Généraliste ou niche",
     rpoIcon: "check",
     cabinetIcon: "minus",
   },
   {
-    criteria: "Flexibilit\é",
+    criteria: "Flexibilité",
     rpo: "1-4 jours/sem, ajustable chaque mois",
     cabinet: "Par mission, engagement fixe",
     rpoIcon: "check",
@@ -69,14 +69,14 @@ const rows: Row[] = [
   },
   {
     criteria: "Suivi et reporting",
-    rpo: "KPIs hebdomadaires, dashboard partag\é",
+    rpo: "KPIs hebdomadaires, dashboard partagé",
     cabinet: "Reporting ponctuel",
     rpoIcon: "check",
     cabinetIcon: "minus",
   },
   {
-    criteria: "D\émarrage",
-    rpo: "48 h apr\ès signature",
+    criteria: "Démarrage",
+    rpo: "48 h après signature",
     cabinet: "1-3 semaines",
     rpoIcon: "check",
     cabinetIcon: "x",
@@ -85,29 +85,29 @@ const rows: Row[] = [
 
 const faqs = [
   {
-    question: "Quelle est la principale diff\érence entre un RPO et un cabinet de recrutement ?",
+    question: "Quelle est la principale différence entre un RPO et un cabinet de recrutement ?",
     answer:
-      "Le RPO s\’int\ègre directement dans votre \équipe et travaille en continu sur vos recrutements, comme un recruteur interne externalis\é. Le cabinet intervient ponctuellement, mission par mission, sans int\égration \à vos process internes.",
+      "Le RPO s\’intègre directement dans votre équipe et travaille en continu sur vos recrutements, comme un recruteur interne externalisé. Le cabinet intervient ponctuellement, mission par mission, sans intégration à vos process internes.",
   },
   {
     question: "Le RPO est-il moins cher qu\’un cabinet de recrutement ?",
     answer:
-      "Oui, en g\én\éral. Pour 10 recrutements, un RPO co\ûte environ 44 000 \€ (TJM 550 \€/j) contre 120 000 \à 200 000 \€ pour un cabinet facturant 15-25 % du salaire annuel brut. Plus le volume est \élev\é, plus l\’\écart se creuse en faveur du RPO.",
+      "Oui, en général. Pour 10 recrutements, un RPO coûte environ 44 000 € (TJM 550 €/j) contre 120 000 à 200 000 € pour un cabinet facturant 15-25 % du salaire annuel brut. Plus le volume est élevé, plus l\’écart se creuse en faveur du RPO.",
   },
   {
     question: "Peut-on combiner RPO et cabinet de recrutement ?",
     answer:
-      "Absolument. Beaucoup d\’entreprises utilisent un RPO pour le flux r\écurrent (commerciaux, d\éveloppeurs) et un cabinet pour des profils rares ou C-level. Les deux approches sont compl\émentaires.",
+      "Absolument. Beaucoup d\’entreprises utilisent un RPO pour le flux récurrent (commerciaux, développeurs) et un cabinet pour des profils rares ou C-level. Les deux approches sont complémentaires.",
   },
   {
-    question: "Quelle est la dur\ée minimum d\’un engagement RPO ?",
+    question: "Quelle est la durée minimum d\’un engagement RPO ?",
     answer:
-      "Chez Rocket4RPO, nous recommandons un minimum de 3 mois pour avoir un impact mesurable. Le cabinet, lui, fonctionne mission par mission sans dur\ée minimum fixe.",
+      "Chez Rocket4RPO, nous recommandons un minimum de 3 mois pour avoir un impact mesurable. Le cabinet, lui, fonctionne mission par mission sans durée minimum fixe.",
   },
   {
-    question: "Le RPO a-t-il acc\ès \à mes outils internes (ATS, Slack, etc.) ?",
+    question: "Le RPO a-t-il accès à mes outils internes (ATS, Slack, etc.) ?",
     answer:
-      "Oui, c\’est m\ême l\’un des principes fondamentaux du RPO. Le recruteur RPO utilise vos outils (ATS, Slack, outils de sourcing) et participe \à vos rituels d\’\équipe comme un collaborateur interne.",
+      "Oui, c\’est même l\’un des principes fondamentaux du RPO. Le recruteur RPO utilise vos outils (ATS, Slack, outils de sourcing) et participe à vos rituels d\’équipe comme un collaborateur interne.",
   },
 ];
 
@@ -207,9 +207,9 @@ export default function RpoVsCabinetPage() {
               <h2 className="text-xl font-bold mb-4">Quand choisir un RPO</h2>
               <ul className="space-y-3">
                 {[
-                  "Vous avez 5 \à 15+ recrutements \à r\éaliser sur 3-6 mois",
-                  "Vous recherchez une expertise sectorielle cibl\ée",
-                  "Vous souhaitez un d\émarrage rapide (48 h) sans processus d\’achat long",
+                  "Vous avez 5 à 15+ recrutements à réaliser sur 3-6 mois",
+                  "Vous recherchez une expertise sectorielle ciblée",
+                  "Vous souhaitez un démarrage rapide (48 h) sans processus d\’achat long",
                   "Vous voulez un suivi KPI hebdomadaire et une transparence totale",
                   "Votre budget ne permet pas un success fee de 15-25 % par poste",
                 ].map((item, i) => (
@@ -226,11 +226,11 @@ export default function RpoVsCabinetPage() {
               <h2 className="text-xl font-bold mb-4">Quand choisir un cabinet</h2>
               <ul className="space-y-3">
                 {[
-                  "Vous avez 1 \à 2 recrutements ponctuels uniquement",
-                  "Vous recherchez des profils tr\ès rares ou C-level",
+                  "Vous avez 1 à 2 recrutements ponctuels uniquement",
+                  "Vous recherchez des profils très rares ou C-level",
                   "Le budget success-fee (15-25 %) n\’est pas un frein",
-                  "Vous n\’avez pas besoin d\’int\égration aux outils internes",
-                  "Vous pr\éf\érez d\él\éguer enti\èrement sans pilotage quotidien",
+                  "Vous n\’avez pas besoin d\’intégration aux outils internes",
+                  "Vous préférez déléguer entièrement sans pilotage quotidien",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <Check className="w-4 h-4 mt-0.5 shrink-0 text-muted-foreground" />

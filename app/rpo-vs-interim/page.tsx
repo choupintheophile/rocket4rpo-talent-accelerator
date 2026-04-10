@@ -6,9 +6,9 @@ import { CTASection } from "@/components/shared/CTASection";
 import { faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "RPO vs Int\érim / Staffing — quelle solution de recrutement ?",
+  title: "RPO vs Intérim / Staffing — quelle solution de recrutement ?",
   description:
-    "RPO ou int\érim ? Comparez int\égration, expertise, mod\èle de co\ût et flexibilit\é pour choisir la meilleure solution d\’externalisation de vos recrutements.",
+    "RPO ou intérim ? Comparez intégration, expertise, modèle de coût et flexibilité pour choisir la meilleure solution d\’externalisation de vos recrutements.",
   alternates: { canonical: "/rpo-vs-interim" },
 };
 
@@ -26,28 +26,28 @@ interface Row {
 
 const rows: Row[] = [
   {
-    criteria: "Int\égration \équipe",
+    criteria: "Intégration équipe",
     rpo: "Totale \— rituels, outils, Slack",
-    interim: "Externe temporaire, peu int\égr\é",
+    interim: "Externe temporaire, peu intégré",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Expert recrutement tous secteurs + m\éthodologie \éprouv\ée",
-    interim: "G\én\éraliste multi-secteurs",
+    rpo: "Expert recrutement tous secteurs + méthodologie éprouvée",
+    interim: "Généraliste multi-secteurs",
     rpoIcon: "check",
     interimIcon: "minus",
   },
   {
-    criteria: "Mod\èle de co\ût",
-    rpo: "TJM 550 \€/j, pr\évisible",
+    criteria: "Modèle de coût",
+    rpo: "TJM 550 €/j, prévisible",
     interim: "TJM × coefficient 1.8 à 2.2 (80-120 % de marge)",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
-    criteria: "Dur\ée de mission",
+    criteria: "Durée de mission",
     rpo: "3-12 mois, renouvelable",
     interim: "Court terme (1-6 mois typique)",
     rpoIcon: "check",
@@ -55,28 +55,28 @@ const rows: Row[] = [
   },
   {
     criteria: "Pilotage du process",
-    rpo: "Le RPO pilote le process de A \à Z",
-    interim: "L\’int\érimaire ex\écute les t\âches assign\ées",
+    rpo: "Le RPO pilote le process de A à Z",
+    interim: "L\’intérimaire exécute les tâches assignées",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
     criteria: "Suivi KPIs",
-    rpo: "Hebdomadaire, dashboard partag\é",
+    rpo: "Hebdomadaire, dashboard partagé",
     interim: "Reporting minimal",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
-    criteria: "Transfert de comp\étences",
-    rpo: "Documentation process, formation \équipe",
+    criteria: "Transfert de compétences",
+    rpo: "Documentation process, formation équipe",
     interim: "Peu ou pas de transfert",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
-    criteria: "D\émarrage",
-    rpo: "48 h apr\ès signature",
+    criteria: "Démarrage",
+    rpo: "48 h après signature",
     interim: "1-2 semaines",
     rpoIcon: "check",
     interimIcon: "minus",
@@ -85,29 +85,29 @@ const rows: Row[] = [
 
 const faqs = [
   {
-    question: "Quelle est la diff\érence entre un RPO et un int\érimaire en recrutement ?",
+    question: "Quelle est la différence entre un RPO et un intérimaire en recrutement ?",
     answer:
-      "Le RPO est un expert Talent Acquisition int\égr\é \à votre \équipe qui pilote le process de recrutement de A \à Z (strat\égie, sourcing, entretiens, n\égociation). L\’int\érimaire ex\écute des t\âches assign\ées sans autonomie sur le process global.",
+      "Le RPO est un expert Talent Acquisition intégré à votre équipe qui pilote le process de recrutement de A à Z (stratégie, sourcing, entretiens, négociation). L\’intérimaire exécute des tâches assignées sans autonomie sur le process global.",
   },
   {
-    question: "Le RPO co\ûte-t-il plus cher que l\’int\érim ?",
+    question: "Le RPO coûte-t-il plus cher que l\’intérim ?",
     answer:
-      "Pas forc\ément. Le TJM d\’un RPO (550 \€/j) est transparent et sans marge cach\ée. L\’int\érim applique un coefficient de 1.8 \à 2.2 (soit 80 \à 120 % de marge), ce qui peut revenir plus cher pour un niveau d\’expertise \équivalent.",
+      "Pas forcément. Le TJM d\’un RPO (550 €/j) est transparent et sans marge cachée. L\’intérim applique un coefficient de 1.8 à 2.2 (soit 80 à 120 % de marge), ce qui peut revenir plus cher pour un niveau d\’expertise équivalent.",
   },
   {
     question: "Peut-on utiliser un RPO pour un besoin court terme ?",
     answer:
-      "Oui. Chez Rocket4RPO, l\’engagement minimum recommand\é est de 3 mois, mais le RPO peut \être utilis\é sur des p\ériodes courtes (3-6 mois) contrairement \à un recruteur en CDI.",
+      "Oui. Chez Rocket4RPO, l\’engagement minimum recommandé est de 3 mois, mais le RPO peut être utilisé sur des périodes courtes (3-6 mois) contrairement à un recruteur en CDI.",
   },
   {
     question: "Le RPO apporte-t-il un vivier de candidats ?",
     answer:
-      "Oui. Rocket4RPO s\’appuie sur une m\éthodologie de sourcing \éprouv\ée, avec une \équipe cumulant 200+ recrutements tous secteurs. L\’int\érimaire ne dispose g\én\éralement pas de cette expertise.",
+      "Oui. Rocket4RPO s\’appuie sur une méthodologie de sourcing éprouvée, avec une équipe cumulant 200+ recrutements tous secteurs. L\’intérimaire ne dispose généralement pas de cette expertise.",
   },
   {
-    question: "L\’int\érim est-il adapt\é pour recruter des profils sp\écialis\és ?",
+    question: "L\’intérim est-il adapté pour recruter des profils spécialisés ?",
     answer:
-      "L\’int\érim est peu adapt\é au recrutement de profils sp\écialis\és. Ces profils demandent une connaissance approfondie du march\é, des comp\étences de sourcing avanc\ées et un r\éseau sectoriel que seul un RPO exp\ériment\é peut offrir.",
+      "L\’intérim est peu adapté au recrutement de profils spécialisés. Ces profils demandent une connaissance approfondie du marché, des compétences de sourcing avancées et un réseau sectoriel que seul un RPO expérimenté peut offrir.",
   },
 ];
 
@@ -133,7 +133,7 @@ export default function RpoVsInterimPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqs)) }}
       />
 
-      <Breadcrumbs items={[{ label: "RPO vs Int\érim" }]} />
+      <Breadcrumbs items={[{ label: "RPO vs Intérim" }]} />
 
       {/* Hero */}
       <section className="section-padding pt-8">
@@ -207,10 +207,10 @@ export default function RpoVsInterimPage() {
               <ul className="space-y-3">
                 {[
                   "Vous avez besoin d\’un expert qui pilote le process de recrutement",
-                  "L\’int\égration \à votre \équipe et vos outils est essentielle",
-                  "Vous recrutez des profils sp\écialis\és (Tech, Sales, Finance, Marketing)",
-                  "Vous voulez un suivi KPI structur\é et un transfert de comp\étences",
-                  "Vous recherchez un partenaire strat\égique, pas un ex\écutant",
+                  "L\’intégration à votre équipe et vos outils est essentielle",
+                  "Vous recrutez des profils spécialisés (Tech, Sales, Finance, Marketing)",
+                  "Vous voulez un suivi KPI structuré et un transfert de compétences",
+                  "Vous recherchez un partenaire stratégique, pas un exécutant",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <Check className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
@@ -225,11 +225,11 @@ export default function RpoVsInterimPage() {
               <h2 className="text-xl font-bold mb-4">Quand choisir l&rsquo;int&eacute;rim</h2>
               <ul className="space-y-3">
                 {[
-                  "Vous avez besoin de renfort op\érationnel ponctuel",
-                  "Les postes \à pourvoir sont g\én\éralistes et peu sp\écialis\és",
-                  "Votre process de recrutement est d\éj\à structur\é en interne",
-                  "Vous avez simplement besoin de bras suppl\émentaires temporaires",
-                  "Le budget int\érim est d\éj\à pr\évu et valid\é",
+                  "Vous avez besoin de renfort opérationnel ponctuel",
+                  "Les postes à pourvoir sont généralistes et peu spécialisés",
+                  "Votre process de recrutement est déjà structuré en interne",
+                  "Vous avez simplement besoin de bras supplémentaires temporaires",
+                  "Le budget intérim est déjà prévu et validé",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <Check className="w-4 h-4 mt-0.5 shrink-0 text-muted-foreground" />
@@ -256,7 +256,7 @@ export default function RpoVsInterimPage() {
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Expert s&eacute;nior d&eacute;di&eacute;</li>
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Pilotage autonome du process</li>
-                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> \Équipe cumulant 200+ recrutements d\’exp\érience</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Équipe cumulant 200+ recrutements d\’expérience</li>
               </ul>
             </div>
             <div className="rounded-xl border border-border/60 bg-background p-6">

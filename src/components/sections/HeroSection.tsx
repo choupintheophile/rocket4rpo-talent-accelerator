@@ -18,9 +18,9 @@ import type { HeroContent } from "@/lib/personalization";
 const defaultContent: HeroContent = {
   badge: "RPO — Recrutement externalisé sur-mesure",
   headline: "Vos recrutements freinent votre ",
-  highlightedText: "croissance\u00a0?",
+  highlightedText: "croissance\ ?",
   subtitle:
-    "Première shortlist qualifiée en 48h. 92\u00a0% de rétention à 12 mois. ~44\u00a0000\u00a0€ pour 10 recrutements.",
+    "Première shortlist qualifiée en 48h. 92\ % de rétention à 12 mois. ~44\ 000\ € pour 10 recrutements.",
 };
 
 /* ─── trust-bar data ─── */

@@ -26,35 +26,35 @@ interface Row {
 
 const rows: Row[] = [
   {
-    criteria: "Co\ût annuel",
-    rpo: "TJM 550 \€/j \— flexible selon le besoin",
-    interne: "40-55 K\€/an + charges (60-75 K\€ co\ût total)",
+    criteria: "Coût annuel",
+    rpo: "TJM 550 €/j \— flexible selon le besoin",
+    interne: "40-55 K€/an + charges (60-75 K€ coût total)",
     rpoIcon: "check",
     interneIcon: "minus",
   },
   {
-    criteria: "D\élai de d\émarrage",
-    rpo: "48 h apr\ès signature",
+    criteria: "Délai de démarrage",
+    rpo: "48 h après signature",
     interne: "3 mois (recrutement du recruteur)",
     rpoIcon: "check",
     interneIcon: "x",
   },
   {
-    criteria: "Flexibilit\é",
+    criteria: "Flexibilité",
     rpo: "1-4 jours/sem, ajustable chaque mois",
-    interne: "CDI temps plein, engagement p\érenne",
+    interne: "CDI temps plein, engagement pérenne",
     rpoIcon: "check",
     interneIcon: "x",
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Expert recrutement tous secteurs + m\éthodologie \éprouv\ée",
-    interne: "D\épend du profil recrut\é",
+    rpo: "Expert recrutement tous secteurs + méthodologie éprouvée",
+    interne: "Dépend du profil recruté",
     rpoIcon: "check",
     interneIcon: "minus",
   },
   {
-    criteria: "Int\égration \équipe",
+    criteria: "Intégration équipe",
     rpo: "Totale (rituels, outils, Slack)",
     interne: "Totale (collaborateur interne)",
     rpoIcon: "check",
@@ -62,21 +62,21 @@ const rows: Row[] = [
   },
   {
     criteria: "Risque employeur",
-    rpo: "Aucun \— prestation externalis\ée",
-    interne: "CDI \— charges sociales, rupture co\ûteuse",
+    rpo: "Aucun \— prestation externalisée",
+    interne: "CDI \— charges sociales, rupture coûteuse",
     rpoIcon: "check",
     interneIcon: "x",
   },
   {
-    criteria: "Mont\ée en charge",
-    rpo: "Imm\édiate, +1 recruteur en 48 h",
-    interne: "Lente (nouveau recrutement n\écessaire)",
+    criteria: "Montée en charge",
+    rpo: "Immédiate, +1 recruteur en 48 h",
+    interne: "Lente (nouveau recrutement nécessaire)",
     rpoIcon: "check",
     interneIcon: "x",
   },
   {
     criteria: "Suivi KPIs",
-    rpo: "Hebdomadaire, dashboard partag\é",
+    rpo: "Hebdomadaire, dashboard partagé",
     interne: "Variable selon la culture interne",
     rpoIcon: "check",
     interneIcon: "minus",
@@ -87,27 +87,27 @@ const faqs = [
   {
     question: "Le RPO peut-il remplacer un recruteur interne ?",
     answer:
-      "Oui, un RPO peut assurer exactement les m\êmes missions qu\’un recruteur interne (sourcing, pr\é-qualification, coordination des entretiens, n\égociation) tout en apportant une expertise sectorielle et un vivier de candidats imm\édiatement mobilisable.",
+      "Oui, un RPO peut assurer exactement les mêmes missions qu\’un recruteur interne (sourcing, pré-qualification, coordination des entretiens, négociation) tout en apportant une expertise sectorielle et un vivier de candidats immédiatement mobilisable.",
   },
   {
-    question: "Combien co\ûte un RPO par rapport \à un recruteur en CDI ?",
+    question: "Combien coûte un RPO par rapport à un recruteur en CDI ?",
     answer:
-      "Un RPO \à 2 jours/semaine co\ûte environ 4 400 \€/mois (TJM 550 \€). Un recruteur en CDI co\ûte 60-75 K\€/an charges comprises, soit 5 000-6 250 \€/mois. Le RPO est plus \économique si votre flux de recrutement ne justifie pas un temps plein permanent.",
+      "Un RPO à 2 jours/semaine coûte environ 4 400 €/mois (TJM 550 €). Un recruteur en CDI coûte 60-75 K€/an charges comprises, soit 5 000-6 250 €/mois. Le RPO est plus économique si votre flux de recrutement ne justifie pas un temps plein permanent.",
   },
   {
-    question: "En combien de temps un RPO peut-il d\émarrer ?",
+    question: "En combien de temps un RPO peut-il démarrer ?",
     answer:
-      "Chez Rocket4RPO, le d\émarrage se fait en 48 h apr\ès signature. Recruter un recruteur interne prend en moyenne 2 \à 3 mois (offre, entretiens, pr\éavis).",
+      "Chez Rocket4RPO, le démarrage se fait en 48 h après signature. Recruter un recruteur interne prend en moyenne 2 à 3 mois (offre, entretiens, préavis).",
   },
   {
     question: "Que se passe-t-il si mon besoin de recrutement diminue ?",
     answer:
-      "Avec un RPO, vous ajustez le nombre de jours par semaine ou mettez la mission en pause. Avec un CDI, vous continuez \à payer le salaire m\ême sans besoin de recrutement, ou vous engagez une rupture co\ûteuse.",
+      "Avec un RPO, vous ajustez le nombre de jours par semaine ou mettez la mission en pause. Avec un CDI, vous continuez à payer le salaire même sans besoin de recrutement, ou vous engagez une rupture coûteuse.",
   },
   {
-    question: "Le RPO est-il adapt\é pour une startup qui recrute ses premiers commerciaux ?",
+    question: "Le RPO est-il adapté pour une startup qui recrute ses premiers commerciaux ?",
     answer:
-      "C\’est m\ême le cas d\’usage id\éal. La startup b\én\éficie imm\édiatement d\’un expert recrutement sans prendre le risque d\’un CDI recruteur, avec une flexibilit\é totale pour adapter la mission \à sa croissance.",
+      "C\’est même le cas d\’usage idéal. La startup bénéficie immédiatement d\’un expert recrutement sans prendre le risque d\’un CDI recruteur, avec une flexibilité totale pour adapter la mission à sa croissance.",
   },
 ];
 
@@ -208,9 +208,9 @@ export default function RpoVsRecrutementInternePage() {
                 {[
                   "Votre besoin de recrutement est temporaire ou fluctuant (3-12 mois)",
                   "Vous ne pouvez pas attendre 3 mois pour recruter un recruteur",
-                  "Vous avez besoin d\’une expertise recrutement imm\édiate",
-                  "Votre budget ne justifie pas un CDI \à temps plein",
-                  "Vous voulez pouvoir scaler ou r\éduire rapidement",
+                  "Vous avez besoin d\’une expertise recrutement immédiate",
+                  "Votre budget ne justifie pas un CDI à temps plein",
+                  "Vous voulez pouvoir scaler ou réduire rapidement",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <Check className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
@@ -226,7 +226,7 @@ export default function RpoVsRecrutementInternePage() {
               <ul className="space-y-3">
                 {[
                   "Votre flux de recrutement est constant (10+ postes/mois)",
-                  "Vous disposez d\’un budget RH structur\é et p\érenne",
+                  "Vous disposez d\’un budget RH structuré et pérenne",
                   "Vous visez le long terme avec une culture recrutement forte",
                   "Vous pouvez attendre 3 mois le temps de recruter ce profil",
                   "Vous souhaitez capitaliser sur la connaissance interne",

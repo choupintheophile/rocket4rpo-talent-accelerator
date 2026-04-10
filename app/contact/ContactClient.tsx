@@ -352,7 +352,7 @@ export default function ContactClient() {
             <div className="relative rounded-2xl overflow-hidden shadow-lg border border-border/40">
               <Image
                 src="/photos/image.webp"
-                alt="L'{'\é'}quipe Rocket4RPO en r{'\é'}union"
+                alt="L'{'é'}quipe Rocket4RPO en r{'é'}union"
                 width={1200}
                 height={500}
                 className="w-full h-[200px] md:h-[260px] object-cover"

@@ -34,44 +34,44 @@ const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
 
 const faqs = [
   {
-    question: "Quelle est la diff\érence entre RPO et cabinet de recrutement ?",
+    question: "Quelle est la différence entre RPO et cabinet de recrutement ?",
     answer:
-      "Un cabinet travaille en externe sur des missions ponctuelles, factur\ées 15-25% du salaire annuel. Le RPO int\ègre un recruteur directement dans vos \équipes, vos outils et vos rituels — comme un membre de votre entreprise, mais sans CDI. Co\ût pr\évisible au TJM.",
+      "Un cabinet travaille en externe sur des missions ponctuelles, facturées 15-25% du salaire annuel. Le RPO intègre un recruteur directement dans vos équipes, vos outils et vos rituels — comme un membre de votre entreprise, mais sans CDI. Coût prévisible au TJM.",
   },
   {
     question: "Vous ne faites que du RPO ?",
     answer:
-      "Non. Notre c\œur de m\étier est le RPO, mais nous recrutons aussi en CDD et CDI selon vos besoins. Que vous ayez un pic d\’activit\é (CDD), un poste strat\égique \à pourvoir (CDI) ou un besoin de structuration compl\ète (RPO), on s\’adapte. Un seul interlocuteur, toutes les solutions.",
+      "Non. Notre cœur de métier est le RPO, mais nous recrutons aussi en CDD et CDI selon vos besoins. Que vous ayez un pic d\’activité (CDD), un poste stratégique à pourvoir (CDI) ou un besoin de structuration complète (RPO), on s\’adapte. Un seul interlocuteur, toutes les solutions.",
   },
   {
-    question: "Combien \ça co\ûte concr\ètement ?",
+    question: "Combien ça coûte concrètement ?",
     answer:
-      "\À partir de 550\€/jour pour le RPO. Pour 10 recrutements sur 4 mois, comptez environ 44 000\€ — soit jusqu\’\à 5x moins cher qu\’un cabinet classique (120 000 \à 200 000\€). Facturation mensuelle, sans frais cach\és. Pour le recrutement CDD/CDI, tarification sur devis.",
+      "À partir de 550€/jour pour le RPO. Pour 10 recrutements sur 4 mois, comptez environ 44 000€ — soit jusqu\’à 5x moins cher qu\’un cabinet classique (120 000 à 200 000€). Facturation mensuelle, sans frais cachés. Pour le recrutement CDD/CDI, tarification sur devis.",
   },
   {
-    question: "En combien de temps le recruteur est-il op\érationnel ?",
+    question: "En combien de temps le recruteur est-il opérationnel ?",
     answer:
-      "48h. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels d\ès le premier jour. Premi\ère shortlist qualifi\ée sous 48h.",
+      "48h. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée sous 48h.",
   },
   {
-    question: "Comment s\électionnez-vous vos TA Specialists ?",
+    question: "Comment sélectionnez-vous vos TA Specialists ?",
     answer:
-      "Nous maintenons un vivier de plus de 50 Talent Acquisition Specialists freelances, \évalu\és sur 7 crit\ères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, exp\érience RPO). Seuls les profils not\és 80%+ int\ègrent notre vivier prioritaire — c\’est le top 1% du march\é fran\çais.",
+      "Nous maintenons un vivier de plus de 50 Talent Acquisition Specialists freelances, évalués sur 7 critères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO). Seuls les profils notés 80%+ intègrent notre vivier prioritaire — c\’est le top 1% du marché français.",
   },
   {
     question: "Et si le recruteur ne convient pas ?",
     answer:
-      "On le remplace sous 48h. Notre vivier de TA seniors nous permet de r\éagir imm\édiatement, sans interruption de service.",
+      "On le remplace sous 48h. Notre vivier de TA seniors nous permet de réagir immédiatement, sans interruption de service.",
   },
   {
     question: "Quels types de postes pouvez-vous recruter ?",
     answer:
-      "Tous. Sales, Tech/IT, Finance, Marketing, Support, Product, Data, Management. Nos TA sont des g\én\éralistes exp\ériment\és avec des sp\écialisations sectorielles — SaaS, ESN, Fintech, Sant\é, Industrie.",
+      "Tous. Sales, Tech/IT, Finance, Marketing, Support, Product, Data, Management. Nos TA sont des généralistes expérimentés avec des spécialisations sectorielles — SaaS, ESN, Fintech, Santé, Industrie.",
   },
   {
-    question: "Quelle dur\ée d\’engagement minimum ?",
+    question: "Quelle durée d\’engagement minimum ?",
     answer:
-      "3 mois recommand\é pour des r\ésultats solides. Pas d\’engagement rigide — pr\éavis d\’1 mois. Vous pouvez ajuster le rythme (1 \à 5 jours/semaine) \à tout moment.",
+      "3 mois recommandé pour des résultats solides. Pas d\’engagement rigide — préavis d\’1 mois. Vous pouvez ajuster le rythme (1 à 5 jours/semaine) à tout moment.",
   },
 ];
 
@@ -113,17 +113,17 @@ export default function OffreClient() {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white">
-              Le recrutement que vous m{"\é"}ritez.{" "}
+              Le recrutement que vous m{"é"}ritez.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
                 Les meilleurs TA de France
               </span>{" "}
-              {"\à"} votre service.
+              {"à"} votre service.
             </h1>
 
             <p className="mt-6 text-lg md:text-xl text-white/55 leading-relaxed max-w-3xl">
               RPO, CDD ou CDI — peu importe le format. Nous mobilisons en 48h un Talent Acquisition Specialist
-              du top 1% fran{"\ç"}ais, s{"\é"}lectionn{"\é"} parmi plus de 50 experts {"\é"}valu{"\é"}s sur 7 crit{"\è"}res.
-              Votre besoin, notre vivier, vos r{"\é"}sultats.
+              du top 1% fran{"ç"}ais, s{"é"}lectionn{"é"} parmi plus de 50 experts {"é"}valu{"é"}s sur 7 crit{"è"}res.
+              Votre besoin, notre vivier, vos r{"é"}sultats.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -133,13 +133,13 @@ export default function OffreClient() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                R{"\é"}server un diagnostic gratuit <ArrowRight className="w-4 h-4" />
+                R{"é"}server un diagnostic gratuit <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="/calculateur"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/15 transition-all"
               >
-                Calculer mes {"\é"}conomies
+                Calculer mes {"é"}conomies
               </a>
             </div>
           </motion.div>
@@ -163,7 +163,7 @@ export default function OffreClient() {
                 </div>
                 <div>
                   <div className="text-white font-bold text-lg">{stat.value}</div>
-                  <div className="text-white/40 text-xs">{stat.label.replace(/\{e\}/g, "\é").replace(/\{a\}/g, "\à")}</div>
+                  <div className="text-white/40 text-xs">{stat.label.replace(/\{e\}/g, "é").replace(/\{a\}/g, "à")}</div>
                 </div>
               </div>
             ))}
@@ -178,24 +178,24 @@ export default function OffreClient() {
             <div>
               <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-5">
                 <Crown className="w-3 h-3" />
-                Notre avantage d{"\é"}cisif
+                Notre avantage d{"é"}cisif
               </span>
               <h2 className="text-3xl md:text-4xl font-bold leading-tight">
                 Le top 1% des Talent Acquisition Specialists de France
               </h2>
               <p className="mt-5 text-muted-foreground leading-relaxed text-base">
-                Nous ne travaillons pas avec n{"'"}importe qui. Chaque TA de notre vivier a {"\é"}t{"\é"} {"\é"}valu{"\é"} sur <strong>7 crit{"\è"}res exigeants</strong> — sourcing, outils, autonomie, KPIs, qualification, posture conseil et exp{"\é"}rience RPO.
-                Seuls les profils not{"\é"}s 80%+ sur notre grille propri{"\é"}taire int{"\è"}grent le vivier prioritaire.
+                Nous ne travaillons pas avec n{"'"}importe qui. Chaque TA de notre vivier a {"é"}t{"é"} {"é"}valu{"é"} sur <strong>7 crit{"è"}res exigeants</strong> — sourcing, outils, autonomie, KPIs, qualification, posture conseil et exp{"é"}rience RPO.
+                Seuls les profils not{"é"}s 80%+ sur notre grille propri{"é"}taire int{"è"}grent le vivier prioritaire.
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed text-base">
-                R{"\é"}sultat : quand vous nous dites {"\«"} j{"'"}ai besoin d{"'"}un recruteur {"\»"}, on vous envoie le meilleur du march{"\é"} en 48h. Pas un junior en formation — un expert op{"\é"}rationnel imm{"\é"}diatement.
+                R{"é"}sultat : quand vous nous dites {"\«"} j{"'"}ai besoin d{"'"}un recruteur {"\»"}, on vous envoie le meilleur du march{"é"} en 48h. Pas un junior en formation — un expert op{"é"}rationnel imm{"é"}diatement.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {[
                   { value: "50+", label: "TA dans notre vivier" },
-                  { value: "7", label: "crit\ères d'\évaluation" },
+                  { value: "7", label: "critères d'évaluation" },
                   { value: "80%+", label: "score minimum requis" },
-                  { value: "48h", label: "d\élai de mobilisation" },
+                  { value: "48h", label: "délai de mobilisation" },
                 ].map((stat) => (
                   <div key={stat.label} className="p-4 rounded-xl bg-gray-50 border border-gray-100">
                     <div className="text-2xl font-bold text-primary font-mono">{stat.value}</div>
@@ -210,14 +210,14 @@ export default function OffreClient() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100">
                 <Image
                   src="/photos/reunion.webp"
-                  alt="Un TA Specialist Rocket4RPO int{'\é'}gr{'\é'} dans une {'\é'}quipe client"
+                  alt="Un TA Specialist Rocket4RPO int{'é'}gr{'é'} dans une {'é'}quipe client"
                   width={800}
                   height={450}
                   className="w-full h-[220px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                 <div className="absolute bottom-4 left-5 text-white text-xs font-medium bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-lg">
-                  Int{"\é"}gration TA chez un client
+                  Int{"é"}gration TA chez un client
                 </div>
               </div>
             <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
@@ -226,8 +226,8 @@ export default function OffreClient() {
                   <Award className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <div className="font-bold text-sm">Grille d{"\’"}{"\é"}valuation R4RPO</div>
-                  <div className="text-xs text-muted-foreground">7 crit{"\è"}res · Score sur 35</div>
+                  <div className="font-bold text-sm">Grille d{"\’"}{"é"}valuation R4RPO</div>
+                  <div className="text-xs text-muted-foreground">7 crit{"è"}res · Score sur 35</div>
                 </div>
               </div>
               <div className="space-y-3">
@@ -238,7 +238,7 @@ export default function OffreClient() {
                   { name: "Pilotage & KPIs", score: 85 },
                   { name: "Qualification candidat", score: 90 },
                   { name: "Posture conseil HM", score: 87 },
-                  { name: "Exp\érience RPO/embedded", score: 93 },
+                  { name: "Expérience RPO/embedded", score: 93 },
                 ].map((crit) => (
                   <div key={crit.name} className="flex items-center gap-3">
                     <span className="text-[12px] text-muted-foreground w-40 shrink-0">{crit.name}</span>
@@ -277,7 +277,7 @@ export default function OffreClient() {
               RPO, CDD, CDI — un seul partenaire, toutes les solutions
             </h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-base">
-              Chaque entreprise a des besoins diff{"\é"}rents. Nous nous adaptons {"\à"} votre contexte, pas l{"'"}inverse.
+              Chaque entreprise a des besoins diff{"é"}rents. Nous nous adaptons {"à"} votre contexte, pas l{"'"}inverse.
             </p>
           </div>
 
@@ -285,17 +285,17 @@ export default function OffreClient() {
             {[
               {
                 icon: Rocket,
-                badge: "Le plus demand\é",
-                title: "RPO — Recruteur int\égr\é",
-                desc: "Un TA Specialist int\égr\é dans vos \équipes, vos outils et vos rituels. Il recrute \à votre place, au nom de votre entreprise.",
+                badge: "Le plus demandé",
+                title: "RPO — Recruteur intégré",
+                desc: "Un TA Specialist intégré dans vos équipes, vos outils et vos rituels. Il recrute à votre place, au nom de votre entreprise.",
                 points: [
-                  "Sourcing multi-canal d\édi\é",
-                  "Int\égration totale (ATS, Slack, Teams)",
+                  "Sourcing multi-canal dédié",
+                  "Intégration totale (ATS, Slack, Teams)",
                   "Reporting hebdomadaire",
-                  "Marque employeur prot\ég\ée",
-                  "1 \à 5 jours/semaine, 3 mois min",
+                  "Marque employeur protégée",
+                  "1 à 5 jours/semaine, 3 mois min",
                 ],
-                prix: "\À partir de 550\€/jour",
+                prix: "À partir de 550€/jour",
                 highlight: true,
                 color: "border-primary/30 ring-1 ring-primary/10",
                 badgeColor: "bg-primary text-primary-foreground",
@@ -304,11 +304,11 @@ export default function OffreClient() {
                 icon: UserCheck,
                 badge: null,
                 title: "CDI — Recrutement permanent",
-                desc: "Vous avez un poste strat\égique \à pourvoir ? Nos TA identifient le candidat id\éal et vous accompagnent jusqu\’\à la signature.",
+                desc: "Vous avez un poste stratégique à pourvoir ? Nos TA identifient le candidat idéal et vous accompagnent jusqu\’à la signature.",
                 points: [
                   "Chasse directe de profils seniors",
-                  "Shortlist qualifi\ée en 2 semaines",
-                  "Accompagnement n\égociation",
+                  "Shortlist qualifiée en 2 semaines",
+                  "Accompagnement négociation",
                   "Garantie de remplacement",
                   "Tous secteurs, tous niveaux",
                 ],
@@ -321,13 +321,13 @@ export default function OffreClient() {
                 icon: Clock,
                 badge: null,
                 title: "CDD — Besoin temporaire",
-                desc: "Pic d\’activit\é, remplacement, projet sp\écifique ? On vous trouve le bon profil rapidement, en CDD ou freelance.",
+                desc: "Pic d\’activité, remplacement, projet spécifique ? On vous trouve le bon profil rapidement, en CDD ou freelance.",
                 points: [
                   "Mobilisation rapide (< 2 semaines)",
-                  "Profils pr\é-qualifi\és dans notre vivier",
+                  "Profils pré-qualifiés dans notre vivier",
                   "Suivi pendant la mission",
                   "Conversion CDI possible",
-                  "Flexibilit\é totale sur la dur\ée",
+                  "Flexibilité totale sur la durée",
                 ],
                 prix: "Sur devis",
                 highlight: false,
@@ -387,7 +387,7 @@ export default function OffreClient() {
       <section className="section-padding bg-white">
         <div className="container-wide">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold">Ce que vous obtenez concr{"\è"}tement</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Ce que vous obtenez concr{"è"}tement</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-base">
               Pas de jargon. Voici exactement ce qui se passe quand vous travaillez avec nous.
             </p>
@@ -404,7 +404,7 @@ export default function OffreClient() {
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100">
               <Image
                 src="/photos/bureau.webp"
-                alt="R{'\é'}union d'{'\é'}quipe dans les locaux Rocket4RPO"
+                alt="R{'é'}union d'{'é'}quipe dans les locaux Rocket4RPO"
                 width={1200}
                 height={500}
                 className="w-full h-[240px] md:h-[320px] object-cover"
@@ -414,12 +414,12 @@ export default function OffreClient() {
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Search, title: "Sourcing multi-canal", text: "LinkedIn Recruiter, approche directe, r\éseau, communaut\és. Votre TA source activement les meilleurs profils, pas des CVs de job boards." },
-              { icon: FileCheck, title: "Shortlists qualifi\ées en 48h", text: "Chaque candidat pr\ésent\é a \ét\é \évalu\é sur ses comp\étences, sa motivation et son ad\équation culturelle. Pas de volume — de la qualit\é." },
-              { icon: MessageSquare, title: "Coordination avec vos managers", text: "Votre TA g\ère les briefs, les debriefs, les feedbacks et le suivi. Vos managers se concentrent sur leur m\étier." },
-              { icon: BarChart3, title: "Reporting hebdomadaire", text: "Chaque semaine : pipeline, KPIs, taux de conversion, d\élais. Vous savez exactement o\ù en sont vos recrutements." },
-              { icon: Users, title: "Int\égration totale", text: "Le TA rejoint vos outils (ATS, Slack, Teams), vos rituels d\’\équipe et votre culture. Il repr\ésente VOTRE marque employeur." },
-              { icon: Shield, title: "Marque employeur prot\ég\ée", text: "Chaque message, chaque approche candidat est faite au nom de votre entreprise. Votre image est entre de bonnes mains." },
+              { icon: Search, title: "Sourcing multi-canal", text: "LinkedIn Recruiter, approche directe, réseau, communautés. Votre TA source activement les meilleurs profils, pas des CVs de job boards." },
+              { icon: FileCheck, title: "Shortlists qualifiées en 48h", text: "Chaque candidat présenté a été évalué sur ses compétences, sa motivation et son adéquation culturelle. Pas de volume — de la qualité." },
+              { icon: MessageSquare, title: "Coordination avec vos managers", text: "Votre TA gère les briefs, les debriefs, les feedbacks et le suivi. Vos managers se concentrent sur leur métier." },
+              { icon: BarChart3, title: "Reporting hebdomadaire", text: "Chaque semaine : pipeline, KPIs, taux de conversion, délais. Vous savez exactement où en sont vos recrutements." },
+              { icon: Users, title: "Intégration totale", text: "Le TA rejoint vos outils (ATS, Slack, Teams), vos rituels d\’équipe et votre culture. Il représente VOTRE marque employeur." },
+              { icon: Shield, title: "Marque employeur protégée", text: "Chaque message, chaque approche candidat est faite au nom de votre entreprise. Votre image est entre de bonnes mains." },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -444,9 +444,9 @@ export default function OffreClient() {
       <section className="py-20 bg-rocket-dark">
         <div className="container-wide">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">De votre appel {"\à"} votre premier recrutement</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">De votre appel {"à"} votre premier recrutement</h2>
             <p className="mt-4 text-white/50 max-w-2xl mx-auto">
-              Un process rod{"\é"}, transparent et rapide. Pas de surprise.
+              Un process rod{"é"}, transparent et rapide. Pas de surprise.
             </p>
           </div>
 
@@ -461,14 +461,14 @@ export default function OffreClient() {
             <div className="relative rounded-2xl overflow-hidden border border-white/10">
               <Image
                 src="/photos/bureau-travail.webp"
-                alt="L'{'\é'}quipe en action dans l'open space"
+                alt="L'{'é'}quipe en action dans l'open space"
                 width={1200}
                 height={500}
                 className="w-full h-[200px] md:h-[260px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-4 left-5 text-white/70 text-xs font-medium">
-                Nos {"\é"}quipes en mission
+                Nos {"é"}quipes en mission
               </div>
             </div>
           </motion.div>
@@ -478,10 +478,10 @@ export default function OffreClient() {
             <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-rocket-teal/20 via-rocket-teal/40 to-rocket-teal/20" />
 
             {[
-              { step: "J0", icon: Target, title: "Brief & scorecard", text: "On analyse vos besoins et on construit une scorecard pr\écise avec vos managers." },
-              { step: "J1", icon: Users, title: "Matching TA", text: "On s\électionne le TA Specialist id\éal selon votre secteur, vos enjeux et votre culture." },
-              { step: "J2", icon: Rocket, title: "Int\égration 48h", text: "Le TA rejoint vos outils et rituels. Op\érationnel imm\édiatement. Premi\ère shortlist le jour m\ême." },
-              { step: "S2-S4", icon: CheckCircle, title: "R\ésultats", text: "Sourcing cibl\é, shortlists qualifi\ées, recrutements sign\és. KPIs suivis chaque semaine." },
+              { step: "J0", icon: Target, title: "Brief & scorecard", text: "On analyse vos besoins et on construit une scorecard précise avec vos managers." },
+              { step: "J1", icon: Users, title: "Matching TA", text: "On sélectionne le TA Specialist idéal selon votre secteur, vos enjeux et votre culture." },
+              { step: "J2", icon: Rocket, title: "Intégration 48h", text: "Le TA rejoint vos outils et rituels. Opérationnel immédiatement. Première shortlist le jour même." },
+              { step: "S2-S4", icon: CheckCircle, title: "Résultats", text: "Sourcing ciblé, shortlists qualifiées, recrutements signés. KPIs suivis chaque semaine." },
             ].map((item, i) => (
               <motion.div
                 key={item.step}
@@ -507,16 +507,16 @@ export default function OffreClient() {
       <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-wide">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold">Combien {"\ç"}a co{"\û"}te vraiment ?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Combien {"ç"}a co{"û"}te vraiment ?</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
               Comparaison pour 10 recrutements sur 4 mois.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { model: "RPO Rocket4RPO", price: "~44 000\€", detail: "TJM pr\évisible, tout inclus", highlight: true, savings: "Jusqu\’\à 75% d\’\économies" },
-              { model: "Cabinet classique", price: "120 000 \– 200 000\€", detail: "15-25% du salaire par recrutement", highlight: false, savings: null },
-              { model: "Recruteur interne (CDI)", price: "40 \– 55 000\€/an + charges", detail: "3 mois pour le recruter", highlight: false, savings: null },
+              { model: "RPO Rocket4RPO", price: "~44 000€", detail: "TJM prévisible, tout inclus", highlight: true, savings: "Jusqu\’à 75% d\’économies" },
+              { model: "Cabinet classique", price: "120 000 \– 200 000€", detail: "15-25% du salaire par recrutement", highlight: false, savings: null },
+              { model: "Recruteur interne (CDI)", price: "40 \– 55 000€/an + charges", detail: "3 mois pour le recruter", highlight: false, savings: null },
             ].map((item) => (
               <motion.div
                 key={item.model}
@@ -573,7 +573,7 @@ export default function OffreClient() {
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               {
-                quote: "En 3 semaines, notre TA avait d\éj\à pr\ésent\é 8 candidats qualifi\és. On a recrut\é notre Head of Sales en 28 jours. Avec un cabinet, on en aurait eu pour 3 mois.",
+                quote: "En 3 semaines, notre TA avait déjà présenté 8 candidats qualifiés. On a recruté notre Head of Sales en 28 jours. Avec un cabinet, on en aurait eu pour 3 mois.",
                 name: "Sarah L.",
                 role: "VP People",
                 company: "Scale-up SaaS B2B",
@@ -581,20 +581,20 @@ export default function OffreClient() {
                 metricLabel: "time-to-hire",
               },
               {
-                quote: "Ce qui m'a convaincu, c'est la qualit\é du sourcing. Pas de CV g\én\ériques — chaque profil \était cibl\é et valid\é. On sentait qu'ils connaissaient notre march\é.",
+                quote: "Ce qui m'a convaincu, c'est la qualité du sourcing. Pas de CV génériques — chaque profil était ciblé et validé. On sentait qu'ils connaissaient notre marché.",
                 name: "Thomas R.",
                 role: "CEO",
                 company: "Fintech, 45 collaborateurs",
                 metric: "92%",
-                metricLabel: "r\étention 12 mois",
+                metricLabel: "rétention 12 mois",
               },
               {
-                quote: "On avait besoin de 5 d\éveloppeurs en 4 mois. Le TA s'est int\égr\é \à notre \équipe comme s'il avait toujours \ét\é l\à. R\ésultat : 5 recrutements, 0 d\épart \à 12 mois.",
+                quote: "On avait besoin de 5 développeurs en 4 mois. Le TA s'est intégré à notre équipe comme s'il avait toujours été là. Résultat : 5 recrutements, 0 départ à 12 mois.",
                 name: "Marion D.",
                 role: "CTO",
-                company: "\Éditeur logiciel",
+                company: "Éditeur logiciel",
                 metric: "5/5",
-                metricLabel: "recrutements r\éussis",
+                metricLabel: "recrutements réussis",
               },
             ].map((t, i) => (
               <motion.div
@@ -649,32 +649,32 @@ export default function OffreClient() {
               {
                 icon: Crown,
                 title: "Le top 1% des TA de France",
-                desc: "Nos recruteurs sont s\électionn\és sur 7 crit\ères exigeants. Seuls les profils 80%+ int\ègrent notre vivier. Vous ne travaillez qu'avec l'\élite.",
+                desc: "Nos recruteurs sont sélectionnés sur 7 critères exigeants. Seuls les profils 80%+ intègrent notre vivier. Vous ne travaillez qu'avec l'élite.",
               },
               {
                 icon: Zap,
-                title: "Op\érationnel en 48h, pas en 3 mois",
-                desc: "Quand un cabinet met 2-3 semaines \à d\émarrer et qu'un CDI prend 3 mois \à recruter, nous sommes op\érationnels en 48h. Premi\ère shortlist le jour m\ême.",
+                title: "Opérationnel en 48h, pas en 3 mois",
+                desc: "Quand un cabinet met 2-3 semaines à démarrer et qu'un CDI prend 3 mois à recruter, nous sommes opérationnels en 48h. Première shortlist le jour même.",
               },
               {
                 icon: Shield,
-                title: "Z\éro risque, flexibilit\é totale",
-                desc: "Pas de success fee. Pas d'engagement long. Si le TA ne convient pas, on le remplace en 48h. Ajustez votre rythme \à tout moment.",
+                title: "Zéro risque, flexibilité totale",
+                desc: "Pas de success fee. Pas d'engagement long. Si le TA ne convient pas, on le remplace en 48h. Ajustez votre rythme à tout moment.",
               },
               {
                 icon: Building2,
                 title: "Un vivier de 50+ experts, pas un seul recruteur",
-                desc: "Derri\ère chaque mission, c'est toute la force de notre vivier. Le moindre besoin, la moindre recherche — on a le profil qu'il vous faut, imm\édiatement.",
+                desc: "Derrière chaque mission, c'est toute la force de notre vivier. Le moindre besoin, la moindre recherche — on a le profil qu'il vous faut, immédiatement.",
               },
               {
                 icon: Target,
-                title: "200+ recrutements, 92% de r\étention",
-                desc: "Nos chiffres parlent : 200+ recrutements r\éalis\és, 92% de r\étention \à 12 mois. Ce n'est pas du volume — c'est de la pr\écision.",
+                title: "200+ recrutements, 92% de rétention",
+                desc: "Nos chiffres parlent : 200+ recrutements réalisés, 92% de rétention à 12 mois. Ce n'est pas du volume — c'est de la précision.",
               },
               {
                 icon: TrendingUp,
                 title: "5x moins cher qu'un cabinet",
-                desc: "Pour 10 recrutements : ~44K\€ vs 120-200K\€ en cabinet. M\ême qualit\é (voire meilleure), 5x moins cher. Les chiffres sont l\à.",
+                desc: "Pour 10 recrutements : ~44K€ vs 120-200K€ en cabinet. Même qualité (voire meilleure), 5x moins cher. Les chiffres sont là.",
               },
             ].map((item, i) => (
               <motion.div
@@ -704,9 +704,9 @@ export default function OffreClient() {
             className="mt-12 max-w-2xl mx-auto text-center p-6 rounded-2xl bg-rocket-teal/10 border border-rocket-teal/20"
           >
             <p className="text-white/80 text-sm leading-relaxed">
-              <strong className="text-rocket-teal-glow">Disponibilit{"\é"} limit{"\é"}e</strong> — Nos meilleurs TA sont tr{"\è"}s demand{"\é"}s.
-              Plus vous attendez, plus le d{"\é"}lai de matching s{"'"}allonge.
-              R{"\é"}servez votre diagnostic gratuit maintenant pour bloquer un cr{"\é"}neau.
+              <strong className="text-rocket-teal-glow">Disponibilit{"é"} limit{"é"}e</strong> — Nos meilleurs TA sont tr{"è"}s demand{"é"}s.
+              Plus vous attendez, plus le d{"é"}lai de matching s{"'"}allonge.
+              R{"é"}servez votre diagnostic gratuit maintenant pour bloquer un cr{"é"}neau.
             </p>
             <a
               href={HUBSPOT}
@@ -714,7 +714,7 @@ export default function OffreClient() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 mt-4 px-8 py-3 text-sm font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              R{"\é"}server mon cr{"\é"}neau <ArrowRight className="w-4 h-4" />
+              R{"é"}server mon cr{"é"}neau <ArrowRight className="w-4 h-4" />
             </a>
           </motion.div>
         </div>
@@ -726,8 +726,8 @@ export default function OffreClient() {
       {/* ── CTA ── */}
       <CTASection
         title="Votre prochain recrutement commence ici"
-        subtitle="30 min de diagnostic gratuit avec un expert RPO. On analyse votre besoin et on vous dit honn\êtement quel mod\èle — RPO, CDD ou CDI — est fait pour vous."
-        ctaLabel="R\éserver mon diagnostic gratuit"
+        subtitle="30 min de diagnostic gratuit avec un expert RPO. On analyse votre besoin et on vous dit honnêtement quel modèle — RPO, CDD ou CDI — est fait pour vous."
+        ctaLabel="Réserver mon diagnostic gratuit"
       />
     </>
   );

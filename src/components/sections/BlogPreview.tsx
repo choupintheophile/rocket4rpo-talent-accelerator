@@ -32,7 +32,7 @@ export const BlogPreview = ({ posts }: Props) => (
 
       {posts.length === 0 ? (
         <p className="text-center text-muted-foreground">
-          {"Nos articles arrivent bientôt. Restez connectés\u00a0!"}
+          {"Nos articles arrivent bientôt. Restez connectés\ !"}
         </p>
       ) : (
         <div className="grid md:grid-cols-3 gap-6">
@@ -57,7 +57,7 @@ export const BlogPreview = ({ posts }: Props) => (
                     {post.readTime && ` · ${post.readTime}`}
                   </time>
                   <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all duration-200">
-                    {"Lire \u2192"}
+                    {"Lire \→"}
                   </span>
                 </div>
               </Link>
