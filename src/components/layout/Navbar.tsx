@@ -42,7 +42,7 @@ export const Navbar = () => {
             rel="noopener noreferrer"
             className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
-            Recruter avec nous
+            Nos talents
           </a>
           {mainLinks.map((l) => (
             <Link
@@ -101,7 +101,7 @@ export const Navbar = () => {
                   onClick={() => setMobileOpen(false)}
                   className="block w-full text-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground"
                 >
-                  Recruter avec nous
+                  Nos talents
                 </a>
               </div>
               <div className="border-t border-border my-2" />
