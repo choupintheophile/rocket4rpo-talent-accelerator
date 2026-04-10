@@ -318,11 +318,11 @@ export default function RessourcesClient() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
                 meilleurs recruteurs
               </span>
-              {" "}sont maintenant les v{"\u00f4"}tres
+              {" "}sont maintenant les v{"\ô"}tres
             </h1>
 
             <p className="mt-5 text-lg text-white/55 leading-relaxed max-w-2xl">
-              Guides, templates et {"\u00e9"}tudes con{"\u00e7"}us par des experts avec 200+ recrutements {"\u00e0"} leur actif. Les m{"\u00ea"}mes outils que nos TA Specialists utilisent au quotidien.
+              Guides, templates et {"\é"}tudes con{"\ç"}us par des experts avec 200+ recrutements {"\à"} leur actif. Les m{"\ê"}mes outils que nos TA Specialists utilisent au quotidien.
             </p>
           </motion.div>
 
@@ -335,7 +335,7 @@ export default function RessourcesClient() {
           >
             {[
               { icon: BookOpen, value: "6", label: "ressources disponibles" },
-              { icon: Award, value: "200+", label: "recrutements d'exp\u00e9rience" },
+              { icon: Award, value: "200+", label: "recrutements d'exp\érience" },
               { icon: Download, value: "Gratuit", label: "sans inscription" },
             ].map((stat) => (
               <div key={stat.label} className="flex items-center gap-3">
@@ -379,7 +379,7 @@ export default function RessourcesClient() {
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold">Toutes nos ressources</h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Filtrez par cat{"\u00e9"}gorie pour trouver exactement ce qu{"'"}il vous faut.
+              Filtrez par cat{"\é"}gorie pour trouver exactement ce qu{"'"}il vous faut.
             </p>
           </div>
 
@@ -419,17 +419,17 @@ export default function RessourcesClient() {
                 Pourquoi nos ressources
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
-                Pas de th{"\u00e9"}orie. Du terrain.
+                Pas de th{"\é"}orie. Du terrain.
               </h2>
               <p className="mt-5 text-white/55 leading-relaxed">
-                Chaque guide, template et {"\u00e9"}tude est issu de notre exp{"\u00e9"}rience concr{"\u00e8"}te sur le march{"\u00e9"} fran{"\u00e7"}ais. 200+ recrutements, 50+ entreprises accompagn{"\u00e9"}es, 7 ans d{"'"}expertise. Ce ne sont pas des contenus g{"\u00e9"}n{"\u00e9"}riques — ce sont les outils que nos TA Specialists utilisent au quotidien.
+                Chaque guide, template et {"\é"}tude est issu de notre exp{"\é"}rience concr{"\è"}te sur le march{"\é"} fran{"\ç"}ais. 200+ recrutements, 50+ entreprises accompagn{"\é"}es, 7 ans d{"'"}expertise. Ce ne sont pas des contenus g{"\é"}n{"\é"}riques — ce sont les outils que nos TA Specialists utilisent au quotidien.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {[
-                  { value: "200+", label: "recrutements r\u00e9alis\u00e9s" },
-                  { value: "50+", label: "entreprises accompagn\u00e9es" },
+                  { value: "200+", label: "recrutements r\éalis\és" },
+                  { value: "50+", label: "entreprises accompagn\ées" },
                   { value: "7 ans", label: "d'expertise TA" },
-                  { value: "92%", label: "r\u00e9tention \u00e0 12 mois" },
+                  { value: "92%", label: "r\étention \à 12 mois" },
                 ].map((stat) => (
                   <div key={stat.label} className="p-4 rounded-xl bg-white/5 border border-white/10">
                     <div className="text-xl font-bold text-rocket-teal-glow font-mono">{stat.value}</div>
@@ -457,9 +457,9 @@ export default function RessourcesClient() {
 
               <div className="space-y-4">
               {[
-                { icon: Eye, title: "Bas\u00e9 sur des donn\u00e9es r\u00e9elles", desc: "Chiffres issus de nos propres recrutements et benchmarks march\u00e9 — pas de donn\u00e9es g\u00e9n\u00e9riques" },
-                { icon: Target, title: "Actionnable imm\u00e9diatement", desc: "Chaque ressource inclut des templates pr\u00eats \u00e0 l'emploi que vous pouvez utiliser d\u00e8s aujourd'hui" },
-                { icon: Shield, title: "Mis \u00e0 jour r\u00e9guli\u00e8rement", desc: "Grilles de salaires, tendances march\u00e9 et best practices actualis\u00e9es chaque trimestre" },
+                { icon: Eye, title: "Bas\é sur des donn\ées r\éelles", desc: "Chiffres issus de nos propres recrutements et benchmarks march\é — pas de donn\ées g\én\ériques" },
+                { icon: Target, title: "Actionnable imm\édiatement", desc: "Chaque ressource inclut des templates pr\êts \à l'emploi que vous pouvez utiliser d\ès aujourd'hui" },
+                { icon: Shield, title: "Mis \à jour r\éguli\èrement", desc: "Grilles de salaires, tendances march\é et best practices actualis\ées chaque trimestre" },
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
@@ -490,15 +490,15 @@ export default function RessourcesClient() {
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold">Allez plus loin avec nos simulateurs</h2>
             <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
-              Testez nos outils interactifs pour obtenir des r{"\u00e9"}sultats personnalis{"\u00e9"}s.
+              Testez nos outils interactifs pour obtenir des r{"\é"}sultats personnalis{"\é"}s.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { icon: Calculator, title: "Calculateur ROI", desc: "Estimez vos \u00e9conomies avec le RPO", href: "/calculateur", time: "30 sec" },
-              { icon: Target, title: "Diagnostic recrutement", desc: "\u00c9valuez votre maturit\u00e9 TA en 7 questions", href: "/assessment", time: "2 min" },
-              { icon: Play, title: "D\u00e9mo interactive", desc: "Vivez le process RPO en 4 \u00e9tapes", href: "/demo", time: "2 min" },
+              { icon: Calculator, title: "Calculateur ROI", desc: "Estimez vos \économies avec le RPO", href: "/calculateur", time: "30 sec" },
+              { icon: Target, title: "Diagnostic recrutement", desc: "\Évaluez votre maturit\é TA en 7 questions", href: "/assessment", time: "2 min" },
+              { icon: Play, title: "D\émo interactive", desc: "Vivez le process RPO en 4 \étapes", href: "/demo", time: "2 min" },
             ].map((tool, i) => (
               <motion.div
                 key={tool.title}

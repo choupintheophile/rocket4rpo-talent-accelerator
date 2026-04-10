@@ -6,9 +6,9 @@ import { CTASection } from "@/components/shared/CTASection";
 import { faqSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "RPO vs Int\u00e9rim / Staffing — quelle solution de recrutement ?",
+  title: "RPO vs Int\érim / Staffing — quelle solution de recrutement ?",
   description:
-    "RPO ou int\u00e9rim ? Comparez int\u00e9gration, expertise, mod\u00e8le de co\u00fbt et flexibilit\u00e9 pour choisir la meilleure solution d\u2019externalisation de vos recrutements.",
+    "RPO ou int\érim ? Comparez int\égration, expertise, mod\èle de co\ût et flexibilit\é pour choisir la meilleure solution d\’externalisation de vos recrutements.",
   alternates: { canonical: "/rpo-vs-interim" },
 };
 
@@ -26,28 +26,28 @@ interface Row {
 
 const rows: Row[] = [
   {
-    criteria: "Int\u00e9gration \u00e9quipe",
-    rpo: "Totale \u2014 rituels, outils, Slack",
-    interim: "Externe temporaire, peu int\u00e9gr\u00e9",
+    criteria: "Int\égration \équipe",
+    rpo: "Totale \— rituels, outils, Slack",
+    interim: "Externe temporaire, peu int\égr\é",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
     criteria: "Expertise sectorielle",
-    rpo: "Expert recrutement tous secteurs + m\u00e9thodologie \u00e9prouv\u00e9e",
-    interim: "G\u00e9n\u00e9raliste multi-secteurs",
+    rpo: "Expert recrutement tous secteurs + m\éthodologie \éprouv\ée",
+    interim: "G\én\éraliste multi-secteurs",
     rpoIcon: "check",
     interimIcon: "minus",
   },
   {
-    criteria: "Mod\u00e8le de co\u00fbt",
-    rpo: "TJM 550 \u20ac/j, pr\u00e9visible",
+    criteria: "Mod\èle de co\ût",
+    rpo: "TJM 550 \€/j, pr\évisible",
     interim: "TJM × coefficient 1.8 à 2.2 (80-120 % de marge)",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
-    criteria: "Dur\u00e9e de mission",
+    criteria: "Dur\ée de mission",
     rpo: "3-12 mois, renouvelable",
     interim: "Court terme (1-6 mois typique)",
     rpoIcon: "check",
@@ -55,28 +55,28 @@ const rows: Row[] = [
   },
   {
     criteria: "Pilotage du process",
-    rpo: "Le RPO pilote le process de A \u00e0 Z",
-    interim: "L\u2019int\u00e9rimaire ex\u00e9cute les t\u00e2ches assign\u00e9es",
+    rpo: "Le RPO pilote le process de A \à Z",
+    interim: "L\’int\érimaire ex\écute les t\âches assign\ées",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
     criteria: "Suivi KPIs",
-    rpo: "Hebdomadaire, dashboard partag\u00e9",
+    rpo: "Hebdomadaire, dashboard partag\é",
     interim: "Reporting minimal",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
-    criteria: "Transfert de comp\u00e9tences",
-    rpo: "Documentation process, formation \u00e9quipe",
+    criteria: "Transfert de comp\étences",
+    rpo: "Documentation process, formation \équipe",
     interim: "Peu ou pas de transfert",
     rpoIcon: "check",
     interimIcon: "x",
   },
   {
-    criteria: "D\u00e9marrage",
-    rpo: "48 h apr\u00e8s signature",
+    criteria: "D\émarrage",
+    rpo: "48 h apr\ès signature",
     interim: "1-2 semaines",
     rpoIcon: "check",
     interimIcon: "minus",
@@ -85,29 +85,29 @@ const rows: Row[] = [
 
 const faqs = [
   {
-    question: "Quelle est la diff\u00e9rence entre un RPO et un int\u00e9rimaire en recrutement ?",
+    question: "Quelle est la diff\érence entre un RPO et un int\érimaire en recrutement ?",
     answer:
-      "Le RPO est un expert Talent Acquisition int\u00e9gr\u00e9 \u00e0 votre \u00e9quipe qui pilote le process de recrutement de A \u00e0 Z (strat\u00e9gie, sourcing, entretiens, n\u00e9gociation). L\u2019int\u00e9rimaire ex\u00e9cute des t\u00e2ches assign\u00e9es sans autonomie sur le process global.",
+      "Le RPO est un expert Talent Acquisition int\égr\é \à votre \équipe qui pilote le process de recrutement de A \à Z (strat\égie, sourcing, entretiens, n\égociation). L\’int\érimaire ex\écute des t\âches assign\ées sans autonomie sur le process global.",
   },
   {
-    question: "Le RPO co\u00fbte-t-il plus cher que l\u2019int\u00e9rim ?",
+    question: "Le RPO co\ûte-t-il plus cher que l\’int\érim ?",
     answer:
-      "Pas forc\u00e9ment. Le TJM d\u2019un RPO (550 \u20ac/j) est transparent et sans marge cach\u00e9e. L\u2019int\u00e9rim applique un coefficient de 1.8 \u00e0 2.2 (soit 80 \u00e0 120 % de marge), ce qui peut revenir plus cher pour un niveau d\u2019expertise \u00e9quivalent.",
+      "Pas forc\ément. Le TJM d\’un RPO (550 \€/j) est transparent et sans marge cach\ée. L\’int\érim applique un coefficient de 1.8 \à 2.2 (soit 80 \à 120 % de marge), ce qui peut revenir plus cher pour un niveau d\’expertise \équivalent.",
   },
   {
     question: "Peut-on utiliser un RPO pour un besoin court terme ?",
     answer:
-      "Oui. Chez Rocket4RPO, l\u2019engagement minimum recommand\u00e9 est de 3 mois, mais le RPO peut \u00eatre utilis\u00e9 sur des p\u00e9riodes courtes (3-6 mois) contrairement \u00e0 un recruteur en CDI.",
+      "Oui. Chez Rocket4RPO, l\’engagement minimum recommand\é est de 3 mois, mais le RPO peut \être utilis\é sur des p\ériodes courtes (3-6 mois) contrairement \à un recruteur en CDI.",
   },
   {
     question: "Le RPO apporte-t-il un vivier de candidats ?",
     answer:
-      "Oui. Rocket4RPO s\u2019appuie sur une m\u00e9thodologie de sourcing \u00e9prouv\u00e9e, avec une \u00e9quipe cumulant 200+ recrutements tous secteurs. L\u2019int\u00e9rimaire ne dispose g\u00e9n\u00e9ralement pas de cette expertise.",
+      "Oui. Rocket4RPO s\’appuie sur une m\éthodologie de sourcing \éprouv\ée, avec une \équipe cumulant 200+ recrutements tous secteurs. L\’int\érimaire ne dispose g\én\éralement pas de cette expertise.",
   },
   {
-    question: "L\u2019int\u00e9rim est-il adapt\u00e9 pour recruter des profils sp\u00e9cialis\u00e9s ?",
+    question: "L\’int\érim est-il adapt\é pour recruter des profils sp\écialis\és ?",
     answer:
-      "L\u2019int\u00e9rim est peu adapt\u00e9 au recrutement de profils sp\u00e9cialis\u00e9s. Ces profils demandent une connaissance approfondie du march\u00e9, des comp\u00e9tences de sourcing avanc\u00e9es et un r\u00e9seau sectoriel que seul un RPO exp\u00e9riment\u00e9 peut offrir.",
+      "L\’int\érim est peu adapt\é au recrutement de profils sp\écialis\és. Ces profils demandent une connaissance approfondie du march\é, des comp\étences de sourcing avanc\ées et un r\éseau sectoriel que seul un RPO exp\ériment\é peut offrir.",
   },
 ];
 
@@ -133,7 +133,7 @@ export default function RpoVsInterimPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqs)) }}
       />
 
-      <Breadcrumbs items={[{ label: "RPO vs Int\u00e9rim" }]} />
+      <Breadcrumbs items={[{ label: "RPO vs Int\érim" }]} />
 
       {/* Hero */}
       <section className="section-padding pt-8">
@@ -206,11 +206,11 @@ export default function RpoVsInterimPage() {
               <h2 className="text-xl font-bold mb-4">Quand choisir un RPO</h2>
               <ul className="space-y-3">
                 {[
-                  "Vous avez besoin d\u2019un expert qui pilote le process de recrutement",
-                  "L\u2019int\u00e9gration \u00e0 votre \u00e9quipe et vos outils est essentielle",
-                  "Vous recrutez des profils sp\u00e9cialis\u00e9s (Tech, Sales, Finance, Marketing)",
-                  "Vous voulez un suivi KPI structur\u00e9 et un transfert de comp\u00e9tences",
-                  "Vous recherchez un partenaire strat\u00e9gique, pas un ex\u00e9cutant",
+                  "Vous avez besoin d\’un expert qui pilote le process de recrutement",
+                  "L\’int\égration \à votre \équipe et vos outils est essentielle",
+                  "Vous recrutez des profils sp\écialis\és (Tech, Sales, Finance, Marketing)",
+                  "Vous voulez un suivi KPI structur\é et un transfert de comp\étences",
+                  "Vous recherchez un partenaire strat\égique, pas un ex\écutant",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <Check className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
@@ -225,11 +225,11 @@ export default function RpoVsInterimPage() {
               <h2 className="text-xl font-bold mb-4">Quand choisir l&rsquo;int&eacute;rim</h2>
               <ul className="space-y-3">
                 {[
-                  "Vous avez besoin de renfort op\u00e9rationnel ponctuel",
-                  "Les postes \u00e0 pourvoir sont g\u00e9n\u00e9ralistes et peu sp\u00e9cialis\u00e9s",
-                  "Votre process de recrutement est d\u00e9j\u00e0 structur\u00e9 en interne",
-                  "Vous avez simplement besoin de bras suppl\u00e9mentaires temporaires",
-                  "Le budget int\u00e9rim est d\u00e9j\u00e0 pr\u00e9vu et valid\u00e9",
+                  "Vous avez besoin de renfort op\érationnel ponctuel",
+                  "Les postes \à pourvoir sont g\én\éralistes et peu sp\écialis\és",
+                  "Votre process de recrutement est d\éj\à structur\é en interne",
+                  "Vous avez simplement besoin de bras suppl\émentaires temporaires",
+                  "Le budget int\érim est d\éj\à pr\évu et valid\é",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <Check className="w-4 h-4 mt-0.5 shrink-0 text-muted-foreground" />
@@ -256,7 +256,7 @@ export default function RpoVsInterimPage() {
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Expert s&eacute;nior d&eacute;di&eacute;</li>
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Pilotage autonome du process</li>
-                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> \u00c9quipe cumulant 200+ recrutements d\u2019exp\u00e9rience</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> \Équipe cumulant 200+ recrutements d\’exp\érience</li>
               </ul>
             </div>
             <div className="rounded-xl border border-border/60 bg-background p-6">

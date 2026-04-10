@@ -39,7 +39,7 @@ const questions: Question[] = [
     question: "Comment qualifieriez-vous votre processus de recrutement ?",
     options: ["Inexistant", "Basique", "Structuré", "Optimisé"],
     recommendation:
-      "Mettez en place un processus structuré avec des étapes claires, des responsabilités définies et des critères d\u2019évaluation objectifs.",
+      "Mettez en place un processus structuré avec des étapes claires, des responsabilités définies et des critères d\’évaluation objectifs.",
   },
   {
     id: "scorecards",
@@ -48,7 +48,7 @@ const questions: Question[] = [
     question: "Avez-vous des scorecards pour évaluer vos candidats ?",
     options: ["Jamais", "Parfois", "Souvent", "Systématiquement"],
     recommendation:
-      "Adoptez des scorecards structurées pour chaque poste afin de réduire les biais et d\u2019améliorer la qualité de vos recrutements.",
+      "Adoptez des scorecards structurées pour chaque poste afin de réduire les biais et d\’améliorer la qualité de vos recrutements.",
   },
   {
     id: "tth",
@@ -57,7 +57,7 @@ const questions: Question[] = [
     question: "Quel est votre time-to-hire moyen ?",
     options: ["> 60 jours", "45-60 jours", "30-45 jours", "< 30 jours"],
     recommendation:
-      "Optimisez votre pipeline en identifiant les goulots d\u2019étranglement et en parallélisant les étapes d\u2019entretien.",
+      "Optimisez votre pipeline en identifiant les goulots d\’étranglement et en parallélisant les étapes d\’entretien.",
   },
   {
     id: "sourcing",
@@ -297,7 +297,7 @@ export default function AssessmentClient() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto"
                   >
-                    {"\u00c9"}valuez votre maturité Talent Acquisition et recevez des
+                    {"\É"}valuez votre maturité Talent Acquisition et recevez des
                     recommandations personnalisées pour améliorer vos recrutements.
                   </motion.p>
 
@@ -311,7 +311,7 @@ export default function AssessmentClient() {
                     {[
                       { icon: ClipboardCheck, value: "7 questions", sub: "ciblées" },
                       { icon: Clock, value: "2 minutes", sub: "chrono" },
-                      { icon: BarChart3, value: "Résultat immédiat", sub: "avec plan d\u2019action" },
+                      { icon: BarChart3, value: "Résultat immédiat", sub: "avec plan d\’action" },
                     ].map((stat, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">

@@ -133,7 +133,7 @@ export default function HomepageSections() {
               {
                 value: 200,
                 suffix: "+",
-                label: "Recrutements r\u00e9alis\u00e9s",
+                label: "Recrutements r\éalis\és",
                 icon: Users,
                 gradient: "from-blue-500/10 to-primary/10",
                 iconColor: "text-blue-500",
@@ -142,7 +142,7 @@ export default function HomepageSections() {
               {
                 value: 48,
                 suffix: "h",
-                label: "Premi\u00e8re shortlist",
+                label: "Premi\ère shortlist",
                 icon: Clock,
                 gradient: "from-emerald-500/10 to-teal-500/10",
                 iconColor: "text-emerald-500",
@@ -151,7 +151,7 @@ export default function HomepageSections() {
               {
                 value: 92,
                 suffix: "%",
-                label: "R\u00e9tention \u00e0 12 mois",
+                label: "R\étention \à 12 mois",
                 icon: TrendingUp,
                 gradient: "from-primary/10 to-violet-500/10",
                 iconColor: "text-primary",
@@ -160,7 +160,7 @@ export default function HomepageSections() {
               {
                 value: 50,
                 suffix: "+",
-                label: "Entreprises accompagn\u00e9es",
+                label: "Entreprises accompagn\ées",
                 icon: Target,
                 gradient: "from-amber-500/10 to-orange-500/10",
                 iconColor: "text-amber-500",
@@ -260,8 +260,8 @@ export default function HomepageSections() {
                 icon: Clock,
                 stat: "84",
                 unit: "jours",
-                title: "D\u00e9lai moyen de recrutement",
-                text: "12 semaines en moyenne selon l\u2019Apec (2024). Chaque jour de poste vacant, c\u2019est du CA non g\u00e9n\u00e9r\u00e9 et une \u00e9quipe qui compense.",
+                title: "D\élai moyen de recrutement",
+                text: "12 semaines en moyenne selon l\’Apec (2024). Chaque jour de poste vacant, c\’est du CA non g\én\ér\é et une \équipe qui compense.",
                 delay: 0,
               },
               {
@@ -269,15 +269,15 @@ export default function HomepageSections() {
                 stat: "12",
                 unit: "h/semaine",
                 title: "Perdues par vos managers",
-                text: "Trier des CVs, faire passer des entretiens non qualifi\u00e9s, relancer les cabinets. Vos op\u00e9rationnels m\u00e9ritent mieux.",
+                text: "Trier des CVs, faire passer des entretiens non qualifi\és, relancer les cabinets. Vos op\érationnels m\éritent mieux.",
                 delay: 0.15,
               },
               {
                 icon: Banknote,
                 stat: "120-200",
-                unit: "K\u20ac",
-                title: "Le co\u00fbt d\u2019un cabinet",
-                text: "15 \u00e0 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : ~44\u00a0000\u20ac.",
+                unit: "K\€",
+                title: "Le co\ût d\’un cabinet",
+                text: "15 \à 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : ~44\ 000\€.",
                 delay: 0.3,
               },
             ].map((item) => (
@@ -312,7 +312,7 @@ export default function HomepageSections() {
             <div className="mt-12 text-center">
               <p className="text-lg md:text-xl font-medium text-white/70 max-w-2xl mx-auto">
                 Le recrutement ne devrait pas &ecirc;tre un{" "}
-                <span className="text-white font-bold">frein \u00e0 votre croissance</span>.
+                <span className="text-white font-bold">frein \à votre croissance</span>.
               </p>
               <div className="mt-6">
                 <Link
@@ -346,7 +346,7 @@ export default function HomepageSections() {
                 Notre solution
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto">
-                Un recruteur senior int&eacute;gr&eacute; \u00e0 votre &eacute;quipe.{" "}
+                Un recruteur senior int&eacute;gr&eacute; \à votre &eacute;quipe.{" "}
                 <span className="text-gradient">Sans CDI.</span>
               </h2>
               <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -369,7 +369,7 @@ export default function HomepageSections() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
                   <p className="text-white text-sm font-medium">
-                    Votre TA Specialist, int{"\u00e9"}gr{"\u00e9"} directement dans votre {"\u00e9"}quipe
+                    Votre TA Specialist, int{"\é"}gr{"\é"} directement dans votre {"\é"}quipe
                   </p>
                 </div>
               </div>
@@ -381,7 +381,7 @@ export default function HomepageSections() {
               {
                 icon: Search,
                 title: "Sourcing multi-canal",
-                text: "LinkedIn, approche directe, r\u00e9seau, communaut\u00e9s. Pas des CVs de job boards.",
+                text: "LinkedIn, approche directe, r\éseau, communaut\és. Pas des CVs de job boards.",
                 gradient: "from-blue-500/10 to-blue-600/5",
                 iconBg: "bg-blue-500/10",
                 iconColor: "text-blue-500",
@@ -390,7 +390,7 @@ export default function HomepageSections() {
               {
                 icon: FileCheck,
                 title: "Shortlists en 48h",
-                text: "Chaque candidat \u00e9valu\u00e9 : comp\u00e9tences, motivation, culture fit. Pas de volume \u2014 de la qualit\u00e9.",
+                text: "Chaque candidat \évalu\é : comp\étences, motivation, culture fit. Pas de volume \— de la qualit\é.",
                 gradient: "from-emerald-500/10 to-emerald-600/5",
                 iconBg: "bg-emerald-500/10",
                 iconColor: "text-emerald-500",
@@ -399,7 +399,7 @@ export default function HomepageSections() {
               {
                 icon: MessageSquare,
                 title: "Coordination managers",
-                text: "Briefs, debriefs, feedbacks, suivi. Vos managers se concentrent sur leur m\u00e9tier.",
+                text: "Briefs, debriefs, feedbacks, suivi. Vos managers se concentrent sur leur m\étier.",
                 gradient: "from-violet-500/10 to-violet-600/5",
                 iconBg: "bg-violet-500/10",
                 iconColor: "text-violet-500",
@@ -408,7 +408,7 @@ export default function HomepageSections() {
               {
                 icon: BarChart3,
                 title: "Reporting hebdo",
-                text: "Pipeline, KPIs, taux de conversion, d\u00e9lais. Vous savez toujours o\u00f9 vous en \u00eates.",
+                text: "Pipeline, KPIs, taux de conversion, d\élais. Vous savez toujours o\ù vous en \êtes.",
                 gradient: "from-amber-500/10 to-amber-600/5",
                 iconBg: "bg-amber-500/10",
                 iconColor: "text-amber-500",
@@ -416,8 +416,8 @@ export default function HomepageSections() {
               },
               {
                 icon: Users,
-                title: "Int\u00e9gration totale",
-                text: "ATS, Slack, Teams, rituels d\u2019\u00e9quipe. Le TA repr\u00e9sente votre marque, pas Rocket4RPO.",
+                title: "Int\égration totale",
+                text: "ATS, Slack, Teams, rituels d\’\équipe. Le TA repr\ésente votre marque, pas Rocket4RPO.",
                 gradient: "from-primary/10 to-primary/5",
                 iconBg: "bg-primary/10",
                 iconColor: "text-primary",
@@ -527,7 +527,7 @@ export default function HomepageSections() {
                 <span className="text-primary">recrutements sign&eacute;s</span>
               </h2>
               <p className="mt-5 text-lg text-white/60 max-w-2xl mx-auto">
-                Du premier appel \u00e0 votre premi\u00e8re shortlist : 48h.
+                Du premier appel \à votre premi\ère shortlist : 48h.
               </p>
             </div>
           </FadeIn>
@@ -560,23 +560,23 @@ export default function HomepageSections() {
                   icon: Users,
                   title: "Matching",
                   badge: "J1",
-                  text: "On s\u00e9lectionne le TA id\u00e9al pour votre secteur et votre culture.",
+                  text: "On s\électionne le TA id\éal pour votre secteur et votre culture.",
                   delay: 0.15,
                 },
                 {
                   step: "03",
                   icon: Rocket,
-                  title: "Int\u00e9gration",
+                  title: "Int\égration",
                   badge: "J2",
-                  text: "Le TA rejoint vos outils et rituels. Premi\u00e8re shortlist en 48h.",
+                  text: "Le TA rejoint vos outils et rituels. Premi\ère shortlist en 48h.",
                   delay: 0.3,
                 },
                 {
                   step: "04",
                   icon: CheckCircle,
-                  title: "R\u00e9sultats",
+                  title: "R\ésultats",
                   badge: "S2-S4",
-                  text: "Sourcing cibl\u00e9, shortlists qualifi\u00e9es, KPIs suivis chaque semaine.",
+                  text: "Sourcing cibl\é, shortlists qualifi\ées, KPIs suivis chaque semaine.",
                   delay: 0.45,
                 },
               ].map((item) => (
@@ -610,14 +610,14 @@ export default function HomepageSections() {
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                 <Image
                   src="/photos/perso-home-bureau-main.jpg"
-                  alt="Recrutement sign{'\u00e9'} — poign{'\u00e9'}e de main"
+                  alt="Recrutement sign{'\é'} — poign{'\é'}e de main"
                   width={1000}
                   height={500}
                   className="w-full h-[200px] md:h-[240px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between">
-                  <p className="text-white text-sm font-medium">Recrutement sign{"\u00e9"}. Mission accomplie.</p>
+                  <p className="text-white text-sm font-medium">Recrutement sign{"\é"}. Mission accomplie.</p>
                   <span className="text-xs text-white/60 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">35 jours en moyenne</span>
                 </div>
               </div>
@@ -658,7 +658,7 @@ export default function HomepageSections() {
                 <span className="text-gradient">gratuits</span>
               </h2>
               <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-                Pas besoin de s&rsquo;engager pour commencer \u00e0 optimiser votre recrutement.
+                Pas besoin de s&rsquo;engager pour commencer \à optimiser votre recrutement.
               </p>
             </div>
           </FadeIn>
@@ -668,7 +668,7 @@ export default function HomepageSections() {
               {
                 icon: Calculator,
                 title: "Calculateur ROI",
-                desc: "Estimez vos \u00e9conomies par rapport \u00e0 un cabinet de recrutement classique.",
+                desc: "Estimez vos \économies par rapport \à un cabinet de recrutement classique.",
                 href: "/calculateur",
                 time: "30 sec",
                 gradient: "from-emerald-500/10 to-teal-500/5",
@@ -679,7 +679,7 @@ export default function HomepageSections() {
               {
                 icon: ClipboardCheck,
                 title: "Diagnostic recrutement",
-                desc: "\u00c9valuez la maturit\u00e9 de votre process recrutement en 10 questions.",
+                desc: "\Évaluez la maturit\é de votre process recrutement en 10 questions.",
                 href: "/assessment",
                 time: "2 min",
                 gradient: "from-blue-500/10 to-indigo-500/5",
@@ -689,8 +689,8 @@ export default function HomepageSections() {
               },
               {
                 icon: Play,
-                title: "D\u00e9mo interactive",
-                desc: "Vivez le process RPO en 4 \u00e9tapes, comme si vous y \u00e9tiez.",
+                title: "D\émo interactive",
+                desc: "Vivez le process RPO en 4 \étapes, comme si vous y \étiez.",
                 href: "/demo",
                 time: "2 min",
                 gradient: "from-violet-500/10 to-purple-500/5",

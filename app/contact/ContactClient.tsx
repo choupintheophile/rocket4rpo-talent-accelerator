@@ -48,7 +48,7 @@ const benefits = [
     icon: BarChart3,
     title: "Estimation budgétaire personnalisée",
     description:
-      "Un chiffrage transparent comparé au coût d\u2019un cabinet classique, sans surprise.",
+      "Un chiffrage transparent comparé au coût d\’un cabinet classique, sans surprise.",
   },
   {
     icon: CalendarCheck,
@@ -98,17 +98,17 @@ const faqs = [
   {
     question: "Le diagnostic est-il vraiment gratuit ?",
     answer:
-      "Oui, à 100 %. C\u2019est un échange de 30 minutes sans engagement. L\u2019objectif est de comprendre votre besoin et de vous donner des premières recommandations actionnables, que vous décidiez ou non de travailler avec nous.",
+      "Oui, à 100 %. C\’est un échange de 30 minutes sans engagement. L\’objectif est de comprendre votre besoin et de vous donner des premières recommandations actionnables, que vous décidiez ou non de travailler avec nous.",
   },
   {
-    question: "Comment se déroule l\u2019appel ?",
+    question: "Comment se déroule l\’appel ?",
     answer:
-      "Un expert recrutement analyse votre contexte (postes ouverts, outils, budget, délais). Vous repartez avec une recommandation claire : RPO, CDI ou CDD, un chiffrage indicatif et un plan d\u2019action concret.",
+      "Un expert recrutement analyse votre contexte (postes ouverts, outils, budget, délais). Vous repartez avec une recommandation claire : RPO, CDI ou CDD, un chiffrage indicatif et un plan d\’action concret.",
   },
   {
-    question: "Dois-je préparer quelque chose avant l\u2019appel ?",
+    question: "Dois-je préparer quelque chose avant l\’appel ?",
     answer:
-      "Rien d\u2019obligatoire. Si vous avez une fiche de poste ou un brief de recrutement, c\u2019est un plus — mais notre expert saura poser les bonnes questions pour cerner votre besoin.",
+      "Rien d\’obligatoire. Si vous avez une fiche de poste ou un brief de recrutement, c\’est un plus — mais notre expert saura poser les bonnes questions pour cerner votre besoin.",
   },
   {
     question: "Que se passe-t-il après le diagnostic ?",
@@ -352,7 +352,7 @@ export default function ContactClient() {
             <div className="relative rounded-2xl overflow-hidden shadow-lg border border-border/40">
               <Image
                 src="/photos/image.webp"
-                alt="L'{'\u00e9'}quipe Rocket4RPO en r{'\u00e9'}union"
+                alt="L'{'\é'}quipe Rocket4RPO en r{'\é'}union"
                 width={1200}
                 height={500}
                 className="w-full h-[200px] md:h-[260px] object-cover"
