@@ -129,6 +129,7 @@ export function ConversationalCTA() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={() => setIsOpen(true)}
+            aria-label="Ouvrir le qualificateur de besoin"
             className="fixed bottom-28 right-6 z-40 flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-colors font-semibold text-sm"
           >
             <MessageCircle className="w-5 h-5" />
@@ -164,7 +165,8 @@ export function ConversationalCTA() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-full hover:bg-muted transition-colors"
+                aria-label="Fermer le qualificateur"
+                className="p-1.5 rounded-full hover:bg-muted transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
                 <X className="w-4 h-4 text-muted-foreground" />
               </button>

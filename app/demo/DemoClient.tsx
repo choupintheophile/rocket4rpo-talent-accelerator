@@ -374,7 +374,7 @@ function StepResults() {
       <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-primary/20 p-6 text-center space-y-4">
         <h3 className="text-lg font-bold">Prêt à vivre ça pour de vrai ?</h3>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
-          Nos clients recrutent leur premier Sales en 28 jours en moyenne. Réservez un appel de 15
+          Nos clients recrutent leur premier Sales en 35 jours en moyenne. Réservez un appel de 15
           min pour voir comment on peut faire pareil pour vous.
         </p>
         <a

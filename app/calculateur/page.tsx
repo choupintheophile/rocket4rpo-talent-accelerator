@@ -13,7 +13,7 @@ const calculatorFaqs = [
   {
     question: "Comment est calculé le coût RPO ?",
     answer:
-      "Le calculateur compare votre coût actuel de recrutement (basé sur un pourcentage du salaire annuel brut) avec le modèle RPO Rocket4RPO. Le RPO utilise un taux fixe de 10% du salaire annuel, ce qui le rend significativement moins cher que les cabinets classiques qui facturent 15 à 25% du salaire. Par exemple, pour 10 postes à 55 000€ de salaire moyen, le RPO coûte environ 55 000€ contre 99 000 à 137 500€ avec un cabinet.",
+      "Le calculateur compare votre coût actuel de recrutement (basé sur un pourcentage du salaire annuel brut) avec le modèle RPO Rocket4RPO. Le coût RPO est calculé sur la base d'un TJM de 550€/jour, soit environ 2 200€ par recrutement (4 jours de travail par poste en moyenne). C'est significativement moins cher que les cabinets classiques qui facturent 15 à 25% du salaire. Par exemple, pour 10 postes, le RPO coûte environ 22 000€ contre 99 000 à 137 500€ avec un cabinet.",
   },
   {
     question: "Le calculateur est-il fiable ?",

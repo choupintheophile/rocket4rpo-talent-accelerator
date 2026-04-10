@@ -15,12 +15,7 @@ import {
   Shield,
   Target,
   Rocket,
-  Zap,
-  TrendingUp,
   Banknote,
-  X as XIcon,
-  Minus,
-  Check,
 } from "lucide-react";
 
 const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
@@ -64,15 +59,15 @@ export default function HomepageSections() {
               { value: 200, suffix: "+", label: "recrutements réalisés" },
               { value: 48, suffix: "h", label: "première shortlist" },
               { value: 92, suffix: "%", label: "rétention à 12 mois" },
-            ].map((stat, i) => (
+            ].map((stat) => (
               <motion.div
-                key={i}
+                key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5 }}
               >
-                <p className="text-4xl md:text-5xl font-bold text-primary">
+                <p className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent">
                   <Counter target={stat.value} suffix={stat.suffix} />
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">{stat.label}</p>
@@ -91,19 +86,20 @@ export default function HomepageSections() {
         <div className="container-wide">
           <motion.div {...fade} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Chaque semaine sans le bon recruteur vous coûte entre 5 000 et 15 000€</h2>
+            <div className="w-12 h-0.5 bg-primary/40 mx-auto mt-4" />
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
-              { icon: Clock, stat: "67 jours", title: "Time-to-hire moyen en France", text: "Chaque jour de poste vacant, c'est du CA non généré, des projets qui prennent du retard, et une équipe qui compense." },
-              { icon: Users, stat: "30%", title: "Du temps de vos managers", text: "Trier des CVs, faire passer des entretiens non qualifiés, relancer les cabinets. Vos opérationnels méritent mieux." },
-              { icon: Banknote, stat: "120-240K€", title: "Coût de 10 recrutements via cabinet", text: "15 à 25% du salaire annuel par recrutement. Avec le RPO : ~44 000€ pour les mêmes 10 postes." },
-            ].map((item, i) => (
+              { icon: Clock, stat: "84 jours", title: "Time-to-hire moyen en France", text: "12 semaines en moyenne selon l'Apec (2024). Chaque jour de poste vacant, c'est du CA non généré et une équipe qui compense." },
+              { icon: Users, stat: "Des dizaines d'h/mois", title: "Perdues par vos managers", text: "Trier des CVs, faire passer des entretiens non qualifiés, relancer les cabinets. Vos opérationnels méritent mieux." },
+              { icon: Banknote, stat: "120-200K€", title: "Coût de 10 recrutements via cabinet", text: "15 à 25% du salaire annuel par recrutement. Avec le RPO : ~44 000€ pour les mêmes 10 postes." },
+            ].map((item) => (
               <motion.div
-                key={i}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                transition={{ duration: 0.5 }}
                 className="p-6 rounded-xl bg-background border border-border/60"
               >
                 <item.icon className="w-8 h-8 text-primary mb-3" />
@@ -127,6 +123,7 @@ export default function HomepageSections() {
               Un recruteur senior intégré à votre équipe.{" "}
               <span className="text-gradient">Sans CDI.</span>
             </h2>
+            <div className="w-12 h-0.5 bg-primary/40 mx-auto mt-4" />
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Pas un cabinet externe. Pas un freelance lâché dans la nature. Un Talent Acquisition Specialist qui rejoint vos outils, vos rituels et votre culture.
             </p>
@@ -140,14 +137,14 @@ export default function HomepageSections() {
               { icon: BarChart3, title: "Reporting hebdo", text: "Pipeline, KPIs, taux de conversion, délais. Vous savez toujours où vous en êtes." },
               { icon: Users, title: "Intégration totale", text: "ATS, Slack, Teams, rituels d'équipe. Le TA représente votre marque, pas Rocket4RPO." },
               { icon: Shield, title: "Tous types de postes", text: "Sales, Tech, Finance, Marketing, Support, Product, Data. Pas de limite sectorielle." },
-            ].map((item, i) => (
+            ].map((item) => (
               <motion.div
-                key={i}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="flex gap-4 p-5 rounded-xl border border-border/60 bg-background hover:-translate-y-0.5 hover:shadow-md hover:border-l-primary hover:border-l-2 transition-all duration-200"
+                transition={{ duration: 0.5 }}
+                className="flex gap-4 p-5 rounded-xl border border-border/40 bg-background shadow-[0_1px_3px_0_rgb(0_0_0/0.04)] hover:-translate-y-0.5 hover:shadow-[0_4px_12px_-2px_rgb(0_0_0/0.08)] hover:border-primary/20 transition-all duration-300"
               >
                 <item.icon className="w-6 h-6 text-primary shrink-0 mt-0.5" />
                 <div>
@@ -162,12 +159,12 @@ export default function HomepageSections() {
             <div className="grid grid-cols-2 gap-6 text-center">
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-1">Sans RPO</p>
-                <p className="text-2xl font-bold text-destructive">67 jours</p>
+                <p className="text-2xl font-bold text-destructive">84 jours</p>
                 <p className="text-xs text-muted-foreground">time-to-hire moyen</p>
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-1">Avec Rocket4RPO</p>
-                <p className="text-2xl font-bold text-primary">28 jours</p>
+                <p className="text-2xl font-bold text-primary">35 jours</p>
                 <p className="text-xs text-muted-foreground">time-to-hire moyen</p>
               </div>
             </div>
@@ -189,7 +186,8 @@ export default function HomepageSections() {
         <div className="container-wide">
           <motion.div {...fade} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Du premier appel aux premiers recrutements signés</h2>
-            <p className="mt-4 text-lg text-background/80 max-w-2xl mx-auto">
+            <div className="w-12 h-0.5 bg-primary/40 mx-auto mt-4" />
+            <p className="mt-4 text-lg text-background/85 max-w-2xl mx-auto">
               Du premier appel à votre première shortlist : 48h.
             </p>
           </motion.div>
@@ -199,13 +197,13 @@ export default function HomepageSections() {
               { step: "02", icon: Users, title: "Matching", text: "On sélectionne le TA idéal pour votre secteur et votre culture.", time: "Jour 1" },
               { step: "03", icon: Rocket, title: "Intégration", text: "Le TA rejoint vos outils et rituels. Première shortlist en 48h.", time: "Jour 2" },
               { step: "04", icon: CheckCircle, title: "Résultats", text: "Sourcing ciblé, shortlists qualifiées, KPIs suivis chaque semaine.", time: "Semaine 2-4" },
-            ].map((item, i) => (
+            ].map((item) => (
               <motion.div
-                key={i}
+                key={item.step}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5 }}
                 className="text-center"
               >
                 <div className="w-14 h-14 rounded-full bg-primary/15 flex items-center justify-center mx-auto mb-4">
@@ -213,7 +211,7 @@ export default function HomepageSections() {
                 </div>
                 <span className="text-xs font-mono text-primary/80">{item.time}</span>
                 <h3 className="font-bold text-lg mt-1 mb-2">{item.title}</h3>
-                <p className="text-sm text-background/70 leading-relaxed">{item.text}</p>
+                <p className="text-sm text-background/80 leading-relaxed">{item.text}</p>
               </motion.div>
             ))}
           </div>
@@ -225,6 +223,7 @@ export default function HomepageSections() {
         <div className="container-wide">
           <motion.div {...fade} className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold">Explorez nos outils gratuits</h2>
+            <div className="w-12 h-0.5 bg-primary/40 mx-auto mt-4" />
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {[
@@ -232,13 +231,13 @@ export default function HomepageSections() {
               { title: "Comparateur", desc: "RPO vs Cabinet vs Interne", href: "/comparateur", time: "1 min" },
               { title: "Calculateur ROI", desc: "Estimez vos économies", href: "/calculateur", time: "30 sec" },
               { title: "Diagnostic", desc: "Évaluez votre process recrutement", href: "/assessment", time: "2 min" },
-            ].map((tool, i) => (
+            ].map((tool) => (
               <motion.div
-                key={i}
+                key={tool.href}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                transition={{ duration: 0.4 }}
               >
                 <Link
                   href={tool.href}

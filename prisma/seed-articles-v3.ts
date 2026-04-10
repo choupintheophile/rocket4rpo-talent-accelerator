@@ -44,17 +44,17 @@ Les symptomes classiques :
 
 Un recruteur RPO prend en charge l'integralite du cycle de recrutement, de la redaction du poste au closing du candidat. Votre equipe RH se recentre sur ses missions a forte valeur ajoutee.
 
-### Signal 3 : vous recrutez plus de 3 postes par trimestre
+### Signal 3 : vous recrutez plus de 5 postes par trimestre
 
-En dessous de 3 recrutements par trimestre, un cabinet de recrutement ponctuel peut suffire. Au-dela, le modele cabinet devient couteux et inefficace :
+En dessous de 5 recrutements par trimestre, un cabinet de recrutement ponctuel peut suffire. Au-dela, le modele cabinet devient couteux et inefficace :
 
 | Volume trimestriel | Modele recommande | Cout estime par recrutement |
 |---------------------|-------------------|-----------------------------|
-| 1-2 postes | Cabinet au succes | 8 000 - 14 000 EUR |
-| 3-6 postes | RPO temps partage | 4 000 - 7 000 EUR |
-| 7+ postes | RPO temps plein | 3 000 - 5 000 EUR |
+| 1-4 postes | Cabinet au succes | 8 000 - 14 000 EUR |
+| 5-8 postes | RPO temps partage | 4 000 - 7 000 EUR |
+| 9+ postes | RPO temps plein | 3 000 - 5 000 EUR |
 
-Le point de bascule se situe generalement autour de 3 a 4 postes par trimestre. C'est la que le RPO devient plus rentable que le cabinet, tout en offrant une qualite superieure grace a l'integration dans votre equipe. Decouvrez nos [formules adaptees a votre volume](/offre).
+Le point de bascule se situe generalement autour de 5 postes par trimestre. C'est la que le RPO devient plus rentable que le cabinet, tout en offrant une qualite superieure grace a l'integration dans votre equipe. Decouvrez nos [formules adaptees a votre volume](/offre).
 
 ### Signal 4 : vos taux de retention a 12 mois sont inferieurs a 80 %
 
@@ -577,9 +577,9 @@ Le sourcing tech est devenu un exercice de precision chirurgicale. Les developpe
 
 Avant de parler des erreurs, posons le contexte. Le marche des talents tech en France reste structurellement tendu :
 
-- Le taux de chomage des developpeurs est inferieur a 3 %
+- Le marche des talents tech reste structurellement tendu
 - 72 % des developpeurs en poste se declarent "ouverts aux opportunites" mais ne postulent pas activement
-- Le time-to-hire moyen sur les profils tech est de 52 jours (source : benchmark interne sur 200+ recrutements)
+- Le time-to-hire moyen sur les profils tech est de 52 jours (source : benchmark interne, équipe cumulant 200+ recrutements)
 - Le taux de reponse moyen aux messages de sourcing LinkedIn est de 15 a 20 %
 
 Le sourcing n'est plus une option : c'est LE canal principal de recrutement tech. Les candidatures spontanees et les annonces ne suffisent plus pour les profils les plus demandes.

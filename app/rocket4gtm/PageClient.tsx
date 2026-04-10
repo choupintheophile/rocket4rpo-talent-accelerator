@@ -41,7 +41,7 @@ export default function Rocket4GTMPageClient() {
                 </a>
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Cabinet de recrutement spécialisé dans les profils commerciaux Tech & SaaS. 7+ ans d&apos;expertise, 200+ recrutements réalisés.
+                Cabinet de recrutement spécialisé dans les profils commerciaux Tech & SaaS. 7+ ans d&apos;expertise, une équipe cumulant 200+ recrutements.
               </p>
               <a
                 href="https://www.rocket4sales.com"

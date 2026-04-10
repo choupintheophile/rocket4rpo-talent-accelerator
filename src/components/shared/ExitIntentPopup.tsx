@@ -43,9 +43,13 @@ export const ExitIntentPopup = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/50 z-[60]"
             onClick={() => setShow(false)}
+            aria-hidden="true"
           />
           {/* Popup */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Diagnostic gratuit avant de partir"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -53,7 +57,8 @@ export const ExitIntentPopup = () => {
           >
             <button
               onClick={() => setShow(false)}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+              aria-label="Fermer la popup"
+              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground min-w-[44px] min-h-[44px] flex items-center justify-center rounded-md"
             >
               <X className="w-5 h-5" />
             </button>

@@ -7,13 +7,11 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle,
-  Clock,
   Users,
   BarChart3,
   Search,
   FileCheck,
   MessageSquare,
-  Zap,
   Shield,
   Target,
   Rocket,
@@ -30,7 +28,7 @@ const faqs = [
   {
     question: "Combien ça coûte concrètement ?",
     answer:
-      "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€ — soit 3x moins qu'un cabinet classique (120 000 à 240 000€). Facturation mensuelle, sans frais cachés.",
+      "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€ — soit jusqu'à 5x moins cher qu'un cabinet classique (120 000 à 200 000€). Facturation mensuelle, sans frais cachés.",
   },
   {
     question: "En combien de temps le recruteur est-il opérationnel ?",
@@ -88,13 +86,13 @@ export default function OffreClient() {
                   href={HUBSPOT}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
                   Réserver un diagnostic gratuit <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
                   href="/calculateur"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                 >
                   Calculer mes économies
                 </a>
@@ -121,13 +119,13 @@ export default function OffreClient() {
               { icon: BarChart3, title: "Reporting hebdomadaire", text: "Chaque semaine : pipeline, KPIs, taux de conversion, délais. Vous savez exactement où en sont vos recrutements." },
               { icon: Users, title: "Intégration totale", text: "Le TA rejoint vos outils (ATS, Slack, Teams), vos rituels d'équipe et votre culture. Il représente VOTRE marque employeur, pas Rocket4RPO." },
               { icon: Shield, title: "Marque employeur protégée", text: "Chaque message, chaque approche candidat est faite au nom de votre entreprise. Votre image est entre de bonnes mains." },
-            ].map((item, i) => (
+            ].map((item) => (
               <motion.div
-                key={i}
+                key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
+                transition={{ duration: 0.5 }}
                 className="p-6 rounded-xl bg-background border border-border/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
               >
                 <item.icon className="w-8 h-8 text-primary mb-4" />
@@ -154,13 +152,13 @@ export default function OffreClient() {
               { step: "02", icon: Users, title: "Matching", text: "On sélectionne le TA Specialist idéal selon votre secteur, vos enjeux et votre culture.", time: "J1" },
               { step: "03", icon: Rocket, title: "Intégration", text: "Le TA rejoint vos outils et rituels. Opérationnel en 48h. Première shortlist immédiate.", time: "J2" },
               { step: "04", icon: CheckCircle, title: "Résultats", text: "Sourcing ciblé, shortlists qualifiées, recrutements signés. KPIs suivis chaque semaine.", time: "S2-S4" },
-            ].map((item, i) => (
+            ].map((item) => (
               <motion.div
-                key={i}
+                key={item.step}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5 }}
                 className="relative text-center"
               >
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
@@ -207,17 +205,17 @@ export default function OffreClient() {
                 prix: "Nous consulter",
                 popular: false,
               },
-            ].map((format, i) => (
+            ].map((format) => (
               <motion.div
-                key={i}
+                key={format.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`relative p-8 rounded-2xl border text-center ${
+                transition={{ duration: 0.5 }}
+                className={`relative p-8 rounded-2xl border text-center backdrop-blur-sm ${
                   format.popular
-                    ? "border-primary/30 bg-background shadow-md"
-                    : "border-border/60 bg-background"
+                    ? "border-primary/30 bg-background/95 shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.15)] ring-1 ring-primary/10"
+                    : "border-border/60 bg-background/95 shadow-[0_2px_8px_-2px_rgb(0_0_0/0.06)]"
                 }`}
               >
                 {format.popular && (
@@ -233,7 +231,7 @@ export default function OffreClient() {
                   href={HUBSPOT}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-full"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all w-full"
                 >
                   Choisir ce format
                 </a>
@@ -251,39 +249,39 @@ export default function OffreClient() {
         <div className="container-wide">
           <motion.div {...fade} className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold">Combien ça coûte vraiment ?</h2>
-            <p className="mt-4 text-lg text-background/80 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-background/85 max-w-2xl mx-auto">
               Comparaison pour 10 recrutements sur 4 mois.
             </p>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               { model: "RPO Rocket4RPO", price: "~44 000€", detail: "TJM prévisible, tout inclus", highlight: true },
-              { model: "Cabinet classique", price: "120 000 – 240 000€", detail: "15-25% du salaire par recrutement", highlight: false },
-              { model: "Recruteur interne (CDI)", price: "40 – 55 000€/an + charges", detail: "2-3 mois pour le recruter", highlight: false },
-            ].map((item, i) => (
+              { model: "Cabinet classique", price: "120 000 – 200 000€", detail: "15-25% du salaire par recrutement", highlight: false },
+              { model: "Recruteur interne (CDI)", price: "40 – 55 000€/an + charges", detail: "3 mois pour le recruter", highlight: false },
+            ].map((item) => (
               <motion.div
-                key={i}
+                key={item.model}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.5 }}
                 className={`p-8 rounded-2xl text-center ${
                   item.highlight
                     ? "bg-primary/10 border border-primary/30"
                     : "bg-background/5 border border-background/10"
                 }`}
               >
-                <p className="text-sm font-medium mb-2 text-background/80">{item.model}</p>
+                <p className="text-sm font-medium mb-2 text-background/85">{item.model}</p>
                 <p className={`text-3xl font-bold mb-2 ${item.highlight ? "text-primary" : "text-background"}`}>
                   {item.price}
                 </p>
-                <p className="text-sm text-background/60">{item.detail}</p>
+                <p className="text-sm text-background/75">{item.detail}</p>
                 {item.highlight && (
                   <a
                     href={HUBSPOT}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 mt-6 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                    className="inline-flex items-center justify-center gap-2 mt-6 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
                   >
                     Choisir le RPO <ArrowRight className="w-4 h-4" />
                   </a>

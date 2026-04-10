@@ -13,7 +13,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
-        display: ["var(--font-space-grotesk)", "Space Grotesk", "Inter", "system-ui", "sans-serif"],
+        display: ["var(--font-dm-serif)", "DM Serif Display", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

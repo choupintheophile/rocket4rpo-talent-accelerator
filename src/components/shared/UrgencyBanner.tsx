@@ -10,7 +10,7 @@ export const UrgencyBanner = () => {
   return (
     <div className="bg-primary text-primary-foreground text-center py-2 px-4 text-sm relative">
       <span className="font-medium">
-        Avril 2026 : 3 créneaux de mission disponibles sur 15
+        Diagnostic gratuit — Réservez votre créneau
       </span>
       <span className="hidden sm:inline"> — </span>
       <a
@@ -23,7 +23,8 @@ export const UrgencyBanner = () => {
       </a>
       <button
         onClick={() => setVisible(false)}
-        className="absolute right-3 top-1/2 -translate-y-1/2 text-primary-foreground/70 hover:text-primary-foreground"
+        aria-label="Fermer la bannière"
+        className="absolute right-3 top-1/2 -translate-y-1/2 text-primary-foreground/70 hover:text-primary-foreground min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-md"
       >
         <X className="w-4 h-4" />
       </button>

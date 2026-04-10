@@ -147,7 +147,7 @@ export const ComparisonSection = () => (
                   className="rounded-xl bg-primary/5 border border-primary/20 p-4 text-center"
                 >
                   <p className="text-sm font-semibold text-primary">
-                    {"Verdict\u00a0: le RPO est recommandé si vous recrutez 3+ postes par trimestre. Coût prévisible, expertise immédiate, zéro engagement long terme."}
+                    {"Verdict\u00a0: le RPO est recommandé si vous recrutez 5+ postes par trimestre. Coût prévisible, expertise immédiate, zéro engagement long terme."}
                   </p>
                 </motion.div>
               </td>

@@ -28,10 +28,10 @@ export const Navbar = () => {
   const isActive = (path: string) => path !== "#" && pathname.startsWith(path);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-xl border-b border-border/50 shadow-[0_1px_3px_0_rgb(0_0_0/0.02)]">
       <div className="container-wide flex items-center justify-between h-16 lg:h-20">
         <Link href="/" className="flex items-center">
-          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO" width={384} height={256} className="h-20 lg:h-24 w-auto" priority />
+          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Accueil" width={384} height={256} sizes="(max-width: 1024px) 120px, 144px" className="h-20 lg:h-24 w-auto" priority />
         </Link>
 
         {/* Desktop nav — liens principaux */}
@@ -40,7 +40,7 @@ export const Navbar = () => {
             href={HUBSPOT}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors mr-2"
+            className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             Parler à un Expert
           </a>
@@ -48,7 +48,7 @@ export const Navbar = () => {
             <Link
               key={l.href}
               href={l.href}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${isActive(l.href) ? "text-primary" : "text-foreground/70 hover:text-foreground"}`}
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${isActive(l.href) ? "text-primary" : "text-foreground/70 hover:text-foreground"}`}
             >
               {l.label}
             </Link>
@@ -73,7 +73,12 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button className="lg:hidden p-2" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button
+          className="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-expanded={mobileOpen}
+          aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        >
           {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>

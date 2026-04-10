@@ -12,7 +12,7 @@ const prisma = new PrismaClient({ adapter });
 // -------------------------------------------------------------------
 const article1 = `## L'essentiel en 30 secondes
 
-Choisir entre un RPO et un cabinet de recrutement n'est pas une question de "mieux" ou "moins bien" : c'est une question de contexte. Le cabinet excelle sur les missions ponctuelles et urgentes. Le RPO prend tout son sens des que vous recrutez regulierement (3+ postes par trimestre) et que vous souhaitez structurer durablement votre fonction recrutement. Selon notre experience, les entreprises qui passent d'un modele cabinet a un modele RPO reduisent leur cout par recrutement de 30 a 45 % sur 12 mois.
+Choisir entre un RPO et un cabinet de recrutement n'est pas une question de "mieux" ou "moins bien" : c'est une question de contexte. Le cabinet excelle sur les missions ponctuelles et urgentes. Le RPO prend tout son sens des que vous recrutez regulierement (5+ postes par trimestre) et que vous souhaitez structurer durablement votre fonction recrutement. Selon notre experience, les entreprises qui passent d'un modele cabinet a un modele RPO reduisent leur cout par recrutement de 30 a 45 % sur 12 mois.
 
 ## Deux modeles, deux philosophies
 
@@ -97,7 +97,7 @@ Le cabinet reste le bon choix dans plusieurs scenarios :
 
 Le RPO devient rentable et pertinent dans ces situations :
 
-**Vous recrutez regulierement (3+ postes par trimestre).** Des que le volume est recurrent, le modele forfaitaire du RPO devient economiquement superieur et la qualite augmente grace a l'effet d'apprentissage.
+**Vous recrutez regulierement (5+ postes par trimestre).** Des que le volume est recurrent, le modele forfaitaire du RPO devient economiquement superieur et la qualite augmente grace a l'effet d'apprentissage.
 
 **Vous n'avez pas d'equipe Talent Acquisition interne.** Le RPO vous donne acces a une expertise TA professionnelle sans le cout fixe d'une embauche permanente. C'est particulierement pertinent pour les startups et scale-ups entre 20 et 200 collaborateurs.
 

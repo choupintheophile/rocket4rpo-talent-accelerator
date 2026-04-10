@@ -5,12 +5,14 @@ import { ArrowRight } from "lucide-react";
 
 interface Props {
   title?: string;
+  gradientWord?: string;
   subtitle?: string;
   ctaLabel?: string;
 }
 
 export const CTASection = ({
   title = "Prêt à accélérer vos recrutements\u00a0?",
+  gradientWord = "accélérer",
   subtitle = "30 minutes de diagnostic gratuit. Sans engagement. Première shortlist en 48h.",
   ctaLabel = "Réserver mon diagnostic gratuit",
 }: Props) => {
@@ -25,7 +27,13 @@ export const CTASection = ({
           transition={{ duration: 0.5 }}
           className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
         >
-          {title}
+          {gradientWord && title.includes(gradientWord)
+            ? <>
+                {title.split(gradientWord)[0]}
+                <span className="text-gradient">{gradientWord}</span>
+                {title.split(gradientWord)[1]}
+              </>
+            : title}
         </motion.h2>
 
         {/* Subtitle */}
@@ -34,7 +42,7 @@ export const CTASection = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-4 text-lg text-background/80 max-w-2xl mx-auto"
+          className="mt-4 text-lg text-background/85 max-w-2xl mx-auto"
         >
           {subtitle}
         </motion.p>
@@ -51,7 +59,7 @@ export const CTASection = ({
             href="https://meetings.hubspot.com/theophile-choupin/rpo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-rocket-navy-soft"
           >
             {ctaLabel}
             <ArrowRight className="w-4 h-4" />
@@ -64,7 +72,7 @@ export const CTASection = ({
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-4 text-sm text-background/40"
+          className="mt-4 text-sm text-background/70"
         >
           Pas de frais cachés. Pas de relance non souhaitée. Juste des résultats.
         </motion.p>

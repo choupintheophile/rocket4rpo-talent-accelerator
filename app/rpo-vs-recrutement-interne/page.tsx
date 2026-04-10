@@ -35,7 +35,7 @@ const rows: Row[] = [
   {
     criteria: "D\u00e9lai de d\u00e9marrage",
     rpo: "48 h apr\u00e8s signature",
-    interne: "2-3 mois (recrutement du recruteur)",
+    interne: "3 mois (recrutement du recruteur)",
     rpoIcon: "check",
     interneIcon: "x",
   },
@@ -207,7 +207,7 @@ export default function RpoVsRecrutementInternePage() {
               <ul className="space-y-3">
                 {[
                   "Votre besoin de recrutement est temporaire ou fluctuant (3-12 mois)",
-                  "Vous ne pouvez pas attendre 2-3 mois pour recruter un recruteur",
+                  "Vous ne pouvez pas attendre 3 mois pour recruter un recruteur",
                   "Vous avez besoin d\u2019une expertise recrutement imm\u00e9diate",
                   "Votre budget ne justifie pas un CDI \u00e0 temps plein",
                   "Vous voulez pouvoir scaler ou r\u00e9duire rapidement",
@@ -228,7 +228,7 @@ export default function RpoVsRecrutementInternePage() {
                   "Votre flux de recrutement est constant (10+ postes/mois)",
                   "Vous disposez d\u2019un budget RH structur\u00e9 et p\u00e9renne",
                   "Vous visez le long terme avec une culture recrutement forte",
-                  "Vous pouvez attendre 2-3 mois le temps de recruter ce profil",
+                  "Vous pouvez attendre 3 mois le temps de recruter ce profil",
                   "Vous souhaitez capitaliser sur la connaissance interne",
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
@@ -264,7 +264,7 @@ export default function RpoVsRecrutementInternePage() {
               <p className="text-3xl font-bold">40-55 K&euro;/an</p>
               <p className="text-sm text-muted-foreground mt-1">+ charges patronales = 60-75 K&euro; co&ucirc;t total</p>
               <ul className="mt-4 space-y-2 text-sm">
-                <li className="flex items-center gap-2"><X className="w-4 h-4 text-red-500" /> 2-3 mois avant le d&eacute;marrage effectif</li>
+                <li className="flex items-center gap-2"><X className="w-4 h-4 text-red-500" /> 3 mois avant le d&eacute;marrage effectif</li>
                 <li className="flex items-center gap-2"><X className="w-4 h-4 text-red-500" /> Engagement CDI permanent</li>
                 <li className="flex items-center gap-2"><Minus className="w-4 h-4 text-amber-500" /> Rupture co&ucirc;teuse si le besoin diminue</li>
               </ul>

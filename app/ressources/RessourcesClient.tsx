@@ -18,7 +18,7 @@ const resources = [
       "12 pages pour comprendre les différences de coût, flexibilité et efficacité entre RPO et cabinet de recrutement traditionnel.",
     badge: "Guide PDF",
     icon: FileText,
-    downloads: "Téléchargé 800+ fois",
+    downloads: "",
     file: "/resources/guide-rpo-vs-cabinet.pdf",
   },
   {
@@ -27,7 +27,7 @@ const resources = [
       "Notre modèle de scorecard utilisé pour évaluer les candidats de manière structurée, quel que soit le poste.",
     badge: "Template",
     icon: ClipboardCheck,
-    downloads: "Téléchargé 450+ fois",
+    downloads: "",
     file: "/resources/scorecard-recrutement.pdf",
   },
   {
@@ -36,7 +36,7 @@ const resources = [
       "Fourchettes salariales actualisées pour 30+ postes Tech en Île-de-France et région.",
     badge: "Étude",
     icon: BarChart3,
-    downloads: "Téléchargé 1 200+ fois",
+    downloads: "",
     file: "/resources/grille-remuneration-tech-2026.pdf",
   },
   {
@@ -45,7 +45,7 @@ const resources = [
       "La checklist utilisée par nos Talent Acquisition Specialists pour intégrer un nouveau collaborateur efficacement.",
     badge: "Checklist",
     icon: CheckSquare,
-    downloads: "Téléchargé 350+ fois",
+    downloads: "",
     file: "/resources/checklist-onboarding.pdf",
   },
 ];

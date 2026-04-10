@@ -28,11 +28,12 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
   const [coutPct, setCoutPct] = useState(18);
   const [delai, setDelai] = useState(45);
 
-  const RPO_PCT = 0.1;
-  const RPO_DELAI = 28;
+  const RPO_TJM = 550;
+  const RPO_JOURS_PAR_RECRUTEMENT = 4;
+  const RPO_DELAI = 35;
 
   const coutActuel = postes * salaire * (coutPct / 100);
-  const coutRPO = postes * salaire * RPO_PCT;
+  const coutRPO = postes * RPO_TJM * RPO_JOURS_PAR_RECRUTEMENT;
   const economie = coutActuel - coutRPO;
   const gainJours = Math.max(0, (delai - RPO_DELAI) * postes);
 
@@ -337,7 +338,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                         Délai moyen RPO
                       </p>
                       <p className="text-3xl font-bold text-primary">
-                        28 jours
+                        35 jours
                       </p>
                     </div>
                   </div>

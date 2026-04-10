@@ -46,7 +46,7 @@ export const OffersSection = () => (
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border">
             <div>
               <p className="text-2xl font-bold text-primary">À partir de 550€/jour</p>
-              <p className="text-sm text-muted-foreground">~44 000€ pour 10 recrutements — 3x moins qu'un cabinet</p>
+              <p className="text-sm text-muted-foreground">~44 000€ pour 10 recrutements — jusqu'à 5x moins cher qu'un cabinet</p>
             </div>
             <Link
               href="/offre"

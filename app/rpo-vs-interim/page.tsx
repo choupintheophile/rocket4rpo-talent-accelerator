@@ -42,7 +42,7 @@ const rows: Row[] = [
   {
     criteria: "Mod\u00e8le de co\u00fbt",
     rpo: "TJM 550 \u20ac/j, pr\u00e9visible",
-    interim: "TJM + marge agence (30-50 %)",
+    interim: "TJM × coefficient 1.8 à 2.2 (80-120 % de marge)",
     rpoIcon: "check",
     interimIcon: "x",
   },
@@ -92,7 +92,7 @@ const faqs = [
   {
     question: "Le RPO co\u00fbte-t-il plus cher que l\u2019int\u00e9rim ?",
     answer:
-      "Pas forc\u00e9ment. Le TJM d\u2019un RPO (550 \u20ac/j) est transparent et sans marge cach\u00e9e. L\u2019int\u00e9rim facture un TJM brut + une marge agence de 30 \u00e0 50 %, ce qui peut revenir plus cher pour un niveau d\u2019expertise \u00e9quivalent.",
+      "Pas forc\u00e9ment. Le TJM d\u2019un RPO (550 \u20ac/j) est transparent et sans marge cach\u00e9e. L\u2019int\u00e9rim applique un coefficient de 1.8 \u00e0 2.2 (soit 80 \u00e0 120 % de marge), ce qui peut revenir plus cher pour un niveau d\u2019expertise \u00e9quivalent.",
   },
   {
     question: "Peut-on utiliser un RPO pour un besoin court terme ?",
@@ -102,7 +102,7 @@ const faqs = [
   {
     question: "Le RPO apporte-t-il un vivier de candidats ?",
     answer:
-      "Oui. Rocket4RPO s\u2019appuie sur une m\u00e9thodologie de sourcing \u00e9prouv\u00e9e sur 200+ recrutements tous secteurs. L\u2019int\u00e9rimaire ne dispose g\u00e9n\u00e9ralement pas de cette expertise.",
+      "Oui. Rocket4RPO s\u2019appuie sur une m\u00e9thodologie de sourcing \u00e9prouv\u00e9e, avec une \u00e9quipe cumulant 200+ recrutements tous secteurs. L\u2019int\u00e9rimaire ne dispose g\u00e9n\u00e9ralement pas de cette expertise.",
   },
   {
     question: "L\u2019int\u00e9rim est-il adapt\u00e9 pour recruter des profils sp\u00e9cialis\u00e9s ?",
@@ -256,12 +256,12 @@ export default function RpoVsInterimPage() {
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Expert s&eacute;nior d&eacute;di&eacute;</li>
                 <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> Pilotage autonome du process</li>
-                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> M\u00e9thodologie \u00e9prouv\u00e9e sur 200+ recrutements</li>
+                <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500" /> \u00c9quipe cumulant 200+ recrutements d\u2019exp\u00e9rience</li>
               </ul>
             </div>
             <div className="rounded-xl border border-border bg-card p-6">
               <h3 className="font-bold text-lg mb-2">Int&eacute;rim / Staffing</h3>
-              <p className="text-3xl font-bold">TJM + 30-50 % marge</p>
+              <p className="text-3xl font-bold">TJM × coeff. 1.8-2.2</p>
               <p className="text-sm text-muted-foreground mt-1">Co&ucirc;t r&eacute;el souvent opaque</p>
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="flex items-center gap-2"><X className="w-4 h-4 text-red-500" /> Marge agence significative</li>

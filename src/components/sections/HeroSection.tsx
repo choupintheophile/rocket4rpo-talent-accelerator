@@ -5,7 +5,7 @@ import { ArrowRight, Calculator, CheckCircle, Clock, Target } from "lucide-react
 import type { HeroContent } from "@/lib/personalization";
 
 const stats = [
-  { icon: CheckCircle, value: "200+", label: "recrutements réalisés" },
+  { icon: CheckCircle, value: "200+", label: "recrutements d'expérience cumulée" },
   { icon: Clock, value: "48h", label: "première shortlist" },
   { icon: Target, value: "92%", label: "rétention à 12 mois" },
 ];
@@ -22,7 +22,9 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
   const hero = content || defaultContent;
 
   return (
-    <section className="relative overflow-hidden bg-foreground text-background section-padding pt-28 md:pt-36 lg:pt-44">
+    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[hsl(var(--rocket-navy-soft))] text-background section-padding pt-28 md:pt-36 lg:pt-44">
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--rocket-teal)/0.08),transparent_60%)]" />
       <div className="container-wide relative z-10">
         <div className="max-w-4xl">
           {/* Badge */}
@@ -52,7 +54,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-6 text-lg md:text-xl text-background/60 leading-relaxed max-w-3xl"
+            className="mt-6 text-lg md:text-xl text-background/80 leading-relaxed max-w-3xl"
           >
             {hero.subtitle}
           </motion.p>
@@ -64,14 +66,14 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="mt-8 flex flex-wrap gap-3"
           >
-            {stats.map((s, i) => (
+            {stats.map((s) => (
               <div
-                key={i}
+                key={s.value}
                 className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-background/5 border border-background/10"
               >
                 <s.icon className="w-5 h-5 text-primary flex-shrink-0" />
                 <span className="text-base font-bold text-background">{s.value}</span>
-                <span className="text-sm text-background/50">{s.label}</span>
+                <span className="text-sm text-background/70">{s.label}</span>
               </div>
             ))}
           </motion.div>
@@ -88,15 +90,15 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                 href="https://meetings.hubspot.com/theophile-choupin/rpo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
               >
                 {"Réserver un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
               </a>
-              <span className="mt-2 text-xs text-background/40">Gratuit · 30 min · Sans engagement</span>
+              <span className="mt-2 text-xs text-background/70">Gratuit · 30 min · Sans engagement</span>
             </div>
             <a
               href="/calculateur"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
             >
               <Calculator className="w-4 h-4" />
               {"Calculer mes économies"}
@@ -108,9 +110,9 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-10 text-sm text-background/40"
+            className="mt-10 text-sm text-background/70"
           >
-            {"Déjà 200+ entreprises accompagnées. Réponse sous 24h."}
+            {"Une équipe cumulant 200+ recrutements. Réponse sous 24h."}
           </motion.p>
 
           {/* Urgency indicator */}
@@ -118,13 +120,13 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.55 }}
-            className="mt-4 flex items-center gap-2 text-sm text-background/40"
+            className="mt-4 flex items-center gap-2 text-sm text-background/70"
           >
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
             </span>
-            <span>3 créneaux restants en avril</span>
+            <span>Diagnostic gratuit — Réservez votre créneau</span>
           </motion.div>
         </div>
       </div>

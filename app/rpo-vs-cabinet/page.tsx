@@ -28,7 +28,7 @@ const rows: Row[] = [
   {
     criteria: "Cou\u0302t pour 10 recrutements",
     rpo: "~44 000 \u20ac (TJM 550 \u20ac/j)",
-    cabinet: "60 000 \u2013 200 000 \u20ac (15-25 % du salaire)",
+    cabinet: "120 000 \u2013 200 000 \u20ac (15-25 % du salaire)",
     rpoIcon: "check",
     cabinetIcon: "x",
   },
@@ -92,7 +92,7 @@ const faqs = [
   {
     question: "Le RPO est-il moins cher qu\u2019un cabinet de recrutement ?",
     answer:
-      "Oui, en g\u00e9n\u00e9ral. Pour 10 recrutements, un RPO co\u00fbte environ 44 000 \u20ac (TJM 550 \u20ac/j) contre 60 000 \u00e0 200 000 \u20ac pour un cabinet facturant 15-25 % du salaire annuel brut. Plus le volume est \u00e9lev\u00e9, plus l\u2019\u00e9cart se creuse en faveur du RPO.",
+      "Oui, en g\u00e9n\u00e9ral. Pour 10 recrutements, un RPO co\u00fbte environ 44 000 \u20ac (TJM 550 \u20ac/j) contre 120 000 \u00e0 200 000 \u20ac pour un cabinet facturant 15-25 % du salaire annuel brut. Plus le volume est \u00e9lev\u00e9, plus l\u2019\u00e9cart se creuse en faveur du RPO.",
   },
   {
     question: "Peut-on combiner RPO et cabinet de recrutement ?",
@@ -262,7 +262,7 @@ export default function RpoVsCabinetPage() {
             </div>
             <div className="rounded-xl border border-border bg-card p-6">
               <h3 className="font-bold text-lg mb-2">Cabinet classique</h3>
-              <p className="text-3xl font-bold">60 000 &ndash; 200 000 &euro;</p>
+              <p className="text-3xl font-bold">120 000 &ndash; 200 000 &euro;</p>
               <p className="text-sm text-muted-foreground mt-1">Pour 10 recrutements (15-25 % du salaire)</p>
               <ul className="mt-4 space-y-2 text-sm">
                 <li className="flex items-center gap-2"><Minus className="w-4 h-4 text-amber-500" /> Co&ucirc;t variable selon le salaire du candidat</li>

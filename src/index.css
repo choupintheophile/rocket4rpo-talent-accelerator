@@ -10,19 +10,19 @@
     --card-foreground: 220 20% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 10%;
-    --primary: 160 84% 39%;
+    --primary: 160 84% 32%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 14% 92%;
     --secondary-foreground: 220 20% 10%;
     --muted: 220 14% 94%;
-    --muted-foreground: 220 10% 46%;
-    --accent: 160 84% 39%;
+    --muted-foreground: 220 10% 40%;
+    --accent: 160 84% 32%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 160 84% 39%;
+    --ring: 160 84% 32%;
     --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -31,12 +31,12 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 160 84% 39%;
+    --sidebar-ring: 160 84% 32%;
 
     /* Custom Rocket4RPO tokens */
     --rocket-dark: 220 20% 10%;
     --rocket-dark-soft: 220 15% 18%;
-    --rocket-teal: 160 84% 39%;
+    --rocket-teal: 160 84% 32%;
     --rocket-teal-light: 160 60% 95%;
     --rocket-teal-glow: 160 84% 50%;
     --rocket-slate: 220 10% 46%;
@@ -53,19 +53,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 220 15% 14%;
     --popover-foreground: 210 40% 98%;
-    --primary: 160 84% 39%;
+    --primary: 160 84% 42%;
     --primary-foreground: 0 0% 100%;
     --secondary: 220 15% 18%;
     --secondary-foreground: 210 40% 98%;
     --muted: 220 15% 18%;
     --muted-foreground: 215 20% 65%;
-    --accent: 160 84% 39%;
+    --accent: 160 84% 42%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 160 84% 39%;
+    --ring: 160 84% 42%;
     --rocket-cream: 220 15% 14%;
     --rocket-navy-soft: 220 18% 12%;
   }
@@ -83,6 +83,9 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-bold tracking-tight;
+  }
+  a:focus-visible, button:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
   }
 }
 

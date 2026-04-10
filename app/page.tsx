@@ -12,13 +12,13 @@ import HomepageSections from "./HomepageSections";
 export const metadata: Metadata = {
   title: "Rocket4RPO — Recruteur externalisé intégré à votre équipe",
   description:
-    "Rocket4RPO intègre un Talent Acquisition Specialist senior dans votre équipe. Première shortlist en 48h, tous types de postes, à partir de 550€/jour. 200+ recrutements réalisés.",
+    "Rocket4RPO intègre un Talent Acquisition Specialist senior dans votre équipe. Première shortlist en 48h, tous types de postes, à partir de 550€/jour. Une équipe cumulant 200+ recrutements.",
   alternates: { canonical: "/" },
 };
 
 const homepageFaqs = [
   { question: "En quoi le RPO est différent d'un cabinet de recrutement ?", answer: "Le RPO (Recruitment Process Outsourcing) consiste à intégrer un recruteur externe directement dans votre équipe. Il utilise vos outils, participe à vos rituels et recrute au nom de votre entreprise — pas au nom de Rocket4RPO." },
-  { question: "Combien ça coûte ?", answer: "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€. Un cabinet classique facturerait entre 120 000 et 240 000€ pour les mêmes recrutements." },
+  { question: "Combien ça coûte ?", answer: "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€. Un cabinet classique facturerait entre 120 000 et 200 000€ pour les mêmes recrutements." },
   { question: "Combien de temps pour démarrer ?", answer: "48h. Le Talent Acquisition Specialist rejoint vos outils et vos équipes sous 48h. Première shortlist qualifiée le même jour." },
   { question: "Quels postes pouvez-vous recruter ?", answer: "Tous. Sales, Tech, Finance, Marketing, Support, Product, Data, Management. Nos TA sont des généralistes expérimentés." },
   { question: "Et si le recruteur ne convient pas ?", answer: "On le remplace sous 48h. Notre réseau de freelances TA seniors nous permet de réagir immédiatement." },

@@ -99,7 +99,7 @@ Un bon partenaire RPO ne cree pas de dependance. Il structure des processus, for
 | **Reporting** | Limité | Detaille, avec KPIs |
 | **Marque employeur** | Le cabinet pousse sa marque | Travail sous la marque client |
 | **Engagement** | Pas d'exclusivite | Partenariat dedie |
-| **Cout pour 10 recrutements** | 60 000 a 150 000 EUR | 25 000 a 60 000 EUR |
+| **Cout pour 10 recrutements** | 120 000 a 200 000 EUR | 25 000 a 60 000 EUR |
 
 ## Pourquoi les entreprises Tech adoptent massivement le RPO
 

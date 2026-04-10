@@ -7,7 +7,7 @@ import { CheckCircle, Users, TrendingUp, X } from "lucide-react";
 const notifications = [
   { icon: CheckCircle, text: "Nouvelle mission RPO lancée — Scale-up SaaS, 6 postes Sales", time: "il y a 2h" },
   { icon: Users, text: "3 recrutements finalisés cette semaine — Fintech, équipe Engineering", time: "il y a 5h" },
-  { icon: TrendingUp, text: "Temps moyen de recrutement ce mois : 28 jours (-35%)", time: "il y a 1 jour" },
+  { icon: TrendingUp, text: "Temps moyen de recrutement ce mois : 35 jours", time: "il y a 1 jour" },
   { icon: CheckCircle, text: "Nouveau client dans le secteur HealthTech — 4 postes Marketing", time: "il y a 3 jours" },
   { icon: Users, text: "92% de rétention à 12 mois sur les 50 derniers placements", time: "ce mois" },
 ];
