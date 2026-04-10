@@ -30,7 +30,7 @@ const faqs = [
   {
     question: "Combien ça coûte concrètement ?",
     answer:
-      "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€ — soit 3x moins qu'un cabinet classique (60 000 à 200 000€). Facturation mensuelle, sans frais cachés.",
+      "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€ — soit 3x moins qu'un cabinet classique (120 000 à 240 000€). Facturation mensuelle, sans frais cachés.",
   },
   {
     question: "En combien de temps le recruteur est-il opérationnel ?",
@@ -258,7 +258,7 @@ export default function OffreClient() {
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
               { model: "RPO Rocket4RPO", price: "~44 000€", detail: "TJM prévisible, tout inclus", highlight: true },
-              { model: "Cabinet classique", price: "60 000 – 200 000€", detail: "15-25% du salaire par recrutement", highlight: false },
+              { model: "Cabinet classique", price: "120 000 – 240 000€", detail: "15-25% du salaire par recrutement", highlight: false },
               { model: "Recruteur interne (CDI)", price: "40 – 55 000€/an + charges", detail: "2-3 mois pour le recruter", highlight: false },
             ].map((item, i) => (
               <motion.div

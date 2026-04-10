@@ -204,7 +204,7 @@ export default function ComparateurClient() {
           <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
             <p className="text-sm font-semibold text-primary mb-2">En bref</p>
             <p className="text-foreground font-medium">
-              Le RPO (Recruitment Process Outsourcing) coûte en moyenne 44 000€ pour 10 recrutements chez Rocket4RPO, contre 60 000 à 200 000€ avec un cabinet de recrutement traditionnel (15-25% du salaire annuel). Le RPO offre une intégration dans l'équipe, un suivi KPI hebdomadaire, et une première shortlist en 48h.
+              Le RPO (Recruitment Process Outsourcing) coûte en moyenne 44 000€ pour 10 recrutements chez Rocket4RPO, contre 120 000 à 240 000€ avec un cabinet de recrutement traditionnel (15-25% du salaire annuel). Le RPO offre une intégration dans l'équipe, un suivi KPI hebdomadaire, et une première shortlist en 48h.
             </p>
           </div>
         </div>

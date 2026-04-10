@@ -96,7 +96,7 @@ export default function HomepageSections() {
             {[
               { icon: Clock, stat: "67 jours", title: "Time-to-hire moyen en France", text: "Chaque jour de poste vacant, c'est du CA non généré, des projets qui prennent du retard, et une équipe qui compense." },
               { icon: Users, stat: "30%", title: "Du temps de vos managers", text: "Trier des CVs, faire passer des entretiens non qualifiés, relancer les cabinets. Vos opérationnels méritent mieux." },
-              { icon: Banknote, stat: "60-200K€", title: "Coût de 10 recrutements via cabinet", text: "15 à 25% du salaire annuel par recrutement. Avec le RPO : ~44 000€ pour les mêmes 10 postes." },
+              { icon: Banknote, stat: "120-240K€", title: "Coût de 10 recrutements via cabinet", text: "15 à 25% du salaire annuel par recrutement. Avec le RPO : ~44 000€ pour les mêmes 10 postes." },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -246,7 +246,7 @@ export default function HomepageSections() {
             </motion.div>
             <motion.div {...fade} transition={{ delay: 0.1 }} className="p-8 rounded-2xl bg-background border border-border/60 text-center">
               <p className="text-sm font-medium text-muted-foreground mb-2">Cabinet classique</p>
-              <p className="text-4xl font-bold mb-2">60-200K€</p>
+              <p className="text-4xl font-bold mb-2">120-240K€</p>
               <p className="text-sm text-muted-foreground mb-4">pour 10 recrutements</p>
               <p className="text-xs text-muted-foreground">15-25% du salaire annuel<br />Facturé au succès</p>
             </motion.div>
