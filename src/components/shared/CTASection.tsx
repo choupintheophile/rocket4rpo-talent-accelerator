@@ -15,7 +15,7 @@ export const CTASection = ({
   ctaLabel = "Réserver mon diagnostic gratuit",
 }: Props) => {
   return (
-    <section className="section-padding bg-foreground text-background">
+    <section className="section-padding bg-rocket-navy-soft text-background">
       <div className="container-tight text-center">
         {/* Title */}
         <motion.h2
@@ -34,7 +34,7 @@ export const CTASection = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-4 text-lg text-background/60 max-w-2xl mx-auto"
+          className="mt-4 text-lg text-background/80 max-w-2xl mx-auto"
         >
           {subtitle}
         </motion.p>

@@ -19,7 +19,7 @@ interface Props {
 }
 
 export const BlogPreview = ({ posts }: Props) => (
-  <section className="section-padding bg-muted/30">
+  <section className="section-padding bg-background">
     <div className="container-wide">
       <SectionHeading
         badge="Blog"

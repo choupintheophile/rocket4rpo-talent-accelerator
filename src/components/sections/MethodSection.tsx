@@ -162,7 +162,7 @@ function StepContent({
         <span className="text-primary mr-2">{step.num}.</span>
         {step.title}
       </h3>
-      <p className="text-sm text-background/60 leading-relaxed max-w-sm">
+      <p className="text-sm text-background/80 leading-relaxed max-w-sm">
         {step.text}
       </p>
     </div>
@@ -171,7 +171,7 @@ function StepContent({
 
 export const MethodSection = () => {
   return (
-    <section className="section-padding bg-foreground text-background">
+    <section className="section-padding bg-rocket-navy-soft text-background">
       <div className="container-wide">
         <SectionHeading
           badge="Notre methode"

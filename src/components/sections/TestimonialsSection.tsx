@@ -44,7 +44,7 @@ export const TestimonialsSection = ({ testimonials }: Props) => {
   if (!testimonials.length) return null;
 
   return (
-    <section className="section-padding bg-[hsl(var(--rocket-warm))]">
+    <section className="section-padding bg-secondary">
       <div className="container-wide">
         <SectionHeading
           badge="Témoignages"

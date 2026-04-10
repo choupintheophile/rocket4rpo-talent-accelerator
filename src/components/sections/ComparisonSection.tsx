@@ -77,7 +77,7 @@ const CellIcon = ({ value }: { value: CellValue }) => {
 };
 
 export const ComparisonSection = () => (
-  <section className="section-padding bg-background">
+  <section className="section-padding bg-rocket-cream">
     <div className="container-wide">
       <SectionHeading
         badge="Comparatif"

@@ -68,6 +68,8 @@ export default {
           slate: "hsl(var(--rocket-slate))",
           light: "hsl(var(--rocket-light))",
           warm: "hsl(var(--rocket-warm))",
+          cream: "hsl(var(--rocket-cream))",
+          "navy-soft": "hsl(var(--rocket-navy-soft))",
         },
       },
       borderRadius: {

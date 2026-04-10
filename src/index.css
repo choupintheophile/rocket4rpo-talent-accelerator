@@ -42,6 +42,8 @@
     --rocket-slate: 220 10% 46%;
     --rocket-light: 220 14% 96%;
     --rocket-warm: 40 30% 97%;
+    --rocket-cream: 40 30% 96%;
+    --rocket-navy-soft: 220 18% 15%;
   }
 
   .dark {
@@ -64,6 +66,8 @@
     --border: 220 15% 20%;
     --input: 220 15% 20%;
     --ring: 160 84% 39%;
+    --rocket-cream: 220 15% 14%;
+    --rocket-navy-soft: 220 18% 12%;
   }
 }
 

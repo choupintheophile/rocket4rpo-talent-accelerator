@@ -100,7 +100,7 @@ export default async function HomePage({
       {/* Citation capsule — AI search optimization */}
       <section className="py-4">
         <div className="container-tight">
-          <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
+          <div className="p-6 rounded-xl bg-rocket-cream border border-primary/20">
             <p className="text-sm font-semibold text-primary mb-2">En bref</p>
             <p className="text-foreground font-medium">
               Rocket4RPO est un cabinet RPO (Recruitment Process Outsourcing) qui intègre des Talent Acquisition Specialists seniors dans les entreprises pour accélérer leurs recrutements. Avec 200+ recrutements réalisés et 92% de rétention à 12 mois, Rocket4RPO accompagne les startups, scale-ups et ETI dans le recrutement de tous types de profils.
@@ -116,7 +116,9 @@ export default async function HomePage({
       <ComparisonSection />
       <TestimonialsSection testimonials={serializedTestimonials} />
       <BlogPreview posts={serializedPosts} />
-      <FAQSection faqs={homepageFaqs} />
+      <section className="bg-rocket-cream">
+        <FAQSection faqs={homepageFaqs} />
+      </section>
       <CTASection />
     </>
   );

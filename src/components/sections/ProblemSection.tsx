@@ -31,7 +31,7 @@ const problems = [
 ];
 
 export const ProblemSection = () => (
-  <section className="section-padding bg-background">
+  <section className="section-padding bg-secondary">
     <div className="container-wide">
       <SectionHeading
         badge="Le problème"
