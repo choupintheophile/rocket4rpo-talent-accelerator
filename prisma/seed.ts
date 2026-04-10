@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import * as fs from "fs";
+import * as path from "path";
 import dotenv from "dotenv";
 
 dotenv.config({ path: ".env.local" });
@@ -176,6 +178,101 @@ async function main() {
     });
   }
   console.log(`Seeded ${teamMembers.length} team members`);
+
+  // Seed Candidates from R4RPO JSON
+  await seedCandidates(prisma);
+}
+
+const NB_CRIT = 7;
+
+function migrateScores(sc: Record<string, number> | null, mode?: string): Record<string, number> {
+  if (!sc) return {};
+  if (sc["c0"] !== undefined) {
+    const out: Record<string, number> = {};
+    for (let i = 0; i < NB_CRIT; i++) {
+      if (sc[`c${i}`]) out[`c${i}`] = sc[`c${i}`];
+    }
+    return out;
+  }
+  const m = mode || "ESN";
+  const MAP = [1, 3, 6, 2, 4, 5, 11];
+  const out: Record<string, number> = {};
+  for (let i = 0; i < MAP.length; i++) {
+    const oldKey = m + MAP[i];
+    if (sc[oldKey]) out[`c${i}`] = sc[oldKey];
+  }
+  return out;
+}
+
+function calcScoreFromScores(scores: Record<string, number>): { total: number; max: number; filled: number; pct: number } {
+  let total = 0, filled = 0;
+  for (let i = 0; i < NB_CRIT; i++) {
+    const s = scores[`c${i}`] || 0;
+    total += s;
+    if (s > 0) filled++;
+  }
+  const max = filled * 5;
+  return { total, max, filled, pct: max > 0 ? Math.round((total / max) * 100) : 0 };
+}
+
+async function seedCandidates(prisma: PrismaClient) {
+  const possiblePaths = [
+    path.resolve(__dirname, "../data/R4RPO_16candidats_2026-04-09.json"),
+    "C:/Users/choup/OneDrive/Bureau/Rocket4Sales/TA.outils/sauvegardes/R4RPO_16candidats_2026-04-09.json",
+  ];
+
+  let jsonData: { candidates: any[] } | null = null;
+  for (const p of possiblePaths) {
+    try {
+      const raw = fs.readFileSync(p, "utf-8");
+      jsonData = JSON.parse(raw);
+      console.log(`\nLoaded ${jsonData!.candidates.length} candidates from ${p}`);
+      break;
+    } catch { continue; }
+  }
+
+  if (!jsonData) {
+    console.log("\nCandidate JSON not found, skipping candidate seed");
+    return;
+  }
+
+  await prisma.candidate.deleteMany();
+
+  for (const c of jsonData.candidates) {
+    const scores = migrateScores(c.sc, c.mode || c.sector);
+    const calc = calcScoreFromScores(scores);
+
+    await prisma.candidate.create({
+      data: {
+        prenom: c.prenom || "",
+        nom: c.nom || "",
+        email: c.email || null,
+        phone: c.phone || null,
+        linkedin: c.li || null,
+        date: c.date ? new Date(c.date) : null,
+        contrat: c.contrat || null,
+        tjm: c.tjm || null,
+        dispo: c.dispo || null,
+        loc: c.loc || null,
+        remote: c.remote || null,
+        days: c.days || null,
+        sector: c.sector || c.mode || null,
+        notes: c.notes || null,
+        resumeText: c.resumeText || null,
+        scores,
+        forces: c.forces || [],
+        risks: c.risks || [],
+        score: calc.total,
+        maxScore: calc.max,
+        pct: calc.pct,
+        filled: calc.filled,
+        hasCv: c.hasCv || false,
+      },
+    });
+    console.log(`  + ${c.prenom} ${c.nom} (${calc.pct}%)`);
+  }
+
+  console.log(`Seeded ${jsonData.candidates.length} candidates`);
 }
 
 main()

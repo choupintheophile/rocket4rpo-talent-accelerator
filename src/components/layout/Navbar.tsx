@@ -18,7 +18,7 @@ const mainLinks = [
 
 const rightLinks = [
   { href: "/recrutement", label: "Postuler" },
-  { href: "#", label: "Se connecter" },
+  { href: "/webapp-testing", label: "Se connecter" },
 ];
 
 export const Navbar = () => {
@@ -61,11 +61,7 @@ export const Navbar = () => {
             <Link
               key={l.label}
               href={l.href}
-              className={`text-sm font-medium transition-colors ${
-                l.href === "#"
-                  ? "text-foreground/40 cursor-default"
-                  : "text-foreground/70 hover:text-foreground"
-              }`}
+              className={`text-sm font-medium transition-colors text-foreground/70 hover:text-foreground`}
             >
               {l.label}
             </Link>

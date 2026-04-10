@@ -2,13 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, DM_Serif_Display } from "next/font/google";
 import Script from "next/script";
 import "@/index.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { CookieBanner } from "@/components/shared/CookieBanner";
-
-import { StickyCTA } from "@/components/shared/StickyCTA";
-import { ExitIntentPopup } from "@/components/shared/ExitIntentPopup";
-import { ConversationalCTA } from "@/components/shared/ConversationalCTA";
+import { MarketingShell } from "@/components/layout/MarketingShell";
 
 import { Providers } from "./providers";
 
@@ -98,19 +92,7 @@ export default function RootLayout({
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg">
             Aller au contenu principal
           </a>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main id="main-content" className="flex-1 pt-20 lg:pt-24">{children}</main>
-            <Footer />
-          </div>
-          <StickyCTA />
-          <div className="hidden lg:block">
-            <ExitIntentPopup />
-          </div>
-          <div className="hidden lg:block">
-            <ConversationalCTA />
-          </div>
-          <CookieBanner />
+          <MarketingShell>{children}</MarketingShell>
         </Providers>
       </body>
     </html>
