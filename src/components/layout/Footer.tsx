@@ -33,7 +33,7 @@ export const Footer = () => (
         {/* Brand */}
         <div className="col-span-2 md:col-span-3 lg:col-span-1">
           <Link href="/" className="flex items-center">
-            <Image src="/logo-rocket4rpo-white.webp" alt="Rocket4RPO" width={384} height={256} sizes="(max-width: 768px) 120px, 144px" className="h-20 md:h-24 w-auto" />
+            <Image src="/logo-rocket4rpo-white.webp" alt="Rocket4RPO" width={384} height={256} sizes="(max-width: 768px) 120px, 144px" className="h-28 md:h-32 w-auto" />
           </Link>
           <p className="mt-4 text-sm text-background/70 leading-relaxed max-w-xs">
             Talent Acquisition Specialists intégrés à vos équipes pour recruter mieux, plus vite et moins cher.

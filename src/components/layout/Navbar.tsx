@@ -29,9 +29,9 @@ export const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-xl border-b border-border/50 shadow-[0_1px_3px_0_rgb(0_0_0/0.02)]">
-      <div className="container-wide flex items-center justify-between h-16 lg:h-20">
+      <div className="container-wide flex items-center justify-between h-20 lg:h-24">
         <Link href="/" className="flex items-center">
-          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Accueil" width={384} height={256} sizes="(max-width: 1024px) 120px, 144px" className="h-20 lg:h-24 w-auto" priority />
+          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Accueil" width={384} height={256} sizes="(max-width: 1024px) 160px, 200px" className="h-28 lg:h-32 w-auto" priority />
         </Link>
 
         {/* Desktop nav — liens principaux */}
