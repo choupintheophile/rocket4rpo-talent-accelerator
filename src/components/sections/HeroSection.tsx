@@ -1,13 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, Calculator, CheckCircle, Clock, Target } from "lucide-react";
 import type { HeroContent } from "@/lib/personalization";
 
 const stats = [
-  { icon: CheckCircle, value: "200+", label: "recrutements d'expérience cumulée" },
-  { icon: Clock, value: "48h", label: "première shortlist" },
-  { icon: Target, value: "92%", label: "rétention à 12 mois" },
+  { icon: CheckCircle, value: "200+", label: "recrutements" },
+  { icon: Clock, value: "48h", label: "shortlist" },
+  { icon: Target, value: "92%", label: "rétention" },
 ];
 
 const defaultContent: HeroContent = {
@@ -22,112 +21,66 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
   const hero = content || defaultContent;
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[hsl(var(--rocket-navy-soft))] text-background pt-6 md:pt-8 lg:pt-10 pb-10 md:pb-14 lg:pb-16">
+    <section className="relative overflow-hidden bg-gradient-to-br from-foreground via-foreground to-[hsl(var(--rocket-navy-soft))] text-background py-10 md:py-14 lg:py-16">
       {/* Subtle radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--rocket-teal)/0.08),transparent_60%)]" />
       <div className="container-wide relative z-10">
         <div className="max-w-4xl">
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-primary/15 text-primary border border-primary/20">
-              {hero.badge}
-            </span>
-          </motion.div>
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium bg-primary/15 text-primary border border-primary/20">
+            {hero.badge}
+          </span>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-6 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.08] tracking-tight"
-          >
+          {/* Headline — no animation, immediately visible */}
+          <h1 className="mt-5 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.08] tracking-tight">
             {hero.headline}
-            {hero.highlightedText}
-          </motion.h1>
+            <span className="text-gradient">{hero.highlightedText}</span>
+          </h1>
 
           {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-6 text-lg md:text-xl text-background/80 leading-relaxed max-w-3xl"
-          >
+          <p className="mt-4 text-lg md:text-xl text-background/85 leading-relaxed max-w-3xl">
             {hero.subtitle}
-          </motion.p>
+          </p>
 
-          {/* Mini-stats pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 flex flex-wrap gap-3"
-          >
-            {stats.map((s) => (
-              <div
-                key={s.value}
-                className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-background/5 border border-background/10"
-              >
-                <s.icon className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-base font-bold text-background">{s.value}</span>
-                <span className="text-sm text-background/70">{s.label}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Double CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
-          >
-            <div className="flex flex-col items-start">
+          {/* Stats + CTAs in a row */}
+          <div className="mt-8 flex flex-col lg:flex-row lg:items-center gap-6">
+            {/* Double CTA */}
+            <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href="https://meetings.hubspot.com/theophile-choupin/rpo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                {"Réserver un diagnostic gratuit"} <ArrowRight className="w-4 h-4" />
+                Réserver un diagnostic gratuit <ArrowRight className="w-4 h-4" />
               </a>
-              <span className="mt-2 text-xs text-background/70">Gratuit · 30 min · Sans engagement</span>
+              <a
+                href="/calculateur"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors"
+              >
+                <Calculator className="w-4 h-4" />
+                Calculer mes économies
+              </a>
             </div>
-            <a
-              href="/calculateur"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-background/20 text-background hover:bg-background/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
-            >
-              <Calculator className="w-4 h-4" />
-              {"Calculer mes économies"}
-            </a>
-          </motion.div>
 
-          {/* Social proof */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-10 text-sm text-background/70"
-          >
-            {"Une équipe cumulant 200+ recrutements. Réponse sous 24h."}
-          </motion.p>
+            {/* Mini stats */}
+            <div className="flex gap-6">
+              {stats.map((s) => (
+                <div key={s.value} className="text-center">
+                  <div className="flex items-center gap-1.5">
+                    <s.icon className="w-4 h-4 text-primary" />
+                    <span className="text-lg font-bold">{s.value}</span>
+                  </div>
+                  <p className="text-xs text-background/60">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          {/* Urgency indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.55 }}
-            className="mt-4 flex items-center gap-2 text-sm text-background/70"
-          >
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
-            </span>
-            <span>Diagnostic gratuit — Réservez votre créneau</span>
-          </motion.div>
+          {/* Social proof line */}
+          <p className="mt-6 text-xs text-background/60">
+            Gratuit · 30 min · Sans engagement · Réponse sous 24h
+          </p>
         </div>
       </div>
     </section>
