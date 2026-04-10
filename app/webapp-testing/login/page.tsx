@@ -10,7 +10,6 @@ import Link from "next/link";
 const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "";
 const ALLOWED_DOMAIN = "rocket4rpo.com";
 
-// Google Identity Services types
 declare global {
   interface Window {
     google?: {
@@ -24,16 +23,6 @@ declare global {
   }
 }
 
-function parseJwt(token: string): Record<string, string> | null {
-  try {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    return JSON.parse(atob(base64));
-  } catch {
-    return null;
-  }
-}
-
 export default function LoginPage() {
   const router = useRouter();
   const googleBtnRef = useRef<HTMLDivElement>(null);
@@ -44,35 +33,32 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [googleLoaded, setGoogleLoaded] = useState(false);
 
-  // Google Sign-In callback
   const handleGoogleCallback = useCallback(
-    (response: { credential: string }) => {
-      const payload = parseJwt(response.credential);
-      if (!payload) {
-        setError("Erreur lors de la connexion Google");
-        return;
+    async (response: { credential: string }) => {
+      setLoading(true);
+      setError("");
+      try {
+        const res = await fetch("/api/auth", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ googleCredential: response.credential }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          router.push("/webapp-testing/vivier");
+        } else {
+          setError(data.error || "Erreur de connexion Google");
+        }
+      } catch {
+        setError("Erreur de connexion");
       }
-
-      const userEmail = payload.email || "";
-      const domain = userEmail.split("@")[1];
-
-      if (domain !== ALLOWED_DOMAIN) {
-        setError(`Accès réservé aux comptes @${ALLOWED_DOMAIN}`);
-        return;
-      }
-
-      // Auth success
-      document.cookie = `r4rpo_auth=1; path=/; max-age=86400; SameSite=Lax`;
-      document.cookie = `r4rpo_user=${encodeURIComponent(payload.name || userEmail)}; path=/; max-age=86400; SameSite=Lax`;
-      router.push("/webapp-testing/vivier");
+      setLoading(false);
     },
     [router],
   );
 
-  // Load Google Identity Services
   useEffect(() => {
     if (!GOOGLE_CLIENT_ID) return;
-
     const script = document.createElement("script");
     script.src = "https://accounts.google.com/gsi/client";
     script.async = true;
@@ -98,35 +84,34 @@ export default function LoginPage() {
       }
     };
     document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
+    return () => { document.head.removeChild(script); };
   }, [handleGoogleCallback]);
 
-  // Classic email/password login
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    if (
-      (email === "theo@rocket4rpo.com" && password === "R4RPO2026!") ||
-      (email === "admin@rocket4rpo.com" && password === "R4RPO2026!") ||
-      (email === "clement@rocket4rpo.com" && password === "R4RPO2026!")
-    ) {
-      document.cookie = "r4rpo_auth=1; path=/; max-age=86400; SameSite=Lax";
-      document.cookie = `r4rpo_user=${encodeURIComponent(email.split("@")[0])}; path=/; max-age=86400; SameSite=Lax`;
-      router.push("/webapp-testing/vivier");
-    } else {
-      setError("Email ou mot de passe incorrect");
-      setLoading(false);
+    try {
+      const res = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        router.push("/webapp-testing/vivier");
+      } else {
+        setError(data.error || "Email ou mot de passe incorrect");
+      }
+    } catch {
+      setError("Erreur de connexion au serveur");
     }
+    setLoading(false);
   }
 
   return (
     <div className="min-h-screen flex">
-      {/* Left: Login form */}
       <div className="flex-1 flex items-center justify-center p-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -135,13 +120,7 @@ export default function LoginPage() {
           className="w-full max-w-[400px]"
         >
           <Link href="/" className="flex items-center mb-10">
-            <Image
-              src="/logo-rocket4rpo.webp"
-              alt="Rocket4RPO"
-              width={384}
-              height={256}
-              className="h-20 w-auto"
-            />
+            <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO" width={384} height={256} className="h-20 w-auto" />
           </Link>
 
           <h1 className="text-2xl font-bold mb-2">Connexion</h1>
@@ -149,18 +128,11 @@ export default function LoginPage() {
             Acc{"\u00e9"}dez au vivier TA/TAM Rocket4RPO
           </p>
 
-          {/* Google Sign-In */}
           {GOOGLE_CLIENT_ID && (
             <>
-              <div
-                ref={googleBtnRef}
-                className="w-full flex justify-center mb-2"
-              />
+              <div ref={googleBtnRef} className="w-full flex justify-center mb-2" />
               {!googleLoaded && (
-                <button
-                  disabled
-                  className="w-full flex items-center justify-center gap-3 px-6 py-3 text-sm font-medium rounded-xl border border-gray-300 bg-white text-gray-500"
-                >
+                <button disabled className="w-full flex items-center justify-center gap-3 px-6 py-3 text-sm font-medium rounded-xl border border-gray-300 bg-white text-gray-500">
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
                     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
@@ -170,68 +142,35 @@ export default function LoginPage() {
                   Chargement...
                 </button>
               )}
-
               <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-200" />
-                </div>
-                <div className="relative flex justify-center text-xs">
-                  <span className="bg-white px-3 text-muted-foreground">ou avec email</span>
-                </div>
+                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200" /></div>
+                <div className="relative flex justify-center text-xs"><span className="bg-white px-3 text-muted-foreground">ou avec email</span></div>
               </div>
             </>
           )}
 
-          {/* Email/Password form */}
           <form onSubmit={handleLogin} className="space-y-5">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="vous@rocket4rpo.com"
-                required
-                className="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
-              />
+              <label htmlFor="login-email" className="text-sm font-medium">Email</label>
+              <input id="login-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="vous@rocket4rpo.com" required className="w-full px-4 py-3 text-sm border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all" />
             </div>
-
             <div className="space-y-1.5">
-              <label className="text-sm font-medium">Mot de passe</label>
+              <label htmlFor="login-password" className="text-sm font-medium">Mot de passe</label>
               <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  required
-                  className="w-full px-4 py-3 pr-12 text-sm border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                >
+                <input id="login-password" type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required className="w-full px-4 py-3 pr-12 text-sm border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all" />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
 
             {error && (
-              <motion.p
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2.5"
-              >
+              <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2.5">
                 {error}
               </motion.p>
             )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60"
-            >
+            <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-60">
               {loading ? "Connexion..." : "Se connecter"}
               {!loading && <ArrowRight className="w-4 h-4" />}
             </button>
@@ -244,25 +183,17 @@ export default function LoginPage() {
         </motion.div>
       </div>
 
-      {/* Right: Visual panel (desktop only) */}
       <div className="hidden lg:flex lg:w-[480px] bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-rocket-teal/10 blur-[120px] animate-pulse" />
           <div className="absolute bottom-1/3 right-1/4 w-[200px] h-[200px] rounded-full bg-emerald-500/8 blur-[100px] animate-pulse" style={{ animationDelay: "1s" }} />
         </div>
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative text-center"
-        >
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative text-center">
           <div className="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 border border-white/10">
             <Lock className="w-10 h-10 text-rocket-teal-glow" />
           </div>
           <h2 className="text-2xl font-bold text-white mb-8">Vivier TA/TAM</h2>
-
           <div className="grid grid-cols-2 gap-4">
             {[
               { value: "4 100+", label: "profils \u00e9valu\u00e9s" },

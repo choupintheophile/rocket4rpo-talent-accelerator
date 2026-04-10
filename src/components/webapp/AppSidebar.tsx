@@ -40,8 +40,8 @@ export function AppSidebar() {
 
       <div className="border-t border-white/10">
         <button
-          onClick={() => {
-            document.cookie = "r4rpo_auth=; path=/; max-age=0";
+          onClick={async () => {
+            await fetch("/api/auth", { method: "DELETE" });
             window.location.href = "/webapp-testing/login";
           }}
           className="flex items-center gap-2.5 px-5 py-3 text-[12px] text-red-400/70 hover:text-red-400 transition-colors w-full text-left"

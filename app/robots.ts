@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/api/",
+        disallow: ["/api/", "/webapp-testing/"],
       },
     ],
     sitemap: "https://rocket4rpo.com/sitemap.xml",

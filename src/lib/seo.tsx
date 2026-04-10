@@ -7,7 +7,7 @@ export const organizationSchema = {
   "@type": "Organization",
   name: "Rocket4RPO",
   url: "https://rocket4rpo.com",
-  logo: "https://rocket4rpo.com/logo.png",
+  logo: "https://rocket4rpo.com/logo-rocket4rpo.webp",
   description: "Talent Acquisition à temps partagé ou à temps plein pour accélérer vos recrutements",
   parentOrganization: {
     "@type": "Organization",
@@ -22,8 +22,8 @@ export const professionalServiceSchema = {
   name: "Rocket4RPO",
   description: "Cabinet spécialisé en Recruitment Process Outsourcing (RPO). Talent Acquisition externalisé à temps partagé ou à temps plein pour startups, scale-ups et entreprises tech.",
   url: "https://rocket4rpo.com",
-  logo: "https://rocket4rpo.com/logo.png",
-  image: "https://rocket4rpo.com/logo.png",
+  logo: "https://rocket4rpo.com/logo-rocket4rpo.webp",
+  image: "https://rocket4rpo.com/logo-rocket4rpo.webp",
   address: [
     {
       "@type": "PostalAddress",
