@@ -261,12 +261,9 @@ export default function LoginPage() {
           <div className="w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-8 border border-white/10">
             <Lock className="w-10 h-10 text-rocket-teal-glow" />
           </div>
-          <h2 className="text-2xl font-bold text-white mb-3">Vivier TA/TAM</h2>
-          <p className="text-white/50 text-sm leading-relaxed max-w-[280px] mx-auto">
-            G{"\u00e9"}rez votre vivier de Talent Acquisition Specialists. Scoring, classement et grille de questions d{"'"}entretien.
-          </p>
+          <h2 className="text-2xl font-bold text-white mb-8">Vivier TA/TAM</h2>
 
-          <div className="mt-10 grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             {[
               { value: "4 100+", label: "profils \u00e9valu\u00e9s" },
               { value: "32", label: "crit\u00e8res" },
