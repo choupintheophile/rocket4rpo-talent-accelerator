@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
@@ -204,7 +205,21 @@ export default function OffreClient() {
               </div>
             </div>
 
-            {/* Visual: scoring grid */}
+            {/* Visual: photo + scoring grid */}
+            <div className="space-y-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+                <Image
+                  src="/photos/reunion.webp"
+                  alt="Un TA Specialist Rocket4RPO int{'\u00e9'}gr{'\u00e9'} dans une {'\u00e9'}quipe client"
+                  width={800}
+                  height={450}
+                  className="w-full h-[220px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-4 left-5 text-white text-xs font-medium bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-lg">
+                  Int{"\u00e9"}gration TA chez un client
+                </div>
+              </div>
             <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -244,6 +259,7 @@ export default function OffreClient() {
                 <Star className="w-4 h-4 text-amber-500" />
                 <span className="text-xs text-muted-foreground">Moyenne de notre vivier prioritaire : <strong className="text-foreground">90%</strong></span>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -370,12 +386,32 @@ export default function OffreClient() {
       {/* ── CE QUE VOUS OBTENEZ ── */}
       <section className="section-padding bg-white">
         <div className="container-wide">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold">Ce que vous obtenez concr{"\u00e8"}tement</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-base">
               Pas de jargon. Voici exactement ce qui se passe quand vous travaillez avec nous.
             </p>
           </div>
+
+          {/* Photo: bureau élégant */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-14 max-w-4xl mx-auto"
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+              <Image
+                src="/photos/bureau.webp"
+                alt="R{'\u00e9'}union d'{'\u00e9'}quipe dans les locaux Rocket4RPO"
+                width={1200}
+                height={500}
+                className="w-full h-[240px] md:h-[320px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </div>
+          </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Search, title: "Sourcing multi-canal", text: "LinkedIn Recruiter, approche directe, r\u00e9seau, communaut\u00e9s. Votre TA source activement les meilleurs profils, pas des CVs de job boards." },

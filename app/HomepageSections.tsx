@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   CheckCircle,
@@ -203,13 +204,25 @@ export default function HomepageSections() {
           </div>
 
           <FadeIn delay={0.4}>
-            <div className="mt-10 p-6 rounded-2xl bg-gradient-to-r from-primary/5 via-transparent to-primary/5 border border-primary/10 max-w-2xl mx-auto text-center">
-              <p className="text-sm text-muted-foreground italic leading-relaxed">
-                &ldquo;En 4 mois, 8 postes pourvus. Le TA s&rsquo;est int&eacute;gr&eacute; comme un membre de l&rsquo;&eacute;quipe.&rdquo;
-              </p>
-              <p className="mt-2 text-sm font-semibold text-foreground">
-                &mdash; VP People, Scale-up SaaS (120 pers.)
-              </p>
+            <div className="mt-12 grid md:grid-cols-[1fr_280px] gap-8 items-center max-w-3xl mx-auto">
+              <div className="p-6 rounded-2xl bg-gradient-to-r from-primary/5 via-transparent to-primary/5 border border-primary/10 text-center">
+                <p className="text-sm text-muted-foreground italic leading-relaxed">
+                  &ldquo;En 4 mois, 8 postes pourvus. Le TA s&rsquo;est int&eacute;gr&eacute; comme un membre de l&rsquo;&eacute;quipe.&rdquo;
+                </p>
+                <p className="mt-2 text-sm font-semibold text-foreground">
+                  &mdash; VP People, Scale-up SaaS (120 pers.)
+                </p>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-primary/5 border border-border/40">
+                <Image
+                  src="/photos/equipe-interieur.webp"
+                  alt="L'équipe Rocket4RPO"
+                  width={560}
+                  height={560}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
             </div>
           </FadeIn>
         </div>
@@ -339,6 +352,27 @@ export default function HomepageSections() {
               <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Pas un cabinet externe. Pas un freelance l&acirc;ch&eacute; dans la nature. Un Talent Acquisition Specialist qui rejoint vos outils, vos rituels et votre culture.
               </p>
+            </div>
+          </FadeIn>
+
+          {/* Photo: collaboration TA + manager */}
+          <FadeIn delay={0.1}>
+            <div className="max-w-5xl mx-auto mb-12">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-border/40">
+                <Image
+                  src="/photos/equipe-deux-personnel.webp"
+                  alt="Un TA Specialist Rocket4RPO collabore avec un manager client"
+                  width={1200}
+                  height={600}
+                  className="w-full h-[280px] md:h-[340px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
+                  <p className="text-white text-sm font-medium">
+                    Votre TA Specialist, int{"\u00e9"}gr{"\u00e9"} directement dans votre {"\u00e9"}quipe
+                  </p>
+                </div>
+              </div>
             </div>
           </FadeIn>
 
