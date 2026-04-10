@@ -1,11 +1,14 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import {
   ArrowRight,
   CheckCircle,
+  CheckCircle2,
   Users,
   BarChart3,
   Search,
@@ -14,255 +17,481 @@ import {
   Shield,
   Target,
   Rocket,
+  Zap,
+  Crown,
+  Star,
+  Briefcase,
+  Clock,
+  TrendingUp,
+  Award,
+  UserCheck,
+  Building2,
+  Sparkles,
 } from "lucide-react";
 
 const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
 
 const faqs = [
   {
-    question: "Quelle est la différence entre RPO et cabinet de recrutement ?",
+    question: "Quelle est la diff\u00e9rence entre RPO et cabinet de recrutement ?",
     answer:
-      "Un cabinet travaille en externe sur des missions ponctuelles, facturées 15-25% du salaire annuel. Le RPO intègre un recruteur directement dans vos équipes, vos outils et vos rituels — comme un membre de votre entreprise, mais sans CDI. Coût prévisible au TJM.",
+      "Un cabinet travaille en externe sur des missions ponctuelles, factur\u00e9es 15-25% du salaire annuel. Le RPO int\u00e8gre un recruteur directement dans vos \u00e9quipes, vos outils et vos rituels — comme un membre de votre entreprise, mais sans CDI. Co\u00fbt pr\u00e9visible au TJM.",
   },
   {
-    question: "Combien ça coûte concrètement ?",
+    question: "Vous ne faites que du RPO ?",
     answer:
-      "À partir de 550€/jour. Pour 10 recrutements sur 4 mois, comptez environ 44 000€ — soit jusqu'à 5x moins cher qu'un cabinet classique (120 000 à 200 000€). Facturation mensuelle, sans frais cachés.",
+      "Non. Notre c\u0153ur de m\u00e9tier est le RPO, mais nous recrutons aussi en CDD et CDI selon vos besoins. Que vous ayez un pic d\u2019activit\u00e9 (CDD), un poste strat\u00e9gique \u00e0 pourvoir (CDI) ou un besoin de structuration compl\u00e8te (RPO), on s\u2019adapte. Un seul interlocuteur, toutes les solutions.",
   },
   {
-    question: "En combien de temps le recruteur est-il opérationnel ?",
+    question: "Combien \u00e7a co\u00fbte concr\u00e8tement ?",
     answer:
-      "48h. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée sous 48h.",
+      "\u00c0 partir de 550\u20ac/jour pour le RPO. Pour 10 recrutements sur 4 mois, comptez environ 44 000\u20ac — soit jusqu\u2019\u00e0 5x moins cher qu\u2019un cabinet classique (120 000 \u00e0 200 000\u20ac). Facturation mensuelle, sans frais cach\u00e9s. Pour le recrutement CDD/CDI, tarification sur devis.",
+  },
+  {
+    question: "En combien de temps le recruteur est-il op\u00e9rationnel ?",
+    answer:
+      "48h. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels d\u00e8s le premier jour. Premi\u00e8re shortlist qualifi\u00e9e sous 48h.",
+  },
+  {
+    question: "Comment s\u00e9lectionnez-vous vos TA Specialists ?",
+    answer:
+      "Nous maintenons un vivier de plus de 50 Talent Acquisition Specialists freelances, \u00e9valu\u00e9s sur 7 crit\u00e8res (sourcing, outils, autonomie, KPIs, qualification, posture conseil, exp\u00e9rience RPO). Seuls les profils not\u00e9s 80%+ int\u00e8grent notre vivier prioritaire — c\u2019est le top 1% du march\u00e9 fran\u00e7ais.",
   },
   {
     question: "Et si le recruteur ne convient pas ?",
     answer:
-      "On le remplace sous 48h. Notre réseau de freelances TA seniors nous permet de réagir immédiatement, sans interruption de service.",
+      "On le remplace sous 48h. Notre vivier de TA seniors nous permet de r\u00e9agir imm\u00e9diatement, sans interruption de service.",
   },
   {
     question: "Quels types de postes pouvez-vous recruter ?",
     answer:
-      "Tous. Sales, Tech/IT, Finance, Marketing, Support, Product, Data, Management. Nos TA sont des généralistes expérimentés avec des spécialisations sectorielles.",
+      "Tous. Sales, Tech/IT, Finance, Marketing, Support, Product, Data, Management. Nos TA sont des g\u00e9n\u00e9ralistes exp\u00e9riment\u00e9s avec des sp\u00e9cialisations sectorielles — SaaS, ESN, Fintech, Sant\u00e9, Industrie.",
   },
   {
-    question: "Quelle durée d'engagement minimum ?",
+    question: "Quelle dur\u00e9e d\u2019engagement minimum ?",
     answer:
-      "3 mois recommandé pour des résultats solides. Pas d'engagement rigide — préavis d'1 mois. Vous pouvez ajuster le rythme (1 à 5 jours/semaine) à tout moment.",
+      "3 mois recommand\u00e9 pour des r\u00e9sultats solides. Pas d\u2019engagement rigide — pr\u00e9avis d\u20191 mois. Vous pouvez ajuster le rythme (1 \u00e0 5 jours/semaine) \u00e0 tout moment.",
   },
 ];
 
 export default function OffreClient() {
+  const heroRef = useRef(null);
+  const heroInView = useInView(heroRef, { once: true });
+
   return (
     <>
       <Breadcrumbs items={[{ label: "Notre offre" }]} />
 
       {/* ── HERO ── */}
-      <section className="section-padding pt-8">
-        <div className="container-wide">
-          <div className="max-w-4xl">
-            <div>
-              <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-                Notre offre
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/3 left-[10%] w-[500px] h-[500px] rounded-full bg-rocket-teal/8 blur-[150px]" />
+          <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] rounded-full bg-emerald-500/5 blur-[120px]" />
+        </div>
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
+
+        <div className="relative container-wide py-20 md:py-28 lg:py-32">
+          <motion.div
+            ref={heroRef}
+            initial={{ opacity: 0, y: 25 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="max-w-4xl"
+          >
+            <div className="flex flex-wrap gap-3 mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
+                <Zap className="w-3.5 h-3.5" /> RPO
               </span>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                Un recruteur senior intégré à votre équipe.{" "}
-                <span className="text-gradient">Sans CDI.</span>
-              </h1>
-              <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
-                Rocket4RPO met un Talent Acquisition Specialist expérimenté directement dans vos
-                locaux, vos outils et vos rituels. Il recrute à votre place — tous types de postes,
-                tous secteurs — avec la même rigueur qu'un recruteur interne, mais sans le coût d'un CDI.
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/20 text-sm text-blue-300 font-medium">
+                <Briefcase className="w-3.5 h-3.5" /> CDD / CDI
+              </span>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/20 text-sm text-amber-300 font-medium">
+                <Crown className="w-3.5 h-3.5" /> Top 1% des TA
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white">
+              Le recrutement que vous m{"\u00e9"}ritez.{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                Les meilleurs TA de France
+              </span>{" "}
+              {"\u00e0"} votre service.
+            </h1>
+
+            <p className="mt-6 text-lg md:text-xl text-white/55 leading-relaxed max-w-3xl">
+              RPO, CDD ou CDI — peu importe le format. Nous mobilisons en 48h un Talent Acquisition Specialist
+              du top 1% fran{"\u00e7"}ais, s{"\u00e9"}lectionn{"\u00e9"} parmi plus de 50 experts {"\u00e9"}valu{"\u00e9"}s sur 7 crit{"\u00e8"}res.
+              Votre besoin, notre vivier, vos r{"\u00e9"}sultats.
+            </p>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <a
+                href={HUBSPOT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              >
+                R{"\u00e9"}server un diagnostic gratuit <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="/calculateur"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/15 transition-all"
+              >
+                Calculer mes {"\u00e9"}conomies
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Trust bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            {[
+              { value: "200+", label: "recrutements r{e}alis{e}s", icon: CheckCircle },
+              { value: "48h", label: "pour d{e}marrer", icon: Clock },
+              { value: "92%", label: "r{e}tention {a} 12 mois", icon: TrendingUp },
+              { value: "Top 1%", label: "des TA s{e}lectionn{e}s", icon: Crown },
+            ].map((stat) => (
+              <div key={stat.label} className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+                  <stat.icon className="w-5 h-5 text-rocket-teal-glow" />
+                </div>
+                <div>
+                  <div className="text-white font-bold text-lg">{stat.value}</div>
+                  <div className="text-white/40 text-xs">{stat.label.replace(/\{e\}/g, "\u00e9").replace(/\{a\}/g, "\u00e0")}</div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── TOP 1% DES TA ── */}
+      <section className="section-padding bg-white">
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-5">
+                <Crown className="w-3 h-3" />
+                Notre avantage d{"\u00e9"}cisif
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+                Le top 1% des Talent Acquisition Specialists de France
+              </h2>
+              <p className="mt-5 text-muted-foreground leading-relaxed text-base">
+                Nous ne travaillons pas avec n{"'"}importe qui. Chaque TA de notre vivier a {"\u00e9"}t{"\u00e9"} {"\u00e9"}valu{"\u00e9"} sur <strong>7 crit{"\u00e8"}res exigeants</strong> — sourcing, outils, autonomie, KPIs, qualification, posture conseil et exp{"\u00e9"}rience RPO.
+                Seuls les profils not{"\u00e9"}s 80%+ sur notre grille propri{"\u00e9"}taire int{"\u00e8"}grent le vivier prioritaire.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <a
-                  href={HUBSPOT}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                >
-                  Réserver un diagnostic gratuit <ArrowRight className="w-4 h-4" />
-                </a>
-                <a
-                  href="/calculateur"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg border border-border bg-background text-foreground hover:bg-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                >
-                  Calculer mes économies
-                </a>
+              <p className="mt-4 text-muted-foreground leading-relaxed text-base">
+                R{"\u00e9"}sultat : quand vous nous dites {"\u00ab"} j{"'"}ai besoin d{"'"}un recruteur {"\u00bb"}, on vous envoie le meilleur du march{"\u00e9"} en 48h. Pas un junior en formation — un expert op{"\u00e9"}rationnel imm{"\u00e9"}diatement.
+              </p>
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                {[
+                  { value: "50+", label: "TA dans notre vivier" },
+                  { value: "7", label: "crit\u00e8res d'\u00e9valuation" },
+                  { value: "80%+", label: "score minimum requis" },
+                  { value: "48h", label: "d\u00e9lai de mobilisation" },
+                ].map((stat) => (
+                  <div key={stat.label} className="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="text-2xl font-bold text-primary font-mono">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Visual: scoring grid */}
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Award className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="font-bold text-sm">Grille d{"\u2019"}{"\u00e9"}valuation R4RPO</div>
+                  <div className="text-xs text-muted-foreground">7 crit{"\u00e8"}res · Score sur 35</div>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { name: "Chasse & sourcing", score: 92 },
+                  { name: "Outils & stack", score: 88 },
+                  { name: "Autonomie & ownership", score: 95 },
+                  { name: "Pilotage & KPIs", score: 85 },
+                  { name: "Qualification candidat", score: 90 },
+                  { name: "Posture conseil HM", score: 87 },
+                  { name: "Exp\u00e9rience RPO/embedded", score: 93 },
+                ].map((crit) => (
+                  <div key={crit.name} className="flex items-center gap-3">
+                    <span className="text-[12px] text-muted-foreground w-40 shrink-0">{crit.name}</span>
+                    <div className="flex-1 h-2.5 bg-gray-200 rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full rounded-full bg-gradient-to-r from-primary to-rocket-teal-glow"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${crit.score}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                      />
+                    </div>
+                    <span className="text-[11px] font-mono font-bold text-primary w-8 text-right">{crit.score}%</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-4 border-t border-gray-200 flex items-center gap-2">
+                <Star className="w-4 h-4 text-amber-500" />
+                <span className="text-xs text-muted-foreground">Moyenne de notre vivier prioritaire : <strong className="text-foreground">90%</strong></span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── CE QUE VOUS OBTENEZ ── */}
-      <section className="section-padding bg-secondary">
+      {/* ── 3 MODES DE RECRUTEMENT ── */}
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Ce que vous obtenez concrètement</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-14">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-4">
+              <Sparkles className="w-3 h-3" />
+              Flexible par design
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-3">
+              RPO, CDD, CDI — un seul partenaire, toutes les solutions
+            </h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-base">
+              Chaque entreprise a des besoins diff{"\u00e9"}rents. Nous nous adaptons {"\u00e0"} votre contexte, pas l{"'"}inverse.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                icon: Rocket,
+                badge: "Le plus demand\u00e9",
+                title: "RPO — Recruteur int\u00e9gr\u00e9",
+                desc: "Un TA Specialist int\u00e9gr\u00e9 dans vos \u00e9quipes, vos outils et vos rituels. Il recrute \u00e0 votre place, au nom de votre entreprise.",
+                points: [
+                  "Sourcing multi-canal d\u00e9di\u00e9",
+                  "Int\u00e9gration totale (ATS, Slack, Teams)",
+                  "Reporting hebdomadaire",
+                  "Marque employeur prot\u00e9g\u00e9e",
+                  "1 \u00e0 5 jours/semaine, 3 mois min",
+                ],
+                prix: "\u00c0 partir de 550\u20ac/jour",
+                highlight: true,
+                color: "border-primary/30 ring-1 ring-primary/10",
+                badgeColor: "bg-primary text-primary-foreground",
+              },
+              {
+                icon: UserCheck,
+                badge: null,
+                title: "CDI — Recrutement permanent",
+                desc: "Vous avez un poste strat\u00e9gique \u00e0 pourvoir ? Nos TA identifient le candidat id\u00e9al et vous accompagnent jusqu\u2019\u00e0 la signature.",
+                points: [
+                  "Chasse directe de profils seniors",
+                  "Shortlist qualifi\u00e9e en 2 semaines",
+                  "Accompagnement n\u00e9gociation",
+                  "Garantie de remplacement",
+                  "Tous secteurs, tous niveaux",
+                ],
+                prix: "Sur devis",
+                highlight: false,
+                color: "border-blue-200/60",
+                badgeColor: "",
+              },
+              {
+                icon: Clock,
+                badge: null,
+                title: "CDD — Besoin temporaire",
+                desc: "Pic d\u2019activit\u00e9, remplacement, projet sp\u00e9cifique ? On vous trouve le bon profil rapidement, en CDD ou freelance.",
+                points: [
+                  "Mobilisation rapide (< 2 semaines)",
+                  "Profils pr\u00e9-qualifi\u00e9s dans notre vivier",
+                  "Suivi pendant la mission",
+                  "Conversion CDI possible",
+                  "Flexibilit\u00e9 totale sur la dur\u00e9e",
+                ],
+                prix: "Sur devis",
+                highlight: false,
+                color: "border-amber-200/60",
+                badgeColor: "",
+              },
+            ].map((mode) => (
+              <motion.div
+                key={mode.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className={`relative p-8 rounded-2xl border bg-white ${mode.color} ${mode.highlight ? "shadow-xl shadow-primary/5" : "shadow-sm"} flex flex-col`}
+              >
+                {mode.badge && (
+                  <span className={`absolute -top-3 left-6 px-3 py-1 text-xs font-semibold rounded-full ${mode.badgeColor}`}>
+                    {mode.badge}
+                  </span>
+                )}
+                <mode.icon className={`w-8 h-8 mb-4 ${mode.highlight ? "text-primary" : "text-muted-foreground"}`} />
+                <h3 className="text-xl font-bold mb-3">{mode.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-5">{mode.desc}</p>
+
+                <ul className="space-y-2.5 mb-6 flex-1">
+                  {mode.points.map((p) => (
+                    <li key={p} className="flex items-start gap-2 text-sm">
+                      <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${mode.highlight ? "text-primary" : "text-muted-foreground/60"}`} />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="pt-5 border-t border-gray-100">
+                  <div className={`text-lg font-bold mb-4 ${mode.highlight ? "text-primary" : ""}`}>{mode.prix}</div>
+                  <a
+                    href={HUBSPOT}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center justify-center gap-2 w-full px-6 py-3 text-sm font-semibold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] ${
+                      mode.highlight
+                        ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                        : "bg-gray-100 text-foreground hover:bg-gray-200"
+                    }`}
+                  >
+                    {mode.highlight ? "Choisir le RPO" : "Demander un devis"}
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CE QUE VOUS OBTENEZ ── */}
+      <section className="section-padding bg-white">
+        <div className="container-wide">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold">Ce que vous obtenez concr{"\u00e8"}tement</h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-base">
               Pas de jargon. Voici exactement ce qui se passe quand vous travaillez avec nous.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Search, title: "Sourcing multi-canal", text: "LinkedIn, approche directe, réseau, communautés. Votre TA source activement les meilleurs profils, pas des CVs de job boards." },
-              { icon: FileCheck, title: "Shortlists qualifiées en 48h", text: "Chaque candidat présenté a été évalué sur ses compétences, sa motivation et son adéquation culturelle. Pas de volume — de la qualité." },
-              { icon: MessageSquare, title: "Coordination avec vos managers", text: "Votre TA gère les briefs, les debriefs, les feedbacks et le suivi. Vos managers se concentrent sur leur métier." },
-              { icon: BarChart3, title: "Reporting hebdomadaire", text: "Chaque semaine : pipeline, KPIs, taux de conversion, délais. Vous savez exactement où en sont vos recrutements." },
-              { icon: Users, title: "Intégration totale", text: "Le TA rejoint vos outils (ATS, Slack, Teams), vos rituels d'équipe et votre culture. Il représente VOTRE marque employeur, pas Rocket4RPO." },
-              { icon: Shield, title: "Marque employeur protégée", text: "Chaque message, chaque approche candidat est faite au nom de votre entreprise. Votre image est entre de bonnes mains." },
-            ].map((item) => (
-              <div
+              { icon: Search, title: "Sourcing multi-canal", text: "LinkedIn Recruiter, approche directe, r\u00e9seau, communaut\u00e9s. Votre TA source activement les meilleurs profils, pas des CVs de job boards." },
+              { icon: FileCheck, title: "Shortlists qualifi\u00e9es en 48h", text: "Chaque candidat pr\u00e9sent\u00e9 a \u00e9t\u00e9 \u00e9valu\u00e9 sur ses comp\u00e9tences, sa motivation et son ad\u00e9quation culturelle. Pas de volume — de la qualit\u00e9." },
+              { icon: MessageSquare, title: "Coordination avec vos managers", text: "Votre TA g\u00e8re les briefs, les debriefs, les feedbacks et le suivi. Vos managers se concentrent sur leur m\u00e9tier." },
+              { icon: BarChart3, title: "Reporting hebdomadaire", text: "Chaque semaine : pipeline, KPIs, taux de conversion, d\u00e9lais. Vous savez exactement o\u00f9 en sont vos recrutements." },
+              { icon: Users, title: "Int\u00e9gration totale", text: "Le TA rejoint vos outils (ATS, Slack, Teams), vos rituels d\u2019\u00e9quipe et votre culture. Il repr\u00e9sente VOTRE marque employeur." },
+              { icon: Shield, title: "Marque employeur prot\u00e9g\u00e9e", text: "Chaque message, chaque approche candidat est faite au nom de votre entreprise. Votre image est entre de bonnes mains." },
+            ].map((item, i) => (
+              <motion.div
                 key={item.title}
-                className="p-6 rounded-xl bg-background border border-border/60 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="p-7 rounded-2xl bg-gray-50 border border-gray-100 hover:-translate-y-0.5 hover:shadow-lg hover:border-primary/10 transition-all duration-300"
               >
-                <item.icon className="w-8 h-8 text-primary mb-4" />
-                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                  <item.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="font-bold text-base mb-2">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── COMMENT ÇA MARCHE ── */}
-      <section className="section-padding">
+      <section className="py-20 bg-rocket-dark">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Comment ça marche</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              De votre premier appel à vos premiers recrutements signés.
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">De votre appel {"\u00e0"} votre premier recrutement</h2>
+            <p className="mt-4 text-white/50 max-w-2xl mx-auto">
+              Un process rod{"\u00e9"}, transparent et rapide. Pas de surprise.
             </p>
           </div>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-rocket-teal/20 via-rocket-teal/40 to-rocket-teal/20" />
+
             {[
-              { step: "01", icon: Target, title: "Brief & scorecard", text: "On analyse vos besoins et on construit une scorecard précise avec vos managers. Durée : 1 jour.", time: "J0" },
-              { step: "02", icon: Users, title: "Matching", text: "On sélectionne le TA Specialist idéal selon votre secteur, vos enjeux et votre culture.", time: "J1" },
-              { step: "03", icon: Rocket, title: "Intégration", text: "Le TA rejoint vos outils et rituels. Opérationnel en 48h. Première shortlist immédiate.", time: "J2" },
-              { step: "04", icon: CheckCircle, title: "Résultats", text: "Sourcing ciblé, shortlists qualifiées, recrutements signés. KPIs suivis chaque semaine.", time: "S2-S4" },
-            ].map((item) => (
-              <div
+              { step: "J0", icon: Target, title: "Brief & scorecard", text: "On analyse vos besoins et on construit une scorecard pr\u00e9cise avec vos managers." },
+              { step: "J1", icon: Users, title: "Matching TA", text: "On s\u00e9lectionne le TA Specialist id\u00e9al selon votre secteur, vos enjeux et votre culture." },
+              { step: "J2", icon: Rocket, title: "Int\u00e9gration 48h", text: "Le TA rejoint vos outils et rituels. Op\u00e9rationnel imm\u00e9diatement. Premi\u00e8re shortlist le jour m\u00eame." },
+              { step: "S2-S4", icon: CheckCircle, title: "R\u00e9sultats", text: "Sourcing cibl\u00e9, shortlists qualifi\u00e9es, recrutements sign\u00e9s. KPIs suivis chaque semaine." },
+            ].map((item, i) => (
+              <motion.div
                 key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="relative text-center"
               >
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-6 h-6 text-primary" />
+                <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-4 relative z-10">
+                  <item.icon className="w-7 h-7 text-rocket-teal-glow" />
                 </div>
-                <span className="text-xs font-mono text-primary font-bold">{item.time}</span>
-                <h3 className="font-bold text-lg mt-2 mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-              </div>
+                <span className="inline-block text-xs font-mono text-rocket-teal-glow font-bold bg-rocket-teal/10 px-2.5 py-0.5 rounded-full">{item.step}</span>
+                <h3 className="font-bold text-white text-base mt-3 mb-2">{item.title}</h3>
+                <p className="text-sm text-white/50 leading-relaxed">{item.text}</p>
+              </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── CHOISISSEZ VOTRE RYTHME ── */}
-      <section className="section-padding bg-rocket-cream">
-        <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Choisissez votre rythme</h2>
-            <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Un seul service, plusieurs formats. Vous ajustez selon votre volume de recrutement.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              {
-                name: "Temps partagé",
-                rythme: "1 à 3 jours / semaine",
-                ideal: "3-8 recrutements par trimestre",
-                prix: "À partir de 550€/jour",
-                popular: false,
-              },
-              {
-                name: "Temps plein",
-                rythme: "4 à 5 jours / semaine",
-                ideal: "10+ recrutements par trimestre",
-                prix: "Nous consulter",
-                popular: true,
-              },
-              {
-                name: "Sur-mesure",
-                rythme: "Selon vos besoins",
-                ideal: "Pic d'activité, projet spécifique",
-                prix: "Nous consulter",
-                popular: false,
-              },
-            ].map((format) => (
-              <div
-                key={format.name}
-                className={`relative p-8 rounded-xl border text-center backdrop-blur-sm ${
-                  format.popular
-                    ? "border-primary/30 bg-background/95 shadow-[0_4px_20px_-4px_hsl(var(--rocket-teal)/0.15)] ring-1 ring-primary/10"
-                    : "border-border/60 bg-background/95 shadow-[0_2px_8px_-2px_rgb(0_0_0/0.06)]"
-                }`}
-              >
-                {format.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs font-semibold rounded-full bg-primary text-primary-foreground">
-                    Le plus demandé
-                  </span>
-                )}
-                <h3 className="text-xl font-bold mb-4">{format.name}</h3>
-                <p className="text-sm text-muted-foreground mb-2">{format.rythme}</p>
-                <p className="text-sm text-muted-foreground mb-4">Idéal pour : {format.ideal}</p>
-                <p className="text-lg font-bold text-primary mb-6">{format.prix}</p>
-                <a
-                  href={HUBSPOT}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all w-full"
-                >
-                  Choisir ce format
-                </a>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 text-center text-sm text-muted-foreground">
-            Engagement minimum recommandé : 3 mois. Préavis : 1 mois. Facturation mensuelle.
-          </p>
         </div>
       </section>
 
       {/* ── COÛT COMPARÉ ── */}
-      <section className="section-padding bg-rocket-navy-soft text-background">
+      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-wide">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold">Combien ça coûte vraiment ?</h2>
-            <p className="mt-4 text-lg text-background/85 max-w-2xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold">Combien {"\u00e7"}a co{"\u00fb"}te vraiment ?</h2>
+            <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
               Comparaison pour 10 recrutements sur 4 mois.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { model: "RPO Rocket4RPO", price: "~44 000€", detail: "TJM prévisible, tout inclus", highlight: true },
-              { model: "Cabinet classique", price: "120 000 – 200 000€", detail: "15-25% du salaire par recrutement", highlight: false },
-              { model: "Recruteur interne (CDI)", price: "40 – 55 000€/an + charges", detail: "3 mois pour le recruter", highlight: false },
+              { model: "RPO Rocket4RPO", price: "~44 000\u20ac", detail: "TJM pr\u00e9visible, tout inclus", highlight: true, savings: "Jusqu\u2019\u00e0 75% d\u2019\u00e9conomies" },
+              { model: "Cabinet classique", price: "120 000 \u2013 200 000\u20ac", detail: "15-25% du salaire par recrutement", highlight: false, savings: null },
+              { model: "Recruteur interne (CDI)", price: "40 \u2013 55 000\u20ac/an + charges", detail: "3 mois pour le recruter", highlight: false, savings: null },
             ].map((item) => (
-              <div
+              <motion.div
                 key={item.model}
-                className={`p-8 rounded-xl text-center ${
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className={`p-8 rounded-2xl text-center ${
                   item.highlight
-                    ? "bg-primary/10 border border-primary/30"
-                    : "bg-background/5 border border-background/10"
+                    ? "bg-primary/5 border-2 border-primary/20 shadow-lg shadow-primary/5"
+                    : "bg-white border border-gray-200"
                 }`}
               >
-                <p className="text-sm font-medium mb-2 text-background/85">{item.model}</p>
-                <p className={`text-3xl font-bold mb-2 ${item.highlight ? "text-primary" : "text-background"}`}>
+                <p className="text-sm font-medium mb-3 text-muted-foreground">{item.model}</p>
+                <p className={`text-3xl font-bold mb-2 ${item.highlight ? "text-primary" : ""}`}>
                   {item.price}
                 </p>
-                <p className="text-sm text-background/70">{item.detail}</p>
+                <p className="text-sm text-muted-foreground">{item.detail}</p>
+                {item.savings && (
+                  <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">
+                    <TrendingUp className="w-3 h-3" />
+                    {item.savings}
+                  </div>
+                )}
                 {item.highlight && (
                   <a
                     href={HUBSPOT}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 mt-6 px-6 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    className="inline-flex items-center justify-center gap-2 mt-6 px-6 py-3 text-sm font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
                   >
                     Choisir le RPO <ArrowRight className="w-4 h-4" />
                   </a>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -272,7 +501,11 @@ export default function OffreClient() {
       <FAQSection faqs={faqs} className="bg-rocket-cream" />
 
       {/* ── CTA ── */}
-      <CTASection />
+      <CTASection
+        title="Votre prochain recrutement commence ici"
+        subtitle="30 min de diagnostic gratuit avec un expert RPO. On analyse votre besoin et on vous dit honn\u00eatement quel mod\u00e8le — RPO, CDD ou CDI — est fait pour vous."
+        ctaLabel="R\u00e9server mon diagnostic gratuit"
+      />
     </>
   );
 }
