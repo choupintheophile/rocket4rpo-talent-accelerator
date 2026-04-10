@@ -6,12 +6,11 @@ import { ProblemSection } from "@/components/sections/ProblemSection";
 import { OffersSection } from "@/components/sections/OffersSection";
 import { MethodSection } from "@/components/sections/MethodSection";
 import { ComparisonSection } from "@/components/sections/ComparisonSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { organizationSchema, professionalServiceSchema, faqSchema } from "@/lib/seo";
-import { getTestimonials, getBlogPosts } from "@/lib/db";
+import { getBlogPosts } from "@/lib/db";
 import { detectSegment, heroContent } from "@/lib/personalization";
 
 export const metadata: Metadata = {
@@ -58,19 +57,7 @@ export default async function HomePage({
   const segment = detectSegment(params);
   const hero = heroContent[segment];
 
-  const [testimonials, blogPosts] = await Promise.all([
-    getTestimonials(),
-    getBlogPosts(),
-  ]);
-
-  const serializedTestimonials = testimonials.map((t) => ({
-    id: t.id,
-    quote: t.quote,
-    name: t.name,
-    role: t.role,
-    company: t.company,
-    rating: t.rating,
-  }));
+  const blogPosts = await getBlogPosts();
 
   const serializedPosts = blogPosts.slice(0, 3).map((p) => ({
     slug: p.slug,
@@ -114,7 +101,6 @@ export default async function HomePage({
       <OffersSection />
       <MethodSection />
       <ComparisonSection />
-      <TestimonialsSection testimonials={serializedTestimonials} />
       <BlogPreview posts={serializedPosts} />
       <section className="bg-rocket-cream">
         <FAQSection faqs={homepageFaqs} />
