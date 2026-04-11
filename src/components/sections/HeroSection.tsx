@@ -97,131 +97,76 @@ function FloatingOrb({
   );
 }
 
-/* ─── mini bar chart ─── */
-function MiniBarChart() {
-  const bars = [
-    { height: "60%", delay: 0.5 },
-    { height: "85%", delay: 0.6 },
-    { height: "45%", delay: 0.7 },
-    { height: "95%", delay: 0.8 },
-    { height: "70%", delay: 0.9 },
-  ];
-
-  return (
-    <div className="flex items-end gap-1.5 h-12">
-      {bars.map((bar, i) => (
-        <motion.div
-          key={i}
-          className="w-3 rounded-sm"
-          style={{
-            background:
-              "linear-gradient(to top, hsl(160 84% 32%), hsl(160 84% 50%))",
-          }}
-          initial={{ height: 0 }}
-          animate={{ height: bar.height }}
-          transition={{
-            duration: 0.5,
-            delay: bar.delay,
-            ease: "easeOut",
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-/* ─── dashboard card ─── */
-function DashboardCard() {
+/* ─── trust proof card ─── */
+function TrustProofCard() {
   return (
     <motion.div
       variants={slideRight}
       initial="hidden"
       animate="visible"
-      className="relative"
+      className="relative w-[340px] xl:w-[380px]"
     >
-      {/* Main card */}
-      <div className="relative w-[340px] xl:w-[380px] rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-xl p-6 shadow-2xl shadow-black/40">
-        {/* Card header */}
-        <div className="flex items-center justify-between mb-5">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[hsl(160_84%_32%/0.2)] flex items-center justify-center">
-              <BarChart3 className="w-4 h-4 text-[hsl(160,84%,50%)]" />
+      {/* Main testimonial card */}
+      <div className="rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-xl p-7 shadow-2xl shadow-black/40">
+        {/* Stars */}
+        <div className="flex gap-0.5 mb-4">
+          {[1, 2, 3, 4, 5].map((s) => (
+            <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
+          ))}
+        </div>
+
+        {/* Quote */}
+        <p className="text-[15px] text-white/85 leading-relaxed mb-5 font-light italic">
+          &laquo; En 3 semaines, notre TA avait déjà présenté 8 candidats qualifiés. On a recruté notre Head of Sales en 28 jours. Avec un cabinet, on en aurait eu pour 3 mois. &raquo;
+        </p>
+
+        {/* Author */}
+        <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-sm font-bold text-primary">
+            SL
+          </div>
+          <div>
+            <p className="text-sm font-medium text-white/90">Sarah L.</p>
+            <p className="text-xs text-white/40">VP People, Scale-up SaaS B2B</p>
+          </div>
+        </div>
+
+        {/* Result metrics */}
+        <div className="mt-5 grid grid-cols-3 gap-3">
+          {[
+            { value: "28j", label: "Time-to-hire" },
+            { value: "8", label: "Candidats qualifiés" },
+            { value: "1", label: "Recrutement signé" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+              <div className="text-lg font-bold text-[hsl(160,84%,50%)] tabular-nums">{stat.value}</div>
+              <div className="text-[9px] text-white/35 mt-0.5 uppercase tracking-wider">{stat.label}</div>
             </div>
-            <span className="text-sm font-medium text-white/90">
-              Dashboard RPO
-            </span>
-          </div>
-          <span className="text-[11px] text-white/40">Temps réel</span>
-        </div>
-
-        {/* Stat row 1 */}
-        <div className="flex items-center justify-between py-3 border-b border-white/[0.06]">
-          <span className="text-[13px] text-white/60">
-            Recrutements ce mois
-          </span>
-          <span className="text-xl font-bold text-white tabular-nums">12</span>
-        </div>
-
-        {/* Chart area */}
-        <div className="py-4 border-b border-white/[0.06]">
-          <span className="text-[11px] text-white/40 uppercase tracking-wider mb-2 block">
-            Performance hebdomadaire
-          </span>
-          <MiniBarChart />
-        </div>
-
-        {/* Stat row 2 */}
-        <div className="flex items-center justify-between py-3 border-b border-white/[0.06]">
-          <span className="text-[13px] text-white/60">Time-to-hire</span>
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-semibold text-white tabular-nums">
-              28 jours
-            </span>
-            <span className="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-medium">
-              -34%
-            </span>
-          </div>
-        </div>
-
-        {/* Stat row 3 */}
-        <div className="flex items-center justify-between pt-3">
-          <span className="text-[13px] text-white/60">
-            Candidats présentés
-          </span>
-          <span className="text-lg font-semibold text-white tabular-nums">
-            47
-          </span>
+          ))}
         </div>
       </div>
 
-      {/* Floating badge — offset */}
+      {/* Floating badge — cost savings */}
       <motion.div
         className="absolute -bottom-4 -left-6 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-xl shadow-lg shadow-black/30"
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-          <span className="text-sm font-semibold text-white">
-            92% rétention
-          </span>
+          <TrendingUp className="w-4 h-4 text-emerald-400" />
+          <span className="text-sm font-semibold text-white">5x moins cher qu{"'"}un cabinet</span>
         </div>
       </motion.div>
 
-      {/* Floating accent — top right */}
+      {/* Floating badge — top right */}
       <motion.div
         className="absolute -top-3 -right-3 px-3 py-1.5 rounded-lg border border-white/[0.1] bg-gradient-to-r from-teal-500/20 to-cyan-500/20 backdrop-blur-xl shadow-lg shadow-black/30"
         animate={{ y: [0, -4, 0] }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       >
         <div className="flex items-center gap-1.5">
-          <TrendingUp className="w-3.5 h-3.5 text-teal-400" />
-          <span className="text-xs font-medium text-white/90">+24%</span>
+          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+          <span className="text-xs font-medium text-white/90">92% rétention</span>
         </div>
       </motion.div>
     </motion.div>
@@ -382,7 +327,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
 
           {/* ── RIGHT: Dashboard card (desktop only) ── */}
           <div className="hidden lg:block">
-            <DashboardCard />
+            <TrustProofCard />
           </div>
         </div>
       </div>
