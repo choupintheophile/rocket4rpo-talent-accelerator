@@ -3,7 +3,7 @@ import { faqSchema } from "@/lib/seo";
 import RpoVsInterimClient from "./RpoVsInterimClient";
 
 export const metadata: Metadata = {
-  title: "RPO vs Intérim / Staffing — quelle solution de recrutement ?",
+  title: "RPO vs Intérim — Comparatif recrutement 2026",
   description:
     "RPO ou intérim ? Comparez intégration, expertise, modèle de coût et flexibilité pour choisir la meilleure solution d'externalisation de vos recrutements.",
   alternates: { canonical: "/rpo-vs-interim" },

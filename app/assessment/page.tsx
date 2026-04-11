@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import AssessmentClient from "./AssessmentClient";
 
 export const metadata: Metadata = {
-  title: "Diagnostic recrutement gratuit — evaluez votre maturite TA",
+  title: "Diagnostic recrutement gratuit — Score en 2 min",
   description:
-    "Evaluez votre processus de recrutement en 2 minutes. 7 questions pour identifier vos forces, vos axes d'amelioration, et obtenir des recommandations personnalisees.",
+    "Évaluez votre processus de recrutement en 2 minutes. 7 questions pour identifier vos forces, axes d'amélioration et recommandations personnalisées.",
   alternates: { canonical: "/assessment" },
 };
 

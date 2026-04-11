@@ -3,7 +3,7 @@ import { faqSchema } from "@/lib/seo";
 import RpoVsRecrutementInterneClient from "./RpoVsRecrutementInterneClient";
 
 export const metadata: Metadata = {
-  title: "RPO vs Recrutement interne — quelle solution pour votre entreprise ?",
+  title: "RPO vs Recrutement interne — Comparatif 2026",
   description:
     "RPO ou recruteur interne en CDI ? Comparez coûts, délais de démarrage, flexibilité et expertise pour faire le bon choix de recrutement.",
   alternates: { canonical: "/rpo-vs-recrutement-interne" },
