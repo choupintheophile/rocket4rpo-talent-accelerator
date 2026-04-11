@@ -2,23 +2,26 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Checklist : Démarrer en freelance RPO — Rocket4RPO</title>
+  <title>Checklist demarrage freelance RPO / TA — Rocket4RPO</title>
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; color: #1a1d2b; line-height: 1.7; }
     h1 { color: #0cc77e; font-size: 2rem; border-bottom: 2px solid #0cc77e; padding-bottom: 16px; }
     h2 { color: #1a1d2b; margin-top: 2rem; }
+    h3 { color: #333; margin-top: 1.5rem; }
     .header { text-align: center; margin-bottom: 3rem; }
     .logo { font-size: 1.5rem; font-weight: 700; color: #1a1d2b; }
     .logo span { color: #0cc77e; }
-    .info-box { background: #f8f6f3; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .check-item { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; gap: 10px; }
-    .check-item input { margin-top: 4px; }
-    .check-item label { flex: 1; }
     table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-    th, td { padding: 10px 12px; border: 1px solid #ddd; }
-    th { background: #f8f6f3; font-weight: 600; text-align: left; }
+    th, td { padding: 10px 12px; border: 1px solid #ddd; text-align: center; }
+    th { background: #f8f6f3; font-weight: 600; }
+    td:first-child, th:first-child { text-align: left; }
+    .category { background: #f0fdf4; font-weight: 600; text-align: left !important; }
+    .info-box { background: #f8f6f3; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
+    .warning-box { background: #fff8e1; border-left: 4px solid #f5a623; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
     .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 0.85rem; }
-    @media print { body { padding: 20px; } input[type="checkbox"] { -webkit-appearance: none; width: 14px; height: 14px; border: 2px solid #666; border-radius: 2px; } }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    @media print { body { padding: 20px; } }
   </style>
 </head>
 <body>
@@ -27,60 +30,191 @@
     <p style="color: #666;">Checklist gratuite — Avril 2026</p>
   </div>
 
-  <h1>Checklist : Démarrer en freelance RPO</h1>
-  <p>Tout ce qu'un Talent Acquisition Specialist freelance doit préparer avant sa première mission RPO. Imprimez cette checklist et cochez au fur et à mesure.</p>
+  <h1>Checklist demarrage freelance RPO / Talent Acquisition</h1>
+  <p>Se lancer en freelance dans le Talent Acquisition ou le RPO est accessible avec une bonne preparation. Cette checklist couvre les 7 piliers du lancement : statut juridique, assurances, outils, portfolio, pricing, prospection et gestion.</p>
 
   <h2>1. Statut juridique</h2>
-  <div class="check-item"><input type="checkbox"><label><strong>Choisir son statut</strong> — Micro-entreprise (simple, plafond 77 700€ CA) ou portage salarial (protection sociale, pas de plafond)</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Immatriculer son activité</strong> — Code APE 7830Z (Mise à disposition de ressources humaines) ou 7022Z (Conseil en gestion)</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Ouvrir un compte bancaire dédié</strong> — Obligatoire dès 10 000€ CA/an en micro-entreprise</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Souscrire une RC Pro</strong> — Responsabilité Civile Professionnelle (~300-600€/an). Indispensable pour les missions RPO.</label></div>
 
-  <h2>2. Tarification TJM</h2>
   <table>
-    <tr><th>Expérience</th><th>TJM moyen</th><th>Fourchette</th></tr>
-    <tr><td>Junior (1-3 ans)</td><td>350€</td><td>300-400€</td></tr>
-    <tr><td>Confirmé (3-5 ans)</td><td>450€</td><td>400-550€</td></tr>
-    <tr><td>Senior (5-8 ans)</td><td>550€</td><td>500-650€</td></tr>
-    <tr><td>Expert (8+ ans)</td><td>650€</td><td>600-800€</td></tr>
+    <tr><th>Statut</th><th>Avantages</th><th>Inconvenients</th><th>Adapte si</th></tr>
+    <tr><td>Micro-entreprise (auto-entrepreneur)</td><td>Creation en 15 min, comptabilite simplifiee, charges sociales ~22%</td><td>Plafond CA 77 700 EUR/an (services), pas de deduction de charges, TVA exoneree sous seuil</td><td>Debut d'activite, CA < 70K EUR</td></tr>
+    <tr><td>Portage salarial</td><td>Statut salarie (chomage, retraite), pas de creation d'entreprise, gestion admin deleguee</td><td>Frais de gestion 5-10% du CA, moins d'independance</td><td>Transition salariat -> freelance, securite recherchee</td></tr>
+    <tr><td>EURL / SASU</td><td>Pas de plafond de CA, deduction des charges, credibilite accrue</td><td>Comptabilite obligatoire, charges sociales + elevees (SASU ~45%, EURL ~40%), cout de creation</td><td>CA > 70K EUR, ambition de croissance</td></tr>
   </table>
 
   <div class="info-box">
-    <strong>Règle de calcul TJM :</strong> Salaire brut annuel souhaité ÷ 218 jours × 1.5 (charges + congés) = TJM minimum. Exemple : 55 000€ ÷ 218 × 1.5 = 378€/j minimum.
+    <strong>Recommandation :</strong> Commencez en micro-entreprise ou en portage salarial. Passez en SASU/EURL quand votre CA depasse regulierement 60-70K EUR/an ou que vous avez besoin de deduire des charges significatives (outils, deplacements, coworking).
   </div>
 
+  <ul>
+    <li>[ ] Choix du statut juridique fait</li>
+    <li>[ ] Immatriculation realisee (URSSAF pour micro, greffe pour SASU/EURL)</li>
+    <li>[ ] Numero SIRET obtenu</li>
+    <li>[ ] Compte bancaire professionnel ouvert (obligatoire si CA > 10K EUR)</li>
+    <li>[ ] Choix du regime TVA (franchise en base ou reel simplifie)</li>
+    <li>[ ] Adhesion a un organisme de gestion agree (AGA) si applicable</li>
+    <li>[ ] Expert-comptable identifie (si SASU/EURL)</li>
+  </ul>
+
+  <h2>2. Assurances</h2>
+
+  <table>
+    <tr><th>Assurance</th><th>Obligatoire ?</th><th>Cout annuel</th><th>Pourquoi</th></tr>
+    <tr><td>RC Professionnelle</td><td>Fortement recommandee</td><td>300 - 800 EUR</td><td>Couvre les dommages causes a un client (erreur de recrutement, fuite de donnees candidat)</td></tr>
+    <tr><td>Mutuelle</td><td>A titre personnel : oui</td><td>30 - 80 EUR / mois</td><td>Plus de mutuelle employeur, a souscrire individuellement</td></tr>
+    <tr><td>Prevoyance (arret de travail)</td><td>Recommandee</td><td>50 - 150 EUR / mois</td><td>Indemnites journalieres en cas d'arret, capital deces</td></tr>
+    <tr><td>Cyber-risques</td><td>Optionnelle</td><td>200 - 500 EUR</td><td>Si vous gerez des donnees candidats sensibles dans votre propre ATS</td></tr>
+  </table>
+
+  <ul>
+    <li>[ ] RC Professionnelle souscrite</li>
+    <li>[ ] Mutuelle sante souscrite</li>
+    <li>[ ] Prevoyance evaluee et souscrite si necessaire</li>
+    <li>[ ] Attestation RC Pro prete a envoyer aux clients</li>
+  </ul>
+
   <h2>3. Outils indispensables</h2>
-  <div class="check-item"><input type="checkbox"><label><strong>LinkedIn Recruiter Lite</strong> — 60€/mois. Suffisant pour démarrer. Passer à Recruiter Pro si volume important.</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>ATS personnel</strong> — Notion, Airtable, ou Folk CRM (gratuit). Pour suivre votre pipeline candidats.</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Outil de prise de notes</strong> — Noota, Otter.ai ou Fireflies pour transcrire les entretiens.</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Suite bureautique</strong> — Google Workspace (6€/mois) pour les reportings, les scorecards et les présentations.</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Outil de facturation</strong> — Freebe, Henrri, ou Pennylane. Facturation + comptabilité.</label></div>
 
-  <h2>4. Portfolio et personal branding</h2>
-  <div class="check-item"><input type="checkbox"><label><strong>Optimiser votre profil LinkedIn</strong> — Titre clair ("TA Specialist Freelance | RPO"), bannière pro, résumé orienté résultats</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Préparer un dossier de compétences</strong> — 2-3 pages : parcours, spécialisations, méthodo, outils maîtrisés, KPIs</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Collecter 3-5 recommandations</strong> — De managers ou clients précédents, visibles sur LinkedIn</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Préparer vos KPIs</strong> — Nombre de recrutements closés, TTH moyen, taux d'acceptation, taux de rétention</label></div>
-
-  <h2>5. Trouver des missions</h2>
-  <div class="check-item"><input type="checkbox"><label><strong>S'inscrire sur Rocket4RPO</strong> — Accès au vivier de missions RPO avec 15+ missions actives</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Plateformes freelance</strong> — Malt, Crème de la Crème, Comet, Free-Work</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Réseau direct</strong> — Contactez vos anciens collègues, managers, et clients DRH/VP People</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Groupes LinkedIn</strong> — Rejoindre les groupes "Recruteurs freelance France", "RPO France"</label></div>
-
-  <h2>6. Avant la première mission</h2>
-  <div class="check-item"><input type="checkbox"><label><strong>Préparer un template de brief</strong> — Pour cadrer le besoin avec le hiring manager dès J1</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Préparer un template de reporting</strong> — Dashboard hebdo à envoyer au client (pipeline, KPIs, actions)</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Préparer vos recherches booléennes</strong> — 5-10 strings prêtes à l'emploi par type de profil</label></div>
-  <div class="check-item"><input type="checkbox"><label><strong>Préparer vos messages d'approche</strong> — 3-5 templates personnalisables selon le profil et le secteur</label></div>
+  <table>
+    <tr><th>Categorie</th><th>Outil</th><th>Cout / mois</th><th>Pourquoi</th></tr>
+    <tr><td colspan="4" class="category">Sourcing</td></tr>
+    <tr><td>LinkedIn</td><td>LinkedIn Recruiter Lite ou Sales Navigator</td><td>80 - 140 EUR</td><td>Indispensable pour le sourcing en France</td></tr>
+    <tr><td>Enrichissement email</td><td>Kaspr, Lusha ou Dropcontact</td><td>30 - 80 EUR</td><td>Trouver les emails des candidats sourced</td></tr>
+    <tr><td colspan="4" class="category">ATS / CRM candidat</td></tr>
+    <tr><td>ATS leger</td><td>folk, Notion, ou Recruitee (Tellent)</td><td>0 - 50 EUR</td><td>Suivre les candidats et les pipelines</td></tr>
+    <tr><td>CRM client</td><td>folk, Pipedrive, ou Notion</td><td>0 - 30 EUR</td><td>Gerer la prospection et les missions</td></tr>
+    <tr><td colspan="4" class="category">Communication</td></tr>
+    <tr><td>Visioconference</td><td>Google Meet, Zoom</td><td>0 - 15 EUR</td><td>Entretiens et appels clients</td></tr>
+    <tr><td>Messagerie pro</td><td>Gmail / Google Workspace</td><td>6 - 12 EUR</td><td>Email professionnel avec domaine perso</td></tr>
+    <tr><td>Prise de notes</td><td>Notion, Obsidian</td><td>0 - 10 EUR</td><td>Notes d'entretien, briefs, templates</td></tr>
+    <tr><td colspan="4" class="category">Productivite</td></tr>
+    <tr><td>Facturation</td><td>Freebe, Tiime, ou Indy</td><td>0 - 20 EUR</td><td>Facturation, suivi CA, declarations</td></tr>
+    <tr><td>Signature electronique</td><td>Yousign, DocuSign</td><td>10 - 25 EUR</td><td>Contrats et bons de commande</td></tr>
+    <tr><td>IA generative</td><td>ChatGPT Pro ou Claude Pro</td><td>20 - 25 EUR</td><td>Redaction d'offres, messages, analyses</td></tr>
+  </table>
 
   <div class="info-box">
-    <strong>Conseil :</strong> Rejoignez le réseau Rocket4RPO pour accéder à des missions RPO qualifiées, un support administratif, et une communauté de 50+ TA Specialists. <a href="https://rocket4rpo.com/recrutement">Postuler ici →</a>
+    <strong>Budget outils mensuel estime :</strong> 150 - 350 EUR / mois selon les options. Soit 1 800 - 4 200 EUR / an. C'est votre investissement productivite — ne lesinez pas sur LinkedIn.
+  </div>
+
+  <ul>
+    <li>[ ] LinkedIn Recruiter Lite ou Sales Navigator active</li>
+    <li>[ ] Outil d'enrichissement email configure</li>
+    <li>[ ] ATS ou systeme de suivi candidat en place</li>
+    <li>[ ] Email professionnel avec domaine personnalise</li>
+    <li>[ ] Outil de facturation configure</li>
+    <li>[ ] Templates de documents prets (contrat, CGV, facture)</li>
+  </ul>
+
+  <h2>4. Portfolio et positionnement</h2>
+
+  <ul>
+    <li>[ ] Specialisation definie (secteur, type de profils, modele de mission)</li>
+    <li>[ ] Proposition de valeur claire en 1 phrase</li>
+    <li>[ ] Site web ou page Notion publique avec : offre, parcours, temoignages</li>
+    <li>[ ] Profil LinkedIn optimise (headline, resume, experience, recommandations)</li>
+    <li>[ ] 2-3 cas clients documentes (anonymises si necessaire)</li>
+    <li>[ ] Templates de livrables prets (brief, scorecard, reporting)</li>
+    <li>[ ] Conditions generales de vente (CGV) redigees</li>
+  </ul>
+
+  <div class="warning-box">
+    <strong>Conseil de positionnement :</strong> Ne vous positionnez pas comme "recruteur freelance generaliste". Specialisez-vous : RPO Tech, Sales SaaS, Executive Search startup, recrutement inclusif, etc. La specialisation justifie un TJM plus eleve et facilite la prospection.
+  </div>
+
+  <h2>5. Grille de TJM par experience</h2>
+
+  <table>
+    <tr><th>Experience TA / recrutement</th><th>TJM debutant freelance</th><th>TJM apres 12 mois</th><th>TJM objectif a 2 ans</th></tr>
+    <tr><td>2-4 ans</td><td>350 - 450 EUR</td><td>400 - 500 EUR</td><td>450 - 550 EUR</td></tr>
+    <tr><td>4-7 ans</td><td>450 - 550 EUR</td><td>500 - 650 EUR</td><td>600 - 700 EUR</td></tr>
+    <tr><td>7-10 ans</td><td>550 - 700 EUR</td><td>650 - 800 EUR</td><td>750 - 900 EUR</td></tr>
+    <tr><td>10+ ans (expert / lead)</td><td>700 - 850 EUR</td><td>800 - 1 000 EUR</td><td>900 - 1 200 EUR</td></tr>
+  </table>
+
+  <h3>Comment fixer son TJM</h3>
+  <div class="info-box">
+    <strong>Formule de base :</strong><br>
+    TJM minimum = (Revenu net annuel souhaite + Charges sociales + Charges fixes) / Nombre de jours facturables<br><br>
+    <strong>Exemple :</strong> 50 000 EUR net souhaite + 22 000 EUR charges sociales + 8 000 EUR charges fixes = 80 000 EUR. Sur 200 jours facturables (218 jours ouvres - vacances - prospection) = <strong>400 EUR / jour minimum</strong>.
+  </div>
+
+  <ul>
+    <li>[ ] TJM calcule et valide</li>
+    <li>[ ] Grille de prix par type de mission definie (TJM, forfait, success fee)</li>
+    <li>[ ] Conditions de paiement fixees (30 jours, acompte 30%)</li>
+  </ul>
+
+  <h2>6. Prospection et acquisition de clients</h2>
+
+  <h3>Canaux de prospection (par efficacite)</h3>
+  <table>
+    <tr><th>#</th><th>Canal</th><th>Efficacite</th><th>Actions</th></tr>
+    <tr><td>1</td><td>Reseau personnel</td><td>Tres elevee</td><td>Prevenir son reseau LinkedIn, anciens collegues, clients</td></tr>
+    <tr><td>2</td><td>LinkedIn (contenu)</td><td>Elevee</td><td>Publier 2-3x / semaine sur le recrutement, partager des insights</td></tr>
+    <tr><td>3</td><td>Plateformes RPO</td><td>Elevee</td><td>S'inscrire sur Rocket4RPO, Malt, Comet, Creme de la Creme</td></tr>
+    <tr><td>4</td><td>Prospection directe</td><td>Moyenne</td><td>Contacter les Head of People et VP Talent des startups en levee</td></tr>
+    <tr><td>5</td><td>Recommandation client</td><td>Tres elevee</td><td>Demander systematiquement des recommandations en fin de mission</td></tr>
+    <tr><td>6</td><td>Communautes</td><td>Moyenne</td><td>Rejoindre les communautes Slack/Discord de TA en France</td></tr>
+    <tr><td>7</td><td>Events</td><td>Moyenne</td><td>Participer a 1-2 events TA / RH par mois</td></tr>
+  </table>
+
+  <ul>
+    <li>[ ] Post LinkedIn d'annonce du lancement redige et publie</li>
+    <li>[ ] 20 contacts cibles identifies pour la premiere vague de prospection</li>
+    <li>[ ] Profil cree sur 2-3 plateformes de freelance</li>
+    <li>[ ] Strategie de contenu LinkedIn definie (themes, frequence)</li>
+    <li>[ ] Message de prospection type redige et teste</li>
+    <li>[ ] Pipeline de prospection suivi (CRM ou spreadsheet)</li>
+  </ul>
+
+  <h2>7. Gestion administrative</h2>
+
+  <ul>
+    <li>[ ] Modele de contrat de prestation pret (avec clause de confidentialite et RGPD)</li>
+    <li>[ ] CGV redigees et integrees aux propositions commerciales</li>
+    <li>[ ] Template de proposition commerciale pret</li>
+    <li>[ ] Template de facture conforme (mentions legales obligatoires)</li>
+    <li>[ ] Suivi du CA et des depenses en place (spreadsheet ou outil)</li>
+    <li>[ ] Calendrier des declarations fiscales et sociales note</li>
+    <li>[ ] Epargne de precaution constituee (3-6 mois de charges fixes)</li>
+    <li>[ ] Assurance responsabilite civile professionnelle a jour</li>
+  </ul>
+
+  <h3>Calendrier administratif du freelance</h3>
+  <table>
+    <tr><th>Quand</th><th>Action</th><th>Statut micro</th><th>Statut SASU/EURL</th></tr>
+    <tr><td>Chaque mois ou trimestre</td><td>Declaration CA URSSAF</td><td>Oui</td><td>Non (gere par comptable)</td></tr>
+    <tr><td>Chaque mois</td><td>Facturation clients</td><td>Oui</td><td>Oui</td></tr>
+    <tr><td>Chaque trimestre</td><td>Declaration TVA (si assujetti)</td><td>Si CA > seuil</td><td>Oui</td></tr>
+    <tr><td>Avril-Mai</td><td>Declaration impot sur le revenu</td><td>Oui</td><td>Oui (IR ou IS)</td></tr>
+    <tr><td>Annuel</td><td>Bilan comptable</td><td>Non</td><td>Oui (expert-comptable)</td></tr>
+    <tr><td>Annuel</td><td>Cotisation fonciere des entreprises (CFE)</td><td>Oui (sauf annee 1)</td><td>Oui</td></tr>
+  </table>
+
+  <h2>Simulation financiere — 1ere annee</h2>
+  <table>
+    <tr><th>Indicateur</th><th>Hypothese basse</th><th>Hypothese moyenne</th><th>Hypothese haute</th></tr>
+    <tr><td>TJM</td><td>450 EUR</td><td>550 EUR</td><td>700 EUR</td></tr>
+    <tr><td>Jours factures / an</td><td>150</td><td>180</td><td>200</td></tr>
+    <tr><td>CA annuel brut</td><td>67 500 EUR</td><td>99 000 EUR</td><td>140 000 EUR</td></tr>
+    <tr><td>Charges sociales (~22% micro)</td><td>14 850 EUR</td><td>21 780 EUR</td><td>30 800 EUR</td></tr>
+    <tr><td>Charges fixes (outils, assurances)</td><td>5 000 EUR</td><td>6 000 EUR</td><td>8 000 EUR</td></tr>
+    <tr><td>Revenu net avant IR</td><td>47 650 EUR</td><td>71 220 EUR</td><td>101 200 EUR</td></tr>
+  </table>
+
+  <div class="info-box">
+    <strong>Les 3 erreurs du freelance RPO debutant :</strong>
+    <ol>
+      <li><strong>Sous-estimer son TJM</strong> — calculez vos charges reelles avant de proposer un tarif</li>
+      <li><strong>Ne pas avoir de tresorerie d'avance</strong> — prevoyez 3-6 mois de charges en reserve</li>
+      <li><strong>Negliger la prospection continue</strong> — meme en mission, consacrez 10-20% de votre temps a prospecter</li>
+    </ol>
   </div>
 
   <div class="footer">
-    <p>Rocket4RPO — rocket4rpo.com — 2026</p>
-    <p>Checklist conçue par des experts avec 200+ recrutements réalisés.</p>
+    <p><strong>Rocket4RPO</strong> — RPO sur-mesure pour entreprises ambitieuses</p>
+    <p>rocket4rpo.com — 2026</p>
   </div>
 </body>
 </html>

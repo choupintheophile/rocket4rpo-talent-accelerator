@@ -63,7 +63,7 @@ const resources = [
     icon: FileText,
     pages: "12 pages",
     readTime: "8 min",
-    file: "/resources/guide-rpo-vs-cabinet.html",
+    file: "/resources/guide-rpo-vs-cabinet.pdf",
     featured: true,
     gradient: "from-emerald-500 to-teal-600",
     accentBg: "bg-emerald-500/10",
@@ -80,7 +80,7 @@ const resources = [
     icon: ClipboardCheck,
     pages: "4 pages",
     readTime: "3 min",
-    file: "/resources/scorecard-recrutement.html",
+    file: "/resources/scorecard-recrutement.pdf",
     featured: true,
     gradient: "from-blue-500 to-indigo-600",
     accentBg: "bg-blue-500/10",
@@ -97,7 +97,7 @@ const resources = [
     icon: BarChart3,
     pages: "16 pages",
     readTime: "10 min",
-    file: "/resources/grille-remuneration-tech-2026.html",
+    file: "/resources/grille-remuneration-tech-2026.pdf",
     featured: false,
     gradient: "from-violet-500 to-purple-600",
     accentBg: "bg-violet-500/10",
@@ -114,7 +114,7 @@ const resources = [
     icon: CheckSquare,
     pages: "6 pages",
     readTime: "5 min",
-    file: "/resources/checklist-onboarding.html",
+    file: "/resources/checklist-onboarding.pdf",
     featured: false,
     gradient: "from-amber-500 to-orange-600",
     accentBg: "bg-amber-500/10",
@@ -131,7 +131,7 @@ const resources = [
     icon: FileCheck,
     pages: "3 pages",
     readTime: "2 min",
-    file: "/resources/template-brief-poste.html",
+    file: "/resources/template-brief-poste.pdf",
     featured: false,
     gradient: "from-cyan-500 to-blue-600",
     accentBg: "bg-cyan-500/10",
@@ -148,7 +148,7 @@ const resources = [
     icon: TrendingUp,
     pages: "8 pages",
     readTime: "6 min",
-    file: "/resources/guide-kpis-recrutement.html",
+    file: "/resources/guide-kpis-recrutement.pdf",
     featured: false,
     gradient: "from-rose-500 to-pink-600",
     accentBg: "bg-rose-500/10",
@@ -165,7 +165,7 @@ const resources = [
     icon: MessageSquare,
     pages: "14 pages",
     readTime: "10 min",
-    file: "/resources/questions-entretien-structure.html",
+    file: "/resources/questions-entretien-structure.pdf",
     featured: false,
     gradient: "from-indigo-500 to-blue-600",
     accentBg: "bg-indigo-500/10",
@@ -182,7 +182,7 @@ const resources = [
     icon: Search,
     pages: "20 pages",
     readTime: "12 min",
-    file: "/resources/guide-sourcing-multicanal.html",
+    file: "/resources/guide-sourcing-multicanal.pdf",
     featured: false,
     gradient: "from-teal-500 to-emerald-600",
     accentBg: "bg-teal-500/10",
@@ -199,7 +199,7 @@ const resources = [
     icon: Scale,
     pages: "12 pages",
     readTime: "8 min",
-    file: "/resources/grille-salaires-sales-saas-2026.html",
+    file: "/resources/grille-salaires-sales-saas-2026.pdf",
     featured: false,
     gradient: "from-orange-500 to-amber-600",
     accentBg: "bg-orange-500/10",
@@ -216,7 +216,7 @@ const resources = [
     icon: ListChecks,
     pages: "6 pages",
     readTime: "4 min",
-    file: "/resources/template-processus-recrutement.html",
+    file: "/resources/template-processus-recrutement.pdf",
     featured: false,
     gradient: "from-sky-500 to-blue-600",
     accentBg: "bg-sky-500/10",
@@ -233,7 +233,7 @@ const resources = [
     icon: Shield,
     pages: "5 pages",
     readTime: "4 min",
-    file: "/resources/checklist-rgpd-recrutement.html",
+    file: "/resources/checklist-rgpd-recrutement.pdf",
     featured: false,
     gradient: "from-red-500 to-rose-600",
     accentBg: "bg-red-500/10",
@@ -250,7 +250,7 @@ const resources = [
     icon: Brain,
     pages: "18 pages",
     readTime: "12 min",
-    file: "/resources/guide-ia-recrutement.html",
+    file: "/resources/guide-ia-recrutement.pdf",
     featured: false,
     gradient: "from-purple-500 to-violet-600",
     accentBg: "bg-purple-500/10",
@@ -267,7 +267,7 @@ const resources = [
     icon: FileSpreadsheet,
     pages: "8 pages",
     readTime: "5 min",
-    file: "/resources/template-offre-emploi.html",
+    file: "/resources/template-offre-emploi.pdf",
     featured: false,
     gradient: "from-lime-500 to-green-600",
     accentBg: "bg-lime-500/10",
@@ -284,7 +284,7 @@ const resources = [
     icon: Globe,
     pages: "14 pages",
     readTime: "10 min",
-    file: "/resources/benchmark-rpo-france-2026.html",
+    file: "/resources/benchmark-rpo-france-2026.pdf",
     featured: false,
     gradient: "from-blue-500 to-cyan-600",
     accentBg: "bg-blue-500/10",
@@ -301,7 +301,7 @@ const resources = [
     icon: UserCheck,
     pages: "4 pages",
     readTime: "3 min",
-    file: "/resources/checklist-prise-references.html",
+    file: "/resources/checklist-prise-references.pdf",
     featured: false,
     gradient: "from-emerald-500 to-green-600",
     accentBg: "bg-emerald-500/10",
@@ -318,7 +318,7 @@ const resources = [
     icon: Handshake,
     pages: "16 pages",
     readTime: "10 min",
-    file: "/resources/guide-recrutement-inclusif.html",
+    file: "/resources/guide-recrutement-inclusif.pdf",
     featured: false,
     gradient: "from-pink-500 to-rose-600",
     accentBg: "bg-pink-500/10",
@@ -335,7 +335,7 @@ const resources = [
     icon: BarChart3,
     pages: "10 pages",
     readTime: "5 min",
-    file: "/resources/template-reporting-comex.html",
+    file: "/resources/template-reporting-comex.pdf",
     featured: false,
     gradient: "from-fuchsia-500 to-purple-600",
     accentBg: "bg-fuchsia-500/10",
@@ -352,7 +352,7 @@ const resources = [
     icon: GraduationCap,
     pages: "10 pages",
     readTime: "7 min",
-    file: "/resources/guide-plan-30-60-90.html",
+    file: "/resources/guide-plan-30-60-90.pdf",
     featured: false,
     gradient: "from-amber-500 to-yellow-600",
     accentBg: "bg-amber-500/10",
@@ -369,7 +369,7 @@ const resources = [
     icon: Clock,
     pages: "12 pages",
     readTime: "8 min",
-    file: "/resources/etude-time-to-hire-france-2026.html",
+    file: "/resources/etude-time-to-hire-france-2026.pdf",
     featured: false,
     gradient: "from-slate-500 to-gray-600",
     accentBg: "bg-slate-500/10",
@@ -386,7 +386,7 @@ const resources = [
     icon: Briefcase,
     pages: "6 pages",
     readTime: "5 min",
-    file: "/resources/checklist-freelance-rpo.html",
+    file: "/resources/checklist-freelance-rpo.pdf",
     featured: false,
     gradient: "from-teal-500 to-cyan-600",
     accentBg: "bg-teal-500/10",
@@ -452,12 +452,11 @@ function ResourceCard({ resource, index }: { resource: (typeof resources)[number
         {/* CTA */}
         <a
           href={resource.file}
-          target="_blank"
-          rel="noopener noreferrer"
+          download
           className={`w-full inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-r ${resource.gradient} text-white shadow-sm hover:shadow-md`}
         >
           <Download className="w-4 h-4" />
-          Consulter gratuitement
+          Télécharger le PDF
         </a>
       </div>
     </motion.div>
@@ -517,12 +516,11 @@ function FeaturedCard({ resource }: { resource: (typeof resources)[number] }) {
 
         <a
           href={resource.file}
-          target="_blank"
-          rel="noopener noreferrer"
+          download
           className={`inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-gradient-to-r ${resource.gradient} text-white shadow-sm hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all self-start`}
         >
           <Download className="w-4 h-4" />
-          Consulter le guide complet
+          Télécharger le PDF
         </a>
       </div>
     </motion.div>
