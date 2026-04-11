@@ -60,29 +60,14 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
               {post.title}
             </h1>
 
-            <div className="mt-8 flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/30 to-emerald-500/20 flex items-center justify-center border border-white/10">
-                  <span className="text-sm font-bold text-primary">{authorInitials}</span>
-                </div>
-                <div>
-                  <a
-                    href="https://www.linkedin.com/in/clement-martin-rocket4sales/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-white/90 hover:text-primary transition-colors text-sm"
-                  >
-                    {author}
-                  </a>
-                  <div className="flex items-center gap-2 text-xs text-white/40">
-                    <span>CEO Rocket4Sales</span>
-                    <span>·</span>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3" /> {post.date}
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <div className="mt-6 flex items-center gap-3 text-sm text-white/45">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5" /> {post.date}
+              </span>
+              <span className="text-white/20">·</span>
+              <span className="flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5" /> {post.readTime}
+              </span>
             </div>
           </motion.div>
         </div>
@@ -182,36 +167,26 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
-          {/* Author + Share */}
-          <div className="mt-16 pt-8 border-t-2 border-border/30">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/20 to-emerald-500/10 flex items-center justify-center border border-primary/10">
-                  <span className="text-lg font-bold text-primary">{authorInitials}</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">{author}</p>
-                  <p className="text-sm text-muted-foreground">CEO Rocket4Sales · Expert RPO · 200+ recrutements</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Partager</span>
-                <a
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-primary/10 hover:border-primary/20 border border-transparent flex items-center justify-center transition-all"
-                >
-                  <Linkedin className="w-4 h-4 text-gray-500" />
-                </a>
-                <button
-                  onClick={() => navigator.clipboard?.writeText(shareUrl)}
-                  className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-primary/10 hover:border-primary/20 border border-transparent flex items-center justify-center transition-all"
-                  title="Copier le lien"
-                >
-                  <Share2 className="w-4 h-4 text-gray-500" />
-                </button>
-              </div>
+          {/* Share */}
+          <div className="mt-16 pt-8 border-t-2 border-border/30 flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">Publié par <strong className="text-foreground">Rocket4RPO</strong></span>
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Partager</span>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-primary/10 hover:border-primary/20 border border-transparent flex items-center justify-center transition-all"
+              >
+                <Linkedin className="w-4 h-4 text-gray-500" />
+              </a>
+              <button
+                onClick={() => navigator.clipboard?.writeText(shareUrl)}
+                className="w-10 h-10 rounded-xl bg-gray-100 hover:bg-primary/10 hover:border-primary/20 border border-transparent flex items-center justify-center transition-all"
+                title="Copier le lien"
+              >
+                <Share2 className="w-4 h-4 text-gray-500" />
+              </button>
             </div>
           </div>
 
