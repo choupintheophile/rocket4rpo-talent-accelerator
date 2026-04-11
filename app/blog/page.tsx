@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 export const revalidate = 3600;
-import { getBlogPosts } from "@/lib/db";
+import { prisma } from "@/lib/db";
 import { blogCategories } from "@/data/blog";
 import BlogPageClient from "./PageClient";
 
@@ -11,14 +11,18 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const posts = await getBlogPosts();
+  const posts = await prisma.blogPost.findMany({
+    orderBy: { date: "desc" },
+    select: { slug: true, title: true, excerpt: true, category: true, date: true, readTime: true, imageUrl: true },
+  });
   const serializedPosts = posts.map((p) => ({
-    ...p,
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    category: p.category,
     date: p.date.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" }),
-    createdAt: p.createdAt.toISOString(),
-    updatedAt: p.updatedAt.toISOString(),
+    readTime: p.readTime,
     imageUrl: p.imageUrl || null,
-    author: p.author || "Clément Martin",
   }));
 
   const blogSchema = {
