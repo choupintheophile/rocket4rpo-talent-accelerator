@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import OutilsClient from "./OutilsClient";
 
 export const metadata: Metadata = {
-  title: "Simulateurs RPO gratuits — Calculateur & Diagnostic",
+  title: "Simulateurs RPO gratuits — Calculez votre ROI",
   description:
     "3 outils RPO gratuits : démo interactive, calculateur ROI, diagnostic recrutement. Évaluez vos besoins en 5 min →",
   alternates: { canonical: "/outils" },
