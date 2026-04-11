@@ -23,6 +23,10 @@ import {
   TrendingUp,
   AlertTriangle,
   Zap,
+  Star,
+  Award,
+  RefreshCw,
+  UserCheck,
 } from "lucide-react";
 
 const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
@@ -107,137 +111,15 @@ export default function HomepageSections() {
   return (
     <>
       {/* ════════════════════════════════════════════════════════════════
-          1. TRUST SECTION — Social proof stats
-          ════════════════════════════════════════════════════════════════ */}
-      <section className="section-padding relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/[0.03] rounded-full blur-3xl" />
-        </div>
-
-        <div className="container-wide relative">
-          <FadeIn>
-            <div className="text-center mb-12">
-              <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary mb-4">
-                Nos r&eacute;sultats
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-                Des chiffres qui parlent{" "}
-                <span className="text-gradient">d&rsquo;eux-m&ecirc;mes</span>
-              </h2>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                value: 200,
-                suffix: "+",
-                label: "Recrutements réalisés",
-                icon: Users,
-                gradient: "from-blue-500/10 to-primary/10",
-                iconColor: "text-blue-500",
-                delay: 0,
-              },
-              {
-                value: 48,
-                suffix: "h",
-                label: "Première shortlist",
-                icon: Clock,
-                gradient: "from-emerald-500/10 to-teal-500/10",
-                iconColor: "text-emerald-500",
-                delay: 0.1,
-              },
-              {
-                value: 92,
-                suffix: "%",
-                label: "Rétention à 12 mois",
-                icon: TrendingUp,
-                gradient: "from-primary/10 to-violet-500/10",
-                iconColor: "text-primary",
-                delay: 0.2,
-              },
-              {
-                value: 50,
-                suffix: "+",
-                label: "Entreprises accompagnées",
-                icon: Target,
-                gradient: "from-amber-500/10 to-orange-500/10",
-                iconColor: "text-amber-500",
-                delay: 0.3,
-              },
-            ].map((stat) => (
-              <FadeIn key={stat.label} delay={stat.delay}>
-                <div className="relative group">
-                  <div
-                    className={`p-6 md:p-8 rounded-2xl bg-gradient-to-br ${stat.gradient} border border-border/40 text-center transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1`}
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-background/80 backdrop-blur flex items-center justify-center mx-auto mb-4 shadow-sm">
-                      <stat.icon className={`w-6 h-6 ${stat.iconColor}`} />
-                    </div>
-                    <p className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent mb-2">
-                      <Counter target={stat.value} suffix={stat.suffix} />
-                    </p>
-                    <p className="text-sm font-medium text-muted-foreground">
-                      {stat.label}
-                    </p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          {/* Connecting line between cards (desktop only) */}
-          <div className="hidden lg:block max-w-5xl mx-auto mt-[-2px]">
-            <div className="flex justify-between px-[12.5%]">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  className="h-[2px] flex-1 mx-4 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.5 + i * 0.15 }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <FadeIn delay={0.4}>
-            <div className="mt-12 grid md:grid-cols-[1fr_280px] gap-8 items-center max-w-3xl mx-auto">
-              <div className="p-6 rounded-2xl bg-gradient-to-r from-primary/5 via-transparent to-primary/5 border border-primary/10 text-center">
-                <p className="text-sm text-muted-foreground italic leading-relaxed">
-                  &ldquo;En 4 mois, 8 postes pourvus. Le TA s&rsquo;est int&eacute;gr&eacute; comme un membre de l&rsquo;&eacute;quipe.&rdquo;
-                </p>
-                <p className="mt-2 text-sm font-semibold text-foreground">
-                  &mdash; VP People, Scale-up SaaS (120 pers.)
-                </p>
-              </div>
-              <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-primary/5 border border-border/40">
-                <Image
-                  src="/photos/equipe-interieur.webp"
-                  alt="L'équipe Rocket4RPO"
-                  width={560}
-                  height={560}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════════
-          2. PROBLEM SECTION — Pain points
+          1. LE PROBL\u00c8ME — Dark background, pain points with big numbers
           ════════════════════════════════════════════════════════════════ */}
       <section className="section-padding bg-rocket-dark text-white relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" />
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
           <div className="absolute top-20 right-10 w-72 h-72 bg-red-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-10 w-72 h-72 bg-red-500/[0.03] rounded-full blur-3xl" />
         </div>
 
         <div className="container-wide relative">
@@ -245,11 +127,11 @@ export default function HomepageSections() {
             <div className="text-center mb-14">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-red-500/10 text-red-400 mb-5">
                 <AlertTriangle className="w-3.5 h-3.5" />
-                Le probl&egrave;me
+                Le probl\u00e8me
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto leading-tight">
                 Chaque semaine sans le bon recruteur vous{" "}
-                <span className="text-red-400">co&ucirc;te cher</span>
+                <span className="text-red-400">co\u00fbte cher</span>
               </h2>
             </div>
           </FadeIn>
@@ -260,8 +142,8 @@ export default function HomepageSections() {
                 icon: Clock,
                 stat: "84",
                 unit: "jours",
-                title: "Délai moyen de recrutement",
-                text: "12 semaines en moyenne selon l\’Apec (2024). Chaque jour de poste vacant, c\’est du CA non généré et une équipe qui compense.",
+                title: "D\u00e9lai moyen de recrutement",
+                text: "12 semaines en moyenne selon l'Apec (2024). Chaque jour de poste vacant, c'est du CA non g\u00e9n\u00e9r\u00e9 et une \u00e9quipe qui compense.",
                 delay: 0,
               },
               {
@@ -269,15 +151,15 @@ export default function HomepageSections() {
                 stat: "12",
                 unit: "h/semaine",
                 title: "Perdues par vos managers",
-                text: "Trier des CVs, faire passer des entretiens non qualifiés, relancer les cabinets. Vos opérationnels méritent mieux.",
+                text: "Trier des CVs, faire passer des entretiens non qualifi\u00e9s, relancer les cabinets. Vos op\u00e9rationnels m\u00e9ritent mieux.",
                 delay: 0.15,
               },
               {
                 icon: Banknote,
                 stat: "120-200",
-                unit: "K€",
-                title: "Le coût d\’un cabinet",
-                text: "15 à 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : ~44\ 000€.",
+                unit: "K\u20ac",
+                title: "Le co\u00fbt d'un cabinet",
+                text: "15 \u00e0 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : ~44\u00a0000\u20ac.",
                 delay: 0.3,
               },
             ].map((item) => (
@@ -311,8 +193,8 @@ export default function HomepageSections() {
           <FadeIn delay={0.5}>
             <div className="mt-12 text-center">
               <p className="text-lg md:text-xl font-medium text-white/70 max-w-2xl mx-auto">
-                Le recrutement ne devrait pas &ecirc;tre un{" "}
-                <span className="text-white font-bold">frein à votre croissance</span>.
+                Le recrutement ne devrait pas{" "}
+                <span className="text-white font-bold">freiner votre croissance.</span>
               </p>
               <div className="mt-6">
                 <Link
@@ -330,7 +212,7 @@ export default function HomepageSections() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          3. SOLUTION SECTION — What we do differently
+          2. LA SOLUTION ROCKET4RPO — White background, benefits + photo + comparison
           ════════════════════════════════════════════════════════════════ */}
       <section className="section-padding relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -343,14 +225,14 @@ export default function HomepageSections() {
             <div className="text-center mb-14">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary mb-5">
                 <Zap className="w-3.5 h-3.5" />
-                Notre solution
+                La solution
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto">
-                Un recruteur senior int&eacute;gr&eacute; à votre &eacute;quipe.{" "}
-                <span className="text-gradient">Sans CDI.</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto leading-tight">
+                Un recruteur senior int\u00e9gr\u00e9 en 48h.{" "}
+                <span className="text-gradient">Pas un cabinet. Pas un freelance. Un expert.</span>
               </h2>
               <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Pas un cabinet externe. Pas un freelance l&acirc;ch&eacute; dans la nature. Un Talent Acquisition Specialist qui rejoint vos outils, vos rituels et votre culture.
+                Un Talent Acquisition Specialist qui rejoint vos outils, vos rituels et votre culture. Il repr\u00e9sente votre marque, pas la n\u00f4tre.
               </p>
             </div>
           </FadeIn>
@@ -376,12 +258,13 @@ export default function HomepageSections() {
             </div>
           </FadeIn>
 
+          {/* 6 benefit cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
             {[
               {
                 icon: Search,
-                title: "Sourcing multi-canal",
-                text: "LinkedIn, approche directe, réseau, communautés. Pas des CVs de job boards.",
+                title: "Sourcing multicanal",
+                text: "LinkedIn, approche directe, r\u00e9seau, communaut\u00e9s. Pas des CVs de job boards. Des profils qualifi\u00e9s et motiv\u00e9s.",
                 gradient: "from-blue-500/10 to-blue-600/5",
                 iconBg: "bg-blue-500/10",
                 iconColor: "text-blue-500",
@@ -390,7 +273,7 @@ export default function HomepageSections() {
               {
                 icon: FileCheck,
                 title: "Shortlists en 48h",
-                text: "Chaque candidat évalué : compétences, motivation, culture fit. Pas de volume \— de la qualité.",
+                text: "Chaque candidat \u00e9valu\u00e9 : comp\u00e9tences, motivation, culture fit. Pas de volume \u2014 de la qualit\u00e9.",
                 gradient: "from-emerald-500/10 to-emerald-600/5",
                 iconBg: "bg-emerald-500/10",
                 iconColor: "text-emerald-500",
@@ -399,7 +282,7 @@ export default function HomepageSections() {
               {
                 icon: MessageSquare,
                 title: "Coordination managers",
-                text: "Briefs, debriefs, feedbacks, suivi. Vos managers se concentrent sur leur métier.",
+                text: "Briefs, debriefs, feedbacks, suivi. Vos managers se concentrent sur leur m\u00e9tier, pas sur le recrutement.",
                 gradient: "from-violet-500/10 to-violet-600/5",
                 iconBg: "bg-violet-500/10",
                 iconColor: "text-violet-500",
@@ -408,7 +291,7 @@ export default function HomepageSections() {
               {
                 icon: BarChart3,
                 title: "Reporting hebdo",
-                text: "Pipeline, KPIs, taux de conversion, délais. Vous savez toujours où vous en êtes.",
+                text: "Pipeline, KPIs, taux de conversion, d\u00e9lais. Vous savez toujours o\u00f9 vous en \u00eates.",
                 gradient: "from-amber-500/10 to-amber-600/5",
                 iconBg: "bg-amber-500/10",
                 iconColor: "text-amber-500",
@@ -416,8 +299,8 @@ export default function HomepageSections() {
               },
               {
                 icon: Users,
-                title: "Intégration totale",
-                text: "ATS, Slack, Teams, rituels d\’équipe. Le TA représente votre marque, pas Rocket4RPO.",
+                title: "Int\u00e9gration totale",
+                text: "ATS, Slack, Teams, rituels d'\u00e9quipe. Le TA repr\u00e9sente votre marque, pas Rocket4RPO.",
                 gradient: "from-primary/10 to-primary/5",
                 iconBg: "bg-primary/10",
                 iconColor: "text-primary",
@@ -454,7 +337,7 @@ export default function HomepageSections() {
                 <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
 
                 <p className="text-xs font-bold text-primary uppercase tracking-widest mb-6 relative">
-                  R&eacute;sultat concret
+                  R\u00e9sultat concret
                 </p>
 
                 <div className="space-y-5 relative">
@@ -498,7 +381,7 @@ export default function HomepageSections() {
                 href="/offre"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300"
               >
-                Voir le d&eacute;tail de l&rsquo;offre{" "}
+                Voir le d\u00e9tail de l\u2019offre{" "}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -507,7 +390,123 @@ export default function HomepageSections() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          4. HOW IT WORKS — 4-step process
+          3. POURQUOI ROCKET4RPO — Authority / differentiation
+          ════════════════════════════════════════════════════════════════ */}
+      <section className="section-padding relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/[0.03] rounded-full blur-3xl" />
+        </div>
+
+        <div className="container-wide relative">
+          <FadeIn>
+            <div className="text-center mb-14">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-amber-500/10 text-amber-600 mb-5">
+                <Star className="w-3.5 h-3.5" />
+                Pourquoi Rocket4RPO
+              </span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto leading-tight">
+                Le{" "}
+                <span className="text-gradient">top 1%</span>{" "}
+                des Talent Acquisition de France
+              </h2>
+              <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Nous ne travaillons pas avec n'importe quel recruteur. Notre processus de s\u00e9lection est le plus exigeant du march\u00e9.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* 4 authority cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            {[
+              {
+                icon: UserCheck,
+                number: "50+",
+                title: "TA \u00e9valu\u00e9s sur 7 crit\u00e8res",
+                text: "Comp\u00e9tences techniques, soft skills, sp\u00e9cialisation sectorielle, culture fit. Chaque TA est audit\u00e9 en profondeur.",
+                gradient: "from-blue-500/10 to-blue-600/5",
+                iconBg: "bg-blue-500/10",
+                iconColor: "text-blue-500",
+                delay: 0,
+              },
+              {
+                icon: Award,
+                number: "80%+",
+                title: "Score minimum pour int\u00e9grer le vivier",
+                text: "Seuls les meilleurs int\u00e8grent notre r\u00e9seau. Si un TA ne passe pas nos crit\u00e8res, il ne travaille pas avec nos clients.",
+                gradient: "from-amber-500/10 to-amber-600/5",
+                iconBg: "bg-amber-500/10",
+                iconColor: "text-amber-500",
+                delay: 0.1,
+              },
+              {
+                icon: Rocket,
+                number: "48h",
+                title: "Op\u00e9rationnel, pas en 3 mois",
+                text: "Votre TA d\u00e9marre en 48h. Premi\u00e8re shortlist qualifi\u00e9e d\u00e8s la premi\u00e8re semaine. Pas de formation longue.",
+                gradient: "from-emerald-500/10 to-emerald-600/5",
+                iconBg: "bg-emerald-500/10",
+                iconColor: "text-emerald-500",
+                delay: 0.2,
+              },
+              {
+                icon: RefreshCw,
+                number: "48h",
+                title: "Remplacement sous 48h si besoin",
+                text: "Si le match n'est pas parfait, on remplace votre TA en 48h. Sans frais suppl\u00e9mentaires. Z\u00e9ro risque.",
+                gradient: "from-rose-500/10 to-rose-600/5",
+                iconBg: "bg-rose-500/10",
+                iconColor: "text-rose-500",
+                delay: 0.3,
+              },
+            ].map((item) => (
+              <FadeIn key={item.title} delay={item.delay}>
+                <div className={`group relative p-6 rounded-2xl bg-gradient-to-br ${item.gradient} border border-border/40 h-full transition-all duration-500 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 hover:border-primary/20`}>
+                  <div className={`w-12 h-12 rounded-xl ${item.iconBg} flex items-center justify-center mb-4 transition-transform duration-500 group-hover:scale-110`}>
+                    <item.icon className={`w-6 h-6 ${item.iconColor}`} />
+                  </div>
+                  <p className="text-3xl font-bold text-foreground mb-1">{item.number}</p>
+                  <h3 className="font-bold text-base mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Photo + testimonial side by side */}
+          <FadeIn delay={0.4}>
+            <div className="mt-12 grid md:grid-cols-[280px_1fr] gap-8 items-center max-w-4xl mx-auto">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-primary/5 border border-border/40">
+                <Image
+                  src="/photos/equipe-interieur.webp"
+                  alt="L'\u00e9quipe Rocket4RPO"
+                  width={560}
+                  height={560}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+              <div className="p-6 rounded-2xl bg-gradient-to-r from-primary/5 via-transparent to-primary/5 border border-primary/10">
+                <div className="flex gap-0.5 mb-3">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground italic leading-relaxed mb-3">
+                  &ldquo;En 4 mois, 8 postes pourvus. Le TA s'est int\u00e9gr\u00e9 comme un membre de l'\u00e9quipe. On a divis\u00e9 notre time-to-hire par deux et lib\u00e9r\u00e9 nos managers.&rdquo;
+                </p>
+                <p className="text-sm font-semibold text-foreground">
+                  &mdash; VP People, Scale-up SaaS (120 pers.)
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════
+          4. COMMENT \u00c7A MARCHE — 4-step process, dark navy background
           ════════════════════════════════════════════════════════════════ */}
       <section className="section-padding bg-rocket-navy-soft text-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -520,14 +519,14 @@ export default function HomepageSections() {
           <FadeIn>
             <div className="text-center mb-14">
               <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/15 text-primary mb-5">
-                Comment &ccedil;a marche
+                Comment \u00e7a marche
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                 Du premier appel aux premiers{" "}
-                <span className="text-primary">recrutements sign&eacute;s</span>
+                <span className="text-primary">recrutements sign\u00e9s</span>
               </h2>
               <p className="mt-5 text-lg text-white/60 max-w-2xl mx-auto">
-                Du premier appel à votre première shortlist : 48h.
+                Du premier appel \u00e0 votre premi\u00e8re shortlist : 48h.
               </p>
             </div>
           </FadeIn>
@@ -560,23 +559,23 @@ export default function HomepageSections() {
                   icon: Users,
                   title: "Matching",
                   badge: "J1",
-                  text: "On sélectionne le TA idéal pour votre secteur et votre culture.",
+                  text: "On s\u00e9lectionne le TA id\u00e9al pour votre secteur et votre culture.",
                   delay: 0.15,
                 },
                 {
                   step: "03",
                   icon: Rocket,
-                  title: "Intégration",
+                  title: "Int\u00e9gration",
                   badge: "J2",
-                  text: "Le TA rejoint vos outils et rituels. Première shortlist en 48h.",
+                  text: "Le TA rejoint vos outils et rituels. Premi\u00e8re shortlist en 48h.",
                   delay: 0.3,
                 },
                 {
                   step: "04",
                   icon: CheckCircle,
-                  title: "Résultats",
+                  title: "R\u00e9sultats",
                   badge: "S2-S4",
-                  text: "Sourcing ciblé, shortlists qualifiées, KPIs suivis chaque semaine.",
+                  text: "Sourcing cibl\u00e9, shortlists qualifi\u00e9es, KPIs suivis chaque semaine. Premiers recrutements sign\u00e9s.",
                   delay: 0.45,
                 },
               ].map((item) => (
@@ -604,13 +603,13 @@ export default function HomepageSections() {
             </div>
           </div>
 
-          {/* Photo: closing / handshake */}
+          {/* Photo */}
           <FadeIn delay={0.5}>
             <div className="mt-14 max-w-2xl mx-auto">
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                 <Image
                   src="/photos/perso-home-bureau-main.jpg"
-                  alt="Recrutement sign{'é'} — poign{'é'}e de main"
+                  alt="Recrutement sign\u00e9 \u2014 mission accomplie"
                   width={1000}
                   height={500}
                   className="w-full h-[200px] md:h-[240px] object-cover"
@@ -632,7 +631,7 @@ export default function HomepageSections() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white font-semibold text-sm hover:brightness-110 transition-all duration-300 hover:gap-3 shadow-lg shadow-primary/25"
               >
-                R&eacute;server un appel d&eacute;couverte <ArrowRight className="w-4 h-4" />
+                R\u00e9server un appel d\u00e9couverte <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </FadeIn>
@@ -640,7 +639,7 @@ export default function HomepageSections() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════
-          5. FREE TOOLS — Link to simulators
+          5. SIMULATEURS GRATUITS — 3 tool cards
           ════════════════════════════════════════════════════════════════ */}
       <section className="section-padding bg-rocket-cream relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
@@ -651,14 +650,14 @@ export default function HomepageSections() {
           <FadeIn>
             <div className="text-center mb-12">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/10 text-primary mb-5">
-                Outils gratuits
+                Simulateurs gratuits
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                 Explorez nos outils{" "}
                 <span className="text-gradient">gratuits</span>
               </h2>
               <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-                Pas besoin de s&rsquo;engager pour commencer à optimiser votre recrutement.
+                Pas besoin de s'engager pour commencer \u00e0 optimiser votre recrutement.
               </p>
             </div>
           </FadeIn>
@@ -668,7 +667,7 @@ export default function HomepageSections() {
               {
                 icon: Calculator,
                 title: "Calculateur ROI",
-                desc: "Estimez vos économies par rapport à un cabinet de recrutement classique.",
+                desc: "Estimez vos \u00e9conomies par rapport \u00e0 un cabinet de recrutement classique. R\u00e9sultat instantan\u00e9.",
                 href: "/calculateur",
                 time: "30 sec",
                 gradient: "from-emerald-500/10 to-teal-500/5",
@@ -679,7 +678,7 @@ export default function HomepageSections() {
               {
                 icon: ClipboardCheck,
                 title: "Diagnostic recrutement",
-                desc: "Évaluez la maturité de votre process recrutement en 10 questions.",
+                desc: "\u00c9valuez la maturit\u00e9 de votre process recrutement en 10 questions. Score personnalis\u00e9.",
                 href: "/assessment",
                 time: "2 min",
                 gradient: "from-blue-500/10 to-indigo-500/5",
@@ -689,8 +688,8 @@ export default function HomepageSections() {
               },
               {
                 icon: Play,
-                title: "Démo interactive",
-                desc: "Vivez le process RPO en 4 étapes, comme si vous y étiez.",
+                title: "D\u00e9mo interactive",
+                desc: "Vivez le process RPO en 4 \u00e9tapes, comme si vous y \u00e9tiez. D\u00e9couvrez comment \u00e7a fonctionne concr\u00e8tement.",
                 href: "/demo",
                 time: "2 min",
                 gradient: "from-violet-500/10 to-purple-500/5",
@@ -726,9 +725,17 @@ export default function HomepageSections() {
           </div>
 
           <FadeIn delay={0.4}>
-            <p className="mt-8 text-center text-xs text-muted-foreground">
-              Utilis&eacute;s par 300+ DRH et CEO &mdash; sans cr&eacute;er de compte
-            </p>
+            <div className="mt-8 text-center">
+              <Link
+                href="/outils"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300"
+              >
+                Voir tous nos outils <ArrowRight className="w-4 h-4" />
+              </Link>
+              <p className="mt-3 text-xs text-muted-foreground">
+                Utilis\u00e9s par 300+ DRH et CEO \u2014 sans cr\u00e9er de compte
+              </p>
+            </div>
           </FadeIn>
         </div>
       </section>

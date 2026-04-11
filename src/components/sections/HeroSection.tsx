@@ -9,26 +9,27 @@ import {
   ShieldCheck,
   Star,
   TrendingUp,
-  BarChart3,
   CheckCircle2,
+  Building2,
+  ArrowDown,
 } from "lucide-react";
 import type { HeroContent } from "@/lib/personalization";
 
 /* ─── defaults ─── */
 const defaultContent: HeroContent = {
-  badge: "RPO — Recrutement externalisé sur-mesure",
-  headline: "Vos recrutements freinent votre ",
-  highlightedText: "croissance\ ?",
+  badge: "RPO - Recrutement externalis\u00e9 sur-mesure",
+  headline: "Vos recrutements vous co\u00fbtent une ",
+  highlightedText: "fortune ?",
   subtitle:
-    "Première shortlist qualifiée en 48h. 92\ % de rétention à 12 mois. ~44\ 000\ € pour 10 recrutements.",
+    "Un recruteur senior du top 1% int\u00e9gr\u00e9 \u00e0 votre \u00e9quipe en 48h. R\u00e9sultats d\u00e8s la 2e semaine. 5x moins cher qu\u2019un cabinet.",
 };
 
 /* ─── trust-bar data ─── */
 const trustStats = [
-  { icon: Users, value: "200+", label: "recrutements réalisés" },
-  { icon: Clock, value: "48h", label: "pour démarrer" },
-  { icon: ShieldCheck, value: "92%", label: "rétention à 12 mois" },
-  { icon: Star, value: "Top 1%", label: "des Talent Acquisition" },
+  { icon: Users, value: "200+", label: "recrutements r\u00e9alis\u00e9s" },
+  { icon: Clock, value: "48h", label: "pour d\u00e9marrer" },
+  { icon: ShieldCheck, value: "92%", label: "r\u00e9tention \u00e0 12 mois" },
+  { icon: Building2, value: "50+", label: "entreprises" },
 ];
 
 /* ─── animation variants ─── */
@@ -97,60 +98,94 @@ function FloatingOrb({
   );
 }
 
-/* ─── trust proof card ─── */
-function TrustProofCard() {
+/* ─── glassmorphic proof card (right side) ─── */
+function ProofCard() {
   return (
     <motion.div
       variants={slideRight}
       initial="hidden"
       animate="visible"
-      className="relative w-[340px] xl:w-[380px]"
+      className="relative w-[360px] xl:w-[400px]"
     >
-      {/* Main testimonial card */}
+      {/* Main glassmorphic card */}
       <div className="rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-xl p-7 shadow-2xl shadow-black/40">
-        {/* Stars */}
-        <div className="flex gap-0.5 mb-4">
-          {[1, 2, 3, 4, 5].map((s) => (
-            <Star key={s} className="w-4 h-4 text-amber-400 fill-amber-400" />
-          ))}
+        {/* Cost comparison */}
+        <div className="mb-5">
+          <p className="text-[11px] font-bold text-white/40 uppercase tracking-widest mb-3">
+            Co\u00fbt pour 10 recrutements
+          </p>
+
+          {/* Cabinet price - crossed out */}
+          <div className="flex items-center justify-between mb-2 p-3 rounded-xl bg-red-500/[0.08] border border-red-500/[0.12]">
+            <span className="text-sm text-white/60">Cabinet classique</span>
+            <span className="text-xl font-bold text-red-400 line-through decoration-2">
+              180 000 \u20ac
+            </span>
+          </div>
+
+          {/* Rocket4RPO price - highlighted */}
+          <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/[0.12] border border-emerald-500/[0.2]">
+            <span className="text-sm font-semibold text-white/90">RPO Rocket4RPO</span>
+            <span className="text-xl font-bold text-emerald-400">
+              44 000 \u20ac
+            </span>
+          </div>
         </div>
 
-        {/* Quote */}
-        <p className="text-[15px] text-white/85 leading-relaxed mb-5 font-light italic">
-          &laquo; En 3 semaines, notre TA avait déjà présenté 8 candidats qualifiés. On a recruté notre Head of Sales en 28 jours. Avec un cabinet, on en aurait eu pour 3 mois. &raquo;
-        </p>
-
-        {/* Author */}
-        <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-sm font-bold text-primary">
-            SL
-          </div>
-          <div>
-            <p className="text-sm font-medium text-white/90">Sarah L.</p>
-            <p className="text-xs text-white/40">VP People, Scale-up SaaS B2B</p>
+        {/* Time-to-hire comparison */}
+        <div className="mb-5 p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+          <p className="text-[11px] font-bold text-white/40 uppercase tracking-widest mb-2">
+            Time-to-hire
+          </p>
+          <div className="flex items-center gap-3">
+            <span className="text-lg font-bold text-red-400 line-through">84j</span>
+            <ArrowDown className="w-4 h-4 text-emerald-400 rotate-[-90deg]" />
+            <span className="text-2xl font-bold text-emerald-400">35j</span>
+            <span className="text-xs font-semibold text-emerald-400/80 bg-emerald-500/[0.12] px-2 py-0.5 rounded-full ml-auto">
+              -58%
+            </span>
           </div>
         </div>
 
-        {/* Result metrics */}
-        <div className="mt-5 grid grid-cols-3 gap-3">
-          {[
-            { value: "28j", label: "Time-to-hire" },
-            { value: "8", label: "Candidats qualifiés" },
-            { value: "1", label: "Recrutement signé" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center p-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06]">
-              <div className="text-lg font-bold text-[hsl(160,84%,50%)] tabular-nums">{stat.value}</div>
-              <div className="text-[9px] text-white/35 mt-0.5 uppercase tracking-wider">{stat.label}</div>
+        {/* Mini testimonial */}
+        <div className="pt-4 border-t border-white/[0.06]">
+          <div className="flex gap-0.5 mb-2">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <Star key={s} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+            ))}
+          </div>
+          <p className="text-[13px] text-white/75 leading-relaxed italic mb-3">
+            &laquo; En 3 semaines, 8 candidats qualifi\u00e9s pr\u00e9sent\u00e9s. On a recrut\u00e9 notre Head of Sales en 28 jours. &raquo;
+          </p>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary">
+              SL
             </div>
-          ))}
+            <div>
+              <p className="text-xs font-medium text-white/80">Sarah L.</p>
+              <p className="text-[10px] text-white/35">VP People, Scale-up SaaS B2B</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Floating badge — cost savings */}
+      {/* Floating badge — Top 1% */}
+      <motion.div
+        className="absolute -top-4 -right-4 px-4 py-2 rounded-xl border border-amber-400/20 bg-gradient-to-r from-amber-500/20 to-orange-500/15 backdrop-blur-xl shadow-lg shadow-black/30"
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="flex items-center gap-2">
+          <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+          <span className="text-sm font-bold text-white">Top 1% des TA de France</span>
+        </div>
+      </motion.div>
+
+      {/* Floating badge — savings */}
       <motion.div
         className="absolute -bottom-4 -left-6 px-4 py-2.5 rounded-xl border border-white/[0.1] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-xl shadow-lg shadow-black/30"
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: [0, -5, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
       >
         <div className="flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -158,15 +193,15 @@ function TrustProofCard() {
         </div>
       </motion.div>
 
-      {/* Floating badge — top right */}
+      {/* Floating badge — retention */}
       <motion.div
-        className="absolute -top-3 -right-3 px-3 py-1.5 rounded-lg border border-white/[0.1] bg-gradient-to-r from-teal-500/20 to-cyan-500/20 backdrop-blur-xl shadow-lg shadow-black/30"
+        className="absolute top-1/2 -left-5 px-3 py-1.5 rounded-lg border border-white/[0.1] bg-gradient-to-r from-teal-500/15 to-cyan-500/15 backdrop-blur-xl shadow-lg shadow-black/30"
         animate={{ y: [0, -4, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
       >
         <div className="flex items-center gap-1.5">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-          <span className="text-xs font-medium text-white/90">92% rétention</span>
+          <span className="text-xs font-medium text-white/90">92% r\u00e9tention</span>
         </div>
       </motion.div>
     </motion.div>
@@ -177,7 +212,6 @@ function TrustProofCard() {
 export const HeroSection = ({ content }: { content?: HeroContent }) => {
   const hero = content || defaultContent;
 
-  // Split headline into words for stagger animation
   const headlineWords = hero.headline.trim().split(/\s+/);
 
   return (
@@ -229,13 +263,10 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
 
       {/* ── Decorative geometric elements (right side) ── */}
       <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none hidden lg:block">
-        {/* Large circle */}
         <div className="absolute top-[15%] right-[-5%] w-[500px] h-[500px] rounded-full border border-white/[0.03]" />
         <div className="absolute top-[20%] right-[-2%] w-[400px] h-[400px] rounded-full border border-white/[0.04]" />
-        {/* Decorative lines */}
         <div className="absolute top-[10%] right-[20%] w-px h-32 bg-gradient-to-b from-transparent via-white/[0.06] to-transparent" />
         <div className="absolute top-[50%] right-[10%] w-px h-24 bg-gradient-to-b from-transparent via-[hsl(160,84%,50%,0.1)] to-transparent" />
-        {/* Small dot accents */}
         <div className="absolute top-[25%] right-[30%] w-1.5 h-1.5 rounded-full bg-[hsl(160,84%,50%,0.3)]" />
         <div className="absolute top-[45%] right-[15%] w-1 h-1 rounded-full bg-white/20" />
         <div className="absolute top-[65%] right-[25%] w-1 h-1 rounded-full bg-[hsl(160,84%,50%,0.2)]" />
@@ -262,7 +293,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
               </span>
             </motion.div>
 
-            {/* Headline — stagger word by word */}
+            {/* Headline */}
             <h1 className="mt-6 text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold leading-[1.08] tracking-tight">
               {headlineWords.map((word, i) => (
                 <motion.span
@@ -312,7 +343,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl bg-white text-[hsl(220,20%,10%)] hover:bg-white/90 shadow-lg shadow-white/10 hover:shadow-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                Réserver un diagnostic gratuit
+                R\u00e9server un diagnostic gratuit
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
               </a>
               <a
@@ -320,14 +351,25 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border border-white/15 text-white hover:bg-white/[0.06] hover:border-white/25 transition-all duration-200"
               >
                 <Calculator className="w-4 h-4" />
-                Calculer mes économies
+                Calculer mes \u00e9conomies
               </a>
             </motion.div>
+
+            {/* Quick reassurance under CTAs */}
+            <motion.p
+              className="mt-4 text-xs text-white/35"
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={5}
+            >
+              Gratuit \u00b7 30 min \u00b7 Sans engagement \u00b7 R\u00e9ponse sous 24h
+            </motion.p>
           </div>
 
-          {/* ── RIGHT: Dashboard card (desktop only) ── */}
+          {/* ── RIGHT: Proof card (desktop only) ── */}
           <div className="hidden lg:block">
-            <TrustProofCard />
+            <ProofCard />
           </div>
         </div>
       </div>
@@ -340,7 +382,6 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
         animate="visible"
       >
         <div className="container-wide py-6 md:py-8">
-          {/* Stats row */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {trustStats.map((stat) => (
               <div key={stat.value} className="flex items-center gap-3">
@@ -356,11 +397,6 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
               </div>
             ))}
           </div>
-
-          {/* Reassurance line */}
-          <p className="mt-5 text-[13px] text-white/35 text-center md:text-left">
-            Gratuit · 30 min · Sans engagement · Réponse sous 24h
-          </p>
         </div>
       </motion.div>
     </section>
