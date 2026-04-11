@@ -1,5 +1,6 @@
 /**
- * Convert all HTML resource files to PDF using Puppeteer.
+ * Convert all HTML resource files to premium PDF using Puppeteer.
+ * Injects CSS inline so PDFs are styled even without a server.
  * Run: node scripts/generate-pdfs.mjs
  */
 
@@ -10,14 +11,19 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RESOURCES_DIR = path.resolve(__dirname, "../public/resources");
+const CSS_FILE = path.join(RESOURCES_DIR, "style-premium.css");
 
 async function main() {
+  // Read the CSS file
+  const cssContent = fs.readFileSync(CSS_FILE, "utf-8");
+
   const htmlFiles = fs
     .readdirSync(RESOURCES_DIR)
     .filter((f) => f.endsWith(".html"))
     .sort();
 
-  console.log(`Found ${htmlFiles.length} HTML files to convert\n`);
+  console.log(`Found ${htmlFiles.length} HTML files to convert`);
+  console.log(`CSS loaded: ${(cssContent.length / 1024).toFixed(0)} KB\n`);
 
   const browser = await puppeteer.launch({
     headless: true,
@@ -30,19 +36,39 @@ async function main() {
     const pdfPath = path.join(RESOURCES_DIR, pdfFile);
 
     try {
+      let htmlContent = fs.readFileSync(htmlPath, "utf-8");
+
+      // Replace external CSS link with inline <style> block
+      htmlContent = htmlContent.replace(
+        /<link\s+rel="stylesheet"\s+href="[^"]*style-premium\.css"[^>]*>/gi,
+        `<style>${cssContent}</style>`
+      );
+
+      // Also handle any remaining external CSS links that point to /resources/
+      htmlContent = htmlContent.replace(
+        /<link\s+rel="stylesheet"\s+href="\/resources\/[^"]*"[^>]*>/gi,
+        ""
+      );
+
       const page = await browser.newPage();
 
-      // Load the HTML file
-      const htmlContent = fs.readFileSync(htmlPath, "utf-8");
-      await page.setContent(htmlContent, { waitUntil: "networkidle0" });
+      // Set content with base URL for any relative resources
+      await page.setContent(htmlContent, {
+        waitUntil: "networkidle0",
+        timeout: 10000,
+      });
 
-      // Generate PDF
+      // Wait for fonts to load
+      await page.evaluateHandle("document.fonts.ready");
+
+      // Generate PDF with premium settings
       await page.pdf({
         path: pdfPath,
         format: "A4",
-        margin: { top: "20mm", right: "15mm", bottom: "20mm", left: "15mm" },
+        margin: { top: "15mm", right: "12mm", bottom: "15mm", left: "12mm" },
         printBackground: true,
         displayHeaderFooter: false,
+        preferCSSPageSize: false,
       });
 
       await page.close();
@@ -57,7 +83,11 @@ async function main() {
   await browser.close();
 
   const pdfCount = fs.readdirSync(RESOURCES_DIR).filter((f) => f.endsWith(".pdf")).length;
-  console.log(`\nDone! ${pdfCount} PDF files in ${RESOURCES_DIR}`);
+  const totalSize = fs.readdirSync(RESOURCES_DIR)
+    .filter((f) => f.endsWith(".pdf"))
+    .reduce((sum, f) => sum + fs.statSync(path.join(RESOURCES_DIR, f)).size, 0);
+
+  console.log(`\n✓ Done! ${pdfCount} PDFs generated (${(totalSize / 1024 / 1024).toFixed(1)} MB total)`);
 }
 
 main().catch(console.error);
