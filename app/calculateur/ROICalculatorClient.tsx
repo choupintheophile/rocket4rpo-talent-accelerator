@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -11,6 +11,12 @@ import {
   Zap,
   CheckCircle2,
   BarChart3,
+  Calendar,
+  Shield,
+  Target,
+  Award,
+  Send,
+  MessageCircle,
 } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { Slider } from "@/components/ui/slider";
@@ -20,7 +26,7 @@ import { FAQSection } from "@/components/shared/FAQSection";
 
 /* ── helpers ────────────────────────────────────────────── */
 
-function formatCurrency(value: number) {
+function formatCurrency(value: number): string {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
@@ -28,7 +34,7 @@ function formatCurrency(value: number) {
   }).format(value);
 }
 
-function formatNumber(value: number) {
+function formatNumber(value: number): string {
   return new Intl.NumberFormat("fr-FR", {
     maximumFractionDigits: 0,
   }).format(value);
@@ -50,9 +56,9 @@ function AnimatedCounter({
   return (
     <motion.span
       key={value}
-      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+      initial={{ opacity: 0, y: 16, scale: 0.92 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      transition={{ type: "spring", stiffness: 220, damping: 22 }}
       className={className}
     >
       {prefix}
@@ -80,7 +86,6 @@ function DonutChart({
   return (
     <div className="relative" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="-rotate-90">
-        {/* background track */}
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -90,13 +95,12 @@ function DonutChart({
           className="text-white/10"
           strokeWidth={strokeWidth}
         />
-        {/* animated fill */}
         <motion.circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="url(#donutGradient)"
+          stroke="url(#donutGrad)"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
@@ -105,36 +109,114 @@ function DonutChart({
             strokeDashoffset:
               circumference - (clampedPct / 100) * circumference,
           }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         />
         <defs>
-          <linearGradient id="donutGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="hsl(var(--rocket-teal))" />
             <stop offset="100%" stopColor="#34d399" />
           </linearGradient>
         </defs>
       </svg>
-      {/* center label */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <AnimatedCounter
           value={clampedPct}
           suffix="%"
           className="text-3xl font-bold text-white"
         />
-        <span className="text-xs text-white/60 mt-0.5">
-          d&apos;economie
-        </span>
+        <span className="text-xs text-white/60 mt-0.5">d'économie</span>
       </div>
     </div>
   );
 }
 
-/* ── stagger variants ───────────────────────────────────── */
+/* ── parameter card ─────────────────────────────────────── */
+
+function ParameterCard({
+  icon: Icon,
+  label,
+  value,
+  displayValue,
+  min,
+  max,
+  step,
+  minLabel,
+  maxLabel,
+  suffix,
+  onChange,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: number;
+  displayValue?: string;
+  min: number;
+  max: number;
+  step: number;
+  minLabel: string;
+  maxLabel: string;
+  suffix?: string;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between gap-4">
+        <label className="flex items-center gap-2.5 text-sm font-medium text-foreground">
+          <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shrink-0">
+            <Icon className="w-4.5 h-4.5 text-primary" />
+          </span>
+          {label}
+        </label>
+        <div className="flex items-center gap-1.5">
+          <Input
+            type="number"
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            onChange={(e) =>
+              onChange(
+                Math.min(max, Math.max(min, Number(e.target.value) || min))
+              )
+            }
+            className="w-24 h-11 text-center text-base font-bold border-2 border-border/80 focus:border-primary rounded-xl"
+          />
+          {suffix && (
+            <span className="text-sm font-medium text-muted-foreground">
+              {suffix}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {displayValue && (
+        <div className="text-center">
+          <span className="text-2xl font-bold text-primary">
+            {displayValue}
+          </span>
+        </div>
+      )}
+
+      <Slider
+        value={[value]}
+        onValueChange={([v]) => onChange(v)}
+        min={min}
+        max={max}
+        step={step}
+      />
+      <div className="flex justify-between text-xs text-muted-foreground font-medium">
+        <span>{minLabel}</span>
+        <span>{maxLabel}</span>
+      </div>
+    </div>
+  );
+}
+
+/* ── stagger & animation variants ──────────────────────── */
 
 const stagger = {
   container: {
     hidden: {},
-    show: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+    show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
   },
   item: {
     hidden: { opacity: 0, y: 24 },
@@ -160,9 +242,65 @@ const fadeUp = {
 const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
 
 const SOCIAL_PROOF = [
-  { value: "200+", label: "recrutements realises" },
-  { value: "92%", label: "de retention" },
-  { value: "48h", label: "pour demarrer" },
+  { value: "200+", label: "recrutements réalisés" },
+  { value: "92%", label: "de rétention" },
+  { value: "48h", label: "pour démarrer" },
+];
+
+const COMPARISON_ROWS: {
+  critere: string;
+  rpo: string;
+  cabinet: string;
+  interne: string;
+}[] = [
+  {
+    critere: "Coût moyen par recrutement",
+    rpo: "2 200 € (forfait)",
+    cabinet: "15-25% du salaire",
+    interne: "8 000 - 12 000 €",
+  },
+  {
+    critere: "Délai moyen",
+    rpo: "35 jours",
+    cabinet: "45-90 jours",
+    interne: "60-120 jours",
+  },
+  {
+    critere: "Flexibilité (montée/descente en charge)",
+    rpo: "Totale",
+    cabinet: "Limitée",
+    interne: "Très limitée",
+  },
+  {
+    critere: "Intégration dans vos outils",
+    rpo: "Oui (ATS, Slack, CRM)",
+    cabinet: "Non",
+    interne: "Variable",
+  },
+  {
+    critere: "Engagement contractuel",
+    rpo: "Sans engagement",
+    cabinet: "Par mission",
+    interne: "CDI / CDD",
+  },
+  {
+    critere: "Transparence sur le process",
+    rpo: "Reporting temps réel",
+    cabinet: "Rapport en fin de mission",
+    interne: "Variable",
+  },
+  {
+    critere: "Scalabilité",
+    rpo: "1 à 50+ postes",
+    cabinet: "1 à 5 postes",
+    interne: "Limité par l'équipe",
+  },
+  {
+    critere: "Garantie de remplacement",
+    rpo: "Incluse",
+    cabinet: "3-6 mois selon contrat",
+    interne: "Aucune",
+  },
 ];
 
 /* ── main component ─────────────────────────────────────── */
@@ -173,47 +311,75 @@ interface FAQ {
 }
 
 export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
+  /* ── state ── */
   const [postes, setPostes] = useState(5);
   const [salaire, setSalaire] = useState(55000);
   const [coutPct, setCoutPct] = useState(18);
   const [delai, setDelai] = useState(45);
+  const [postesAnnuels, setPostesAnnuels] = useState(15);
 
-  // ── constants
+  /* ── constants ── */
   const RPO_TJM = 550;
   const RPO_JOURS_PAR_RECRUTEMENT = 4;
   const RPO_DELAI = 35;
 
-  // ── calculations
-  const coutActuel = postes * salaire * (coutPct / 100);
-  const coutRPO = postes * RPO_TJM * RPO_JOURS_PAR_RECRUTEMENT;
-  const economie = coutActuel - coutRPO;
-  const gainJours = Math.max(0, (delai - RPO_DELAI) * postes);
+  /* ── calculations ── */
+  const calc = useMemo(() => {
+    const coutCabinet = postes * salaire * (coutPct / 100);
+    const coutInterne = postes * (8500 + 2500);
+    const coutRPO = postes * RPO_TJM * RPO_JOURS_PAR_RECRUTEMENT;
+    const economie = coutCabinet - coutRPO;
+    const gainJours = Math.max(0, (delai - RPO_DELAI) * postes);
+    const savingsPct =
+      coutCabinet > 0 ? Math.round((economie / coutCabinet) * 100) : 0;
+    const barMax = Math.max(coutCabinet, coutInterne, coutRPO, 1);
 
-  // ── bar chart data (3 models)
-  const coutCabinet = postes * salaire * 0.2; // cabinet ~20%
-  const coutInterne = postes * (8500 + 2500); // internal recruiter cost estimate
-  const barMax = Math.max(coutCabinet, coutInterne, coutRPO, 1);
-  const savingsPct =
-    coutActuel > 0 ? Math.round((economie / coutActuel) * 100) : 0;
+    // Annual projection
+    const coutCabinetAnnuel = postesAnnuels * salaire * (coutPct / 100);
+    const coutRPOAnnuel = postesAnnuels * RPO_TJM * RPO_JOURS_PAR_RECRUTEMENT;
+    const economieAnnuelle = coutCabinetAnnuel - coutRPOAnnuel;
+    const economie3ans = economieAnnuelle * 3;
+    const gainJoursAnnuel = Math.max(0, (delai - RPO_DELAI) * postesAnnuels);
+
+    return {
+      coutCabinet,
+      coutInterne,
+      coutRPO,
+      economie,
+      gainJours,
+      savingsPct,
+      barMax,
+      economieAnnuelle,
+      economie3ans,
+      gainJoursAnnuel,
+      coutParRecrutement: RPO_TJM * RPO_JOURS_PAR_RECRUTEMENT,
+    };
+  }, [postes, salaire, coutPct, delai, postesAnnuels]);
 
   const bars = [
     {
       label: "Cabinet de recrutement",
-      value: coutCabinet,
+      value: calc.coutCabinet,
       gradient: "from-red-400 to-red-600",
       textColor: "text-red-400",
+      bgLight: "bg-red-50",
+      tag: `${coutPct}% du salaire`,
     },
     {
       label: "Recrutement interne",
-      value: coutInterne,
+      value: calc.coutInterne,
       gradient: "from-amber-400 to-amber-600",
       textColor: "text-amber-400",
+      bgLight: "bg-amber-50",
+      tag: "~11 000 € / poste",
     },
     {
-      label: "Solution RPO",
-      value: coutRPO,
+      label: "RPO Rocket4RPO",
+      value: calc.coutRPO,
       gradient: "from-[hsl(var(--rocket-teal))] to-emerald-400",
       textColor: "text-rocket-teal-glow",
+      bgLight: "bg-emerald-50",
+      tag: `${formatCurrency(calc.coutParRecrutement)} / poste`,
     },
   ];
 
@@ -221,7 +387,9 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
     <>
       <Breadcrumbs items={[{ label: "Calculateur ROI" }]} />
 
-      {/* ── DARK HERO ─────────────────────────────────────── */}
+      {/* ════════════════════════════════════════════════════════
+          1. DARK HERO
+         ════════════════════════════════════════════════════════ */}
       <section className="relative overflow-hidden">
         {/* background layers */}
         <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
@@ -248,7 +416,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
             {/* badge */}
             <motion.div variants={stagger.item}>
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
-                <Zap className="w-3.5 h-3.5" /> Calculateur ROI
+                <Zap className="w-3.5 h-3.5" /> Calculateur gratuit
               </span>
             </motion.div>
 
@@ -257,11 +425,11 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               variants={stagger.item}
               className="mt-6 text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white"
             >
-              Calculez vos{" "}
+              Combien pourriez-vous{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                economies
+                économiser
               </span>{" "}
-              avec le RPO
+              avec le RPO ?
             </motion.h1>
 
             {/* subtitle */}
@@ -269,9 +437,9 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               variants={stagger.item}
               className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
             >
-              Comparez le cout de votre recrutement actuel avec une solution RPO.
-              Ajustez les curseurs et visualisez instantanement le retour sur
-              investissement.
+              Comparez le coût de votre recrutement actuel avec une solution RPO
+              externalisée. Ajustez les curseurs et visualisez instantanément
+              votre retour sur investissement.
             </motion.p>
 
             {/* hero savings counter */}
@@ -280,21 +448,21 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               className="mt-10 flex flex-col items-center"
             >
               <span className="text-sm font-medium text-white/50 uppercase tracking-widest mb-2">
-                Economie estimee
+                Économie estimée
               </span>
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={economie}
+                  key={calc.economie}
                   initial={{ opacity: 0, scale: 0.8, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.8, y: -10 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   className={`text-5xl md:text-6xl lg:text-7xl font-bold ${
-                    economie > 0 ? "text-rocket-teal-glow" : "text-white/40"
+                    calc.economie > 0 ? "text-rocket-teal-glow" : "text-white/40"
                   }`}
                 >
-                  {economie > 0 ? "+" : ""}
-                  {formatCurrency(economie)}
+                  {calc.economie > 0 ? "+" : ""}
+                  {formatCurrency(calc.economie)}
                 </motion.div>
               </AnimatePresence>
             </motion.div>
@@ -317,7 +485,9 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
         </div>
       </section>
 
-      {/* ── CALCULATOR SECTION ────────────────────────────── */}
+      {/* ════════════════════════════════════════════════════════
+          2. CALCULATOR SECTION — 2 columns
+         ════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
@@ -331,169 +501,86 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
             >
               <motion.div variants={stagger.item}>
                 <h2 className="text-2xl md:text-3xl font-bold">
-                  Vos parametres
+                  Vos paramètres
                 </h2>
                 <p className="mt-2 text-muted-foreground">
-                  Ajustez les valeurs pour refleter votre situation.
+                  Ajustez les valeurs pour refléter votre situation.
                 </p>
               </motion.div>
 
-              {/* slider card wrapper */}
-              <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 space-y-8 shadow-sm">
-                {/* Postes */}
-                <motion.div variants={stagger.item} className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium flex items-center gap-2">
-                      <Users className="w-4 h-4 text-primary" />
-                      Postes a pourvoir
-                    </label>
-                    <Input
-                      type="number"
-                      min={1}
-                      max={50}
-                      value={postes}
-                      onChange={(e) =>
-                        setPostes(
-                          Math.min(
-                            50,
-                            Math.max(1, Number(e.target.value) || 1)
-                          )
-                        )
-                      }
-                      className="w-20 text-center text-sm font-semibold"
-                    />
-                  </div>
-                  <Slider
-                    value={[postes]}
-                    onValueChange={([v]) => setPostes(v)}
+              {/* slider card */}
+              <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 space-y-10 shadow-sm">
+                <motion.div variants={stagger.item}>
+                  <ParameterCard
+                    icon={Users}
+                    label="Postes à pourvoir"
+                    value={postes}
                     min={1}
                     max={50}
                     step={1}
+                    minLabel="1"
+                    maxLabel="50"
+                    onChange={setPostes}
                   />
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>1</span>
-                    <span>50</span>
-                  </div>
                 </motion.div>
 
-                {/* Salaire */}
-                <motion.div variants={stagger.item} className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium flex items-center gap-2">
-                      <Euro className="w-4 h-4 text-primary" />
-                      Salaire brut annuel moyen
-                    </label>
-                    <div className="flex items-center gap-1">
-                      <Input
-                        type="number"
-                        min={30000}
-                        max={150000}
-                        step={1000}
-                        value={salaire}
-                        onChange={(e) =>
-                          setSalaire(
-                            Math.min(
-                              150000,
-                              Math.max(30000, Number(e.target.value) || 30000)
-                            )
-                          )
-                        }
-                        className="w-28 text-center text-sm font-semibold"
-                      />
-                      <span className="text-sm text-muted-foreground">EUR</span>
-                    </div>
-                  </div>
-                  <Slider
-                    value={[salaire]}
-                    onValueChange={([v]) => setSalaire(v)}
+                <motion.div variants={stagger.item}>
+                  <ParameterCard
+                    icon={Euro}
+                    label="Salaire brut annuel moyen"
+                    value={salaire}
                     min={30000}
                     max={150000}
                     step={1000}
+                    minLabel="30 000 €"
+                    maxLabel="150 000 €"
+                    suffix="€"
+                    onChange={setSalaire}
                   />
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>30 000 EUR</span>
-                    <span>150 000 EUR</span>
-                  </div>
                 </motion.div>
 
-                {/* Cout % */}
-                <motion.div variants={stagger.item} className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium flex items-center gap-2">
-                      <TrendingDown className="w-4 h-4 text-primary" />
-                      Cout actuel (% du salaire)
-                    </label>
-                    <div className="flex items-center gap-1">
-                      <Input
-                        type="number"
-                        min={10}
-                        max={30}
-                        value={coutPct}
-                        onChange={(e) =>
-                          setCoutPct(
-                            Math.min(
-                              30,
-                              Math.max(10, Number(e.target.value) || 10)
-                            )
-                          )
-                        }
-                        className="w-20 text-center text-sm font-semibold"
-                      />
-                      <span className="text-sm text-muted-foreground">%</span>
-                    </div>
-                  </div>
-                  <Slider
-                    value={[coutPct]}
-                    onValueChange={([v]) => setCoutPct(v)}
+                <motion.div variants={stagger.item}>
+                  <ParameterCard
+                    icon={TrendingDown}
+                    label="Coût actuel (% du salaire)"
+                    value={coutPct}
                     min={10}
                     max={30}
                     step={1}
+                    minLabel="10%"
+                    maxLabel="30%"
+                    suffix="%"
+                    onChange={setCoutPct}
                   />
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>10 %</span>
-                    <span>30 %</span>
-                  </div>
                 </motion.div>
 
-                {/* Delai */}
-                <motion.div variants={stagger.item} className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="text-sm font-medium flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-primary" />
-                      Delai moyen actuel
-                    </label>
-                    <div className="flex items-center gap-1">
-                      <Input
-                        type="number"
-                        min={20}
-                        max={120}
-                        value={delai}
-                        onChange={(e) =>
-                          setDelai(
-                            Math.min(
-                              120,
-                              Math.max(20, Number(e.target.value) || 20)
-                            )
-                          )
-                        }
-                        className="w-20 text-center text-sm font-semibold"
-                      />
-                      <span className="text-sm text-muted-foreground">
-                        jours
-                      </span>
-                    </div>
-                  </div>
-                  <Slider
-                    value={[delai]}
-                    onValueChange={([v]) => setDelai(v)}
+                <motion.div variants={stagger.item}>
+                  <ParameterCard
+                    icon={Clock}
+                    label="Délai moyen actuel"
+                    value={delai}
                     min={20}
                     max={120}
                     step={1}
+                    minLabel="20 jours"
+                    maxLabel="120 jours"
+                    suffix="jours"
+                    onChange={setDelai}
                   />
-                  <div className="flex justify-between text-xs text-muted-foreground">
-                    <span>20 jours</span>
-                    <span>120 jours</span>
-                  </div>
+                </motion.div>
+
+                <motion.div variants={stagger.item}>
+                  <ParameterCard
+                    icon={Calendar}
+                    label="Nombre de postes par an"
+                    value={postesAnnuels}
+                    min={1}
+                    max={200}
+                    step={1}
+                    minLabel="1"
+                    maxLabel="200"
+                    onChange={setPostesAnnuels}
+                  />
                 </motion.div>
               </div>
             </motion.div>
@@ -507,10 +594,10 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                 variants={fadeUp}
               >
                 <h2 className="text-2xl md:text-3xl font-bold">
-                  Resultats estimes
+                  Résultats estimés
                 </h2>
                 <p className="mt-2 text-muted-foreground">
-                  Comparaison en temps reel de 3 modeles de recrutement.
+                  Comparaison en temps réel de 3 modèles de recrutement.
                 </p>
               </motion.div>
 
@@ -527,19 +614,53 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   }}
                   className="space-y-8"
                 >
+                  {/* ── Giant economy number ──────────────── */}
+                  <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 text-center shadow-sm">
+                    <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                      Vous économisez
+                    </p>
+                    <AnimatePresence mode="wait">
+                      <motion.p
+                        key={calc.economie}
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.85 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 280,
+                          damping: 22,
+                        }}
+                        className={`text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight ${
+                          calc.economie > 0
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                      >
+                        {calc.economie > 0 ? "+" : ""}
+                        {formatCurrency(calc.economie)}
+                      </motion.p>
+                    </AnimatePresence>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      vs. cabinet de recrutement sur{" "}
+                      <span className="font-semibold text-foreground">
+                        {postes} recrutement{postes > 1 ? "s" : ""}
+                      </span>
+                    </p>
+                  </div>
+
                   {/* ── Horizontal bar comparison ─────────── */}
                   <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 space-y-6 shadow-sm">
                     <div className="flex items-center gap-2 mb-2">
                       <BarChart3 className="w-5 h-5 text-primary" />
                       <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                        Comparaison des couts
+                        Comparaison des coûts
                       </h3>
                     </div>
 
                     {bars.map((bar, i) => {
                       const widthPct = Math.max(
                         4,
-                        (bar.value / barMax) * 100
+                        (bar.value / calc.barMax) * 100
                       );
                       const isRPO = i === 2;
 
@@ -547,14 +668,15 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                         <div key={bar.label} className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
                             <span
-                              className={`font-medium ${
+                              className={`font-medium flex items-center gap-2 ${
                                 isRPO ? "text-primary" : ""
                               }`}
                             >
                               {bar.label}
                               {isRPO && (
-                                <span className="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-xs text-primary font-semibold">
-                                  <CheckCircle2 className="w-3 h-3" /> Recommande
+                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-xs text-primary font-semibold">
+                                  <CheckCircle2 className="w-3 h-3" />{" "}
+                                  Recommandé
                                 </span>
                               )}
                             </span>
@@ -577,95 +699,100 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                                 delay: i * 0.12,
                               }}
                             />
+                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-muted-foreground">
+                              {bar.tag}
+                            </span>
                           </div>
                         </div>
                       );
                     })}
                   </div>
 
-                  {/* ── KPI cards + Donut ─────────────────── */}
+                  {/* ── Donut + KPI cards ─────────────────── */}
                   <div className="grid sm:grid-cols-2 gap-5">
-                    {/* Donut savings card */}
+                    {/* Donut savings card — spans 2 cols */}
                     <div className="sm:col-span-2 rounded-2xl bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark p-6 md:p-8 flex flex-col sm:flex-row items-center gap-6">
-                      <DonutChart percentage={savingsPct > 0 ? savingsPct : 0} />
+                      <DonutChart
+                        percentage={calc.savingsPct > 0 ? calc.savingsPct : 0}
+                      />
                       <div className="text-center sm:text-left">
                         <p className="text-sm text-white/50 uppercase tracking-wider font-medium">
-                          Economie totale
+                          Économie totale
                         </p>
                         <p className="mt-1 text-3xl md:text-4xl font-bold text-white">
-                          {economie > 0 ? "+" : ""}
-                          {formatCurrency(economie)}
+                          {calc.economie > 0 ? "+" : ""}
+                          {formatCurrency(calc.economie)}
                         </p>
                         <p className="mt-2 text-sm text-white/60 leading-relaxed max-w-sm">
-                          Avec le RPO, vous economisez{" "}
+                          En passant au RPO, vous économisez{" "}
                           <span className="text-rocket-teal-glow font-semibold">
-                            {formatCurrency(Math.abs(economie))}
+                            {formatCurrency(Math.abs(calc.economie))}
                           </span>{" "}
                           et gagnez{" "}
                           <span className="text-rocket-teal-glow font-semibold">
-                            {gainJours} jours
+                            {calc.gainJours} jours
                           </span>{" "}
-                          sur vos recrutements.
+                          sur{" "}
+                          <span className="text-rocket-teal-glow font-semibold">
+                            {postes} recrutement{postes > 1 ? "s" : ""}
+                          </span>
+                          .
                         </p>
                       </div>
                     </div>
 
-                    {/* KPI: Economie */}
+                    {/* KPI: Économie totale */}
                     <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-primary/5 to-background p-6 text-center space-y-2 shadow-sm">
                       <div className="w-10 h-10 mx-auto rounded-xl bg-primary/10 flex items-center justify-center">
                         <Euro className="w-5 h-5 text-primary" />
                       </div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                        Economie par recrutement
+                        Économie totale
                       </p>
                       <p
                         className={`text-2xl md:text-3xl font-bold ${
-                          economie > 0
+                          calc.economie > 0
                             ? "text-primary"
                             : "text-muted-foreground"
                         }`}
                       >
-                        {postes > 0
-                          ? formatCurrency(Math.round(economie / postes))
-                          : formatCurrency(0)}
+                        {formatCurrency(Math.abs(calc.economie))}
                       </p>
                     </div>
 
-                    {/* KPI: Gain temps */}
+                    {/* KPI: Gain de temps */}
                     <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-emerald-500/5 to-background p-6 text-center space-y-2 shadow-sm">
                       <div className="w-10 h-10 mx-auto rounded-xl bg-emerald-500/10 flex items-center justify-center">
                         <Clock className="w-5 h-5 text-emerald-600" />
                       </div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                        Gain de temps total
+                        Gain de temps
                       </p>
                       <p className="text-2xl md:text-3xl font-bold text-emerald-600">
-                        {gainJours} jours
+                        {calc.gainJours} jours
                       </p>
                     </div>
 
-                    {/* KPI: Reduction % */}
+                    {/* KPI: Réduction coût */}
                     <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-blue-500/5 to-background p-6 text-center space-y-2 shadow-sm">
                       <div className="w-10 h-10 mx-auto rounded-xl bg-blue-500/10 flex items-center justify-center">
                         <TrendingDown className="w-5 h-5 text-blue-600" />
                       </div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                        Reduction du cout
+                        Réduction du coût
                       </p>
                       <p className="text-2xl md:text-3xl font-bold text-blue-600">
-                        {coutActuel > 0
-                          ? `-${Math.round((economie / coutActuel) * 100)} %`
-                          : "0 %"}
+                        {calc.savingsPct > 0 ? `-${calc.savingsPct}%` : "0%"}
                       </p>
                     </div>
 
-                    {/* KPI: Delai RPO */}
+                    {/* KPI: Délai RPO */}
                     <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-amber-500/5 to-background p-6 text-center space-y-2 shadow-sm">
                       <div className="w-10 h-10 mx-auto rounded-xl bg-amber-500/10 flex items-center justify-center">
                         <Zap className="w-5 h-5 text-amber-600" />
                       </div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                        Delai moyen RPO
+                        Délai moyen RPO
                       </p>
                       <p className="text-2xl md:text-3xl font-bold text-amber-600">
                         35 jours
@@ -673,7 +800,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     </div>
                   </div>
 
-                  {/* ── Summary highlight ─────────────────── */}
+                  {/* ── Summary sentence ──────────────────── */}
                   <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -685,61 +812,41 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                         <CheckCircle2 className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg">
-                          En resume
-                        </h3>
+                        <h3 className="font-bold text-lg">En résumé</h3>
                         <p className="mt-2 text-muted-foreground leading-relaxed">
-                          Pour{" "}
-                          <span className="font-semibold text-foreground">
-                            {postes} poste{postes > 1 ? "s" : ""}
-                          </span>{" "}
-                          avec un salaire moyen de{" "}
-                          <span className="font-semibold text-foreground">
-                            {formatCurrency(salaire)}
-                          </span>
-                          , le RPO vous permet d&apos;economiser{" "}
+                          En passant au RPO, vous économisez{" "}
                           <span className="font-bold text-primary">
-                            {formatCurrency(Math.abs(economie))}
+                            {formatCurrency(Math.abs(calc.economie))}
                           </span>{" "}
-                          par rapport a votre methode actuelle et de gagner{" "}
+                          et gagnez{" "}
                           <span className="font-bold text-primary">
-                            {gainJours} jours
+                            {calc.gainJours} jours
                           </span>{" "}
-                          au total. Soit un cout par recrutement de seulement{" "}
+                          sur{" "}
                           <span className="font-semibold text-foreground">
-                            {formatCurrency(RPO_TJM * RPO_JOURS_PAR_RECRUTEMENT)}
+                            {postes} recrutement{postes > 1 ? "s" : ""}
                           </span>
-                          .
+                          . Soit un coût par recrutement de seulement{" "}
+                          <span className="font-semibold text-foreground">
+                            {formatCurrency(calc.coutParRecrutement)}
+                          </span>{" "}
+                          au lieu de{" "}
+                          <span className="font-semibold text-foreground">
+                            {formatCurrency(
+                              Math.round(salaire * (coutPct / 100))
+                            )}
+                          </span>{" "}
+                          avec un cabinet.
                         </p>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* ── CTAs ──────────────────────────────── */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                    <a
-                      href={HUBSPOT}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary/20"
-                    >
-                      Recevoir une analyse detaillee
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                    <a
-                      href={HUBSPOT}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border-2 border-primary text-primary hover:bg-primary/5 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-                    >
-                      Parler a un expert
-                    </a>
-                  </div>
-
                   {/* ── Disclaimer ────────────────────────── */}
                   <p className="text-xs text-muted-foreground italic">
-                    * Estimations basees sur nos donnees internes (TJM 550 EUR, 4
-                    jours/recrutement). Chaque situation est unique.
+                    * Estimations basées sur nos données internes (TJM 550 €, 4
+                    jours/recrutement, délai moyen 35 jours). Chaque situation
+                    est unique.
                   </p>
                 </motion.div>
               </AnimatePresence>
@@ -748,6 +855,288 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
         </div>
       </section>
 
+      {/* ════════════════════════════════════════════════════════
+          3. COMPARISON TABLE
+         ════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container-wide">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger.container}
+          >
+            <motion.div variants={stagger.item} className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-sm text-primary font-medium mb-4">
+                <Shield className="w-3.5 h-3.5" /> Comparaison détaillée
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                RPO vs Cabinet vs Interne
+              </h2>
+              <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+                Une vue complète pour choisir le modèle de recrutement adapté à
+                vos enjeux.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={stagger.item}
+              className="overflow-x-auto rounded-2xl border border-border/60 shadow-sm"
+            >
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border/60">
+                    <th className="text-left p-4 md:p-5 font-semibold text-muted-foreground w-[28%]">
+                      Critère
+                    </th>
+                    <th className="p-4 md:p-5 font-bold text-primary bg-primary/5 border-x border-primary/10 w-[24%]">
+                      <div className="flex items-center justify-center gap-2">
+                        <Award className="w-4 h-4" />
+                        RPO Rocket4RPO
+                      </div>
+                    </th>
+                    <th className="p-4 md:p-5 font-semibold text-muted-foreground w-[24%]">
+                      Cabinet
+                    </th>
+                    <th className="p-4 md:p-5 font-semibold text-muted-foreground w-[24%]">
+                      Interne
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON_ROWS.map((row, i) => (
+                    <tr
+                      key={row.critere}
+                      className={`border-b border-border/40 ${
+                        i % 2 === 0 ? "bg-muted/20" : "bg-background"
+                      }`}
+                    >
+                      <td className="p-4 md:p-5 font-medium text-foreground">
+                        {row.critere}
+                      </td>
+                      <td className="p-4 md:p-5 text-center font-semibold text-primary bg-primary/5 border-x border-primary/10">
+                        {row.rpo}
+                      </td>
+                      <td className="p-4 md:p-5 text-center text-muted-foreground">
+                        {row.cabinet}
+                      </td>
+                      <td className="p-4 md:p-5 text-center text-muted-foreground">
+                        {row.interne}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          4. ANNUAL PROJECTION
+         ════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-[hsl(var(--rocket-cream))]">
+        <div className="container-wide">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger.container}
+            className="max-w-4xl mx-auto"
+          >
+            <motion.div variants={stagger.item} className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-sm text-primary font-medium mb-4">
+                <Target className="w-3.5 h-3.5" /> Projection annuelle
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Votre économie sur le long terme
+              </h2>
+              <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+                Basé sur{" "}
+                <span className="font-semibold text-foreground">
+                  {postesAnnuels} recrutement{postesAnnuels > 1 ? "s" : ""} par
+                  an
+                </span>{" "}
+                (ajustable dans les paramètres ci-dessus).
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={stagger.item}
+              className="grid sm:grid-cols-3 gap-6"
+            >
+              {/* Year 1 */}
+              <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 text-center shadow-sm">
+                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                  Sur 1 an
+                </p>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={calc.economieAnnuelle}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-3xl md:text-4xl font-bold text-primary"
+                  >
+                    {formatCurrency(calc.economieAnnuelle)}
+                  </motion.p>
+                </AnimatePresence>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  d'économie vs. cabinet
+                </p>
+                <p className="mt-1 text-sm text-emerald-600 font-medium">
+                  {calc.gainJoursAnnuel} jours gagnés
+                </p>
+              </div>
+
+              {/* Year 2 */}
+              <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 text-center shadow-sm">
+                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                  Sur 2 ans
+                </p>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={calc.economieAnnuelle * 2}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-3xl md:text-4xl font-bold text-primary"
+                  >
+                    {formatCurrency(calc.economieAnnuelle * 2)}
+                  </motion.p>
+                </AnimatePresence>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  d'économie cumulée
+                </p>
+                <p className="mt-1 text-sm text-emerald-600 font-medium">
+                  {calc.gainJoursAnnuel * 2} jours gagnés
+                </p>
+              </div>
+
+              {/* Year 3 — highlighted */}
+              <div className="rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-background p-6 md:p-8 text-center shadow-md relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-bl-xl">
+                  Recommandé
+                </div>
+                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                  Sur 3 ans
+                </p>
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={calc.economie3ans}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-3xl md:text-4xl font-bold text-primary"
+                  >
+                    {formatCurrency(calc.economie3ans)}
+                  </motion.p>
+                </AnimatePresence>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  d'économie cumulée
+                </p>
+                <p className="mt-1 text-sm text-emerald-600 font-medium">
+                  {calc.gainJoursAnnuel * 3} jours gagnés
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.p
+              variants={stagger.item}
+              className="mt-6 text-center text-sm text-muted-foreground italic"
+            >
+              Sur 3 ans, vous économiseriez{" "}
+              <span className="font-bold text-primary not-italic">
+                {formatCurrency(calc.economie3ans)}
+              </span>{" "}
+              en passant au RPO.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          5. SOCIAL PROOF BAND
+         ════════════════════════════════════════════════════════ */}
+      <section className="py-14 bg-gradient-to-r from-rocket-dark via-rocket-navy-soft to-rocket-dark">
+        <div className="container-wide">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={stagger.container}
+            className="flex flex-wrap justify-center gap-10 md:gap-16"
+          >
+            {SOCIAL_PROOF.map((item) => (
+              <motion.div
+                key={item.label}
+                variants={stagger.item}
+                className="text-center"
+              >
+                <p className="text-3xl md:text-4xl font-bold text-white">
+                  {item.value}
+                </p>
+                <p className="text-sm text-white/60 mt-1">{item.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          6. DUAL CTA
+         ════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container-wide">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger.container}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <motion.h2
+              variants={stagger.item}
+              className="text-3xl md:text-4xl font-bold"
+            >
+              Prêt à réduire vos coûts de recrutement ?
+            </motion.h2>
+            <motion.p
+              variants={stagger.item}
+              className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto"
+            >
+              Recevez une analyse personnalisée ou échangez directement avec un
+              expert RPO.
+            </motion.p>
+
+            <motion.div
+              variants={stagger.item}
+              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <a
+                href={HUBSPOT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary/20"
+              >
+                <Send className="w-4 h-4" />
+                Recevoir cette analyse par email
+              </a>
+              <a
+                href={HUBSPOT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border-2 border-primary text-primary hover:bg-primary/5 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Parler à un expert
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          7. FAQ + CTA
+         ════════════════════════════════════════════════════════ */}
       <FAQSection faqs={faqs} />
       <CTASection />
     </>
