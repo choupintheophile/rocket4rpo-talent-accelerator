@@ -57,18 +57,22 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
     <>
       <Breadcrumbs items={[{ label: "Nos conseils" }]} />
 
-      {/* Hero — blog style */}
-      <section className="bg-white border-b border-border/40">
-        <div className="container-wide py-14 md:py-20">
-          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-5">
-              <BookOpen className="w-3 h-3" /> Blog
+      {/* Hero — dark, same style as other pages */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark text-white">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-rocket-teal/8 blur-[140px]" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+        </div>
+        <div className="relative container-wide py-16 md:py-24">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20 mb-6">
+              <BookOpen className="w-3.5 h-3.5" /> Blog & conseils
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08]">
-              Nos conseils
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08]">
+              Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">conseils</span>
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground max-w-xl">
-              {posts.length} articles pour recruter mieux, plus vite et moins cher.
+            <p className="mt-5 text-lg text-white/55 max-w-xl leading-relaxed">
+              {posts.length} articles pour recruter mieux, plus vite et moins cher. Par des experts avec 200+ recrutements.
             </p>
           </motion.div>
         </div>
