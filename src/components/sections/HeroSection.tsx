@@ -17,18 +17,18 @@ import type { HeroContent } from "@/lib/personalization";
 
 /* ─── defaults ─── */
 const defaultContent: HeroContent = {
-  badge: "RPO - Recrutement externalis\u00e9 sur-mesure",
-  headline: "Vos recrutements vous co\u00fbtent une ",
+  badge: "RPO - Recrutement externalisé sur-mesure",
+  headline: "Vos recrutements vous coûtent une ",
   highlightedText: "fortune ?",
   subtitle:
-    "Un recruteur senior du top 1% int\u00e9gr\u00e9 \u00e0 votre \u00e9quipe en 48h. R\u00e9sultats d\u00e8s la 2e semaine. 5x moins cher qu\u2019un cabinet.",
+    "Un recruteur senior du top 1% intégré à votre équipe en 48h. Résultats dès la 2e semaine. 5x moins cher qu’un cabinet.",
 };
 
 /* ─── trust-bar data ─── */
 const trustStats = [
-  { icon: Users, value: "200+", label: "recrutements r\u00e9alis\u00e9s" },
-  { icon: Clock, value: "48h", label: "pour d\u00e9marrer" },
-  { icon: ShieldCheck, value: "92%", label: "r\u00e9tention \u00e0 12 mois" },
+  { icon: Users, value: "200+", label: "recrutements réalisés" },
+  { icon: Clock, value: "48h", label: "pour démarrer" },
+  { icon: ShieldCheck, value: "92%", label: "rétention à 12 mois" },
   { icon: Building2, value: "50+", label: "entreprises" },
 ];
 
@@ -112,14 +112,14 @@ function ProofCard() {
         {/* Cost comparison */}
         <div className="mb-5">
           <p className="text-[11px] font-bold text-white/40 uppercase tracking-widest mb-3">
-            Co\u00fbt pour 10 recrutements
+            Coût pour 10 recrutements
           </p>
 
           {/* Cabinet price - crossed out */}
           <div className="flex items-center justify-between mb-2 p-3 rounded-xl bg-red-500/[0.08] border border-red-500/[0.12]">
             <span className="text-sm text-white/60">Cabinet classique</span>
             <span className="text-xl font-bold text-red-400 line-through decoration-2">
-              180 000 \u20ac
+              180 000 €
             </span>
           </div>
 
@@ -127,7 +127,7 @@ function ProofCard() {
           <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/[0.12] border border-emerald-500/[0.2]">
             <span className="text-sm font-semibold text-white/90">RPO Rocket4RPO</span>
             <span className="text-xl font-bold text-emerald-400">
-              44 000 \u20ac
+              44 000 €
             </span>
           </div>
         </div>
@@ -155,7 +155,7 @@ function ProofCard() {
             ))}
           </div>
           <p className="text-[13px] text-white/75 leading-relaxed italic mb-3">
-            &laquo; En 3 semaines, 8 candidats qualifi\u00e9s pr\u00e9sent\u00e9s. On a recrut\u00e9 notre Head of Sales en 28 jours. &raquo;
+            &laquo; En 3 semaines, 8 candidats qualifiés présentés. On a recruté notre Head of Sales en 28 jours. &raquo;
           </p>
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary">
@@ -201,7 +201,7 @@ function ProofCard() {
       >
         <div className="flex items-center gap-1.5">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-          <span className="text-xs font-medium text-white/90">92% r\u00e9tention</span>
+          <span className="text-xs font-medium text-white/90">92% rétention</span>
         </div>
       </motion.div>
     </motion.div>
@@ -343,7 +343,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl bg-white text-[hsl(220,20%,10%)] hover:bg-white/90 shadow-lg shadow-white/10 hover:shadow-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
-                R\u00e9server un diagnostic gratuit
+                Réserver un diagnostic gratuit
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
               </a>
               <a
@@ -351,7 +351,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border border-white/15 text-white hover:bg-white/[0.06] hover:border-white/25 transition-all duration-200"
               >
                 <Calculator className="w-4 h-4" />
-                Calculer mes \u00e9conomies
+                Calculer mes économies
               </a>
             </motion.div>
 
@@ -363,7 +363,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
               animate="visible"
               custom={5}
             >
-              Gratuit \u00b7 30 min \u00b7 Sans engagement \u00b7 R\u00e9ponse sous 24h
+              Gratuit · 30 min · Sans engagement · Réponse sous 24h
             </motion.p>
           </div>
 
