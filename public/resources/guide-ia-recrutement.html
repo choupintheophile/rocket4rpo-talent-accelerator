@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Guide IA et recrutement : 20 prompts — Rocket4RPO</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; color: #1a1d2b; line-height: 1.7; }
+    h1 { color: #0cc77e; font-size: 2rem; border-bottom: 2px solid #0cc77e; padding-bottom: 16px; }
+    h2 { color: #1a1d2b; margin-top: 2rem; }
+    h3 { color: #333; margin-top: 1.5rem; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #1a1d2b; }
+    .logo span { color: #0cc77e; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { padding: 10px 12px; border: 1px solid #ddd; text-align: center; }
+    th { background: #f8f6f3; font-weight: 600; }
+    td:first-child, th:first-child { text-align: left; }
+    .info-box { background: #f8f6f3; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
+    .warning-box { background: #fff8e1; border-left: 4px solid #f5a623; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
+    .prompt-box { background: #f0fdf4; border: 1px solid #0cc77e; border-radius: 8px; padding: 16px 20px; margin: 1rem 0; font-family: monospace; font-size: 0.9rem; white-space: pre-wrap; }
+    .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 0.85rem; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.4rem; }
+    .use-case { border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin: 1.5rem 0; }
+    .use-case h3 { margin-top: 0; color: #0cc77e; }
+    @media print { body { padding: 20px; } .use-case { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <p class="logo">ROCKET<span>4</span>RPO</p>
+    <p style="color: #666;">Guide gratuit — Avril 2026</p>
+  </div>
+
+  <h1>Guide IA et recrutement : 20 prompts</h1>
+  <p>L'IA generative est un accelerateur pour les recruteurs. Ce guide propose 20 prompts concrets, testes et optimises, pour les principales taches du quotidien : redaction d'offres, sourcing, qualification, messages d'approche et analyse.</p>
+
+  <div class="warning-box">
+    <strong>Rappel ethique :</strong> L'IA est un outil d'aide, pas un decideur. Ne l'utilisez jamais pour prendre une decision de recrutement automatique. Relisez et adaptez toujours les outputs. Respectez le RGPD et informez les candidats si vous utilisez des outils d'IA dans votre process.
+  </div>
+
+  <h2>A. Redaction d'offres d'emploi (Prompts 1-5)</h2>
+
+  <div class="use-case">
+    <h3>Prompt 1 — Generer une offre d'emploi complete</h3>
+    <p><strong>Quand :</strong> Vous devez rediger une offre a partir d'un brief de poste.</p>
+    <div class="prompt-box">Tu es un expert en redaction d'offres d'emploi pour le marche francais.
+
+Redige une offre d'emploi pour le poste de [POSTE] chez [ENTREPRISE].
+
+Contexte :
+- Secteur : [SECTEUR]
+- Taille : [NOMBRE] salaries
+- Localisation : [VILLE], [POLITIQUE TELETRAVAIL]
+- Experience requise : [X] ans
+
+Structure attendue :
+1. Accroche impactante (2-3 lignes, pas de cliche)
+2. Presentation de l'entreprise (4-5 lignes)
+3. Missions (5-7 bullet points, verbes d'action)
+4. Profil recherche : must-have (3-4) et nice-to-have (2-3)
+5. Ce qu'on offre (5-6 avantages concrets)
+6. Process de recrutement (etapes + duree)
+
+Contraintes :
+- Ecriture inclusive (sans points medians)
+- Ton professionnel mais humain
+- 400-600 mots maximum
+- Pas de jargon corporate vide</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 2 — Ameliorer une offre existante</h3>
+    <div class="prompt-box">Analyse cette offre d'emploi et propose des ameliorations :
+
+[COLLER L'OFFRE]
+
+Evalue sur ces criteres (note /10 chacun) :
+1. Clarte des missions
+2. Attractivite de l'accroche
+3. Equilibre must-have / nice-to-have
+4. Transparence sur le package
+5. Ton et inclusivite
+
+Propose une version amelioree avec les changements expliques.</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 3 — Generer des variantes d'accroche</h3>
+    <div class="prompt-box">Genere 5 accroches differentes pour une offre de [POSTE] chez [ENTREPRISE].
+
+Styles :
+1. Orientee mission / impact
+2. Orientee defi / challenge
+3. Orientee culture / equipe
+4. Orientee croissance / apprentissage
+5. Orientee marche / innovation
+
+Chaque accroche : 2-3 lignes, pas de superlatifs creux.</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 4 — Adapter une offre a un canal specifique</h3>
+    <div class="prompt-box">Adapte cette offre d'emploi pour [CANAL] :
+
+[COLLER L'OFFRE]
+
+Canal : [LinkedIn / Welcome to the Jungle / Indeed / Twitter]
+
+Contraintes par canal :
+- LinkedIn : 150 mots max, emoji moderes, hashtags pertinents
+- WTTJ : structure imposee, ton decontracte
+- Indeed : SEO-friendly, mots-cles du metier
+- Twitter : 280 caracteres, lien vers l'offre complete</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 5 — Optimiser le SEO d'une offre</h3>
+    <div class="prompt-box">Analyse cette offre d'emploi et optimise-la pour le SEO emploi :
+
+[COLLER L'OFFRE]
+
+Fournis :
+1. Les 10 mots-cles principaux a integrer (intitule, competences, outils)
+2. Un titre SEO optimise (60 caracteres max)
+3. Une meta-description (155 caracteres max)
+4. Les variations de l'intitule de poste a cibler
+5. La version optimisee de l'offre</div>
+  </div>
+
+  <h2>B. Messages de sourcing (Prompts 6-10)</h2>
+
+  <div class="use-case">
+    <h3>Prompt 6 — Message d'approche LinkedIn personnalise</h3>
+    <div class="prompt-box">Redige un message d'approche LinkedIn pour ce candidat :
+
+Profil :
+- Nom : [PRENOM]
+- Poste actuel : [POSTE] chez [ENTREPRISE]
+- Element notable : [PROJET, ARTICLE, CERTIFICATION]
+
+Poste a pourvoir :
+- Titre : [POSTE]
+- Entreprise : [ENTREPRISE CLIENTE]
+- Proposition de valeur principale : [1 PHRASE]
+
+Contraintes :
+- Maximum 300 caracteres (InMail court)
+- Personnalise avec l'element notable
+- 1 seul call-to-action
+- Ton direct et respectueux, pas commercial
+- Pas de "je me permets de vous contacter"</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 7 — Sequence de 3 messages de relance</h3>
+    <div class="prompt-box">Cree une sequence de 3 messages de relance pour un candidat qui n'a pas repondu au premier message.
+
+Contexte du poste : [POSTE] chez [ENTREPRISE]
+Premier message envoye : [RESUMER EN 1 LIGNE]
+
+Message 2 (J+4) : Angle different, apporter une info nouvelle (culture, projet, equipe)
+Message 3 (J+8) : Derniere relance, court et direct, proposer une alternative (email, appel)
+
+Chaque message : 2-4 lignes max. Ton : curieux, pas insistant.</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 8 — Message pour un profil passivement en recherche</h3>
+    <div class="prompt-box">Redige un message d'approche pour un profil senior qui n'est pas en recherche active.
+
+Profil : [POSTE ACTUEL] chez [ENTREPRISE], [X] ans d'experience
+Element d'accroche : [CE QUI LE DIFFERENCIE]
+
+L'angle ne doit PAS etre "j'ai une opportunite".
+Utilise plutot : partage de contenu, invitation a un event, echange d'expertise, question sur son domaine.
+
+Objectif : creer une relation avant de pitcher le poste.</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 9 — Email d'approche cold</h3>
+    <div class="prompt-box">Redige un email d'approche cold pour recruter un(e) [POSTE].
+
+Infos :
+- Destinataire : [PRENOM], actuellement [POSTE] chez [ENTREPRISE]
+- Entreprise qui recrute : [NOM], [SECTEUR], [TAILLE]
+- USP du poste : [1-2 PHRASES]
+- Package : [FOURCHETTE]
+
+Format :
+- Objet : < 6 mots, personnalise
+- Corps : < 100 mots
+- 1 CTA clair (proposer un call de 15 min)
+- PS optionnel avec un lien (article, video, page carriere)</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 10 — Recherche booleenne LinkedIn</h3>
+    <div class="prompt-box">Genere 5 requetes booleennes pour sourcer un(e) [POSTE] sur LinkedIn.
+
+Criteres :
+- Experience : [X-Y] ans
+- Competences cles : [LISTE]
+- Secteur : [SECTEUR]
+- Localisation : [ZONE]
+- Entreprises cibles : [LISTE OU TYPE]
+
+Fournis :
+1. Requete large (volume)
+2. Requete ciblee (precision)
+3. Requete par entreprise cible
+4. Requete par competence technique
+5. Requete par titre alternatif
+
+Format : syntaxe booleenne LinkedIn (AND, OR, NOT, guillemets)</div>
+  </div>
+
+  <h2>C. Qualification et analyse de CV (Prompts 11-15)</h2>
+
+  <div class="use-case">
+    <h3>Prompt 11 — Analyser un CV vs un brief de poste</h3>
+    <div class="prompt-box">Compare ce CV avec le brief de poste ci-dessous.
+
+Brief de poste :
+[COLLER LE BRIEF - must-have et nice-to-have]
+
+CV :
+[COLLER LE CV OU LE RESUME]
+
+Fournis :
+1. Tableau de correspondance must-have (oui/non/partiel)
+2. Tableau de correspondance nice-to-have
+3. Points forts du profil
+4. Points d'attention / gaps
+5. 3 questions specifiques a poser en screening
+6. Recommandation : shortlist / screening / rejet</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 12 — Preparer des questions d'entretien specifiques</h3>
+    <div class="prompt-box">A partir de ce CV, genere 8 questions d'entretien ciblees :
+
+CV : [COLLER LE CV]
+Poste : [POSTE A POURVOIR]
+
+Pour chaque question :
+- La competence evaluee
+- La question (format STAR)
+- Ce qu'on cherche dans la reponse (signaux positifs)
+- Les red flags a surveiller
+
+4 questions sur l'experience passee
+2 questions sur les competences techniques
+2 questions sur le comportement / soft skills</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 13 — Synthetiser un profil candidat</h3>
+    <div class="prompt-box">A partir de ces informations, redige une fiche synthese candidat a presenter au hiring manager :
+
+CV : [COLLER]
+Notes de screening : [COLLER]
+LinkedIn : [INFOS CLES]
+
+Format de la fiche :
+- Resume executif (3 lignes)
+- Experience cle (2-3 realisations chiffrees)
+- Adequation au poste (must-have : ok/ko)
+- Motivations identifiees
+- Points d'attention
+- Disponibilite et pretentions
+- Recommandation argumentee</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 14 — Comparer 3 candidats finalistes</h3>
+    <div class="prompt-box">Compare ces 3 candidats finalistes pour le poste de [POSTE] :
+
+Candidat A : [RESUME]
+Candidat B : [RESUME]
+Candidat C : [RESUME]
+
+Criteres de comparaison :
+1. [MUST-HAVE 1]
+2. [MUST-HAVE 2]
+3. [MUST-HAVE 3]
+4. Culture fit
+5. Potentiel de croissance
+6. Risque (preavis, contre-offre, autres process)
+
+Fournis un tableau comparatif et une recommandation argumentee.</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 15 — Debrief d'entretien structure</h3>
+    <div class="prompt-box">A partir de ces notes d'entretien brutes, genere un debrief structure :
+
+Notes : [COLLER LES NOTES]
+
+Format :
+1. Resume de l'entretien (3-4 lignes)
+2. Evaluation par competence (leadership, technique, collaboration, resultats) avec note /5
+3. Points forts (3 max)
+4. Points de vigilance (2-3 max)
+5. Reponse aux questions cles du brief
+6. Recommandation : GO / NO GO / A APPROFONDIR
+7. Questions pour le prochain entretien (si applicable)</div>
+  </div>
+
+  <h2>D. Productivite et process (Prompts 16-20)</h2>
+
+  <div class="use-case">
+    <h3>Prompt 16 — Rediger un refus bienveillant</h3>
+    <div class="prompt-box">Redige un email de refus pour un candidat a l'etape [ETAPE] du process.
+
+Contexte :
+- Prenom : [PRENOM]
+- Poste : [POSTE]
+- Raison principale : [RAISON - sans etre discriminant]
+- Point positif : [CE QUI A ETE APPRECIE]
+
+Contraintes :
+- Ton empathique et respectueux
+- Donner un feedback actionnable (1-2 lignes)
+- Encourager le candidat
+- Laisser la porte ouverte pour le futur
+- 8-12 lignes maximum</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 17 — Generer un plan d'onboarding</h3>
+    <div class="prompt-box">Cree un plan d'onboarding 30-60-90 jours pour un(e) [POSTE] chez [ENTREPRISE].
+
+Contexte :
+- Taille de l'equipe : [NOMBRE]
+- Outils principaux : [LISTE]
+- Premier projet : [DESCRIPTION]
+
+Pour chaque phase :
+- Objectifs (2-3)
+- Actions concretes (4-5)
+- Personnes a rencontrer
+- Jalons de validation
+- Resources / formations</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 18 — Creer un reporting recrutement</h3>
+    <div class="prompt-box">A partir de ces donnees, genere un reporting recrutement pour le COMEX :
+
+Donnees du mois :
+- Postes ouverts : [NOMBRE]
+- Postes closes : [NOMBRE]
+- Time-to-fill moyen : [JOURS]
+- Candidatures recues : [NOMBRE]
+- Entretiens realises : [NOMBRE]
+- Offres emises : [NOMBRE]
+- Offres acceptees : [NOMBRE]
+- Pipeline actuel : [DETAILS]
+
+Genere :
+1. Dashboard synthetique (texte)
+2. 5 KPIs commentes (tendance vs mois precedent)
+3. Alertes (postes a risque)
+4. 3 recommandations actionnables</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 19 — Construire une scorecard de poste</h3>
+    <div class="prompt-box">Cree une scorecard d'evaluation pour le poste de [POSTE].
+
+Brief : [COLLER LE BRIEF]
+
+La scorecard doit contenir :
+- 4-5 criteres techniques (ponderes)
+- 3-4 soft skills
+- 2-3 criteres culture fit
+- Echelle de notation 1-5 avec descripteurs par niveau
+- Score minimum pour passer a l'etape suivante
+
+Format : tableau pret a copier-coller dans un Google Sheet.</div>
+  </div>
+
+  <div class="use-case">
+    <h3>Prompt 20 — Analyser les raisons de refus d'offre</h3>
+    <div class="prompt-box">Analyse ces retours de candidats ayant refuse nos offres sur les 6 derniers mois :
+
+[COLLER LES RETOURS / FEEDBACKS]
+
+Fournis :
+1. Les 5 raisons de refus les plus frequentes (classees)
+2. Tendances par rapport au marche
+3. Actions correctives prioritaires (quick wins)
+4. Recommandations a moyen terme
+5. Benchmark : comment se situent nos offres vs le marche</div>
+  </div>
+
+  <h2>Bonnes pratiques IA pour le recrutement</h2>
+  <div class="info-box">
+    <ul>
+      <li><strong>Toujours relire et adapter :</strong> L'IA genere un brouillon, pas un produit fini</li>
+      <li><strong>Fournir du contexte :</strong> Plus le prompt est precis, meilleur est l'output</li>
+      <li><strong>Ne pas copier de donnees sensibles :</strong> Anonymisez les CV avant de les coller</li>
+      <li><strong>Tester plusieurs formulations :</strong> Iterer sur le prompt pour affiner</li>
+      <li><strong>Documenter l'usage :</strong> Tracez quels outils IA vous utilisez (RGPD / AI Act)</li>
+      <li><strong>Former l'equipe :</strong> Partagez les prompts qui fonctionnent au sein de l'equipe</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p><strong>Rocket4RPO</strong> — RPO sur-mesure pour entreprises ambitieuses</p>
+    <p>rocket4rpo.com — 2026</p>
+  </div>
+</body>
+</html>

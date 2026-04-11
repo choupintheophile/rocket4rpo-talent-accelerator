@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Template reporting recrutement COMEX — Rocket4RPO</title>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; color: #1a1d2b; line-height: 1.7; }
+    h1 { color: #0cc77e; font-size: 2rem; border-bottom: 2px solid #0cc77e; padding-bottom: 16px; }
+    h2 { color: #1a1d2b; margin-top: 2rem; }
+    h3 { color: #333; margin-top: 1.5rem; }
+    .header { text-align: center; margin-bottom: 3rem; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #1a1d2b; }
+    .logo span { color: #0cc77e; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { padding: 10px 12px; border: 1px solid #ddd; text-align: center; }
+    th { background: #f8f6f3; font-weight: 600; }
+    td:first-child, th:first-child { text-align: left; }
+    .category { background: #f0fdf4; font-weight: 600; text-align: left !important; }
+    .info-box { background: #f8f6f3; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
+    .warning-box { background: #fff8e1; border-left: 4px solid #f5a623; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
+    .alert-box { background: #fde8e8; border-left: 4px solid #e53e3e; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
+    .success-box { background: #f0fdf4; border-left: 4px solid #0cc77e; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
+    .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 0.85rem; }
+    ul { padding-left: 1.5rem; }
+    li { margin-bottom: 0.4rem; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 1.5rem 0; }
+    .kpi-box { background: #f8f6f3; border-radius: 8px; padding: 16px; text-align: center; }
+    .kpi-box .value { font-size: 1.6rem; font-weight: 700; color: #0cc77e; }
+    .kpi-box .label { font-size: 0.8rem; color: #666; margin-top: 4px; }
+    .kpi-box .trend { font-size: 0.85rem; margin-top: 4px; }
+    .trend-up { color: #0cc77e; }
+    .trend-down { color: #e53e3e; }
+    .trend-stable { color: #f5a623; }
+    .field { background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; min-height: 24px; margin: 4px 0; border-radius: 4px; }
+    @media print { body { padding: 20px; } .kpi-grid { display: table; width: 100%; } .kpi-box { display: table-cell; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <p class="logo">ROCKET<span>4</span>RPO</p>
+    <p style="color: #666;">Template gratuit — Avril 2026</p>
+  </div>
+
+  <h1>Reporting recrutement — COMEX</h1>
+  <p>Ce template structure le reporting recrutement destine au comite de direction. Format slide : synthetique, visuel, actionnable. A completer chaque mois.</p>
+
+  <div class="info-box">
+    <strong>Periode :</strong> <div class="field" style="display: inline-block; min-width: 150px;"></div> &nbsp;
+    <strong>Prepare par :</strong> <div class="field" style="display: inline-block; min-width: 150px;"></div> &nbsp;
+    <strong>Date :</strong> <div class="field" style="display: inline-block; min-width: 100px;"></div>
+  </div>
+
+  <h2>1. KPIs du mois</h2>
+  <div class="kpi-grid">
+    <div class="kpi-box">
+      <div class="value">__</div>
+      <div class="label">Postes ouverts</div>
+      <div class="trend">vs M-1 : __</div>
+    </div>
+    <div class="kpi-box">
+      <div class="value">__</div>
+      <div class="label">Postes closes</div>
+      <div class="trend">vs M-1 : __</div>
+    </div>
+    <div class="kpi-box">
+      <div class="value">__ j</div>
+      <div class="label">Time-to-Fill moyen</div>
+      <div class="trend">Objectif : 35j</div>
+    </div>
+    <div class="kpi-box">
+      <div class="value">__ %</div>
+      <div class="label">Offer Acceptance Rate</div>
+      <div class="trend">Objectif : 90%</div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-box">
+      <div class="value">__ EUR</div>
+      <div class="label">Cost-per-Hire</div>
+      <div class="trend">vs M-1 : __</div>
+    </div>
+    <div class="kpi-box">
+      <div class="value">__</div>
+      <div class="label">Candidatures recues</div>
+      <div class="trend">vs M-1 : __</div>
+    </div>
+    <div class="kpi-box">
+      <div class="value">__</div>
+      <div class="label">Entretiens realises</div>
+      <div class="trend">vs M-1 : __</div>
+    </div>
+    <div class="kpi-box">
+      <div class="value">__ /5</div>
+      <div class="label">Satisfaction HM</div>
+      <div class="trend">Objectif : > 4</div>
+    </div>
+  </div>
+
+  <h2>2. Pipeline visuel (funnel)</h2>
+  <table>
+    <tr><th>Etape</th><th>Nombre candidats</th><th>Taux de conversion</th><th>Benchmark</th><th>Statut</th></tr>
+    <tr><td>Candidatures / sourcing</td><td></td><td>-</td><td>-</td><td></td></tr>
+    <tr><td>Screening</td><td></td><td>__ %</td><td>25-30%</td><td></td></tr>
+    <tr><td>Entretien 1</td><td></td><td>__ %</td><td>50-60%</td><td></td></tr>
+    <tr><td>Entretien 2</td><td></td><td>__ %</td><td>60-70%</td><td></td></tr>
+    <tr><td>Offre</td><td></td><td>__ %</td><td>50-70%</td><td></td></tr>
+    <tr><td>Embauche</td><td></td><td>__ %</td><td>85-92%</td><td></td></tr>
+  </table>
+
+  <h2>3. Etat des postes ouverts</h2>
+  <table>
+    <tr><th>Poste</th><th>Departement</th><th>Ouvert depuis</th><th>Candidats en cours</th><th>Etape avancee</th><th>Risque</th></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
+  </table>
+
+  <div class="info-box">
+    <strong>Legende risque :</strong>
+    <ul>
+      <li><strong>Vert :</strong> On track, candidats en process, closing prevu sous 2 semaines</li>
+      <li><strong>Orange :</strong> Retard, pipeline faible ou process bloque, action requise</li>
+      <li><strong>Rouge :</strong> En danger, pas de candidat viable, ouvert depuis > 60 jours</li>
+    </ul>
+  </div>
+
+  <h2>4. Alertes et points d'attention</h2>
+
+  <div class="alert-box">
+    <strong>Alerte 1 :</strong> <div class="field" style="min-height: 30px;"></div>
+    <p><strong>Impact :</strong> <div class="field"></div></p>
+    <p><strong>Action proposee :</strong> <div class="field"></div></p>
+  </div>
+
+  <div class="warning-box">
+    <strong>Point de vigilance :</strong> <div class="field" style="min-height: 30px;"></div>
+  </div>
+
+  <div class="success-box">
+    <strong>Win du mois :</strong> <div class="field" style="min-height: 30px;"></div>
+  </div>
+
+  <h2>5. Forecast — Prochains 30 jours</h2>
+  <table>
+    <tr><th>Poste</th><th>Etape actuelle</th><th>Closing prevu</th><th>Date de demarrage estimee</th></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td></tr>
+    <tr><td><div class="field"></div></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3>Nouveaux postes a ouvrir</h3>
+  <table>
+    <tr><th>Poste</th><th>Departement</th><th>Priorite</th><th>Date ouverture prevue</th></tr>
+    <tr><td><div class="field"></div></td><td></td><td>[ ] Haute [ ] Moyenne</td><td></td></tr>
+    <tr><td><div class="field"></div></td><td></td><td>[ ] Haute [ ] Moyenne</td><td></td></tr>
+  </table>
+
+  <h2>6. Repartition par source</h2>
+  <table>
+    <tr><th>Source</th><th>Candidatures</th><th>Entretiens</th><th>Embauches</th><th>Cout / embauche</th></tr>
+    <tr><td>LinkedIn Recruiter</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Jobboards</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Cooptation</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Site carriere</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Cabinet / RPO</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Autres</td><td></td><td></td><td></td><td></td></tr>
+    <tr style="font-weight: 600;"><td>Total</td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h2>7. Budget recrutement</h2>
+  <table>
+    <tr><th>Poste budgetaire</th><th>Budget annuel</th><th>Consomme YTD</th><th>Restant</th><th>% utilise</th></tr>
+    <tr><td>Outils (ATS, LinkedIn)</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Jobboards</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Cabinets / RPO</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Primes cooptation</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Events / marque employeur</td><td></td><td></td><td></td><td></td></tr>
+    <tr style="font-weight: 600;"><td>Total</td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h2>8. Recommandations</h2>
+  <div class="info-box">
+    <ol>
+      <li><strong>Recommandation 1 :</strong> <div class="field"></div></li>
+      <li><strong>Recommandation 2 :</strong> <div class="field"></div></li>
+      <li><strong>Recommandation 3 :</strong> <div class="field"></div></li>
+    </ol>
+  </div>
+
+  <h2>Conseils de presentation au COMEX</h2>
+  <div class="info-box">
+    <ul>
+      <li>Limitez-vous a 10 minutes de presentation + 5 minutes de Q&A</li>
+      <li>Commencez par les chiffres cles (slide 1), puis les alertes, puis les recommandations</li>
+      <li>Utilisez des couleurs (vert/orange/rouge) pour une lecture instantanee</li>
+      <li>Preparez les reponses aux questions recurrentes : pourquoi ce poste met du temps ? Pourquoi ce candidat a refuse ?</li>
+      <li>Terminez par les besoins : budget, agendas des hiring managers, decisions a prendre</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p><strong>Rocket4RPO</strong> — RPO sur-mesure pour entreprises ambitieuses</p>
+    <p>rocket4rpo.com — 2026</p>
+  </div>
+</body>
+</html>
