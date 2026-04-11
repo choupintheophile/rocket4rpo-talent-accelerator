@@ -183,6 +183,26 @@ Facteur de perte estimé :
       <tr><td>5</td><td>Pre-close avant l'offre</td><td>-2 à -5 jours + OAR +10%</td><td>Valider salaire, motivation et contrepropositions avant d'émettre l'offre. Réduit les négociations post-offre.</td></tr>
     </table>
 
+    <h2><span class="bar"></span> TTH par type de contrat</h2>
+    <table>
+      <tr><th>Type de contrat</th><th>TTH estimé</th><th>TTF estimé</th><th>Nb étapes moyen</th><th>Commentaire</th></tr>
+      <tr><td>CDI</td><td>48 jours</td><td>62 jours</td><td>3-5</td><td>Process complet avec entretiens multiples et validation RH</td></tr>
+      <tr><td>CDD (6+ mois)</td><td>32 jours</td><td>42 jours</td><td>2-3</td><td>Process allégé, décision plus rapide</td></tr>
+      <tr><td>CDD (&lt; 6 mois)</td><td>22 jours</td><td>30 jours</td><td>2</td><td>Urgence opérationnelle, 2 étapes max</td></tr>
+      <tr><td>Freelance / mission</td><td>15 jours</td><td>22 jours</td><td>1-2</td><td>Profil pré-qualifié, disponibilité immédiate</td></tr>
+      <tr><td>Intérim</td><td>8 jours</td><td>12 jours</td><td>1</td><td>Agence intérim, process très court</td></tr>
+      <tr><td>Stage / alternance</td><td>25 jours</td><td>35 jours</td><td>2-3</td><td>Calendrier écoles, timing contraint</td></tr>
+    </table>
+
+    <h2><span class="bar"></span> TTH par taille d'entreprise</h2>
+    <table>
+      <tr><th>Taille</th><th>TTH estimé</th><th>TTF estimé</th><th>Facteur explicatif principal</th></tr>
+      <tr><td>Startup (1-50 pers.)</td><td>35 jours</td><td>42 jours</td><td>Process court mais décision parfois lente (CEO impliqué)</td></tr>
+      <tr><td>Scale-up (50-250 pers.)</td><td>42 jours</td><td>55 jours</td><td>Process structuré, volume croissant, agendas chargés</td></tr>
+      <tr><td>ETI (250-5 000 pers.)</td><td>50 jours</td><td>65 jours</td><td>Process plus lourd, multiples validations hiérarchiques</td></tr>
+      <tr><td>Grand groupe (5 000+ pers.)</td><td>58 jours</td><td>78 jours</td><td>Bureaucratie, process RH centralisé, conformité</td></tr>
+    </table>
+
     <h2><span class="bar"></span> Comparaison internationale</h2>
     <table>
       <tr><th>Pays</th><th>TTH estimé</th><th>TTF estimé</th><th>Préavis moyen</th><th>Commentaire</th></tr>
@@ -214,6 +234,34 @@ Facteur de perte estimé :
       <tr><td>Offer Acceptance Rate</td><td>% d'offres acceptées</td><td>80-85%</td><td>88-92%</td></tr>
       <tr><td>Taux de rétention à 6 mois</td><td>% des recrues encore en poste 6 mois après l'embauche</td><td>82-88%</td><td>90-95%</td></tr>
       <tr><td>Quality of Hire (score manager)</td><td>Note du hiring manager sur la recrue à 6 mois (/5)</td><td>3.5-4.0</td><td>4.0-4.5</td></tr>
+    </table>
+
+    <h2><span class="bar"></span> Décomposition du TTF par phase du process</h2>
+    <table>
+      <tr><th>Phase du recrutement</th><th>Durée moyenne sans RPO</th><th>Durée moyenne avec RPO</th><th>Gain estimé</th></tr>
+      <tr><td>Brief et validation du besoin</td><td>5-10 jours</td><td>1-3 jours</td><td>-60 à -70%</td></tr>
+      <tr><td>Sourcing et premiers CV</td><td>10-15 jours</td><td>3-5 jours</td><td>-65 à -70%</td></tr>
+      <tr><td>Screening et pré-qualification</td><td>5-7 jours</td><td>2-3 jours</td><td>-55 à -60%</td></tr>
+      <tr><td>Entretiens (2-3 étapes)</td><td>15-25 jours</td><td>10-15 jours</td><td>-35 à -40%</td></tr>
+      <tr><td>Décision et émission d'offre</td><td>5-10 jours</td><td>2-3 jours</td><td>-60 à -70%</td></tr>
+      <tr><td>Négociation et acceptation</td><td>5-10 jours</td><td>3-5 jours</td><td>-40 à -50%</td></tr>
+      <tr class="teal-row"><td>Total TTF</td><td>~60 jours</td><td>~38 jours</td><td>-37%</td></tr>
+    </table>
+
+    <div class="info">
+      <strong>Les plus gros gains de temps :</strong> Le RPO réduit le plus les phases de brief (cadrage immédiat), de sourcing (démarrage sous 24-48h) et de décision (pre-close et coordination des agendas). Les phases d'entretien sont plus difficiles à compresser car elles dépendent de la disponibilité des candidats et des hiring managers.
+    </div>
+
+    <h2><span class="bar"></span> Causes principales de rallongement du TTH</h2>
+    <table>
+      <tr><th>#</th><th>Cause de rallongement</th><th>Impact estimé</th><th>Solution</th></tr>
+      <tr><td>1</td><td>Brief de poste flou ou non validé</td><td>+5 à +15 jours (sourcing inutile, repositionnement)</td><td>Template de brief obligatoire, validation HM + HRBP</td></tr>
+      <tr><td>2</td><td>Agendas non bloqués à l'avance</td><td>+3 à +7 jours par étape d'entretien</td><td>Bloquer les créneaux dès l'ouverture du poste</td></tr>
+      <tr><td>3</td><td>Trop d'étapes d'entretien (5+)</td><td>+10 à +20 jours, +40% abandon candidat</td><td>Maximum 3-4 étapes, fusionner les redondantes</td></tr>
+      <tr><td>4</td><td>Feedback lent des interviewers</td><td>+3 à +10 jours</td><td>SLA de 48h, relance automatique</td></tr>
+      <tr><td>5</td><td>Process de validation trop lourd</td><td>+5 à +15 jours</td><td>Délégation d'autorité, fast-track pour les postes critiques</td></tr>
+      <tr><td>6</td><td>Offre non compétitive (refusée, renegociée)</td><td>+5 à +15 jours (nouveau candidat) ou +3 à +5 jours (négo)</td><td>Benchmark salarial en amont, pre-close systématique</td></tr>
+      <tr><td>7</td><td>Candidat en contreproposition employeur actuel</td><td>+5 à +10 jours ou perte du candidat</td><td>Pre-close sur la motivation, accompagnement de la démission</td></tr>
     </table>
 
     <h2><span class="bar"></span> Checklist pour réduire le TTH</h2>
