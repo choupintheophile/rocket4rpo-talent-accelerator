@@ -3,184 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <title>Benchmark RPO France 2026 — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}@page{size:A4;margin:0}body{font-family:'Inter',system-ui,sans-serif;font-size:13px;color:#374151;line-height:1.7;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.cover{width:100%;min-height:100vh;background:#0c111d;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 60px;page-break-after:always;position:relative}.cover .orb1{position:absolute;top:60px;right:60px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(16,185,129,0.15)}.cover .orb2{position:absolute;top:80px;right:80px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(16,185,129,0.1)}.cover .orb3{position:absolute;bottom:80px;left:60px;width:120px;height:120px;border-radius:50%;background:rgba(16,185,129,0.06)}.cover .line-top{position:absolute;top:40px;left:50%;transform:translateX(-50%);width:50px;height:3px;background:#10b981;border-radius:2px}.cover .line-bottom{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:50px;height:3px;background:rgba(16,185,129,0.3);border-radius:2px}.cover-logo{display:flex;align-items:center;gap:4px;font-size:14px;font-weight:900;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:60px;position:relative}.cover-logo .dot{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#10b981;border-radius:6px;font-size:14px;font-weight:900;letter-spacing:0}.cover-badge{display:inline-block;padding:8px 28px;border:1px solid rgba(16,185,129,0.3);border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:#10b981;margin-bottom:32px}.cover h1{font-size:42px;font-weight:900;line-height:1.1;max-width:500px;margin-bottom:20px;letter-spacing:-0.02em}.cover h1 em{font-style:normal;color:#10b981}.cover-sub{font-size:15px;color:rgba(255,255,255,0.5);max-width:420px;line-height:1.6}.cover-stats{display:flex;gap:40px;margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08)}.cover-stat-value{font-size:24px;font-weight:800;color:#10b981}.cover-stat-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}.cover-foot{position:absolute;bottom:30px;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:0.08em}.content{padding:40px 50px;max-width:800px;margin:0 auto}.page-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:2px solid #0c111d;margin-bottom:32px}.page-header .logo{font-size:11px;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:#111827}.page-header .logo .accent{color:#0d9373}.page-header .type{font-size:10px;font-weight:700;color:white;background:#0d9373;padding:4px 14px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em}h2{font-size:16px;font-weight:800;color:white;background:#0c111d;padding:12px 20px;border-radius:8px;margin-top:36px;margin-bottom:16px;display:flex;align-items:center;gap:10px}h2 .bar{display:inline-block;width:4px;height:18px;background:#10b981;border-radius:2px}h3{font-size:14px;font-weight:700;color:#0d9373;margin-top:24px;margin-bottom:8px;padding-left:12px;border-left:3px solid #0d9373}p{margin-bottom:12px}ul,ol{margin-bottom:12px;padding-left:20px}li{margin-bottom:4px}table{width:100%;border-collapse:collapse;margin:16px 0;font-size:12px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}th{background:#0c111d;color:white;font-weight:600;padding:10px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:0.06em}td{padding:9px 14px;border-bottom:1px solid #f3f4f6}tr:nth-child(even) td{background:#f8fafc}td:first-child{font-weight:500;color:#111827}.teal-row td{background:#e6f7f2!important;font-weight:700;color:#087a60}.info{background:#f0faf6;border-left:4px solid #0d9373;border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:12.5px}.info strong{color:#087a60}.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:12.5px}.stats{display:flex;gap:12px;margin:20px 0}.stat{flex:1;background:#f8fafc;border:1px solid #e5e7eb;border-top:3px solid #0d9373;border-radius:8px;padding:16px;text-align:center}.stat .val{font-size:28px;font-weight:900;color:#0d9373;line-height:1}.stat .lbl{font-size:10px;color:#6b7280;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em}.big-stat{background:#0c111d;color:white;border-radius:12px;padding:24px;text-align:center;margin:20px 0}.big-stat .val{font-size:40px;font-weight:900;color:#10b981;line-height:1}.big-stat .lbl{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px}.formula{background:#0c111d;color:#10b981;border-radius:8px;padding:14px 20px;margin:14px 0;font-family:'Courier New',monospace;font-size:13px;font-weight:600;white-space:pre-wrap}.check{list-style:none;padding:0}.check li{padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:6px;display:flex;align-items:flex-start;gap:10px;font-size:12.5px}.check li::before{content:'\2610';color:#0d9373;font-size:16px;flex-shrink:0}.footer{margin-top:40px;padding-top:16px;border-top:2px solid #0c111d;text-align:center;font-size:11px;color:#9ca3af}.footer .logo{font-weight:900;letter-spacing:0.15em;text-transform:uppercase;color:#111827;font-size:11px;margin-bottom:4px}.footer .logo .accent{color:#0d9373}
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
-    <div class="cover-badge">Etude de marche</div>
+    <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div>
+    <div class="line-top"></div><div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
+    <div class="cover-badge">&Eacute;tude de march&eacute;</div>
     <h1>Benchmark RPO <em>France 2026</em></h1>
-    <p class="cover-subtitle">Taille du marche, TJM par profil, modeles de pricing, durees de mission et comparaison europeenne.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 9</span>
-      <span><strong>Temps :</strong> 12 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">Taille du march&eacute;, TJM par profil, mod&egrave;les de pricing, dur&eacute;es de mission et comparaison europ&eacute;enne.</p>
+    <div class="cover-stats">
+      <div><div class="cover-stat-value">~600M &euro;</div><div class="cover-stat-label">March&eacute; RPO France</div></div>
+      <div><div class="cover-stat-value">450-700 &euro;</div><div class="cover-stat-label">Fourchette TJM</div></div>
+      <div><div class="cover-stat-value">+15%</div><div class="cover-stat-label">Croissance annuelle</div></div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com &mdash; Document confidentiel</div>
   </div>
 
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Benchmark RPO</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Benchmark RPO</div>
     </div>
 
-    <h1>Benchmark RPO France 2026</h1>
-    <p>Le RPO (Recruitment Process Outsourcing) se democratise en France. Le marche a depasse les 600M EUR en 2025 et poursuit sa croissance. Cette etude présenté les chiffres cles, les modeles de pricing, les durees de mission, les secteurs demandeurs et la comparaison France/UK/Allemagne.</p>
-
-    <div class="stat-box">
-      <div class="stat-value">~600M EUR</div>
-      <div class="stat-label">Taille estimée du marche RPO en France (2025-2026)</div>
+    <div class="big-stat">
+      <div class="val">~600M &euro;</div>
+      <div class="lbl">Taille estim&eacute;e du march&eacute; RPO en France (2025-2026)</div>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">+15%</div>
-        <div class="stat-label">Croissance annuelle estimée</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">450-700 EUR</div>
-        <div class="stat-label">Fourchette TJM courante</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">3-8 mois</div>
-        <div class="stat-label">Duree moyenne de mission</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="val">+15%</div><div class="lbl">Croissance annuelle estim&eacute;e</div></div>
+      <div class="stat"><div class="val">450-700 &euro;</div><div class="lbl">Fourchette TJM courante</div></div>
+      <div class="stat"><div class="val">3-8 mois</div><div class="lbl">Dur&eacute;e moyenne de mission</div></div>
     </div>
 
-    <h2>Modeles de tarification RPO</h2>
+    <p>Le RPO (Recruitment Process Outsourcing) se d&eacute;mocratise en France. Le march&eacute; a d&eacute;pass&eacute; les 600M EUR en 2025 et poursuit sa croissance. Cette &eacute;tude pr&eacute;sente les chiffres cl&eacute;s, les mod&egrave;les de pricing, les dur&eacute;es de mission, les secteurs demandeurs et la comparaison France/UK/Allemagne.</p>
+
+    <h2><span class="bar"></span> Mod&egrave;les de tarification RPO</h2>
     <table>
-      <tr><th>Modele</th><th>Description</th><th>Fourchette de prix</th><th>Adapte a</th></tr>
-      <tr class="category-row"><td colspan="4">Modeles au temps passe</td></tr>
-      <tr><td>TJM (temps plein)</td><td>Recruteur RPO embedded a temps plein</td><td>450 - 700 EUR / jour</td><td>Volume élevé, 10+ postes / mois</td></tr>
-      <tr><td>TJM (mi-temps)</td><td>RPO 2-3 jours / semaine</td><td>450 - 700 EUR / jour</td><td>Volume moyen, 5-10 postes / mois</td></tr>
-      <tr><td>Forfait mensuel</td><td>Package heures fixe par mois</td><td>4 000 - 12 000 EUR / mois</td><td>Besoin flexible, budget previsible</td></tr>
-      <tr class="category-row"><td colspan="4">Modeles au résultat</td></tr>
-      <tr><td>Fee par embauche</td><td>Commission par recrutement finalise</td><td>8 000 - 15 000 EUR / embauche</td><td>Besoins ponctuels, volume faible</td></tr>
+      <tr><th>Mod&egrave;le</th><th>Description</th><th>Fourchette de prix</th><th>Adapt&eacute; &agrave;</th></tr>
+      <tr class="teal-row"><td colspan="4">Mod&egrave;les au temps pass&eacute;</td></tr>
+      <tr><td>TJM (temps plein)</td><td>Recruteur RPO embedded &agrave; temps plein</td><td>450 - 700 &euro; / jour</td><td>Volume &eacute;lev&eacute;, 10+ postes / mois</td></tr>
+      <tr><td>TJM (mi-temps)</td><td>RPO 2-3 jours / semaine</td><td>450 - 700 &euro; / jour</td><td>Volume moyen, 5-10 postes / mois</td></tr>
+      <tr><td>Forfait mensuel</td><td>Package heures fixe par mois</td><td>4 000 - 12 000 &euro; / mois</td><td>Besoin flexible, budget pr&eacute;visible</td></tr>
+      <tr class="teal-row"><td colspan="4">Mod&egrave;les au r&eacute;sultat</td></tr>
+      <tr><td>Fee par embauche</td><td>Commission par recrutement finalis&eacute;</td><td>8 000 - 15 000 &euro; / embauche</td><td>Besoins ponctuels, volume faible</td></tr>
       <tr><td>% du salaire annuel</td><td>Pourcentage du salaire brut annuel</td><td>12 - 18%</td><td>Postes mid-to-senior</td></tr>
-      <tr class="category-row"><td colspan="4">Modeles hybrides</td></tr>
-      <tr><td>Retainer + success fee</td><td>Forfait mensuel reduit + prime a l'embauche</td><td>2 500-4 000 EUR/mois + 4 000-6 000 EUR/embauche</td><td>Engagement long terme, alignement d'interets</td></tr>
+      <tr class="teal-row"><td colspan="4">Mod&egrave;les hybrides</td></tr>
+      <tr><td>Retainer + success fee</td><td>Forfait mensuel r&eacute;duit + prime &agrave; l'embauche</td><td>2 500-4 000 &euro;/mois + 4 000-6 000 &euro;/embauche</td><td>Engagement long terme, alignement d'int&eacute;r&ecirc;ts</td></tr>
     </table>
 
-    <div class="info-box">
-      <strong>Tendance 2026 :</strong> Le modele TJM reste predominant sur le marche français (environ 60-65% des missions RPO). Le modele hybride (retainer + success fee) gagne du terrain car il aligne mieux les interets du RPO et du client. Les grands groupes restent attaches au modele forfait mensuel pour la previsibilite budgetaire.
+    <div class="info">
+      <strong>Tendance 2026 :</strong> Le mod&egrave;le TJM reste pr&eacute;dominant sur le march&eacute; fran&ccedil;ais (environ 60-65% des missions RPO). Le mod&egrave;le hybride (retainer + success fee) gagne du terrain car il aligne mieux les int&eacute;r&ecirc;ts du RPO et du client. Les grands groupes restent attach&eacute;s au mod&egrave;le forfait mensuel pour la pr&eacute;visibilit&eacute; budg&eacute;taire.
     </div>
 
-    <h2>TJM par expérience et specialisation</h2>
+    <h2><span class="bar"></span> TJM par exp&eacute;rience et sp&eacute;cialisation</h2>
     <table>
-      <tr><th>Profil RPO</th><th>expérience</th><th>TJM Paris (estimation)</th><th>TJM Regions (estimation)</th></tr>
-      <tr><td>RPO Junior</td><td>2-4 ans recrutement</td><td>350 - 500 EUR</td><td>300 - 420 EUR</td></tr>
-      <tr><td>RPO Confirme</td><td>4-7 ans</td><td>480 - 650 EUR</td><td>400 - 550 EUR</td></tr>
-      <tr><td>RPO Senior</td><td>7-10 ans</td><td>600 - 800 EUR</td><td>520 - 680 EUR</td></tr>
-      <tr><td>RPO Manager / Lead</td><td>10+ ans</td><td>750 - 1 000 EUR</td><td>650 - 850 EUR</td></tr>
-      <tr><td>RPO Tech specialise</td><td>5+ ans tech</td><td>550 - 780 EUR</td><td>480 - 680 EUR</td></tr>
-      <tr><td>RPO Executive Search</td><td>8+ ans</td><td>800 - 1 200 EUR</td><td>700 - 1 000 EUR</td></tr>
+      <tr><th>Profil RPO</th><th>Exp&eacute;rience</th><th>TJM Paris (estimation)</th><th>TJM R&eacute;gions (estimation)</th></tr>
+      <tr><td>RPO Junior</td><td>2-4 ans recrutement</td><td>350 - 500 &euro;</td><td>300 - 420 &euro;</td></tr>
+      <tr><td>RPO Confirm&eacute;</td><td>4-7 ans</td><td>480 - 650 &euro;</td><td>400 - 550 &euro;</td></tr>
+      <tr><td>RPO Senior</td><td>7-10 ans</td><td>600 - 800 &euro;</td><td>520 - 680 &euro;</td></tr>
+      <tr><td>RPO Manager / Lead</td><td>10+ ans</td><td>750 - 1 000 &euro;</td><td>650 - 850 &euro;</td></tr>
+      <tr><td>RPO Tech sp&eacute;cialis&eacute;</td><td>5+ ans tech</td><td>550 - 780 &euro;</td><td>480 - 680 &euro;</td></tr>
+      <tr><td>RPO Executive Search</td><td>8+ ans</td><td>800 - 1 200 &euro;</td><td>700 - 1 000 &euro;</td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Note methodologique :</strong> Les TJM indiques sont des fourchettes estimées basees sur les tendances du marche observees en 2025-2026. Les tarifs reels varient selon la specialisation sectorielle, la reputation du RPO, le volume de la mission et la duree d'engagement.
+    <div class="warn">
+      <strong>Note m&eacute;thodologique :</strong> Les TJM indiqu&eacute;s sont des fourchettes estim&eacute;es bas&eacute;es sur les tendances du march&eacute; observ&eacute;es en 2025-2026. Les tarifs r&eacute;els varient selon la sp&eacute;cialisation sectorielle, la r&eacute;putation du RPO, le volume de la mission et la dur&eacute;e d'engagement.
     </div>
 
-    <h2>Duree et format des missions</h2>
+    <h2><span class="bar"></span> Dur&eacute;e et format des missions</h2>
     <table>
-      <tr><th>Type de mission</th><th>Duree typique</th><th>Volume postes</th><th>Format</th><th>Renouvellement</th></tr>
+      <tr><th>Type de mission</th><th>Dur&eacute;e typique</th><th>Volume postes</th><th>Format</th><th>Renouvellement</th></tr>
       <tr><td>Mission ponctuelle</td><td>1-3 mois</td><td>3-8 postes</td><td>Temps partiel, remote</td><td>30% des cas</td></tr>
       <tr><td>Mission standard</td><td>3-6 mois</td><td>8-20 postes</td><td>Temps plein, embedded</td><td>55% des cas</td></tr>
-      <tr><td>Mission longue</td><td>6-12 mois</td><td>20-50 postes</td><td>Embedded, équipe dediee</td><td>70% des cas</td></tr>
-      <tr><td>Partenariat stratégique</td><td>12+ mois</td><td>50+ postes / an</td><td>équipe RPO intégrée, governance</td><td>80% des cas</td></tr>
+      <tr><td>Mission longue</td><td>6-12 mois</td><td>20-50 postes</td><td>Embedded, &eacute;quipe d&eacute;di&eacute;e</td><td>70% des cas</td></tr>
+      <tr><td>Partenariat strat&eacute;gique</td><td>12+ mois</td><td>50+ postes / an</td><td>&Eacute;quipe RPO int&eacute;gr&eacute;e, governance</td><td>80% des cas</td></tr>
     </table>
 
-    <div class="info-box">
-      <strong>Taux de renouvellement :</strong> Environ 65-70% des missions RPO sont prolongees au-dela de la duree initialement prevue. La duree reelle moyenne est estimée autour de 5-6 mois (vs 3-4 mois prevus). La principale raison : les besoins de recrutement augmentent en cours de mission.
+    <div class="info">
+      <strong>Taux de renouvellement :</strong> Environ 65-70% des missions RPO sont prolong&eacute;es au-del&agrave; de la dur&eacute;e initialement pr&eacute;vue. La dur&eacute;e r&eacute;elle moyenne est estim&eacute;e autour de 5-6 mois (vs 3-4 mois pr&eacute;vus). La principale raison : les besoins de recrutement augmentent en cours de mission.
     </div>
 
-    <h2>Secteurs demandeurs de RPO en France</h2>
+    <h2><span class="bar"></span> Secteurs demandeurs de RPO en France</h2>
     <table>
-      <tr><th>Secteur</th><th>Part estimée du marche RPO</th><th>Volume moyen / mission</th><th>Profils principaux recrutes</th></tr>
+      <tr><th>Secteur</th><th>Part estim&eacute;e du march&eacute; RPO</th><th>Volume moyen / mission</th><th>Profils principaux recrut&eacute;s</th></tr>
       <tr><td>Tech / SaaS</td><td>~30-35%</td><td>15-30 postes</td><td>Dev, Product, Sales, Data</td></tr>
       <tr><td>Services financiers</td><td>~12-15%</td><td>10-25 postes</td><td>Compliance, Risk, IT, Sales</td></tr>
       <tr><td>Conseil / ESN</td><td>~10-12%</td><td>20-50 postes</td><td>Consultants, managers, tech</td></tr>
-      <tr><td>Industrie / Pharma</td><td>~8-10%</td><td>10-20 postes</td><td>Ingenieurs, R&D, qualité</td></tr>
+      <tr><td>Industrie / Pharma</td><td>~8-10%</td><td>10-20 postes</td><td>Ing&eacute;nieurs, R&amp;D, qualit&eacute;</td></tr>
       <tr><td>E-commerce / Retail</td><td>~8-10%</td><td>15-30 postes</td><td>Marketing, logistique, tech</td></tr>
-      <tr><td>Energie / GreenTech</td><td>~6-8%</td><td>8-15 postes</td><td>Ingenieurs, chefs de projet</td></tr>
-      <tr><td>Sante / HealthTech</td><td>~5%</td><td>5-15 postes</td><td>Medical affairs, regulatory, tech</td></tr>
+      <tr><td>&Eacute;nergie / GreenTech</td><td>~6-8%</td><td>8-15 postes</td><td>Ing&eacute;nieurs, chefs de projet</td></tr>
+      <tr><td>Sant&eacute; / HealthTech</td><td>~5%</td><td>5-15 postes</td><td>Medical affairs, regulatory, tech</td></tr>
       <tr><td>Autres (BTP, transport, public)</td><td>~8-10%</td><td>Variable</td><td>Variable</td></tr>
     </table>
 
-    <h2>Comparaison europeenne</h2>
-    <p>Le marche RPO en France est en phase de rattrapage par rapport au Royaume-Uni et a l'Allemagne, mais sa dynamique de croissance est forte.</p>
+    <h2><span class="bar"></span> Comparaison europ&eacute;enne</h2>
+    <p>Le march&eacute; RPO en France est en phase de rattrapage par rapport au Royaume-Uni et &agrave; l'Allemagne, mais sa dynamique de croissance est forte.</p>
     <table>
       <tr><th>Indicateur</th><th>France</th><th>UK</th><th>Allemagne</th></tr>
-      <tr><td>Taille estimée du marche RPO</td><td>~600M EUR</td><td>~1.8-2.0 Md GBP</td><td>~1.0-1.2 Md EUR</td></tr>
-      <tr><td>Maturite du marche</td><td>En croissance rapide</td><td>Mature</td><td>En croissance</td></tr>
-      <tr><td>Fourchette TJM courante</td><td>450-700 EUR</td><td>500-850 GBP</td><td>550-800 EUR</td></tr>
-      <tr><td>Modele dominant</td><td>TJM embedded</td><td>Fee par embauche / hybride</td><td>TJM / forfait</td></tr>
-      <tr><td>Duree moyenne de mission</td><td>3-8 mois</td><td>6-18 mois</td><td>4-12 mois</td></tr>
-      <tr><td>Part estimée des freelances RPO</td><td>~35-40%</td><td>~20-25%</td><td>~25-30%</td></tr>
+      <tr><td>Taille estim&eacute;e du march&eacute; RPO</td><td>~600M &euro;</td><td>~1.8-2.0 Md GBP</td><td>~1.0-1.2 Md &euro;</td></tr>
+      <tr><td>Maturit&eacute; du march&eacute;</td><td>En croissance rapide</td><td>Mature</td><td>En croissance</td></tr>
+      <tr><td>Fourchette TJM courante</td><td>450-700 &euro;</td><td>500-850 GBP</td><td>550-800 &euro;</td></tr>
+      <tr><td>Mod&egrave;le dominant</td><td>TJM embedded</td><td>Fee par embauche / hybride</td><td>TJM / forfait</td></tr>
+      <tr><td>Dur&eacute;e moyenne de mission</td><td>3-8 mois</td><td>6-18 mois</td><td>4-12 mois</td></tr>
+      <tr><td>Part estim&eacute;e des freelances RPO</td><td>~35-40%</td><td>~20-25%</td><td>~25-30%</td></tr>
       <tr><td>Secteur #1</td><td>Tech / SaaS</td><td>Financial Services</td><td>Industrie / Automotive</td></tr>
-      <tr><td>Croissance annuelle estimée</td><td>~15%</td><td>~6-8%</td><td>~12-14%</td></tr>
+      <tr><td>Croissance annuelle estim&eacute;e</td><td>~15%</td><td>~6-8%</td><td>~12-14%</td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>France vs UK :</strong> Le marche RPO français est estimé a 2-3 ans de retard en maturite par rapport au UK. Cependant, la croissance y est significativement plus forte. Le modele freelance RPO (independant) est plus repandu en France qu'au UK, ou les grands acteurs (Hays, ManpowerGroup, Cielo, Alexander Mann / Talent Solutions) sont plus dominants.
+    <div class="warn">
+      <strong>France vs UK :</strong> Le march&eacute; RPO fran&ccedil;ais est estim&eacute; &agrave; 2-3 ans de retard en maturit&eacute; par rapport au UK. Cependant, la croissance y est significativement plus forte. Le mod&egrave;le freelance RPO (ind&eacute;pendant) est plus r&eacute;pandu en France qu'au UK, o&ugrave; les grands acteurs (Hays, ManpowerGroup, Cielo, Alexander Mann / Talent Solutions) sont plus dominants.
     </div>
 
-    <h2>RPO vs Cabinet de recrutement</h2>
+    <h2><span class="bar"></span> RPO vs Cabinet de recrutement</h2>
     <table>
-      <tr><th>critère</th><th>RPO</th><th>Cabinet de recrutement</th></tr>
-      <tr><td>Modele economique</td><td>TJM ou forfait mensuel</td><td>% du salaire annuel (15-25%)</td></tr>
-      <tr><td>intégration</td><td>Embedded dans l'équipe client</td><td>Externe, travaille de ses bureaux</td></tr>
-      <tr><td>Volume optimal</td><td>5+ postes simultanes</td><td>1-5 postes ponctuels</td></tr>
+      <tr><th>Crit&egrave;re</th><th>RPO</th><th>Cabinet de recrutement</th></tr>
+      <tr><td>Mod&egrave;le &eacute;conomique</td><td>TJM ou forfait mensuel</td><td>% du salaire annuel (15-25%)</td></tr>
+      <tr><td>Int&eacute;gration</td><td>Embedded dans l'&eacute;quipe client</td><td>Externe, travaille de ses bureaux</td></tr>
+      <tr><td>Volume optimal</td><td>5+ postes simultan&eacute;s</td><td>1-5 postes ponctuels</td></tr>
       <tr><td>Marque employeur</td><td>Recrute au nom du client</td><td>Recrute au nom du cabinet</td></tr>
       <tr><td>Outils</td><td>Utilise l'ATS et les outils du client</td><td>Utilise ses propres outils et base</td></tr>
-      <tr><td>coût estimé par embauche</td><td>3 500 - 8 000 EUR</td><td>8 000 - 25 000 EUR</td></tr>
-      <tr><td>Scalabilite</td><td>Forte (ajout de RPO à la demande)</td><td>Limitee (capacite du cabinet)</td></tr>
-      <tr><td>Transfert de compétences</td><td>Oui (process, outils, sourcing, playbooks)</td><td>Non (externalisation complete)</td></tr>
-      <tr><td>Reporting</td><td>Hebdomadaire / mensuel, dashboard partage</td><td>Ponctuel, shortlists</td></tr>
+      <tr><td>Co&ucirc;t estim&eacute; par embauche</td><td>3 500 - 8 000 &euro;</td><td>8 000 - 25 000 &euro;</td></tr>
+      <tr><td>Scalabilit&eacute;</td><td>Forte (ajout de RPO &agrave; la demande)</td><td>Limit&eacute;e (capacit&eacute; du cabinet)</td></tr>
+      <tr><td>Transfert de comp&eacute;tences</td><td>Oui (process, outils, sourcing, playbooks)</td><td>Non (externalisation compl&egrave;te)</td></tr>
+      <tr><td>Reporting</td><td>Hebdomadaire / mensuel, dashboard partag&eacute;</td><td>Ponctuel, shortlists</td></tr>
       <tr><td>Engagement minimum</td><td>1-3 mois</td><td>Par poste</td></tr>
     </table>
 
-    <div class="info-box">
-      <strong>Quand choisir un RPO plutot qu'un cabinet ?</strong>
-      <ul>
-        <li>Volume de recrutement supérieur a 5 postes sur 3 mois</li>
+    <div class="info">
+      <strong>Quand choisir un RPO plut&ocirc;t qu'un cabinet ?</strong>
+      <ul style="padding-left:18px;margin-top:8px;">
+        <li>Volume de recrutement sup&eacute;rieur &agrave; 5 postes sur 3 mois</li>
         <li>Besoin de structurer le process de recrutement interne</li>
-        <li>Volonte de recruter en marque employeur (pas en marque cabinet)</li>
-        <li>Budget par embauche inferieur a 8 000 EUR</li>
-        <li>Besoin de reporting regulier et de visibilite sur le pipeline</li>
+        <li>Volont&eacute; de recruter en marque employeur (pas en marque cabinet)</li>
+        <li>Budget par embauche inf&eacute;rieur &agrave; 8 000 &euro;</li>
+        <li>Besoin de reporting r&eacute;gulier et de visibilit&eacute; sur le pipeline</li>
       </ul>
     </div>
 
-    <h2>Tendances RPO 2026</h2>
+    <h2><span class="bar"></span> Tendances RPO 2026</h2>
     <table>
       <tr><th>#</th><th>Tendance</th><th>Impact</th></tr>
-      <tr><td>1</td><td>IA-powered RPO : intégration de l'IA dans le sourcing, le screening et la redaction</td><td>Gain de productivite estimé : 30-40%</td></tr>
-      <tr><td>2</td><td>RPO à la demande : plateformes de mise en relation (Rocket4RPO, freelances specialises)</td><td>Acces flexible, démarrage sous 48-72h</td></tr>
-      <tr><td>3</td><td>Specialisation sectorielle : les clients privilegient des RPO avec expertise metier</td><td>TJM +15-20% pour les specialistes vs généralistes</td></tr>
-      <tr><td>4</td><td>Modele hybride : retainer + success fee aligne les interets</td><td>Augmentation de la part de marche de ce modele</td></tr>
-      <tr><td>5</td><td>Reporting avance : dashboards en temps reel, KPIs de performance</td><td>Exigence croissante des clients, transparence</td></tr>
-      <tr><td>6</td><td>Marque employeur : le RPO devient aussi un levier de marque employeur</td><td>expérience candidat = avantage concurrentiel</td></tr>
+      <tr><td>1</td><td>IA-powered RPO : int&eacute;gration de l'IA dans le sourcing, le screening et la r&eacute;daction</td><td>Gain de productivit&eacute; estim&eacute; : 30-40%</td></tr>
+      <tr><td>2</td><td>RPO &agrave; la demande : plateformes de mise en relation (Rocket4RPO, freelances sp&eacute;cialis&eacute;s)</td><td>Acc&egrave;s flexible, d&eacute;marrage sous 48-72h</td></tr>
+      <tr><td>3</td><td>Sp&eacute;cialisation sectorielle : les clients privil&eacute;gient des RPO avec expertise m&eacute;tier</td><td>TJM +15-20% pour les sp&eacute;cialistes vs g&eacute;n&eacute;ralistes</td></tr>
+      <tr><td>4</td><td>Mod&egrave;le hybride : retainer + success fee aligne les int&eacute;r&ecirc;ts</td><td>Augmentation de la part de march&eacute; de ce mod&egrave;le</td></tr>
+      <tr><td>5</td><td>Reporting avanc&eacute; : dashboards en temps r&eacute;el, KPIs de performance</td><td>Exigence croissante des clients, transparence</td></tr>
+      <tr><td>6</td><td>Marque employeur : le RPO devient aussi un levier de marque employeur</td><td>Exp&eacute;rience candidat = avantage concurrentiel</td></tr>
     </table>
 
-    <h2>Comment évaluer un prestataire RPO</h2>
-    <ul class="checklist">
-      <li>expérience sectorielle demontree (cas clients, références)</li>
-      <li>Methodologie de sourcing documentee (canaux, outils, process)</li>
-      <li>SLA proposes (time-to-shortlist, nombre de candidats présentés, reporting)</li>
-      <li>Flexibilite du modele de pricing (TJM, hybride, forfait)</li>
-      <li>Capacite d'intégration dans les outils existants (ATS, Slack, Google Workspace)</li>
-      <li>références clients verifiables (au moins 2-3)</li>
-      <li>Engagement sur la qualité (garantie de remplacement en cas de depart en PE)</li>
-      <li>Transparence sur le pipeline et reporting regulier</li>
+    <h2><span class="bar"></span> Comment &eacute;valuer un prestataire RPO</h2>
+    <ul class="check">
+      <li>Exp&eacute;rience sectorielle d&eacute;montr&eacute;e (cas clients, r&eacute;f&eacute;rences)</li>
+      <li>M&eacute;thodologie de sourcing document&eacute;e (canaux, outils, process)</li>
+      <li>SLA propos&eacute;s (time-to-shortlist, nombre de candidats pr&eacute;sent&eacute;s, reporting)</li>
+      <li>Flexibilit&eacute; du mod&egrave;le de pricing (TJM, hybride, forfait)</li>
+      <li>Capacit&eacute; d'int&eacute;gration dans les outils existants (ATS, Slack, Google Workspace)</li>
+      <li>R&eacute;f&eacute;rences clients v&eacute;rifiables (au moins 2-3)</li>
+      <li>Engagement sur la qualit&eacute; (garantie de remplacement en cas de d&eacute;part en PE)</li>
+      <li>Transparence sur le pipeline et reporting r&eacute;gulier</li>
     </ul>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com &mdash; Tous droits r&eacute;serv&eacute;s 2026</p>
+      <p>Donn&eacute;es issues de 200+ recrutements r&eacute;alis&eacute;s</p>
     </div>
   </div>
 </body>

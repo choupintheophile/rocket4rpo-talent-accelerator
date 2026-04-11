@@ -3,65 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <title>Scorecard de recrutement — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; }
+    .check { list-style: none; padding: 0; }
+    .check li { padding: 10px 14px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; }
+    .check li::before { content: '\2610'; color: #0d9373; font-size: 16px; flex-shrink: 0; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Template</div>
     <h1>Scorecard de <em>recrutement</em></h1>
-    <p class="cover-subtitle">Grille d'évaluation structuree pour noter chaque candidat de maniere objective. Inclut scoring rubric détaillé, section culture fit et guide d'interpretation.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 6</span>
-      <span><strong>Temps :</strong> 5 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">Grille d'évaluation structurée pour noter chaque candidat de manière objective. Inclut scoring rubric détaillé, section culture fit et guide d'interprétation.</p>
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-value">2x</div>
+        <div class="cover-stat-label">Meilleure prédiction</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">-42%</div>
+        <div class="cover-stat-label">Réduction des biais</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">+35%</div>
+        <div class="cover-stat-label">Rétention à 12 mois</div>
+      </div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Template</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Template</div>
     </div>
 
-    <h2>Pourquoi utiliser une scorecard ?</h2>
-    <p>L'entretien non structure est l'un des pires predicteurs de performance (validite predictive de 0.20 selon Schmidt &amp; Hunter). La scorecard standardise l'évaluation et reduit les biais cognitifs de 42%.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">2x</div>
-        <div class="stat-label">Meilleure prediction de performance avec scorecard vs entretien libre</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="val">2x</div>
+        <div class="lbl">Meilleure prédiction de performance</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">-42%</div>
-        <div class="stat-label">Reduction des biais de recrutement</div>
+      <div class="stat">
+        <div class="val">-42%</div>
+        <div class="lbl">Réduction des biais</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">+35%</div>
-        <div class="stat-label">amélioration de la rétention a 12 mois</div>
+      <div class="stat">
+        <div class="val">+35%</div>
+        <div class="lbl">Amélioration rétention 12 mois</div>
       </div>
     </div>
 
-    <div class="info-box">
-      <strong>Mode d'emploi :</strong> Remplissez cette scorecard apres chaque entretien. Notez chaque critère de 1 a 5 en vous referant au rubric de notation ci-dessous. Comparez les scores entre candidats pour une décision objective. Partagez-la avec l'équipe pour aligner les évaluations.
+    <h2><span class="bar"></span> Pourquoi utiliser une scorecard ?</h2>
+    <p>L'entretien non structuré est l'un des pires prédicteurs de performance (validité prédictive de 0.20 selon Schmidt &amp; Hunter). La scorecard standardise l'évaluation et réduit les biais cognitifs de 42%.</p>
+
+    <div class="info">
+      <strong>Mode d'emploi :</strong> Remplissez cette scorecard après chaque entretien. Notez chaque critère de 1 à 5 en vous référant au rubric de notation ci-dessous. Comparez les scores entre candidats pour une décision objective. Partagez-la avec l'équipe pour aligner les évaluations.
     </div>
 
-    <h2>Informations candidat</h2>
+    <h2><span class="bar"></span> Informations candidat</h2>
     <table>
       <tr><td style="width:220px"><strong>Nom du candidat</strong></td><td></td></tr>
-      <tr><td><strong>Poste vise</strong></td><td></td></tr>
+      <tr><td><strong>Poste visé</strong></td><td></td></tr>
       <tr><td><strong>Date de l'entretien</strong></td><td></td></tr>
-      <tr><td><strong>Evaluateur</strong></td><td></td></tr>
-      <tr><td><strong>Type d'entretien</strong></td><td>[ ] Screening &nbsp; [ ] Manager &nbsp; [ ] équipe &nbsp; [ ] Final</td></tr>
+      <tr><td><strong>Évaluateur</strong></td><td></td></tr>
+      <tr><td><strong>Type d'entretien</strong></td><td>[ ] Screening &nbsp; [ ] Manager &nbsp; [ ] Équipe &nbsp; [ ] Final</td></tr>
     </table>
 
-    <h2>Rubric de notation détaillé</h2>
-
+    <h2><span class="bar"></span> Rubric de notation détaillé</h2>
     <table>
       <tr>
         <th style="width:60px">Note</th>
@@ -72,41 +136,41 @@
       <tr>
         <td><strong>1</strong></td>
         <td>Insuffisant</td>
-        <td>Ne repond pas aux attentes minimales du poste</td>
-        <td>Pas d'exemple concret, reponse vague, hors sujet, compétence absente</td>
+        <td>Ne répond pas aux attentes minimales du poste</td>
+        <td>Pas d'exemple concret, réponse vague, hors sujet, compétence absente</td>
       </tr>
       <tr>
         <td><strong>2</strong></td>
-        <td>A developper</td>
-        <td>compétence présenté mais nettement en dessous du niveau requis</td>
-        <td>Exemple fourni mais incomplet, peu de detail sur l'action personnelle, résultat non mesurable</td>
+        <td>À développer</td>
+        <td>Compétence présente mais nettement en dessous du niveau requis</td>
+        <td>Exemple fourni mais incomplet, peu de détail sur l'action personnelle, résultat non mesurable</td>
       </tr>
       <tr>
         <td><strong>3</strong></td>
         <td>Conforme</td>
-        <td>Repond aux attentes du poste de maniere satisfaisante</td>
-        <td>Exemple pertinent, méthode STAR respectee, résultat mentionne, compétence demontree</td>
+        <td>Répond aux attentes du poste de manière satisfaisante</td>
+        <td>Exemple pertinent, méthode STAR respectée, résultat mentionné, compétence démontrée</td>
       </tr>
       <tr>
         <td><strong>4</strong></td>
         <td>Solide</td>
-        <td>Depasse les attentes avec des preuves tangibles d'impact</td>
-        <td>Exemple impactant, actions détaillées et autonomes, résultat chiffre, transferabilite demontree</td>
+        <td>Dépasse les attentes avec des preuves tangibles d'impact</td>
+        <td>Exemple impactant, actions détaillées et autonomes, résultat chiffré, transférabilité démontrée</td>
       </tr>
       <tr>
         <td><strong>5</strong></td>
         <td>Exceptionnel</td>
-        <td>Performance remarquable, apportera une valeur ajoutee supérieure</td>
-        <td>Exemple remarquable avec impact business, reflexion sur les apprentissages, capacite d'innovation, leadership nature</td>
+        <td>Performance remarquable, apportera une valeur ajoutée supérieure</td>
+        <td>Exemple remarquable avec impact business, réflexion sur les apprentissages, capacité d'innovation, leadership naturel</td>
       </tr>
     </table>
 
-    <h2>Grille d'évaluation</h2>
+    <h2><span class="bar"></span> Grille d'évaluation</h2>
 
-    <h3>A. compétences techniques (poids x2)</h3>
+    <h3>A. Compétences techniques (poids x2)</h3>
     <table>
       <tr>
-        <th>critère</th>
+        <th>Critère</th>
         <th style="width:40px">1</th>
         <th style="width:40px">2</th>
         <th style="width:40px">3</th>
@@ -114,40 +178,17 @@
         <th style="width:40px">5</th>
         <th>Commentaire</th>
       </tr>
-      <tr class="category-row">
-        <td colspan="7">compétences techniques</td>
-      </tr>
-      <tr>
-        <td>Maitrise des outils et technologies requis</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Expertise metier / connaissance du domaine</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Capacite a resoudre des problemes complexes</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>qualité et impact des realisations passees</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Capacite d'apprentissage et veille technique</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
+      <tr><td>Maîtrise des outils et technologies requis</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Expertise métier / connaissance du domaine</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Capacité à résoudre des problèmes complexes</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Qualité et impact des réalisations passées</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Capacité d'apprentissage et veille technique</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     </table>
 
     <h3>B. Soft skills (poids x1.5)</h3>
     <table>
       <tr>
-        <th>critère</th>
+        <th>Critère</th>
         <th style="width:40px">1</th>
         <th style="width:40px">2</th>
         <th style="width:40px">3</th>
@@ -155,45 +196,22 @@
         <th style="width:40px">5</th>
         <th>Commentaire</th>
       </tr>
-      <tr class="category-row">
-        <td colspan="7">Soft skills</td>
-      </tr>
-      <tr>
-        <td>Communication orale (clarte, structure, ecoute)</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Esprit d'équipe et collaboration</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Capacite d'adaptation et resilience</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Leadership et prise d'initiative</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Gestion du stress et des priorites</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
+      <tr><td>Communication orale (clarté, structure, écoute)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Esprit d'équipe et collaboration</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Capacité d'adaptation et résilience</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Leadership et prise d'initiative</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Gestion du stress et des priorités</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     </table>
 
     <h3>C. Culture fit (poids x1.5)</h3>
 
-    <div class="info-box">
-      <strong>évaluer le culture fit :</strong> Le culture fit ne signifie pas recruter des clones. Il s'agit de vérifiér l'alignement sur les valeurs fondamentales et le mode de fonctionnement, tout en valorisant la diversite des profils et des perspectives.
+    <div class="info">
+      <strong>Évaluer le culture fit :</strong> Le culture fit ne signifie pas recruter des clones. Il s'agit de vérifier l'alignement sur les valeurs fondamentales et le mode de fonctionnement, tout en valorisant la diversité des profils et des perspectives.
     </div>
 
     <table>
       <tr>
-        <th>critère</th>
+        <th>Critère</th>
         <th style="width:40px">1</th>
         <th style="width:40px">2</th>
         <th style="width:40px">3</th>
@@ -201,40 +219,17 @@
         <th style="width:40px">5</th>
         <th>Commentaire</th>
       </tr>
-      <tr class="category-row">
-        <td colspan="7">Culture fit et alignement</td>
-      </tr>
-      <tr>
-        <td>Alignement avec les valeurs de l'entreprise</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Compatibilite avec le mode de travail (remote, agile, etc.)</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Vision long terme et ambitions compatibles</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Style de management attendu vs preferences du candidat</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Apport en diversite de perspective et d'expérience</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
+      <tr><td>Alignement avec les valeurs de l'entreprise</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Compatibilité avec le mode de travail (remote, agile, etc.)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Vision long terme et ambitions compatibles</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Style de management attendu vs préférences du candidat</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Apport en diversité de perspective et d'expérience</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     </table>
 
     <h3>D. Motivation et projection (poids x1)</h3>
     <table>
       <tr>
-        <th>critère</th>
+        <th>Critère</th>
         <th style="width:40px">1</th>
         <th style="width:40px">2</th>
         <th style="width:40px">3</th>
@@ -242,158 +237,76 @@
         <th style="width:40px">5</th>
         <th>Commentaire</th>
       </tr>
-      <tr class="category-row">
-        <td colspan="7">Motivation</td>
-      </tr>
-      <tr>
-        <td>Interet genuine pour le poste et les missions</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Connaissance de l'entreprise et du marche</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Projection concrete dans le rôle a 6-12 mois</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Raisons de quitter le poste actuel (coherentes et positives)</td>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td></td>
-      </tr>
+      <tr><td>Intérêt genuien pour le poste et les missions</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Connaissance de l'entreprise et du marché</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Projection concrète dans le rôle à 6-12 mois</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>Raisons de quitter le poste actuel (cohérentes et positives)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     </table>
 
-    <h2>Synthese et scoring</h2>
+    <h2><span class="bar"></span> Synthèse et scoring</h2>
 
-    <div class="formula">Score pondere = (Moy. Techniques x 2) + (Moy. Soft skills x 1.5) + (Moy. Culture fit x 1.5) + (Moy. Motivation x 1) / 6</div>
+    <div class="formula">Score pondéré = (Moy. Techniques x 2) + (Moy. Soft skills x 1.5) + (Moy. Culture fit x 1.5) + (Moy. Motivation x 1) / 6</div>
 
     <table>
       <tr>
         <th>Section</th>
         <th>Moyenne brute (/5)</th>
         <th>Poids</th>
-        <th>Score pondere</th>
+        <th>Score pondéré</th>
       </tr>
-      <tr>
-        <td>A. compétences techniques</td>
-        <td>__ /5</td>
-        <td>x2</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>B. Soft skills</td>
-        <td>__ /5</td>
-        <td>x1.5</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>C. Culture fit</td>
-        <td>__ /5</td>
-        <td>x1.5</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>D. Motivation</td>
-        <td>__ /5</td>
-        <td>x1</td>
-        <td></td>
-      </tr>
-      <tr class="highlight-row">
-        <td><strong>Score global pondere</strong></td>
-        <td colspan="2"></td>
-        <td><strong>__ /5</strong></td>
-      </tr>
+      <tr><td>A. Compétences techniques</td><td>__ /5</td><td>x2</td><td></td></tr>
+      <tr><td>B. Soft skills</td><td>__ /5</td><td>x1.5</td><td></td></tr>
+      <tr><td>C. Culture fit</td><td>__ /5</td><td>x1.5</td><td></td></tr>
+      <tr><td>D. Motivation</td><td>__ /5</td><td>x1</td><td></td></tr>
+      <tr class="teal-row"><td><strong>Score global pondéré</strong></td><td colspan="2"></td><td><strong>__ /5</strong></td></tr>
     </table>
 
-    <h2>Grille d'interpretation</h2>
+    <h2><span class="bar"></span> Grille d'interprétation</h2>
     <table>
       <tr>
         <th>Score global</th>
-        <th>Interpretation</th>
-        <th>Action recommandee</th>
+        <th>Interprétation</th>
+        <th>Action recommandée</th>
       </tr>
-      <tr>
-        <td><strong>4.5 - 5.0</strong></td>
-        <td>Candidat exceptionnel</td>
-        <td>Faire une offre rapidement (sous 48h), risque de perte élevé</td>
-      </tr>
-      <tr>
-        <td><strong>3.8 - 4.4</strong></td>
-        <td>Tres bon candidat</td>
-        <td>Poursuivre le process, positionner en priorite dans la shortlist</td>
-      </tr>
-      <tr>
-        <td><strong>3.0 - 3.7</strong></td>
-        <td>Candidat conforme</td>
-        <td>Poursuivre si le vivier est limite, approfondir les zones a risque</td>
-      </tr>
-      <tr>
-        <td><strong>2.0 - 2.9</strong></td>
-        <td>En dessous des attentes</td>
-        <td>Ne pas poursuivre, sauf si le critère faible est non eliminatoire</td>
-      </tr>
-      <tr>
-        <td><strong>1.0 - 1.9</strong></td>
-        <td>Non adapte au poste</td>
-        <td>Refus, envoyer un feedback constructif</td>
-      </tr>
+      <tr><td><strong>4.5 - 5.0</strong></td><td>Candidat exceptionnel</td><td>Faire une offre rapidement (sous 48h), risque de perte élevé</td></tr>
+      <tr><td><strong>3.8 - 4.4</strong></td><td>Très bon candidat</td><td>Poursuivre le process, positionner en priorité dans la shortlist</td></tr>
+      <tr><td><strong>3.0 - 3.7</strong></td><td>Candidat conforme</td><td>Poursuivre si le vivier est limité, approfondir les zones à risque</td></tr>
+      <tr><td><strong>2.0 - 2.9</strong></td><td>En dessous des attentes</td><td>Ne pas poursuivre, sauf si le critère faible est non éliminatoire</td></tr>
+      <tr><td><strong>1.0 - 1.9</strong></td><td>Non adapté au poste</td><td>Refus, envoyer un feedback constructif</td></tr>
     </table>
 
-    <h2>Red flags et signaux positifs</h2>
-
+    <h2><span class="bar"></span> Red flags et signaux positifs</h2>
     <table>
       <tr>
         <th>Red flags (alertes)</th>
         <th>Signaux positifs</th>
       </tr>
-      <tr>
-        <td>Incapacite a donner des exemples concrets</td>
-        <td>Exemples chiffres avec impact mesurable</td>
-      </tr>
-      <tr>
-        <td>Critique systematique des anciens employeurs</td>
-        <td>Reflexion sur les apprentissages tires des echecs</td>
-      </tr>
-      <tr>
-        <td>Reponses vagues sur les raisons de depart</td>
-        <td>Vision claire de la prochaine etape de carriere</td>
-      </tr>
-      <tr>
-        <td>Manque de curiosite sur le poste et l'entreprise</td>
-        <td>Questions pertinentes sur la stratégie et les defis</td>
-      </tr>
-      <tr>
-        <td>Incoherences entre le CV et les reponses</td>
-        <td>Coherence entre parcours, motivations et projet</td>
-      </tr>
-      <tr>
-        <td>Pretentions salariales decalees du marche (>20%)</td>
-        <td>Flexibilite sur le package si le projet est motivant</td>
-      </tr>
+      <tr><td>Incapacité à donner des exemples concrets</td><td>Exemples chiffrés avec impact mesurable</td></tr>
+      <tr><td>Critique systématique des anciens employeurs</td><td>Réflexion sur les apprentissages tirés des échecs</td></tr>
+      <tr><td>Réponses vagues sur les raisons de départ</td><td>Vision claire de la prochaine étape de carrière</td></tr>
+      <tr><td>Manque de curiosité sur le poste et l'entreprise</td><td>Questions pertinentes sur la stratégie et les défis</td></tr>
+      <tr><td>Incohérences entre le CV et les réponses</td><td>Cohérence entre parcours, motivations et projet</td></tr>
+      <tr><td>Prétentions salariales décalées du marché (&gt;20%)</td><td>Flexibilité sur le package si le projet est motivant</td></tr>
     </table>
 
-    <h2>décision finale</h2>
+    <h2><span class="bar"></span> Décision finale</h2>
     <table>
-      <tr><td style="width:220px"><strong>Score global pondere</strong></td><td>__ / 5</td></tr>
-      <tr><td><strong>Recommandation</strong></td><td>[ ] Offre immediate &nbsp; [ ] Retenu (shortlist) &nbsp; [ ] En attente &nbsp; [ ] Non retenu</td></tr>
+      <tr><td style="width:220px"><strong>Score global pondéré</strong></td><td>__ / 5</td></tr>
+      <tr><td><strong>Recommandation</strong></td><td>[ ] Offre immédiate &nbsp; [ ] Retenu (shortlist) &nbsp; [ ] En attente &nbsp; [ ] Non retenu</td></tr>
       <tr><td><strong>Points forts</strong></td><td></td></tr>
       <tr><td><strong>Points de vigilance</strong></td><td></td></tr>
       <tr><td><strong>Questions pour le prochain entretien</strong></td><td></td></tr>
       <tr><td><strong>Commentaire global</strong></td><td></td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Rappel :</strong> Remplissez la scorecard pendant ou immediatement apres l'entretien (sous 2h maximum). Le biais de memoire altere les évaluations de 25% au-dela de 24h. Utilisez les mêmes critères pour tous les candidats d'un même poste.
+    <div class="warn">
+      <strong>Rappel :</strong> Remplissez la scorecard pendant ou immédiatement après l'entretien (sous 2h maximum). Le biais de mémoire altère les évaluations de 25% au-delà de 24h. Utilisez les mêmes critères pour tous les candidats d'un même poste.
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

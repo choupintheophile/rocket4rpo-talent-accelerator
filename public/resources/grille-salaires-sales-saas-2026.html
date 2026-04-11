@@ -3,95 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <title>Grille de salaires Sales SaaS France 2026 — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    ul { margin-bottom: 12px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; line-height: 1.8; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
-    <div class="cover-badge">Etude</div>
+    <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div><div class="line-top"></div><div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
+    <div class="cover-badge">Étude</div>
     <h1>Grille de salaires <em>Sales SaaS</em> — France 2026</h1>
-    <p class="cover-subtitle">rémunérations completes du SDR au CRO : fixe, variable, OTE, ratios. Paris vs Region, impact du stade de l'entreprise et avantages complementaires.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 10</span>
-      <span><strong>Temps :</strong> 15 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">Rémunérations complètes du SDR au CRO : fixe, variable, OTE, ratios. Paris vs Région, impact du stade de l'entreprise et avantages complémentaires.</p>
+    <div class="cover-stats">
+      <div><div class="cover-stat-value">+6.3%</div><div class="cover-stat-label">Hausse OTE Sales</div></div>
+      <div><div class="cover-stat-value">62/38</div><div class="cover-stat-label">Ratio fixe/variable AE</div></div>
+      <div><div class="cover-stat-value">42%</div><div class="cover-stat-label">AE senior > quota</div></div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Etude salariale</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Étude salariale</div>
     </div>
 
-    <h2>Methodologie et perimetre</h2>
-    <p>Cette grille présenté les rémunérations marche pour les fonctions commerciales en SaaS B2B en France. Donnees compilees à partir de nos missions RPO, des retours candidats, et des benchmarks marche (Figures.hr, WTJ Salary, Glassdoor). Perimetre : startups Series A a Scale-up. Tous les montants sont en euros brut annuel.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">+6.3%</div>
-        <div class="stat-label">Hausse moyenne des OTE Sales SaaS en 2026 vs 2025</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">62/38</div>
-        <div class="stat-label">Ratio fixe/variable median des AE en France</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">42%</div>
-        <div class="stat-label">Des AE senior depassent leur quota en 2026</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="val">+6.3%</div><div class="lbl">Hausse OTE Sales SaaS 2026</div></div>
+      <div class="stat"><div class="val">62/38</div><div class="lbl">Ratio fixe/variable médian AE</div></div>
+      <div class="stat"><div class="val">42%</div><div class="lbl">AE senior dépassent leur quota</div></div>
     </div>
 
-    <div class="info-box">
+    <h2><span class="bar"></span> Méthodologie et périmètre</h2>
+    <p>Cette grille présente les rémunérations marché pour les fonctions commerciales en SaaS B2B en France. Données compilées à partir de nos missions RPO, des retours candidats, et des benchmarks marché (Figures.hr, WTJ Salary, Glassdoor). Périmètre : startups Series A à Scale-up. Tous les montants sont en euros brut annuel.</p>
+
+    <div class="info">
       <strong>Lexique :</strong>
       <ul>
         <li><strong>Fixe</strong> — Salaire brut annuel garanti</li>
-        <li><strong>Variable</strong> — Commission / bonus a 100% d'atteinte des objectifs (quota)</li>
-        <li><strong>OTE</strong> (On-Target Earnings) — Fixe + Variable a 100% d'atteinte</li>
-        <li><strong>Ratio F/V</strong> — Repartition fixe / variable (ex: 60/40 = 60% fixe, 40% variable)</li>
-        <li><strong>Accelerateur</strong> — Multiplicateur du variable au-dela de 100% d'atteinte (ex: 1.5x au-dessus de 120%)</li>
+        <li><strong>Variable</strong> — Commission / bonus à 100% d'atteinte des objectifs (quota)</li>
+        <li><strong>OTE</strong> (On-Target Earnings) — Fixe + Variable à 100% d'atteinte</li>
+        <li><strong>Ratio F/V</strong> — Répartition fixe / variable (ex: 60/40 = 60% fixe, 40% variable)</li>
+        <li><strong>Accélérateur</strong> — Multiplicateur du variable au-delà de 100% d'atteinte (ex: 1.5x au-dessus de 120%)</li>
       </ul>
     </div>
 
-    <h2>1. SDR / BDR (Sales Development Representative)</h2>
+    <h2><span class="bar"></span> 1. SDR / BDR (Sales Development Representative)</h2>
     <p>Prospection outbound, qualification de leads, prise de rendez-vous pour les Account Executives.</p>
 
-    <h3>Paris / Ile-de-France</h3>
+    <h3>Paris / Île-de-France</h3>
     <table>
-      <tr><th>Niveau</th><th>expérience</th><th>Fixe</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
+      <tr><th>Niveau</th><th>Expérience</th><th>Fixe</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
       <tr><td>Junior SDR</td><td>0-1 an</td><td>30 000 - 35 000</td><td>6 000 - 10 000</td><td>36 000 - 45 000</td><td>75/25</td></tr>
-      <tr><td>SDR confirme</td><td>1-2 ans</td><td>35 000 - 42 000</td><td>10 000 - 15 000</td><td>45 000 - 57 000</td><td>70/30</td></tr>
+      <tr><td>SDR confirmé</td><td>1-2 ans</td><td>35 000 - 42 000</td><td>10 000 - 15 000</td><td>45 000 - 57 000</td><td>70/30</td></tr>
       <tr><td>Senior SDR / BDR</td><td>2-3 ans</td><td>40 000 - 48 000</td><td>12 000 - 18 000</td><td>52 000 - 66 000</td><td>70/30</td></tr>
       <tr><td>Team Lead SDR</td><td>3+ ans</td><td>45 000 - 55 000</td><td>15 000 - 20 000</td><td>60 000 - 75 000</td><td>70/30</td></tr>
     </table>
 
-    <h3>Region (Lyon, Bordeaux, Nantes, Lille, Toulouse)</h3>
+    <h3>Région (Lyon, Bordeaux, Nantes, Lille, Toulouse)</h3>
     <table>
       <tr><th>Niveau</th><th>Fixe</th><th>Variable</th><th>OTE</th></tr>
       <tr><td>Junior SDR</td><td>27 000 - 32 000</td><td>5 000 - 8 000</td><td>32 000 - 40 000</td></tr>
-      <tr><td>SDR confirme</td><td>32 000 - 38 000</td><td>8 000 - 13 000</td><td>40 000 - 51 000</td></tr>
+      <tr><td>SDR confirmé</td><td>32 000 - 38 000</td><td>8 000 - 13 000</td><td>40 000 - 51 000</td></tr>
       <tr><td>Senior SDR / BDR</td><td>36 000 - 43 000</td><td>10 000 - 15 000</td><td>46 000 - 58 000</td></tr>
       <tr><td>Team Lead SDR</td><td>40 000 - 50 000</td><td>12 000 - 18 000</td><td>52 000 - 68 000</td></tr>
     </table>
 
-    <h2>2. Account Executive (AE)</h2>
-    <p>Gestion du cycle de vente complet, de la demo à la signature. Responsable du quota individuel.</p>
+    <h2><span class="bar"></span> 2. Account Executive (AE)</h2>
+    <p>Gestion du cycle de vente complet, de la démo à la signature. Responsable du quota individuel.</p>
 
-    <h3>Paris / Ile-de-France</h3>
+    <h3>Paris / Île-de-France</h3>
     <table>
-      <tr><th>Niveau</th><th>expérience</th><th>Fixe</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
+      <tr><th>Niveau</th><th>Expérience</th><th>Fixe</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
       <tr><td>Junior AE</td><td>0-2 ans AE</td><td>38 000 - 45 000</td><td>15 000 - 20 000</td><td>53 000 - 65 000</td><td>65/35</td></tr>
       <tr><td>AE Mid-Market</td><td>2-4 ans</td><td>48 000 - 58 000</td><td>22 000 - 32 000</td><td>70 000 - 90 000</td><td>60/40</td></tr>
       <tr><td>Senior AE</td><td>4-7 ans</td><td>58 000 - 72 000</td><td>32 000 - 48 000</td><td>90 000 - 120 000</td><td>60/40</td></tr>
       <tr><td>Enterprise AE</td><td>5-10+ ans</td><td>70 000 - 90 000</td><td>45 000 - 70 000</td><td>115 000 - 160 000</td><td>55/45</td></tr>
     </table>
 
-    <h3>Region</h3>
+    <h3>Région</h3>
     <table>
       <tr><th>Niveau</th><th>Fixe</th><th>Variable</th><th>OTE</th></tr>
       <tr><td>Junior AE</td><td>34 000 - 40 000</td><td>12 000 - 18 000</td><td>46 000 - 58 000</td></tr>
@@ -100,122 +142,115 @@
       <tr><td>Enterprise AE</td><td>62 000 - 80 000</td><td>38 000 - 60 000</td><td>100 000 - 140 000</td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Note Enterprise AE :</strong> Les Enterprise AE travaillent des deals a 6-7 chiffres avec des cycles de 6-18 mois. Le variable peut depasser le fixe en surperformance. Les meilleurs packages incluent des accelerateurs a 1.5x au-dela de 120% d'atteinte et des "kickers" sur les deals stratégiques.
+    <div class="warn">
+      <strong>Note Enterprise AE :</strong> Les Enterprise AE travaillent des deals à 6-7 chiffres avec des cycles de 6-18 mois. Le variable peut dépasser le fixe en surperformance. Les meilleurs packages incluent des accélérateurs à 1.5x au-delà de 120% d'atteinte et des "kickers" sur les deals stratégiques.
     </div>
 
-    <h2>3. Account Manager / CSM</h2>
+    <h2><span class="bar"></span> 3. Account Manager / CSM</h2>
     <p>Gestion du portefeuille client existant, rétention, upsell et cross-sell.</p>
 
-    <h3>Paris / Ile-de-France</h3>
+    <h3>Paris / Île-de-France</h3>
     <table>
-      <tr><th>Niveau</th><th>expérience</th><th>Fixe</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
+      <tr><th>Niveau</th><th>Expérience</th><th>Fixe</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
       <tr><td>Junior AM / CSM</td><td>0-2 ans</td><td>35 000 - 42 000</td><td>5 000 - 10 000</td><td>40 000 - 52 000</td><td>80/20</td></tr>
-      <tr><td>AM / CSM confirme</td><td>2-4 ans</td><td>42 000 - 52 000</td><td>10 000 - 18 000</td><td>52 000 - 70 000</td><td>75/25</td></tr>
+      <tr><td>AM / CSM confirmé</td><td>2-4 ans</td><td>42 000 - 52 000</td><td>10 000 - 18 000</td><td>52 000 - 70 000</td><td>75/25</td></tr>
       <tr><td>Senior AM / CSM</td><td>4-7 ans</td><td>52 000 - 65 000</td><td>15 000 - 25 000</td><td>67 000 - 90 000</td><td>70/30</td></tr>
       <tr><td>Key Account Manager</td><td>5+ ans</td><td>60 000 - 75 000</td><td>20 000 - 35 000</td><td>80 000 - 110 000</td><td>65/35</td></tr>
     </table>
 
-    <h3>Region</h3>
+    <h3>Région</h3>
     <table>
       <tr><th>Niveau</th><th>Fixe</th><th>Variable</th><th>OTE</th></tr>
       <tr><td>Junior AM / CSM</td><td>32 000 - 38 000</td><td>4 000 - 8 000</td><td>36 000 - 46 000</td></tr>
-      <tr><td>AM / CSM confirme</td><td>38 000 - 46 000</td><td>8 000 - 15 000</td><td>46 000 - 61 000</td></tr>
+      <tr><td>AM / CSM confirmé</td><td>38 000 - 46 000</td><td>8 000 - 15 000</td><td>46 000 - 61 000</td></tr>
       <tr><td>Senior AM / CSM</td><td>46 000 - 58 000</td><td>12 000 - 22 000</td><td>58 000 - 80 000</td></tr>
       <tr><td>Key Account Manager</td><td>52 000 - 65 000</td><td>17 000 - 30 000</td><td>69 000 - 95 000</td></tr>
     </table>
 
-    <h2>4. Sales Management</h2>
-
+    <h2><span class="bar"></span> 4. Sales Management</h2>
     <table>
-      <tr><th>Poste</th><th>expérience</th><th>Fixe (Paris)</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
-      <tr class="category-row"><td colspan="6">Management operationnel</td></tr>
+      <tr><th>Poste</th><th>Expérience</th><th>Fixe (Paris)</th><th>Variable</th><th>OTE</th><th>Ratio F/V</th></tr>
       <tr><td>Sales Manager</td><td>5-8 ans</td><td>65 000 - 80 000</td><td>25 000 - 40 000</td><td>90 000 - 120 000</td><td>65/35</td></tr>
       <tr><td>Head of Sales</td><td>7-10 ans</td><td>80 000 - 100 000</td><td>30 000 - 50 000</td><td>110 000 - 150 000</td><td>65/35</td></tr>
-      <tr class="category-row"><td colspan="6">Direction commerciale</td></tr>
       <tr><td>VP Sales</td><td>10+ ans</td><td>100 000 - 130 000</td><td>40 000 - 70 000</td><td>140 000 - 200 000</td><td>60/40</td></tr>
       <tr><td>CRO</td><td>12+ ans</td><td>130 000 - 180 000</td><td>50 000 - 100 000</td><td>180 000 - 280 000</td><td>60/40</td></tr>
     </table>
 
-    <h3>Region (coefficient -10% a -15% sur le fixe)</h3>
+    <h3>Région (coefficient -10% à -15% sur le fixe)</h3>
     <table>
-      <tr><th>Poste</th><th>Fixe (Region)</th><th>OTE</th></tr>
+      <tr><th>Poste</th><th>Fixe (Région)</th><th>OTE</th></tr>
       <tr><td>Sales Manager</td><td>56 000 - 72 000</td><td>78 000 - 105 000</td></tr>
       <tr><td>Head of Sales</td><td>68 000 - 88 000</td><td>95 000 - 132 000</td></tr>
       <tr><td>VP Sales</td><td>85 000 - 115 000</td><td>120 000 - 175 000</td></tr>
     </table>
 
-    <h2>5. Sales Operations / Revenue Operations</h2>
+    <h2><span class="bar"></span> 5. Sales Operations / Revenue Operations</h2>
     <table>
-      <tr><th>Poste</th><th>expérience</th><th>Fixe (Paris)</th><th>Variable</th><th>OTE</th></tr>
+      <tr><th>Poste</th><th>Expérience</th><th>Fixe (Paris)</th><th>Variable</th><th>OTE</th></tr>
       <tr><td>Sales Ops Analyst</td><td>1-3 ans</td><td>38 000 - 48 000</td><td>0 - 5 000</td><td>38 000 - 53 000</td></tr>
       <tr><td>Sales Ops Manager</td><td>3-6 ans</td><td>50 000 - 65 000</td><td>5 000 - 10 000</td><td>55 000 - 75 000</td></tr>
       <tr><td>Head of RevOps</td><td>6-10 ans</td><td>70 000 - 90 000</td><td>10 000 - 20 000</td><td>80 000 - 110 000</td></tr>
       <tr><td>VP RevOps</td><td>10+ ans</td><td>90 000 - 120 000</td><td>15 000 - 30 000</td><td>105 000 - 150 000</td></tr>
     </table>
 
-    <h2>6. Pre-Sales / Solutions Engineer</h2>
+    <h2><span class="bar"></span> 6. Pre-Sales / Solutions Engineer</h2>
     <table>
-      <tr><th>Poste</th><th>expérience</th><th>Fixe (Paris)</th><th>Variable</th><th>OTE</th></tr>
+      <tr><th>Poste</th><th>Expérience</th><th>Fixe (Paris)</th><th>Variable</th><th>OTE</th></tr>
       <tr><td>Solutions Engineer Junior</td><td>1-3 ans</td><td>42 000 - 52 000</td><td>5 000 - 10 000</td><td>47 000 - 62 000</td></tr>
       <tr><td>Solutions Engineer Senior</td><td>3-6 ans</td><td>55 000 - 70 000</td><td>10 000 - 20 000</td><td>65 000 - 90 000</td></tr>
       <tr><td>Head of Pre-Sales</td><td>7+ ans</td><td>75 000 - 95 000</td><td>15 000 - 30 000</td><td>90 000 - 125 000</td></tr>
     </table>
 
-    <h2>7. Impact de la localisation</h2>
+    <h2><span class="bar"></span> 7. Impact de la localisation</h2>
     <table>
       <tr><th>Zone</th><th>Coefficient</th><th>Commentaire</th></tr>
-      <tr><td><strong>Paris / Ile-de-France</strong></td><td>Base 100%</td><td>référence marche SaaS</td></tr>
-      <tr><td><strong>Lyon, Bordeaux, Nantes, Lille</strong></td><td>85-95%</td><td>Ecosysteme SaaS actif, ecart en reduction</td></tr>
-      <tr><td><strong>Autres villes</strong></td><td>75-90%</td><td>Moins d'offres SaaS, salaires ajustes</td></tr>
-      <tr><td><strong>Full remote (France)</strong></td><td>90-95%</td><td>Souvent aligne sur les grandes metropoles</td></tr>
+      <tr><td><strong>Paris / Île-de-France</strong></td><td>Base 100%</td><td>Référence marché SaaS</td></tr>
+      <tr><td><strong>Lyon, Bordeaux, Nantes, Lille</strong></td><td>85-95%</td><td>Écosystème SaaS actif, écart en réduction</td></tr>
+      <tr><td><strong>Autres villes</strong></td><td>75-90%</td><td>Moins d'offres SaaS, salaires ajustés</td></tr>
+      <tr><td><strong>Full remote (France)</strong></td><td>90-95%</td><td>Souvent aligné sur les grandes métropoles</td></tr>
     </table>
 
-    <h2>8. Impact du stade de l'entreprise</h2>
+    <h2><span class="bar"></span> 8. Impact du stade de l'entreprise</h2>
     <table>
       <tr><th>Stade</th><th>Impact OTE</th><th>Equity / BSPCE</th><th>Commentaire</th></tr>
-      <tr><td>Seed / Pre-Series A</td><td>-10% a -20%</td><td>0.1% - 0.5%</td><td>Risque élevé, equity significative</td></tr>
-      <tr><td>Series A</td><td>-5% a -10%</td><td>0.05% - 0.2%</td><td>Product-market fit en cours</td></tr>
-      <tr><td>Series B</td><td>Marche</td><td>0.02% - 0.1%</td><td>Scaling, référence marche</td></tr>
-      <tr><td>Series C+</td><td>Marche a +5%</td><td>0.01% - 0.05%</td><td>Salaires competitifs, equity diluee</td></tr>
-      <tr><td>Scale-up / pre-IPO</td><td>+5% a +15%</td><td>RSU / AGA</td><td>Packages premium, liquidite proche</td></tr>
+      <tr><td>Seed / Pre-Series A</td><td>-10% à -20%</td><td>0.1% - 0.5%</td><td>Risque élevé, equity significative</td></tr>
+      <tr><td>Series A</td><td>-5% à -10%</td><td>0.05% - 0.2%</td><td>Product-market fit en cours</td></tr>
+      <tr><td>Series B</td><td>Marché</td><td>0.02% - 0.1%</td><td>Scaling, référence marché</td></tr>
+      <tr><td>Series C+</td><td>Marché à +5%</td><td>0.01% - 0.05%</td><td>Salaires compétitifs, equity diluée</td></tr>
+      <tr><td>Scale-up / pré-IPO</td><td>+5% à +15%</td><td>RSU / AGA</td><td>Packages premium, liquidité proche</td></tr>
     </table>
 
-    <h2>9. Structure de variable type</h2>
+    <h2><span class="bar"></span> 9. Structure de variable type</h2>
+    <div class="formula"><strong>SDR :</strong> Variable basé sur le nombre de RDV qualifiés générés. Quota type : 12-18 RDV qualifiés / mois. Variable payé mensuellement ou trimestriellement.</div>
+    <div class="formula"><strong>AE Mid-Market :</strong> Variable basé sur le new ARR signé. Quota type : 300-500K € ARR / an. Variable payé trimestriellement. Accélérateur 1.3x au-dessus de 110%, 1.5x au-dessus de 130%.</div>
+    <div class="formula"><strong>Enterprise AE :</strong> Variable basé sur le new ARR + expansion. Quota type : 600K-1.2M € ARR / an. Variable payé trimestriellement. Accélérateur 1.5x au-dessus de 120%. Kicker sur deals &gt; 100K € ARR.</div>
+    <div class="formula"><strong>CSM / AM :</strong> Variable basé sur Net Revenue Rétention (NRR), churn rate, et upsell. Cible NRR : 110-120%. Variable payé trimestriellement.</div>
 
-    <div class="formula"><strong>SDR :</strong> Variable base sur le nombre de RDV qualifies generes. Quota type : 12-18 RDV qualifies / mois. Variable paye mensuellement ou trimestriellement.</div>
-
-    <div class="formula"><strong>AE Mid-Market :</strong> Variable base sur le new ARR signe. Quota type : 300-500K EUR ARR / an. Variable paye trimestriellement. Accelerateur 1.3x au-dessus de 110%, 1.5x au-dessus de 130%.</div>
-
-    <div class="formula"><strong>Enterprise AE :</strong> Variable base sur le new ARR + expansion. Quota type : 600K-1.2M EUR ARR / an. Variable paye trimestriellement. Accelerateur 1.5x au-dessus de 120%. Kicker sur deals > 100K EUR ARR.</div>
-
-    <div class="formula"><strong>CSM / AM :</strong> Variable base sur Net Revenue rétention (NRR), churn rate, et upsell. Cible NRR : 110-120%. Variable paye trimestriellement.</div>
-
-    <h2>10. Avantages complementaires courants</h2>
-
+    <h2><span class="bar"></span> 10. Avantages complémentaires courants</h2>
     <table>
       <tr><th>Avantage</th><th>Standard SaaS 2026</th><th>Valorisation annuelle</th></tr>
-      <tr><td>Mutuelle</td><td>Prise en charge 60-100%</td><td>800 - 2 000 EUR</td></tr>
-      <tr><td>Titres-restaurant</td><td>9-11 EUR/jour, 50-60% employeur</td><td>1 200 - 1 500 EUR</td></tr>
+      <tr><td>Mutuelle</td><td>Prise en charge 60-100%</td><td>800 - 2 000 €</td></tr>
+      <tr><td>Titres-restaurant</td><td>9-11 €/jour, 50-60% employeur</td><td>1 200 - 1 500 €</td></tr>
       <tr><td>RTT</td><td>8-12 jours/an (forfait jours)</td><td>Valorisation implicite</td></tr>
-      <tr><td>Teletravail</td><td>2-3 jours/sem (standard)</td><td>Economie 1 500 - 3 000 EUR</td></tr>
-      <tr><td>Budget formation</td><td>500 - 2 000 EUR/an</td><td>500 - 2 000 EUR</td></tr>
+      <tr><td>Télétravail</td><td>2-3 jours/sem (standard)</td><td>Économie 1 500 - 3 000 €</td></tr>
+      <tr><td>Budget formation</td><td>500 - 2 000 €/an</td><td>500 - 2 000 €</td></tr>
       <tr><td>BSPCE / equity</td><td>Vesting 4 ans, cliff 1 an</td><td>Variable (potentiel élevé)</td></tr>
-      <tr><td>President's Club</td><td>Voyage incentive pour top performers</td><td>3 000 - 8 000 EUR</td></tr>
+      <tr><td>President's Club</td><td>Voyage incentive pour top performers</td><td>3 000 - 8 000 €</td></tr>
     </table>
 
-    <div class="stat-box">
-      En 2026, les SaaS B2B qui proposent un OTE au P75 du marche et un plan de carriere clair (SDR → AE en 12-18 mois) attirent 2.5x plus de candidats qualifies que celles qui se positionnent au P25.
+    <div class="big-stat">
+      <div class="val">2.5x</div>
+      <div class="lbl">Les SaaS B2B au P75 du marché avec plan de carrière clair attirent 2.5x plus de candidats qualifiés</div>
     </div>
 
-    <div class="warning-box">
-      <strong>Attention :</strong> Ces donnees sont des fourchettes indicatives. Les salaires reels varient selon le secteur (FinTech et CyberSec paient +10-15%), la taille des deals, le quota et la performance individuelle. Validez toujours avec des donnees actualisees (Figures.hr, Glassdoor, WTJ Salary).
+    <div class="warn">
+      <strong>Attention :</strong> Ces données sont des fourchettes indicatives. Les salaires réels varient selon le secteur (FinTech et CyberSec paient +10-15%), la taille des deals, le quota et la performance individuelle. Validez toujours avec des données actualisées (Figures.hr, Glassdoor, WTJ Salary).
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

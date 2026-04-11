@@ -3,569 +3,271 @@
 <head>
   <meta charset="UTF-8">
   <title>Grille de rémunération Tech France 2026 — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; }
+    .check { list-style: none; padding: 0; }
+    .check li { padding: 10px 14px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; }
+    .check li::before { content: '\2610'; color: #0d9373; font-size: 16px; flex-shrink: 0; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
-    <div class="cover-badge">Etude</div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
+    <div class="cover-badge">Étude</div>
     <h1>Grille de <em>rémunération</em> Tech — France 2026</h1>
-    <p class="cover-subtitle">Fourchettes salariales détaillées pour 25+ postes Tech en France. Paris vs Region, junior a C-level, avec tendances et avantages complementaires.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 10</span>
-      <span><strong>Temps :</strong> 15 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">Fourchettes salariales détaillées pour 25+ postes Tech en France. Paris vs Région, junior à C-level, avec tendances et avantages complémentaires.</p>
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-value">+4.2%</div>
+        <div class="cover-stat-label">Hausse salaires Tech</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">-12%</div>
+        <div class="cover-stat-label">Écart Paris vs Région</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">67%</div>
+        <div class="cover-stat-label">Négocient leur salaire</div>
+      </div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Etude salariale</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Étude salariale</div>
     </div>
 
-    <h2>Methodologie</h2>
-    <p>Donnees compilees à partir de nos missions RPO (200+ recrutements tech), des retours candidats en entretien, et des benchmarks marche (Figures.hr, WTTJ Salary, Glassdoor, Talent.io). Salaires bruts annuels fixes, hors variable et avantages, sauf mention contraire.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">+4.2%</div>
-        <div class="stat-label">Hausse moyenne des salaires Tech en 2026 vs 2025</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="val">+4.2%</div>
+        <div class="lbl">Hausse moyenne salaires Tech 2026</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">-12%</div>
-        <div class="stat-label">Ecart moyen Paris vs grandes metropoles regionales</div>
+      <div class="stat">
+        <div class="val">-12%</div>
+        <div class="lbl">Écart Paris vs grandes métropoles</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">67%</div>
-        <div class="stat-label">Des candidats Tech negocient leur salaire a l'embauche</div>
+      <div class="stat">
+        <div class="val">67%</div>
+        <div class="lbl">Négocient leur salaire</div>
       </div>
     </div>
 
-    <div class="info-box">
-      <strong>Lecture des tableaux :</strong> Chaque ligne présenté la fourchette basse (P25) et haute (P75) du marche. Le salaire reel depend de la localisation, la taille de l'entreprise, le secteur (FinTech et CyberSec +10-15%) et la performance individuelle.
+    <h2><span class="bar"></span> Méthodologie</h2>
+    <p>Données compilées à partir de nos missions RPO (200+ recrutements tech), des retours candidats en entretien, et des benchmarks marché (Figures.hr, WTTJ Salary, Glassdoor, Talent.io). Salaires bruts annuels fixes, hors variable et avantages, sauf mention contraire.</p>
+
+    <div class="info">
+      <strong>Lecture des tableaux :</strong> Chaque ligne présente la fourchette basse (P25) et haute (P75) du marché. Le salaire réel dépend de la localisation, la taille de l'entreprise, le secteur (FinTech et CyberSec +10-15%) et la performance individuelle.
     </div>
 
-    <h2>1. développement</h2>
+    <h2><span class="bar"></span> 1. Développement</h2>
 
-    <h3>Paris / Ile-de-France</h3>
+    <h3>Paris / Île-de-France</h3>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Junior (0-2 ans)</th>
-        <th>Confirme (3-5 ans)</th>
-        <th>Senior (6+ ans)</th>
-      </tr>
-      <tr class="category-row">
-        <td colspan="4">Frontend</td>
-      </tr>
-      <tr>
-        <td>Dev Frontend (React / Vue / Angular)</td>
-        <td>38 - 45K</td>
-        <td>48 - 58K</td>
-        <td>58 - 72K</td>
-      </tr>
-      <tr>
-        <td>Dev Frontend Senior / Tech Lead Front</td>
-        <td>--</td>
-        <td>55 - 65K</td>
-        <td>65 - 80K</td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="4">Backend</td>
-      </tr>
-      <tr>
-        <td>Dev Backend (Node.js / Python / Go)</td>
-        <td>38 - 46K</td>
-        <td>48 - 60K</td>
-        <td>60 - 78K</td>
-      </tr>
-      <tr>
-        <td>Dev Backend (Java / .NET / PHP)</td>
-        <td>36 - 43K</td>
-        <td>45 - 56K</td>
-        <td>56 - 72K</td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="4">Fullstack et Mobile</td>
-      </tr>
-      <tr>
-        <td>Dev Fullstack (JS / TS)</td>
-        <td>38 - 46K</td>
-        <td>48 - 60K</td>
-        <td>60 - 75K</td>
-      </tr>
-      <tr>
-        <td>Dev Mobile (iOS Swift / Android Kotlin)</td>
-        <td>38 - 45K</td>
-        <td>48 - 60K</td>
-        <td>60 - 75K</td>
-      </tr>
-      <tr>
-        <td>Dev Mobile (React Native / Flutter)</td>
-        <td>37 - 44K</td>
-        <td>47 - 58K</td>
-        <td>58 - 72K</td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="4">Lead et Architecture</td>
-      </tr>
-      <tr>
-        <td>Lead Developer</td>
-        <td>--</td>
-        <td>58 - 70K</td>
-        <td>70 - 88K</td>
-      </tr>
-      <tr>
-        <td>Staff Engineer</td>
-        <td>--</td>
-        <td>--</td>
-        <td>78 - 100K</td>
-      </tr>
-      <tr>
-        <td>Solutions Architect</td>
-        <td>--</td>
-        <td>60 - 75K</td>
-        <td>75 - 95K</td>
-      </tr>
+      <tr><th>Poste</th><th>Junior (0-2 ans)</th><th>Confirmé (3-5 ans)</th><th>Senior (6+ ans)</th></tr>
+      <tr><td>Dev Frontend (React / Vue / Angular)</td><td>38 - 45K</td><td>48 - 58K</td><td>58 - 72K</td></tr>
+      <tr><td>Dev Frontend Senior / Tech Lead Front</td><td>--</td><td>55 - 65K</td><td>65 - 80K</td></tr>
+      <tr><td>Dev Backend (Node.js / Python / Go)</td><td>38 - 46K</td><td>48 - 60K</td><td>60 - 78K</td></tr>
+      <tr><td>Dev Backend (Java / .NET / PHP)</td><td>36 - 43K</td><td>45 - 56K</td><td>56 - 72K</td></tr>
+      <tr><td>Dev Fullstack (JS / TS)</td><td>38 - 46K</td><td>48 - 60K</td><td>60 - 75K</td></tr>
+      <tr><td>Dev Mobile (iOS Swift / Android Kotlin)</td><td>38 - 45K</td><td>48 - 60K</td><td>60 - 75K</td></tr>
+      <tr><td>Dev Mobile (React Native / Flutter)</td><td>37 - 44K</td><td>47 - 58K</td><td>58 - 72K</td></tr>
+      <tr><td>Lead Developer</td><td>--</td><td>58 - 70K</td><td>70 - 88K</td></tr>
+      <tr><td>Staff Engineer</td><td>--</td><td>--</td><td>78 - 100K</td></tr>
+      <tr><td>Solutions Architect</td><td>--</td><td>60 - 75K</td><td>75 - 95K</td></tr>
     </table>
 
-    <h3>Region (Lyon, Nantes, Bordeaux, Lille, Toulouse)</h3>
+    <h3>Région (Lyon, Nantes, Bordeaux, Lille, Toulouse)</h3>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Junior (0-2 ans)</th>
-        <th>Confirme (3-5 ans)</th>
-        <th>Senior (6+ ans)</th>
-      </tr>
-      <tr>
-        <td>Dev Frontend (React / Vue)</td>
-        <td>33 - 40K</td>
-        <td>42 - 52K</td>
-        <td>50 - 63K</td>
-      </tr>
-      <tr>
-        <td>Dev Backend (Node / Python / Go)</td>
-        <td>34 - 41K</td>
-        <td>42 - 53K</td>
-        <td>52 - 68K</td>
-      </tr>
-      <tr>
-        <td>Dev Fullstack</td>
-        <td>34 - 41K</td>
-        <td>42 - 53K</td>
-        <td>52 - 66K</td>
-      </tr>
-      <tr>
-        <td>Dev Mobile</td>
-        <td>33 - 40K</td>
-        <td>42 - 52K</td>
-        <td>52 - 65K</td>
-      </tr>
-      <tr>
-        <td>Lead Developer</td>
-        <td>--</td>
-        <td>50 - 62K</td>
-        <td>62 - 78K</td>
-      </tr>
+      <tr><th>Poste</th><th>Junior (0-2 ans)</th><th>Confirmé (3-5 ans)</th><th>Senior (6+ ans)</th></tr>
+      <tr><td>Dev Frontend (React / Vue)</td><td>33 - 40K</td><td>42 - 52K</td><td>50 - 63K</td></tr>
+      <tr><td>Dev Backend (Node / Python / Go)</td><td>34 - 41K</td><td>42 - 53K</td><td>52 - 68K</td></tr>
+      <tr><td>Dev Fullstack</td><td>34 - 41K</td><td>42 - 53K</td><td>52 - 66K</td></tr>
+      <tr><td>Dev Mobile</td><td>33 - 40K</td><td>42 - 52K</td><td>52 - 65K</td></tr>
+      <tr><td>Lead Developer</td><td>--</td><td>50 - 62K</td><td>62 - 78K</td></tr>
     </table>
 
-    <h2>2. Infrastructure et DevOps</h2>
+    <h2><span class="bar"></span> 2. Infrastructure et DevOps</h2>
 
-    <h3>Paris / Ile-de-France</h3>
+    <h3>Paris / Île-de-France</h3>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Junior (0-2 ans)</th>
-        <th>Confirme (3-5 ans)</th>
-        <th>Senior (6+ ans)</th>
-      </tr>
-      <tr>
-        <td>DevOps Engineer</td>
-        <td>40 - 48K</td>
-        <td>50 - 63K</td>
-        <td>63 - 82K</td>
-      </tr>
-      <tr>
-        <td>SRE (Site Reliability Engineer)</td>
-        <td>42 - 50K</td>
-        <td>52 - 65K</td>
-        <td>65 - 88K</td>
-      </tr>
-      <tr>
-        <td>Cloud Engineer (AWS / GCP / Azure)</td>
-        <td>40 - 47K</td>
-        <td>50 - 62K</td>
-        <td>62 - 80K</td>
-      </tr>
-      <tr>
-        <td>Cloud Architect</td>
-        <td>--</td>
-        <td>58 - 72K</td>
-        <td>72 - 100K</td>
-      </tr>
-      <tr>
-        <td>Security Engineer / DevSecOps</td>
-        <td>42 - 50K</td>
-        <td>52 - 65K</td>
-        <td>68 - 90K</td>
-      </tr>
-      <tr>
-        <td>SysAdmin / Infra Engineer</td>
-        <td>35 - 42K</td>
-        <td>44 - 55K</td>
-        <td>55 - 70K</td>
-      </tr>
+      <tr><th>Poste</th><th>Junior (0-2 ans)</th><th>Confirmé (3-5 ans)</th><th>Senior (6+ ans)</th></tr>
+      <tr><td>DevOps Engineer</td><td>40 - 48K</td><td>50 - 63K</td><td>63 - 82K</td></tr>
+      <tr><td>SRE (Site Reliability Engineer)</td><td>42 - 50K</td><td>52 - 65K</td><td>65 - 88K</td></tr>
+      <tr><td>Cloud Engineer (AWS / GCP / Azure)</td><td>40 - 47K</td><td>50 - 62K</td><td>62 - 80K</td></tr>
+      <tr><td>Cloud Architect</td><td>--</td><td>58 - 72K</td><td>72 - 100K</td></tr>
+      <tr><td>Security Engineer / DevSecOps</td><td>42 - 50K</td><td>52 - 65K</td><td>68 - 90K</td></tr>
+      <tr><td>SysAdmin / Infra Engineer</td><td>35 - 42K</td><td>44 - 55K</td><td>55 - 70K</td></tr>
     </table>
 
-    <h3>Region</h3>
+    <h3>Région</h3>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Junior (0-2 ans)</th>
-        <th>Confirme (3-5 ans)</th>
-        <th>Senior (6+ ans)</th>
-      </tr>
-      <tr>
-        <td>DevOps Engineer</td>
-        <td>36 - 43K</td>
-        <td>44 - 56K</td>
-        <td>55 - 72K</td>
-      </tr>
-      <tr>
-        <td>SRE</td>
-        <td>38 - 45K</td>
-        <td>46 - 58K</td>
-        <td>58 - 78K</td>
-      </tr>
-      <tr>
-        <td>Cloud Engineer</td>
-        <td>36 - 42K</td>
-        <td>44 - 55K</td>
-        <td>55 - 70K</td>
-      </tr>
-      <tr>
-        <td>Security Engineer</td>
-        <td>38 - 44K</td>
-        <td>46 - 58K</td>
-        <td>60 - 78K</td>
-      </tr>
+      <tr><th>Poste</th><th>Junior (0-2 ans)</th><th>Confirmé (3-5 ans)</th><th>Senior (6+ ans)</th></tr>
+      <tr><td>DevOps Engineer</td><td>36 - 43K</td><td>44 - 56K</td><td>55 - 72K</td></tr>
+      <tr><td>SRE</td><td>38 - 45K</td><td>46 - 58K</td><td>58 - 78K</td></tr>
+      <tr><td>Cloud Engineer</td><td>36 - 42K</td><td>44 - 55K</td><td>55 - 70K</td></tr>
+      <tr><td>Security Engineer</td><td>38 - 44K</td><td>46 - 58K</td><td>60 - 78K</td></tr>
     </table>
 
-    <h2>3. Data et IA</h2>
+    <h2><span class="bar"></span> 3. Data et IA</h2>
 
-    <h3>Paris / Ile-de-France</h3>
+    <h3>Paris / Île-de-France</h3>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Junior (0-2 ans)</th>
-        <th>Confirme (3-5 ans)</th>
-        <th>Senior (6+ ans)</th>
-      </tr>
-      <tr>
-        <td>Data Analyst</td>
-        <td>36 - 42K</td>
-        <td>44 - 55K</td>
-        <td>55 - 68K</td>
-      </tr>
-      <tr>
-        <td>Data Engineer</td>
-        <td>40 - 48K</td>
-        <td>50 - 63K</td>
-        <td>63 - 82K</td>
-      </tr>
-      <tr>
-        <td>Data Scientist</td>
-        <td>42 - 50K</td>
-        <td>52 - 65K</td>
-        <td>65 - 85K</td>
-      </tr>
-      <tr>
-        <td>ML Engineer</td>
-        <td>44 - 52K</td>
-        <td>55 - 68K</td>
-        <td>70 - 95K</td>
-      </tr>
-      <tr>
-        <td>MLOps Engineer</td>
-        <td>42 - 50K</td>
-        <td>52 - 65K</td>
-        <td>68 - 88K</td>
-      </tr>
-      <tr>
-        <td>AI Engineer (LLM / GenAI)</td>
-        <td>48 - 55K</td>
-        <td>58 - 75K</td>
-        <td>78 - 110K</td>
-      </tr>
-      <tr>
-        <td>Head of Data</td>
-        <td>--</td>
-        <td>--</td>
-        <td>80 - 110K</td>
-      </tr>
+      <tr><th>Poste</th><th>Junior (0-2 ans)</th><th>Confirmé (3-5 ans)</th><th>Senior (6+ ans)</th></tr>
+      <tr><td>Data Analyst</td><td>36 - 42K</td><td>44 - 55K</td><td>55 - 68K</td></tr>
+      <tr><td>Data Engineer</td><td>40 - 48K</td><td>50 - 63K</td><td>63 - 82K</td></tr>
+      <tr><td>Data Scientist</td><td>42 - 50K</td><td>52 - 65K</td><td>65 - 85K</td></tr>
+      <tr><td>ML Engineer</td><td>44 - 52K</td><td>55 - 68K</td><td>70 - 95K</td></tr>
+      <tr><td>MLOps Engineer</td><td>42 - 50K</td><td>52 - 65K</td><td>68 - 88K</td></tr>
+      <tr><td>AI Engineer (LLM / GenAI)</td><td>48 - 55K</td><td>58 - 75K</td><td>78 - 110K</td></tr>
+      <tr><td>Head of Data</td><td>--</td><td>--</td><td>80 - 110K</td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Tendance 2026 :</strong> Les profils AI/LLM/GenAI connaissent une inflation salariale de +15-20% par rapport a 2025. La demande depasse largement l'offre, avec moins de 3 000 profils seniors disponibles en France sur ces compétences.
+    <div class="warn">
+      <strong>Tendance 2026 :</strong> Les profils AI/LLM/GenAI connaissent une inflation salariale de +15-20% par rapport à 2025. La demande dépasse largement l'offre, avec moins de 3 000 profils seniors disponibles en France sur ces compétences.
     </div>
 
-    <h3>Region</h3>
+    <h3>Région</h3>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Junior (0-2 ans)</th>
-        <th>Confirme (3-5 ans)</th>
-        <th>Senior (6+ ans)</th>
-      </tr>
-      <tr>
-        <td>Data Analyst</td>
-        <td>32 - 38K</td>
-        <td>39 - 48K</td>
-        <td>48 - 60K</td>
-      </tr>
-      <tr>
-        <td>Data Engineer</td>
-        <td>36 - 43K</td>
-        <td>44 - 56K</td>
-        <td>56 - 72K</td>
-      </tr>
-      <tr>
-        <td>Data Scientist</td>
-        <td>38 - 45K</td>
-        <td>46 - 58K</td>
-        <td>58 - 75K</td>
-      </tr>
-      <tr>
-        <td>ML / AI Engineer</td>
-        <td>40 - 48K</td>
-        <td>50 - 62K</td>
-        <td>65 - 88K</td>
-      </tr>
+      <tr><th>Poste</th><th>Junior (0-2 ans)</th><th>Confirmé (3-5 ans)</th><th>Senior (6+ ans)</th></tr>
+      <tr><td>Data Analyst</td><td>32 - 38K</td><td>39 - 48K</td><td>48 - 60K</td></tr>
+      <tr><td>Data Engineer</td><td>36 - 43K</td><td>44 - 56K</td><td>56 - 72K</td></tr>
+      <tr><td>Data Scientist</td><td>38 - 45K</td><td>46 - 58K</td><td>58 - 75K</td></tr>
+      <tr><td>ML / AI Engineer</td><td>40 - 48K</td><td>50 - 62K</td><td>65 - 88K</td></tr>
     </table>
 
-    <h2>4. Product et Design</h2>
+    <h2><span class="bar"></span> 4. Product et Design</h2>
 
-    <h3>Paris / Ile-de-France</h3>
+    <h3>Paris / Île-de-France</h3>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Junior (0-2 ans)</th>
-        <th>Confirme (3-5 ans)</th>
-        <th>Senior (6+ ans)</th>
-      </tr>
-      <tr>
-        <td>Product Manager</td>
-        <td>40 - 48K</td>
-        <td>50 - 63K</td>
-        <td>65 - 85K</td>
-      </tr>
-      <tr>
-        <td>Product Owner</td>
-        <td>38 - 44K</td>
-        <td>46 - 58K</td>
-        <td>58 - 72K</td>
-      </tr>
-      <tr>
-        <td>UX Designer</td>
-        <td>35 - 42K</td>
-        <td>44 - 55K</td>
-        <td>55 - 68K</td>
-      </tr>
-      <tr>
-        <td>UI Designer</td>
-        <td>34 - 40K</td>
-        <td>42 - 52K</td>
-        <td>52 - 65K</td>
-      </tr>
-      <tr>
-        <td>Product Designer (UX/UI)</td>
-        <td>36 - 43K</td>
-        <td>45 - 57K</td>
-        <td>57 - 72K</td>
-      </tr>
-      <tr>
-        <td>Head of Product / CPO</td>
-        <td>--</td>
-        <td>--</td>
-        <td>85 - 130K</td>
-      </tr>
+      <tr><th>Poste</th><th>Junior (0-2 ans)</th><th>Confirmé (3-5 ans)</th><th>Senior (6+ ans)</th></tr>
+      <tr><td>Product Manager</td><td>40 - 48K</td><td>50 - 63K</td><td>65 - 85K</td></tr>
+      <tr><td>Product Owner</td><td>38 - 44K</td><td>46 - 58K</td><td>58 - 72K</td></tr>
+      <tr><td>UX Designer</td><td>35 - 42K</td><td>44 - 55K</td><td>55 - 68K</td></tr>
+      <tr><td>UI Designer</td><td>34 - 40K</td><td>42 - 52K</td><td>52 - 65K</td></tr>
+      <tr><td>Product Designer (UX/UI)</td><td>36 - 43K</td><td>45 - 57K</td><td>57 - 72K</td></tr>
+      <tr><td>Head of Product / CPO</td><td>--</td><td>--</td><td>85 - 130K</td></tr>
     </table>
 
-    <h2>5. Management et Direction Tech</h2>
-
+    <h2><span class="bar"></span> 5. Management et Direction Tech</h2>
     <table>
-      <tr>
-        <th>Poste</th>
-        <th>Fourchette Paris</th>
-        <th>Fourchette Region</th>
-        <th>expérience requise</th>
-      </tr>
-      <tr>
-        <td>Engineering Manager</td>
-        <td>68 - 95K</td>
-        <td>60 - 82K</td>
-        <td>6+ ans dont 2+ en management</td>
-      </tr>
-      <tr>
-        <td>VP Engineering</td>
-        <td>95 - 140K</td>
-        <td>82 - 120K</td>
-        <td>10+ ans dont 5+ en management</td>
-      </tr>
-      <tr>
-        <td>CTO (startup &lt;50 pers.)</td>
-        <td>80 - 120K + BSPCE</td>
-        <td>70 - 100K + BSPCE</td>
-        <td>8+ ans</td>
-      </tr>
-      <tr>
-        <td>CTO (scale-up 50-500 pers.)</td>
-        <td>120 - 180K</td>
-        <td>100 - 150K</td>
-        <td>12+ ans</td>
-      </tr>
-      <tr>
-        <td>QA Engineer</td>
-        <td>35 - 42K / 44 - 55K / 55 - 68K</td>
-        <td>31 - 38K / 39 - 48K / 48 - 60K</td>
-        <td>Junior / Confirme / Senior</td>
-      </tr>
-      <tr>
-        <td>QA Lead / Manager</td>
-        <td>58 - 75K</td>
-        <td>50 - 65K</td>
-        <td>5+ ans</td>
-      </tr>
+      <tr><th>Poste</th><th>Fourchette Paris</th><th>Fourchette Région</th><th>Expérience requise</th></tr>
+      <tr><td>Engineering Manager</td><td>68 - 95K</td><td>60 - 82K</td><td>6+ ans dont 2+ en management</td></tr>
+      <tr><td>VP Engineering</td><td>95 - 140K</td><td>82 - 120K</td><td>10+ ans dont 5+ en management</td></tr>
+      <tr><td>CTO (startup &lt;50 pers.)</td><td>80 - 120K + BSPCE</td><td>70 - 100K + BSPCE</td><td>8+ ans</td></tr>
+      <tr><td>CTO (scale-up 50-500 pers.)</td><td>120 - 180K</td><td>100 - 150K</td><td>12+ ans</td></tr>
+      <tr><td>QA Engineer</td><td>35 - 42K / 44 - 55K / 55 - 68K</td><td>31 - 38K / 39 - 48K / 48 - 60K</td><td>Junior / Confirmé / Senior</td></tr>
+      <tr><td>QA Lead / Manager</td><td>58 - 75K</td><td>50 - 65K</td><td>5+ ans</td></tr>
     </table>
 
-    <h2>6. Coefficient geographique détaillé</h2>
-
+    <h2><span class="bar"></span> 6. Coefficient géographique détaillé</h2>
     <table>
-      <tr>
-        <th>Zone</th>
-        <th>Coefficient</th>
-        <th>Exemples de villes</th>
-      </tr>
-      <tr>
-        <td><strong>Paris intra-muros</strong></td>
-        <td>Base 100%</td>
-        <td>Paris, La Defense</td>
-      </tr>
-      <tr>
-        <td><strong>Premiere couronne IDF</strong></td>
-        <td>95-100%</td>
-        <td>Boulogne, Levallois, Montreuil, Issy</td>
-      </tr>
-      <tr>
-        <td><strong>Grandes metropoles</strong></td>
-        <td>85-92%</td>
-        <td>Lyon, Nantes, Bordeaux, Lille, Toulouse</td>
-      </tr>
-      <tr>
-        <td><strong>Metropoles secondaires</strong></td>
-        <td>78-87%</td>
-        <td>Marseille, Rennes, Strasbourg, Montpellier, Grenoble</td>
-      </tr>
-      <tr>
-        <td><strong>Villes moyennes</strong></td>
-        <td>72-82%</td>
-        <td>Angers, Tours, Dijon, Clermont-Ferrand</td>
-      </tr>
-      <tr>
-        <td><strong>Full remote (France)</strong></td>
-        <td>88-95%</td>
-        <td>Souvent aligne sur les grandes metropoles</td>
-      </tr>
+      <tr><th>Zone</th><th>Coefficient</th><th>Exemples de villes</th></tr>
+      <tr><td><strong>Paris intra-muros</strong></td><td>Base 100%</td><td>Paris, La Défense</td></tr>
+      <tr><td><strong>Première couronne IDF</strong></td><td>95-100%</td><td>Boulogne, Levallois, Montreuil, Issy</td></tr>
+      <tr><td><strong>Grandes métropoles</strong></td><td>85-92%</td><td>Lyon, Nantes, Bordeaux, Lille, Toulouse</td></tr>
+      <tr><td><strong>Métropoles secondaires</strong></td><td>78-87%</td><td>Marseille, Rennes, Strasbourg, Montpellier, Grenoble</td></tr>
+      <tr><td><strong>Villes moyennes</strong></td><td>72-82%</td><td>Angers, Tours, Dijon, Clermont-Ferrand</td></tr>
+      <tr><td><strong>Full remote (France)</strong></td><td>88-95%</td><td>Souvent aligné sur les grandes métropoles</td></tr>
     </table>
 
-    <h2>7. Tendances 2026</h2>
+    <h2><span class="bar"></span> 7. Tendances 2026</h2>
 
-    <div class="kpi-card">
-      <strong>Hausse des salaires IA/GenAI</strong><br>
-      Les profils specialises en LLM, RAG, fine-tuning et MLOps voient leur salaire augmenter de 15-20% en un an. Un ML Engineer senior specialise GenAI peut depasser les 100K EUR a Paris.
+    <div class="info">
+      <strong>Hausse des salaires IA/GenAI :</strong> Les profils spécialisés en LLM, RAG, fine-tuning et MLOps voient leur salaire augmenter de 15-20% en un an. Un ML Engineer senior spécialisé GenAI peut dépasser les 100K € à Paris.
     </div>
 
-    <div class="kpi-card">
-      <strong>Convergence Paris/Region</strong><br>
-      Le remote généralize reduit l'ecart geographique. L'ecart moyen est passe de -18% en 2023 a -12% en 2026. Les entreprises full-remote paient souvent au tarif des grandes metropoles.
+    <div class="info">
+      <strong>Convergence Paris/Région :</strong> Le remote généralisé réduit l'écart géographique. L'écart moyen est passé de -18% en 2023 à -12% en 2026. Les entreprises full-remote paient souvent au tarif des grandes métropoles.
     </div>
 
-    <div class="kpi-card">
-      <strong>BSPCE et equity</strong><br>
-      68% des startups proposent des BSPCE. Vesting standard : 4 ans avec cliff 1 an. Valeur moyenne allouee : 0.02% a 0.5% selon le stade et le poste.
+    <div class="info">
+      <strong>BSPCE et equity :</strong> 68% des startups proposent des BSPCE. Vesting standard : 4 ans avec cliff 1 an. Valeur moyenne allouée : 0.02% à 0.5% selon le stade et le poste.
     </div>
 
-    <div class="kpi-card">
-      <strong>Avantages les plus demandes</strong><br>
-      1. Teletravail flexible (92% des candidats) 2. Jours de conge supplementaires (78%) 3. Budget formation (65%) 4. Mutuelle premium (52%) 5. Titres-restaurant (48%)
+    <div class="info">
+      <strong>Avantages les plus demandés :</strong> 1. Télétravail flexible (92% des candidats) 2. Jours de congé supplémentaires (78%) 3. Budget formation (65%) 4. Mutuelle premium (52%) 5. Titres-restaurant (48%)
     </div>
 
-    <h2>8. Avantages complementaires courants</h2>
-
+    <h2><span class="bar"></span> 8. Avantages complémentaires courants</h2>
     <table>
-      <tr>
-        <th>Avantage</th>
-        <th>Standard marche 2026</th>
-        <th>Valorisation annuelle</th>
-      </tr>
-      <tr>
-        <td>Mutuelle</td>
-        <td>Prise en charge 60-100%</td>
-        <td>800 - 2 000 EUR</td>
-      </tr>
-      <tr>
-        <td>Titres-restaurant</td>
-        <td>9-11 EUR/jour, 50-60% employeur</td>
-        <td>1 200 - 1 500 EUR</td>
-      </tr>
-      <tr>
-        <td>Transport</td>
-        <td>50% Navigo (obligatoire) + FMD</td>
-        <td>500 - 900 EUR</td>
-      </tr>
-      <tr>
-        <td>RTT</td>
-        <td>8-12 jours/an (forfait jours)</td>
-        <td>Valorisation implicite</td>
-      </tr>
-      <tr>
-        <td>Teletravail</td>
-        <td>2-3 jours/semaine standard</td>
-        <td>Economie 1 500 - 3 000 EUR/an</td>
-      </tr>
-      <tr>
-        <td>Budget formation</td>
-        <td>500 - 2 000 EUR/an</td>
-        <td>500 - 2 000 EUR</td>
-      </tr>
-      <tr>
-        <td>BSPCE / equity</td>
-        <td>Vesting 4 ans, cliff 1 an</td>
-        <td>Variable (potentiel élevé)</td>
-      </tr>
-      <tr>
-        <td>Interessement / participation</td>
-        <td>Obligatoire > 50 salariés</td>
-        <td>1 000 - 5 000 EUR</td>
-      </tr>
+      <tr><th>Avantage</th><th>Standard marché 2026</th><th>Valorisation annuelle</th></tr>
+      <tr><td>Mutuelle</td><td>Prise en charge 60-100%</td><td>800 - 2 000 €</td></tr>
+      <tr><td>Titres-restaurant</td><td>9-11 €/jour, 50-60% employeur</td><td>1 200 - 1 500 €</td></tr>
+      <tr><td>Transport</td><td>50% Navigo (obligatoire) + FMD</td><td>500 - 900 €</td></tr>
+      <tr><td>RTT</td><td>8-12 jours/an (forfait jours)</td><td>Valorisation implicite</td></tr>
+      <tr><td>Télétravail</td><td>2-3 jours/semaine standard</td><td>Économie 1 500 - 3 000 €/an</td></tr>
+      <tr><td>Budget formation</td><td>500 - 2 000 €/an</td><td>500 - 2 000 €</td></tr>
+      <tr><td>BSPCE / equity</td><td>Vesting 4 ans, cliff 1 an</td><td>Variable (potentiel élevé)</td></tr>
+      <tr><td>Intéressement / participation</td><td>Obligatoire &gt; 50 salariés</td><td>1 000 - 5 000 €</td></tr>
     </table>
 
-    <div class="formula">Package total = Fixe brut + Variable + Valorisation avantages (3 000 - 10 000 EUR/an en moyenne)</div>
+    <div class="formula">Package total = Fixe brut + Variable + Valorisation avantages (3 000 - 10 000 €/an en moyenne)</div>
 
-    <div class="info-box">
-      <strong>Conseil pour les DRH :</strong> présentéz toujours le "package global" aux candidats, pas seulement le fixe. Un ecart de 3-5K EUR sur le fixe peut être compense par des avantages valorises (BSPCE, RTT, remote, formation). 73% des candidats tech acceptent un fixe inferieur si le package global est attractif.
+    <div class="info">
+      <strong>Conseil pour les DRH :</strong> Présentez toujours le "package global" aux candidats, pas seulement le fixe. Un écart de 3-5K € sur le fixe peut être compensé par des avantages valorisés (BSPCE, RTT, remote, formation). 73% des candidats tech acceptent un fixe inférieur si le package global est attractif.
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

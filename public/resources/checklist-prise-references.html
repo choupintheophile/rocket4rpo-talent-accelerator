@@ -2,171 +2,99 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Checklist Prise de références — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <title>Checklist Prise de R&eacute;f&eacute;rences &mdash; Rocket4RPO</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}@page{size:A4;margin:0}body{font-family:'Inter',system-ui,sans-serif;font-size:13px;color:#374151;line-height:1.7;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.cover{width:100%;min-height:100vh;background:#0c111d;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 60px;page-break-after:always;position:relative}.cover .orb1{position:absolute;top:60px;right:60px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(16,185,129,0.15)}.cover .orb2{position:absolute;top:80px;right:80px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(16,185,129,0.1)}.cover .orb3{position:absolute;bottom:80px;left:60px;width:120px;height:120px;border-radius:50%;background:rgba(16,185,129,0.06)}.cover .line-top{position:absolute;top:40px;left:50%;transform:translateX(-50%);width:50px;height:3px;background:#10b981;border-radius:2px}.cover .line-bottom{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:50px;height:3px;background:rgba(16,185,129,0.3);border-radius:2px}.cover-logo{display:flex;align-items:center;gap:4px;font-size:14px;font-weight:900;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:60px;position:relative}.cover-logo .dot{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#10b981;border-radius:6px;font-size:14px;font-weight:900;letter-spacing:0}.cover-badge{display:inline-block;padding:8px 28px;border:1px solid rgba(16,185,129,0.3);border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:#10b981;margin-bottom:32px}.cover h1{font-size:42px;font-weight:900;line-height:1.1;max-width:500px;margin-bottom:20px;letter-spacing:-0.02em}.cover h1 em{font-style:normal;color:#10b981}.cover-sub{font-size:15px;color:rgba(255,255,255,0.5);max-width:420px;line-height:1.6}.cover-stats{display:flex;gap:40px;margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08)}.cover-stat-value{font-size:24px;font-weight:800;color:#10b981}.cover-stat-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}.cover-foot{position:absolute;bottom:30px;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:0.08em}.content{padding:40px 50px;max-width:800px;margin:0 auto}.page-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:2px solid #0c111d;margin-bottom:32px}.page-header .logo{font-size:11px;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:#111827}.page-header .logo .accent{color:#0d9373}.page-header .type{font-size:10px;font-weight:700;color:white;background:#0d9373;padding:4px 14px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em}h2{font-size:16px;font-weight:800;color:white;background:#0c111d;padding:12px 20px;border-radius:8px;margin-top:36px;margin-bottom:16px;display:flex;align-items:center;gap:10px}h2 .bar{display:inline-block;width:4px;height:18px;background:#10b981;border-radius:2px}h3{font-size:14px;font-weight:700;color:#0d9373;margin-top:24px;margin-bottom:8px;padding-left:12px;border-left:3px solid #0d9373}p{margin-bottom:12px}ul,ol{margin-bottom:12px;padding-left:20px}li{margin-bottom:4px}table{width:100%;border-collapse:collapse;margin:16px 0;font-size:12px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}th{background:#0c111d;color:white;font-weight:600;padding:10px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:0.06em}td{padding:9px 14px;border-bottom:1px solid #f3f4f6}tr:nth-child(even) td{background:#f8fafc}td:first-child{font-weight:500;color:#111827}.teal-row td{background:#e6f7f2!important;font-weight:700;color:#087a60}.info{background:#f0faf6;border-left:4px solid #0d9373;border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:12.5px}.info strong{color:#087a60}.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:12.5px}.stats{display:flex;gap:12px;margin:20px 0}.stat{flex:1;background:#f8fafc;border:1px solid #e5e7eb;border-top:3px solid #0d9373;border-radius:8px;padding:16px;text-align:center}.stat .val{font-size:28px;font-weight:900;color:#0d9373;line-height:1}.stat .lbl{font-size:10px;color:#6b7280;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em}.big-stat{background:#0c111d;color:white;border-radius:12px;padding:24px;text-align:center;margin:20px 0}.big-stat .val{font-size:40px;font-weight:900;color:#10b981;line-height:1}.big-stat .lbl{font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px}.formula{background:#0c111d;color:#10b981;border-radius:8px;padding:14px 20px;margin:14px 0;font-family:'Courier New',monospace;font-size:13px;font-weight:600;white-space:pre-wrap}.check{list-style:none;padding:0}.check li{padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:6px;display:flex;align-items:flex-start;gap:10px;font-size:12.5px}.check li::before{content:'\2610';color:#0d9373;font-size:16px;flex-shrink:0}.footer{margin-top:40px;padding-top:16px;border-top:2px solid #0c111d;text-align:center;font-size:11px;color:#9ca3af}.footer .logo{font-weight:900;letter-spacing:0.15em;text-transform:uppercase;color:#111827;font-size:11px;margin-bottom:4px}.footer .logo .accent{color:#0d9373}
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
-    <div class="cover-badge">Checklist operationnelle</div>
-    <h1>Checklist <em>Prise de références</em></h1>
-    <p class="cover-subtitle">15 questions par categorie, formulaire de consentement legal et template de synthese pret a l'emploi.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 7</span>
-      <span><strong>Temps :</strong> 10 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div>
+    <div class="line-top"></div><div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
+    <div class="cover-badge">Checklist op&eacute;rationnelle</div>
+    <h1>Checklist <em>Prise de R&eacute;f&eacute;rences</em></h1>
+    <p class="cover-sub">15 questions par cat&eacute;gorie, formulaire de consentement l&eacute;gal et template de synth&egrave;se pr&ecirc;t &agrave; l'emploi.</p>
+    <div class="cover-stats">
+      <div><div class="cover-stat-value">15</div><div class="cover-stat-label">Questions structur&eacute;es</div></div>
+      <div><div class="cover-stat-value">5</div><div class="cover-stat-label">Cat&eacute;gories</div></div>
+      <div><div class="cover-stat-value">15 min</div><div class="cover-stat-label">Dur&eacute;e appel</div></div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com &mdash; Document confidentiel</div>
   </div>
-
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Prise de références</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Prise de r&eacute;f&eacute;rences</div>
     </div>
-
-    <h1>Checklist Prise de références</h1>
-    <p>La prise de références est la derniere etape de validation avant l'offre. Bien menee, elle confirme les compétences, detecte les risques et securise la décision d'embauche. Ce guide propose 15 questions structurees par categorie (performance, collaboration, management, fiabilite), un formulaire de consentement conforme au droit du travail et un template de synthese.</p>
-
-    <div class="warning-box">
-      <strong>Cadre legal (France) :</strong>
-      <ul>
-        <li>La prise de références necessite l'<strong>accord prealable ecrit</strong> du candidat (Art. L1221-8 et L1221-9 du Code du travail)</li>
-        <li>Seules les informations en lien direct avec le poste et les compétences professionnelles sont autorisees</li>
+    <div class="stats">
+      <div class="stat"><div class="val">15</div><div class="lbl">Questions structur&eacute;es</div></div>
+      <div class="stat"><div class="val">5</div><div class="lbl">Cat&eacute;gories</div></div>
+      <div class="stat"><div class="val">15-20 min</div><div class="lbl">Dur&eacute;e appel recommand&eacute;e</div></div>
+    </div>
+    <p>La prise de r&eacute;f&eacute;rences est la derni&egrave;re &eacute;tape de validation avant l'offre. Bien men&eacute;e, elle confirme les comp&eacute;tences, d&eacute;tecte les risques et s&eacute;curise la d&eacute;cision d'embauche. Ce guide propose 15 questions structur&eacute;es par cat&eacute;gorie, un formulaire de consentement conforme au droit du travail et un template de synth&egrave;se.</p>
+    <div class="warn">
+      <strong>Cadre l&eacute;gal (France) :</strong>
+      <ul style="padding-left:18px;margin-top:8px;">
+        <li>La prise de r&eacute;f&eacute;rences n&eacute;cessite l'<strong>accord pr&eacute;alable &eacute;crit</strong> du candidat (Art. L1221-8 et L1221-9 du Code du travail)</li>
+        <li>Seules les informations en lien direct avec le poste et les comp&eacute;tences professionnelles sont autoris&eacute;es</li>
         <li>Il est <strong>interdit</strong> de contacter l'employeur actuel sans l'accord explicite du candidat</li>
-        <li>Les questions discriminatoires sont interdites (situation familiale, sante, religion, origine, opinions politiques, grossesse)</li>
-        <li>Le candidat a le droit de connaitre le contenu des références recueillies (Art. 15 RGPD, droit d'acces)</li>
+        <li>Les questions discriminatoires sont interdites (situation familiale, sant&eacute;, religion, origine, opinions politiques, grossesse)</li>
+        <li>Le candidat a le droit de conna&icirc;tre le contenu des r&eacute;f&eacute;rences recueillies (Art. 15 RGPD, droit d'acc&egrave;s)</li>
       </ul>
     </div>
-
-    <h2>Formulaire de consentement candidat</h2>
-
-    <div class="info-box">
-      <p><strong>AUTORISATION DE PRISE DE référenceS PROFESSIONNELLES</strong></p>
-      <p>Je soussigne(e) _________________________________, candidat(e) au poste de _________________________________ au sein de [Nom de l'entreprise / du cabinet], autorise expressement [Nom de l'entreprise / du cabinet] a contacter les personnes ci-dessous dans le cadre d'une prise de références professionnelles.</p>
-      <p>Je certifie que les personnes listees ont ete informees de cette demarche et que les coordonnees fournies sont exactes.</p>
-
-      <table>
-        <tr><th>#</th><th>Nom et prenom</th><th>Entreprise</th><th>Relation (N+1, collegue, N-1)</th><th>Telephone / email</th></tr>
-        <tr><td>1</td><td>_______________________</td><td>_________________</td><td>_________________</td><td>_______________________</td></tr>
-        <tr><td>2</td><td>_______________________</td><td>_________________</td><td>_________________</td><td>_______________________</td></tr>
-        <tr><td>3</td><td>_______________________</td><td>_________________</td><td>_________________</td><td>_______________________</td></tr>
-      </table>
-
+    <h2><span class="bar"></span> Formulaire de consentement candidat</h2>
+    <div class="info">
+      <p><strong>AUTORISATION DE PRISE DE R&Eacute;F&Eacute;RENCES PROFESSIONNELLES</strong></p>
+      <p>Je soussign&eacute;(e) _________________________________, candidat(e) au poste de _________________________________ au sein de [Nom de l'entreprise / du cabinet], autorise express&eacute;ment [Nom de l'entreprise / du cabinet] &agrave; contacter les personnes ci-dessous dans le cadre d'une prise de r&eacute;f&eacute;rences professionnelles.</p>
+      <p>Je certifie que les personnes list&eacute;es ont &eacute;t&eacute; inform&eacute;es de cette d&eacute;marche et que les coordonn&eacute;es fournies sont exactes.</p>
+      <table><tr><th>#</th><th>Nom et pr&eacute;nom</th><th>Entreprise</th><th>Relation (N+1, coll&egrave;gue, N-1)</th><th>T&eacute;l&eacute;phone / email</th></tr><tr><td>1</td><td>_______________________</td><td>_________________</td><td>_________________</td><td>_______________________</td></tr><tr><td>2</td><td>_______________________</td><td>_________________</td><td>_________________</td><td>_______________________</td></tr><tr><td>3</td><td>_______________________</td><td>_________________</td><td>_________________</td><td>_______________________</td></tr></table>
       <p><strong>Date :</strong> __ / __ / ____ &nbsp;&nbsp;&nbsp; <strong>Signature du candidat :</strong> _________________________________</p>
-      <p><em>Conformement au RGPD (Art. 13), les informations recueillies seront utilisees uniquement dans le cadre de ce recrutement et conservees 24 mois maximum. Vous pouvez exercer vos droits en ecrivant a [email DPO].</em></p>
+      <p><em>Conform&eacute;ment au RGPD (Art. 13), les informations recueillies seront utilis&eacute;es uniquement dans le cadre de ce recrutement et conserv&eacute;es 24 mois maximum. Vous pouvez exercer vos droits en &eacute;crivant &agrave; [email DPO].</em></p>
     </div>
-
-    <h2>préparation de l'appel</h2>
-    <ul class="checklist">
-      <li>Consentement ecrit du candidat obtenu et signe</li>
-      <li>Coordonnees des referents vérifiées (LinkedIn, email pro)</li>
+    <h2><span class="bar"></span> Pr&eacute;paration de l'appel</h2>
+    <ul class="check">
+      <li>Consentement &eacute;crit du candidat obtenu et sign&eacute;</li>
+      <li>Coordonn&eacute;es des r&eacute;f&eacute;rents v&eacute;rifi&eacute;es (LinkedIn, email pro)</li>
       <li>CV du candidat sous les yeux avec dates et postes</li>
-      <li>Brief du poste a pourvoir en tete (must-have, compétences cles)</li>
-      <li>Points spécifiques a valider identifies (issus des entretiens, zones de doute)</li>
-      <li>Creneau de 15-20 min bloque avec le referent (appel telephonique privilegie)</li>
-      <li>Grille de questions imprimee ou ouverte a l'ecran</li>
+      <li>Brief du poste &agrave; pourvoir en t&ecirc;te (must-have, comp&eacute;tences cl&eacute;s)</li>
+      <li>Points sp&eacute;cifiques &agrave; valider identifi&eacute;s (issus des entretiens, zones de doute)</li>
+      <li>Cr&eacute;neau de 15-20 min bloqu&eacute; avec le r&eacute;f&eacute;rent (appel t&eacute;l&eacute;phonique privil&eacute;gi&eacute;)</li>
+      <li>Grille de questions imprim&eacute;e ou ouverte &agrave; l'&eacute;cran</li>
     </ul>
-
-    <h2>Les 15 questions de prise de références</h2>
-
-    <h3>Categorie 1 : Introduction et cadrage (2 min)</h3>
-    <table>
-      <tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr>
-      <tr><td>Q1</td><td>"Bonjour, je vous contacte dans le cadre d'une prise de références pour [Prenom]. Pouvez-vous confirmer que vous avez travaille avec lui/elle ? Quelle etait votre relation professionnelle exacte ?"</td><td>Verification du lien hierarchique (N+1, pair, N-1)</td></tr>
-      <tr><td>Q2</td><td>"Sur quelle période avez-vous travaille ensemble, et quel etait son poste et son perimetre de responsabilites ?"</td><td>Coherence avec le CV declare</td></tr>
-    </table>
-
-    <h3>Categorie 2 : Performance et compétences (5-7 min)</h3>
-    <table>
-      <tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr>
-      <tr><td>Q3</td><td>"Quelles etaient ses principales responsabilites au quotidien ? Comment évalueriez-vous la qualité de son travail ?"</td><td>Perimetre reel vs declare, qualité output</td></tr>
-      <tr><td>Q4</td><td>"Sur une echelle de 1 a 10, comment évalueriez-vous sa performance globale dans ce poste ? Pourquoi cette note ?"</td><td>Performance chiffree, justification</td></tr>
-      <tr><td>Q5</td><td>"Quels sont ses 3 principaux points forts professionnels ? Pouvez-vous illustrer avec un exemple concret ?"</td><td>Forces differenciantes, preuves tangibles</td></tr>
-      <tr><td>Q6</td><td>"Quels sont ses principaux axes d'amélioration ou points de vigilance ? Dans quel contexte ces limites se manifestent-elles ?"</td><td>Faiblesses, contexte d'apparition, conscience de soi</td></tr>
-      <tr><td>Q7</td><td>"Pouvez-vous me donner un exemple concret de résultat marquant qu'il/elle a obtenu pendant votre collaboration ? Quel a ete son rôle precis ?"</td><td>Impact mesurable, contribution individuelle vs équipe</td></tr>
-    </table>
-
-    <h3>Categorie 3 : Collaboration et management (3-4 min)</h3>
-    <table>
-      <tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr>
-      <tr><td>Q8</td><td>"Comment travaillait-il/elle en équipe ? Etait-il/elle plutot autonome ou collaboratif(ve) ? Comment se comportait-il/elle en situation de desaccord ?"</td><td>Style de travail, gestion des conflits</td></tr>
-      <tr><td>Q9</td><td>"Comment gerait-il/elle la pression, les urgences et les situations a fort enjeu ?"</td><td>Gestion du stress, capacite a prioriser</td></tr>
-      <tr><td>Q10</td><td>"S'il/elle avait un rôle de management : comment etait-il/elle percu(e) par son équipe ? Comment gerait-il/elle les situations difficiles (sous-performance, conflit) ?"</td><td>Style de management, perception équipe, courage managerial</td></tr>
-    </table>
-
-    <h3>Categorie 4 : Fiabilite et comportement (3-4 min)</h3>
-    <table>
-      <tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr>
-      <tr><td>Q11</td><td>"Etait-il/elle fiable dans le respect des délais et des engagements pris ? Pouvez-vous donner un exemple ?"</td><td>Fiabilite, sens de l'engagement, rigueur</td></tr>
-      <tr><td>Q12</td><td>"Comment reagissait-il/elle face au feedback constructif ? Etait-il/elle ouvert(e) à la remise en question et a l'apprentissage ?"</td><td>Growth mindset, receptivite au feedback</td></tr>
-      <tr><td>Q13</td><td>"Y a-t-il eu des incidents, des tensions ou des situations problematiques pendant votre collaboration ? Si oui, comment les a-t-il/elle gerees ?"</td><td>Red flags, gestion de crise, integrite</td></tr>
-    </table>
-
-    <h3>Categorie 5 : Conclusion (2 min)</h3>
-    <table>
-      <tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr>
-      <tr><td>Q14</td><td>"Quelle est la raison de son depart de votre entreprise ? Si vous en aviez l'occasion, le/la rembauchieriez-vous sans hesitation ?"</td><td>Raison du depart (coherente avec le candidat ?), volonte de re-embauche = indicateur fort</td></tr>
-      <tr><td>Q15</td><td>"Y a-t-il autre chose que je devrais savoir et que je n'ai pas demande ? Un conseil pour que son intégration se passe bien ?"</td><td>Information cachee, conseil contextuel, derniere chance de signaler un probleme</td></tr>
-    </table>
-
-    <h2>Grille de notation</h2>
-    <table>
-      <tr><th>critère</th><th>1 — Insuffisant</th><th>2 — Moyen</th><th>3 — Bon</th><th>4 — Excellent</th></tr>
-      <tr><td>Performance globale</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td>compétences techniques</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td>Collaboration / équipe</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td>Management (si applicable)</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td>Fiabilite / respect des engagements</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td>Gestion du stress et des priorites</td><td></td><td></td><td></td><td></td></tr>
-      <tr><td>Ouverture au feedback / apprentissage</td><td></td><td></td><td></td><td></td></tr>
-    </table>
-
-    <h2>Template de synthese</h2>
-
-    <table>
-      <tr><th>Champ</th><th>Information</th></tr>
-      <tr><td>Candidat</td><td>_____________________________________________</td></tr>
-      <tr><td>Poste vise</td><td>_____________________________________________</td></tr>
-      <tr><td>Referent contacte</td><td>_____________________________________________</td></tr>
-      <tr><td>Relation avec le candidat</td><td>_____________________________________________</td></tr>
-      <tr><td>Entreprise et période</td><td>_____________________________________________</td></tr>
-      <tr><td>Date de l'appel</td><td>__ / __ / ____</td></tr>
-      <tr><td>Duree de l'appel</td><td>_____ minutes</td></tr>
-    </table>
-
-    <table>
-      <tr><th>Rubrique</th><th>Synthese</th></tr>
-      <tr><td>Points forts confirmes</td><td>____________________________________________________</td></tr>
-      <tr><td>Points de vigilance identifies</td><td>____________________________________________________</td></tr>
-      <tr><td>Coherence CV / declaration</td><td>[ ] Totale &nbsp; [ ] Partielle &nbsp; [ ] Divergence</td></tr>
-      <tr><td>Coherence avec les entretiens</td><td>[ ] Totale &nbsp; [ ] Partielle &nbsp; [ ] Divergence</td></tr>
-      <tr><td>Le rembaucherait ?</td><td>[ ] Oui, sans hesitation &nbsp; [ ] Oui, avec reserves &nbsp; [ ] Non</td></tr>
-      <tr><td>Score global</td><td>____ / 4</td></tr>
-      <tr><td>Recommandation</td><td>[ ] Emettre l'offre &nbsp; [ ] Approfondir (2e référence) &nbsp; [ ] Revoir la candidature</td></tr>
-    </table>
-
-    <h2>Bonnes pratiques</h2>
-
-    <div class="info-box">
-      <ul>
-        <li><strong>Nombre minimum :</strong> contactez au moins 2 referents, idealement 3 (dont au moins 1 N+1 recent)</li>
-        <li><strong>Appel telephonique :</strong> privilegiez le telephone a l'email — les echanges oraux sont plus riches et spontanes</li>
-        <li><strong>Croisement :</strong> comparez les retours des differents referents pour identifier les constantes vs les points isoles</li>
-        <li><strong>Signal faible :</strong> si un referent refuse de repondre, est tres evasif ou ne souhaite pas commenter, c'est un signal a prendre en compte</li>
-        <li><strong>Consentement :</strong> ne prenez jamais de références sans le consentement ecrit prealable du candidat</li>
-        <li><strong>Timing :</strong> procedez à la prise de références apres le dernier entretien et avant l'envoi de l'offre</li>
-        <li><strong>Confidentialite :</strong> ne partagez pas les retours de références bruts avec le hiring manager — partagez la synthese structuree</li>
+    <h2><span class="bar"></span> Les 15 questions de prise de r&eacute;f&eacute;rences</h2>
+    <h3>Cat&eacute;gorie 1 : Introduction et cadrage (2 min)</h3>
+    <table><tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr><tr><td>Q1</td><td>Bonjour, je vous contacte dans le cadre d'une prise de r&eacute;f&eacute;rences pour [Pr&eacute;nom]. Pouvez-vous confirmer que vous avez travaill&eacute; avec lui/elle ? Quelle &eacute;tait votre relation professionnelle exacte ?</td><td>V&eacute;rification du lien hi&eacute;rarchique (N+1, pair, N-1)</td></tr><tr><td>Q2</td><td>Sur quelle p&eacute;riode avez-vous travaill&eacute; ensemble, et quel &eacute;tait son poste et son p&eacute;rim&egrave;tre de responsabilit&eacute;s ?</td><td>Coh&eacute;rence avec le CV d&eacute;clar&eacute;</td></tr></table>
+    <h3>Cat&eacute;gorie 2 : Performance et comp&eacute;tences (5-7 min)</h3>
+    <table><tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr><tr><td>Q3</td><td>Quelles &eacute;taient ses principales responsabilit&eacute;s au quotidien ? Comment &eacute;valueriez-vous la qualit&eacute; de son travail ?</td><td>P&eacute;rim&egrave;tre r&eacute;el vs d&eacute;clar&eacute;, qualit&eacute; output</td></tr><tr><td>Q4</td><td>Sur une &eacute;chelle de 1 &agrave; 10, comment &eacute;valueriez-vous sa performance globale dans ce poste ? Pourquoi cette note ?</td><td>Performance chiffr&eacute;e, justification</td></tr><tr><td>Q5</td><td>Quels sont ses 3 principaux points forts professionnels ? Pouvez-vous illustrer avec un exemple concret ?</td><td>Forces diff&eacute;renciantes, preuves tangibles</td></tr><tr><td>Q6</td><td>Quels sont ses principaux axes d'am&eacute;lioration ou points de vigilance ? Dans quel contexte ces limites se manifestent-elles ?</td><td>Faiblesses, contexte d'apparition, conscience de soi</td></tr><tr><td>Q7</td><td>Pouvez-vous me donner un exemple concret de r&eacute;sultat marquant qu'il/elle a obtenu pendant votre collaboration ? Quel a &eacute;t&eacute; son r&ocirc;le pr&eacute;cis ?</td><td>Impact mesurable, contribution individuelle vs &eacute;quipe</td></tr></table>
+    <h3>Cat&eacute;gorie 3 : Collaboration et management (3-4 min)</h3>
+    <table><tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr><tr><td>Q8</td><td>Comment travaillait-il/elle en &eacute;quipe ? &Eacute;tait-il/elle plut&ocirc;t autonome ou collaboratif(ve) ? Comment se comportait-il/elle en situation de d&eacute;saccord ?</td><td>Style de travail, gestion des conflits</td></tr><tr><td>Q9</td><td>Comment g&eacute;rait-il/elle la pression, les urgences et les situations &agrave; fort enjeu ?</td><td>Gestion du stress, capacit&eacute; &agrave; prioriser</td></tr><tr><td>Q10</td><td>S'il/elle avait un r&ocirc;le de management : comment &eacute;tait-il/elle per&ccedil;u(e) par son &eacute;quipe ? Comment g&eacute;rait-il/elle les situations difficiles (sous-performance, conflit) ?</td><td>Style de management, perception &eacute;quipe, courage manag&eacute;rial</td></tr></table>
+    <h3>Cat&eacute;gorie 4 : Fiabilit&eacute; et comportement (3-4 min)</h3>
+    <table><tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr><tr><td>Q11</td><td>&Eacute;tait-il/elle fiable dans le respect des d&eacute;lais et des engagements pris ? Pouvez-vous donner un exemple ?</td><td>Fiabilit&eacute;, sens de l'engagement, rigueur</td></tr><tr><td>Q12</td><td>Comment r&eacute;agissait-il/elle face au feedback constructif ? &Eacute;tait-il/elle ouvert(e) &agrave; la remise en question et &agrave; l'apprentissage ?</td><td>Growth mindset, r&eacute;ceptivit&eacute; au feedback</td></tr><tr><td>Q13</td><td>Y a-t-il eu des incidents, des tensions ou des situations probl&eacute;matiques pendant votre collaboration ? Si oui, comment les a-t-il/elle g&eacute;r&eacute;es ?</td><td>Red flags, gestion de crise, int&eacute;grit&eacute;</td></tr></table>
+    <h3>Cat&eacute;gorie 5 : Conclusion (2 min)</h3>
+    <table><tr><th>#</th><th>Question</th><th>Ce qu'on cherche</th></tr><tr><td>Q14</td><td>Quelle est la raison de son d&eacute;part de votre entreprise ? Si vous en aviez l'occasion, le/la rembauchieriez-vous sans h&eacute;sitation ?</td><td>Raison du d&eacute;part (coh&eacute;rente avec le candidat ?), volont&eacute; de re-embauche = indicateur fort</td></tr><tr><td>Q15</td><td>Y a-t-il autre chose que je devrais savoir et que je n'ai pas demand&eacute; ? Un conseil pour que son int&eacute;gration se passe bien ?</td><td>Information cach&eacute;e, conseil contextuel, derni&egrave;re chance de signaler un probl&egrave;me</td></tr></table>
+    <h2><span class="bar"></span> Grille de notation</h2>
+    <table><tr><th>Crit&egrave;re</th><th>1 &mdash; Insuffisant</th><th>2 &mdash; Moyen</th><th>3 &mdash; Bon</th><th>4 &mdash; Excellent</th></tr><tr><td>Performance globale</td><td></td><td></td><td></td><td></td></tr><tr><td>Comp&eacute;tences techniques</td><td></td><td></td><td></td><td></td></tr><tr><td>Collaboration / &eacute;quipe</td><td></td><td></td><td></td><td></td></tr><tr><td>Management (si applicable)</td><td></td><td></td><td></td><td></td></tr><tr><td>Fiabilit&eacute; / respect des engagements</td><td></td><td></td><td></td><td></td></tr><tr><td>Gestion du stress et des priorit&eacute;s</td><td></td><td></td><td></td><td></td></tr><tr><td>Ouverture au feedback / apprentissage</td><td></td><td></td><td></td><td></td></tr></table>
+    <h2><span class="bar"></span> Template de synth&egrave;se</h2>
+    <table><tr><th>Champ</th><th>Information</th></tr><tr><td>Candidat</td><td>_____________________________________________</td></tr><tr><td>Poste vis&eacute;</td><td>_____________________________________________</td></tr><tr><td>R&eacute;f&eacute;rent contact&eacute;</td><td>_____________________________________________</td></tr><tr><td>Relation avec le candidat</td><td>_____________________________________________</td></tr><tr><td>Entreprise et p&eacute;riode</td><td>_____________________________________________</td></tr><tr><td>Date de l'appel</td><td>__ / __ / ____</td></tr><tr><td>Dur&eacute;e de l'appel</td><td>_____ minutes</td></tr></table>
+    <table><tr><th>Rubrique</th><th>Synth&egrave;se</th></tr><tr><td>Points forts confirm&eacute;s</td><td>____________________________________________________</td></tr><tr><td>Points de vigilance identifi&eacute;s</td><td>____________________________________________________</td></tr><tr><td>Coh&eacute;rence CV / d&eacute;claration</td><td>[ ] Totale &nbsp; [ ] Partielle &nbsp; [ ] Divergence</td></tr><tr><td>Coh&eacute;rence avec les entretiens</td><td>[ ] Totale &nbsp; [ ] Partielle &nbsp; [ ] Divergence</td></tr><tr><td>Le rembaucherait ?</td><td>[ ] Oui, sans h&eacute;sitation &nbsp; [ ] Oui, avec r&eacute;serves &nbsp; [ ] Non</td></tr><tr><td>Score global</td><td>____ / 4</td></tr><tr><td>Recommandation</td><td>[ ] &Eacute;mettre l'offre &nbsp; [ ] Approfondir (2e r&eacute;f&eacute;rence) &nbsp; [ ] Revoir la candidature</td></tr></table>
+    <h2><span class="bar"></span> Bonnes pratiques</h2>
+    <div class="info">
+      <ul style="padding-left:18px;">
+        <li><strong>Nombre minimum :</strong> contactez au moins 2 r&eacute;f&eacute;rents, id&eacute;alement 3 (dont au moins 1 N+1 r&eacute;cent)</li>
+        <li><strong>Appel t&eacute;l&eacute;phonique :</strong> privil&eacute;giez le t&eacute;l&eacute;phone &agrave; l'email &mdash; les &eacute;changes oraux sont plus riches et spontan&eacute;s</li>
+        <li><strong>Croisement :</strong> comparez les retours des diff&eacute;rents r&eacute;f&eacute;rents pour identifier les constantes vs les points isol&eacute;s</li>
+        <li><strong>Signal faible :</strong> si un r&eacute;f&eacute;rent refuse de r&eacute;pondre, est tr&egrave;s &eacute;vasif ou ne souhaite pas commenter, c'est un signal &agrave; prendre en compte</li>
+        <li><strong>Consentement :</strong> ne prenez jamais de r&eacute;f&eacute;rences sans le consentement &eacute;crit pr&eacute;alable du candidat</li>
+        <li><strong>Timing :</strong> proc&eacute;dez &agrave; la prise de r&eacute;f&eacute;rences apr&egrave;s le dernier entretien et avant l'envoi de l'offre</li>
+        <li><strong>Confidentialit&eacute; :</strong> ne partagez pas les retours de r&eacute;f&eacute;rences bruts avec le hiring manager &mdash; partagez la synth&egrave;se structur&eacute;e</li>
       </ul>
     </div>
-
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com &mdash; Tous droits r&eacute;serv&eacute;s 2026</p>
+      <p>Donn&eacute;es issues de 200+ recrutements r&eacute;alis&eacute;s</p>
     </div>
   </div>
 </body>

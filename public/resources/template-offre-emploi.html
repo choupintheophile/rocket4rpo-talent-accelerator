@@ -3,256 +3,296 @@
 <head>
   <meta charset="UTF-8">
   <title>Template d'offre d'emploi — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    ul, ol { margin-bottom: 12px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; white-space: pre-wrap; }
+    .check { list-style: none; padding: 0; }
+    .check li { padding: 10px 14px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; }
+    .check li::before { content: '\2610'; color: #0d9373; font-size: 16px; flex-shrink: 0; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div>
+    <div class="line-top"></div><div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Template</div>
     <h1>Template <em>Offre d'Emploi</em></h1>
-    <p class="cover-subtitle">Structure ideale, mots-cles SEO par metier et 3 exemples complets prets a publier.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 10</span>
-      <span><strong>Temps :</strong> 15 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">Structure id&eacute;ale, mots-cl&eacute;s SEO par m&eacute;tier et 3 exemples complets pr&ecirc;ts &agrave; publier.</p>
+    <div class="cover-stats">
+      <div><div class="cover-stat-value">+44%</div><div class="cover-stat-label">Candidatures avec salaire</div></div>
+      <div><div class="cover-stat-value">400-600</div><div class="cover-stat-label">Mots id&eacute;aux</div></div>
+      <div><div class="cover-stat-value">8</div><div class="cover-stat-label">Sections recommand&eacute;es</div></div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com &mdash; Document confidentiel</div>
   </div>
 
+  <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Template offre d'emploi</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Template offre d'emploi</div>
     </div>
 
-    <h1>Template d'offre d'emploi</h1>
-    <p>Une offre d'emploi bien redigee attire 3 fois plus de candidatures qualifiees. Les offres mentionnant une fourchette salariale recoivent 44% de candidatures en plus (etude Indeed 2025). Ce guide présenté la structure ideale en 8 sections, les bonnes pratiques de redaction, les mots-cles SEO par famille de metier et 3 exemples complets.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">+44%</div>
-        <div class="stat-label">Candidatures avec fourchette salariale</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">400-600</div>
-        <div class="stat-label">Mots ideaux par offre</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">8</div>
-        <div class="stat-label">Sections recommandees</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="val">+44%</div><div class="lbl">Candidatures avec fourchette salariale</div></div>
+      <div class="stat"><div class="val">400-600</div><div class="lbl">Mots id&eacute;aux par offre</div></div>
+      <div class="stat"><div class="val">8</div><div class="lbl">Sections recommand&eacute;es</div></div>
     </div>
 
-    <h2>Structure ideale en 8 sections</h2>
+    <p>Une offre d'emploi bien r&eacute;dig&eacute;e attire 3 fois plus de candidatures qualifi&eacute;es. Les offres mentionnant une fourchette salariale re&ccedil;oivent 44% de candidatures en plus (&eacute;tude Indeed 2025). Ce guide pr&eacute;sente la structure id&eacute;ale en 8 sections, les bonnes pratiques de r&eacute;daction, les mots-cl&eacute;s SEO par famille de m&eacute;tier et 3 exemples complets.</p>
+
+    <h2><span class="bar"></span> Structure id&eacute;ale en 8 sections</h2>
     <table>
       <tr><th>#</th><th>Section</th><th>Longueur</th><th>Objectif</th></tr>
       <tr><td>1</td><td>Accroche</td><td>2-3 lignes</td><td>Capter l'attention, donner envie de lire la suite</td></tr>
-      <tr><td>2</td><td>présentation entreprise</td><td>4-6 lignes</td><td>Contexte, mission, taille, stade, chiffres cles</td></tr>
-      <tr><td>3</td><td>Missions du poste</td><td>5-7 bullet points</td><td>Decrire le quotidien concret avec verbes d'action</td></tr>
-      <tr><td>4</td><td>Profil recherche</td><td>3-5 must-have + 2-3 nice-to-have</td><td>Filtrer sans exclure les profils atypiques</td></tr>
+      <tr><td>2</td><td>Pr&eacute;sentation entreprise</td><td>4-6 lignes</td><td>Contexte, mission, taille, stade, chiffres cl&eacute;s</td></tr>
+      <tr><td>3</td><td>Missions du poste</td><td>5-7 bullet points</td><td>D&eacute;crire le quotidien concret avec verbes d'action</td></tr>
+      <tr><td>4</td><td>Profil recherch&eacute;</td><td>3-5 must-have + 2-3 nice-to-have</td><td>Filtrer sans exclure les profils atypiques</td></tr>
       <tr><td>5</td><td>Ce qu'on offre</td><td>5-7 bullet points</td><td>Vendre le poste : package, avantages, culture</td></tr>
-      <tr><td>6</td><td>Process de recrutement</td><td>3-5 lignes</td><td>Transparence, reduire l'incertitude candidat</td></tr>
-      <tr><td>7</td><td>Informations pratiques</td><td>2-3 lignes</td><td>Salaire, localisation, teletravail, démarrage</td></tr>
-      <tr><td>8</td><td>Mention diversite</td><td>2 lignes</td><td>Engagement inclusif, conformite legale (H/F)</td></tr>
+      <tr><td>6</td><td>Process de recrutement</td><td>3-5 lignes</td><td>Transparence, r&eacute;duire l'incertitude candidat</td></tr>
+      <tr><td>7</td><td>Informations pratiques</td><td>2-3 lignes</td><td>Salaire, localisation, t&eacute;l&eacute;travail, d&eacute;marrage</td></tr>
+      <tr><td>8</td><td>Mention diversit&eacute;</td><td>2 lignes</td><td>Engagement inclusif, conformit&eacute; l&eacute;gale (H/F)</td></tr>
     </table>
 
-    <div class="info-box">
-      <strong>Longueur optimale :</strong> 400-600 mots. Les offres dans cette fourchette recoivent 30% de candidatures en plus que celles depassant 800 mots. Sur mobile (62% des candidats consultent sur smartphone), la lisibilite chute au-dela de 600 mots.
+    <div class="info">
+      <strong>Longueur optimale :</strong> 400-600 mots. Les offres dans cette fourchette re&ccedil;oivent 30% de candidatures en plus que celles d&eacute;passant 800 mots. Sur mobile (62% des candidats consultent sur smartphone), la lisibilit&eacute; chute au-del&agrave; de 600 mots.
     </div>
 
-    <h2>Bonnes pratiques de redaction</h2>
+    <h2><span class="bar"></span> Bonnes pratiques de r&eacute;daction</h2>
 
-    <h3>A faire</h3>
+    <h3>&Agrave; faire</h3>
     <ul>
-      <li><strong>Verbes d'action :</strong> "piloter", "concevoir", "accelerer", "structurer", "deployer" plutot que "être en charge de"</li>
-      <li><strong>Quantifier :</strong> "équipe de 8 personnes", "CA de 5M EUR", "portefeuille de 50 comptes" plutot que "gerer des clients"</li>
-      <li><strong>Fourchette salariale :</strong> obligatoire pour les entreprises de 100+ salariés à partir de 2026 (directive transparence UE 2023/970)</li>
-      <li><strong>Ecriture inclusive :</strong> doublets ("le ou la candidate"), formulations epicenes ("la personne en charge de") — pas de point median (inaccessible pour les lecteurs d'ecran)</li>
-      <li><strong>Bullet points :</strong> scan-friendly, 62% des candidats scannent avant de lire en detail</li>
-      <li><strong>Process de recrutement :</strong> nombre d'etapes, duree estimée, interlocuteurs</li>
-      <li><strong>Avantages chiffres :</strong> "Carte Swile 10 EUR/jour" plutot que "titres-restaurant"</li>
+      <li><strong>Verbes d'action :</strong> &laquo; piloter &raquo;, &laquo; concevoir &raquo;, &laquo; acc&eacute;l&eacute;rer &raquo;, &laquo; structurer &raquo;, &laquo; d&eacute;ployer &raquo; plut&ocirc;t que &laquo; &ecirc;tre en charge de &raquo;</li>
+      <li><strong>Quantifier :</strong> &laquo; &eacute;quipe de 8 personnes &raquo;, &laquo; CA de 5M EUR &raquo;, &laquo; portefeuille de 50 comptes &raquo; plut&ocirc;t que &laquo; g&eacute;rer des clients &raquo;</li>
+      <li><strong>Fourchette salariale :</strong> obligatoire pour les entreprises de 100+ salari&eacute;s &agrave; partir de 2026 (directive transparence UE 2023/970)</li>
+      <li><strong>&Eacute;criture inclusive :</strong> doublets (&laquo; le ou la candidate &raquo;), formulations &eacute;pic&egrave;nes (&laquo; la personne en charge de &raquo;) &mdash; pas de point m&eacute;dian (inaccessible pour les lecteurs d'&eacute;cran)</li>
+      <li><strong>Bullet points :</strong> scan-friendly, 62% des candidats scannent avant de lire en d&eacute;tail</li>
+      <li><strong>Process de recrutement :</strong> nombre d'&eacute;tapes, dur&eacute;e estim&eacute;e, interlocuteurs</li>
+      <li><strong>Avantages chiffr&eacute;s :</strong> &laquo; Carte Swile 10 EUR/jour &raquo; plut&ocirc;t que &laquo; titres-restaurant &raquo;</li>
     </ul>
 
-    <h3>A eviter</h3>
+    <h3>&Agrave; &eacute;viter</h3>
     <table>
-      <tr><th>Expression a eviter</th><th>Pourquoi</th><th>Alternative</th></tr>
-      <tr><td>"Entreprise leader / innovante / dynamique"</td><td>Cliches vides, non differenciants</td><td>Chiffres concrets, mission spécifique</td></tr>
-      <tr><td>"Ninja / rockstar / guru"</td><td>Connotation masculine, non professionnel</td><td>"Expert(e)", "specialiste"</td></tr>
-      <tr><td>"Minimum 10 ans d'expérience"</td><td>Exclut reconvertis et profils atypiques</td><td>"expérience significative en [domaine]"</td></tr>
-      <tr><td>Plus de 5 must-have</td><td>Profil mouton a 5 pattes, exclut les femmes (elles postulent avec 100% des critères, les hommes a 60%)</td><td>3-4 must-have + 2-3 nice-to-have</td></tr>
-      <tr><td>"Salaire selon profil"</td><td>Les candidats passent a l'offre suivante</td><td>Fourchette claire : "55-70K EUR brut"</td></tr>
-      <tr><td>Paragraphes de texte non structures</td><td>Illisible sur mobile</td><td>Bullet points, sous-titres</td></tr>
-      <tr><td>"Diplome de grande ecole"</td><td>Elitisme, exclut les autodidactes</td><td>"Formation supérieure ou expérience equivalente"</td></tr>
+      <tr><th>Expression &agrave; &eacute;viter</th><th>Pourquoi</th><th>Alternative</th></tr>
+      <tr><td>&laquo; Entreprise leader / innovante / dynamique &raquo;</td><td>Clich&eacute;s vides, non diff&eacute;renciants</td><td>Chiffres concrets, mission sp&eacute;cifique</td></tr>
+      <tr><td>&laquo; Ninja / rockstar / guru &raquo;</td><td>Connotation masculine, non professionnel</td><td>&laquo; Expert(e) &raquo;, &laquo; sp&eacute;cialiste &raquo;</td></tr>
+      <tr><td>&laquo; Minimum 10 ans d'exp&eacute;rience &raquo;</td><td>Exclut reconvertis et profils atypiques</td><td>&laquo; Exp&eacute;rience significative en [domaine] &raquo;</td></tr>
+      <tr><td>Plus de 5 must-have</td><td>Profil mouton &agrave; 5 pattes, exclut les femmes (elles postulent avec 100% des crit&egrave;res, les hommes &agrave; 60%)</td><td>3-4 must-have + 2-3 nice-to-have</td></tr>
+      <tr><td>&laquo; Salaire selon profil &raquo;</td><td>Les candidats passent &agrave; l'offre suivante</td><td>Fourchette claire : &laquo; 55-70K EUR brut &raquo;</td></tr>
+      <tr><td>Paragraphes de texte non structur&eacute;s</td><td>Illisible sur mobile</td><td>Bullet points, sous-titres</td></tr>
+      <tr><td>&laquo; Dipl&ocirc;me de grande &eacute;cole &raquo;</td><td>&Eacute;litisme, exclut les autodidactes</td><td>&laquo; Formation sup&eacute;rieure ou exp&eacute;rience &eacute;quivalente &raquo;</td></tr>
     </table>
 
-    <h2>Mots-cles SEO par famille de metier</h2>
-    <p>intégrér ces mots-cles dans le titre et le corps de l'offre pour optimiser le référencement sur Indeed, Google for Jobs, LinkedIn et WTTJ.</p>
+    <h2><span class="bar"></span> Mots-cl&eacute;s SEO par famille de m&eacute;tier</h2>
+    <p>Int&eacute;grer ces mots-cl&eacute;s dans le titre et le corps de l'offre pour optimiser le r&eacute;f&eacute;rencement sur Indeed, Google for Jobs, LinkedIn et WTTJ.</p>
     <table>
-      <tr><th>Famille</th><th>Mots-cles a intégrér (titre + corps)</th></tr>
+      <tr><th>Famille</th><th>Mots-cl&eacute;s &agrave; int&eacute;grer (titre + corps)</th></tr>
       <tr><td>Sales / Commercial</td><td>account executive, business developer, SDR, BDR, SaaS, B2B, closing, prospection, CRM, MEDDIC, quota, ARR, new business</td></tr>
-      <tr><td>Tech / Engineering</td><td>développeur, fullstack, backend, frontend, React, Node.js, Python, TypeScript, DevOps, cloud, API, microservices, CI/CD</td></tr>
+      <tr><td>Tech / Engineering</td><td>d&eacute;veloppeur, fullstack, backend, frontend, React, Node.js, Python, TypeScript, DevOps, cloud, API, microservices, CI/CD</td></tr>
       <tr><td>Data</td><td>data engineer, data analyst, data scientist, SQL, Python, dbt, Airflow, BigQuery, Snowflake, machine learning, pipeline</td></tr>
       <tr><td>Product</td><td>product manager, product owner, roadmap, discovery, agile, scrum, user research, KPI, backlog, sprint</td></tr>
       <tr><td>Marketing</td><td>growth, acquisition, SEO, content marketing, demand gen, marketing manager, leads, paid, CRM, analytics</td></tr>
       <tr><td>RH / People</td><td>talent acquisition, recrutement, HRBP, people ops, marque employeur, onboarding, ATS, comp and ben</td></tr>
-      <tr><td>Finance</td><td>contrôleur de gestion, DAF, FP&A, comptable, audit, reporting, budget, consolidation, normes IFRS</td></tr>
-      <tr><td>Design</td><td>product designer, UX designer, UI designer, Figma, design system, user research, prototype, accessibilite</td></tr>
+      <tr><td>Finance</td><td>contr&ocirc;leur de gestion, DAF, FP&amp;A, comptable, audit, reporting, budget, consolidation, normes IFRS</td></tr>
+      <tr><td>Design</td><td>product designer, UX designer, UI designer, Figma, design system, user research, prototype, accessibilit&eacute;</td></tr>
     </table>
 
-    <h2>Exemple 1 : Account Executive SaaS B2B</h2>
+    <h2><span class="bar"></span> Exemple 1 : Account Executive SaaS B2B</h2>
 
-    <div class="kpi-card">
-      <h3>Account Executive Mid-Market — SaaS FinTech (H/F)</h3>
+    <h3>Account Executive Mid-Market &mdash; SaaS FinTech (H/F)</h3>
 
-      <p><strong>Accroche :</strong><br>
-      Vous aimez closer des deals complexes en cycle long et accompagner la croissance d'un produit qui transforme la gestion de tresorerie de 2 000 PME ? Rejoignez notre équipe Sales en pleine acceleration, portee par une Serie B de 25M EUR.</p>
+    <p><strong>Accroche :</strong><br>
+    Vous aimez closer des deals complexes en cycle long et accompagner la croissance d'un produit qui transforme la gestion de tr&eacute;sorerie de 2 000 PME ? Rejoignez notre &eacute;quipe Sales en pleine acc&eacute;l&eacute;ration, port&eacute;e par une S&eacute;rie B de 25M EUR.</p>
 
-      <p><strong>Qui sommes-nous :</strong><br>
-      [Entreprise] est une FinTech SaaS qui aide les PME a automatiser leur gestion de tresorerie. Serie B (25M EUR leves), 120 collaborateurs, croissance de 80% par an. équipe Sales de 15 personnes, culture data-driven, ambition europeenne.</p>
+    <p><strong>Qui sommes-nous :</strong><br>
+    [Entreprise] est une FinTech SaaS qui aide les PME &agrave; automatiser leur gestion de tr&eacute;sorerie. S&eacute;rie B (25M EUR lev&eacute;s), 120 collaborateurs, croissance de 80% par an. &Eacute;quipe Sales de 15 personnes, culture data-driven, ambition europ&eacute;enne.</p>
 
-      <p><strong>Vos missions :</strong></p>
-      <ul>
-        <li>Gerer le cycle de vente complet sur le segment mid-market (deals 15-50K EUR ARR, cycle 2-4 mois)</li>
-        <li>Conduire les demos produit et adapter le pitch aux enjeux spécifiques du prospect (tresorerie, BFR, previsions)</li>
-        <li>Negocier et closer avec les CFO et DAF (interlocuteurs C-level)</li>
-        <li>Collaborer avec les SDR pour qualifier les leads entrants et optimiser le pipeline</li>
-        <li>Contribuer à la stratégie commerciale : feedback produit, insights marche, playbook de vente</li>
-        <li>Atteindre et depasser un quota annuel de 500K EUR de nouveau ARR</li>
-      </ul>
+    <p><strong>Vos missions :</strong></p>
+    <ul>
+      <li>G&eacute;rer le cycle de vente complet sur le segment mid-market (deals 15-50K EUR ARR, cycle 2-4 mois)</li>
+      <li>Conduire les d&eacute;mos produit et adapter le pitch aux enjeux sp&eacute;cifiques du prospect (tr&eacute;sorerie, BFR, pr&eacute;visions)</li>
+      <li>N&eacute;gocier et closer avec les CFO et DAF (interlocuteurs C-level)</li>
+      <li>Collaborer avec les SDR pour qualifier les leads entrants et optimiser le pipeline</li>
+      <li>Contribuer &agrave; la strat&eacute;gie commerciale : feedback produit, insights march&eacute;, playbook de vente</li>
+      <li>Atteindre et d&eacute;passer un quota annuel de 500K EUR de nouveau ARR</li>
+    </ul>
 
-      <p><strong>Profil recherche :</strong></p>
-      <ul>
-        <li><strong>Must-have :</strong> 3-5 ans d'expérience en vente SaaS B2B complexe (cycle 2+ mois)</li>
-        <li><strong>Must-have :</strong> Track record prouve d'atteinte de quota (100%+ sur les 2 dernieres annees)</li>
-        <li><strong>Must-have :</strong> Maitrise d'une methodologie de vente (MEDDIC, Challenger Sale, SPIN)</li>
-        <li><strong>Must-have :</strong> français courant + anglais professionnel (clients internationaux)</li>
-        <li><strong>Nice-to-have :</strong> expérience FinTech ou vente aux directions financieres</li>
-        <li><strong>Nice-to-have :</strong> Maitrise de Salesforce + outils d'enrichissement (Cognism, Apollo)</li>
-      </ul>
+    <p><strong>Profil recherch&eacute; :</strong></p>
+    <ul>
+      <li><strong>Must-have :</strong> 3-5 ans d'exp&eacute;rience en vente SaaS B2B complexe (cycle 2+ mois)</li>
+      <li><strong>Must-have :</strong> Track record prouv&eacute; d'atteinte de quota (100%+ sur les 2 derni&egrave;res ann&eacute;es)</li>
+      <li><strong>Must-have :</strong> Ma&icirc;trise d'une m&eacute;thodologie de vente (MEDDIC, Challenger Sale, SPIN)</li>
+      <li><strong>Must-have :</strong> Fran&ccedil;ais courant + anglais professionnel (clients internationaux)</li>
+      <li><strong>Nice-to-have :</strong> Exp&eacute;rience FinTech ou vente aux directions financi&egrave;res</li>
+      <li><strong>Nice-to-have :</strong> Ma&icirc;trise de Salesforce + outils d'enrichissement (Cognism, Apollo)</li>
+    </ul>
 
-      <p><strong>Ce qu'on offre :</strong></p>
-      <ul>
-        <li>OTE 80-110K EUR (60% fixe / 40% variable, accelerateurs au-dela de 100%)</li>
-        <li>BSPCE (equity plan revu annuellement)</li>
-        <li>2 jours de teletravail par semaine + full remote 4 semaines/an</li>
-        <li>Mutuelle Alan (prise en charge 100%), carte Swile 10 EUR/jour</li>
-        <li>9 RTT + 25 CP, budget formation 1 500 EUR/an</li>
-        <li>Offsite équipe 2 fois par an</li>
-      </ul>
+    <p><strong>Ce qu'on offre :</strong></p>
+    <ul>
+      <li>OTE 80-110K EUR (60% fixe / 40% variable, acc&eacute;l&eacute;rateurs au-del&agrave; de 100%)</li>
+      <li>BSPCE (equity plan revu annuellement)</li>
+      <li>2 jours de t&eacute;l&eacute;travail par semaine + full remote 4 semaines/an</li>
+      <li>Mutuelle Alan (prise en charge 100%), carte Swile 10 EUR/jour</li>
+      <li>9 RTT + 25 CP, budget formation 1 500 EUR/an</li>
+      <li>Offsite &eacute;quipe 2 fois par an</li>
+    </ul>
 
-      <p><strong>Process (4 etapes, 2 semaines) :</strong></p>
-      <ol>
-        <li>Call RH (30 min) — screening culture et motivations</li>
-        <li>Entretien VP Sales + cas pratique de vente (60 min)</li>
-        <li>Demi-journee immersion équipe (rencontre SDR, CSM, Product)</li>
-        <li>Offre</li>
-      </ol>
-    </div>
+    <p><strong>Process (4 &eacute;tapes, 2 semaines) :</strong></p>
+    <ol>
+      <li>Call RH (30 min) &mdash; screening culture et motivations</li>
+      <li>Entretien VP Sales + cas pratique de vente (60 min)</li>
+      <li>Demi-journ&eacute;e immersion &eacute;quipe (rencontre SDR, CSM, Product)</li>
+      <li>Offre</li>
+    </ol>
 
-    <h2>Exemple 2 : développeur Backend Senior</h2>
+    <h2><span class="bar"></span> Exemple 2 : D&eacute;veloppeur Backend Senior</h2>
 
-    <div class="kpi-card">
-      <h3>développeur Backend Senior — Node.js / TypeScript (H/F)</h3>
+    <h3>D&eacute;veloppeur Backend Senior &mdash; Node.js / TypeScript (H/F)</h3>
 
-      <p><strong>Accroche :</strong><br>
-      Envie de concevoir l'architecture d'une API qui gere 10 millions de transactions par jour avec une latence p99 sous 100ms ? Notre équipe Engineering cherche un profil senior pour poser les fondations techniques de la prochaine phase de croissance.</p>
+    <p><strong>Accroche :</strong><br>
+    Envie de concevoir l'architecture d'une API qui g&egrave;re 10 millions de transactions par jour avec une latence p99 sous 100ms ? Notre &eacute;quipe Engineering cherche un profil senior pour poser les fondations techniques de la prochaine phase de croissance.</p>
 
-      <p><strong>Qui sommes-nous :</strong><br>
-      [Entreprise] est une plateforme de paiement B2B en Serie A (12M EUR leves), 45 collaborateurs. Stack : Node.js, TypeScript, PostgreSQL, Kubernetes, AWS. équipe tech de 18 personnes, 4 squads produit, culture craft et ownership.</p>
+    <p><strong>Qui sommes-nous :</strong><br>
+    [Entreprise] est une plateforme de paiement B2B en S&eacute;rie A (12M EUR lev&eacute;s), 45 collaborateurs. Stack : Node.js, TypeScript, PostgreSQL, Kubernetes, AWS. &Eacute;quipe tech de 18 personnes, 4 squads produit, culture craft et ownership.</p>
 
-      <p><strong>Vos missions :</strong></p>
-      <ul>
-        <li>Concevoir et developper les microservices core (paiement, reconciliation, compliance)</li>
-        <li>Optimiser les performances des API (objectif : p99 sous 100ms, disponibilite 99.95%)</li>
-        <li>Participer aux choix d'architecture avec le CTO et les tech leads (ADR, RFC internes)</li>
-        <li>Mettre en place et maintenir les pratiques de testing (unit, intégration, e2e — couverture cible 85%)</li>
-        <li>Mentorer les devs juniors et conduire les code reviews (3-5 PR/jour)</li>
-      </ul>
+    <p><strong>Vos missions :</strong></p>
+    <ul>
+      <li>Concevoir et d&eacute;velopper les microservices core (paiement, r&eacute;conciliation, compliance)</li>
+      <li>Optimiser les performances des API (objectif : p99 sous 100ms, disponibilit&eacute; 99.95%)</li>
+      <li>Participer aux choix d'architecture avec le CTO et les tech leads (ADR, RFC internes)</li>
+      <li>Mettre en place et maintenir les pratiques de testing (unit, int&eacute;gration, e2e &mdash; couverture cible 85%)</li>
+      <li>Mentorer les devs juniors et conduire les code reviews (3-5 PR/jour)</li>
+    </ul>
 
-      <p><strong>Profil recherche :</strong></p>
-      <ul>
-        <li><strong>Must-have :</strong> 5+ ans en backend, dont 3+ en Node.js / TypeScript</li>
-        <li><strong>Must-have :</strong> expérience avec PostgreSQL et systemes distribues</li>
-        <li><strong>Must-have :</strong> Pratique du testing automatise et du CI/CD</li>
-        <li><strong>Nice-to-have :</strong> expérience Kubernetes, event-driven architecture (Kafka/RabbitMQ)</li>
-        <li><strong>Nice-to-have :</strong> expérience dans le secteur paiement ou FinTech</li>
-      </ul>
+    <p><strong>Profil recherch&eacute; :</strong></p>
+    <ul>
+      <li><strong>Must-have :</strong> 5+ ans en backend, dont 3+ en Node.js / TypeScript</li>
+      <li><strong>Must-have :</strong> Exp&eacute;rience avec PostgreSQL et syst&egrave;mes distribu&eacute;s</li>
+      <li><strong>Must-have :</strong> Pratique du testing automatis&eacute; et du CI/CD</li>
+      <li><strong>Nice-to-have :</strong> Exp&eacute;rience Kubernetes, event-driven architecture (Kafka/RabbitMQ)</li>
+      <li><strong>Nice-to-have :</strong> Exp&eacute;rience dans le secteur paiement ou FinTech</li>
+    </ul>
 
-      <p><strong>Package :</strong> 60-75K EUR fixe | BSPCE | Full remote possible (France) | MacBook Pro M4 | Conferences payees (2/an) | Budget formation 2 000 EUR/an</p>
+    <p><strong>Package :</strong> 60-75K EUR fixe | BSPCE | Full remote possible (France) | MacBook Pro M4 | Conf&eacute;rences pay&eacute;es (2/an) | Budget formation 2 000 EUR/an</p>
 
-      <p><strong>Process (3 etapes, 10 jours) :</strong></p>
-      <ol>
-        <li>Call technique (45 min) — discussion architecture et expérience</li>
-        <li>Test technique asynchrone (take-home, 3h max) — design d'un service</li>
-        <li>Entretien final avec CTO + culture fit équipe</li>
-      </ol>
-    </div>
+    <p><strong>Process (3 &eacute;tapes, 10 jours) :</strong></p>
+    <ol>
+      <li>Call technique (45 min) &mdash; discussion architecture et exp&eacute;rience</li>
+      <li>Test technique asynchrone (take-home, 3h max) &mdash; design d'un service</li>
+      <li>Entretien final avec CTO + culture fit &eacute;quipe</li>
+    </ol>
 
-    <h2>Exemple 3 : Head of People</h2>
+    <h2><span class="bar"></span> Exemple 3 : Head of People</h2>
 
-    <div class="kpi-card">
-      <h3>Head of People — Scale-up Tech 200 personnes (H/F)</h3>
+    <h3>Head of People &mdash; Scale-up Tech 200 personnes (H/F)</h3>
 
-      <p><strong>Accroche :</strong><br>
-      Vous avez structure les People Ops d'une scale-up en forte croissance et vous savez que la culture se construit, pas se decrete ? Vous cherchez un poste ou vous aurez un impact direct sur la trajectoire d'une entreprise qui va doubler en 18 mois.</p>
+    <p><strong>Accroche :</strong><br>
+    Vous avez structur&eacute; les People Ops d'une scale-up en forte croissance et vous savez que la culture se construit, pas se d&eacute;cr&egrave;te ? Vous cherchez un poste o&ugrave; vous aurez un impact direct sur la trajectoire d'une entreprise qui va doubler en 18 mois.</p>
 
-      <p><strong>Qui sommes-nous :</strong><br>
-      [Entreprise] est une LegalTech SaaS en Serie C (50M EUR leves), 200 collaborateurs, croissance de 60% par an. Objectif : 400 collaborateurs fin 2027. Bureaux a Paris et Lyon, équipe internationale (15 nationalites).</p>
+    <p><strong>Qui sommes-nous :</strong><br>
+    [Entreprise] est une LegalTech SaaS en S&eacute;rie C (50M EUR lev&eacute;s), 200 collaborateurs, croissance de 60% par an. Objectif : 400 collaborateurs fin 2027. Bureaux &agrave; Paris et Lyon, &eacute;quipe internationale (15 nationalit&eacute;s).</p>
 
-      <p><strong>Vos missions :</strong></p>
-      <ul>
-        <li>Definir et piloter la stratégie People (recrutement, rétention, culture, comp & ben, HRIS)</li>
-        <li>Manager une équipe de 5 personnes (2 Talent Acquisition, 1 People Ops, 1 HRBP, 1 Office Manager)</li>
-        <li>Structurer les process RH pour accompagner le passage de 200 a 400 collaborateurs</li>
-        <li>Piloter le plan de recrutement annuel (80 embauches prevues en 2026-2027)</li>
-        <li>Mettre en place un framework de performance et de développement (OKR, career paths, 360)</li>
-        <li>Reporter au CEO et présentér au board trimestriellement (KPIs People, budget, risques)</li>
-      </ul>
+    <p><strong>Vos missions :</strong></p>
+    <ul>
+      <li>D&eacute;finir et piloter la strat&eacute;gie People (recrutement, r&eacute;tention, culture, comp &amp; ben, HRIS)</li>
+      <li>Manager une &eacute;quipe de 5 personnes (2 Talent Acquisition, 1 People Ops, 1 HRBP, 1 Office Manager)</li>
+      <li>Structurer les process RH pour accompagner le passage de 200 &agrave; 400 collaborateurs</li>
+      <li>Piloter le plan de recrutement annuel (80 embauches pr&eacute;vues en 2026-2027)</li>
+      <li>Mettre en place un framework de performance et de d&eacute;veloppement (OKR, career paths, 360)</li>
+      <li>Reporter au CEO et pr&eacute;senter au board trimestriellement (KPIs People, budget, risques)</li>
+    </ul>
 
-      <p><strong>Profil recherche :</strong></p>
-      <ul>
-        <li><strong>Must-have :</strong> 8+ ans en RH/People dont 3+ en management d'équipe</li>
-        <li><strong>Must-have :</strong> expérience scale-up tech (passage de 100 a 300+ personnes)</li>
-        <li><strong>Must-have :</strong> Maitrise des sujets comp & ben, marque employeur et HRIS</li>
-        <li><strong>Must-have :</strong> Anglais courant (équipe internationale)</li>
-        <li><strong>Nice-to-have :</strong> expérience dans le deploiement d'un HRIS (Personio, BambooHR, Factorial)</li>
-        <li><strong>Nice-to-have :</strong> Certification SHRM ou equivalent</li>
-      </ul>
+    <p><strong>Profil recherch&eacute; :</strong></p>
+    <ul>
+      <li><strong>Must-have :</strong> 8+ ans en RH/People dont 3+ en management d'&eacute;quipe</li>
+      <li><strong>Must-have :</strong> Exp&eacute;rience scale-up tech (passage de 100 &agrave; 300+ personnes)</li>
+      <li><strong>Must-have :</strong> Ma&icirc;trise des sujets comp &amp; ben, marque employeur et HRIS</li>
+      <li><strong>Must-have :</strong> Anglais courant (&eacute;quipe internationale)</li>
+      <li><strong>Nice-to-have :</strong> Exp&eacute;rience dans le d&eacute;ploiement d'un HRIS (Personio, BambooHR, Factorial)</li>
+      <li><strong>Nice-to-have :</strong> Certification SHRM ou &eacute;quivalent</li>
+    </ul>
 
-      <p><strong>Package :</strong> 85-105K EUR fixe + 15% variable | BSPCE | 3 jours TT | Budget formation équipe 10K EUR/an | Offsite équipe 2x/an</p>
+    <p><strong>Package :</strong> 85-105K EUR fixe + 15% variable | BSPCE | 3 jours TT | Budget formation &eacute;quipe 10K EUR/an | Offsite &eacute;quipe 2x/an</p>
 
-      <p><strong>Process (4 etapes, 3 semaines) :</strong></p>
-      <ol>
-        <li>Call RH (30 min)</li>
-        <li>Entretien CEO + cas pratique People (60 min — "Structurez un plan 6 mois pour passer de 200 a 300")</li>
-        <li>Rencontre équipe People + CFO (2h)</li>
-        <li>Offre</li>
-      </ol>
-    </div>
+    <p><strong>Process (4 &eacute;tapes, 3 semaines) :</strong></p>
+    <ol>
+      <li>Call RH (30 min)</li>
+      <li>Entretien CEO + cas pratique People (60 min &mdash; &laquo; Structurez un plan 6 mois pour passer de 200 &agrave; 300 &raquo;)</li>
+      <li>Rencontre &eacute;quipe People + CFO (2h)</li>
+      <li>Offre</li>
+    </ol>
 
-    <h2>Checklist avant publication</h2>
-    <ul class="checklist">
+    <h2><span class="bar"></span> Checklist avant publication</h2>
+    <ul class="check">
       <li>Titre clair et recherchable (pas d'acronymes internes, inclure H/F)</li>
-      <li>Accroche engageante en 2-3 lignes (pas de cliche corporate)</li>
-      <li>Missions concretes avec verbes d'action et chiffres</li>
-      <li>Maximum 4-5 must-have (separes des nice-to-have)</li>
-      <li>Fourchette salariale indiquee (obligatoire 100+ salariés en 2026)</li>
-      <li>Avantages détaillés et chiffres (pas "mutuelle" mais "mutuelle Alan 100%")</li>
-      <li>Process de recrutement decrit (nombre d'etapes, duree totale, interlocuteurs)</li>
-      <li>Ecriture inclusive (doublets, pas de point median, mention H/F)</li>
-      <li>Mention diversite et engagement egalite des chances</li>
+      <li>Accroche engageante en 2-3 lignes (pas de clich&eacute; corporate)</li>
+      <li>Missions concr&egrave;tes avec verbes d'action et chiffres</li>
+      <li>Maximum 4-5 must-have (s&eacute;par&eacute;s des nice-to-have)</li>
+      <li>Fourchette salariale indiqu&eacute;e (obligatoire 100+ salari&eacute;s en 2026)</li>
+      <li>Avantages d&eacute;taill&eacute;s et chiffr&eacute;s (pas &laquo; mutuelle &raquo; mais &laquo; mutuelle Alan 100% &raquo;)</li>
+      <li>Process de recrutement d&eacute;crit (nombre d'&eacute;tapes, dur&eacute;e totale, interlocuteurs)</li>
+      <li>&Eacute;criture inclusive (doublets, pas de point m&eacute;dian, mention H/F)</li>
+      <li>Mention diversit&eacute; et engagement &eacute;galit&eacute; des chances</li>
       <li>Relue par le hiring manager avant publication</li>
       <li>Longueur entre 400 et 600 mots</li>
-      <li>Mots-cles SEO metier intégrés dans le titre et le premier paragraphe</li>
+      <li>Mots-cl&eacute;s SEO m&eacute;tier int&eacute;gr&eacute;s dans le titre et le premier paragraphe</li>
     </ul>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com &mdash; Tous droits r&eacute;serv&eacute;s 2026</p>
+      <p>Donn&eacute;es issues de 200+ recrutements r&eacute;alis&eacute;s</p>
     </div>
   </div>
 </body>

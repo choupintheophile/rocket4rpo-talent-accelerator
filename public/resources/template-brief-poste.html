@@ -3,442 +3,290 @@
 <head>
   <meta charset="UTF-8">
   <title>Template de brief de poste — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; }
+    .check { list-style: none; padding: 0; }
+    .check li { padding: 10px 14px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; }
+    .check li::before { content: '\2610'; color: #0d9373; font-size: 16px; flex-shrink: 0; }
+    .input-box { border: 1px dashed #ccc; padding: 12px; min-height: 60px; border-radius: 6px; background: #fafafa; margin: 8px 0 16px 0; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Template</div>
     <h1>Brief de <em>poste</em> complet</h1>
-    <p class="cover-subtitle">Template structure pour la prise de brief entre recruteur et hiring manager. Un brief complet divise le time-to-hire par 2 et ameliore la qualité des candidatures de 40%.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 8</span>
-      <span><strong>Temps :</strong> 45 min (meeting)</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">Template structuré pour la prise de brief entre recruteur et hiring manager. Un brief complet divise le time-to-hire par 2 et améliore la qualité des candidatures de 40%.</p>
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-value">-50%</div>
+        <div class="cover-stat-label">Time-to-hire</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">+40%</div>
+        <div class="cover-stat-label">Qualité shortlist</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">45 min</div>
+        <div class="cover-stat-label">Durée meeting brief</div>
+      </div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Template</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Template</div>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">-50%</div>
-        <div class="stat-label">Time-to-hire avec un brief structure vs brief informel</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="val">-50%</div>
+        <div class="lbl">Time-to-hire avec brief structuré</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">+40%</div>
-        <div class="stat-label">qualité de la shortlist avec un brief détaillé</div>
+      <div class="stat">
+        <div class="val">+40%</div>
+        <div class="lbl">Qualité de la shortlist</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">45 min</div>
-        <div class="stat-label">Duree ideale du meeting de brief</div>
+      <div class="stat">
+        <div class="val">45 min</div>
+        <div class="lbl">Durée idéale du meeting</div>
       </div>
     </div>
 
-    <div class="info-box">
+    <div class="info">
       <strong>Mode d'emploi :</strong> Planifiez un meeting de 45 min avec le hiring manager. Posez des questions ouvertes. Challengez les "must-have" : si plus de 5 critères sont obligatoires, le profil n'existe probablement pas. Validez le brief avec le N+1 avant de lancer le sourcing.
     </div>
 
-    <h2>1. Informations générales</h2>
+    <h2><span class="bar"></span> 1. Informations générales</h2>
     <table>
-      <tr><td style="width:240px"><strong>Intitule du poste</strong></td><td></td></tr>
-      <tr><td><strong>Departement / équipe</strong></td><td></td></tr>
-      <tr><td><strong>Rattachement hierarchique (N+1)</strong></td><td></td></tr>
+      <tr><td style="width:240px"><strong>Intitulé du poste</strong></td><td></td></tr>
+      <tr><td><strong>Département / Équipe</strong></td><td></td></tr>
+      <tr><td><strong>Rattachement hiérarchique (N+1)</strong></td><td></td></tr>
       <tr><td><strong>Taille de l'équipe actuelle</strong></td><td></td></tr>
       <tr><td><strong>Localisation</strong></td><td></td></tr>
-      <tr><td><strong>Politique teletravail</strong></td><td>[ ] Full presentiel &nbsp; [ ] Hybride (__j/sem) &nbsp; [ ] Full remote</td></tr>
+      <tr><td><strong>Politique télétravail</strong></td><td>[ ] Full présentiel &nbsp; [ ] Hybride (__j/sem) &nbsp; [ ] Full remote</td></tr>
       <tr><td><strong>Type de contrat</strong></td><td>[ ] CDI &nbsp; [ ] CDD (__mois) &nbsp; [ ] Freelance &nbsp; [ ] Stage / Alternance</td></tr>
-      <tr><td><strong>Date de démarrage souhaitee</strong></td><td></td></tr>
-      <tr><td><strong>Priorite</strong></td><td>[ ] Critique (impact business) &nbsp; [ ] Haute &nbsp; [ ] Moyenne &nbsp; [ ] Basse</td></tr>
-      <tr><td><strong>Raison du recrutement</strong></td><td>[ ] création de poste &nbsp; [ ] Remplacement &nbsp; [ ] Croissance équipe</td></tr>
+      <tr><td><strong>Date de démarrage souhaitée</strong></td><td></td></tr>
+      <tr><td><strong>Priorité</strong></td><td>[ ] Critique (impact business) &nbsp; [ ] Haute &nbsp; [ ] Moyenne &nbsp; [ ] Basse</td></tr>
+      <tr><td><strong>Raison du recrutement</strong></td><td>[ ] Création de poste &nbsp; [ ] Remplacement &nbsp; [ ] Croissance équipe</td></tr>
     </table>
 
-    <h2>2. Contexte et enjeux stratégiques</h2>
+    <h2><span class="bar"></span> 2. Contexte et enjeux stratégiques</h2>
 
     <h3>Pourquoi ce recrutement maintenant ?</h3>
-    <p><em>(Quel est le contexte business qui justifie ce recrutement ? Quel probleme resout-il ?)</em></p>
-    <div style="border: 1px dashed #ccc; padding: 12px; min-height: 60px; border-radius: 6px; background: #fafafa;"></div>
+    <p><em>(Quel est le contexte business qui justifie ce recrutement ? Quel problème résout-il ?)</em></p>
+    <div class="input-box"></div>
 
-    <h3>Quel est le plus grand defi que la personne devra relever dans les 6 premiers mois ?</h3>
-    <p><em>(Le challenge concret qui definit le profil ideal)</em></p>
-    <div style="border: 1px dashed #ccc; padding: 12px; min-height: 60px; border-radius: 6px; background: #fafafa;"></div>
+    <h3>Quel est le plus grand défi que la personne devra relever dans les 6 premiers mois ?</h3>
+    <p><em>(Le challenge concret qui définit le profil idéal)</em></p>
+    <div class="input-box"></div>
 
-    <h3>Comment ce poste s'intégré-t-il dans la stratégie de l'équipe ?</h3>
-    <p><em>(Vision a 12-18 mois, evolution du poste, perspectives de croissance)</em></p>
-    <div style="border: 1px dashed #ccc; padding: 12px; min-height: 60px; border-radius: 6px; background: #fafafa;"></div>
+    <h3>Comment ce poste s'intègre-t-il dans la stratégie de l'équipe ?</h3>
+    <p><em>(Vision à 12-18 mois, évolution du poste, perspectives de croissance)</em></p>
+    <div class="input-box"></div>
 
     <h3>Qu'est-ce qui rend ce poste attractif pour un candidat ?</h3>
     <p><em>(La proposition de valeur : projets, impact, croissance, équipe, stack, culture)</em></p>
-    <div style="border: 1px dashed #ccc; padding: 12px; min-height: 60px; border-radius: 6px; background: #fafafa;"></div>
+    <div class="input-box"></div>
 
-    <h2>3. Missions et responsabilites</h2>
-    <p>Listez les 5 a 7 responsabilites principales, classees par importance et temps consacre :</p>
+    <h2><span class="bar"></span> 3. Missions et responsabilités</h2>
+    <p>Listez les 5 à 7 responsabilités principales, classées par importance et temps consacré :</p>
 
     <table>
-      <tr>
-        <th style="width: 50px">#</th>
-        <th>Responsabilite</th>
-        <th style="width: 100px">% du temps</th>
-        <th style="width: 120px">Priorite</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td></td>
-        <td></td>
-        <td>[ ] Critique [ ] Haute</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td></td>
-        <td></td>
-        <td>[ ] Critique [ ] Haute</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td></td>
-        <td></td>
-        <td>[ ] Haute [ ] Moyenne</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td></td>
-        <td></td>
-        <td>[ ] Haute [ ] Moyenne</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td></td>
-        <td></td>
-        <td>[ ] Moyenne</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td></td>
-        <td></td>
-        <td>[ ] Moyenne</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td></td>
-        <td></td>
-        <td>[ ] Moyenne</td>
-      </tr>
+      <tr><th style="width:50px">#</th><th>Responsabilité</th><th style="width:100px">% du temps</th><th style="width:120px">Priorité</th></tr>
+      <tr><td>1</td><td></td><td></td><td>[ ] Critique [ ] Haute</td></tr>
+      <tr><td>2</td><td></td><td></td><td>[ ] Critique [ ] Haute</td></tr>
+      <tr><td>3</td><td></td><td></td><td>[ ] Haute [ ] Moyenne</td></tr>
+      <tr><td>4</td><td></td><td></td><td>[ ] Haute [ ] Moyenne</td></tr>
+      <tr><td>5</td><td></td><td></td><td>[ ] Moyenne</td></tr>
+      <tr><td>6</td><td></td><td></td><td>[ ] Moyenne</td></tr>
+      <tr><td>7</td><td></td><td></td><td>[ ] Moyenne</td></tr>
     </table>
 
-    <h2>4. compétences et profil recherche</h2>
+    <h2><span class="bar"></span> 4. Compétences et profil recherché</h2>
 
-    <h3>Must-have (critères eliminatoires)</h3>
+    <h3>Must-have (critères éliminatoires)</h3>
 
-    <div class="warning-box">
-      <strong>Regle d'or :</strong> Limitez-vous a 3-5 critères must-have maximum. Chaque critère supplementaire reduit votre vivier de 50%. Avec 7 must-have, vous cherchez un profil qui n'existe statistiquement pas.
+    <div class="warn">
+      <strong>Règle d'or :</strong> Limitez-vous à 3-5 critères must-have maximum. Chaque critère supplémentaire réduit votre vivier de 50%. Avec 7 must-have, vous cherchez un profil qui n'existe statistiquement pas.
     </div>
 
     <table>
-      <tr>
-        <th style="width: 50px">#</th>
-        <th>compétence / expérience</th>
-        <th style="width: 200px">Comment l'évaluer</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td></td>
-        <td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td></td>
-        <td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td></td>
-        <td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td></td>
-        <td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td></td>
-        <td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td>
-      </tr>
+      <tr><th style="width:50px">#</th><th>Compétence / Expérience</th><th style="width:200px">Comment l'évaluer</th></tr>
+      <tr><td>1</td><td></td><td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td></tr>
+      <tr><td>2</td><td></td><td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td></tr>
+      <tr><td>3</td><td></td><td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td></tr>
+      <tr><td>4</td><td></td><td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td></tr>
+      <tr><td>5</td><td></td><td>[ ] CV &nbsp; [ ] Entretien &nbsp; [ ] Test</td></tr>
     </table>
 
-    <h3>Nice-to-have (critères differenciants)</h3>
+    <h3>Nice-to-have (critères différenciants)</h3>
     <table>
-      <tr>
-        <th style="width: 50px">#</th>
-        <th>compétence / expérience</th>
-        <th style="width: 120px">Poids</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td></td>
-        <td>[ ] Fort &nbsp; [ ] Moyen</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td></td>
-        <td>[ ] Fort &nbsp; [ ] Moyen</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td></td>
-        <td>[ ] Fort &nbsp; [ ] Moyen</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td></td>
-        <td>[ ] Fort &nbsp; [ ] Moyen</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td></td>
-        <td>[ ] Fort &nbsp; [ ] Moyen</td>
-      </tr>
+      <tr><th style="width:50px">#</th><th>Compétence / Expérience</th><th style="width:120px">Poids</th></tr>
+      <tr><td>1</td><td></td><td>[ ] Fort &nbsp; [ ] Moyen</td></tr>
+      <tr><td>2</td><td></td><td>[ ] Fort &nbsp; [ ] Moyen</td></tr>
+      <tr><td>3</td><td></td><td>[ ] Fort &nbsp; [ ] Moyen</td></tr>
+      <tr><td>4</td><td></td><td>[ ] Fort &nbsp; [ ] Moyen</td></tr>
+      <tr><td>5</td><td></td><td>[ ] Fort &nbsp; [ ] Moyen</td></tr>
     </table>
 
     <h3>Profil type</h3>
     <table>
-      <tr><td style="width:240px"><strong>Niveau d'expérience</strong></td><td>[ ] Junior (0-2 ans) &nbsp; [ ] Confirme (3-5 ans) &nbsp; [ ] Senior (6+ ans)</td></tr>
+      <tr><td style="width:240px"><strong>Niveau d'expérience</strong></td><td>[ ] Junior (0-2 ans) &nbsp; [ ] Confirmé (3-5 ans) &nbsp; [ ] Senior (6+ ans)</td></tr>
       <tr><td><strong>Formation attendue</strong></td><td></td></tr>
-      <tr><td><strong>Secteurs d'origine privilegies</strong></td><td></td></tr>
-      <tr><td><strong>Taille d'entreprise precedente</strong></td><td>[ ] Startup &nbsp; [ ] Scale-up &nbsp; [ ] ETI &nbsp; [ ] Grand groupe</td></tr>
+      <tr><td><strong>Secteurs d'origine privilégiés</strong></td><td></td></tr>
+      <tr><td><strong>Taille d'entreprise précédente</strong></td><td>[ ] Startup &nbsp; [ ] Scale-up &nbsp; [ ] ETI &nbsp; [ ] Grand groupe</td></tr>
     </table>
 
     <h3>Red flags (critères de disqualification)</h3>
-    <p><em>(Elements qui doivent automatiquement eliminer un candidat, au-dela des compétences)</em></p>
-    <div style="border: 1px dashed #ccc; padding: 12px; min-height: 60px; border-radius: 6px; background: #fafafa;"></div>
+    <p><em>(Éléments qui doivent automatiquement éliminer un candidat, au-delà des compétences)</em></p>
+    <div class="input-box"></div>
 
-    <h2>5. rémunération et avantages</h2>
-
+    <h2><span class="bar"></span> 5. Rémunération et avantages</h2>
     <table>
-      <tr><td style="width:240px"><strong>Fourchette fixe brut annuel</strong></td><td>Min : _______ EUR &nbsp;&nbsp; Max : _______ EUR</td></tr>
+      <tr><td style="width:240px"><strong>Fourchette fixe brut annuel</strong></td><td>Min : _______ € &nbsp;&nbsp; Max : _______ €</td></tr>
       <tr><td><strong>Part variable / bonus</strong></td><td></td></tr>
-      <tr><td><strong>BSPCE / actions</strong></td><td>[ ] Oui (______%) &nbsp; [ ] Non &nbsp; [ ] A negocier</td></tr>
+      <tr><td><strong>BSPCE / actions</strong></td><td>[ ] Oui (______%) &nbsp; [ ] Non &nbsp; [ ] À négocier</td></tr>
       <tr><td><strong>Avantages spécifiques</strong></td><td></td></tr>
-      <tr><td><strong>Flexibilite sur le package</strong></td><td>[ ] Oui, negociable (+/- ___K) &nbsp; [ ] Non, fixe</td></tr>
+      <tr><td><strong>Flexibilité sur le package</strong></td><td>[ ] Oui, négociable (+/- ___K) &nbsp; [ ] Non, fixe</td></tr>
     </table>
 
-    <div class="info-box">
-      <strong>Benchmark :</strong> Comparez votre offre avec les donnees marche. Un ecart de plus de 10% en dessous du marche augmente le taux de refus de 40%. En 2026, 73% des candidats tech refusent une offre en dessous du P25 du marche.
+    <div class="info">
+      <strong>Benchmark :</strong> Comparez votre offre avec les données marché. Un écart de plus de 10% en dessous du marché augmente le taux de refus de 40%. En 2026, 73% des candidats tech refusent une offre en dessous du P25 du marché.
     </div>
 
-    <h2>6. Processus de recrutement</h2>
-
+    <h2><span class="bar"></span> 6. Processus de recrutement</h2>
     <table>
-      <tr>
-        <th>Etape</th>
-        <th>Interlocuteur</th>
-        <th>Duree</th>
-        <th>Objectif</th>
-        <th>délai max</th>
-      </tr>
-      <tr>
-        <td>1. Screening telephonique</td>
-        <td></td>
-        <td>20-30 min</td>
-        <td>Motivation, pretentions, disponibilite</td>
-        <td>J+3 apres candidature</td>
-      </tr>
-      <tr>
-        <td>2. Entretien RH / recruteur</td>
-        <td></td>
-        <td>45 min</td>
-        <td>Culture fit, parcours, soft skills</td>
-        <td>J+5</td>
-      </tr>
-      <tr>
-        <td>3. Entretien manager</td>
-        <td></td>
-        <td>60 min</td>
-        <td>compétences techniques, cas pratique</td>
-        <td>J+10</td>
-      </tr>
-      <tr>
-        <td>4. Test technique / cas pratique</td>
-        <td></td>
-        <td>1-3h</td>
-        <td>Mise en situation reelle</td>
-        <td>J+12</td>
-      </tr>
-      <tr>
-        <td>5. Entretien final (N+2 ou CEO)</td>
-        <td></td>
-        <td>30-45 min</td>
-        <td>Vision, alignement stratégique</td>
-        <td>J+15</td>
-      </tr>
-      <tr>
-        <td>6. Prise de références</td>
-        <td></td>
-        <td>2-3 refs</td>
-        <td>Validation finale</td>
-        <td>J+18</td>
-      </tr>
+      <tr><th>Étape</th><th>Interlocuteur</th><th>Durée</th><th>Objectif</th><th>Délai max</th></tr>
+      <tr><td>1. Screening téléphonique</td><td></td><td>20-30 min</td><td>Motivation, prétentions, disponibilité</td><td>J+3 après candidature</td></tr>
+      <tr><td>2. Entretien RH / recruteur</td><td></td><td>45 min</td><td>Culture fit, parcours, soft skills</td><td>J+5</td></tr>
+      <tr><td>3. Entretien manager</td><td></td><td>60 min</td><td>Compétences techniques, cas pratique</td><td>J+10</td></tr>
+      <tr><td>4. Test technique / cas pratique</td><td></td><td>1-3h</td><td>Mise en situation réelle</td><td>J+12</td></tr>
+      <tr><td>5. Entretien final (N+2 ou CEO)</td><td></td><td>30-45 min</td><td>Vision, alignement stratégique</td><td>J+15</td></tr>
+      <tr><td>6. Prise de références</td><td></td><td>2-3 réfs</td><td>Validation finale</td><td>J+18</td></tr>
     </table>
 
-    <h3>délais cibles</h3>
+    <h3>Délais cibles</h3>
     <table>
       <tr><td style="width:240px"><strong>Objectif time-to-hire</strong></td><td>_____ jours</td></tr>
-      <tr><td><strong>Nombre de candidats en shortlist</strong></td><td>3 a 5 candidats</td></tr>
-      <tr><td><strong>Disponibilites hiring manager</strong></td><td>[ ] Lu &nbsp; [ ] Ma &nbsp; [ ] Me &nbsp; [ ] Je &nbsp; [ ] Ve &nbsp; Creneaux : _________</td></tr>
-      <tr><td><strong>SLA feedback apres entretien</strong></td><td>[ ] 24h &nbsp; [ ] 48h &nbsp; [ ] 72h</td></tr>
+      <tr><td><strong>Nombre de candidats en shortlist</strong></td><td>3 à 5 candidats</td></tr>
+      <tr><td><strong>Disponibilités hiring manager</strong></td><td>[ ] Lu &nbsp; [ ] Ma &nbsp; [ ] Me &nbsp; [ ] Je &nbsp; [ ] Ve &nbsp; Créneaux : _________</td></tr>
+      <tr><td><strong>SLA feedback après entretien</strong></td><td>[ ] 24h &nbsp; [ ] 48h &nbsp; [ ] 72h</td></tr>
     </table>
 
-    <h2>7. Scorecard d'évaluation intégrée</h2>
-    <p>Definissez les critères de notation pour comparer objectivement les candidats :</p>
+    <h2><span class="bar"></span> 7. Scorecard d'évaluation intégrée</h2>
+    <p>Définissez les critères de notation pour comparer objectivement les candidats :</p>
 
     <table>
-      <tr>
-        <th>critère</th>
-        <th>Poids</th>
-        <th style="width:40px">1</th>
-        <th style="width:40px">2</th>
-        <th style="width:40px">3</th>
-        <th style="width:40px">4</th>
-        <th style="width:40px">5</th>
-      </tr>
-      <tr class="category-row">
-        <td colspan="7">compétences techniques</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>x2</td>
-        <td></td><td></td><td></td><td></td><td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>x2</td>
-        <td></td><td></td><td></td><td></td><td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>x1</td>
-        <td></td><td></td><td></td><td></td><td></td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="7">Soft skills</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>x1.5</td>
-        <td></td><td></td><td></td><td></td><td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>x1</td>
-        <td></td><td></td><td></td><td></td><td></td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="7">Culture fit</td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>x1.5</td>
-        <td></td><td></td><td></td><td></td><td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>x1</td>
-        <td></td><td></td><td></td><td></td><td></td>
-      </tr>
+      <tr><th>Critère</th><th>Poids</th><th style="width:40px">1</th><th style="width:40px">2</th><th style="width:40px">3</th><th style="width:40px">4</th><th style="width:40px">5</th></tr>
+      <tr><td></td><td>x2</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td>x2</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td>x1</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td>x1.5</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td>x1</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td>x1.5</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td>x1</td><td></td><td></td><td></td><td></td><td></td></tr>
     </table>
 
-    <h2>8. stratégie de sourcing</h2>
-
+    <h2><span class="bar"></span> 8. Stratégie de sourcing</h2>
     <table>
-      <tr>
-        <th>Canal</th>
-        <th>Pertinence</th>
-        <th>Budget</th>
-        <th>Responsable</th>
-      </tr>
-      <tr>
-        <td>LinkedIn Recruiter / InMails</td>
-        <td>[ ] Oui &nbsp; [ ] Non</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Jobboards (WTTJ, Indeed, HelloWork)</td>
-        <td>[ ] Oui &nbsp; [ ] Non</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Cooptation interne</td>
-        <td>[ ] Oui &nbsp; [ ] Non</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Chasse directe (email / GitHub / communautes)</td>
-        <td>[ ] Oui &nbsp; [ ] Non</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Vivier ATS (anciens candidats)</td>
-        <td>[ ] Oui &nbsp; [ ] Non</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Events / meetups / conferences</td>
-        <td>[ ] Oui &nbsp; [ ] Non</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Cabinet specialise / RPO</td>
-        <td>[ ] Oui &nbsp; [ ] Non</td>
-        <td></td>
-        <td></td>
-      </tr>
+      <tr><th>Canal</th><th>Pertinence</th><th>Budget</th><th>Responsable</th></tr>
+      <tr><td>LinkedIn Recruiter / InMails</td><td>[ ] Oui &nbsp; [ ] Non</td><td></td><td></td></tr>
+      <tr><td>Jobboards (WTTJ, Indeed, HelloWork)</td><td>[ ] Oui &nbsp; [ ] Non</td><td></td><td></td></tr>
+      <tr><td>Cooptation interne</td><td>[ ] Oui &nbsp; [ ] Non</td><td></td><td></td></tr>
+      <tr><td>Chasse directe (email / GitHub / communautés)</td><td>[ ] Oui &nbsp; [ ] Non</td><td></td><td></td></tr>
+      <tr><td>Vivier ATS (anciens candidats)</td><td>[ ] Oui &nbsp; [ ] Non</td><td></td><td></td></tr>
+      <tr><td>Events / meetups / conférences</td><td>[ ] Oui &nbsp; [ ] Non</td><td></td><td></td></tr>
+      <tr><td>Cabinet spécialisé / RPO</td><td>[ ] Oui &nbsp; [ ] Non</td><td></td><td></td></tr>
     </table>
 
-    <h2>9. Validation du brief</h2>
-
+    <h2><span class="bar"></span> 9. Validation du brief</h2>
     <table>
       <tr><td style="width:240px"><strong>Hiring manager</strong></td><td></td></tr>
       <tr><td><strong>Date de validation</strong></td><td></td></tr>
-      <tr><td><strong>Recruteur assigne</strong></td><td></td></tr>
+      <tr><td><strong>Recruteur assigné</strong></td><td></td></tr>
       <tr><td><strong>Prochain point de suivi</strong></td><td></td></tr>
-      <tr><td><strong>Frequence de reporting</strong></td><td>[ ] Hebdomadaire &nbsp; [ ] Bi-mensuel &nbsp; [ ] à la demande</td></tr>
+      <tr><td><strong>Fréquence de reporting</strong></td><td>[ ] Hebdomadaire &nbsp; [ ] Bi-mensuel &nbsp; [ ] À la demande</td></tr>
     </table>
 
     <h3>Checklist avant lancement</h3>
-    <ul class="checklist">
-      <li>Brief valide et signe par le hiring manager</li>
-      <li>Budget confirme par les RH / finance</li>
-      <li>Fiche de poste redigee et approuvee</li>
-      <li>Scorecard d'évaluation finalisee</li>
-      <li>Canaux de sourcing actives et budgets alloues</li>
-      <li>Creneaux d'entretien bloques dans l'agenda du hiring manager</li>
+    <ul class="check">
+      <li>Brief validé et signé par le hiring manager</li>
+      <li>Budget confirmé par les RH / finance</li>
+      <li>Fiche de poste rédigée et approuvée</li>
+      <li>Scorecard d'évaluation finalisée</li>
+      <li>Canaux de sourcing activés et budgets alloués</li>
+      <li>Créneaux d'entretien bloqués dans l'agenda du hiring manager</li>
       <li>Benchmark salaire vérifié (Figures.hr, WTTJ Salary)</li>
-      <li>Process d'entretien communique a tous les interviewers</li>
+      <li>Process d'entretien communiqué à tous les interviewers</li>
     </ul>
 
-    <div class="stat-box">
-      Un brief complet reduit le time-to-hire de 50% et augmente le taux d'acceptation des offres de 25%. Investir 45 minutes dans un brief structure economise en moyenne 15 jours de recrutement.
+    <div class="big-stat">
+      <div class="val">-50%</div>
+      <div class="lbl">Un brief complet réduit le time-to-hire de 50% et augmente le taux d'acceptation des offres de 25%</div>
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

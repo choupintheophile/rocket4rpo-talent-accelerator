@@ -2,345 +2,322 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Checklist d'onboarding J-7 a J+90 — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <title>Checklist d'onboarding J-7 à J+90 — Rocket4RPO</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; }
+    .check { list-style: none; padding: 0; }
+    .check li { padding: 10px 14px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; }
+    .check li::before { content: '\2610'; color: #0d9373; font-size: 16px; flex-shrink: 0; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Checklist</div>
-    <h1>Checklist d'<em>onboarding</em> — J-7 a J+90</h1>
-    <p class="cover-subtitle">Guide complet pour intégrér un nouveau collaborateur de maniere structuree. Timeline détaillée, responsables, et metriques de suivi pour un onboarding qui booste la rétention de 82%.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 7</span>
-      <span><strong>Temps :</strong> 10 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <h1>Checklist d'<em>onboarding</em> — J-7 à J+90</h1>
+    <p class="cover-sub">Guide complet pour intégrer un nouveau collaborateur de manière structurée. Timeline détaillée, responsables, et métriques de suivi pour un onboarding qui booste la rétention de 82%.</p>
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-value">82%</div>
+        <div class="cover-stat-label">Amélioration rétention</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">70%</div>
+        <div class="cover-stat-label">Quittent pour mauvais onboarding</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">+54%</div>
+        <div class="cover-stat-label">Productivité à 6 mois</div>
+      </div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Checklist</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Checklist</div>
     </div>
 
-    <h2>Pourquoi l'onboarding est critique</h2>
-    <p>Un onboarding structure est le facteur n1 de rétention des nouvelles recrues. Les chiffres parlent d'eux-mêmes :</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">82%</div>
-        <div class="stat-label">amélioration de la rétention avec un onboarding structure (Brandon Hall Group)</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="val">82%</div>
+        <div class="lbl">Amélioration rétention</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">70%</div>
-        <div class="stat-label">Des employes qui quittent dans les 6 mois citent un mauvais onboarding</div>
+      <div class="stat">
+        <div class="val">70%</div>
+        <div class="lbl">Quittent pour mauvais onboarding</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">54%</div>
-        <div class="stat-label">De productivite en plus a 6 mois avec un plan 30-60-90</div>
+      <div class="stat">
+        <div class="val">+54%</div>
+        <div class="lbl">Productivité à 6 mois</div>
       </div>
     </div>
 
-    <div class="warning-box">
-      <strong>coût d'un depart premature :</strong> Un collaborateur qui quitte dans les 12 premiers mois coute en moyenne 45 000 EUR a l'entreprise (recrutement + formation + productivite perdue + nouveau recrutement). L'investissement dans un bon onboarding est largement rentabilise.
+    <h2><span class="bar"></span> Pourquoi l'onboarding est critique</h2>
+    <p>Un onboarding structuré est le facteur n°1 de rétention des nouvelles recrues. Les chiffres parlent d'eux-mêmes.</p>
+
+    <div class="warn">
+      <strong>Coût d'un départ prématuré :</strong> Un collaborateur qui quitte dans les 12 premiers mois coûte en moyenne 45 000 € à l'entreprise (recrutement + formation + productivité perdue + nouveau recrutement). L'investissement dans un bon onboarding est largement rentabilisé.
     </div>
 
-    <div class="info-box">
-      <strong>Mode d'emploi :</strong> Imprimez cette checklist (Ctrl+P) ou intégréz-la dans votre outil de gestion de projet. Attribuez un responsable a chaque ligne. Cochez au fur et a mesure.
+    <div class="info">
+      <strong>Mode d'emploi :</strong> Imprimez cette checklist (Ctrl+P) ou intégrez-la dans votre outil de gestion de projet. Attribuez un responsable à chaque ligne. Cochez au fur et à mesure.
     </div>
 
-    <h2>Phase 1 : Pre-boarding (J-7 a J-1)</h2>
-    <p><strong>Objectif :</strong> préparér l'arrivee pour que le jour 1 soit fluide et accueillant.</p>
+    <h2><span class="bar"></span> Phase 1 : Pré-boarding (J-7 à J-1)</h2>
+    <p><strong>Objectif :</strong> Préparer l'arrivée pour que le jour 1 soit fluide et accueillant.</p>
     <p><strong>Responsable principal :</strong> RH + Manager</p>
 
     <h3>Administratif et logistique</h3>
-    <ul class="checklist">
-      <li>Envoyer le contrat de travail et les documents a signer (mutuelle, reglement interieur)</li>
-      <li>Collecter les documents du collaborateur (RIB, piece d'identite, justificatif de domicile)</li>
-      <li>Commander le materiel informatique (PC, ecran, clavier, souris, casque)</li>
-      <li>Commander le badge d'acces et les cles si nécessaire</li>
-      <li>préparér le poste de travail physique (bureau, chaise, fournitures)</li>
+    <ul class="check">
+      <li>Envoyer le contrat de travail et les documents à signer (mutuelle, règlement intérieur)</li>
+      <li>Collecter les documents du collaborateur (RIB, pièce d'identité, justificatif de domicile)</li>
+      <li>Commander le matériel informatique (PC, écran, clavier, souris, casque)</li>
+      <li>Commander le badge d'accès et les clés si nécessaire</li>
+      <li>Préparer le poste de travail physique (bureau, chaise, fournitures)</li>
     </ul>
 
-    <h3>Outils et acces</h3>
-    <ul class="checklist">
-      <li>créér l'adresse email professionnelle</li>
-      <li>créér les comptes outils : Slack / Teams, ATS, CRM, Notion / Confluence</li>
-      <li>créér les acces VPN et sécurité si nécessaire</li>
+    <h3>Outils et accès</h3>
+    <ul class="check">
+      <li>Créer l'adresse email professionnelle</li>
+      <li>Créer les comptes outils : Slack / Teams, ATS, CRM, Notion / Confluence</li>
+      <li>Créer les accès VPN et sécurité si nécessaire</li>
       <li>Ajouter aux groupes et canaux pertinents (Slack, Teams, email)</li>
       <li>Configurer la signature email</li>
     </ul>
 
     <h3>Communication et accueil</h3>
-    <ul class="checklist">
-      <li>Envoyer un email de bienvenue personnalise avec les infos pratiques (adresse, horaires, dress code, parking)</li>
-      <li>Prevenir l'équipe de l'arrivee du nouveau collaborateur (nom, poste, date)</li>
-      <li>Planifier le dejeuner ou cafe de bienvenue avec l'équipe</li>
-      <li>Assigner un buddy / parrain (volontaire, disponible, minimum 6 mois d'anciennete)</li>
+    <ul class="check">
+      <li>Envoyer un email de bienvenue personnalisé avec les infos pratiques (adresse, horaires, dress code, parking)</li>
+      <li>Prévenir l'équipe de l'arrivée du nouveau collaborateur (nom, poste, date)</li>
+      <li>Planifier le déjeuner ou café de bienvenue avec l'équipe</li>
+      <li>Assigner un buddy / parrain (volontaire, disponible, minimum 6 mois d'ancienneté)</li>
       <li>Briefer le buddy sur son rôle et les attendus</li>
     </ul>
 
-    <h3>Planning de la premiere semaine</h3>
-    <ul class="checklist">
-      <li>Bloquer les creneaux pour les sessions d'intégration (culture, outils, metier)</li>
-      <li>Planifier les 1:1 avec les membres cles de l'équipe et les parties prenantes</li>
-      <li>préparér le plan 30-60-90 jours en draft (a finaliser avec le collaborateur)</li>
+    <h3>Planning de la première semaine</h3>
+    <ul class="check">
+      <li>Bloquer les créneaux pour les sessions d'intégration (culture, outils, métier)</li>
+      <li>Planifier les 1:1 avec les membres clés de l'équipe et les parties prenantes</li>
+      <li>Préparer le plan 30-60-90 jours en draft (à finaliser avec le collaborateur)</li>
     </ul>
 
-    <h2>Phase 2 : Jour 1 (J0)</h2>
-    <p><strong>Objectif :</strong> créér une premiere impression positive et rassurante.</p>
+    <h2><span class="bar"></span> Phase 2 : Jour 1 (J0)</h2>
+    <p><strong>Objectif :</strong> Créer une première impression positive et rassurante.</p>
     <p><strong>Responsable principal :</strong> Manager + Buddy</p>
 
     <h3>Accueil</h3>
-    <ul class="checklist">
-      <li>Accueillir personnellement le nouveau collaborateur a son arrivee</li>
+    <ul class="check">
+      <li>Accueillir personnellement le nouveau collaborateur à son arrivée</li>
       <li>Faire le tour des locaux (ou tour virtuel si remote)</li>
-      <li>présentér aux membres de l'équipe en personne</li>
-      <li>Remettre le materiel et vérifiér que tous les acces fonctionnent</li>
+      <li>Présenter aux membres de l'équipe en personne</li>
+      <li>Remettre le matériel et vérifier que tous les accès fonctionnent</li>
     </ul>
 
     <h3>Sessions jour 1</h3>
-    <ul class="checklist">
-      <li>présentation de l'entreprise : mission, vision, valeurs, historique</li>
-      <li>présentation de l'organigramme et des équipes</li>
+    <ul class="check">
+      <li>Présentation de l'entreprise : mission, vision, valeurs, historique</li>
+      <li>Présentation de l'organigramme et des équipes</li>
       <li>Tour des outils de communication (Slack, email, agenda)</li>
-      <li>Dejeuner d'équipe ou cafe de bienvenue</li>
-      <li>Point de fin de journee avec le manager (15 min) : ressenti, questions</li>
+      <li>Déjeuner d'équipe ou café de bienvenue</li>
+      <li>Point de fin de journée avec le manager (15 min) : ressenti, questions</li>
     </ul>
 
-    <h2>Phase 3 : Premiere semaine (J1 a J5)</h2>
+    <h2><span class="bar"></span> Phase 3 : Première semaine (J1 à J5)</h2>
     <p><strong>Objectif :</strong> Rendre le collaborateur autonome sur les outils et les process du quotidien.</p>
     <p><strong>Responsable principal :</strong> Manager + Buddy + RH</p>
 
     <h3>Formation outils</h3>
-    <ul class="checklist">
+    <ul class="check">
       <li>Formation outils de communication (Slack, Teams, email, visio)</li>
-      <li>Formation outils metier (CRM, ATS, IDE, outils spécifiques)</li>
+      <li>Formation outils métier (CRM, ATS, IDE, outils spécifiques)</li>
       <li>Formation outils de gestion de projet (Jira, Linear, Notion, Asana)</li>
-      <li>Formation process internes (conges, notes de frais, achat materiel)</li>
-      <li>Documentation interne : ou la trouver, comment contribuer</li>
+      <li>Formation process internes (congés, notes de frais, achat matériel)</li>
+      <li>Documentation interne : où la trouver, comment contribuer</li>
     </ul>
 
-    <h3>intégration équipe</h3>
-    <ul class="checklist">
-      <li>Participer aux rituels d'équipe (daily standup, weekly, retro)</li>
+    <h3>Intégration équipe</h3>
+    <ul class="check">
+      <li>Participer aux rituels d'équipe (daily standup, weekly, rétro)</li>
       <li>1:1 de 30 min avec chaque membre direct de l'équipe</li>
-      <li>Rencontre avec 2-3 parties prenantes transverses cles</li>
+      <li>Rencontre avec 2-3 parties prenantes transverses clés</li>
       <li>Point quotidien informel avec le buddy (15-20 min)</li>
     </ul>
 
     <h3>Objectifs</h3>
-    <ul class="checklist">
-      <li>présentér le plan 30-60-90 jours en draft</li>
-      <li>Definir ensemble 3-5 objectifs concrets pour les 30 premiers jours</li>
-      <li>Identifier une premiere mission concrete a confier (quick win)</li>
-      <li>Aligner avec le manager sur les priorites et les livrables</li>
+    <ul class="check">
+      <li>Présenter le plan 30-60-90 jours en draft</li>
+      <li>Définir ensemble 3-5 objectifs concrets pour les 30 premiers jours</li>
+      <li>Identifier une première mission concrète à confier (quick win)</li>
+      <li>Aligner avec le manager sur les priorités et les livrables</li>
     </ul>
 
-    <h2>Phase 4 : Semaine 2 (J8 a J14)</h2>
-    <p><strong>Objectif :</strong> Approfondir la connaissance du metier et commencer a contribuer.</p>
+    <h2><span class="bar"></span> Phase 4 : Semaine 2 (J8 à J14)</h2>
+    <p><strong>Objectif :</strong> Approfondir la connaissance du métier et commencer à contribuer.</p>
     <p><strong>Responsable principal :</strong> Manager + Buddy</p>
 
-    <ul class="checklist">
+    <ul class="check">
       <li>Rencontres avec les équipes transverses (tech, marketing, sales, support)</li>
-      <li>Shadowing : observer un collegue experimentee dans ses taches cles</li>
-      <li>Premiere contribution concrete sur un projet en cours</li>
+      <li>Shadowing : observer un collègue expérimenté dans ses tâches clés</li>
+      <li>Première contribution concrète sur un projet en cours</li>
       <li>Formation approfondie sur le produit / service de l'entreprise</li>
       <li>Point buddy : recueillir les impressions et les questions</li>
     </ul>
 
-    <h2>Phase 5 : Point a J+15</h2>
-    <p><strong>Objectif :</strong> Bilan intermediaire pour ajuster si nécessaire.</p>
+    <h2><span class="bar"></span> Phase 5 : Point à J+15</h2>
+    <p><strong>Objectif :</strong> Bilan intermédiaire pour ajuster si nécessaire.</p>
     <p><strong>Responsable principal :</strong> Manager</p>
 
-    <ul class="checklist">
+    <ul class="check">
       <li>Entretien formel de 45 min avec le manager</li>
-      <li>Recueillir le ressenti du collaborateur (satisfaction, difficultes, surprises)</li>
-      <li>vérifiér l'avancement des objectifs a 30 jours</li>
-      <li>Identifier les blocages eventuels et planifier des actions correctives</li>
+      <li>Recueillir le ressenti du collaborateur (satisfaction, difficultés, surprises)</li>
+      <li>Vérifier l'avancement des objectifs à 30 jours</li>
+      <li>Identifier les blocages éventuels et planifier des actions correctives</li>
       <li>Demander un feedback au buddy</li>
       <li>Ajuster le plan d'intégration si nécessaire</li>
     </ul>
 
-    <div class="info-box">
-      <strong>Questions a poser au J+15 :</strong><br>
-      - Qu'est-ce qui t'a le plus surpris depuis ton arrivee ?<br>
+    <div class="info">
+      <strong>Questions à poser au J+15 :</strong><br>
+      - Qu'est-ce qui t'a le plus surpris depuis ton arrivée ?<br>
       - De quoi as-tu besoin pour être plus efficace ?<br>
       - Comment se passe la relation avec l'équipe ?<br>
       - Y a-t-il quelque chose que tu changerais dans le processus d'intégration ?
     </div>
 
-    <h2>Phase 6 : Bilan a J+30</h2>
-    <p><strong>Objectif :</strong> évaluer la progression et fixer les objectifs du mois 2.</p>
+    <h2><span class="bar"></span> Phase 6 : Bilan à J+30</h2>
+    <p><strong>Objectif :</strong> Évaluer la progression et fixer les objectifs du mois 2.</p>
     <p><strong>Responsable principal :</strong> Manager + RH</p>
 
-    <ul class="checklist">
+    <ul class="check">
       <li>Revue formelle des objectifs du premier mois (atteints / en cours / non atteints)</li>
-      <li>Fixer les objectifs des jours 31 a 60 (autonomie progressive)</li>
+      <li>Fixer les objectifs des jours 31 à 60 (autonomie progressive)</li>
       <li>Demander un feedback formel au buddy</li>
-      <li>Recueillir le "rapport d'etonnement" (vision fraiche du nouveau collaborateur)</li>
-      <li>évaluer le niveau d'autonomie sur les outils et les process</li>
-      <li>Premier feedback 360 informel (manager, buddy, 1-2 collegues)</li>
+      <li>Recueillir le "rapport d'étonnement" (vision fraîche du nouveau collaborateur)</li>
+      <li>Évaluer le niveau d'autonomie sur les outils et les process</li>
+      <li>Premier feedback 360 informel (manager, buddy, 1-2 collègues)</li>
     </ul>
 
-    <h2>Phase 7 : Mois 2 (J+31 a J+60)</h2>
-    <p><strong>Objectif :</strong> Montee en autonomie et contribution reelle aux projets.</p>
+    <h2><span class="bar"></span> Phase 7 : Mois 2 (J+31 à J+60)</h2>
+    <p><strong>Objectif :</strong> Montée en autonomie et contribution réelle aux projets.</p>
     <p><strong>Responsable principal :</strong> Manager</p>
 
-    <ul class="checklist">
-      <li>Prise en charge autonome de missions completes</li>
+    <ul class="check">
+      <li>Prise en charge autonome de missions complètes</li>
       <li>Contribution active aux rituels d'équipe (pas seulement en observation)</li>
       <li>Point hebdomadaire manager (30 min) : suivi objectifs + coaching</li>
-      <li>Point bi-mensuel avec le buddy (moins frequent, plus cible)</li>
+      <li>Point bi-mensuel avec le buddy (moins fréquent, plus ciblé)</li>
       <li>Participer à un projet transverse si possible</li>
-      <li>Bilan a J+60 : revue des objectifs, ajustement pour le mois 3</li>
+      <li>Bilan à J+60 : revue des objectifs, ajustement pour le mois 3</li>
     </ul>
 
-    <h2>Phase 8 : Bilan de fin de période d'essai (J+90)</h2>
+    <h2><span class="bar"></span> Phase 8 : Bilan de fin de période d'essai (J+90)</h2>
     <p><strong>Objectif :</strong> Valider l'intégration et projeter la suite.</p>
     <p><strong>Responsable principal :</strong> Manager + RH</p>
 
-    <ul class="checklist">
-      <li>évaluation formelle des performances sur les 3 premiers mois</li>
+    <ul class="check">
+      <li>Évaluation formelle des performances sur les 3 premiers mois</li>
       <li>Feedback 360 complet (manager, buddy, pairs, parties prenantes)</li>
       <li>Revue des objectifs du plan 30-60-90</li>
-      <li>décision de validation de la période d'essai (renouvellement, validation, fin)</li>
-      <li>Definir le plan de développement a 6 mois (formation, montee en compétences)</li>
+      <li>Décision de validation de la période d'essai (renouvellement, validation, fin)</li>
+      <li>Définir le plan de développement à 6 mois (formation, montée en compétences)</li>
       <li>Fixer les objectifs du prochain trimestre / semestre</li>
       <li>Envoyer le survey de satisfaction onboarding (NPS onboarding)</li>
     </ul>
 
-    <h2>KPIs de suivi de l'onboarding</h2>
+    <h2><span class="bar"></span> KPIs de suivi de l'onboarding</h2>
 
     <table>
-      <tr>
-        <th>KPI</th>
-        <th>Mesure</th>
-        <th>Cible</th>
-        <th>Quand</th>
-      </tr>
-      <tr>
-        <td><strong>Taux de completion de la checklist</strong></td>
-        <td>Actions réalisées / actions prevues</td>
-        <td>>90%</td>
-        <td>J+30</td>
-      </tr>
-      <tr>
-        <td><strong>NPS onboarding</strong></td>
-        <td>Survey collaborateur (0-10)</td>
-        <td>>50</td>
-        <td>J+90</td>
-      </tr>
-      <tr>
-        <td><strong>Time-to-productivity</strong></td>
-        <td>Jours avant autonomie sur les taches cles</td>
-        <td><45 jours</td>
-        <td>Continu</td>
-      </tr>
-      <tr>
-        <td><strong>Satisfaction manager</strong></td>
-        <td>Score sur 5</td>
-        <td>>4/5</td>
-        <td>J+90</td>
-      </tr>
-      <tr>
-        <td><strong>rétention a 12 mois</strong></td>
-        <td>Collaborateurs encore en poste a M+12</td>
-        <td>>90%</td>
-        <td>M+12</td>
-      </tr>
-      <tr>
-        <td><strong>Atteinte objectifs 30-60-90</strong></td>
-        <td>Objectifs atteints / objectifs fixes</td>
-        <td>>80%</td>
-        <td>J+30 / J+60 / J+90</td>
-      </tr>
+      <tr><th>KPI</th><th>Mesure</th><th>Cible</th><th>Quand</th></tr>
+      <tr><td><strong>Taux de complétion de la checklist</strong></td><td>Actions réalisées / actions prévues</td><td>&gt;90%</td><td>J+30</td></tr>
+      <tr><td><strong>NPS onboarding</strong></td><td>Survey collaborateur (0-10)</td><td>&gt;50</td><td>J+90</td></tr>
+      <tr><td><strong>Time-to-productivity</strong></td><td>Jours avant autonomie sur les tâches clés</td><td>&lt;45 jours</td><td>Continu</td></tr>
+      <tr><td><strong>Satisfaction manager</strong></td><td>Score sur 5</td><td>&gt;4/5</td><td>J+90</td></tr>
+      <tr><td><strong>Rétention à 12 mois</strong></td><td>Collaborateurs encore en poste à M+12</td><td>&gt;90%</td><td>M+12</td></tr>
+      <tr><td><strong>Atteinte objectifs 30-60-90</strong></td><td>Objectifs atteints / objectifs fixés</td><td>&gt;80%</td><td>J+30 / J+60 / J+90</td></tr>
     </table>
 
-    <h2>Matrice RACI de l'onboarding</h2>
+    <h2><span class="bar"></span> Matrice RACI de l'onboarding</h2>
 
     <table>
-      <tr>
-        <th>Action</th>
-        <th>RH</th>
-        <th>Manager</th>
-        <th>Buddy</th>
-        <th>IT</th>
-      </tr>
-      <tr>
-        <td>Contrat et documents admin</td>
-        <td><strong>R</strong></td>
-        <td>I</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <td>Materiel et acces informatiques</td>
-        <td>C</td>
-        <td>I</td>
-        <td>--</td>
-        <td><strong>R</strong></td>
-      </tr>
-      <tr>
-        <td>Welcome pack et communication</td>
-        <td><strong>R</strong></td>
-        <td>C</td>
-        <td>I</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <td>Plan 30-60-90 et objectifs</td>
-        <td>C</td>
-        <td><strong>R</strong></td>
-        <td>I</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <td>Formation outils</td>
-        <td>C</td>
-        <td>A</td>
-        <td><strong>R</strong></td>
-        <td>C</td>
-      </tr>
-      <tr>
-        <td>intégration équipe</td>
-        <td>I</td>
-        <td><strong>R</strong></td>
-        <td><strong>R</strong></td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <td>Suivi et bilans</td>
-        <td>C</td>
-        <td><strong>R</strong></td>
-        <td>C</td>
-        <td>--</td>
-      </tr>
-      <tr>
-        <td>Validation période d'essai</td>
-        <td><strong>R</strong></td>
-        <td><strong>R</strong></td>
-        <td>C</td>
-        <td>--</td>
-      </tr>
+      <tr><th>Action</th><th>RH</th><th>Manager</th><th>Buddy</th><th>IT</th></tr>
+      <tr><td>Contrat et documents admin</td><td><strong>R</strong></td><td>I</td><td>--</td><td>--</td></tr>
+      <tr><td>Matériel et accès informatiques</td><td>C</td><td>I</td><td>--</td><td><strong>R</strong></td></tr>
+      <tr><td>Welcome pack et communication</td><td><strong>R</strong></td><td>C</td><td>I</td><td>--</td></tr>
+      <tr><td>Plan 30-60-90 et objectifs</td><td>C</td><td><strong>R</strong></td><td>I</td><td>--</td></tr>
+      <tr><td>Formation outils</td><td>C</td><td>A</td><td><strong>R</strong></td><td>C</td></tr>
+      <tr><td>Intégration équipe</td><td>I</td><td><strong>R</strong></td><td><strong>R</strong></td><td>--</td></tr>
+      <tr><td>Suivi et bilans</td><td>C</td><td><strong>R</strong></td><td>C</td><td>--</td></tr>
+      <tr><td>Validation période d'essai</td><td><strong>R</strong></td><td><strong>R</strong></td><td>C</td><td>--</td></tr>
     </table>
 
-    <p><em>R = Responsable, A = Approbateur, C = Consulte, I = Informe</em></p>
+    <p><em>R = Responsable, A = Approbateur, C = Consulté, I = Informé</em></p>
 
-    <div class="stat-box">
-      Les entreprises avec un onboarding structure sur 90 jours ont un taux de rétention de 91% a 12 mois, contre 68% pour celles qui n'ont pas de processus formel. L'investissement moyen par onboarding (temps + outils) est de 2 500 EUR, pour un retour de 15 000 - 45 000 EUR en coûts evites.
+    <div class="big-stat">
+      <div class="val">91%</div>
+      <div class="lbl">Taux de rétention à 12 mois avec un onboarding structuré sur 90 jours (vs 68% sans processus formel)</div>
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

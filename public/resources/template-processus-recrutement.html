@@ -2,367 +2,331 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Processus de recrutement en 7 etapes — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <title>Processus de recrutement en 7 étapes — Rocket4RPO</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    ul { margin-bottom: 12px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; }
+    .check { list-style: none; padding: 0; }
+    .check li { padding: 10px 14px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; font-size: 12.5px; }
+    .check li::before { content: '\2610'; color: #0d9373; font-size: 16px; flex-shrink: 0; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div><div class="line-top"></div><div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Template</div>
-    <h1>Processus de recrutement en <em>7 etapes</em></h1>
-    <p class="cover-subtitle">Workflow complet avec durees cibles, SLAs, responsables, livrables et critères de passage. Un process structure reduit le time-to-hire de 30% et ameliore la qualité des embauches.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 10</span>
-      <span><strong>Temps :</strong> 15 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <h1>Processus de recrutement en <em>7 étapes</em></h1>
+    <p class="cover-sub">Workflow complet avec durées cibles, SLAs, responsables, livrables et critères de passage. Un process structuré réduit le time-to-hire de 30%.</p>
+    <div class="cover-stats">
+      <div><div class="cover-stat-value">-30%</div><div class="cover-stat-label">Time-to-hire</div></div>
+      <div><div class="cover-stat-value">500 €/j</div><div class="cover-stat-label">Coût poste vacant</div></div>
+      <div><div class="cover-stat-value">40%</div><div class="cover-stat-label">Abandon > 4 entretiens</div></div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Template</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Template</div>
     </div>
 
-    <h2>Pourquoi structurer votre process ?</h2>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">-30%</div>
-        <div class="stat-label">Reduction du time-to-hire avec un process structure</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">500 EUR/j</div>
-        <div class="stat-label">coût moyen d'un poste vacant par jour de retard</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">40%</div>
-        <div class="stat-label">Taux d'abandon candidat au-dela de 4 entretiens</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="val">-30%</div><div class="lbl">Réduction time-to-hire</div></div>
+      <div class="stat"><div class="val">500 €/j</div><div class="lbl">Coût d'un poste vacant</div></div>
+      <div class="stat"><div class="val">40%</div><div class="lbl">Abandon au-delà de 4 entretiens</div></div>
     </div>
 
-    <h2>Vue d'ensemble du workflow</h2>
-
+    <h2><span class="bar"></span> Vue d'ensemble du workflow</h2>
     <table>
-      <tr>
-        <th>Etape</th>
-        <th>Duree cible</th>
-        <th>Responsable</th>
-        <th>Livrable</th>
-        <th>SLA</th>
-      </tr>
-      <tr>
-        <td><strong>1. Brief</strong></td>
-        <td>J0 - J2</td>
-        <td>Recruteur + HM</td>
-        <td>Brief valide</td>
-        <td>48h max</td>
-      </tr>
-      <tr>
-        <td><strong>2. Sourcing</strong></td>
-        <td>J2 - J12</td>
-        <td>Recruteur / Sourceur</td>
-        <td>Shortlist 8-12 profils</td>
-        <td>1ere shortlist a J5</td>
-      </tr>
-      <tr>
-        <td><strong>3. Screening</strong></td>
-        <td>J8 - J18</td>
-        <td>Recruteur</td>
-        <td>3-5 candidats qualifies</td>
-        <td>Retour au HM sous 24h</td>
-      </tr>
-      <tr>
-        <td><strong>4. Entretien 1</strong></td>
-        <td>J15 - J25</td>
-        <td>Hiring Manager</td>
-        <td>Scorecard remplie</td>
-        <td>Scorecard sous 2h</td>
-      </tr>
-      <tr>
-        <td><strong>5. Entretien 2</strong></td>
-        <td>J20 - J30</td>
-        <td>N+2 ou équipe</td>
-        <td>Avis collegial</td>
-        <td>décision go/no-go sous 48h</td>
-      </tr>
-      <tr>
-        <td><strong>6. Offre</strong></td>
-        <td>J28 - J35</td>
-        <td>RH + HM</td>
-        <td>Offre signee</td>
-        <td>Offre envoyee sous 48h</td>
-      </tr>
-      <tr>
-        <td><strong>7. Onboarding</strong></td>
-        <td>J-30 a J+90</td>
-        <td>RH + Manager</td>
-        <td>Plan 30-60-90</td>
-        <td>Checklist complete a J+7</td>
-      </tr>
+      <tr><th>Étape</th><th>Durée cible</th><th>Responsable</th><th>Livrable</th><th>SLA</th></tr>
+      <tr><td><strong>1. Brief</strong></td><td>J0 - J2</td><td>Recruteur + HM</td><td>Brief validé</td><td>48h max</td></tr>
+      <tr><td><strong>2. Sourcing</strong></td><td>J2 - J12</td><td>Recruteur / Sourceur</td><td>Shortlist 8-12 profils</td><td>1re shortlist à J5</td></tr>
+      <tr><td><strong>3. Screening</strong></td><td>J8 - J18</td><td>Recruteur</td><td>3-5 candidats qualifiés</td><td>Retour au HM sous 24h</td></tr>
+      <tr><td><strong>4. Entretien 1</strong></td><td>J15 - J25</td><td>Hiring Manager</td><td>Scorecard remplie</td><td>Scorecard sous 2h</td></tr>
+      <tr><td><strong>5. Entretien 2</strong></td><td>J20 - J30</td><td>N+2 ou Équipe</td><td>Avis collégial</td><td>Décision go/no-go sous 48h</td></tr>
+      <tr><td><strong>6. Offre</strong></td><td>J28 - J35</td><td>RH + HM</td><td>Offre signée</td><td>Offre envoyée sous 48h</td></tr>
+      <tr><td><strong>7. Onboarding</strong></td><td>J-30 à J+90</td><td>RH + Manager</td><td>Plan 30-60-90</td><td>Checklist complète à J+7</td></tr>
     </table>
 
-    <div class="info-box">
-      <strong>Objectif global :</strong> Time-to-fill de 35 jours maximum pour un profil confirme. Chaque jour de retard au-dela coute en moyenne 500 EUR en productivite perdue et augmente le risque de perte du candidat de 1.5% par jour.
+    <div class="info">
+      <strong>Objectif global :</strong> Time-to-fill de 35 jours maximum pour un profil confirmé. Chaque jour de retard au-delà coûte en moyenne 500 € en productivité perdue et augmente le risque de perte du candidat de 1.5% par jour.
     </div>
 
-    <!-- ETAPE 1 -->
-    <h2>Etape 1 — Brief de poste</h2>
-
+    <h2><span class="bar"></span> Étape 1 — Brief de poste</h2>
     <table>
-      <tr><th style="width:180px">Parametre</th><th>Detail</th></tr>
-      <tr><td><strong>Duree</strong></td><td>1-2 jours</td></tr>
+      <tr><th style="width:180px">Paramètre</th><th>Détail</th></tr>
+      <tr><td><strong>Durée</strong></td><td>1-2 jours</td></tr>
       <tr><td><strong>Responsable</strong></td><td>Recruteur</td></tr>
       <tr><td><strong>Participants</strong></td><td>Hiring Manager, N+2 (optionnel)</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Brief valide sous 48h apres le kick-off</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Brief validé sous 48h après le kick-off</td></tr>
     </table>
 
     <h3>Actions</h3>
-    <ul class="checklist">
+    <ul class="check">
       <li>Planifier un meeting de 45 min avec le hiring manager</li>
       <li>Remplir le template de brief de poste (9 sections)</li>
-      <li>Definir les 3-5 critères must-have et les red flags</li>
-      <li>Valider la fourchette de rémunération avec les RH (benchmark marche)</li>
-      <li>Definir la scorecard d'évaluation (critères + poids)</li>
-      <li>Aligner sur le processus d'entretien et les interlocuteurs a chaque etape</li>
-      <li>Bloquer les creneaux du hiring manager pour les 3 prochaines semaines</li>
+      <li>Définir les 3-5 critères must-have et les red flags</li>
+      <li>Valider la fourchette de rémunération avec les RH (benchmark marché)</li>
+      <li>Définir la scorecard d'évaluation (critères + poids)</li>
+      <li>Aligner sur le processus d'entretien et les interlocuteurs à chaque étape</li>
+      <li>Bloquer les créneaux du hiring manager pour les 3 prochaines semaines</li>
     </ul>
 
-    <h3>critère de passage</h3>
-    <div class="stat-box">Brief valide et signe par le hiring manager. Budget confirme par les RH / finance. Creneaux d'entretien bloques.</div>
+    <h3>Critère de passage</h3>
+    <div class="info"><strong>Brief validé et signé par le hiring manager. Budget confirmé par les RH / finance. Créneaux d'entretien bloqués.</strong></div>
 
-    <!-- ETAPE 2 -->
-    <h2>Etape 2 — Sourcing</h2>
-
+    <h2><span class="bar"></span> Étape 2 — Sourcing</h2>
     <table>
-      <tr><th style="width:180px">Parametre</th><th>Detail</th></tr>
-      <tr><td><strong>Duree</strong></td><td>5-10 jours (continu)</td></tr>
+      <tr><th style="width:180px">Paramètre</th><th>Détail</th></tr>
+      <tr><td><strong>Durée</strong></td><td>5-10 jours (continu)</td></tr>
       <tr><td><strong>Responsable</strong></td><td>Recruteur / Sourceur</td></tr>
-      <tr><td><strong>Volume cible</strong></td><td>50-100 profils identifies, 8-12 en shortlist</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Premiere shortlist soumise a J+5 max</td></tr>
+      <tr><td><strong>Volume cible</strong></td><td>50-100 profils identifiés, 8-12 en shortlist</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Première shortlist soumise à J+5 max</td></tr>
     </table>
 
     <h3>Actions</h3>
-    <ul class="checklist">
-      <li>Rediger et publier l'offre d'emploi (site carriere + 2-3 jobboards)</li>
-      <li>Activer le sourcing LinkedIn (recherche booleenne + InMails personnalises)</li>
+    <ul class="check">
+      <li>Rédiger et publier l'offre d'emploi (site carrière + 2-3 jobboards)</li>
+      <li>Activer le sourcing LinkedIn (recherche booléenne + InMails personnalisés)</li>
       <li>Consulter le vivier ATS (silver medalists, anciens candidats pertinents)</li>
       <li>Lancer la cooptation interne (email + Slack + all-hands)</li>
-      <li>Explorer les canaux complementaires (GitHub, communautes, events)</li>
+      <li>Explorer les canaux complémentaires (GitHub, communautés, events)</li>
       <li>Envoyer la shortlist au hiring manager avec une fiche par profil</li>
-      <li>Planifier un point sourcing a J+7 si le taux de validation est &lt; 50%</li>
+      <li>Planifier un point sourcing à J+7 si le taux de validation est &lt; 50%</li>
     </ul>
 
-    <h3>KPIs de l'etape</h3>
+    <h3>KPIs de l'étape</h3>
     <table>
       <tr><th>KPI</th><th>Cible</th></tr>
-      <tr><td>Profils identifies</td><td>50-100</td></tr>
-      <tr><td>Profils contactes</td><td>30-50</td></tr>
-      <tr><td>Taux de reponse</td><td>>20%</td></tr>
+      <tr><td>Profils identifiés</td><td>50-100</td></tr>
+      <tr><td>Profils contactés</td><td>30-50</td></tr>
+      <tr><td>Taux de réponse</td><td>&gt;20%</td></tr>
       <tr><td>Profils en shortlist</td><td>8-12</td></tr>
-      <tr><td>Taux de validation HM</td><td>>50%</td></tr>
+      <tr><td>Taux de validation HM</td><td>&gt;50%</td></tr>
     </table>
 
-    <h3>critère de passage</h3>
-    <div class="stat-box">8-12 profils qualifies présentés au hiring manager avec un taux de validation > 50%. Si &lt; 50%, revoir le brief ou elargir les critères.</div>
-
-    <!-- ETAPE 3 -->
-    <h2>Etape 3 — Screening telephonique</h2>
-
+    <h2><span class="bar"></span> Étape 3 — Screening téléphonique</h2>
     <table>
-      <tr><th style="width:180px">Parametre</th><th>Detail</th></tr>
-      <tr><td><strong>Duree</strong></td><td>20-30 min par candidat</td></tr>
+      <tr><th style="width:180px">Paramètre</th><th>Détail</th></tr>
+      <tr><td><strong>Durée</strong></td><td>20-30 min par candidat</td></tr>
       <tr><td><strong>Responsable</strong></td><td>Recruteur</td></tr>
-      <tr><td><strong>Volume</strong></td><td>8-12 screenings pour 3-5 qualifies</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Screening planifie sous 48h apres validation du profil</td></tr>
+      <tr><td><strong>Volume</strong></td><td>8-12 screenings pour 3-5 qualifiés</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Screening planifié sous 48h après validation du profil</td></tr>
     </table>
 
-    <h3>Points a valider</h3>
-    <ul class="checklist">
-      <li>Motivation et comprehension du poste (pourquoi ce rôle, pourquoi maintenant)</li>
-      <li>Adequation expérience vs must-have (verification factuelle)</li>
-      <li>Pretentions salariales vs budget (fourchette OK ou non)</li>
-      <li>Disponibilite et preavis (date de démarrage realiste)</li>
-      <li>Autres process en cours (niveau d'urgence pour decider)</li>
-      <li>Politique teletravail et localisation (compatible ou non)</li>
+    <h3>Points à valider</h3>
+    <ul class="check">
+      <li>Motivation et compréhension du poste (pourquoi ce rôle, pourquoi maintenant)</li>
+      <li>Adéquation expérience vs must-have (vérification factuelle)</li>
+      <li>Prétentions salariales vs budget (fourchette OK ou non)</li>
+      <li>Disponibilité et préavis (date de démarrage réaliste)</li>
+      <li>Autres process en cours (niveau d'urgence pour décider)</li>
+      <li>Politique télétravail et localisation (compatible ou non)</li>
     </ul>
 
-    <h3>critère de passage</h3>
-    <div class="stat-box">3-5 candidats valides sur les critères must-have, le package et la disponibilite. Feedback détaillé au hiring manager sous 24h.</div>
-
-    <!-- ETAPE 4 -->
-    <h2>Etape 4 — Entretien 1 (Hiring Manager)</h2>
-
+    <h2><span class="bar"></span> Étape 4 — Entretien 1 (Hiring Manager)</h2>
     <table>
-      <tr><th style="width:180px">Parametre</th><th>Detail</th></tr>
-      <tr><td><strong>Duree</strong></td><td>45-60 min</td></tr>
+      <tr><th style="width:180px">Paramètre</th><th>Détail</th></tr>
+      <tr><td><strong>Durée</strong></td><td>45-60 min</td></tr>
       <tr><td><strong>Responsable</strong></td><td>Hiring Manager</td></tr>
-      <tr><td><strong>Format</strong></td><td>Visio ou presentiel</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Scorecard remplie sous 2h. Debrief recruteur sous 24h. décision go/no-go sous 48h.</td></tr>
+      <tr><td><strong>Format</strong></td><td>Visio ou présentiel</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Scorecard remplie sous 2h. Debrief recruteur sous 24h. Décision go/no-go sous 48h.</td></tr>
     </table>
 
-    <h3>Structure recommandee</h3>
+    <h3>Structure recommandée</h3>
     <table>
-      <tr><th>Duree</th><th>Sequence</th><th>Objectif</th></tr>
-      <tr><td>5 min</td><td>Accueil et cadrage</td><td>présentér le format et mettre a l'aise</td></tr>
-      <tr><td>10 min</td><td>présentation du candidat</td><td>Parcours, motivations, situation actuelle</td></tr>
-      <tr><td>25 min</td><td>Questions structurees (STAR)</td><td>3-4 questions ciblees sur les must-have</td></tr>
-      <tr><td>10 min</td><td>Cas pratique ou mise en situation</td><td>Tester une compétence cle en conditions reelles</td></tr>
-      <tr><td>10 min</td><td>Questions du candidat + next steps</td><td>évaluer la curiosite, donner de la visibilite</td></tr>
+      <tr><th>Durée</th><th>Séquence</th><th>Objectif</th></tr>
+      <tr><td>5 min</td><td>Accueil et cadrage</td><td>Présenter le format et mettre à l'aise</td></tr>
+      <tr><td>10 min</td><td>Présentation du candidat</td><td>Parcours, motivations, situation actuelle</td></tr>
+      <tr><td>25 min</td><td>Questions structurées (STAR)</td><td>3-4 questions ciblées sur les must-have</td></tr>
+      <tr><td>10 min</td><td>Cas pratique ou mise en situation</td><td>Tester une compétence clé en conditions réelles</td></tr>
+      <tr><td>10 min</td><td>Questions du candidat + next steps</td><td>Évaluer la curiosité, donner de la visibilité</td></tr>
     </table>
 
     <h3>Actions post-entretien</h3>
-    <ul class="checklist">
+    <ul class="check">
       <li>Remplir la scorecard dans les 2h (ne pas attendre le lendemain)</li>
-      <li>Debrief telephonique ou Slack avec le recruteur sous 24h</li>
-      <li>décision go/no-go formalisee sous 48h</li>
+      <li>Debrief téléphonique ou Slack avec le recruteur sous 24h</li>
+      <li>Décision go/no-go formalisée sous 48h</li>
     </ul>
 
-    <h3>critère de passage</h3>
-    <div class="stat-box">Score scorecard >= 3.5/5 sur les critères ponderes. Avis favorable du hiring manager. Aucun red flag identifie.</div>
-
-    <!-- ETAPE 5 -->
-    <h2>Etape 5 — Entretien 2 (équipe / Culture fit)</h2>
-
+    <h2><span class="bar"></span> Étape 5 — Entretien 2 (Équipe / Culture fit)</h2>
     <table>
-      <tr><th style="width:180px">Parametre</th><th>Detail</th></tr>
-      <tr><td><strong>Duree</strong></td><td>45-60 min</td></tr>
+      <tr><th style="width:180px">Paramètre</th><th>Détail</th></tr>
+      <tr><td><strong>Durée</strong></td><td>45-60 min</td></tr>
       <tr><td><strong>Responsable</strong></td><td>N+2, pair, ou 2 membres de l'équipe</td></tr>
-      <tr><td><strong>Format</strong></td><td>Visio ou presentiel</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Planifie sous 5 jours apres E1. Feedback sous 24h.</td></tr>
+      <tr><td><strong>Format</strong></td><td>Visio ou présentiel</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Planifié sous 5 jours après E1. Feedback sous 24h.</td></tr>
     </table>
 
     <h3>Objectifs de l'entretien 2</h3>
-    <ul class="checklist">
+    <ul class="check">
       <li>Valider le culture fit et l'alignement sur les valeurs</li>
-      <li>Tester une compétence complementaire non évaluée en E1</li>
+      <li>Tester une compétence complémentaire non évaluée en E1</li>
       <li>Donner au candidat une vision authentique de l'équipe et de la culture</li>
       <li>Cas pratique approfondi ou présentation technique (optionnel)</li>
     </ul>
 
-    <h3>critère de passage</h3>
-    <div class="stat-box">Consensus positif de l'équipe. Pas de red flag identifie. Alignement confirme sur les valeurs et le mode de travail.</div>
-
-    <!-- ETAPE 6 -->
-    <h2>Etape 6 — Offre</h2>
-
+    <h2><span class="bar"></span> Étape 6 — Offre</h2>
     <table>
-      <tr><th style="width:180px">Parametre</th><th>Detail</th></tr>
-      <tr><td><strong>Duree</strong></td><td>2-5 jours</td></tr>
+      <tr><th style="width:180px">Paramètre</th><th>Détail</th></tr>
+      <tr><td><strong>Durée</strong></td><td>2-5 jours</td></tr>
       <tr><td><strong>Responsable</strong></td><td>RH + Hiring Manager</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Offre ecrite envoyee sous 48h apres la décision. Relance candidat a J+2.</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Offre écrite envoyée sous 48h après la décision. Relance candidat à J+2.</td></tr>
     </table>
 
     <h3>Actions</h3>
-    <ul class="checklist">
-      <li>Appel de pre-close : valider les attentes du candidat avant l'offre formelle</li>
+    <ul class="check">
+      <li>Appel de pré-close : valider les attentes du candidat avant l'offre formelle</li>
       <li>Confirmer : salaire, variable, avantages, date de démarrage, politique remote</li>
       <li>Identifier les objections potentielles (contre-offre, autre process en cours)</li>
-      <li>Rediger l'offre ecrite (poste, rémunération détaillée, avantages, date)</li>
+      <li>Rédiger l'offre écrite (poste, rémunération détaillée, avantages, date)</li>
       <li>Validation interne (RH, finance si nécessaire)</li>
       <li>Prise de références (2-3 références professionnelles)</li>
-      <li>Envoyer l'offre ecrite sous 48h maximum</li>
-      <li>Suivi candidat : appel a J+2 si pas de reponse</li>
-      <li>Informer les candidats non retenus avec un feedback personnalise et constructif</li>
+      <li>Envoyer l'offre écrite sous 48h maximum</li>
+      <li>Suivi candidat : appel à J+2 si pas de réponse</li>
+      <li>Informer les candidats non retenus avec un feedback personnalisé et constructif</li>
     </ul>
 
-    <div class="warning-box">
-      <strong>Pre-close obligatoire :</strong> Avant d'envoyer l'offre formelle, appelez le candidat pour confirmer son interet et vérifiér qu'il n'y a pas de surprise (contre-offre, autre opportunite). 35% des refus d'offre sont evitables avec un bon pre-close.
+    <div class="warn">
+      <strong>Pré-close obligatoire :</strong> Avant d'envoyer l'offre formelle, appelez le candidat pour confirmer son intérêt et vérifier qu'il n'y a pas de surprise (contre-offre, autre opportunité). 35% des refus d'offre sont évitables avec un bon pré-close.
     </div>
 
-    <h3>critère de passage</h3>
-    <div class="stat-box">Offre acceptee et signee. Demission posee chez l'employeur actuel. Date de démarrage confirmee.</div>
-
-    <!-- ETAPE 7 -->
-    <h2>Etape 7 — Pre-onboarding et onboarding</h2>
-
+    <h2><span class="bar"></span> Étape 7 — Pré-onboarding et onboarding</h2>
     <table>
-      <tr><th style="width:180px">Parametre</th><th>Detail</th></tr>
-      <tr><td><strong>Duree</strong></td><td>30 jours avant arrivee + 90 premiers jours</td></tr>
+      <tr><th style="width:180px">Paramètre</th><th>Détail</th></tr>
+      <tr><td><strong>Durée</strong></td><td>30 jours avant arrivée + 90 premiers jours</td></tr>
       <tr><td><strong>Responsable</strong></td><td>RH + Hiring Manager</td></tr>
-      <tr><td><strong>SLA</strong></td><td>Welcome pack envoye a J-15. Materiel pret a J-3. Plan 30-60-90 pret a J0.</td></tr>
+      <tr><td><strong>SLA</strong></td><td>Welcome pack envoyé à J-15. Matériel prêt à J-3. Plan 30-60-90 prêt à J0.</td></tr>
     </table>
 
-    <h3>Avant l'arrivee (J-30 a J0)</h3>
-    <ul class="checklist">
+    <h3>Avant l'arrivée (J-30 à J0)</h3>
+    <ul class="check">
       <li>Envoyer un welcome pack (mail de bienvenue, infos pratiques, dress code)</li>
-      <li>préparér le poste de travail (materiel, acces, badges)</li>
-      <li>Planifier la premiere semaine (meetings, formations, 1:1)</li>
+      <li>Préparer le poste de travail (matériel, accès, badges)</li>
+      <li>Planifier la première semaine (meetings, formations, 1:1)</li>
       <li>Assigner un buddy / parrain</li>
-      <li>préparér le plan 30-60-90 jours en collaboration avec le manager</li>
+      <li>Préparer le plan 30-60-90 jours en collaboration avec le manager</li>
     </ul>
 
-    <h3>Premiere semaine (J1-J5)</h3>
-    <ul class="checklist">
+    <h3>Première semaine (J1-J5)</h3>
+    <ul class="check">
       <li>Accueil physique ou visio par le manager</li>
-      <li>présentation de l'équipe et des interlocuteurs cles</li>
+      <li>Présentation de l'équipe et des interlocuteurs clés</li>
       <li>Tour des outils et process internes</li>
       <li>Point quotidien avec le buddy (15-20 min)</li>
-      <li>Premiere mission concrete a confier (quick win)</li>
+      <li>Première mission concrète à confier (quick win)</li>
     </ul>
 
     <h3>Suivi (M1-M3)</h3>
-    <ul class="checklist">
+    <ul class="check">
       <li>Point hebdomadaire manager (30 min)</li>
-      <li>Feedback formel a 30 jours (revue objectifs + rapport d'etonnement)</li>
-      <li>Feedback formel a 60 jours (montee en autonomie)</li>
-      <li>évaluation de fin de période d'essai a 90 jours</li>
+      <li>Feedback formel à 30 jours (revue objectifs + rapport d'étonnement)</li>
+      <li>Feedback formel à 60 jours (montée en autonomie)</li>
+      <li>Évaluation de fin de période d'essai à 90 jours</li>
       <li>Survey onboarding NPS (expérience du nouveau collaborateur)</li>
     </ul>
 
-    <h2>Chronologie cible</h2>
-
+    <h2><span class="bar"></span> Chronologie cible</h2>
     <table>
-      <tr><th>Jour</th><th>Etape</th><th>Action cle</th><th>SLA</th></tr>
+      <tr><th>Jour</th><th>Étape</th><th>Action clé</th><th>SLA</th></tr>
       <tr><td><strong>J0</strong></td><td>Brief</td><td>Meeting de brief avec le hiring manager</td><td>45 min</td></tr>
-      <tr><td><strong>J2</strong></td><td>Sourcing</td><td>Publication de l'offre + debut du sourcing actif</td><td>Offre publiee</td></tr>
-      <tr><td><strong>J5</strong></td><td>Sourcing</td><td>Premiere shortlist soumise au hiring manager</td><td>8-12 profils</td></tr>
+      <tr><td><strong>J2</strong></td><td>Sourcing</td><td>Publication de l'offre + début du sourcing actif</td><td>Offre publiée</td></tr>
+      <tr><td><strong>J5</strong></td><td>Sourcing</td><td>Première shortlist soumise au hiring manager</td><td>8-12 profils</td></tr>
       <tr><td><strong>J7</strong></td><td>Sourcing</td><td>Feedback HM sur la shortlist, ajustements si nécessaire</td><td>24h</td></tr>
-      <tr><td><strong>J8</strong></td><td>Screening</td><td>Premiers screenings telephoniques</td><td>48h apres validation</td></tr>
-      <tr><td><strong>J12</strong></td><td>Screening</td><td>3-5 candidats qualifies présentés au HM</td><td>Fiche candidat détaillée</td></tr>
+      <tr><td><strong>J8</strong></td><td>Screening</td><td>Premiers screenings téléphoniques</td><td>48h après validation</td></tr>
+      <tr><td><strong>J12</strong></td><td>Screening</td><td>3-5 candidats qualifiés présentés au HM</td><td>Fiche candidat détaillée</td></tr>
       <tr><td><strong>J15</strong></td><td>Entretien 1</td><td>Premiers entretiens hiring manager</td><td>Scorecard sous 2h</td></tr>
       <tr><td><strong>J18</strong></td><td>Entretien 1</td><td>Debrief + décision go/no-go sur chaque candidat</td><td>48h</td></tr>
       <tr><td><strong>J22</strong></td><td>Entretien 2</td><td>Entretiens équipe / culture fit</td><td>Feedback sous 24h</td></tr>
-      <tr><td><strong>J25</strong></td><td>décision</td><td>Debrief final, choix du candidat retenu</td><td>décision collegiale</td></tr>
-      <tr><td><strong>J27</strong></td><td>Pre-close</td><td>Appel de pre-close avec le candidat retenu</td><td>Jour même</td></tr>
-      <tr><td><strong>J28</strong></td><td>Offre</td><td>Envoi de l'offre ecrite + prise de références</td><td>48h max</td></tr>
-      <tr><td><strong>J32</strong></td><td>Offre</td><td>Offre acceptee et signee</td><td>Relance a J+2</td></tr>
-      <tr><td><strong>J35</strong></td><td>Cloture</td><td>Feedback personnalise aux candidats non retenus</td><td>72h apres décision</td></tr>
+      <tr><td><strong>J25</strong></td><td>Décision</td><td>Debrief final, choix du candidat retenu</td><td>Décision collégiale</td></tr>
+      <tr><td><strong>J27</strong></td><td>Pré-close</td><td>Appel de pré-close avec le candidat retenu</td><td>Jour même</td></tr>
+      <tr><td><strong>J28</strong></td><td>Offre</td><td>Envoi de l'offre écrite + prise de références</td><td>48h max</td></tr>
+      <tr><td><strong>J32</strong></td><td>Offre</td><td>Offre acceptée et signée</td><td>Relance à J+2</td></tr>
+      <tr><td><strong>J35</strong></td><td>Clôture</td><td>Feedback personnalisé aux candidats non retenus</td><td>72h après décision</td></tr>
     </table>
 
-    <h2>Les 5 SLAs non negociables</h2>
-
+    <h2><span class="bar"></span> Les 5 SLAs non négociables</h2>
     <table>
-      <tr><th>#</th><th>SLA</th><th>Cible</th><th>Impact si non respecte</th></tr>
-      <tr><td>1</td><td>délai entre candidature et premier contact</td><td>48h max</td><td>-30% de taux de reponse</td></tr>
-      <tr><td>2</td><td>Feedback candidat apres entretien</td><td>48h max</td><td>NPS candidat en chute, perte de confiance</td></tr>
-      <tr><td>3</td><td>délai entre 2 etapes du process</td><td>5 jours max</td><td>+40% de risque d'abandon candidat</td></tr>
-      <tr><td>4</td><td>Envoi de l'offre apres décision</td><td>48h max</td><td>+25% de risque de contre-offre</td></tr>
-      <tr><td>5</td><td>Retour aux candidats non retenus</td><td>72h max</td><td>Marque employeur degradee, NPS negatif</td></tr>
+      <tr><th>#</th><th>SLA</th><th>Cible</th><th>Impact si non respecté</th></tr>
+      <tr><td>1</td><td>Délai entre candidature et premier contact</td><td>48h max</td><td>-30% de taux de réponse</td></tr>
+      <tr><td>2</td><td>Feedback candidat après entretien</td><td>48h max</td><td>NPS candidat en chute, perte de confiance</td></tr>
+      <tr><td>3</td><td>Délai entre 2 étapes du process</td><td>5 jours max</td><td>+40% de risque d'abandon candidat</td></tr>
+      <tr><td>4</td><td>Envoi de l'offre après décision</td><td>48h max</td><td>+25% de risque de contre-offre</td></tr>
+      <tr><td>5</td><td>Retour aux candidats non retenus</td><td>72h max</td><td>Marque employeur dégradée, NPS négatif</td></tr>
     </table>
 
-    <div class="warning-box">
+    <div class="warn">
       <strong>Les 3 erreurs qui rallongent le process :</strong>
       <ul>
-        <li><strong>Agendas non bloques :</strong> Chaque report d'entretien ajoute 3-5 jours en moyenne. Bloquez les creneaux des le brief.</li>
-        <li><strong>Trop d'etapes :</strong> Au-dela de 4 entretiens, le taux d'abandon candidat depasse 40%. Visez 3-4 etapes maximum.</li>
-        <li><strong>Feedback lent :</strong> Un retour sous 48h est le standard attendu par 87% des candidats en 2026. Au-dela, vous perdez les meilleurs.</li>
+        <li><strong>Agendas non bloqués :</strong> Chaque report d'entretien ajoute 3-5 jours en moyenne. Bloquez les créneaux dès le brief.</li>
+        <li><strong>Trop d'étapes :</strong> Au-delà de 4 entretiens, le taux d'abandon candidat dépasse 40%. Visez 3-4 étapes maximum.</li>
+        <li><strong>Feedback lent :</strong> Un retour sous 48h est le standard attendu par 87% des candidats en 2026. Au-delà, vous perdez les meilleurs.</li>
       </ul>
     </div>
 
-    <div class="stat-box">
-      Les entreprises qui respectent leurs SLAs ont un offer acceptance rate de 93% contre 76% pour celles qui ne les mesurent pas. La difference ? 17 points de conversion en plus, soit 1 refus d'offre evite tous les 6 recrutements.
+    <div class="big-stat">
+      <div class="val">93%</div>
+      <div class="lbl">Offer acceptance rate des entreprises qui respectent leurs SLAs (vs 76% sans mesure)</div>
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

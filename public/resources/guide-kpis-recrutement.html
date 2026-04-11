@@ -3,107 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <title>Les 12 KPIs essentiels du recrutement — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    ul { margin-bottom: 12px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    ol { margin-bottom: 12px; padding-left: 20px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Guide PDF</div>
     <h1>Les 12 <em>KPIs</em> essentiels du recrutement</h1>
-    <p class="cover-subtitle">Formules de calcul, benchmarks France 2026, leviers d'amélioration et layout de dashboard. Tout ce qu'il faut pour piloter votre recrutement par la donnee.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 12</span>
-      <span><strong>Temps :</strong> 20 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">Formules de calcul, benchmarks France 2026, leviers d'amélioration et layout de dashboard. Tout ce qu'il faut pour piloter votre recrutement par la donnée.</p>
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-value">12</div>
+        <div class="cover-stat-label">KPIs essentiels</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">-23%</div>
+        <div class="cover-stat-label">Time-to-fill</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">+15%</div>
+        <div class="cover-stat-label">Rétention</div>
+      </div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Guide PDF</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Guide PDF</div>
     </div>
 
-    <h2>Pourquoi mesurer ?</h2>
+    <h2><span class="bar"></span> Pourquoi mesurer ?</h2>
     <p>Piloter le recrutement sans KPIs, c'est conduire sans tableau de bord. Les entreprises qui mesurent leurs KPIs recrutement ont un time-to-fill 23% plus court et un taux de rétention 15% supérieur.</p>
 
-    <div class="info-box">
-      <strong>Comment utiliser ce guide :</strong> Selectionnez 5 a 7 KPIs adaptes à votre maturite. Mesurez-les mensuellement. Partagez un dashboard avec vos stakeholders. Iterez chaque trimestre.
+    <div class="info">
+      <strong>Comment utiliser ce guide :</strong> Sélectionnez 5 à 7 KPIs adaptés à votre maturité. Mesurez-les mensuellement. Partagez un dashboard avec vos stakeholders. Itérez chaque trimestre.
     </div>
 
-    <h2>Vue d'ensemble des 12 KPIs</h2>
+    <h2><span class="bar"></span> Vue d'ensemble des 12 KPIs</h2>
     <table>
-      <tr>
-        <th>#</th>
-        <th>KPI</th>
-        <th>Categorie</th>
-        <th>Benchmark France 2026</th>
-      </tr>
-      <tr>
-        <td>1</td><td>Time-to-Hire</td><td>Rapidite</td><td>28-45 jours</td>
-      </tr>
-      <tr>
-        <td>2</td><td>Time-to-Fill</td><td>Rapidite</td><td>35-60 jours</td>
-      </tr>
-      <tr>
-        <td>3</td><td>Cost-per-Hire</td><td>Cout</td><td>3 000 - 8 000 EUR</td>
-      </tr>
-      <tr>
-        <td>4</td><td>Quality of Hire</td><td>qualité</td><td>Score > 3.5/5</td>
-      </tr>
-      <tr>
-        <td>5</td><td>Source of Hire</td><td>Sourcing</td><td>Variable par canal</td>
-      </tr>
-      <tr>
-        <td>6</td><td>Offer Acceptance Rate</td><td>Conversion</td><td>85-92%</td>
-      </tr>
-      <tr>
-        <td>7</td><td>Candidate expérience Score</td><td>expérience</td><td>NPS > 40</td>
-      </tr>
-      <tr>
-        <td>8</td><td>Pipeline Velocity</td><td>Efficacite</td><td>15-25 candidats/poste</td>
-      </tr>
-      <tr>
-        <td>9</td><td>Hiring Manager Satisfaction</td><td>qualité</td><td>> 4/5</td>
-      </tr>
-      <tr>
-        <td>10</td><td>rétention a 12 mois</td><td>rétention</td><td>85-90%</td>
-      </tr>
-      <tr>
-        <td>11</td><td>Diversite du pipeline</td><td>D&amp;I</td><td>40-60% equilibre genre</td>
-      </tr>
-      <tr>
-        <td>12</td><td>Sourcing Channel Efficiency</td><td>ROI</td><td>Variable par canal</td>
-      </tr>
+      <tr><th>#</th><th>KPI</th><th>Catégorie</th><th>Benchmark France 2026</th></tr>
+      <tr><td>1</td><td>Time-to-Hire</td><td>Rapidité</td><td>28-45 jours</td></tr>
+      <tr><td>2</td><td>Time-to-Fill</td><td>Rapidité</td><td>35-60 jours</td></tr>
+      <tr><td>3</td><td>Cost-per-Hire</td><td>Coût</td><td>3 000 - 8 000 €</td></tr>
+      <tr><td>4</td><td>Quality of Hire</td><td>Qualité</td><td>Score &gt; 3.5/5</td></tr>
+      <tr><td>5</td><td>Source of Hire</td><td>Sourcing</td><td>Variable par canal</td></tr>
+      <tr><td>6</td><td>Offer Acceptance Rate</td><td>Conversion</td><td>85-92%</td></tr>
+      <tr><td>7</td><td>Candidate Experience Score</td><td>Expérience</td><td>NPS &gt; 40</td></tr>
+      <tr><td>8</td><td>Pipeline Velocity</td><td>Efficacité</td><td>15-25 candidats/poste</td></tr>
+      <tr><td>9</td><td>Hiring Manager Satisfaction</td><td>Qualité</td><td>&gt; 4/5</td></tr>
+      <tr><td>10</td><td>Rétention à 12 mois</td><td>Rétention</td><td>85-90%</td></tr>
+      <tr><td>11</td><td>Diversité du pipeline</td><td>D&amp;I</td><td>40-60% équilibre genre</td></tr>
+      <tr><td>12</td><td>Sourcing Channel Efficiency</td><td>ROI</td><td>Variable par canal</td></tr>
     </table>
 
-    <h2>Detail des 12 KPIs</h2>
+    <h2><span class="bar"></span> Détail des 12 KPIs</h2>
 
-    <!-- KPI 1 -->
-    <div class="kpi-card">
-      <strong>KPI 1 — Time-to-Hire (délai de recrutement)</strong>
-      <p><strong>définition :</strong> Nombre de jours entre la premiere candidature du candidat retenu et l'acceptation de l'offre.</p>
-    </div>
+    <h3>KPI 1 — Time-to-Hire (délai de recrutement)</h3>
+    <p><strong>Définition :</strong> Nombre de jours entre la première candidature du candidat retenu et l'acceptation de l'offre.</p>
     <div class="formula">Time-to-Hire = Date d'acceptation de l'offre - Date de candidature du candidat retenu</div>
     <table>
       <tr><th>Type de profil</th><th>Benchmark 2026</th><th>Cible RPO</th></tr>
       <tr><td>Junior / fonctions support</td><td>20-30 jours</td><td>15-22 jours</td></tr>
-      <tr><td>Confirme / business</td><td>30-45 jours</td><td>22-32 jours</td></tr>
+      <tr><td>Confirmé / business</td><td>30-45 jours</td><td>22-32 jours</td></tr>
       <tr><td>Senior tech / expert</td><td>35-50 jours</td><td>28-38 jours</td></tr>
       <tr><td>C-level / dirigeant</td><td>60-90 jours</td><td>45-65 jours</td></tr>
     </table>
-    <p><strong>Leviers :</strong> Reduire le nombre d'etapes du process, bloquer les agendas en amont, utiliser un ATS avec pipeline automatise, feedback sous 48h maximum.</p>
+    <p><strong>Leviers :</strong> Réduire le nombre d'étapes du process, bloquer les agendas en amont, utiliser un ATS avec pipeline automatisé, feedback sous 48h maximum.</p>
 
-    <!-- KPI 2 -->
-    <div class="kpi-card">
-      <strong>KPI 2 — Time-to-Fill (délai de pourvoi)</strong>
-      <p><strong>définition :</strong> Nombre de jours entre l'ouverture du poste et l'acceptation de l'offre. Inclut le brief et l'activation du sourcing.</p>
-    </div>
+    <h3>KPI 2 — Time-to-Fill (délai de pourvoi)</h3>
+    <p><strong>Définition :</strong> Nombre de jours entre l'ouverture du poste et l'acceptation de l'offre. Inclut le brief et l'activation du sourcing.</p>
     <div class="formula">Time-to-Fill = Date d'acceptation de l'offre - Date d'ouverture du poste</div>
     <table>
       <tr><th>Type de profil</th><th>Benchmark 2026</th><th>Cible RPO</th></tr>
@@ -112,98 +139,79 @@
       <tr><td>Fonctions tech (dev, data, devops)</td><td>40-60 jours</td><td>30-45 jours</td></tr>
       <tr><td>Fonctions dirigeantes</td><td>70-120 jours</td><td>50-80 jours</td></tr>
     </table>
-    <p><strong>Leviers :</strong> Brief structure des J0, vivier de candidats pre-qualifies, sourcing proactif avant la demande.</p>
+    <p><strong>Leviers :</strong> Brief structuré dès J0, vivier de candidats pré-qualifiés, sourcing proactif avant la demande.</p>
 
-    <!-- KPI 3 -->
-    <div class="kpi-card">
-      <strong>KPI 3 — Cost-per-Hire (coût par embauche)</strong>
-      <p><strong>définition :</strong> coût total du recrutement divise par le nombre d'embauches réalisées sur la période.</p>
-    </div>
-    <div class="formula">Cost-per-Hire = (coûts internes + coûts externes) / Nombre d'embauches</div>
-    <p><strong>coûts a inclure :</strong></p>
+    <h3>KPI 3 — Cost-per-Hire (coût par embauche)</h3>
+    <p><strong>Définition :</strong> Coût total du recrutement divisé par le nombre d'embauches réalisées sur la période.</p>
+    <div class="formula">Cost-per-Hire = (Coûts internes + Coûts externes) / Nombre d'embauches</div>
+    <p><strong>Coûts à inclure :</strong></p>
     <ul>
-      <li><strong>Internes :</strong> salaire équipe recrutement (prorata), temps du hiring manager (~8h/recrutement = 400-800 EUR), outils ATS/CRM (50-200 EUR/mois)</li>
-      <li><strong>Externes :</strong> jobboards (200-800 EUR/annonce), LinkedIn Recruiter (700-1 100 EUR/mois), honoraires cabinets (15-25% du salaire), events (500-5 000 EUR)</li>
+      <li><strong>Internes :</strong> salaire équipe recrutement (prorata), temps du hiring manager (~8h/recrutement = 400-800 €), outils ATS/CRM (50-200 €/mois)</li>
+      <li><strong>Externes :</strong> jobboards (200-800 €/annonce), LinkedIn Recruiter (700-1 100 €/mois), honoraires cabinets (15-25% du salaire), events (500-5 000 €)</li>
     </ul>
     <table>
       <tr><th>Type de profil</th><th>Cost-per-Hire moyen</th><th>Avec RPO</th></tr>
-      <tr><td>Junior / support</td><td>2 000 - 4 000 EUR</td><td>1 500 - 3 000 EUR</td></tr>
-      <tr><td>Confirme / business</td><td>4 000 - 8 000 EUR</td><td>3 000 - 6 000 EUR</td></tr>
-      <tr><td>Senior tech / expert</td><td>8 000 - 15 000 EUR</td><td>5 000 - 9 000 EUR</td></tr>
-      <tr><td>C-level / dirigeant</td><td>15 000 - 30 000 EUR</td><td>10 000 - 20 000 EUR</td></tr>
+      <tr><td>Junior / support</td><td>2 000 - 4 000 €</td><td>1 500 - 3 000 €</td></tr>
+      <tr><td>Confirmé / business</td><td>4 000 - 8 000 €</td><td>3 000 - 6 000 €</td></tr>
+      <tr><td>Senior tech / expert</td><td>8 000 - 15 000 €</td><td>5 000 - 9 000 €</td></tr>
+      <tr><td>C-level / dirigeant</td><td>15 000 - 30 000 €</td><td>10 000 - 20 000 €</td></tr>
     </table>
 
-    <!-- KPI 4 -->
-    <div class="kpi-card">
-      <strong>KPI 4 — Quality of Hire (qualité de l'embauche)</strong>
-      <p><strong>définition :</strong> Indicateur composite mesurant la performance et l'adequation du nouveau collaborateur. Mesure a 6 et 12 mois.</p>
-    </div>
-    <div class="formula">Quality of Hire = (Performance review + Hiring manager satisfaction + rétention 12 mois + Atteinte objectifs 30-60-90) / 4</div>
+    <h3>KPI 4 — Quality of Hire (qualité de l'embauche)</h3>
+    <p><strong>Définition :</strong> Indicateur composite mesurant la performance et l'adéquation du nouveau collaborateur. Mesuré à 6 et 12 mois.</p>
+    <div class="formula">Quality of Hire = (Performance review + Hiring manager satisfaction + Rétention 12 mois + Atteinte objectifs 30-60-90) / 4</div>
     <p><strong>Composantes :</strong></p>
     <ul>
       <li>Note de performance à la revue (1-5) — Poids 30%</li>
       <li>Satisfaction du hiring manager (1-5) — Poids 25%</li>
-      <li>rétention a 12 mois (5=en poste, 1=parti) — Poids 25%</li>
+      <li>Rétention à 12 mois (5=en poste, 1=parti) — Poids 25%</li>
       <li>Atteinte objectifs plan 30-60-90 (1-5) — Poids 20%</li>
     </ul>
-    <p><strong>Benchmark :</strong> Score > 3.5/5 = bon. Top performers : > 4.2/5.</p>
+    <p><strong>Benchmark :</strong> Score &gt; 3.5/5 = bon. Top performers : &gt; 4.2/5.</p>
 
-    <!-- KPI 5 -->
-    <div class="kpi-card">
-      <strong>KPI 5 — Source of Hire (source d'embauche)</strong>
-      <p><strong>définition :</strong> Repartition des embauches par canal de sourcing. Permet d'optimiser l'allocation budgetaire.</p>
-    </div>
+    <h3>KPI 5 — Source of Hire (source d'embauche)</h3>
+    <p><strong>Définition :</strong> Répartition des embauches par canal de sourcing. Permet d'optimiser l'allocation budgétaire.</p>
     <div class="formula">Source of Hire = Nombre d'embauches par canal / Total embauches x 100</div>
     <table>
       <tr><th>Canal</th><th>% des embauches (France 2026)</th><th>Tendance</th></tr>
       <tr><td>LinkedIn (sourcing + annonces)</td><td>30-35%</td><td>Stable</td></tr>
       <tr><td>Cooptation</td><td>20-25%</td><td>En hausse (+3%/an)</td></tr>
       <tr><td>Jobboards (WTTJ, Indeed)</td><td>15-20%</td><td>En baisse (-2%/an)</td></tr>
-      <tr><td>Site carriere / candidatures spontanees</td><td>10-15%</td><td>Stable</td></tr>
+      <tr><td>Site carrière / candidatures spontanées</td><td>10-15%</td><td>Stable</td></tr>
       <tr><td>Cabinets / RPO</td><td>10-15%</td><td>RPO en hausse</td></tr>
-      <tr><td>Events / ecoles / communautes</td><td>5-10%</td><td>En hausse</td></tr>
+      <tr><td>Events / écoles / communautés</td><td>5-10%</td><td>En hausse</td></tr>
     </table>
 
-    <!-- KPI 6 -->
-    <div class="kpi-card">
-      <strong>KPI 6 — Offer Acceptance Rate (taux d'acceptation)</strong>
-      <p><strong>définition :</strong> Pourcentage d'offres acceptees par rapport au nombre total d'offres emises.</p>
-    </div>
-    <div class="formula">Offer Acceptance Rate = Offres acceptees / Offres emises x 100</div>
-    <p><strong>Benchmark :</strong> 85-92%. En dessous de 80%, probleme de competitivite.</p>
-    <p><strong>Principales raisons de refus (France 2026) :</strong></p>
+    <h3>KPI 6 — Offer Acceptance Rate (taux d'acceptation)</h3>
+    <p><strong>Définition :</strong> Pourcentage d'offres acceptées par rapport au nombre total d'offres émises.</p>
+    <div class="formula">Offer Acceptance Rate = Offres acceptées / Offres émises x 100</div>
+    <p><strong>Benchmark :</strong> 85-92%. En dessous de 80%, problème de compétitivité.</p>
     <table>
-      <tr><th>Raison</th><th>Frequence</th><th>Levier</th></tr>
-      <tr><td>Contre-offre de l'employeur actuel</td><td>35%</td><td>Pre-close avant l'offre, engagement emotionnel</td></tr>
-      <tr><td>rémunération insuffisante</td><td>30%</td><td>Benchmark salaire, présentér le package global</td></tr>
-      <tr><td>Autre opportunite plus attractive</td><td>20%</td><td>Accelerer le process, décision sous 48h</td></tr>
-      <tr><td>Process trop long / mauvaise expérience</td><td>15%</td><td>Max 4 etapes, feedback rapide</td></tr>
+      <tr><th>Raison de refus</th><th>Fréquence</th><th>Levier</th></tr>
+      <tr><td>Contre-offre de l'employeur actuel</td><td>35%</td><td>Pré-close avant l'offre, engagement émotionnel</td></tr>
+      <tr><td>Rémunération insuffisante</td><td>30%</td><td>Benchmark salaire, présenter le package global</td></tr>
+      <tr><td>Autre opportunité plus attractive</td><td>20%</td><td>Accélérer le process, décision sous 48h</td></tr>
+      <tr><td>Process trop long / mauvaise expérience</td><td>15%</td><td>Max 4 étapes, feedback rapide</td></tr>
     </table>
 
-    <!-- KPI 7 -->
-    <div class="kpi-card">
-      <strong>KPI 7 — Candidate expérience Score (CNPS)</strong>
-      <p><strong>définition :</strong> NPS des candidats (retenus et non retenus) sur le processus de recrutement.</p>
-    </div>
-    <div class="formula">CNPS = % Promoteurs (9-10) - % Detracteurs (0-6)</div>
-    <p><strong>Quand mesurer :</strong> Survey 48h apres la fin du process (acceptation ou refus).</p>
-    <p><strong>4 questions cles :</strong></p>
+    <h3>KPI 7 — Candidate Experience Score (CNPS)</h3>
+    <p><strong>Définition :</strong> NPS des candidats (retenus et non retenus) sur le processus de recrutement.</p>
+    <div class="formula">CNPS = % Promoteurs (9-10) - % Détracteurs (0-6)</div>
+    <p><strong>Quand mesurer :</strong> Survey 48h après la fin du process (acceptation ou refus).</p>
+    <p><strong>4 questions clés :</strong></p>
     <ul>
-      <li>Clarte des informations fournies (1-10)</li>
-      <li>délai de reponse entre les etapes (1-10)</li>
-      <li>qualité des echanges avec les interlocuteurs (1-10)</li>
+      <li>Clarté des informations fournies (1-10)</li>
+      <li>Délai de réponse entre les étapes (1-10)</li>
+      <li>Qualité des échanges avec les interlocuteurs (1-10)</li>
       <li>Recommanderiez-vous de postuler chez nous ? (0-10)</li>
     </ul>
-    <p><strong>Benchmark :</strong> NPS > 40 = excellent. NPS 20-40 = correct. NPS < 20 = a ameliorer d'urgence.</p>
+    <p><strong>Benchmark :</strong> NPS &gt; 40 = excellent. NPS 20-40 = correct. NPS &lt; 20 = à améliorer d'urgence.</p>
 
-    <!-- KPI 8 -->
-    <div class="kpi-card">
-      <strong>KPI 8 — Pipeline Velocity (vitesse du pipeline)</strong>
-      <p><strong>définition :</strong> Nombre de candidats nécessaires a chaque etape pour aboutir a 1 embauche.</p>
-    </div>
-    <div class="formula">Funnel type : 100 sourced → 25 contactes → 12 screenes → 5 entretiens → 2 finalistes → 1 embauche</div>
+    <h3>KPI 8 — Pipeline Velocity (vitesse du pipeline)</h3>
+    <p><strong>Définition :</strong> Nombre de candidats nécessaires à chaque étape pour aboutir à 1 embauche.</p>
+    <div class="formula">Funnel type : 100 sourcés → 25 contactés → 12 screenés → 5 entretiens → 2 finalistes → 1 embauche</div>
     <table>
-      <tr><th>Etape</th><th>Taux de passage moyen</th><th>Taux cible RPO</th></tr>
+      <tr><th>Étape</th><th>Taux de passage moyen</th><th>Taux cible RPO</th></tr>
       <tr><td>Sourcing → Contact</td><td>25-30%</td><td>30-40%</td></tr>
       <tr><td>Contact → Screening</td><td>40-50%</td><td>50-60%</td></tr>
       <tr><td>Screening → Entretien</td><td>50-60%</td><td>55-65%</td></tr>
@@ -212,111 +220,78 @@
       <tr><td>Offre → Acceptation</td><td>85-92%</td><td>90-95%</td></tr>
     </table>
 
-    <!-- KPI 9 -->
-    <div class="kpi-card">
-      <strong>KPI 9 — Hiring Manager Satisfaction</strong>
-      <p><strong>définition :</strong> Score de satisfaction du hiring manager sur la qualité du service recrutement.</p>
-    </div>
+    <h3>KPI 9 — Hiring Manager Satisfaction</h3>
+    <p><strong>Définition :</strong> Score de satisfaction du hiring manager sur la qualité du service recrutement.</p>
     <div class="formula">Score moyen /5 via survey post-recrutement (5 questions)</div>
     <p><strong>Questions d'évaluation :</strong></p>
     <ul>
-      <li>qualité de la shortlist présentée (1-5)</li>
-      <li>Reactivite de l'équipe recrutement (1-5)</li>
-      <li>Comprehension du besoin (1-5)</li>
-      <li>qualité du candidat finalement recrute (1-5)</li>
-      <li>expérience globale du process (1-5)</li>
+      <li>Qualité de la shortlist présentée (1-5)</li>
+      <li>Réactivité de l'équipe recrutement (1-5)</li>
+      <li>Compréhension du besoin (1-5)</li>
+      <li>Qualité du candidat finalement recruté (1-5)</li>
+      <li>Expérience globale du process (1-5)</li>
     </ul>
-    <p><strong>Benchmark :</strong> > 4/5 = excellent. < 3.5 = revoir le brief et la communication.</p>
+    <p><strong>Benchmark :</strong> &gt; 4/5 = excellent. &lt; 3.5 = revoir le brief et la communication.</p>
 
-    <!-- KPI 10 -->
-    <div class="kpi-card">
-      <strong>KPI 10 — Taux de rétention a 12 mois</strong>
-      <p><strong>définition :</strong> Pourcentage de nouvelles embauches toujours en poste apres 12 mois.</p>
-    </div>
-    <div class="formula">rétention 12 mois = Embauches en poste a M+12 / Total embauches x 100</div>
-    <p><strong>Benchmark :</strong> 85-90%. < 80% = probleme de selection ou d'onboarding.</p>
+    <h3>KPI 10 — Taux de rétention à 12 mois</h3>
+    <p><strong>Définition :</strong> Pourcentage de nouvelles embauches toujours en poste après 12 mois.</p>
+    <div class="formula">Rétention 12 mois = Embauches en poste à M+12 / Total embauches x 100</div>
+    <p><strong>Benchmark :</strong> 85-90%. &lt; 80% = problème de sélection ou d'onboarding.</p>
     <p><strong>Distinguer :</strong></p>
     <ul>
-      <li><strong>Departs volontaires</strong> (le collaborateur part) : probleme de fit, promesse non tenue, management</li>
-      <li><strong>Departs involontaires</strong> (fin de PE) : probleme de selection, critères mal definis</li>
+      <li><strong>Départs volontaires</strong> (le collaborateur part) : problème de fit, promesse non tenue, management</li>
+      <li><strong>Départs involontaires</strong> (fin de PE) : problème de sélection, critères mal définis</li>
     </ul>
 
-    <!-- KPI 11 -->
-    <div class="kpi-card">
-      <strong>KPI 11 — Diversite du pipeline</strong>
-      <p><strong>définition :</strong> Repartition du pipeline par critères de diversite (genre, parcours atypiques, handicap).</p>
-    </div>
-    <div class="formula">% Diversite = Candidats du groupe sous-represente / Total pipeline x 100</div>
-    <p><strong>Points de mesure :</strong> Diversite des candidatures → Diversite de la shortlist → Diversite des embauches.</p>
-    <p><strong>Benchmark :</strong> Objectif paritaire 40-60% genre. En France, la collecte de donnees ethniques est interdite (loi Informatique et Libertes).</p>
+    <h3>KPI 11 — Diversité du pipeline</h3>
+    <p><strong>Définition :</strong> Répartition du pipeline par critères de diversité (genre, parcours atypiques, handicap).</p>
+    <div class="formula">% Diversité = Candidats du groupe sous-représenté / Total pipeline x 100</div>
+    <p><strong>Points de mesure :</strong> Diversité des candidatures → Diversité de la shortlist → Diversité des embauches.</p>
+    <p><strong>Benchmark :</strong> Objectif paritaire 40-60% genre. En France, la collecte de données ethniques est interdite (loi Informatique et Libertés).</p>
 
-    <!-- KPI 12 -->
-    <div class="kpi-card">
-      <strong>KPI 12 — Sourcing Channel Efficiency (ROI des canaux)</strong>
-      <p><strong>définition :</strong> Rapport entre le coût d'un canal et le nombre d'embauches generees.</p>
-    </div>
-    <div class="formula">ROI Canal = coût annuel du canal / Nombre d'embauches via ce canal</div>
+    <h3>KPI 12 — Sourcing Channel Efficiency (ROI des canaux)</h3>
+    <p><strong>Définition :</strong> Rapport entre le coût d'un canal et le nombre d'embauches générées.</p>
+    <div class="formula">ROI Canal = Coût annuel du canal / Nombre d'embauches via ce canal</div>
     <table>
-      <tr><th>Canal</th><th>coût moyen / embauche</th><th>qualité relative</th></tr>
-      <tr><td>Cooptation</td><td>500 - 2 000 EUR</td><td>Excellente (rétention +25%)</td></tr>
-      <tr><td>Site carriere / inbound</td><td>500 - 1 500 EUR</td><td>Bonne</td></tr>
-      <tr><td>LinkedIn Recruiter</td><td>2 000 - 5 000 EUR</td><td>Bonne</td></tr>
-      <tr><td>Jobboards</td><td>1 500 - 4 000 EUR</td><td>Moyenne</td></tr>
-      <tr><td>Cabinet de recrutement</td><td>8 000 - 25 000 EUR</td><td>Variable</td></tr>
+      <tr><th>Canal</th><th>Coût moyen / embauche</th><th>Qualité relative</th></tr>
+      <tr><td>Cooptation</td><td>500 - 2 000 €</td><td>Excellente (rétention +25%)</td></tr>
+      <tr><td>Site carrière / inbound</td><td>500 - 1 500 €</td><td>Bonne</td></tr>
+      <tr><td>LinkedIn Recruiter</td><td>2 000 - 5 000 €</td><td>Bonne</td></tr>
+      <tr><td>Jobboards</td><td>1 500 - 4 000 €</td><td>Moyenne</td></tr>
+      <tr><td>Cabinet de recrutement</td><td>8 000 - 25 000 €</td><td>Variable</td></tr>
     </table>
 
-    <h2>Dashboard recapitulatif</h2>
+    <h2><span class="bar"></span> Dashboard récapitulatif</h2>
 
-    <div class="info-box">
-      <strong>Les 5 KPIs a suivre en priorite si vous debutez :</strong>
+    <div class="info">
+      <strong>Les 5 KPIs à suivre en priorité si vous débutez :</strong>
       <ol>
-        <li><strong>Time-to-Fill</strong> — votre indicateur de rapidite principal</li>
-        <li><strong>Offer Acceptance Rate</strong> — votre indicateur de competitivite</li>
+        <li><strong>Time-to-Fill</strong> — votre indicateur de rapidité principal</li>
+        <li><strong>Offer Acceptance Rate</strong> — votre indicateur de compétitivité</li>
         <li><strong>Quality of Hire</strong> — votre indicateur de qualité long terme</li>
         <li><strong>Cost-per-Hire</strong> — votre indicateur financier</li>
         <li><strong>Hiring Manager Satisfaction</strong> — votre indicateur de service interne</li>
       </ol>
     </div>
 
-    <h3>Layout de dashboard recommande</h3>
+    <h3>Layout de dashboard recommandé</h3>
     <table>
-      <tr class="category-row">
-        <td colspan="4">Ligne 1 : Metriques de vitesse</td>
-      </tr>
-      <tr>
-        <td>Time-to-Fill (tendance mensuelle)</td>
-        <td>Time-to-Hire (tendance mensuelle)</td>
-        <td>Pipeline Velocity (funnel visuel)</td>
-        <td>Postes ouverts / fermes ce mois</td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="4">Ligne 2 : Metriques de qualité</td>
-      </tr>
-      <tr>
-        <td>Quality of Hire (score moyen)</td>
-        <td>Offer Acceptance Rate (%)</td>
-        <td>rétention 12 mois (%)</td>
-        <td>Hiring Manager Satisfaction (/5)</td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="4">Ligne 3 : Metriques de ROI</td>
-      </tr>
-      <tr>
-        <td>Cost-per-Hire (par profil)</td>
-        <td>Source of Hire (repartition)</td>
-        <td>Channel ROI (cout/embauche)</td>
-        <td>Candidate NPS (tendance)</td>
-      </tr>
+      <tr><th colspan="4">Ligne 1 : Métriques de vitesse</th></tr>
+      <tr><td>Time-to-Fill (tendance mensuelle)</td><td>Time-to-Hire (tendance mensuelle)</td><td>Pipeline Velocity (funnel visuel)</td><td>Postes ouverts / fermés ce mois</td></tr>
+      <tr><th colspan="4">Ligne 2 : Métriques de qualité</th></tr>
+      <tr><td>Quality of Hire (score moyen)</td><td>Offer Acceptance Rate (%)</td><td>Rétention 12 mois (%)</td><td>Hiring Manager Satisfaction (/5)</td></tr>
+      <tr><th colspan="4">Ligne 3 : Métriques de ROI</th></tr>
+      <tr><td>Cost-per-Hire (par profil)</td><td>Source of Hire (répartition)</td><td>Channel ROI (coût/embauche)</td><td>Candidate NPS (tendance)</td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Erreur frequente :</strong> Ne mesurez pas tout en même temps. Commencez par 5 KPIs, stabilisez la collecte, puis ajoutez progressivement. Un KPI mal mesure est pire qu'un KPI absent : il donne une fausse confiance.
+    <div class="warn">
+      <strong>Erreur fréquente :</strong> Ne mesurez pas tout en même temps. Commencez par 5 KPIs, stabilisez la collecte, puis ajoutez progressivement. Un KPI mal mesuré est pire qu'un KPI absent : il donne une fausse confiance.
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

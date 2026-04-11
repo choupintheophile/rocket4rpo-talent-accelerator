@@ -38,17 +38,17 @@ async function main() {
     try {
       let htmlContent = fs.readFileSync(htmlPath, "utf-8");
 
-      // Replace external CSS link with inline <style> block
-      htmlContent = htmlContent.replace(
-        /<link\s+rel="stylesheet"\s+href="[^"]*style-premium\.css"[^>]*>/gi,
-        `<style>${cssContent}</style>`
-      );
-
-      // Also handle any remaining external CSS links that point to /resources/
-      htmlContent = htmlContent.replace(
-        /<link\s+rel="stylesheet"\s+href="\/resources\/[^"]*"[^>]*>/gi,
-        ""
-      );
+      // If file still uses external CSS, inject inline
+      if (htmlContent.includes('style-premium.css')) {
+        htmlContent = htmlContent.replace(
+          /<link\s+rel="stylesheet"\s+href="[^"]*style-premium\.css"[^>]*>/gi,
+          `<style>${cssContent}</style>`
+        );
+        htmlContent = htmlContent.replace(
+          /<link\s+rel="stylesheet"\s+href="\/resources\/[^"]*"[^>]*>/gi,
+          ""
+        );
+      }
 
       const page = await browser.newPage();
 
@@ -65,7 +65,7 @@ async function main() {
       await page.pdf({
         path: pdfPath,
         format: "A4",
-        margin: { top: "15mm", right: "12mm", bottom: "15mm", left: "12mm" },
+        margin: { top: "0", right: "0", bottom: "0", left: "0" },
         printBackground: true,
         displayHeaderFooter: false,
         preferCSSPageSize: false,

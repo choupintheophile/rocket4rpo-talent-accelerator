@@ -3,229 +3,246 @@
 <head>
   <meta charset="UTF-8">
   <title>Guide sourcing multicanal : 15 canaux avec templates — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    ul { margin-bottom: 12px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .big-stat { background: #0c111d; color: white; border-radius: 12px; padding: 24px; text-align: center; margin: 20px 0; }
+    .big-stat .val { font-size: 40px; font-weight: 900; color: #10b981; line-height: 1; }
+    .big-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; line-height: 1.8; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div><div class="orb2"></div><div class="orb3"></div><div class="line-top"></div><div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Guide PDF</div>
     <h1>Guide <em>sourcing</em> multicanal : 15 canaux</h1>
-    <p class="cover-subtitle">15 canaux de sourcing avec taux de reponse, coûts, bonnes pratiques et templates de messages d'approche prets a personnaliser. Le guide complet du recruteur data-driven.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 12</span>
-      <span><strong>Temps :</strong> 18 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <p class="cover-sub">15 canaux de sourcing avec taux de réponse, coûts, bonnes pratiques et templates de messages d'approche prêts à personnaliser.</p>
+    <div class="cover-stats">
+      <div><div class="cover-stat-value">72%</div><div class="cover-stat-label">Candidats passifs</div></div>
+      <div><div class="cover-stat-value">3 touches</div><div class="cover-stat-label">Avant une réponse</div></div>
+      <div><div class="cover-stat-value">4-6</div><div class="cover-stat-label">Canaux par top recruteur</div></div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Guide PDF</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Guide PDF</div>
     </div>
 
-    <h2>Principes du sourcing multicanal</h2>
-    <p>Les meilleurs recruteurs utilisent en moyenne 4 a 6 canaux par poste. En 2026, la diversification des canaux est indispensable : 72% des candidats qualifies sont passifs et ne repondent pas aux annonces.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">72%</div>
-        <div class="stat-label">Des candidats qualifies sont passifs (ne cherchent pas activement)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">3 touches</div>
-        <div class="stat-label">Nombre moyen de contacts avant une reponse</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">4-6</div>
-        <div class="stat-label">Canaux utilises en moyenne par les top recruteurs</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="val">72%</div><div class="lbl">Candidats passifs</div></div>
+      <div class="stat"><div class="val">3 touches</div><div class="lbl">Contacts avant réponse</div></div>
+      <div class="stat"><div class="val">4-6</div><div class="lbl">Canaux par top recruteur</div></div>
     </div>
 
-    <div class="info-box">
-      <strong>Regle des 3 touches :</strong> En moyenne, il faut 3 points de contact avant d'obtenir une reponse d'un candidat passif. Variez les canaux : InMail LinkedIn + email pro + message sur un reseau communautaire.
+    <h2><span class="bar"></span> Principes du sourcing multicanal</h2>
+    <p>Les meilleurs recruteurs utilisent en moyenne 4 à 6 canaux par poste. En 2026, la diversification des canaux est indispensable : 72% des candidats qualifiés sont passifs et ne répondent pas aux annonces.</p>
+
+    <div class="info">
+      <strong>Règle des 3 touches :</strong> En moyenne, il faut 3 points de contact avant d'obtenir une réponse d'un candidat passif. Variez les canaux : InMail LinkedIn + email pro + message sur un réseau communautaire.
     </div>
 
-    <h2>Comparatif des 15 canaux</h2>
+    <h2><span class="bar"></span> Comparatif des 15 canaux</h2>
     <table>
-      <tr>
-        <th>#</th>
-        <th>Canal</th>
-        <th>Taux reponse</th>
-        <th>coût / mois</th>
-        <th>Profils cibles</th>
-        <th>ROI</th>
-      </tr>
-      <tr><td>1</td><td>LinkedIn Recruiter</td><td>18-25%</td><td>700-1 100 EUR</td><td>Tous profils</td><td>élevé</td></tr>
-      <tr><td>2</td><td>Email direct</td><td>20-35%</td><td>50-200 EUR (outil)</td><td>Tous profils</td><td>élevé</td></tr>
-      <tr><td>3</td><td>Cooptation</td><td>40-60%</td><td>1 000-3 000 EUR (prime)</td><td>Tous profils</td><td>Excellent</td></tr>
+      <tr><th>#</th><th>Canal</th><th>Taux réponse</th><th>Coût / mois</th><th>Profils cibles</th><th>ROI</th></tr>
+      <tr><td>1</td><td>LinkedIn Recruiter</td><td>18-25%</td><td>700-1 100 €</td><td>Tous profils</td><td>Élevé</td></tr>
+      <tr><td>2</td><td>Email direct</td><td>20-35%</td><td>50-200 € (outil)</td><td>Tous profils</td><td>Élevé</td></tr>
+      <tr><td>3</td><td>Cooptation</td><td>40-60%</td><td>1 000-3 000 € (prime)</td><td>Tous profils</td><td>Excellent</td></tr>
       <tr><td>4</td><td>GitHub</td><td>12-18%</td><td>Gratuit</td><td>Dev, DevOps, Data</td><td>Moyen</td></tr>
-      <tr><td>5</td><td>Discord / Slack communautes</td><td>15-25%</td><td>Gratuit</td><td>Tech, Product, Design</td><td>élevé</td></tr>
-      <tr><td>6</td><td>Meetups / events</td><td>30-50%</td><td>0-200 EUR</td><td>Tous profils</td><td>Moyen</td></tr>
-      <tr><td>7</td><td>Vivier ATS interne</td><td>25-40%</td><td>Inclus ATS</td><td>Deja qualifies</td><td>Excellent</td></tr>
-      <tr><td>8</td><td>Jobboards (WTTJ, Indeed)</td><td>3-8%</td><td>200-800 EUR/annonce</td><td>Tous profils</td><td>Moyen</td></tr>
-      <tr><td>9</td><td>LinkedIn Sales Navigator</td><td>10-15%</td><td>80-130 EUR</td><td>Business, Sales</td><td>Moyen</td></tr>
+      <tr><td>5</td><td>Discord / Slack communautés</td><td>15-25%</td><td>Gratuit</td><td>Tech, Product, Design</td><td>Élevé</td></tr>
+      <tr><td>6</td><td>Meetups / events</td><td>30-50%</td><td>0-200 €</td><td>Tous profils</td><td>Moyen</td></tr>
+      <tr><td>7</td><td>Vivier ATS interne</td><td>25-40%</td><td>Inclus ATS</td><td>Déjà qualifiés</td><td>Excellent</td></tr>
+      <tr><td>8</td><td>Jobboards (WTTJ, Indeed)</td><td>3-8%</td><td>200-800 €/annonce</td><td>Tous profils</td><td>Moyen</td></tr>
+      <tr><td>9</td><td>LinkedIn Sales Navigator</td><td>10-15%</td><td>80-130 €</td><td>Business, Sales</td><td>Moyen</td></tr>
       <tr><td>10</td><td>Twitter / X</td><td>5-10%</td><td>Gratuit</td><td>Tech, Startup</td><td>Faible</td></tr>
-      <tr><td>11</td><td>Ecoles / universites</td><td>15-25%</td><td>500-5 000 EUR/partenariat</td><td>Juniors, stagiaires</td><td>Moyen</td></tr>
-      <tr><td>12</td><td>Podcasts / webinaires</td><td>10-20%</td><td>0-500 EUR</td><td>Experts, C-level</td><td>Moyen</td></tr>
-      <tr><td>13</td><td>Freelance vers CDI</td><td>30-45%</td><td>Variable</td><td>Tech, conseil</td><td>élevé</td></tr>
-      <tr><td>14</td><td>Stack Overflow</td><td>8-12%</td><td>Gratuit</td><td>développeurs</td><td>Faible</td></tr>
-      <tr><td>15</td><td>Associations pro</td><td>15-25%</td><td>100-500 EUR/adhesion</td><td>Niche, experts</td><td>Moyen</td></tr>
+      <tr><td>11</td><td>Écoles / universités</td><td>15-25%</td><td>500-5 000 €/partenariat</td><td>Juniors, stagiaires</td><td>Moyen</td></tr>
+      <tr><td>12</td><td>Podcasts / webinaires</td><td>10-20%</td><td>0-500 €</td><td>Experts, C-level</td><td>Moyen</td></tr>
+      <tr><td>13</td><td>Freelance vers CDI</td><td>30-45%</td><td>Variable</td><td>Tech, conseil</td><td>Élevé</td></tr>
+      <tr><td>14</td><td>Stack Overflow</td><td>8-12%</td><td>Gratuit</td><td>Développeurs</td><td>Faible</td></tr>
+      <tr><td>15</td><td>Associations pro</td><td>15-25%</td><td>100-500 €/adhésion</td><td>Niche, experts</td><td>Moyen</td></tr>
     </table>
 
-    <h2>Detail et templates par canal</h2>
+    <h2><span class="bar"></span> Détail et templates par canal</h2>
 
-    <!-- Canal 1 -->
     <h3>1. LinkedIn Recruiter</h3>
-    <div class="info-box">
+    <div class="info">
       <strong>Pour qui :</strong> Tous profils, du junior au C-level. Indispensable pour le recrutement en France.<br>
-      <strong>Taux de reponse :</strong> 18-25% (InMail) | <strong>coût :</strong> 700-1 100 EUR/mois
+      <strong>Taux de réponse :</strong> 18-25% (InMail) | <strong>Coût :</strong> 700-1 100 €/mois
     </div>
     <p><strong>Bonnes pratiques :</strong></p>
     <ul>
-      <li>InMail < 300 caracteres = +20% de taux de reponse</li>
-      <li>Personnalisez avec un element spécifique du profil (projet, article, entreprise actuelle)</li>
+      <li>InMail &lt; 300 caractères = +20% de taux de réponse</li>
+      <li>Personnalisez avec un élément spécifique du profil (projet, article, entreprise actuelle)</li>
       <li>Envoyez le mardi ou mercredi entre 8h et 10h (meilleur taux d'ouverture)</li>
-      <li>Utilisez les filtres avances : secteur, taille entreprise, annees d'expérience, ecole</li>
-      <li>Relancez a J+4 avec un angle different si pas de reponse</li>
+      <li>Utilisez les filtres avancés : secteur, taille entreprise, années d'expérience, école</li>
+      <li>Relancez à J+4 avec un angle différent si pas de réponse</li>
     </ul>
-    <div class="formula"><strong>Template InMail :</strong><br><br>Bonjour [Prenom],<br><br>J'ai vu votre expérience chez [Entreprise actuelle] sur [sujet spécifique] — impressionnant.<br><br>Je recrute un(e) [Poste] pour [Entreprise] qui [proposition de valeur en 1 ligne].<br><br>Ouvert(e) a en discuter 15 min cette semaine ?<br><br>[Votre prenom]</div>
+    <div class="formula"><strong>Template InMail :</strong><br><br>Bonjour [Prénom],<br><br>J'ai vu votre expérience chez [Entreprise actuelle] sur [sujet spécifique] — impressionnant.<br><br>Je recrute un(e) [Poste] pour [Entreprise] qui [proposition de valeur en 1 ligne].<br><br>Ouvert(e) à en discuter 15 min cette semaine ?<br><br>[Votre prénom]</div>
 
-    <!-- Canal 2 -->
     <h3>2. Email direct</h3>
-    <div class="info-box">
+    <div class="info">
       <strong>Pour qui :</strong> Candidats passifs, profils senior. Taux d'ouverture supérieur au InMail.<br>
-      <strong>Taux de reponse :</strong> 20-35% | <strong>Outils :</strong> Hunter.io, Lusha, Kaspr, Dropcontact, Apollo
+      <strong>Taux de réponse :</strong> 20-35% | <strong>Outils :</strong> Hunter.io, Lusha, Kaspr, Dropcontact, Apollo
     </div>
     <p><strong>Bonnes pratiques :</strong></p>
     <ul>
-      <li>Objet < 6 mots, personnalise (evitez "Opportunite" tout seul)</li>
-      <li>Corps < 100 mots, pas de mise en forme complexe</li>
+      <li>Objet &lt; 6 mots, personnalisé (évitez "Opportunité" tout seul)</li>
+      <li>Corps &lt; 100 mots, pas de mise en forme complexe</li>
       <li>1 seul call-to-action (pas 3 liens et 2 questions)</li>
-      <li>Sequence de 3 emails espaces de 3-4 jours chacun</li>
-      <li>Email 1 : approche. Email 2 : valeur ajoutee. Email 3 : derniere relance.</li>
+      <li>Séquence de 3 emails espacés de 3-4 jours chacun</li>
+      <li>Email 1 : approche. Email 2 : valeur ajoutée. Email 3 : dernière relance.</li>
     </ul>
-    <div class="formula"><strong>Template email (1er contact) :</strong><br><br>Objet : [Prenom] — [Poste] chez [Entreprise]<br><br>Bonjour [Prenom],<br><br>Votre parcours chez [Entreprise actuelle], notamment [element spécifique], correspond exactement au profil recherche par [Entreprise cliente].<br><br>Ils recrutent un(e) [Poste] pour [mission en 1 phrase]. Package : [fourchette]K EUR.<br><br>Disponible pour un call de 15 min ?<br><br>[Signature]</div>
-    <div class="formula"><strong>Template relance (J+4) :</strong><br><br>Objet : Re: [Prenom] — [Poste] chez [Entreprise]<br><br>Bonjour [Prenom],<br><br>Je me permets de revenir vers vous. Pour vous donner plus de contexte : [1 element attractif supplementaire — stack tech, taille équipe, projet phare, politique remote].<br><br>même un "pas interesse" m'aide a mieux orienter ma recherche. Qu'en pensez-vous ?<br><br>[Signature]</div>
+    <div class="formula"><strong>Template email (1er contact) :</strong><br><br>Objet : [Prénom] — [Poste] chez [Entreprise]<br><br>Bonjour [Prénom],<br><br>Votre parcours chez [Entreprise actuelle], notamment [élément spécifique], correspond exactement au profil recherché par [Entreprise cliente].<br><br>Ils recrutent un(e) [Poste] pour [mission en 1 phrase]. Package : [fourchette]K €.<br><br>Disponible pour un call de 15 min ?<br><br>[Signature]</div>
 
-    <!-- Canal 3 -->
     <h3>3. Cooptation</h3>
-    <div class="info-box">
+    <div class="info">
       <strong>Pour qui :</strong> Tous profils. Meilleur canal en qualité et rétention (+25% de rétention).<br>
-      <strong>Taux de reponse :</strong> 40-60% | <strong>coût :</strong> 1 000-3 000 EUR/prime
+      <strong>Taux de réponse :</strong> 40-60% | <strong>Coût :</strong> 1 000-3 000 €/prime
     </div>
-    <p><strong>Mettre en place un programme :</strong></p>
     <ul>
-      <li>Prime : 1 000-3 000 EUR versee à la fin de la période d'essai</li>
+      <li>Prime : 1 000-3 000 € versée à la fin de la période d'essai</li>
       <li>Communiquez les postes ouverts chaque semaine (Slack, email, all-hands)</li>
       <li>Simplifiez le process : formulaire en 2 clics, pas de CV requis pour recommander</li>
       <li>Donnez du feedback au coopteur sur le statut de la candidature</li>
-      <li>Gamifiez : classement des meilleurs coopteurs, bonus supplementaire au 3e recrutement</li>
+      <li>Gamifiez : classement des meilleurs coopteurs, bonus supplémentaire au 3e recrutement</li>
     </ul>
 
-    <div class="stat-box">
-      Les collaborateurs cooptes restent 25% plus longtemps, sont embauches 55% plus vite et sont 15% plus performants en moyenne que ceux recrutes par d'autres canaux.
+    <div class="big-stat">
+      <div class="val">+25%</div>
+      <div class="lbl">Les collaborateurs cooptés restent 25% plus longtemps et sont embauchés 55% plus vite</div>
     </div>
 
-    <!-- Canal 4 -->
     <h3>4. GitHub</h3>
-    <div class="info-box">
-      <strong>Pour qui :</strong> développeurs, DevOps, Data Engineers.<br>
-      <strong>Taux de reponse :</strong> 12-18% | <strong>coût :</strong> Gratuit
+    <div class="info">
+      <strong>Pour qui :</strong> Développeurs, DevOps, Data Engineers.<br>
+      <strong>Taux de réponse :</strong> 12-18% | <strong>Coût :</strong> Gratuit
     </div>
-    <p><strong>Comment sourcer :</strong></p>
     <ul>
       <li>Recherchez par langage, nombre de contributions, localisation</li>
-      <li>Syntaxe : <code>location:France language:Python followers:>10</code></li>
+      <li>Syntaxe : <code>location:France language:Python followers:&gt;10</code></li>
       <li>Analysez les repositories : qualité du code, documentation, open source</li>
-      <li>vérifiéz le profil lie (souvent un lien vers LinkedIn ou un site perso)</li>
+      <li>Vérifiez le profil lié (souvent un lien vers LinkedIn ou un site perso)</li>
     </ul>
-    <div class="formula"><strong>Template message GitHub :</strong><br><br>Bonjour [Prenom],<br><br>J'ai decouvert votre repo [nom du projet] — [commentaire technique pertinent sur un choix d'architecture ou une contribution].<br><br>Je recherche un(e) dev [techno] pour [Entreprise] qui [contexte technique interessant]. Stack : [technologies].<br><br>Ca vous parle ?<br><br>[Signature avec lien LinkedIn]</div>
 
-    <!-- Canal 5 -->
-    <h3>5. Discord / Slack — Communautes</h3>
-    <div class="info-box">
+    <h3>5. Discord / Slack — Communautés</h3>
+    <div class="info">
       <strong>Pour qui :</strong> Tech, Product, Design, Marketing digital.<br>
-      <strong>Taux de reponse :</strong> 15-25% | <strong>coût :</strong> Gratuit
+      <strong>Taux de réponse :</strong> 15-25% | <strong>Coût :</strong> Gratuit
     </div>
-    <p><strong>Communautes FR actives en 2026 :</strong></p>
     <table>
-      <tr><th>Domaine</th><th>Communautes</th></tr>
+      <tr><th>Domaine</th><th>Communautés</th></tr>
       <tr><td>Tech / Dev</td><td>French Dev Community, DevFr, NestJS France, React France, Golang FR</td></tr>
       <tr><td>Product</td><td>Product Squad, La Product Conf, Mind the Product FR</td></tr>
       <tr><td>Design</td><td>Design Friends, Framer France, Figma FR</td></tr>
       <tr><td>Data / IA</td><td>Data Engineering France, MLOps Community, Hugging Face FR</td></tr>
       <tr><td>Startup</td><td>La French Tech, Station F Alumni, Startup Weekend</td></tr>
     </table>
-    <p><strong>Regles d'or :</strong> Participez aux discussions AVANT de poster des offres. Respectez les channels dedies (#jobs, #hiring). Ne spammez jamais en DM sans contexte.</p>
+    <p><strong>Règles d'or :</strong> Participez aux discussions AVANT de poster des offres. Respectez les channels dédiés (#jobs, #hiring). Ne spammez jamais en DM sans contexte.</p>
 
-    <!-- Canal 6 -->
     <h3>6. Meetups et events</h3>
-    <div class="info-box">
+    <div class="info">
       <strong>Pour qui :</strong> Tous profils. Excellent pour la marque employeur.<br>
-      <strong>Taux de reponse :</strong> 30-50% (apres rencontre physique) | <strong>coût :</strong> 0-200 EUR
+      <strong>Taux de réponse :</strong> 30-50% (après rencontre physique) | <strong>Coût :</strong> 0-200 €
     </div>
-    <p><strong>stratégie :</strong></p>
     <ul>
-      <li>Participez comme speaker ou sponsor (visibilite forte)</li>
-      <li>Collectez les contacts de maniere naturelle (pas de chasse agressive)</li>
-      <li>Follow-up dans les 48h avec un message personnalise faisant référence à la rencontre</li>
-      <li>Organisez vos propres meetups dans vos locaux (100-300 EUR pour pizza + boissons)</li>
+      <li>Participez comme speaker ou sponsor (visibilité forte)</li>
+      <li>Collectez les contacts de manière naturelle (pas de chasse agressive)</li>
+      <li>Follow-up dans les 48h avec un message personnalisé faisant référence à la rencontre</li>
+      <li>Organisez vos propres meetups dans vos locaux (100-300 € pour pizza + boissons)</li>
     </ul>
     <p><strong>Plateformes :</strong> Meetup.com, Eventbrite, Luma, WTTJ Events, Lu.ma</p>
 
-    <!-- Canal 7 -->
     <h3>7. Vivier ATS interne</h3>
-    <div class="info-box">
-      <strong>Pour qui :</strong> Candidats deja qualifies. ROI maximal.<br>
-      <strong>Taux de reponse :</strong> 25-40% | <strong>coût :</strong> Inclus dans l'ATS
+    <div class="info">
+      <strong>Pour qui :</strong> Candidats déjà qualifiés. ROI maximal.<br>
+      <strong>Taux de réponse :</strong> 25-40% | <strong>Coût :</strong> Inclus dans l'ATS
     </div>
     <ul>
-      <li>Recontactez en priorite les "silver medalists" (finalistes non retenus)</li>
-      <li>Segmentez votre vivier par metier, seniority, localisation, date de dernier contact</li>
-      <li>Envoyez une newsletter trimestrielle avec les nouveaux postes et les actualites de l'entreprise</li>
-      <li>RGPD : conservation 24 mois max, mettez a jour les consentements</li>
+      <li>Recontactez en priorité les "silver medalists" (finalistes non retenus)</li>
+      <li>Segmentez votre vivier par métier, seniority, localisation, date de dernier contact</li>
+      <li>Envoyez une newsletter trimestrielle avec les nouveaux postes et les actualités de l'entreprise</li>
+      <li>RGPD : conservation 24 mois max, mettez à jour les consentements</li>
     </ul>
 
-    <!-- Canal 8 -->
     <h3>8. Freelance vers CDI</h3>
-    <div class="info-box">
+    <div class="info">
       <strong>Pour qui :</strong> Tech, conseil, profils seniors.<br>
-      <strong>Taux de conversion :</strong> 20-30% | <strong>Plateformes :</strong> Malt, Comet, Creme de la Creme
+      <strong>Taux de conversion :</strong> 20-30% | <strong>Plateformes :</strong> Malt, Comet, Crème de la Crème
     </div>
     <p><strong>Approche :</strong> Proposez une mission courte (3-6 mois) avec option CDI. Le freelance teste l'entreprise, l'entreprise teste le freelance. Win-win.</p>
 
-    <h2>stratégie multicanal par type de profil</h2>
+    <h2><span class="bar"></span> Stratégie multicanal par type de profil</h2>
     <table>
-      <tr>
-        <th>Profil</th>
-        <th>Canal 1 (principal)</th>
-        <th>Canal 2</th>
-        <th>Canal 3</th>
-        <th>Taux reponse combine</th>
-      </tr>
-      <tr><td>développeur</td><td>GitHub + Email</td><td>Discord / Slack</td><td>Meetups tech</td><td>25-35%</td></tr>
+      <tr><th>Profil</th><th>Canal 1 (principal)</th><th>Canal 2</th><th>Canal 3</th><th>Taux réponse combiné</th></tr>
+      <tr><td>Développeur</td><td>GitHub + Email</td><td>Discord / Slack</td><td>Meetups tech</td><td>25-35%</td></tr>
       <tr><td>Sales / Business</td><td>LinkedIn Recruiter</td><td>Cooptation</td><td>Jobboards</td><td>20-30%</td></tr>
-      <tr><td>Product Manager</td><td>LinkedIn + Email</td><td>Communautes Slack</td><td>Events produit</td><td>22-32%</td></tr>
+      <tr><td>Product Manager</td><td>LinkedIn + Email</td><td>Communautés Slack</td><td>Events produit</td><td>22-32%</td></tr>
       <tr><td>Designer</td><td>Dribbble + Behance</td><td>Discord Design</td><td>LinkedIn</td><td>18-28%</td></tr>
-      <tr><td>Data / IA</td><td>GitHub + Kaggle</td><td>Conferences</td><td>LinkedIn</td><td>20-30%</td></tr>
-      <tr><td>C-level / VP</td><td>Email direct (chasse)</td><td>Reseau personnel</td><td>Events exclusifs</td><td>15-25%</td></tr>
-      <tr><td>Junior / stage</td><td>Ecoles / forums</td><td>WTTJ / JobTeaser</td><td>LinkedIn</td><td>25-40%</td></tr>
+      <tr><td>Data / IA</td><td>GitHub + Kaggle</td><td>Conférences</td><td>LinkedIn</td><td>20-30%</td></tr>
+      <tr><td>C-level / VP</td><td>Email direct (chasse)</td><td>Réseau personnel</td><td>Events exclusifs</td><td>15-25%</td></tr>
+      <tr><td>Junior / stage</td><td>Écoles / forums</td><td>WTTJ / JobTeaser</td><td>LinkedIn</td><td>25-40%</td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Conseil RPO :</strong> Documentez le taux de reponse de chaque canal par mission dans un tableau de suivi. Apres 3 mois, vous aurez une matrice claire du ROI par canal et par type de profil. C'est votre avantage concurrentiel : la donnee.
+    <div class="warn">
+      <strong>Conseil RPO :</strong> Documentez le taux de réponse de chaque canal par mission dans un tableau de suivi. Après 3 mois, vous aurez une matrice claire du ROI par canal et par type de profil. C'est votre avantage concurrentiel : la donnée.
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

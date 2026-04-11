@@ -3,389 +3,806 @@
 <head>
   <meta charset="UTF-8">
   <title>RPO vs Cabinet de recrutement : le comparatif complet 2026 — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.7;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* COVER */
+    .cover {
+      width: 100%;
+      min-height: 100vh;
+      background: #0c111d;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 60px;
+      page-break-after: always;
+      position: relative;
+    }
+
+    .cover .orb1 {
+      position: absolute;
+      top: 60px;
+      right: 60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 1px solid rgba(16,185,129,0.15);
+    }
+
+    .cover .orb2 {
+      position: absolute;
+      top: 80px;
+      right: 80px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid rgba(16,185,129,0.1);
+    }
+
+    .cover .orb3 {
+      position: absolute;
+      bottom: 80px;
+      left: 60px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(16,185,129,0.06);
+    }
+
+    .cover .line-top {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: #10b981;
+      border-radius: 2px;
+    }
+
+    .cover .line-bottom {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: rgba(16,185,129,0.3);
+      border-radius: 2px;
+    }
+
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .cover-logo .dot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: #10b981;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      padding: 8px 28px;
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #10b981;
+      margin-bottom: 32px;
+    }
+
+    .cover h1 {
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1.1;
+      max-width: 500px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .cover h1 em {
+      font-style: normal;
+      color: #10b981;
+    }
+
+    .cover-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    .cover-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .cover-stat-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: #10b981;
+    }
+
+    .cover-stat-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    .cover-foot {
+      position: absolute;
+      bottom: 30px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.08em;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 40px 50px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #0c111d;
+      margin-bottom: 32px;
+    }
+
+    .page-header .logo {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #111827;
+    }
+
+    .page-header .logo .accent { color: #0d9373; }
+
+    .page-header .type {
+      font-size: 10px;
+      font-weight: 700;
+      color: white;
+      background: #0d9373;
+      padding: 4px 14px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 800;
+      color: white;
+      background: #0c111d;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .bar {
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: #10b981;
+      border-radius: 2px;
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0d9373;
+      margin-top: 24px;
+      margin-bottom: 8px;
+      padding-left: 12px;
+      border-left: 3px solid #0d9373;
+    }
+
+    p { margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th {
+      background: #0c111d;
+      color: white;
+      font-weight: 600;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+
+    .teal-row td {
+      background: #e6f7f2 !important;
+      font-weight: 700;
+      color: #087a60;
+    }
+
+    .info {
+      background: #f0faf6;
+      border-left: 4px solid #0d9373;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 12.5px;
+    }
+
+    .info strong { color: #087a60; }
+
+    .warn {
+      background: #fffbeb;
+      border-left: 4px solid #d97706;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 12.5px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .stat {
+      flex: 1;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-top: 3px solid #0d9373;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat .val {
+      font-size: 28px;
+      font-weight: 900;
+      color: #0d9373;
+      line-height: 1;
+    }
+
+    .stat .lbl {
+      font-size: 10px;
+      color: #6b7280;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .big-stat {
+      background: #0c111d;
+      color: white;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .big-stat .val {
+      font-size: 40px;
+      font-weight: 900;
+      color: #10b981;
+      line-height: 1;
+    }
+
+    .big-stat .lbl {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+    }
+
+    .formula {
+      background: #0c111d;
+      color: #10b981;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 14px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .check { list-style: none; padding: 0; }
+    .check li {
+      padding: 10px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12.5px;
+    }
+    .check li::before {
+      content: '\2610';
+      color: #0d9373;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 2px solid #0c111d;
+      text-align: center;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .footer .logo {
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #111827;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
-    <div class="cover-badge">Guide PDF</div>
-    <h1>RPO vs Cabinet de recrutement : le <em>comparatif</em> complet 2026</h1>
-    <p class="cover-subtitle">Analyse détaillée des 3 modeles d'externalisation du recrutement : RPO, cabinet et recruteur interne. coûts, délais, qualité, flexibilite.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 8</span>
-      <span><strong>Temps :</strong> 12 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+
+    <div class="cover-logo">
+      ROCKET<span class="dot">4</span>RPO
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+
+    <div class="cover-badge">Guide PDF</div>
+
+    <h1>RPO vs Cabinet : le <em>comparatif</em> complet 2026</h1>
+
+    <p class="cover-sub">
+      Analyse détaillée des 3 modèles d'externalisation du recrutement : RPO, cabinet et recruteur interne. Coûts, délais, qualité, flexibilité.
+    </p>
+
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-value">45 000 €</div>
+        <div class="cover-stat-label">Coût recrutement raté</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">72%</div>
+        <div class="cover-stat-label">Externalisent le recrutement</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">36 jours</div>
+        <div class="cover-stat-label">Délai moyen France</div>
+      </div>
+    </div>
+
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Guide PDF</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Guide PDF</div>
     </div>
 
-    <h2>Pourquoi ce guide ?</h2>
-    <p>En 2026, le coût moyen d'un recrutement rate en France est estimé a 45 000 EUR (DARES). Face à la pénurie de talents dans la tech et le commercial, choisir le bon modele d'externalisation est un enjeu stratégique. Ce guide compare objectivement les trois options pour vous aider a prendre la bonne décision.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">45 000 EUR</div>
-        <div class="stat-label">coût moyen d'un recrutement rate en France</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="val">45 000 €</div>
+        <div class="lbl">Coût d'un recrutement raté</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">72%</div>
-        <div class="stat-label">Des entreprises externalisent au moins une partie du recrutement</div>
+      <div class="stat">
+        <div class="val">72%</div>
+        <div class="lbl">Externalisent le recrutement</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value">36 jours</div>
-        <div class="stat-label">délai moyen pour pourvoir un poste en France</div>
+      <div class="stat">
+        <div class="val">36 jours</div>
+        <div class="lbl">Délai moyen en France</div>
       </div>
     </div>
 
-    <h2>1. Les 3 modeles expliques</h2>
+    <h2><span class="bar"></span> Pourquoi ce guide ?</h2>
+    <p>En 2026, le coût moyen d'un recrutement raté en France est estimé à 45 000 € (DARES). Face à la pénurie de talents dans la tech et le commercial, choisir le bon modèle d'externalisation est un enjeu stratégique. Ce guide compare objectivement les trois options pour vous aider à prendre la bonne décision.</p>
+
+    <h2><span class="bar"></span> Les 3 modèles expliqués</h2>
 
     <h3>RPO (Recruitment Process Outsourcing)</h3>
-    <p>Le RPO consiste a intégrér un Talent Acquisition Specialist directement dans votre équipe. Le recruteur RPO utilise vos outils (ATS, Slack, email), participe a vos rituels, et opere comme un membre a part entiere de l'équipe. Il peut intervenir de 1 a 5 jours par semaine, avec une facturation au TJM (taux journalier moyen).</p>
+    <p>Le RPO consiste à intégrer un Talent Acquisition Specialist directement dans votre équipe. Le recruteur RPO utilise vos outils (ATS, Slack, email), participe à vos rituels, et opère comme un membre à part entière de l'équipe. Il peut intervenir de 1 à 5 jours par semaine, avec une facturation au TJM (taux journalier moyen).</p>
 
     <h3>Cabinet de recrutement</h3>
-    <p>Le cabinet travaille en prestataire externe. Il recoit un brief, source des candidats dans son vivier, et présenté une shortlist. Il facture généralement un pourcentage du salaire annuel brut du candidat recrute (15% a 25%), souvent avec un acompte au lancement (retainer).</p>
+    <p>Le cabinet travaille en prestataire externe. Il reçoit un brief, source des candidats dans son vivier, et présente une shortlist. Il facture généralement un pourcentage du salaire annuel brut du candidat recruté (15% à 25%), souvent avec un acompte au lancement (retainer).</p>
 
     <h3>Recruteur interne</h3>
-    <p>Un salarié en CDI dedie au recrutement. coût fixe (salaire + charges), intégration totale dans l'équipe, mais moins de flexibilite en cas de variation des volumes de recrutement.</p>
+    <p>Un salarié en CDI dédié au recrutement. Coût fixe (salaire + charges), intégration totale dans l'équipe, mais moins de flexibilité en cas de variation des volumes de recrutement.</p>
 
-    <h2>2. Comparatif détaillé sur 12 critères</h2>
+    <h2><span class="bar"></span> Comparatif détaillé sur 12 critères</h2>
 
     <table>
       <tr>
-        <th>critère</th>
-        <th class="highlight-row">RPO</th>
+        <th>Critère</th>
+        <th>RPO</th>
         <th>Cabinet</th>
         <th>Recruteur interne</th>
       </tr>
-      <tr>
-        <td><strong>Modele de facturation</strong></td>
-        <td class="highlight-row">TJM (400-700 EUR/j)</td>
+      <tr class="teal-row">
+        <td><strong>Modèle de facturation</strong></td>
+        <td>TJM (400-700 €/j)</td>
         <td>15-25% du salaire annuel</td>
-        <td>CDI (45-65K EUR/an + charges)</td>
-      </tr>
-      <tr class="category-row">
-        <td colspan="4">Performance et délais</td>
+        <td>CDI (45-65K €/an + charges)</td>
       </tr>
       <tr>
-        <td><strong>Premiere shortlist</strong></td>
-        <td class="highlight-row">48-72h</td>
+        <td><strong>Première shortlist</strong></td>
+        <td>48-72h</td>
         <td>2-3 semaines</td>
         <td>1-2 semaines</td>
       </tr>
       <tr>
         <td><strong>Time-to-hire moyen</strong></td>
-        <td class="highlight-row">25-35 jours</td>
+        <td>25-35 jours</td>
         <td>40-60 jours</td>
         <td>30-45 jours</td>
       </tr>
       <tr>
-        <td><strong>Taux de rétention a 12 mois</strong></td>
-        <td class="highlight-row">92%</td>
+        <td><strong>Taux de rétention à 12 mois</strong></td>
+        <td>92%</td>
         <td>82%</td>
         <td>88%</td>
       </tr>
-      <tr class="category-row">
-        <td colspan="4">intégration et fonctionnement</td>
-      </tr>
       <tr>
-        <td><strong>intégration équipe</strong></td>
-        <td class="highlight-row">Totale (outils, rituels, culture)</td>
+        <td><strong>Intégration équipe</strong></td>
+        <td>Totale (outils, rituels, culture)</td>
         <td>Externe (points ponctuels)</td>
         <td>Totale</td>
       </tr>
       <tr>
         <td><strong>Connaissance de la culture</strong></td>
-        <td class="highlight-row">Profonde (immersion)</td>
+        <td>Profonde (immersion)</td>
         <td>Superficielle (brief)</td>
         <td>Profonde</td>
       </tr>
       <tr>
-        <td><strong>Acces aux outils internes</strong></td>
-        <td class="highlight-row">Oui (ATS, Slack, CRM)</td>
+        <td><strong>Accès aux outils internes</strong></td>
+        <td>Oui (ATS, Slack, CRM)</td>
         <td>Non (outils propres)</td>
         <td>Oui</td>
       </tr>
-      <tr class="category-row">
-        <td colspan="4">Flexibilite et scalabilite</td>
-      </tr>
       <tr>
-        <td><strong>Flexibilite du volume</strong></td>
-        <td class="highlight-row">1-5 jours/semaine, ajustable</td>
+        <td><strong>Flexibilité du volume</strong></td>
+        <td>1-5 jours/semaine, ajustable</td>
         <td>Mission par mission</td>
         <td>Fixe (CDI)</td>
       </tr>
       <tr>
-        <td><strong>Scalabilite</strong></td>
-        <td class="highlight-row">Ajout rapide de RPO supplementaires</td>
+        <td><strong>Scalabilité</strong></td>
+        <td>Ajout rapide de RPO supplémentaires</td>
         <td>Multiples cabinets possibles</td>
         <td>Recrutement + onboarding nécessaire</td>
       </tr>
       <tr>
         <td><strong>Engagement minimum</strong></td>
-        <td class="highlight-row">1 mois (en général)</td>
+        <td>1 mois (en général)</td>
         <td>Par mission</td>
         <td>CDI (engagement long)</td>
       </tr>
       <tr>
-        <td><strong>Exclusivite</strong></td>
-        <td class="highlight-row">Dedie à votre entreprise</td>
+        <td><strong>Exclusivité</strong></td>
+        <td>Dédié à votre entreprise</td>
         <td>Travaille pour plusieurs clients</td>
-        <td>Dedie</td>
+        <td>Dédié</td>
       </tr>
       <tr>
         <td><strong>Garantie de remplacement</strong></td>
-        <td class="highlight-row">Incluse (process continu)</td>
+        <td>Incluse (process continu)</td>
         <td>3-6 mois (selon contrat)</td>
         <td>Nouveau recrutement</td>
       </tr>
     </table>
 
-    <h2>3. Simulation de coûts</h2>
+    <h2><span class="bar"></span> Simulation de coûts</h2>
 
-    <div class="info-box">
-      <strong>Hypotheses de calcul :</strong> Salaire moyen des recrutes : 50 000 EUR brut/an. TJM RPO : 550 EUR. Commission cabinet : 18% du salaire. Recruteur interne : 52 000 EUR/an charges comprises + 8 000 EUR d'outils. RPO a 4 jours/semaine.
+    <div class="info">
+      <strong>Hypothèses de calcul :</strong> Salaire moyen des recrutés : 50 000 € brut/an. TJM RPO : 550 €. Commission cabinet : 18% du salaire. Recruteur interne : 52 000 €/an charges comprises + 8 000 € d'outils. RPO à 4 jours/semaine.
     </div>
 
-    <h3>Scenario A : 5 recrutements sur 3 mois</h3>
+    <h3>Scénario A : 5 recrutements sur 3 mois</h3>
     <table>
       <tr>
-        <th>Modele</th>
+        <th>Modèle</th>
         <th>Calcul</th>
-        <th>coût total</th>
-        <th>coût / recrutement</th>
+        <th>Coût total</th>
+        <th>Coût / recrutement</th>
       </tr>
-      <tr>
-        <td class="highlight-row"><strong>RPO</strong></td>
-        <td class="highlight-row">550 EUR x 4j x 13 sem</td>
-        <td class="highlight-row"><strong>28 600 EUR</strong></td>
-        <td class="highlight-row"><strong>5 720 EUR</strong></td>
+      <tr class="teal-row">
+        <td><strong>RPO</strong></td>
+        <td>550 € x 4j x 13 sem</td>
+        <td><strong>28 600 €</strong></td>
+        <td><strong>5 720 €</strong></td>
       </tr>
       <tr>
         <td>Cabinet (18%)</td>
         <td>50 000 x 18% x 5</td>
-        <td>45 000 EUR</td>
-        <td>9 000 EUR</td>
+        <td>45 000 €</td>
+        <td>9 000 €</td>
       </tr>
       <tr>
         <td>Recruteur interne</td>
         <td>(52 000 + 8 000) / 4 trim.</td>
-        <td>15 000 EUR</td>
-        <td>3 000 EUR</td>
+        <td>15 000 €</td>
+        <td>3 000 €</td>
       </tr>
     </table>
 
-    <h3>Scenario B : 10 recrutements sur 6 mois</h3>
+    <h3>Scénario B : 10 recrutements sur 6 mois</h3>
     <table>
       <tr>
-        <th>Modele</th>
+        <th>Modèle</th>
         <th>Calcul</th>
-        <th>coût total</th>
-        <th>coût / recrutement</th>
+        <th>Coût total</th>
+        <th>Coût / recrutement</th>
       </tr>
-      <tr>
-        <td class="highlight-row"><strong>RPO</strong></td>
-        <td class="highlight-row">550 EUR x 4j x 26 sem</td>
-        <td class="highlight-row"><strong>57 200 EUR</strong></td>
-        <td class="highlight-row"><strong>5 720 EUR</strong></td>
+      <tr class="teal-row">
+        <td><strong>RPO</strong></td>
+        <td>550 € x 4j x 26 sem</td>
+        <td><strong>57 200 €</strong></td>
+        <td><strong>5 720 €</strong></td>
       </tr>
       <tr>
         <td>Cabinet (18%)</td>
         <td>50 000 x 18% x 10</td>
-        <td>90 000 EUR</td>
-        <td>9 000 EUR</td>
+        <td>90 000 €</td>
+        <td>9 000 €</td>
       </tr>
       <tr>
         <td>Recruteur interne</td>
         <td>(52 000 + 8 000) / 2</td>
-        <td>30 000 EUR</td>
-        <td>3 000 EUR</td>
+        <td>30 000 €</td>
+        <td>3 000 €</td>
       </tr>
     </table>
 
-    <h3>Scenario C : 20 recrutements sur 12 mois</h3>
+    <h3>Scénario C : 20 recrutements sur 12 mois</h3>
     <table>
       <tr>
-        <th>Modele</th>
+        <th>Modèle</th>
         <th>Calcul</th>
-        <th>coût total</th>
-        <th>coût / recrutement</th>
+        <th>Coût total</th>
+        <th>Coût / recrutement</th>
       </tr>
-      <tr>
-        <td class="highlight-row"><strong>RPO</strong></td>
-        <td class="highlight-row">550 EUR x 5j x 48 sem</td>
-        <td class="highlight-row"><strong>132 000 EUR</strong></td>
-        <td class="highlight-row"><strong>6 600 EUR</strong></td>
+      <tr class="teal-row">
+        <td><strong>RPO</strong></td>
+        <td>550 € x 5j x 48 sem</td>
+        <td><strong>132 000 €</strong></td>
+        <td><strong>6 600 €</strong></td>
       </tr>
       <tr>
         <td>Cabinet (18%)</td>
         <td>50 000 x 18% x 20</td>
-        <td>180 000 EUR</td>
-        <td>9 000 EUR</td>
+        <td>180 000 €</td>
+        <td>9 000 €</td>
       </tr>
       <tr>
         <td>Recruteur interne</td>
         <td>52 000 + 8 000</td>
-        <td>60 000 EUR</td>
-        <td>3 000 EUR</td>
+        <td>60 000 €</td>
+        <td>3 000 €</td>
       </tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Attention :</strong> Le coût du recruteur interne ne tient pas compte du temps de recrutement de ce recruteur (3-6 mois), de son onboarding, ni du risque de sous-charge ou surcharge. Le RPO offre un meilleur rapport cout/flexibilite des que le volume est supérieur a 5 recrutements par an.
+    <div class="warn">
+      <strong>Attention :</strong> Le coût du recruteur interne ne tient pas compte du temps de recrutement de ce recruteur (3-6 mois), de son onboarding, ni du risque de sous-charge ou surcharge. Le RPO offre un meilleur rapport coût/flexibilité dès que le volume est supérieur à 5 recrutements par an.
     </div>
 
-    <h2>4. Arbre de décision</h2>
+    <h2><span class="bar"></span> Arbre de décision</h2>
 
-    <div class="info-box">
-      <strong>Etape 1 :</strong> Combien de postes recrutez-vous par trimestre ?<br>
+    <div class="info">
+      <strong>Étape 1 :</strong> Combien de postes recrutez-vous par trimestre ?<br>
       - <strong>Moins de 2</strong> → Cabinet de recrutement (ponctuel, pas d'engagement fixe)<br>
-      - <strong>2 a 5</strong> → RPO a temps partiel (2-3 jours/semaine)<br>
-      - <strong>Plus de 5</strong> → Passez a l'etape 2
+      - <strong>2 à 5</strong> → RPO à temps partiel (2-3 jours/semaine)<br>
+      - <strong>Plus de 5</strong> → Passez à l'étape 2
     </div>
 
-    <div class="info-box">
-      <strong>Etape 2 :</strong> Quel est votre budget annuel recrutement ?<br>
-      - <strong>Moins de 50 000 EUR</strong> → RPO partiel (2 jours/semaine) ou recruteur interne junior<br>
-      - <strong>50 000 - 120 000 EUR</strong> → RPO full-time ou recruteur interne confirme<br>
-      - <strong>Plus de 120 000 EUR</strong> → équipe interne + RPO en renfort sur les pics
+    <div class="info">
+      <strong>Étape 2 :</strong> Quel est votre budget annuel recrutement ?<br>
+      - <strong>Moins de 50 000 €</strong> → RPO partiel (2 jours/semaine) ou recruteur interne junior<br>
+      - <strong>50 000 - 120 000 €</strong> → RPO full-time ou recruteur interne confirmé<br>
+      - <strong>Plus de 120 000 €</strong> → Équipe interne + RPO en renfort sur les pics
     </div>
 
-    <div class="info-box">
-      <strong>Etape 3 :</strong> Quelle est votre maturite recrutement ?<br>
-      - <strong>Pas de process structure</strong> → RPO (il apporte le process en plus du sourcing)<br>
+    <div class="info">
+      <strong>Étape 3 :</strong> Quelle est votre maturité recrutement ?<br>
+      - <strong>Pas de process structuré</strong> → RPO (il apporte le process en plus du sourcing)<br>
       - <strong>Process en place, besoin de bras</strong> → Recruteur interne ou RPO selon le volume<br>
-      - <strong>Profils rares ou executive</strong> → Cabinet specialise + RPO pour le reste
+      - <strong>Profils rares ou executive</strong> → Cabinet spécialisé + RPO pour le reste
     </div>
 
-    <h2>5. Quand choisir le RPO ?</h2>
+    <h2><span class="bar"></span> Quand choisir le RPO ?</h2>
 
-    <ul class="checklist">
+    <ul class="check">
       <li>Vous recrutez 3 postes ou plus par trimestre</li>
       <li>Vous avez besoin d'un recruteur intégré, pas d'un prestataire externe</li>
-      <li>Vous voulez un budget previsible (TJM vs pourcentage imprevisible)</li>
+      <li>Vous voulez un budget prévisible (TJM vs pourcentage imprévisible)</li>
       <li>Vous souhaitez structurer votre processus de recrutement</li>
-      <li>Vous avez besoin de résultats rapides (premiere shortlist en 48h)</li>
-      <li>Vous etes en phase de croissance avec des besoins fluctuants</li>
+      <li>Vous avez besoin de résultats rapides (première shortlist en 48h)</li>
+      <li>Vous êtes en phase de croissance avec des besoins fluctuants</li>
       <li>Vous voulez capitaliser sur un vivier de candidats pour l'avenir</li>
     </ul>
 
-    <h2>6. Quand choisir un cabinet ?</h2>
+    <h2><span class="bar"></span> Quand choisir un cabinet ?</h2>
 
-    <ul class="checklist">
+    <ul class="check">
       <li>Recrutement ponctuel (1-2 postes par an)</li>
-      <li>Profils C-level ou dirigeants (chasse de tete specialisee)</li>
-      <li>Marche de niche ou les cabinets ont un vivier qualifie</li>
-      <li>Pas de ressources internes pour gerer un processus complet</li>
-      <li>Besoin de confidentialite (remplacement discret)</li>
+      <li>Profils C-level ou dirigeants (chasse de tête spécialisée)</li>
+      <li>Marché de niche où les cabinets ont un vivier qualifié</li>
+      <li>Pas de ressources internes pour gérer un processus complet</li>
+      <li>Besoin de confidentialité (remplacement discret)</li>
     </ul>
 
-    <h2>7. Quand recruter en interne ?</h2>
+    <h2><span class="bar"></span> Quand recruter en interne ?</h2>
 
-    <ul class="checklist">
-      <li>Volume constant et previsible (15+ recrutements/an)</li>
-      <li>Marque employeur forte a developper sur le long terme</li>
-      <li>Budget suffisant pour un salaire + outils (60-80K EUR/an tout compris)</li>
-      <li>Capacite a absorber les périodes creuses sans recrutements</li>
+    <ul class="check">
+      <li>Volume constant et prévisible (15+ recrutements/an)</li>
+      <li>Marque employeur forte à développer sur le long terme</li>
+      <li>Budget suffisant pour un salaire + outils (60-80K €/an tout compris)</li>
+      <li>Capacité à absorber les périodes creuses sans recrutements</li>
     </ul>
 
-    <h2>8. Le modele hybride : la solution optimale</h2>
+    <h2><span class="bar"></span> Le modèle hybride : la solution optimale</h2>
 
-    <p>En pratique, les entreprises les plus performantes en recrutement combinent les modeles :</p>
+    <p>En pratique, les entreprises les plus performantes en recrutement combinent les modèles :</p>
 
     <table>
       <tr>
         <th>Taille équipe</th>
-        <th>Modele recommande</th>
+        <th>Modèle recommandé</th>
         <th>Budget annuel estimé</th>
       </tr>
       <tr>
         <td>Startup (10-50 pers.)</td>
         <td>RPO temps partiel (2-3j/sem)</td>
-        <td>40 000 - 70 000 EUR</td>
+        <td>40 000 - 70 000 €</td>
       </tr>
       <tr>
         <td>Scale-up (50-200 pers.)</td>
         <td>1 recruteur interne + RPO en renfort</td>
-        <td>80 000 - 150 000 EUR</td>
+        <td>80 000 - 150 000 €</td>
       </tr>
       <tr>
         <td>ETI (200-1000 pers.)</td>
-        <td>équipe TA interne + RPO specialise + cabinet pour C-level</td>
-        <td>150 000 - 400 000 EUR</td>
+        <td>Équipe TA interne + RPO spécialisé + cabinet pour C-level</td>
+        <td>150 000 - 400 000 €</td>
       </tr>
       <tr>
         <td>Grand groupe (1000+ pers.)</td>
-        <td>équipe TA structuree + RPO pour pics + cabinets specialises</td>
-        <td>400 000+ EUR</td>
+        <td>Équipe TA structurée + RPO pour pics + cabinets spécialisés</td>
+        <td>400 000+ €</td>
       </tr>
     </table>
 
-    <div class="stat-box">
-      Les entreprises utilisant un modele hybride (interne + RPO) reduisent leur time-to-fill de 28% en moyenne et ameliorent leur quality of hire de 15% par rapport à un modele 100% cabinet.
+    <div class="big-stat">
+      <div class="val">-28%</div>
+      <div class="lbl">Time-to-fill moyen avec un modèle hybride (interne + RPO) vs 100% cabinet</div>
     </div>
 
-    <h2>9. Checklist avant de choisir</h2>
+    <h2><span class="bar"></span> Checklist avant de choisir</h2>
 
     <table>
       <tr>
         <th>Question</th>
-        <th>Si oui, privilegiez...</th>
+        <th>Si oui, privilégiez...</th>
       </tr>
       <tr>
-        <td>Avez-vous plus de 3 postes ouverts simultanement ?</td>
+        <td>Avez-vous plus de 3 postes ouverts simultanément ?</td>
         <td>RPO ou recruteur interne</td>
       </tr>
       <tr>
-        <td>Vos besoins fluctuent fortement d'un trimestre a l'autre ?</td>
-        <td>RPO (flexibilite)</td>
+        <td>Vos besoins fluctuent fortement d'un trimestre à l'autre ?</td>
+        <td>RPO (flexibilité)</td>
       </tr>
       <tr>
         <td>Avez-vous un ATS et des outils en place ?</td>
-        <td>RPO (intégration immediate)</td>
+        <td>RPO (intégration immédiate)</td>
       </tr>
       <tr>
-        <td>Recrutez-vous des profils C-level ou tres rares ?</td>
-        <td>Cabinet specialise</td>
+        <td>Recrutez-vous des profils C-level ou très rares ?</td>
+        <td>Cabinet spécialisé</td>
       </tr>
       <tr>
-        <td>Votre équipe RH est-elle deja structuree ?</td>
-        <td>RPO en complement</td>
+        <td>Votre équipe RH est-elle déjà structurée ?</td>
+        <td>RPO en complément</td>
       </tr>
       <tr>
-        <td>Avez-vous un budget annuel supérieur a 80K EUR ?</td>
+        <td>Avez-vous un budget annuel supérieur à 80K € ?</td>
         <td>Recruteur interne + RPO en renfort</td>
       </tr>
       <tr>
         <td>Avez-vous besoin de résultats en moins de 2 semaines ?</td>
-        <td>RPO (operationnel en 48h)</td>
+        <td>RPO (opérationnel en 48h)</td>
       </tr>
     </table>
 
-    <h2>Conclusion</h2>
+    <h2><span class="bar"></span> Conclusion</h2>
 
-    <p>Il n'y a pas de modele universellement supérieur. Le choix depend de votre volume, de votre maturite RH et de votre budget. Cependant, pour les entreprises en croissance qui recrutent regulierement, le RPO offre le meilleur equilibre entre cout, flexibilite, intégration et qualité des recrutements.</p>
+    <p>Il n'y a pas de modèle universellement supérieur. Le choix dépend de votre volume, de votre maturité RH et de votre budget. Cependant, pour les entreprises en croissance qui recrutent régulièrement, le RPO offre le meilleur équilibre entre coût, flexibilité, intégration et qualité des recrutements.</p>
 
-    <div class="info-box">
-      <strong>En resume :</strong><br>
-      - <strong>Cabinet</strong> = ponctuel, cher, deconnecte de la culture<br>
+    <div class="info">
+      <strong>En résumé :</strong><br>
+      - <strong>Cabinet</strong> = ponctuel, cher, déconnecté de la culture<br>
       - <strong>Recruteur interne</strong> = long terme, coût fixe, peu flexible<br>
-      - <strong>RPO</strong> = flexible, intégré, coût previsible, monte en puissance rapide
+      - <strong>RPO</strong> = flexible, intégré, coût prévisible, montée en puissance rapide
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>

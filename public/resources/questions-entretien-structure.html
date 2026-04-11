@@ -2,260 +2,228 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>50 questions d'entretien structure — Rocket4RPO</title>
-  <link rel="stylesheet" href="/resources/style-premium.css">
+  <title>50 questions d'entretien structuré — Rocket4RPO</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #374151; line-height: 1.7; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .cover { width: 100%; min-height: 100vh; background: #0c111d; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 60px; page-break-after: always; position: relative; }
+    .cover .orb1 { position: absolute; top: 60px; right: 60px; width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.15); }
+    .cover .orb2 { position: absolute; top: 80px; right: 80px; width: 160px; height: 160px; border-radius: 50%; border: 1px solid rgba(16,185,129,0.1); }
+    .cover .orb3 { position: absolute; bottom: 80px; left: 60px; width: 120px; height: 120px; border-radius: 50%; background: rgba(16,185,129,0.06); }
+    .cover .line-top { position: absolute; top: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: #10b981; border-radius: 2px; }
+    .cover .line-bottom { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 50px; height: 3px; background: rgba(16,185,129,0.3); border-radius: 2px; }
+    .cover-logo { display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 60px; position: relative; }
+    .cover-logo .dot { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: #10b981; border-radius: 6px; font-size: 14px; font-weight: 900; letter-spacing: 0; }
+    .cover-badge { display: inline-block; padding: 8px 28px; border: 1px solid rgba(16,185,129,0.3); border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #10b981; margin-bottom: 32px; }
+    .cover h1 { font-size: 42px; font-weight: 900; line-height: 1.1; max-width: 500px; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .cover h1 em { font-style: normal; color: #10b981; }
+    .cover-sub { font-size: 15px; color: rgba(255,255,255,0.5); max-width: 420px; line-height: 1.6; }
+    .cover-stats { display: flex; gap: 40px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .cover-stat-value { font-size: 24px; font-weight: 800; color: #10b981; }
+    .cover-stat-label { font-size: 10px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+    .cover-foot { position: absolute; bottom: 30px; font-size: 10px; color: rgba(255,255,255,0.15); letter-spacing: 0.08em; }
+    .content { padding: 40px 50px; max-width: 800px; margin: 0 auto; }
+    .page-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 2px solid #0c111d; margin-bottom: 32px; }
+    .page-header .logo { font-size: 11px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; color: #111827; }
+    .page-header .logo .accent { color: #0d9373; }
+    .page-header .type { font-size: 10px; font-weight: 700; color: white; background: #0d9373; padding: 4px 14px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.1em; }
+    h2 { font-size: 16px; font-weight: 800; color: white; background: #0c111d; padding: 12px 20px; border-radius: 8px; margin-top: 36px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    h2 .bar { display: inline-block; width: 4px; height: 18px; background: #10b981; border-radius: 2px; }
+    h3 { font-size: 14px; font-weight: 700; color: #0d9373; margin-top: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 3px solid #0d9373; }
+    p { margin-bottom: 12px; }
+    ul { margin-bottom: 12px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 12px; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+    th { background: #0c111d; color: white; font-weight: 600; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td { padding: 9px 14px; border-bottom: 1px solid #f3f4f6; }
+    tr:nth-child(even) td { background: #f8fafc; }
+    td:first-child { font-weight: 500; color: #111827; }
+    .teal-row td { background: #e6f7f2 !important; font-weight: 700; color: #087a60; }
+    .info { background: #f0faf6; border-left: 4px solid #0d9373; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .info strong { color: #087a60; }
+    .warn { background: #fffbeb; border-left: 4px solid #d97706; border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; font-size: 12.5px; }
+    .stats { display: flex; gap: 12px; margin: 20px 0; }
+    .stat { flex: 1; background: #f8fafc; border: 1px solid #e5e7eb; border-top: 3px solid #0d9373; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat .val { font-size: 28px; font-weight: 900; color: #0d9373; line-height: 1; }
+    .stat .lbl { font-size: 10px; color: #6b7280; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .formula { background: #0c111d; color: #10b981; border-radius: 8px; padding: 14px 20px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 13px; font-weight: 600; }
+    .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
+    .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
+    .footer .logo .accent { color: #0d9373; }
+  </style>
 </head>
 <body>
-  <!-- COVER PAGE -->
+  <!-- COVER -->
   <div class="cover">
-    <div class="cover-grid"></div>
-    <div class="cover-line"></div>
-    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+    <div class="cover-logo">ROCKET<span class="dot">4</span>RPO</div>
     <div class="cover-badge">Guide PDF</div>
-    <h1>50 questions d'entretien <em>structure</em></h1>
-    <p class="cover-subtitle">Questions au format STAR classees par compétence, avec grille de notation détaillée et fiche d'évaluation. L'entretien structure est 2x plus predictif qu'un entretien classique.</p>
-    <div class="cover-meta">
-      <span><strong>Pages :</strong> 14</span>
-      <span><strong>Temps :</strong> 20 min</span>
-      <span><strong>Date :</strong> Avril 2026</span>
+    <h1>50 questions d'entretien <em>structuré</em></h1>
+    <p class="cover-sub">Questions au format STAR classées par compétence, avec grille de notation détaillée et fiche d'évaluation. L'entretien structuré est 2x plus prédictif qu'un entretien classique.</p>
+    <div class="cover-stats">
+      <div>
+        <div class="cover-stat-value">0.51</div>
+        <div class="cover-stat-label">Validité prédictive</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">2x</div>
+        <div class="cover-stat-label">Plus prédictif</div>
+      </div>
+      <div>
+        <div class="cover-stat-value">-42%</div>
+        <div class="cover-stat-label">Réduction des biais</div>
+      </div>
     </div>
-      <div class="cover-bottom">rocket4rpo.com — Document confidentiel</div>
+    <div class="cover-foot">rocket4rpo.com — Document confidentiel</div>
   </div>
 
   <!-- CONTENT -->
   <div class="content">
     <div class="page-header">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <div class="doc-type">Guide PDF</div>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <div class="type">Guide PDF</div>
     </div>
 
-    <h2>L'entretien structure : pourquoi ca fonctionne</h2>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">0.51</div>
-        <div class="stat-label">Validite predictive de l'entretien structure (vs 0.20 non structure)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">2x</div>
-        <div class="stat-label">Plus predictif de la performance future que l'entretien libre</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">-42%</div>
-        <div class="stat-label">Reduction des biais de recrutement mesures</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="val">0.51</div><div class="lbl">Validité prédictive structuré</div></div>
+      <div class="stat"><div class="val">2x</div><div class="lbl">Plus prédictif que l'entretien libre</div></div>
+      <div class="stat"><div class="val">-42%</div><div class="lbl">Réduction des biais mesurés</div></div>
     </div>
 
-    <div class="info-box">
-      <strong>méthode STAR :</strong> Chaque question attend une reponse structuree en 4 parties :
+    <h2><span class="bar"></span> L'entretien structuré : pourquoi ça fonctionne</h2>
+
+    <div class="info">
+      <strong>Méthode STAR :</strong> Chaque question attend une réponse structurée en 4 parties :
       <ul>
         <li><strong>Situation</strong> — Le contexte concret et spécifique</li>
-        <li><strong>Task</strong> — La responsabilite et le rôle du candidat</li>
-        <li><strong>Action</strong> — Ce qu'il/elle a fait concretement (pas l'équipe)</li>
+        <li><strong>Task</strong> — La responsabilité et le rôle du candidat</li>
+        <li><strong>Action</strong> — Ce qu'il/elle a fait concrètement (pas l'équipe)</li>
         <li><strong>Result</strong> — Le résultat mesurable et l'apprentissage</li>
       </ul>
     </div>
 
-    <h2>Grille de notation</h2>
+    <h2><span class="bar"></span> Grille de notation</h2>
     <table>
-      <tr>
-        <th style="width:50px">Note</th>
-        <th style="width:100px">Niveau</th>
-        <th>critères d'attribution</th>
-      </tr>
-      <tr>
-        <td><strong>1</strong></td>
-        <td>Insuffisant</td>
-        <td>Pas d'exemple concret. Reponse vague, hypothetique ou hors sujet. Le candidat ne comprend pas la question ou donne une reponse generique.</td>
-      </tr>
-      <tr>
-        <td><strong>2</strong></td>
-        <td>Basique</td>
-        <td>Exemple fourni mais incomplet. Peu de detail sur l'action personnelle (utilise "nous" au lieu de "je"). résultat non mesurable. Structure STAR partiellement respectee.</td>
-      </tr>
-      <tr>
-        <td><strong>3</strong></td>
-        <td>Correct</td>
-        <td>Exemple pertinent et recent. méthode STAR respectee. résultat mentionne avec un indicateur. Action personnelle identifiable. Niveau attendu pour le poste.</td>
-      </tr>
-      <tr>
-        <td><strong>4</strong></td>
-        <td>Bon</td>
-        <td>Exemple impactant avec contexte complexe. Actions détaillées, autonomes et reflechies. résultat chiffre et significatif. Capacite a expliquer le raisonnement derriere les choix.</td>
-      </tr>
-      <tr>
-        <td><strong>5</strong></td>
-        <td>Excellent</td>
-        <td>Exemple remarquable avec impact business fort. Reflexion sur les apprentissages et la transposition. Innovation dans l'approche. Leadership naturel. Depasse les attentes du poste.</td>
-      </tr>
+      <tr><th style="width:50px">Note</th><th style="width:100px">Niveau</th><th>Critères d'attribution</th></tr>
+      <tr><td><strong>1</strong></td><td>Insuffisant</td><td>Pas d'exemple concret. Réponse vague, hypothétique ou hors sujet. Le candidat ne comprend pas la question ou donne une réponse générique.</td></tr>
+      <tr><td><strong>2</strong></td><td>Basique</td><td>Exemple fourni mais incomplet. Peu de détail sur l'action personnelle (utilise "nous" au lieu de "je"). Résultat non mesurable. Structure STAR partiellement respectée.</td></tr>
+      <tr><td><strong>3</strong></td><td>Correct</td><td>Exemple pertinent et récent. Méthode STAR respectée. Résultat mentionné avec un indicateur. Action personnelle identifiable. Niveau attendu pour le poste.</td></tr>
+      <tr><td><strong>4</strong></td><td>Bon</td><td>Exemple impactant avec contexte complexe. Actions détaillées, autonomes et réfléchies. Résultat chiffré et significatif. Capacité à expliquer le raisonnement derrière les choix.</td></tr>
+      <tr><td><strong>5</strong></td><td>Excellent</td><td>Exemple remarquable avec impact business fort. Réflexion sur les apprentissages et la transposition. Innovation dans l'approche. Leadership naturel. Dépasse les attentes du poste.</td></tr>
     </table>
 
-    <h2>A. Leadership (10 questions)</h2>
-
+    <h2><span class="bar"></span> A. Leadership (10 questions)</h2>
     <table>
       <tr><th style="width:50px">#</th><th>Question</th><th style="width:60px">Note /5</th></tr>
-      <tr class="category-row"><td colspan="3">décision et autonomie</td></tr>
-      <tr><td>Q1</td><td>Decrivez une situation ou vous avez du prendre une décision difficile sans l'aval de votre hierarchie. Quel a ete le résultat ?</td><td></td></tr>
-      <tr><td>Q2</td><td>Racontez un moment ou vous avez du motiver une équipe en période de forte pression ou d'incertitude. Comment avez-vous procede ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Management et feedback</td></tr>
-      <tr><td>Q3</td><td>Donnez un exemple de situation ou vous avez du donner un feedback negatif à un collegue ou collaborateur. Comment l'avez-vous aborde et quel a ete l'impact ?</td><td></td></tr>
-      <tr><td>Q4</td><td>Parlez-moi d'un projet ou vous avez du deleguer des taches critiques. Comment avez-vous choisi a qui deleguer et comment avez-vous assure le suivi ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Gestion de conflit et influence</td></tr>
-      <tr><td>Q5</td><td>Decrivez une situation ou votre équipe n'etait pas d'accord avec votre stratégie. Comment avez-vous gere cette opposition tout en maintenant la cohesion ?</td><td></td></tr>
-      <tr><td>Q6</td><td>Racontez un moment ou vous avez identifie un talent dans votre équipe et l'avez aide a progresser. Quel a ete l'impact sur la personne et l'équipe ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Initiative et responsabilite</td></tr>
-      <tr><td>Q7</td><td>Donnez un exemple d'une initiative que vous avez lancee sans qu'on vous le demande. Pourquoi l'avez-vous fait et quel a ete le résultat concret ?</td><td></td></tr>
-      <tr><td>Q8</td><td>Parlez-moi d'un echec d'équipe dont vous etiez responsable. Qu'avez-vous appris et qu'avez-vous change dans votre management ensuite ?</td><td></td></tr>
-      <tr><td>Q9</td><td>Decrivez comment vous avez gere un conflit entre deux membres de votre équipe. Quelle approche avez-vous adoptee et quel a ete le denouement ?</td><td></td></tr>
-      <tr><td>Q10</td><td>Racontez une situation ou vous avez du defendre les interets de votre équipe face à la direction ou un autre departement. Comment avez-vous argumente ?</td><td></td></tr>
+      <tr><td>Q1</td><td>Décrivez une situation où vous avez dû prendre une décision difficile sans l'aval de votre hiérarchie. Quel a été le résultat ?</td><td></td></tr>
+      <tr><td>Q2</td><td>Racontez un moment où vous avez dû motiver une équipe en période de forte pression ou d'incertitude. Comment avez-vous procédé ?</td><td></td></tr>
+      <tr><td>Q3</td><td>Donnez un exemple de situation où vous avez dû donner un feedback négatif à un collègue ou collaborateur. Comment l'avez-vous abordé et quel a été l'impact ?</td><td></td></tr>
+      <tr><td>Q4</td><td>Parlez-moi d'un projet où vous avez dû déléguer des tâches critiques. Comment avez-vous choisi à qui déléguer et comment avez-vous assuré le suivi ?</td><td></td></tr>
+      <tr><td>Q5</td><td>Décrivez une situation où votre équipe n'était pas d'accord avec votre stratégie. Comment avez-vous géré cette opposition tout en maintenant la cohésion ?</td><td></td></tr>
+      <tr><td>Q6</td><td>Racontez un moment où vous avez identifié un talent dans votre équipe et l'avez aidé à progresser. Quel a été l'impact sur la personne et l'équipe ?</td><td></td></tr>
+      <tr><td>Q7</td><td>Donnez un exemple d'une initiative que vous avez lancée sans qu'on vous le demande. Pourquoi l'avez-vous fait et quel a été le résultat concret ?</td><td></td></tr>
+      <tr><td>Q8</td><td>Parlez-moi d'un échec d'équipe dont vous étiez responsable. Qu'avez-vous appris et qu'avez-vous changé dans votre management ensuite ?</td><td></td></tr>
+      <tr><td>Q9</td><td>Décrivez comment vous avez géré un conflit entre deux membres de votre équipe. Quelle approche avez-vous adoptée et quel a été le dénouement ?</td><td></td></tr>
+      <tr><td>Q10</td><td>Racontez une situation où vous avez dû défendre les intérêts de votre équipe face à la direction ou un autre département. Comment avez-vous argumenté ?</td><td></td></tr>
     </table>
 
-    <h2>B. Problem-solving (10 questions)</h2>
-
+    <h2><span class="bar"></span> B. Problem-solving (10 questions)</h2>
     <table>
       <tr><th style="width:50px">#</th><th>Question</th><th style="width:60px">Note /5</th></tr>
-      <tr class="category-row"><td colspan="3">Analyse et resolution</td></tr>
-      <tr><td>Q11</td><td>Decrivez un probleme complexe que vous avez resolu recemment. Quelle méthode avez-vous utilisee pour l'analyser et quels outils avez-vous mobilises ?</td><td></td></tr>
-      <tr><td>Q12</td><td>Racontez une situation ou vous avez du trouver une solution avec des ressources tres limitees (temps, budget, équipe).</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Cause racine et prevention</td></tr>
-      <tr><td>Q13</td><td>Donnez un exemple d'un probleme recurrent que vous avez definitivement resolu. Comment avez-vous identifie la cause racine plutot que traiter les symptomes ?</td><td></td></tr>
-      <tr><td>Q14</td><td>Parlez-moi d'une décision que vous avez prise avec des donnees incompletes. Comment avez-vous gere l'incertitude et valide votre choix par la suite ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Adaptabilite et pragmatisme</td></tr>
-      <tr><td>Q15</td><td>Decrivez une situation ou votre premiere approche n'a pas fonctionne. Comment avez-vous pivote et en combien de temps ?</td><td></td></tr>
-      <tr><td>Q16</td><td>Racontez comment vous avez simplifie un processus complexe dans votre precedent poste. Quel gain mesurable avez-vous obtenu ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Anticipation et data-driven</td></tr>
-      <tr><td>Q17</td><td>Donnez un exemple d'une situation ou vous avez anticipe un probleme avant qu'il ne survienne. Quels signaux avez-vous detectes ?</td><td></td></tr>
-      <tr><td>Q18</td><td>Parlez-moi d'un cas ou vous avez du arbitrer entre deux solutions imparfaites. Sur quels critères vous etes-vous appuye pour decider ?</td><td></td></tr>
-      <tr><td>Q19</td><td>Decrivez une erreur que vous avez commise et comment vous l'avez corrigee rapidement. Quel dispositif avez-vous mis en place pour eviter la recurrence ?</td><td></td></tr>
-      <tr><td>Q20</td><td>Racontez une situation ou vous avez utilise des donnees pour challenger une décision intuitive de votre équipe ou de votre management.</td><td></td></tr>
+      <tr><td>Q11</td><td>Décrivez un problème complexe que vous avez résolu récemment. Quelle méthode avez-vous utilisée pour l'analyser et quels outils avez-vous mobilisés ?</td><td></td></tr>
+      <tr><td>Q12</td><td>Racontez une situation où vous avez dû trouver une solution avec des ressources très limitées (temps, budget, équipe).</td><td></td></tr>
+      <tr><td>Q13</td><td>Donnez un exemple d'un problème récurrent que vous avez définitivement résolu. Comment avez-vous identifié la cause racine plutôt que traiter les symptômes ?</td><td></td></tr>
+      <tr><td>Q14</td><td>Parlez-moi d'une décision que vous avez prise avec des données incomplètes. Comment avez-vous géré l'incertitude et validé votre choix par la suite ?</td><td></td></tr>
+      <tr><td>Q15</td><td>Décrivez une situation où votre première approche n'a pas fonctionné. Comment avez-vous pivoté et en combien de temps ?</td><td></td></tr>
+      <tr><td>Q16</td><td>Racontez comment vous avez simplifié un processus complexe dans votre précédent poste. Quel gain mesurable avez-vous obtenu ?</td><td></td></tr>
+      <tr><td>Q17</td><td>Donnez un exemple d'une situation où vous avez anticipé un problème avant qu'il ne survienne. Quels signaux avez-vous détectés ?</td><td></td></tr>
+      <tr><td>Q18</td><td>Parlez-moi d'un cas où vous avez dû arbitrer entre deux solutions imparfaites. Sur quels critères vous êtes-vous appuyé pour décider ?</td><td></td></tr>
+      <tr><td>Q19</td><td>Décrivez une erreur que vous avez commise et comment vous l'avez corrigée rapidement. Quel dispositif avez-vous mis en place pour éviter la récurrence ?</td><td></td></tr>
+      <tr><td>Q20</td><td>Racontez une situation où vous avez utilisé des données pour challenger une décision intuitive de votre équipe ou de votre management.</td><td></td></tr>
     </table>
 
-    <h2>C. Collaboration (10 questions)</h2>
-
+    <h2><span class="bar"></span> C. Collaboration (10 questions)</h2>
     <table>
       <tr><th style="width:50px">#</th><th>Question</th><th style="width:60px">Note /5</th></tr>
-      <tr class="category-row"><td colspan="3">Travail en équipe</td></tr>
-      <tr><td>Q21</td><td>Decrivez un projet reussi impliquant plusieurs équipes ou departements. Quel etait votre rôle dans la coordination et comment avez-vous gere les interdependances ?</td><td></td></tr>
-      <tr><td>Q22</td><td>Racontez une situation ou vous avez du travailler avec quelqu'un dont le style de travail etait tres different du votre. Comment avez-vous trouve un mode de fonctionnement commun ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Entraide et influence</td></tr>
-      <tr><td>Q23</td><td>Donnez un exemple d'un moment ou vous avez aide un collegue en difficulte, même si ce n'etait pas votre responsabilite directe.</td><td></td></tr>
-      <tr><td>Q24</td><td>Parlez-moi d'une situation ou vous avez du convaincre un interlocuteur sceptique de rejoindre votre projet ou d'adopter votre approche.</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Communication</td></tr>
-      <tr><td>Q25</td><td>Decrivez comment vous avez contribue a améliorer la communication au sein d'une équipe. Quel probleme avez-vous identifie et quelle solution avez-vous proposee ?</td><td></td></tr>
-      <tr><td>Q26</td><td>Racontez un moment ou vous avez du intégrér les retours de multiples parties prenantes aux attentes contradictoires dans un livrable.</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Remote et diversite</td></tr>
-      <tr><td>Q27</td><td>Donnez un exemple d'une collaboration a distance qui a particulierement bien fonctionne. Quels outils et pratiques avez-vous mis en place ?</td><td></td></tr>
-      <tr><td>Q28</td><td>Parlez-moi d'une situation ou vous avez du partager le credit d'un succes avec d'autres personnes ou équipes.</td><td></td></tr>
-      <tr><td>Q29</td><td>Decrivez un desaccord professionnel que vous avez eu avec un pair. Comment l'avez-vous resolu de maniere constructive sans affecter la relation ?</td><td></td></tr>
-      <tr><td>Q30</td><td>Racontez comment vous avez intégré un nouveau membre dans votre équipe et facilite son onboarding. Qu'avez-vous fait concretement ?</td><td></td></tr>
+      <tr><td>Q21</td><td>Décrivez un projet réussi impliquant plusieurs équipes ou départements. Quel était votre rôle dans la coordination et comment avez-vous géré les interdépendances ?</td><td></td></tr>
+      <tr><td>Q22</td><td>Racontez une situation où vous avez dû travailler avec quelqu'un dont le style de travail était très différent du vôtre. Comment avez-vous trouvé un mode de fonctionnement commun ?</td><td></td></tr>
+      <tr><td>Q23</td><td>Donnez un exemple d'un moment où vous avez aidé un collègue en difficulté, même si ce n'était pas votre responsabilité directe.</td><td></td></tr>
+      <tr><td>Q24</td><td>Parlez-moi d'une situation où vous avez dû convaincre un interlocuteur sceptique de rejoindre votre projet ou d'adopter votre approche.</td><td></td></tr>
+      <tr><td>Q25</td><td>Décrivez comment vous avez contribué à améliorer la communication au sein d'une équipe. Quel problème avez-vous identifié et quelle solution avez-vous proposée ?</td><td></td></tr>
+      <tr><td>Q26</td><td>Racontez un moment où vous avez dû intégrer les retours de multiples parties prenantes aux attentes contradictoires dans un livrable.</td><td></td></tr>
+      <tr><td>Q27</td><td>Donnez un exemple d'une collaboration à distance qui a particulièrement bien fonctionné. Quels outils et pratiques avez-vous mis en place ?</td><td></td></tr>
+      <tr><td>Q28</td><td>Parlez-moi d'une situation où vous avez dû partager le crédit d'un succès avec d'autres personnes ou équipes.</td><td></td></tr>
+      <tr><td>Q29</td><td>Décrivez un désaccord professionnel que vous avez eu avec un pair. Comment l'avez-vous résolu de manière constructive sans affecter la relation ?</td><td></td></tr>
+      <tr><td>Q30</td><td>Racontez comment vous avez intégré un nouveau membre dans votre équipe et facilité son onboarding. Qu'avez-vous fait concrètement ?</td><td></td></tr>
     </table>
 
-    <h2>D. résultats et orientation performance (10 questions)</h2>
-
+    <h2><span class="bar"></span> D. Résultats et orientation performance (10 questions)</h2>
     <table>
       <tr><th style="width:50px">#</th><th>Question</th><th style="width:60px">Note /5</th></tr>
-      <tr class="category-row"><td colspan="3">Impact et depassement</td></tr>
-      <tr><td>Q31</td><td>Decrivez votre plus grande reussite professionnelle des 2 dernieres annees. Comment mesurez-vous cet impact et pourquoi est-ce votre plus grande fierte ?</td><td></td></tr>
-      <tr><td>Q32</td><td>Racontez une situation ou vous avez depasse vos objectifs. Qu'avez-vous fait differemment par rapport a vos collegues ou a vos habitudes ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Echec et apprentissage</td></tr>
-      <tr><td>Q33</td><td>Donnez un exemple d'un objectif que vous n'avez pas atteint. Comment avez-vous reagi sur le moment et que feriez-vous differemment aujourd'hui ?</td><td></td></tr>
-      <tr><td>Q34</td><td>Parlez-moi d'un projet ou vous avez du livrer dans un délai tres serre. Comment avez-vous priorise et qu'avez-vous sacrifie ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Organisation et méthode</td></tr>
-      <tr><td>Q35</td><td>Decrivez comment vous organisez votre semaine pour maximiser votre productivite. Quels outils et méthodes utilisez-vous ?</td><td></td></tr>
-      <tr><td>Q36</td><td>Racontez une situation ou vous avez identifie une opportunite business que d'autres n'avaient pas vue. Comment l'avez-vous concretisee ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">amélioration continue</td></tr>
-      <tr><td>Q37</td><td>Donnez un exemple d'un processus que vous avez ameliore et dont le gain a ete mesurable (temps, argent, qualité).</td><td></td></tr>
-      <tr><td>Q38</td><td>Parlez-moi de votre approche pour definir et suivre vos OKRs ou objectifs trimestriels. Donnez un exemple concret.</td><td></td></tr>
-      <tr><td>Q39</td><td>Decrivez comment vous gerez les situations ou les priorites changent en cours de route sans preavis.</td><td></td></tr>
-      <tr><td>Q40</td><td>Racontez un moment ou vous avez du dire non à une demande pour proteger une priorite stratégique. Comment avez-vous communique votre décision ?</td><td></td></tr>
+      <tr><td>Q31</td><td>Décrivez votre plus grande réussite professionnelle des 2 dernières années. Comment mesurez-vous cet impact et pourquoi est-ce votre plus grande fierté ?</td><td></td></tr>
+      <tr><td>Q32</td><td>Racontez une situation où vous avez dépassé vos objectifs. Qu'avez-vous fait différemment par rapport à vos collègues ou à vos habitudes ?</td><td></td></tr>
+      <tr><td>Q33</td><td>Donnez un exemple d'un objectif que vous n'avez pas atteint. Comment avez-vous réagi sur le moment et que feriez-vous différemment aujourd'hui ?</td><td></td></tr>
+      <tr><td>Q34</td><td>Parlez-moi d'un projet où vous avez dû livrer dans un délai très serré. Comment avez-vous priorisé et qu'avez-vous sacrifié ?</td><td></td></tr>
+      <tr><td>Q35</td><td>Décrivez comment vous organisez votre semaine pour maximiser votre productivité. Quels outils et méthodes utilisez-vous ?</td><td></td></tr>
+      <tr><td>Q36</td><td>Racontez une situation où vous avez identifié une opportunité business que d'autres n'avaient pas vue. Comment l'avez-vous concrétisée ?</td><td></td></tr>
+      <tr><td>Q37</td><td>Donnez un exemple d'un processus que vous avez amélioré et dont le gain a été mesurable (temps, argent, qualité).</td><td></td></tr>
+      <tr><td>Q38</td><td>Parlez-moi de votre approche pour définir et suivre vos OKRs ou objectifs trimestriels. Donnez un exemple concret.</td><td></td></tr>
+      <tr><td>Q39</td><td>Décrivez comment vous gérez les situations où les priorités changent en cours de route sans préavis.</td><td></td></tr>
+      <tr><td>Q40</td><td>Racontez un moment où vous avez dû dire non à une demande pour protéger une priorité stratégique. Comment avez-vous communiqué votre décision ?</td><td></td></tr>
     </table>
 
-    <h2>E. Adaptabilite et apprentissage (10 questions)</h2>
-
+    <h2><span class="bar"></span> E. Adaptabilité et apprentissage (10 questions)</h2>
     <table>
       <tr><th style="width:50px">#</th><th>Question</th><th style="width:60px">Note /5</th></tr>
-      <tr class="category-row"><td colspan="3">Changement et resilience</td></tr>
-      <tr><td>Q41</td><td>Decrivez un changement majeur dans votre entreprise (reorganisation, pivot, rachat). Comment l'avez-vous vecu et quel rôle avez-vous joue ?</td><td></td></tr>
-      <tr><td>Q42</td><td>Racontez une situation ou vous avez du apprendre rapidement une compétence que vous ne maitrisiez pas pour repondre à un besoin urgent.</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Feedback et remise en question</td></tr>
-      <tr><td>Q43</td><td>Donnez un exemple d'un feedback constructif qui a change votre façon de travailler. Comment l'avez-vous recu et applique ?</td><td></td></tr>
-      <tr><td>Q44</td><td>Parlez-moi d'un moment ou vous avez du sortir de votre zone de confort professionnellement. Qu'avez-vous decouvert sur vous-même ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Veille et apprentissage</td></tr>
-      <tr><td>Q45</td><td>Decrivez comment vous restez a jour dans votre domaine d'expertise. Quelles sont vos sources d'apprentissage et votre rythme ?</td><td></td></tr>
-      <tr><td>Q46</td><td>Racontez une situation ou une technologie ou un outil a rendu vos compétences obsoletes. Comment avez-vous reagi et en combien de temps ?</td><td></td></tr>
-      <tr class="category-row"><td colspan="3">Gestion du stress et de l'ambiguite</td></tr>
-      <tr><td>Q47</td><td>Donnez un exemple d'un echec dont vous avez tire un apprentissage cle. Comment appliquez-vous cet apprentissage aujourd'hui ?</td><td></td></tr>
-      <tr><td>Q48</td><td>Parlez-moi d'un projet ou les regles du jeu ont change en cours de route. Comment avez-vous adapte votre approche et l'équipe ?</td><td></td></tr>
-      <tr><td>Q49</td><td>Decrivez comment vous gerez le stress et l'ambiguite au quotidien. Donnez un exemple recent de situation ambigue.</td><td></td></tr>
-      <tr><td>Q50</td><td>Racontez une situation ou vous avez du remettre en question vos propres convictions professionnelles suite à une expérience. Qu'avez-vous change ?</td><td></td></tr>
+      <tr><td>Q41</td><td>Décrivez un changement majeur dans votre entreprise (réorganisation, pivot, rachat). Comment l'avez-vous vécu et quel rôle avez-vous joué ?</td><td></td></tr>
+      <tr><td>Q42</td><td>Racontez une situation où vous avez dû apprendre rapidement une compétence que vous ne maîtrisiez pas pour répondre à un besoin urgent.</td><td></td></tr>
+      <tr><td>Q43</td><td>Donnez un exemple d'un feedback constructif qui a changé votre façon de travailler. Comment l'avez-vous reçu et appliqué ?</td><td></td></tr>
+      <tr><td>Q44</td><td>Parlez-moi d'un moment où vous avez dû sortir de votre zone de confort professionnellement. Qu'avez-vous découvert sur vous-même ?</td><td></td></tr>
+      <tr><td>Q45</td><td>Décrivez comment vous restez à jour dans votre domaine d'expertise. Quelles sont vos sources d'apprentissage et votre rythme ?</td><td></td></tr>
+      <tr><td>Q46</td><td>Racontez une situation où une technologie ou un outil a rendu vos compétences obsolètes. Comment avez-vous réagi et en combien de temps ?</td><td></td></tr>
+      <tr><td>Q47</td><td>Donnez un exemple d'un échec dont vous avez tiré un apprentissage clé. Comment appliquez-vous cet apprentissage aujourd'hui ?</td><td></td></tr>
+      <tr><td>Q48</td><td>Parlez-moi d'un projet où les règles du jeu ont changé en cours de route. Comment avez-vous adapté votre approche et l'équipe ?</td><td></td></tr>
+      <tr><td>Q49</td><td>Décrivez comment vous gérez le stress et l'ambiguïté au quotidien. Donnez un exemple récent de situation ambiguë.</td><td></td></tr>
+      <tr><td>Q50</td><td>Racontez une situation où vous avez dû remettre en question vos propres convictions professionnelles suite à une expérience. Qu'avez-vous changé ?</td><td></td></tr>
     </table>
 
-    <h2>Fiche d'évaluation par entretien</h2>
-
+    <h2><span class="bar"></span> Fiche d'évaluation par entretien</h2>
     <table>
-      <tr>
-        <th>compétence</th>
-        <th>Questions posees</th>
-        <th>Note /5</th>
-        <th>Commentaire / verbatim cle</th>
-      </tr>
-      <tr>
-        <td><strong>Leadership</strong></td>
-        <td>Q__ et Q__</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><strong>Problem-solving</strong></td>
-        <td>Q__ et Q__</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><strong>Collaboration</strong></td>
-        <td>Q__ et Q__</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><strong>résultats</strong></td>
-        <td>Q__ et Q__</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><strong>Adaptabilite</strong></td>
-        <td>Q__ et Q__</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="highlight-row">
-        <td colspan="2"><strong>Score moyen</strong></td>
-        <td><strong>__ /5</strong></td>
-        <td></td>
-      </tr>
+      <tr><th>Compétence</th><th>Questions posées</th><th>Note /5</th><th>Commentaire / verbatim clé</th></tr>
+      <tr><td><strong>Leadership</strong></td><td>Q__ et Q__</td><td></td><td></td></tr>
+      <tr><td><strong>Problem-solving</strong></td><td>Q__ et Q__</td><td></td><td></td></tr>
+      <tr><td><strong>Collaboration</strong></td><td>Q__ et Q__</td><td></td><td></td></tr>
+      <tr><td><strong>Résultats</strong></td><td>Q__ et Q__</td><td></td><td></td></tr>
+      <tr><td><strong>Adaptabilité</strong></td><td>Q__ et Q__</td><td></td><td></td></tr>
+      <tr class="teal-row"><td colspan="2"><strong>Score moyen</strong></td><td><strong>__ /5</strong></td><td></td></tr>
     </table>
 
-    <div class="warning-box">
-      <strong>Rappel legal :</strong> En France, les questions sur la situation familiale, la religion, l'origine, l'etat de sante, la grossesse, les opinions politiques ou syndicales sont interdites en entretien (art. L1132-1 du Code du travail). Ces questions constituent une discrimination a l'embauche passible de sanctions penales.
+    <div class="warn">
+      <strong>Rappel légal :</strong> En France, les questions sur la situation familiale, la religion, l'origine, l'état de santé, la grossesse, les opinions politiques ou syndicales sont interdites en entretien (art. L1132-1 du Code du travail). Ces questions constituent une discrimination à l'embauche passible de sanctions pénales.
     </div>
 
-    <div class="info-box">
+    <div class="info">
       <strong>Bonnes pratiques :</strong>
       <ul>
-        <li>Selectionnez 6 a 8 questions par entretien (2 par compétence cle du poste)</li>
-        <li>Posez les mêmes questions a tous les candidats pour un même poste</li>
-        <li>Notez pendant l'entretien, pas apres (le biais de memoire altere 25% des évaluations)</li>
-        <li>Calibrez les notes en debrief avec les autres evaluateurs</li>
-        <li>Privilegiez les exemples concrets aux reponses hypothetiques ("J'ai fait" vs "Je ferais")</li>
-        <li>Si le candidat reste vague, relancez : "Pouvez-vous me donner un exemple precis ?"</li>
+        <li>Sélectionnez 6 à 8 questions par entretien (2 par compétence clé du poste)</li>
+        <li>Posez les mêmes questions à tous les candidats pour un même poste</li>
+        <li>Notez pendant l'entretien, pas après (le biais de mémoire altère 25% des évaluations)</li>
+        <li>Calibrez les notes en debrief avec les autres évaluateurs</li>
+        <li>Privilégiez les exemples concrets aux réponses hypothétiques ("J'ai fait" vs "Je ferais")</li>
+        <li>Si le candidat reste vague, relancez : "Pouvez-vous me donner un exemple précis ?"</li>
       </ul>
     </div>
 
     <div class="footer">
-      <div class="logo">ROCKET<span>4</span>RPO</div>
-      <p>rocket4rpo.com — Tous droits reserves 2026</p>
-      <p>Donnees issues de 200+ recrutements réalisés</p>
+      <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits réservés 2026</p>
+      <p>Données issues de 200+ recrutements réalisés</p>
     </div>
   </div>
 </body>
