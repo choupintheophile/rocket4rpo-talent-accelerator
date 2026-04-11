@@ -51,7 +51,7 @@ const faqs = [
   {
     question: "En combien de temps le recruteur est-il opérationnel ?",
     answer:
-      "48h. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée sous 1 semaine.",
+      "1 semaine. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée en 5-7 jours.",
   },
   {
     question: "Comment sélectionnez-vous vos TA Specialists ?",
@@ -308,7 +308,7 @@ export default function OffreClient() {
                   { value: "307", label: "TA dans notre vivier" },
                   { value: "7", label: "critères d'évaluation" },
                   { value: "80%+", label: "score minimum requis" },
-                  { value: "48h", label: "délai de mobilisation" },
+                  { value: "1 sem.", label: "délai de mobilisation" },
                 ].map((stat) => (
                   <div
                     key={stat.label}
@@ -675,7 +675,7 @@ export default function OffreClient() {
               {
                 step: "J2",
                 icon: Rocket,
-                title: "Intégration 48h",
+                title: "Intégration 1 semaine",
                 text: "Le TA rejoint vos outils et rituels. Opérationnel immédiatement. Première shortlist qualifiée le jour même.",
               },
               {
@@ -906,7 +906,7 @@ export default function OffreClient() {
               {
                 icon: Zap,
                 title: "Opérationnel en 1 semaine, pas en 3 mois",
-                desc: "Un cabinet met 2-3 semaines à démarrer. Recruter un recruteur interne prend 3 mois. Nous : 48h chrono, première shortlist le jour même.",
+                desc: "Un cabinet met 2-3 semaines à démarrer. Recruter un recruteur interne prend 3 mois. Nous : 1 semaine, première shortlist dès les premiers jours.",
               },
               {
                 icon: Shield,

@@ -302,7 +302,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                   variants={fadeUp}
                   initial="hidden"
                   animate="visible"
-                  custom={i * 0.5 + 1}
+                  custom={i * 0.12 + 0.3}
                 >
                   {word}
                 </motion.span>
@@ -312,7 +312,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                 variants={fadeUp}
                 initial="hidden"
                 animate="visible"
-                custom={headlineWords.length * 0.5 + 1}
+                custom={headlineWords.length * 0.12 + 0.3}
               >
                 {hero.highlightedText}
               </motion.span>

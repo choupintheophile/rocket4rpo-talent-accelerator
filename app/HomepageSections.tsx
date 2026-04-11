@@ -440,7 +440,7 @@ export default function HomepageSections() {
               },
               {
                 icon: Rocket,
-                number: "48h",
+                number: "1 sem.",
                 title: "Opérationnel, pas en 3 mois",
                 text: "Votre TA démarre en 1 semaine. Première shortlist qualifiée dès la première semaine. Pas de formation longue.",
                 gradient: "from-emerald-500/10 to-emerald-600/5",
@@ -450,7 +450,7 @@ export default function HomepageSections() {
               },
               {
                 icon: RefreshCw,
-                number: "48h",
+                number: "1 sem.",
                 title: "Remplacement sous 1 semaine si besoin",
                 text: "Si le match n'est pas parfait, on remplace votre TA en 1 semaine. Sans frais supplémentaires. Zéro risque.",
                 gradient: "from-rose-500/10 to-rose-600/5",
@@ -526,7 +526,7 @@ export default function HomepageSections() {
                 <span className="text-primary">recrutements signés</span>
               </h2>
               <p className="mt-5 text-lg text-white/60 max-w-2xl mx-auto">
-                Du premier appel à votre première shortlist : 48h.
+                Du premier appel à votre première shortlist : 1 semaine.
               </p>
             </div>
           </FadeIn>
@@ -678,7 +678,7 @@ export default function HomepageSections() {
               {
                 icon: ClipboardCheck,
                 title: "Diagnostic recrutement",
-                desc: "Évaluez la maturité de votre process recrutement en 10 questions. Score personnalisé.",
+                desc: "Évaluez la maturité de votre process recrutement en 7 questions. Score personnalisé.",
                 href: "/assessment",
                 time: "2 min",
                 gradient: "from-blue-500/10 to-indigo-500/5",

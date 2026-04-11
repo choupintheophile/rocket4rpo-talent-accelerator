@@ -65,7 +65,7 @@ export const ExitIntentPopup = () => {
             <h3 className="text-2xl font-bold mb-2">Avant de partir...</h3>
             <p className="text-muted-foreground mb-4">
               Recevez un diagnostic gratuit de votre process de recrutement en
-              48h. Sans engagement.
+              2 minutes. Sans engagement.
             </p>
             <div className="flex gap-3">
               <Link
