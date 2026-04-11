@@ -17,6 +17,8 @@ export default async function Page() {
     date: p.date.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" }),
     createdAt: p.createdAt.toISOString(),
     updatedAt: p.updatedAt.toISOString(),
+    imageUrl: p.imageUrl || null,
+    author: p.author || "Clément Martin",
   }));
 
   const blogSchema = {

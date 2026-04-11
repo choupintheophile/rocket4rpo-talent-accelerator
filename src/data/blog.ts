@@ -1,4 +1,29 @@
-export const blogCategories = ["RPO", "Talent Acquisition", "Recrutement Tech", "Sourcing", "Marque employeur", "Structuration du recrutement"];
+export const blogCategories = [
+  "RPO",
+  "Talent Acquisition",
+  "Recrutement Tech",
+  "Sourcing",
+  "Marque employeur",
+  "Onboarding",
+  "KPIs & Analytics",
+  "Outils & Stack",
+  "Management RH",
+  "Remote & Hybride",
+  "Diversité & Inclusion",
+  "Expérience candidat",
+  "Rétention & Fidélisation",
+  "Salaires & Rémunération",
+  "Droit du travail",
+  "IA & Recrutement",
+  "Freelance & Portage",
+  "Scale-up",
+  "Secteur Tech",
+  "Secteur SaaS",
+  "Secteur Fintech",
+  "Secteur Santé",
+  "Entretiens",
+  "Formation & Upskilling",
+];
 
 export const blogPosts = [
   {

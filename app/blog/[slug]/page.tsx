@@ -71,6 +71,8 @@ export default async function BlogArticlePage({ params }: Props) {
     date: post.date.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" }),
     readTime: post.readTime,
     content: post.content,
+    imageUrl: post.imageUrl || null,
+    author: post.author || "Clément Martin",
   };
 
   return (
