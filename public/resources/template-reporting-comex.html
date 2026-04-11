@@ -2,209 +2,203 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Template reporting recrutement COMEX — Rocket4RPO</title>
-  <style>
-    body { font-family: 'Inter', system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; color: #1a1d2b; line-height: 1.7; }
-    h1 { color: #0cc77e; font-size: 2rem; border-bottom: 2px solid #0cc77e; padding-bottom: 16px; }
-    h2 { color: #1a1d2b; margin-top: 2rem; }
-    h3 { color: #333; margin-top: 1.5rem; }
-    .header { text-align: center; margin-bottom: 3rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: #1a1d2b; }
-    .logo span { color: #0cc77e; }
-    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-    th, td { padding: 10px 12px; border: 1px solid #ddd; text-align: center; }
-    th { background: #f8f6f3; font-weight: 600; }
-    td:first-child, th:first-child { text-align: left; }
-    .category { background: #f0fdf4; font-weight: 600; text-align: left !important; }
-    .info-box { background: #f8f6f3; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .warning-box { background: #fff8e1; border-left: 4px solid #f5a623; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .alert-box { background: #fde8e8; border-left: 4px solid #e53e3e; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .success-box { background: #f0fdf4; border-left: 4px solid #0cc77e; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 0.85rem; }
-    ul { padding-left: 1.5rem; }
-    li { margin-bottom: 0.4rem; }
-    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 1.5rem 0; }
-    .kpi-box { background: #f8f6f3; border-radius: 8px; padding: 16px; text-align: center; }
-    .kpi-box .value { font-size: 1.6rem; font-weight: 700; color: #0cc77e; }
-    .kpi-box .label { font-size: 0.8rem; color: #666; margin-top: 4px; }
-    .kpi-box .trend { font-size: 0.85rem; margin-top: 4px; }
-    .trend-up { color: #0cc77e; }
-    .trend-down { color: #e53e3e; }
-    .trend-stable { color: #f5a623; }
-    .field { background: #fafafa; border: 1px dashed #ccc; padding: 8px 12px; min-height: 24px; margin: 4px 0; border-radius: 4px; }
-    @media print { body { padding: 20px; } .kpi-grid { display: table; width: 100%; } .kpi-box { display: table-cell; } }
-  </style>
+  <title>Template Reporting Recrutement COMEX — Rocket4RPO</title>
+  <link rel="stylesheet" href="/resources/style-premium.css">
 </head>
 <body>
-  <div class="header">
-    <p class="logo">ROCKET<span>4</span>RPO</p>
-    <p style="color: #666;">Template gratuit — Avril 2026</p>
-  </div>
-
-  <h1>Reporting recrutement — COMEX</h1>
-  <p>Ce template structure le reporting recrutement destine au comite de direction. Format slide : synthetique, visuel, actionnable. A completer chaque mois.</p>
-
-  <div class="info-box">
-    <strong>Periode :</strong> <div class="field" style="display: inline-block; min-width: 150px;"></div> &nbsp;
-    <strong>Prepare par :</strong> <div class="field" style="display: inline-block; min-width: 150px;"></div> &nbsp;
-    <strong>Date :</strong> <div class="field" style="display: inline-block; min-width: 100px;"></div>
-  </div>
-
-  <h2>1. KPIs du mois</h2>
-  <div class="kpi-grid">
-    <div class="kpi-box">
-      <div class="value">__</div>
-      <div class="label">Postes ouverts</div>
-      <div class="trend">vs M-1 : __</div>
-    </div>
-    <div class="kpi-box">
-      <div class="value">__</div>
-      <div class="label">Postes closes</div>
-      <div class="trend">vs M-1 : __</div>
-    </div>
-    <div class="kpi-box">
-      <div class="value">__ j</div>
-      <div class="label">Time-to-Fill moyen</div>
-      <div class="trend">Objectif : 35j</div>
-    </div>
-    <div class="kpi-box">
-      <div class="value">__ %</div>
-      <div class="label">Offer Acceptance Rate</div>
-      <div class="trend">Objectif : 90%</div>
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="cover-badge">Template COMEX</div>
+    <h1>Reporting Recrutement <em>COMEX</em></h1>
+    <p class="cover-subtitle">Dashboard mensuel avec 8 KPIs, funnel visuel, alertes feu tricolore et methodologie de forecast.</p>
+    <div class="cover-meta">
+      <span><strong>Pages :</strong> 8</span>
+      <span><strong>Temps :</strong> 10 min</span>
+      <span><strong>Date :</strong> Avril 2026</span>
     </div>
   </div>
 
-  <div class="kpi-grid">
-    <div class="kpi-box">
-      <div class="value">__ EUR</div>
-      <div class="label">Cost-per-Hire</div>
-      <div class="trend">vs M-1 : __</div>
+  <div class="content">
+    <div class="page-header">
+      <div class="logo">ROCKET<span>4</span>RPO</div>
+      <div class="doc-type">Reporting COMEX</div>
     </div>
-    <div class="kpi-box">
-      <div class="value">__</div>
-      <div class="label">Candidatures recues</div>
-      <div class="trend">vs M-1 : __</div>
+
+    <h1>Reporting Recrutement — COMEX</h1>
+    <p>Ce template structure le reporting recrutement destine au comite de direction. Format synthetique, visuel, actionnable. A completer chaque mois. Objectif : 10 minutes de presentation + 5 minutes de Q&A.</p>
+
+    <h2>1. Les 8 KPIs essentiels</h2>
+
+    <table>
+      <tr><th>KPI</th><th>Definition</th><th>Cible benchmark</th><th>Mois en cours</th><th>M-1</th><th>Tendance</th></tr>
+      <tr><td>Postes ouverts</td><td>Nombre de postes actifs en cours de recrutement</td><td>Variable</td><td>___</td><td>___</td><td>___</td></tr>
+      <tr><td>Postes closes</td><td>Embauches confirmees dans le mois</td><td>Variable</td><td>___</td><td>___</td><td>___</td></tr>
+      <tr><td>Time-to-Fill moyen</td><td>Jours entre ouverture du poste et acceptation de l'offre</td><td>35-45 jours</td><td>___ j</td><td>___ j</td><td>___</td></tr>
+      <tr><td>Time-to-Hire moyen</td><td>Jours entre candidature du candidat retenu et acceptation</td><td>25-35 jours</td><td>___ j</td><td>___ j</td><td>___</td></tr>
+      <tr><td>Offer Acceptance Rate</td><td>% d'offres acceptees / offres emises</td><td>85-92%</td><td>___%</td><td>___%</td><td>___</td></tr>
+      <tr><td>Cost-per-Hire</td><td>Cout total de recrutement / nombre d'embauches</td><td>4 000-8 000 EUR</td><td>___ EUR</td><td>___ EUR</td><td>___</td></tr>
+      <tr><td>Candidatures qualifiees</td><td>Candidatures passant le screening (% du total)</td><td>20-30%</td><td>___%</td><td>___%</td><td>___</td></tr>
+      <tr><td>Satisfaction Hiring Manager</td><td>Note de satisfaction du manager sur le process (enquete)</td><td>> 4/5</td><td>___/5</td><td>___/5</td><td>___</td></tr>
+    </table>
+
+    <div class="info-box">
+      <strong>Comment lire les tendances :</strong>
+      <ul>
+        <li><strong>Vert :</strong> KPI dans la cible ou en amelioration vs M-1</li>
+        <li><strong>Orange :</strong> KPI proche de la limite ou stagnant</li>
+        <li><strong>Rouge :</strong> KPI hors cible et en degradation, action requise</li>
+      </ul>
     </div>
-    <div class="kpi-box">
-      <div class="value">__</div>
-      <div class="label">Entretiens realises</div>
-      <div class="trend">vs M-1 : __</div>
+
+    <h2>2. Funnel de recrutement (visualisation pipeline)</h2>
+
+    <p>Ce funnel montre la conversion a chaque etape du process. Les taux de conversion benchmark sont fournis pour comparaison.</p>
+
+    <div class="formula">
+FUNNEL RECRUTEMENT — MOIS DE _______________
+
+Candidatures / sourcing       [____] candidats
+      |
+      v  Taux screening : ___% (benchmark : 25-30%)
+Screening                     [____] candidats
+      |
+      v  Taux passage E1 : ___% (benchmark : 50-60%)
+Entretien 1 (HM)              [____] candidats
+      |
+      v  Taux passage E2 : ___% (benchmark : 60-70%)
+Entretien 2 / Case study       [____] candidats
+      |
+      v  Taux offre : ___% (benchmark : 50-70%)
+Offre emise                    [____] candidats
+      |
+      v  Offer Acceptance : ___% (benchmark : 85-92%)
+EMBAUCHE                       [____] candidats
     </div>
-    <div class="kpi-box">
-      <div class="value">__ /5</div>
-      <div class="label">Satisfaction HM</div>
-      <div class="trend">Objectif : > 4</div>
+
+    <table>
+      <tr><th>Etape</th><th>Candidats</th><th>Taux de conversion</th><th>Benchmark</th><th>Statut</th></tr>
+      <tr><td>Candidatures / sourcing</td><td>___</td><td>—</td><td>—</td><td>___</td></tr>
+      <tr><td>Screening</td><td>___</td><td>___%</td><td>25-30%</td><td>___</td></tr>
+      <tr><td>Entretien 1</td><td>___</td><td>___%</td><td>50-60%</td><td>___</td></tr>
+      <tr><td>Entretien 2 / Case</td><td>___</td><td>___%</td><td>60-70%</td><td>___</td></tr>
+      <tr><td>Offre emise</td><td>___</td><td>___%</td><td>50-70%</td><td>___</td></tr>
+      <tr><td>Embauche</td><td>___</td><td>___%</td><td>85-92%</td><td>___</td></tr>
+    </table>
+
+    <h2>3. Etat des postes ouverts (feu tricolore)</h2>
+
+    <table>
+      <tr><th>Poste</th><th>Dept.</th><th>Ouvert depuis</th><th>Candidats actifs</th><th>Etape la plus avancee</th><th>Risque</th></tr>
+      <tr><td>________________________</td><td>_______</td><td>___ jours</td><td>___</td><td>___________</td><td>VERT / ORANGE / ROUGE</td></tr>
+      <tr><td>________________________</td><td>_______</td><td>___ jours</td><td>___</td><td>___________</td><td>VERT / ORANGE / ROUGE</td></tr>
+      <tr><td>________________________</td><td>_______</td><td>___ jours</td><td>___</td><td>___________</td><td>VERT / ORANGE / ROUGE</td></tr>
+      <tr><td>________________________</td><td>_______</td><td>___ jours</td><td>___</td><td>___________</td><td>VERT / ORANGE / ROUGE</td></tr>
+      <tr><td>________________________</td><td>_______</td><td>___ jours</td><td>___</td><td>___________</td><td>VERT / ORANGE / ROUGE</td></tr>
+      <tr><td>________________________</td><td>_______</td><td>___ jours</td><td>___</td><td>___________</td><td>VERT / ORANGE / ROUGE</td></tr>
+    </table>
+
+    <div class="info-box">
+      <strong>Legende feu tricolore :</strong>
+      <ul>
+        <li><strong>VERT :</strong> On track — candidats en process actif, closing prevu sous 2 semaines</li>
+        <li><strong>ORANGE :</strong> Retard — pipeline faible, process bloque, ou pas de candidat en etape avancee depuis 2+ semaines. Action requise.</li>
+        <li><strong>ROUGE :</strong> En danger — aucun candidat viable en process, poste ouvert depuis 45+ jours, ou 2+ offres refusees. Escalade requise.</li>
+      </ul>
     </div>
-  </div>
 
-  <h2>2. Pipeline visuel (funnel)</h2>
-  <table>
-    <tr><th>Etape</th><th>Nombre candidats</th><th>Taux de conversion</th><th>Benchmark</th><th>Statut</th></tr>
-    <tr><td>Candidatures / sourcing</td><td></td><td>-</td><td>-</td><td></td></tr>
-    <tr><td>Screening</td><td></td><td>__ %</td><td>25-30%</td><td></td></tr>
-    <tr><td>Entretien 1</td><td></td><td>__ %</td><td>50-60%</td><td></td></tr>
-    <tr><td>Entretien 2</td><td></td><td>__ %</td><td>60-70%</td><td></td></tr>
-    <tr><td>Offre</td><td></td><td>__ %</td><td>50-70%</td><td></td></tr>
-    <tr><td>Embauche</td><td></td><td>__ %</td><td>85-92%</td><td></td></tr>
-  </table>
+    <h2>4. Alertes et points d'attention</h2>
 
-  <h2>3. Etat des postes ouverts</h2>
-  <table>
-    <tr><th>Poste</th><th>Departement</th><th>Ouvert depuis</th><th>Candidats en cours</th><th>Etape avancee</th><th>Risque</th></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td><td></td><td>[ ] Vert [ ] Orange [ ] Rouge</td></tr>
-  </table>
+    <h3>Alertes critiques (actions requises)</h3>
+    <table>
+      <tr><th>Alerte</th><th>Impact</th><th>Action proposee</th><th>Decideur</th></tr>
+      <tr><td>___________________________________</td><td>_________________</td><td>_______________________</td><td>___________</td></tr>
+      <tr><td>___________________________________</td><td>_________________</td><td>_______________________</td><td>___________</td></tr>
+    </table>
 
-  <div class="info-box">
-    <strong>Legende risque :</strong>
-    <ul>
-      <li><strong>Vert :</strong> On track, candidats en process, closing prevu sous 2 semaines</li>
-      <li><strong>Orange :</strong> Retard, pipeline faible ou process bloque, action requise</li>
-      <li><strong>Rouge :</strong> En danger, pas de candidat viable, ouvert depuis > 60 jours</li>
-    </ul>
-  </div>
+    <h3>Win du mois</h3>
+    <div class="info-box">
+      <p>___________________________________________________________________</p>
+    </div>
 
-  <h2>4. Alertes et points d'attention</h2>
+    <h2>5. Forecast — Prochains 30 jours</h2>
 
-  <div class="alert-box">
-    <strong>Alerte 1 :</strong> <div class="field" style="min-height: 30px;"></div>
-    <p><strong>Impact :</strong> <div class="field"></div></p>
-    <p><strong>Action proposee :</strong> <div class="field"></div></p>
-  </div>
+    <h3>Methodologie de forecast</h3>
+    <div class="info-box">
+      <p>Le forecast est base sur la position actuelle du candidat dans le funnel et les taux de conversion historiques :</p>
+      <ul>
+        <li><strong>Candidat en E1 :</strong> probabilite de closing = 20-30%</li>
+        <li><strong>Candidat en E2 / case :</strong> probabilite = 40-50%</li>
+        <li><strong>Candidat en offre :</strong> probabilite = 85-92%</li>
+      </ul>
+      <p><strong>Formule :</strong> Embauches prevues = Somme (candidats par etape x probabilite de conversion)</p>
+    </div>
 
-  <div class="warning-box">
-    <strong>Point de vigilance :</strong> <div class="field" style="min-height: 30px;"></div>
-  </div>
+    <div class="formula">Embauches prevues M+1 = (candidats E2 x 0.45) + (candidats offre x 0.88)</div>
 
-  <div class="success-box">
-    <strong>Win du mois :</strong> <div class="field" style="min-height: 30px;"></div>
-  </div>
+    <table>
+      <tr><th>Poste</th><th>Etape actuelle</th><th>Probabilite closing</th><th>Date closing estimee</th><th>Date demarrage estimee</th></tr>
+      <tr><td>________________________</td><td>___________</td><td>___%</td><td>__ / __</td><td>__ / __</td></tr>
+      <tr><td>________________________</td><td>___________</td><td>___%</td><td>__ / __</td><td>__ / __</td></tr>
+      <tr><td>________________________</td><td>___________</td><td>___%</td><td>__ / __</td><td>__ / __</td></tr>
+    </table>
 
-  <h2>5. Forecast — Prochains 30 jours</h2>
-  <table>
-    <tr><th>Poste</th><th>Etape actuelle</th><th>Closing prevu</th><th>Date de demarrage estimee</th></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td></tr>
-    <tr><td><div class="field"></div></td><td></td><td></td><td></td></tr>
-  </table>
+    <h3>Nouveaux postes a ouvrir</h3>
+    <table>
+      <tr><th>Poste</th><th>Departement</th><th>Priorite</th><th>Ouverture prevue</th><th>Budget valide</th></tr>
+      <tr><td>________________________</td><td>_______</td><td>Haute / Moyenne</td><td>__ / __</td><td>Oui / Non</td></tr>
+      <tr><td>________________________</td><td>_______</td><td>Haute / Moyenne</td><td>__ / __</td><td>Oui / Non</td></tr>
+    </table>
 
-  <h3>Nouveaux postes a ouvrir</h3>
-  <table>
-    <tr><th>Poste</th><th>Departement</th><th>Priorite</th><th>Date ouverture prevue</th></tr>
-    <tr><td><div class="field"></div></td><td></td><td>[ ] Haute [ ] Moyenne</td><td></td></tr>
-    <tr><td><div class="field"></div></td><td></td><td>[ ] Haute [ ] Moyenne</td><td></td></tr>
-  </table>
+    <h2>6. Performance par source</h2>
+    <table>
+      <tr><th>Source</th><th>Candidatures</th><th>Screenings</th><th>Embauches</th><th>Taux conversion</th><th>Cout / embauche</th></tr>
+      <tr><td>LinkedIn Recruiter</td><td>___</td><td>___</td><td>___</td><td>___%</td><td>___ EUR</td></tr>
+      <tr><td>Jobboards (Indeed, WTTJ)</td><td>___</td><td>___</td><td>___</td><td>___%</td><td>___ EUR</td></tr>
+      <tr><td>Cooptation</td><td>___</td><td>___</td><td>___</td><td>___%</td><td>___ EUR</td></tr>
+      <tr><td>Site carriere / inbound</td><td>___</td><td>___</td><td>___</td><td>___%</td><td>___ EUR</td></tr>
+      <tr><td>Cabinet / RPO</td><td>___</td><td>___</td><td>___</td><td>___%</td><td>___ EUR</td></tr>
+      <tr><td>Autres (events, ecoles)</td><td>___</td><td>___</td><td>___</td><td>___%</td><td>___ EUR</td></tr>
+      <tr class="highlight-row"><td>TOTAL</td><td>___</td><td>___</td><td>___</td><td>___%</td><td>___ EUR</td></tr>
+    </table>
 
-  <h2>6. Repartition par source</h2>
-  <table>
-    <tr><th>Source</th><th>Candidatures</th><th>Entretiens</th><th>Embauches</th><th>Cout / embauche</th></tr>
-    <tr><td>LinkedIn Recruiter</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Jobboards</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Cooptation</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Site carriere</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Cabinet / RPO</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Autres</td><td></td><td></td><td></td><td></td></tr>
-    <tr style="font-weight: 600;"><td>Total</td><td></td><td></td><td></td><td></td></tr>
-  </table>
+    <h2>7. Suivi budget recrutement</h2>
+    <table>
+      <tr><th>Poste budgetaire</th><th>Budget annuel</th><th>Consomme YTD</th><th>Restant</th><th>% utilise</th></tr>
+      <tr><td>Outils (ATS, LinkedIn Recruiter)</td><td>___ EUR</td><td>___ EUR</td><td>___ EUR</td><td>___%</td></tr>
+      <tr><td>Jobboards (Indeed, WTTJ, etc.)</td><td>___ EUR</td><td>___ EUR</td><td>___ EUR</td><td>___%</td></tr>
+      <tr><td>Cabinets / RPO externes</td><td>___ EUR</td><td>___ EUR</td><td>___ EUR</td><td>___%</td></tr>
+      <tr><td>Primes de cooptation</td><td>___ EUR</td><td>___ EUR</td><td>___ EUR</td><td>___%</td></tr>
+      <tr><td>Events / marque employeur</td><td>___ EUR</td><td>___ EUR</td><td>___ EUR</td><td>___%</td></tr>
+      <tr class="highlight-row"><td>TOTAL</td><td>___ EUR</td><td>___ EUR</td><td>___ EUR</td><td>___%</td></tr>
+    </table>
 
-  <h2>7. Budget recrutement</h2>
-  <table>
-    <tr><th>Poste budgetaire</th><th>Budget annuel</th><th>Consomme YTD</th><th>Restant</th><th>% utilise</th></tr>
-    <tr><td>Outils (ATS, LinkedIn)</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Jobboards</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Cabinets / RPO</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Primes cooptation</td><td></td><td></td><td></td><td></td></tr>
-    <tr><td>Events / marque employeur</td><td></td><td></td><td></td><td></td></tr>
-    <tr style="font-weight: 600;"><td>Total</td><td></td><td></td><td></td><td></td></tr>
-  </table>
+    <h2>8. Recommandations</h2>
+    <table>
+      <tr><th>#</th><th>Recommandation</th><th>Impact attendu</th><th>Decision requise</th></tr>
+      <tr><td>1</td><td>___________________________________________________</td><td>___________________</td><td>___________</td></tr>
+      <tr><td>2</td><td>___________________________________________________</td><td>___________________</td><td>___________</td></tr>
+      <tr><td>3</td><td>___________________________________________________</td><td>___________________</td><td>___________</td></tr>
+    </table>
 
-  <h2>8. Recommandations</h2>
-  <div class="info-box">
-    <ol>
-      <li><strong>Recommandation 1 :</strong> <div class="field"></div></li>
-      <li><strong>Recommandation 2 :</strong> <div class="field"></div></li>
-      <li><strong>Recommandation 3 :</strong> <div class="field"></div></li>
-    </ol>
-  </div>
+    <h2>Conseils de presentation au COMEX</h2>
 
-  <h2>Conseils de presentation au COMEX</h2>
-  <div class="info-box">
-    <ul>
-      <li>Limitez-vous a 10 minutes de presentation + 5 minutes de Q&A</li>
-      <li>Commencez par les chiffres cles (slide 1), puis les alertes, puis les recommandations</li>
-      <li>Utilisez des couleurs (vert/orange/rouge) pour une lecture instantanee</li>
-      <li>Preparez les reponses aux questions recurrentes : pourquoi ce poste met du temps ? Pourquoi ce candidat a refuse ?</li>
-      <li>Terminez par les besoins : budget, agendas des hiring managers, decisions a prendre</li>
-    </ul>
-  </div>
+    <div class="info-box">
+      <ul>
+        <li><strong>Duree :</strong> 10 minutes de presentation + 5 minutes de Q&A maximum</li>
+        <li><strong>Structure :</strong> chiffres cles (2 min) → alertes (3 min) → forecast (2 min) → recommandations (3 min)</li>
+        <li><strong>Visuels :</strong> utilisez les couleurs feu tricolore (vert/orange/rouge) pour une lecture instantanee</li>
+        <li><strong>Anticipez :</strong> preparez les reponses aux questions recurrentes ("pourquoi ce poste est en rouge ?", "pourquoi ce candidat a refuse ?", "quel est le cout par embauche vs budget ?")</li>
+        <li><strong>Terminez par les besoins :</strong> budget supplementaire, agendas des hiring managers, decisions a prendre</li>
+        <li><strong>Envoyez le reporting 24h avant :</strong> les membres du COMEX arrivent informes, le temps de presentation est optimise</li>
+      </ul>
+    </div>
 
-  <div class="footer">
-    <p><strong>Rocket4RPO</strong> — RPO sur-mesure pour entreprises ambitieuses</p>
-    <p>rocket4rpo.com — 2026</p>
+    <div class="footer">
+      <div class="logo">ROCKET<span>4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits reserves 2026</p>
+      <p>Donnees issues de 200+ recrutements realises</p>
+    </div>
   </div>
 </body>
 </html>

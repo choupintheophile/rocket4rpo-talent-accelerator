@@ -2,195 +2,312 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Checklist RGPD recrutement — Rocket4RPO</title>
-  <style>
-    body { font-family: 'Inter', system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; color: #1a1d2b; line-height: 1.7; }
-    h1 { color: #0cc77e; font-size: 2rem; border-bottom: 2px solid #0cc77e; padding-bottom: 16px; }
-    h2 { color: #1a1d2b; margin-top: 2rem; }
-    h3 { color: #333; margin-top: 1.5rem; }
-    .header { text-align: center; margin-bottom: 3rem; }
-    .logo { font-size: 1.5rem; font-weight: 700; color: #1a1d2b; }
-    .logo span { color: #0cc77e; }
-    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-    th, td { padding: 10px 12px; border: 1px solid #ddd; text-align: center; }
-    th { background: #f8f6f3; font-weight: 600; }
-    td:first-child, th:first-child { text-align: left; }
-    .category { background: #f0fdf4; font-weight: 600; text-align: left !important; }
-    .info-box { background: #f8f6f3; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .warning-box { background: #fff8e1; border-left: 4px solid #f5a623; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .danger-box { background: #fde8e8; border-left: 4px solid #e53e3e; border-radius: 8px; padding: 16px 20px; margin: 1.5rem 0; }
-    .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd; text-align: center; color: #666; font-size: 0.85rem; }
-    ul { padding-left: 1.5rem; }
-    li { margin-bottom: 0.5rem; }
-    .checkbox { font-size: 1.1rem; }
-    @media print { body { padding: 20px; } }
-  </style>
+  <title>Checklist RGPD Recrutement — Rocket4RPO</title>
+  <link rel="stylesheet" href="/resources/style-premium.css">
 </head>
 <body>
-  <div class="header">
-    <p class="logo">ROCKET<span>4</span>RPO</p>
-    <p style="color: #666;">Checklist gratuite — Avril 2026</p>
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <div class="cover-logo">ROCKET<span>4</span>RPO</div>
+    <div class="cover-badge">Checklist juridique</div>
+    <h1>Checklist RGPD <em>Recrutement</em></h1>
+    <p class="cover-subtitle">Les 40 points de conformite pour proteger les donnees candidats et eviter les sanctions CNIL.</p>
+    <div class="cover-meta">
+      <span><strong>Pages :</strong> 8</span>
+      <span><strong>Temps :</strong> 15 min</span>
+      <span><strong>Date :</strong> Avril 2026</span>
+    </div>
   </div>
 
-  <h1>Checklist RGPD recrutement</h1>
-  <p>Le RGPD s'applique a toute collecte de donnees personnelles de candidats. Les sanctions peuvent atteindre 20 millions d'euros ou 4% du CA mondial. Cette checklist couvre les obligations essentielles pour tout processus de recrutement conforme.</p>
+  <div class="content">
+    <div class="page-header">
+      <div class="logo">ROCKET<span>4</span>RPO</div>
+      <div class="doc-type">Checklist RGPD</div>
+    </div>
 
-  <div class="danger-box">
-    <strong>Rappel :</strong> Ce document est un guide pratique, pas un avis juridique. Pour une mise en conformite complete, consultez votre DPO ou un avocat specialise en protection des donnees.
-  </div>
+    <h1>Checklist RGPD Recrutement</h1>
+    <p>Le RGPD (Reglement General sur la Protection des Donnees, UE 2016/679) s'applique a toute collecte de donnees personnelles de candidats. Les sanctions peuvent atteindre 20 millions d'euros ou 4% du chiffre d'affaires mondial. Cette checklist couvre les obligations essentielles pour un processus de recrutement conforme en France.</p>
 
-  <h2>1. Base legale du traitement</h2>
-  <div class="info-box">
-    <strong>Quelle base legale pour le recrutement ?</strong><br>
-    La CNIL recommande l'<strong>interet legitime</strong> (art. 6.1.f du RGPD) comme base legale principale pour le traitement des candidatures. Le consentement n'est pas la base legale adaptee car le candidat est en situation de dependance.
-  </div>
-  <ul class="checkbox">
-    <li>[ ] La base legale du traitement est identifiee et documentee (interet legitime pour le traitement des candidatures)</li>
-    <li>[ ] Un test de mise en balance des interets a ete realise (interet de l'employeur vs droits du candidat)</li>
-    <li>[ ] Le consentement est utilise uniquement pour le vivier de candidats (conservation au-dela du process)</li>
-    <li>[ ] Le consentement pour le vivier est libre, specifique, eclaire et univoque</li>
-  </ul>
+    <div class="warning-box">
+      <strong>Avertissement :</strong> Ce document est un guide pratique de conformite. Il ne remplace pas l'avis d'un DPO ou d'un avocat specialise en protection des donnees. Les references d'articles renvoient au RGPD (UE 2016/679) et au Code du travail francais.
+    </div>
 
-  <h2>2. Information des candidats</h2>
-  <ul class="checkbox">
-    <li>[ ] Une politique de confidentialite candidat est redigee et accessible</li>
-    <li>[ ] La politique est disponible sur le site carriere / page de candidature</li>
-    <li>[ ] Les candidats sont informes au moment de la collecte (offre d'emploi, formulaire)</li>
-    <li>[ ] Les informations obligatoires sont presentes (art. 13 et 14 du RGPD) :
-      <ul>
-        <li>[ ] Identite et coordonnees du responsable de traitement</li>
-        <li>[ ] Coordonnees du DPO (si applicable)</li>
-        <li>[ ] Finalites du traitement</li>
-        <li>[ ] Base legale</li>
-        <li>[ ] Destinataires des donnees</li>
-        <li>[ ] Duree de conservation</li>
-        <li>[ ] Droits des candidats</li>
-        <li>[ ] Droit de reclamation aupres de la CNIL</li>
-      </ul>
-    </li>
-    <li>[ ] En cas de sourcing (LinkedIn, GitHub), le candidat est informe dans le premier message de contact</li>
-  </ul>
+    <!-- SECTION 1 -->
+    <h2>1. Base legale du traitement (Art. 6 RGPD)</h2>
 
-  <h2>3. Donnees collectees (principe de minimisation)</h2>
-  <table>
-    <tr><th>Donnee</th><th>Autorise</th><th>Interdit</th></tr>
-    <tr><td>Identite (nom, prenom)</td><td>Oui</td><td></td></tr>
-    <tr><td>Coordonnees (email, telephone)</td><td>Oui</td><td></td></tr>
-    <tr><td>CV, lettres de motivation</td><td>Oui</td><td></td></tr>
-    <tr><td>Experience professionnelle</td><td>Oui</td><td></td></tr>
-    <tr><td>Formation, diplomes</td><td>Oui</td><td></td></tr>
-    <tr><td>Pretentions salariales</td><td>Oui</td><td></td></tr>
-    <tr><td>Disponibilite, preavis</td><td>Oui</td><td></td></tr>
-    <tr><td>Permis de conduire (si necessaire au poste)</td><td>Oui (si justifie)</td><td></td></tr>
-    <tr><td>Numero de securite sociale</td><td></td><td>Interdit avant embauche</td></tr>
-    <tr><td>Situation familiale</td><td></td><td>Interdit</td></tr>
-    <tr><td>Religion, opinions politiques</td><td></td><td>Interdit</td></tr>
-    <tr><td>Origine ethnique</td><td></td><td>Interdit</td></tr>
-    <tr><td>Etat de sante, grossesse</td><td></td><td>Interdit</td></tr>
-    <tr><td>Appartenance syndicale</td><td></td><td>Interdit</td></tr>
-    <tr><td>Casier judiciaire (sauf metiers reglementes)</td><td></td><td>Interdit (sauf exception)</td></tr>
-  </table>
+    <div class="info-box">
+      <strong>Quelle base legale pour le recrutement ?</strong><br>
+      La CNIL recommande l'<strong>interet legitime</strong> (Art. 6.1.f) comme base legale principale pour le traitement des candidatures spontanees ou en reponse a une offre. Le consentement (Art. 6.1.a) n'est pas adapte en raison du desequilibre entre le candidat et le recruteur.
+    </div>
 
-  <ul class="checkbox">
-    <li>[ ] Seules les donnees strictement necessaires au recrutement sont collectees</li>
-    <li>[ ] Aucune donnee sensible n'est collectee (art. 9 RGPD)</li>
-    <li>[ ] Les formulaires de candidature ne contiennent pas de champs non pertinents</li>
-    <li>[ ] Les notes d'entretien ne contiennent pas de commentaires discriminatoires</li>
-  </ul>
+    <table>
+      <tr><th>Base legale</th><th>Article RGPD</th><th>Usage en recrutement</th><th>Condition</th></tr>
+      <tr><td>Interet legitime</td><td>Art. 6.1.f</td><td>Traitement des candidatures</td><td>Test de mise en balance obligatoire</td></tr>
+      <tr><td>Mesures precontractuelles</td><td>Art. 6.1.b</td><td>Verification des diplomes, prise de references</td><td>A la demande du candidat</td></tr>
+      <tr><td>Consentement</td><td>Art. 6.1.a</td><td>Constitution du vivier (conservation post-process)</td><td>Libre, specifique, eclaire, univoque</td></tr>
+      <tr><td>Obligation legale</td><td>Art. 6.1.c</td><td>Verifications reglementaires (casier, habilitations)</td><td>Metiers reglementes uniquement</td></tr>
+    </table>
 
-  <h2>4. Duree de conservation</h2>
-  <div class="warning-box">
-    <strong>Recommandation CNIL :</strong> Les donnees des candidats non retenus doivent etre supprimees au plus tard <strong>24 mois</strong> apres le dernier contact, sauf consentement explicite pour une duree plus longue.
-  </div>
-  <table>
-    <tr><th>Type de donnee</th><th>Duree maximale</th><th>Condition</th></tr>
-    <tr><td>Candidature en cours</td><td>Duree du process</td><td>Suppression a la fin du recrutement</td></tr>
-    <tr><td>Candidat non retenu</td><td>24 mois</td><td>A compter du dernier contact</td></tr>
-    <tr><td>Vivier (avec consentement)</td><td>24 mois renouvelable</td><td>Consentement explicite requis</td></tr>
-    <tr><td>Candidat embauche</td><td>Duree du contrat + archivage legal</td><td>Transfert au dossier RH</td></tr>
-  </table>
-  <ul class="checkbox">
-    <li>[ ] Une politique de purge automatique est en place dans l'ATS</li>
-    <li>[ ] Les candidats sont informes de la duree de conservation</li>
-    <li>[ ] Un process de renouvellement du consentement est prevu pour le vivier</li>
-    <li>[ ] Les donnees papier (CV imprimes) sont detruites apres numerisation</li>
-  </ul>
+    <ul class="checklist">
+      <li>La base legale du traitement est identifiee et documentee pour chaque finalite</li>
+      <li>Un test de mise en balance des interets a ete realise (interet employeur vs droits candidat) si la base est l'interet legitime</li>
+      <li>Le consentement est utilise uniquement pour le vivier de candidats (conservation au-dela du process de recrutement)</li>
+      <li>Le consentement est recueilli via un formulaire dedie, distinct du formulaire de candidature</li>
+      <li>Le consentement est libre (pas de case pre-cochee), specifique, eclaire et univoque (Art. 7)</li>
+    </ul>
 
-  <h2>5. Droits des candidats</h2>
-  <ul class="checkbox">
-    <li>[ ] <strong>Droit d'acces :</strong> Le candidat peut obtenir une copie de ses donnees (delai : 1 mois)</li>
-    <li>[ ] <strong>Droit de rectification :</strong> Le candidat peut corriger ses donnees</li>
-    <li>[ ] <strong>Droit a l'effacement :</strong> Le candidat peut demander la suppression de ses donnees</li>
-    <li>[ ] <strong>Droit d'opposition :</strong> Le candidat peut s'opposer au traitement</li>
-    <li>[ ] <strong>Droit a la portabilite :</strong> Le candidat peut recuperer ses donnees dans un format structure</li>
-    <li>[ ] Un processus interne est en place pour traiter ces demandes dans le delai legal (1 mois)</li>
-    <li>[ ] Les coordonnees pour exercer ces droits sont communiquees dans la politique de confidentialite</li>
-  </ul>
+    <!-- SECTION 2 -->
+    <h2>2. Information des candidats (Art. 13 et 14 RGPD)</h2>
 
-  <h2>6. Securite des donnees</h2>
-  <ul class="checkbox">
-    <li>[ ] Les CV et donnees candidats sont stockes dans un systeme securise (ATS ou espace chiffre)</li>
-    <li>[ ] L'acces aux donnees candidats est limite aux personnes habilitees (recruteurs, hiring managers)</li>
-    <li>[ ] Les mots de passe de l'ATS respectent les recommandations CNIL (12+ caracteres)</li>
-    <li>[ ] Les echanges de CV par email sont limites (privilegier le partage via ATS)</li>
-    <li>[ ] Les CV ne sont pas stockes sur des espaces partages non securises (Google Drive public, Slack)</li>
-    <li>[ ] Un registre des violations de donnees est tenu</li>
-  </ul>
+    <p>L'article 13 impose une information complete du candidat au moment de la collecte directe. L'article 14 s'applique lorsque les donnees sont obtenues indirectement (sourcing LinkedIn, cooptation).</p>
 
-  <h2>7. Sous-traitants et transferts</h2>
-  <ul class="checkbox">
-    <li>[ ] Un registre des sous-traitants traitant des donnees candidats est a jour</li>
-    <li>[ ] Des clauses RGPD (art. 28) sont incluses dans les contrats avec :
-      <ul>
-        <li>[ ] ATS / logiciel de recrutement</li>
-        <li>[ ] Cabinets de recrutement / RPO</li>
-        <li>[ ] Plateformes de tests / assessments</li>
-        <li>[ ] Outils de visioconference (enregistrements)</li>
-        <li>[ ] Outils d'emailing / CRM candidat</li>
-      </ul>
-    </li>
-    <li>[ ] En cas de transfert hors UE : clauses contractuelles types (CCT) ou decision d'adequation</li>
-    <li>[ ] Les sous-traitants americains sont encadres par le EU-US Data Privacy Framework (ou CCT)</li>
-  </ul>
+    <h3>Mentions obligatoires (Art. 13.1 et 13.2)</h3>
+    <table>
+      <tr><th>#</th><th>Information requise</th><th>Ref. RGPD</th><th>Conforme</th></tr>
+      <tr><td>1</td><td>Identite et coordonnees du responsable de traitement</td><td>Art. 13.1.a</td><td></td></tr>
+      <tr><td>2</td><td>Coordonnees du DPO (si designe)</td><td>Art. 13.1.b</td><td></td></tr>
+      <tr><td>3</td><td>Finalites du traitement et base legale</td><td>Art. 13.1.c</td><td></td></tr>
+      <tr><td>4</td><td>Interets legitimes poursuivis (si Art. 6.1.f)</td><td>Art. 13.1.d</td><td></td></tr>
+      <tr><td>5</td><td>Destinataires ou categories de destinataires</td><td>Art. 13.1.e</td><td></td></tr>
+      <tr><td>6</td><td>Transfert hors UE et garanties appropriees</td><td>Art. 13.1.f</td><td></td></tr>
+      <tr><td>7</td><td>Duree de conservation ou criteres de determination</td><td>Art. 13.2.a</td><td></td></tr>
+      <tr><td>8</td><td>Droits des candidats (acces, rectification, effacement, etc.)</td><td>Art. 13.2.b</td><td></td></tr>
+      <tr><td>9</td><td>Droit de retrait du consentement (si applicable)</td><td>Art. 13.2.c</td><td></td></tr>
+      <tr><td>10</td><td>Droit de reclamation aupres de la CNIL</td><td>Art. 13.2.d</td><td></td></tr>
+      <tr><td>11</td><td>Caractere obligatoire ou facultatif de la fourniture des donnees</td><td>Art. 13.2.e</td><td></td></tr>
+      <tr><td>12</td><td>Existence d'une decision automatisee ou profilage</td><td>Art. 13.2.f</td><td></td></tr>
+    </table>
 
-  <h2>8. Outils et IA</h2>
-  <div class="warning-box">
-    <strong>IA et recrutement :</strong> L'utilisation d'outils d'IA pour le tri de CV ou l'analyse d'entretiens est soumise a des obligations renforcees (AI Act europeen, categorie "haut risque").
-  </div>
-  <ul class="checkbox">
-    <li>[ ] Les outils d'IA utilises dans le recrutement sont documentes</li>
-    <li>[ ] Une analyse d'impact (AIPD) est realisee si traitement automatise a grande echelle</li>
-    <li>[ ] Les candidats sont informes de l'utilisation d'outils automatises</li>
-    <li>[ ] Une intervention humaine est garantie dans la decision finale</li>
-    <li>[ ] Les biais algorithmiques sont audites regulierement</li>
-  </ul>
+    <ul class="checklist">
+      <li>Une politique de confidentialite candidat est redigee et accessible sur le site carriere</li>
+      <li>L'information est fournie au moment de la collecte (formulaire, offre d'emploi)</li>
+      <li>En cas de sourcing (LinkedIn, GitHub), le candidat est informe dans le premier message (Art. 14.3 : delai max 1 mois)</li>
+      <li>Les mentions legales sont presentes sur chaque formulaire de candidature</li>
+    </ul>
 
-  <h2>9. Registre des traitements</h2>
-  <ul class="checkbox">
-    <li>[ ] Le traitement "recrutement" est inscrit au registre des traitements (art. 30 RGPD)</li>
-    <li>[ ] Le registre mentionne : finalite, categories de donnees, destinataires, durees, mesures de securite</li>
-    <li>[ ] Le registre est mis a jour annuellement</li>
-  </ul>
+    <!-- SECTION 3 -->
+    <h2>3. Donnees collectees — Principe de minimisation (Art. 5.1.c)</h2>
 
-  <h2>Synthese : les 10 reflexes RGPD du recruteur</h2>
-  <div class="info-box">
-    <ol>
-      <li>Informer le candidat des la collecte</li>
-      <li>Ne collecter que les donnees necessaires</li>
-      <li>Supprimer les donnees apres 24 mois</li>
-      <li>Securiser le stockage des CV</li>
-      <li>Limiter l'acces aux personnes habilitees</li>
-      <li>Obtenir le consentement pour le vivier</li>
-      <li>Repondre aux demandes d'acces sous 1 mois</li>
-      <li>Encadrer les sous-traitants par contrat</li>
-      <li>Documenter l'utilisation d'outils d'IA</li>
-      <li>Former les hiring managers aux bonnes pratiques</li>
-    </ol>
-  </div>
+    <p>Seules les donnees adequates, pertinentes et limitees a ce qui est necessaire au regard des finalites pour lesquelles elles sont traitees doivent etre collectees.</p>
 
-  <div class="footer">
-    <p><strong>Rocket4RPO</strong> — RPO sur-mesure pour entreprises ambitieuses</p>
-    <p>rocket4rpo.com — 2026</p>
+    <table>
+      <tr><th>Donnee</th><th>Collecte autorisee</th><th>Condition</th></tr>
+      <tr class="category-row"><td colspan="3">Donnees d'identification</td></tr>
+      <tr><td>Nom, prenom</td><td>Oui</td><td>Necessaire</td></tr>
+      <tr><td>Email, telephone</td><td>Oui</td><td>Contact candidat</td></tr>
+      <tr><td>Adresse postale</td><td>Oui (si pertinent)</td><td>Mobilite / zone geographique</td></tr>
+      <tr><td>Photo</td><td>Deconseille</td><td>Non pertinent sauf metiers de representation</td></tr>
+      <tr class="category-row"><td colspan="3">Donnees professionnelles</td></tr>
+      <tr><td>CV, lettre de motivation</td><td>Oui</td><td>Evaluation des competences</td></tr>
+      <tr><td>Experience professionnelle</td><td>Oui</td><td>En lien avec le poste</td></tr>
+      <tr><td>Formation, diplomes</td><td>Oui</td><td>Si requis pour le poste</td></tr>
+      <tr><td>Pretentions salariales</td><td>Oui</td><td>Adequation budget</td></tr>
+      <tr><td>Disponibilite, preavis</td><td>Oui</td><td>Planification embauche</td></tr>
+      <tr><td>Permis de conduire</td><td>Oui si justifie</td><td>Poste necessitant un vehicule</td></tr>
+      <tr class="category-row"><td colspan="3">Donnees interdites (Art. 9 — Donnees sensibles)</td></tr>
+      <tr><td>Numero de securite sociale</td><td>INTERDIT</td><td>Uniquement apres embauche</td></tr>
+      <tr><td>Situation familiale, grossesse</td><td>INTERDIT</td><td>Art. L1132-1 Code du travail</td></tr>
+      <tr><td>Religion, opinions politiques</td><td>INTERDIT</td><td>Art. 9.1 RGPD</td></tr>
+      <tr><td>Origine ethnique</td><td>INTERDIT</td><td>Art. 9.1 RGPD</td></tr>
+      <tr><td>Etat de sante</td><td>INTERDIT</td><td>Competence medecin du travail</td></tr>
+      <tr><td>Appartenance syndicale</td><td>INTERDIT</td><td>Art. 9.1 RGPD</td></tr>
+      <tr><td>Casier judiciaire</td><td>INTERDIT (sauf exception)</td><td>Metiers reglementes uniquement</td></tr>
+    </table>
+
+    <ul class="checklist">
+      <li>Les formulaires de candidature ne contiennent pas de champs non pertinents (age, situation familiale, nationalite)</li>
+      <li>Les notes d'entretien ne contiennent aucun commentaire discriminatoire ou donnee sensible</li>
+      <li>Un audit annuel des champs collectes est realise</li>
+    </ul>
+
+    <!-- SECTION 4 -->
+    <h2>4. Duree de conservation (Art. 5.1.e et Art. 17)</h2>
+
+    <div class="warning-box">
+      <strong>Recommandation CNIL :</strong> Les donnees des candidats non retenus doivent etre supprimees au plus tard <strong>24 mois</strong> apres le dernier contact, sauf consentement explicite pour une duree plus longue (deliberation CNIL n2002-17).
+    </div>
+
+    <table>
+      <tr><th>Situation</th><th>Duree maximale</th><th>Base legale</th><th>Action requise</th></tr>
+      <tr><td>Candidature en cours de process</td><td>Duree du recrutement</td><td>Interet legitime</td><td>Suppression a la cloture du poste</td></tr>
+      <tr><td>Candidat non retenu</td><td>24 mois max</td><td>Interet legitime</td><td>Suppression automatique ou manuelle</td></tr>
+      <tr><td>Vivier avec consentement</td><td>24 mois renouvelables</td><td>Consentement (Art. 6.1.a)</td><td>Renouvellement explicite avant expiration</td></tr>
+      <tr><td>Candidat embauche</td><td>Duree du contrat + 5 ans</td><td>Obligation legale</td><td>Transfert vers dossier RH</td></tr>
+      <tr><td>Donnees de recrutement archivees</td><td>5 ans</td><td>Art. 2224 Code civil</td><td>Archivage intermediaire securise</td></tr>
+    </table>
+
+    <ul class="checklist">
+      <li>Une politique de purge automatique est parametree dans l'ATS (suppression a 24 mois)</li>
+      <li>Les candidats sont informes de la duree de conservation dans la politique de confidentialite</li>
+      <li>Un process de renouvellement du consentement est en place pour le vivier (email de reconfirmation)</li>
+      <li>Les CV imprimes sont detruits par broyage apres numerisation (Art. 5.1.f)</li>
+      <li>Un registre de suppression est tenu (date, volume, methode)</li>
+    </ul>
+
+    <!-- SECTION 5 -->
+    <h2>5. Droits des candidats (Art. 15 a 22)</h2>
+
+    <table>
+      <tr><th>Droit</th><th>Article</th><th>Delai de reponse</th><th>Modalite</th></tr>
+      <tr><td>Droit d'acces</td><td>Art. 15</td><td>1 mois</td><td>Copie des donnees en format lisible</td></tr>
+      <tr><td>Droit de rectification</td><td>Art. 16</td><td>1 mois</td><td>Correction des donnees inexactes</td></tr>
+      <tr><td>Droit a l'effacement</td><td>Art. 17</td><td>1 mois</td><td>Suppression si plus de base legale</td></tr>
+      <tr><td>Droit a la limitation</td><td>Art. 18</td><td>1 mois</td><td>Gel du traitement en cas de contestation</td></tr>
+      <tr><td>Droit a la portabilite</td><td>Art. 20</td><td>1 mois</td><td>Export en format structure (CSV, JSON)</td></tr>
+      <tr><td>Droit d'opposition</td><td>Art. 21</td><td>1 mois</td><td>Opposition au traitement (interet legitime)</td></tr>
+      <tr><td>Decision individuelle automatisee</td><td>Art. 22</td><td>1 mois</td><td>Droit a une intervention humaine</td></tr>
+    </table>
+
+    <ul class="checklist">
+      <li>Un processus interne est en place pour traiter les demandes dans le delai legal (1 mois, prolongeable de 2 mois si complexe)</li>
+      <li>Les coordonnees pour exercer les droits sont publiees dans la politique de confidentialite</li>
+      <li>Un registre des demandes d'exercice de droits est tenu</li>
+      <li>L'identite du demandeur est verifiee avant communication des donnees</li>
+    </ul>
+
+    <!-- SECTION 6 -->
+    <h2>6. Securite des donnees (Art. 32)</h2>
+
+    <p>Le responsable de traitement et le sous-traitant doivent mettre en oeuvre les mesures techniques et organisationnelles appropriees pour garantir un niveau de securite adapte au risque.</p>
+
+    <ul class="checklist">
+      <li>Les CV et donnees candidats sont stockes dans un systeme securise (ATS, espace chiffre)</li>
+      <li>L'acces aux donnees est limite aux personnes habilitees (recruteurs, hiring managers du poste concerne)</li>
+      <li>L'authentification forte est activee sur l'ATS (MFA / 2FA)</li>
+      <li>Les mots de passe respectent les recommandations CNIL 2022 (12 caracteres min, complexite)</li>
+      <li>Les echanges de CV par email sont limites — le partage via ATS est privilegie</li>
+      <li>Aucun CV n'est stocke sur des espaces partages non securises (Google Drive public, Slack, WhatsApp)</li>
+      <li>Les postes de travail accedant aux donnees candidats disposent d'un antivirus a jour et d'un chiffrement disque</li>
+      <li>Un registre des violations de donnees est tenu (Art. 33 : notification CNIL sous 72h en cas de violation)</li>
+    </ul>
+
+    <!-- SECTION 7 -->
+    <h2>7. Sous-traitants et transferts (Art. 28 et Art. 44-49)</h2>
+
+    <h3>Contrats sous-traitants (Art. 28)</h3>
+    <p>Tout sous-traitant qui traite des donnees candidats pour votre compte doit etre encadre par un contrat incluant les clauses de l'Art. 28.3.</p>
+
+    <ul class="checklist">
+      <li>Un registre des sous-traitants traitant des donnees candidats est a jour</li>
+      <li>Des clauses RGPD (Art. 28.3) sont incluses dans les contrats avec :</li>
+    </ul>
+
+    <table>
+      <tr><th>Sous-traitant</th><th>Donnees traitees</th><th>Clause Art. 28</th><th>Transfert hors UE</th></tr>
+      <tr><td>ATS / logiciel de recrutement</td><td>CV, identite, historique candidature</td><td></td><td></td></tr>
+      <tr><td>Cabinets de recrutement / RPO</td><td>CV, notes d'entretien, evaluations</td><td></td><td></td></tr>
+      <tr><td>Plateformes de tests / assessments</td><td>Resultats, identite</td><td></td><td></td></tr>
+      <tr><td>Outils de visioconference</td><td>Enregistrements (si applicable)</td><td></td><td></td></tr>
+      <tr><td>Outils d'emailing / CRM candidat</td><td>Email, prenom, historique echanges</td><td></td><td></td></tr>
+      <tr><td>Outils d'IA (ChatGPT, Claude, etc.)</td><td>Donnees saisies dans les prompts</td><td></td><td></td></tr>
+    </table>
+
+    <ul class="checklist">
+      <li>En cas de transfert hors UE : clauses contractuelles types (CCT) ou decision d'adequation (Art. 45)</li>
+      <li>Les sous-traitants americains sont encadres par le EU-US Data Privacy Framework ou des CCT (Art. 46)</li>
+      <li>Aucune donnee candidat n'est copiee dans un outil d'IA sans anonymisation prealable</li>
+    </ul>
+
+    <!-- SECTION 8 -->
+    <h2>8. IA et recrutement (AI Act + RGPD)</h2>
+
+    <div class="warning-box">
+      <strong>AI Act europeen (Reglement UE 2024/1689) :</strong> Les systemes d'IA utilises dans le recrutement sont classes <strong>"haut risque"</strong> (Annexe III, point 4). Ils sont soumis a des obligations renforcees : evaluation de conformite, gestion des risques, transparence, supervision humaine et documentation technique.
+    </div>
+
+    <ul class="checklist">
+      <li>Les outils d'IA utilises dans le recrutement sont documentes (registre des traitements + registre AI Act)</li>
+      <li>Une analyse d'impact (AIPD / DPIA, Art. 35) est realisee si traitement automatise a grande echelle</li>
+      <li>Les candidats sont informes de l'utilisation d'outils automatises (Art. 13.2.f et Art. 22)</li>
+      <li>Une intervention humaine est garantie dans la decision finale de recrutement (Art. 22.3)</li>
+      <li>Les biais algorithmiques sont audites au moins une fois par an</li>
+      <li>Les donnees candidats ne sont pas utilisees pour entrainer des modeles d'IA sans consentement</li>
+    </ul>
+
+    <!-- SECTION 9 -->
+    <h2>9. Registre des traitements (Art. 30)</h2>
+
+    <p>Toute entreprise de 250+ salaries ou tout responsable de traitement dont le traitement est susceptible de comporter un risque pour les droits et libertes des personnes doit tenir un registre.</p>
+
+    <table>
+      <tr><th>Element du registre</th><th>Exemple recrutement</th></tr>
+      <tr><td>Finalite du traitement</td><td>Gestion des candidatures et recrutement de collaborateurs</td></tr>
+      <tr><td>Categories de personnes</td><td>Candidats (externes et internes)</td></tr>
+      <tr><td>Categories de donnees</td><td>Identite, CV, notes d'entretien, evaluations, references</td></tr>
+      <tr><td>Destinataires</td><td>Equipe recrutement, hiring managers, sous-traitants (ATS, outils)</td></tr>
+      <tr><td>Duree de conservation</td><td>24 mois apres dernier contact (candidats non retenus)</td></tr>
+      <tr><td>Mesures de securite</td><td>Chiffrement, controle d'acces, MFA, pseudonymisation</td></tr>
+      <tr><td>Transferts hors UE</td><td>Oui/Non — si oui, garanties (CCT, adequation, EUUS DPF)</td></tr>
+    </table>
+
+    <ul class="checklist">
+      <li>Le traitement "recrutement" est inscrit au registre des traitements</li>
+      <li>Le registre est mis a jour au moins une fois par an ou a chaque changement d'outil</li>
+      <li>Le registre est accessible au DPO et a la CNIL en cas de controle</li>
+    </ul>
+
+    <!-- SECTION 10 -->
+    <h2>10. Modele de formulaire de consentement (vivier)</h2>
+
+    <div class="info-box">
+      <p><strong>Modele de clause consentement vivier :</strong></p>
+      <p>"J'autorise [Nom de l'entreprise] a conserver mes donnees personnelles (CV, coordonnees, notes d'entretien) dans son vivier de candidats pour une duree de 24 mois a compter de ce jour, dans le but d'etre recontacte(e) pour des opportunites correspondant a mon profil. Je comprends que je peux retirer ce consentement a tout moment en ecrivant a [email DPO/recrutement]. Ce retrait n'affectera pas la liceite du traitement effectue avant le retrait."</p>
+      <p><strong>Signature :</strong> _________________ <strong>Date :</strong> __ / __ / ____</p>
+    </div>
+
+    <!-- SECTION 11 -->
+    <h2>11. Checklist DPO — 10 points de controle annuel</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">40</div>
+        <div class="stat-label">Points de conformite</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">24 mois</div>
+        <div class="stat-label">Conservation max CNIL</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">72h</div>
+        <div class="stat-label">Delai notification violation</div>
+      </div>
+    </div>
+
+    <ul class="checklist">
+      <li>Le registre des traitements "recrutement" est a jour (Art. 30)</li>
+      <li>Les politiques de confidentialite candidat sont publiees et accessibles</li>
+      <li>Les durees de conservation sont respectees — purge effectuee</li>
+      <li>Les contrats sous-traitants incluent les clauses Art. 28</li>
+      <li>Les outils d'IA sont documentes (AI Act) et les candidats informes</li>
+      <li>Les demandes d'exercice de droits ont ete traitees dans les delais (registre a jour)</li>
+      <li>Les mesures de securite sont adequates (audit annuel)</li>
+      <li>Les formulaires de candidature ont ete audites (minimisation des donnees)</li>
+      <li>Les hiring managers sont formes aux bonnes pratiques RGPD (au moins 1x/an)</li>
+      <li>Aucune violation de donnees non signalee n'est identifiee</li>
+    </ul>
+
+    <h2>Synthese : les 10 reflexes RGPD du recruteur</h2>
+
+    <div class="info-box">
+      <ol>
+        <li><strong>Informer</strong> le candidat des la collecte (Art. 13)</li>
+        <li><strong>Minimiser</strong> : ne collecter que les donnees necessaires (Art. 5.1.c)</li>
+        <li><strong>Supprimer</strong> les donnees apres 24 mois (recommandation CNIL)</li>
+        <li><strong>Securiser</strong> le stockage des CV (Art. 32)</li>
+        <li><strong>Limiter</strong> l'acces aux personnes habilitees</li>
+        <li><strong>Consentir</strong> : obtenir un consentement explicite pour le vivier (Art. 6.1.a)</li>
+        <li><strong>Repondre</strong> aux demandes d'acces sous 1 mois (Art. 12.3)</li>
+        <li><strong>Encadrer</strong> les sous-traitants par contrat (Art. 28)</li>
+        <li><strong>Documenter</strong> l'utilisation d'outils d'IA (AI Act)</li>
+        <li><strong>Former</strong> les hiring managers aux bonnes pratiques RGPD</li>
+      </ol>
+    </div>
+
+    <div class="footer">
+      <div class="logo">ROCKET<span>4</span>RPO</div>
+      <p>rocket4rpo.com — Tous droits reserves 2026</p>
+      <p>Donnees issues de 200+ recrutements realises</p>
+    </div>
   </div>
 </body>
 </html>
