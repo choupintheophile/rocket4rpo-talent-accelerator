@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 export const revalidate = 3600; // revalidate every hour
 import { organizationSchema, professionalServiceSchema, faqSchema } from "@/lib/seo";
-import { getBlogPosts } from "@/lib/db";
+import { getLatestBlogPosts } from "@/lib/db";
 import { detectSegment, heroContent } from "@/lib/personalization";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { BlogPreview } from "@/components/sections/BlogPreview";
@@ -33,9 +33,9 @@ export default async function HomePage({
   const segment = detectSegment(params);
   const hero = heroContent[segment];
 
-  const blogPosts = await getBlogPosts();
+  const blogPosts = await getLatestBlogPosts(3);
 
-  const serializedPosts = blogPosts.slice(0, 3).map((p) => ({
+  const serializedPosts = blogPosts.map((p) => ({
     slug: p.slug,
     title: p.title,
     excerpt: p.excerpt,

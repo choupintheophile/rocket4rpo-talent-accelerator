@@ -16,6 +16,21 @@ export async function getBlogPosts() {
   return prisma.blogPost.findMany({ orderBy: { date: "desc" } });
 }
 
+export async function getLatestBlogPosts(limit = 3) {
+  return prisma.blogPost.findMany({
+    orderBy: { date: "desc" },
+    take: limit,
+    select: {
+      slug: true,
+      title: true,
+      excerpt: true,
+      category: true,
+      date: true,
+      readTime: true,
+    },
+  });
+}
+
 export async function getBlogPostBySlug(slug: string) {
   return prisma.blogPost.findUnique({ where: { slug } });
 }
