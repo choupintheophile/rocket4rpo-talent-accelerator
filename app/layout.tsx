@@ -33,11 +33,11 @@ const dmSerif = DM_Serif_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "RPO France — Recruteur intégré dès 48h | Rocket4RPO",
+    default: "RPO France — Recruteur intégré en 1 semaine | Rocket4RPO",
     template: "%s | Rocket4RPO",
   },
   description:
-    "Recruteur senior intégré dès 48h, 5x moins cher qu'un cabinet. 200+ recrutements, dès 550€/j. Diagnostic gratuit →",
+    "Recruteur senior intégré en 1 semaine, 5x moins cher qu'un cabinet. 200+ recrutements, dès 550€/j. Diagnostic gratuit →",
   metadataBase: new URL("https://rocket4rpo.com"),
   openGraph: {
     type: "website",

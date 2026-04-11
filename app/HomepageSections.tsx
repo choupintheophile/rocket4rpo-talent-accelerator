@@ -228,7 +228,7 @@ export default function HomepageSections() {
                 La solution
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl mx-auto leading-tight">
-                Un recruteur senior intégré en 48h.{" "}
+                Un recruteur senior intégré en 1 semaine.{" "}
                 <span className="text-gradient">Pas un cabinet. Pas un freelance. Un expert.</span>
               </h2>
               <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -272,7 +272,7 @@ export default function HomepageSections() {
               },
               {
                 icon: FileCheck,
-                title: "Shortlists en 48h",
+                title: "Shortlists en 5-7 jours",
                 text: "Chaque candidat évalué : compétences, motivation, culture fit. Pas de volume — de la qualité.",
                 gradient: "from-emerald-500/10 to-emerald-600/5",
                 iconBg: "bg-emerald-500/10",
@@ -359,7 +359,7 @@ export default function HomepageSections() {
                         Avec Rocket4RPO
                       </span>
                       <span className="text-2xl font-bold text-primary">
-                        35 jours
+                        2-3 semaines
                       </span>
                     </div>
                     <AnimatedBar width={42} color="bg-gradient-to-r from-primary to-emerald-500" delay={0.3} />
@@ -420,7 +420,7 @@ export default function HomepageSections() {
             {[
               {
                 icon: UserCheck,
-                number: "50+",
+                number: "307",
                 title: "TA évalués sur 7 critères",
                 text: "Compétences techniques, soft skills, spécialisation sectorielle, culture fit. Chaque TA est audité en profondeur.",
                 gradient: "from-blue-500/10 to-blue-600/5",
@@ -442,7 +442,7 @@ export default function HomepageSections() {
                 icon: Rocket,
                 number: "48h",
                 title: "Opérationnel, pas en 3 mois",
-                text: "Votre TA démarre en 48h. Première shortlist qualifiée dès la première semaine. Pas de formation longue.",
+                text: "Votre TA démarre en 1 semaine. Première shortlist qualifiée dès la première semaine. Pas de formation longue.",
                 gradient: "from-emerald-500/10 to-emerald-600/5",
                 iconBg: "bg-emerald-500/10",
                 iconColor: "text-emerald-500",
@@ -451,8 +451,8 @@ export default function HomepageSections() {
               {
                 icon: RefreshCw,
                 number: "48h",
-                title: "Remplacement sous 48h si besoin",
-                text: "Si le match n'est pas parfait, on remplace votre TA en 48h. Sans frais supplémentaires. Zéro risque.",
+                title: "Remplacement sous 1 semaine si besoin",
+                text: "Si le match n'est pas parfait, on remplace votre TA en 1 semaine. Sans frais supplémentaires. Zéro risque.",
                 gradient: "from-rose-500/10 to-rose-600/5",
                 iconBg: "bg-rose-500/10",
                 iconColor: "text-rose-500",
@@ -567,7 +567,7 @@ export default function HomepageSections() {
                   icon: Rocket,
                   title: "Intégration",
                   badge: "J2",
-                  text: "Le TA rejoint vos outils et rituels. Première shortlist en 48h.",
+                  text: "Le TA rejoint vos outils et rituels. Première shortlist en 5-7 jours.",
                   delay: 0.3,
                 },
                 {
@@ -617,7 +617,7 @@ export default function HomepageSections() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between">
                   <p className="text-white text-sm font-medium">Recrutement sign{"é"}. Mission accomplie.</p>
-                  <span className="text-xs text-white/60 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">35 jours en moyenne</span>
+                  <span className="text-xs text-white/60 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">2-3 semaines en moyenne</span>
                 </div>
               </div>
             </div>

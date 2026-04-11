@@ -868,7 +868,7 @@ function StepResults() {
           </h3>
 
           <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-6">
-            Nos clients recrutent leur premier Sales en 35 jours en moyenne.
+            Nos clients recrutent leur premier Sales en 2-3 semaines en moyenne.
             Réservez un appel de 15 min pour voir comment on peut faire pareil
             pour vous.
           </p>
@@ -941,7 +941,7 @@ export default function DemoClient() {
             </h1>
 
             <p className="text-muted-foreground max-w-xl mx-auto text-base md:text-lg leading-relaxed">
-              Découvrez comment nous trouvons vos meilleurs candidats en 48h,
+              Découvrez comment nous trouvons vos meilleurs candidats en 1 semaine,
               du brief initial à la shortlist qualifiée.
             </p>
           </motion.div>

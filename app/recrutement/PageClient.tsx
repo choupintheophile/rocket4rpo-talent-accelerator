@@ -90,7 +90,7 @@ const BENEFITS = [
     title: "Communauté de TA seniors",
     description:
       "Échanges, entraide, événements. Rejoignez un réseau de recruteurs expérimentés qui partagent vos ambitions.",
-    highlight: "50+ membres",
+    highlight: "307 membres",
   },
   {
     icon: Shield,
@@ -296,8 +296,8 @@ export default function RecrutementPageClient() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               {[
-                { value: "50+", label: "TA dans le réseau" },
-                { value: "15+", label: "missions actives" },
+                { value: "307", label: "TA dans le réseau" },
+                { value: "20+", label: "missions actives" },
                 { value: "350-600€", label: "TJM / jour" },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
@@ -328,7 +328,7 @@ export default function RecrutementPageClient() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
               <div className="absolute bottom-5 left-5 right-5">
                 <p className="text-white text-sm font-medium">L'{"é"}quipe Rocket4RPO</p>
-                <p className="text-white/60 text-xs mt-0.5">50+ TA Specialists dans le r{"é"}seau</p>
+                <p className="text-white/60 text-xs mt-0.5">307 TA Specialists dans le r{"é"}seau</p>
               </div>
             </div>
           </motion.div>

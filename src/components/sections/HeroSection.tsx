@@ -21,14 +21,14 @@ const defaultContent: HeroContent = {
   headline: "Vos recrutements vous coûtent une ",
   highlightedText: "fortune ?",
   subtitle:
-    "Un recruteur senior du top 1% intégré à votre équipe en 48h. Résultats dès la 2e semaine. 5x moins cher qu’un cabinet.",
+    "Un recruteur senior du top 1% intégré à votre équipe en 1 semaine. Résultats dès la 2e semaine. 5x moins cher qu’un cabinet.",
 };
 
 /* ─── trust-bar data ─── */
 const trustStats = [
   { icon: Users, value: "200+", label: "recrutements réalisés" },
-  { icon: Clock, value: "48h", label: "pour démarrer" },
-  { icon: ShieldCheck, value: "92%", label: "rétention à 12 mois" },
+  { icon: Clock, value: "1 sem.", label: "pour démarrer" },
+  { icon: ShieldCheck, value: "2-3 sem.", label: "time-to-hire moyen" },
   { icon: Building2, value: "50+", label: "entreprises" },
 ];
 
@@ -140,7 +140,7 @@ function ProofCard() {
           <div className="flex items-center gap-3">
             <span className="text-lg font-bold text-red-400 line-through">84j</span>
             <ArrowDown className="w-4 h-4 text-emerald-400 rotate-[-90deg]" />
-            <span className="text-2xl font-bold text-emerald-400">35j</span>
+            <span className="text-2xl font-bold text-emerald-400">2-3 sem.</span>
             <span className="text-xs font-semibold text-emerald-400/80 bg-emerald-500/[0.12] px-2 py-0.5 rounded-full ml-auto">
               -58%
             </span>
@@ -201,7 +201,7 @@ function ProofCard() {
       >
         <div className="flex items-center gap-1.5">
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-          <span className="text-xs font-medium text-white/90">92% rétention</span>
+          <span className="text-xs font-medium text-white/90">2-3 sem. time-to-hire</span>
         </div>
       </motion.div>
     </motion.div>

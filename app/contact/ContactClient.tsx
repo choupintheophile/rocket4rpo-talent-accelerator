@@ -91,7 +91,7 @@ const testimonials = [
 const stats = [
   { value: "200+", label: "Recrutements réalisés", icon: CheckCircle2 },
   { value: "50+", label: "Entreprises accompagnées", icon: TrendingUp },
-  { value: "92%", label: "Taux de rétention", icon: Zap },
+  { value: "2-3 sem.", label: "Time-to-hire moyen", icon: Zap },
 ];
 
 const faqs = [
@@ -113,7 +113,7 @@ const faqs = [
   {
     question: "Que se passe-t-il après le diagnostic ?",
     answer:
-      "Vous recevez un récapitulatif écrit sous 24h avec nos recommandations. Si vous souhaitez avancer, nous pouvons démarrer sous 48h. Sinon, aucune relance non souhaitée.",
+      "Vous recevez un récapitulatif écrit sous 24h avec nos recommandations. Si vous souhaitez avancer, nous pouvons démarrer sous 1 semaine. Sinon, aucune relance non souhaitée.",
   },
 ];
 

@@ -23,7 +23,7 @@ const calculatorFaqs = [
   {
     question: "Puis-je obtenir une estimation personnalisée ?",
     answer:
-      "Oui. Réservez un diagnostic gratuit de 30 minutes avec un expert Rocket4RPO. Nous analysons votre contexte spécifique (volumétrie, types de postes, urgence, budget) et vous fournissons un chiffrage détaillé sous 48h, sans engagement. Le diagnostic inclut une recommandation sur le modèle le plus adapté : RPO à temps partagé, RPO à temps plein, ou accompagnement ponctuel.",
+      "Oui. Réservez un diagnostic gratuit de 30 minutes avec un expert Rocket4RPO. Nous analysons votre contexte spécifique (volumétrie, types de postes, urgence, budget) et vous fournissons un chiffrage détaillé sous 1 semaine, sans engagement. Le diagnostic inclut une recommandation sur le modèle le plus adapté : RPO à temps partagé, RPO à temps plein, ou accompagnement ponctuel.",
   },
 ];
 

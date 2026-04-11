@@ -51,17 +51,17 @@ const faqs = [
   {
     question: "En combien de temps le recruteur est-il opérationnel ?",
     answer:
-      "48h. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée sous 48h.",
+      "48h. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée sous 1 semaine.",
   },
   {
     question: "Comment sélectionnez-vous vos TA Specialists ?",
     answer:
-      "Nous maintenons un vivier de plus de 50 Talent Acquisition Specialists freelances, évalués sur 7 critères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO). Seuls les profils notés 80%+ intègrent notre vivier prioritaire — c'est le top 1% du marché français.",
+      "Nous maintenons un vivier de plus de 307 Talent Acquisition Specialists freelances, évalués sur 7 critères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO). Seuls les profils notés 80%+ intègrent notre vivier prioritaire — c'est le top 1% du marché français.",
   },
   {
     question: "Et si le recruteur ne convient pas ?",
     answer:
-      "On le remplace sous 48h. Notre vivier de TA seniors nous permet de réagir immédiatement, sans interruption de service. Zéro risque pour vous.",
+      "On le remplace sous 1 semaine. Notre vivier de TA seniors nous permet de réagir immédiatement, sans interruption de service. Zéro risque pour vous.",
   },
   {
     question: "Quels types de postes pouvez-vous recruter ?",
@@ -129,9 +129,9 @@ export default function OffreClient() {
 
             <p className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl">
               Chaque jour sans recruteur performant, vous perdez des candidats,
-              du temps et de l{"'"}argent. Nous mobilisons en 48h un Talent
+              du temps et de l{"'"}argent. Nous mobilisons en 1 semaine un Talent
               Acquisition Specialist du top 1% français — sélectionné parmi
-              50+ experts évalués sur 7 critères — pour recruter à votre place.
+              307 experts évalués sur 7 critères — pour recruter à votre place.
               RPO, CDD ou CDI : un seul partenaire, zéro risque.
             </p>
 
@@ -163,8 +163,8 @@ export default function OffreClient() {
           >
             {[
               { value: "200+", label: "recrutements réalisés", icon: CheckCircle },
-              { value: "48h", label: "pour démarrer", icon: Clock },
-              { value: "92%", label: "rétention à 12 mois", icon: TrendingUp },
+              { value: "1 sem.", label: "pour démarrer", icon: Clock },
+              { value: "2-3 sem.", label: "time-to-hire moyen", icon: TrendingUp },
               { value: "Top 1%", label: "des TA sélectionnés", icon: Crown },
             ].map((stat) => (
               <div key={stat.label} className="flex items-center gap-3">
@@ -300,12 +300,12 @@ export default function OffreClient() {
                 <strong>80%+ sur notre grille propriétaire</strong> intègrent le
                 vivier prioritaire. Résultat : quand vous nous dites
                 {" « "}j{"'"}ai besoin d{"'"}un recruteur{" » "}, on vous
-                envoie <strong>le meilleur du marché en 48h</strong>. Pas un
+                envoie <strong>le meilleur du marché en 1 semaine</strong>. Pas un
                 junior en formation — un expert opérationnel immédiatement.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {[
-                  { value: "50+", label: "TA dans notre vivier" },
+                  { value: "307", label: "TA dans notre vivier" },
                   { value: "7", label: "critères d'évaluation" },
                   { value: "80%+", label: "score minimum requis" },
                   { value: "48h", label: "délai de mobilisation" },
@@ -574,7 +574,7 @@ export default function OffreClient() {
               },
               {
                 icon: FileCheck,
-                title: "Shortlists qualifiées en 48h",
+                title: "Shortlists qualifiées en 1 semaine",
                 text: "Chaque candidat présenté a été évalué sur ses compétences, sa motivation et son adéquation culturelle. Pas de volume inutile — de la précision chirurgicale.",
               },
               {
@@ -825,7 +825,7 @@ export default function OffreClient() {
                 name: "Thomas R.",
                 role: "CEO",
                 company: "Fintech, 45 collaborateurs",
-                metric: "92%",
+                metric: "2-3 sem.",
                 metricLabel: "rétention 12 mois",
               },
               {
@@ -905,23 +905,23 @@ export default function OffreClient() {
               },
               {
                 icon: Zap,
-                title: "Opérationnel en 48h, pas en 3 mois",
+                title: "Opérationnel en 1 semaine, pas en 3 mois",
                 desc: "Un cabinet met 2-3 semaines à démarrer. Recruter un recruteur interne prend 3 mois. Nous : 48h chrono, première shortlist le jour même.",
               },
               {
                 icon: Shield,
                 title: "Zéro risque, flexibilité totale",
-                desc: "Pas de success fee. Pas d'engagement long. Si le TA ne convient pas, remplacement en 48h. Ajustez votre rythme à tout moment. Vous gardez le contrôle.",
+                desc: "Pas de success fee. Pas d'engagement long. Si le TA ne convient pas, remplacement en 1 semaine. Ajustez votre rythme à tout moment. Vous gardez le contrôle.",
               },
               {
                 icon: Building2,
-                title: "Un vivier de 50+ experts derrière chaque mission",
+                title: "Un vivier de 307 experts derrière chaque mission",
                 desc: "Vous ne dépendez pas d'un seul recruteur. Derrière chaque mission, c'est toute la force de notre vivier. Le bon profil, immédiatement.",
               },
               {
                 icon: Target,
-                title: "200+ recrutements, 92% de rétention",
-                desc: "200+ recrutements réalisés avec 92% de rétention à 12 mois. Ce n'est pas du volume — c'est de la précision. Chaque recrutement est un succès mesurable.",
+                title: "200+ recrutements, Time-to-hire : 2-3 semaines",
+                desc: "200+ recrutements réalisés avec Time-to-hire : 2-3 semaines à 12 mois. Ce n'est pas du volume — c'est de la précision. Chaque recrutement est un succès mesurable.",
               },
               {
                 icon: TrendingUp,

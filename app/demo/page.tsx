@@ -5,7 +5,7 @@ import { breadcrumbSchema } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Démo interactive RPO — Process en 4 étapes",
   description:
-    "Explorez notre processus de recrutement RPO en 4 étapes interactives. Voyez comment nous trouvons vos meilleurs candidats en 48h.",
+    "Explorez notre processus de recrutement RPO en 4 étapes interactives. Voyez comment nous trouvons vos meilleurs candidats en 1 semaine.",
   alternates: { canonical: "/demo" },
 };
 

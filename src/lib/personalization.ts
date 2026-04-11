@@ -37,7 +37,7 @@ export const heroContent: Record<VisitorSegment, HeroContent> = {
   tech: {
     badge: "RPO — Recrutement externalisé sur-mesure",
     headline: "Vos postes Tech restent ouverts trop longtemps\ ?",
-    highlightedText: "Première shortlist en 48h",
+    highlightedText: "Première shortlist en 5-7 jours",
     subtitle:
       "Nos TA parlent votre stack. Sourcing GitHub, communautés tech, approche directe. Une équipe cumulant 200+ recrutements, 92\ % de rétention à 12 mois.",
   },
@@ -53,7 +53,7 @@ export const heroContent: Record<VisitorSegment, HeroContent> = {
     headline: "Arrêtez de brûler du cash en frais de recrutement",
     highlightedText: "~44\ 000€ pour 10 recrutements",
     subtitle:
-      "vs 120\ 000 à 200\ 000€ avec un cabinet. Budget prévisible, résultats en 48h, zéro engagement long terme.",
+      "vs 120\ 000 à 200\ 000€ avec un cabinet. Budget prévisible, résultats en 1 semaine, zéro engagement long terme.",
   },
   default: {
     badge: "RPO — Recrutement externalisé sur-mesure",

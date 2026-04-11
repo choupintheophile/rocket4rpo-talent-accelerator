@@ -337,8 +337,8 @@ export default function OutilsClient() {
           >
             {[
               { icon: Shield, value: "200+", label: "recrutements réalisés" },
-              { icon: Clock, value: "48h", label: "pour démarrer" },
-              { icon: Target, value: "92%", label: "de rétention à 12 mois" },
+              { icon: Clock, value: "1 sem.", label: "pour démarrer" },
+              { icon: Target, value: "2-3 sem.", label: "time-to-hire moyen" },
               { icon: Users, value: "50+", label: "entreprises accompagnées" },
             ].map((stat) => (
               <div key={stat.label} className="flex items-center gap-3">
