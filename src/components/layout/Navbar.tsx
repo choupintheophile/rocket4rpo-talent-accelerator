@@ -58,17 +58,21 @@ export const Navbar = () => {
         </div>
 
         {/* Desktop nav — liens secondaires */}
-        <div className="hidden lg:flex items-center gap-3">
-          {rightLinks.map((l) => (
-            <Link
-              key={l.label}
-              href={l.href}
-              onClick={scrollTop}
-              className={`text-sm font-medium transition-colors text-foreground/70 hover:text-foreground`}
-            >
-              {l.label}
-            </Link>
-          ))}
+        <div className="hidden lg:flex items-center gap-2">
+          <Link
+            href="/recrutement"
+            onClick={scrollTop}
+            className="px-4 py-2 text-sm font-medium rounded-lg border border-border/60 text-foreground/70 hover:text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            Postuler
+          </Link>
+          <Link
+            href="/webapp-testing"
+            onClick={scrollTop}
+            className="px-4 py-2 text-sm font-medium rounded-lg bg-foreground/[0.06] border border-border/40 text-foreground/80 hover:text-foreground hover:bg-foreground/[0.1] hover:border-primary/30 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            Se connecter
+          </Link>
         </div>
 
         {/* Mobile toggle */}
