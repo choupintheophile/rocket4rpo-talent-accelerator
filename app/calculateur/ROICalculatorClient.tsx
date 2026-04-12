@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -17,6 +17,14 @@ import {
   Award,
   Send,
   MessageCircle,
+  Rocket,
+  Building2,
+  Layers,
+  Download,
+  Timer,
+  ShieldCheck,
+  Activity,
+  LineChart,
 } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { Slider } from "@/components/ui/slider";
@@ -108,8 +116,16 @@ function DonutChart({
           animate={{
             strokeDashoffset:
               circumference - (clampedPct / 100) * circumference,
+            filter: [
+              "drop-shadow(0 0 6px hsl(var(--rocket-teal) / 0.4))",
+              "drop-shadow(0 0 12px hsl(var(--rocket-teal) / 0.6))",
+              "drop-shadow(0 0 6px hsl(var(--rocket-teal) / 0.4))",
+            ],
           }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{
+            strokeDashoffset: { duration: 0.8, ease: "easeOut" },
+            filter: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+          }}
         />
         <defs>
           <linearGradient id="donutGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -124,7 +140,7 @@ function DonutChart({
           suffix="%"
           className="text-3xl font-bold text-white"
         />
-        <span className="text-xs text-white/60 mt-0.5">d'économie</span>
+        <span className="text-xs text-white/60 mt-0.5">d&apos;économie</span>
       </div>
     </div>
   );
@@ -210,6 +226,59 @@ function ParameterCard({
     </div>
   );
 }
+
+/* ── scenario presets ──────────────────────────────────── */
+
+const SCENARIOS = [
+  {
+    id: "startup",
+    label: "Startup",
+    subtitle: "5 postes",
+    icon: Rocket,
+    postes: 5,
+    salaire: 50000,
+    coutPct: 15,
+    delai: 40,
+    postesAnnuels: 8,
+    color: "from-violet-500/15 to-violet-600/5",
+    border: "border-violet-300/40 hover:border-violet-400/60",
+    activeRing: "ring-violet-500/40",
+    iconBg: "bg-violet-500/15",
+    iconColor: "text-violet-600",
+  },
+  {
+    id: "scaleup",
+    label: "Scale-up",
+    subtitle: "15 postes",
+    icon: Layers,
+    postes: 15,
+    salaire: 60000,
+    coutPct: 20,
+    delai: 50,
+    postesAnnuels: 30,
+    color: "from-primary/15 to-emerald-500/5",
+    border: "border-primary/30 hover:border-primary/50",
+    activeRing: "ring-primary/40",
+    iconBg: "bg-primary/15",
+    iconColor: "text-primary",
+  },
+  {
+    id: "enterprise",
+    label: "Enterprise",
+    subtitle: "30+ postes",
+    icon: Building2,
+    postes: 30,
+    salaire: 65000,
+    coutPct: 22,
+    delai: 60,
+    postesAnnuels: 60,
+    color: "from-amber-500/15 to-amber-600/5",
+    border: "border-amber-300/40 hover:border-amber-400/60",
+    activeRing: "ring-amber-500/40",
+    iconBg: "bg-amber-500/15",
+    iconColor: "text-amber-600",
+  },
+] as const;
 
 /* ── stagger & animation variants ──────────────────────── */
 
@@ -303,6 +372,46 @@ const COMPARISON_ROWS: {
   },
 ];
 
+/* ── impact operationnel items ─────────────────────────── */
+
+const IMPACT_ITEMS = [
+  {
+    icon: Timer,
+    title: "Gain de temps",
+    dynamicValue: true,
+    color: "text-primary",
+    bgColor: "bg-primary/10",
+    borderColor: "border-primary/20",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Réduction risque",
+    description: "Garantie remplacement incluse",
+    dynamicValue: false,
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-500/10",
+    borderColor: "border-emerald-500/20",
+  },
+  {
+    icon: Activity,
+    title: "Flexibilité",
+    description: "Montée/descente en charge immédiate",
+    dynamicValue: false,
+    color: "text-blue-600",
+    bgColor: "bg-blue-500/10",
+    borderColor: "border-blue-500/20",
+  },
+  {
+    icon: LineChart,
+    title: "Reporting",
+    description: "KPIs temps réel",
+    dynamicValue: false,
+    color: "text-amber-600",
+    bgColor: "bg-amber-500/10",
+    borderColor: "border-amber-500/20",
+  },
+];
+
 /* ── main component ─────────────────────────────────────── */
 
 interface FAQ {
@@ -317,11 +426,32 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
   const [coutPct, setCoutPct] = useState(18);
   const [delai, setDelai] = useState(45);
   const [postesAnnuels, setPostesAnnuels] = useState(15);
+  const [activeScenario, setActiveScenario] = useState<string | null>(null);
 
   /* ── constants ── */
   const RPO_TJM = 500;
   const RPO_JOURS_PAR_RECRUTEMENT = 6;
   const RPO_DELAI = 35;
+
+  /* ── scenario handler ── */
+  const applyScenario = useCallback(
+    (scenario: (typeof SCENARIOS)[number]) => {
+      setActiveScenario(scenario.id);
+      setPostes(scenario.postes);
+      setSalaire(scenario.salaire);
+      setCoutPct(scenario.coutPct);
+      setDelai(scenario.delai);
+      setPostesAnnuels(scenario.postesAnnuels);
+    },
+    []
+  );
+
+  /* clear scenario when user manually changes a slider */
+  const handleManualChange =
+    (setter: (v: number) => void) => (v: number) => {
+      setActiveScenario(null);
+      setter(v);
+    };
 
   /* ── calculations ── */
   const calc = useMemo(() => {
@@ -508,6 +638,59 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                 </p>
               </motion.div>
 
+              {/* ── Scénario rapide ────────────────────── */}
+              <motion.div variants={stagger.item}>
+                <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                  Scénario rapide
+                </p>
+                <div className="grid grid-cols-3 gap-3">
+                  {SCENARIOS.map((scenario) => {
+                    const ScIcon = scenario.icon;
+                    const isActive = activeScenario === scenario.id;
+                    return (
+                      <motion.button
+                        key={scenario.id}
+                        onClick={() => applyScenario(scenario)}
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border-2 bg-gradient-to-br ${scenario.color} transition-all duration-300 cursor-pointer ${
+                          isActive
+                            ? `${scenario.border} ring-2 ${scenario.activeRing} shadow-lg`
+                            : `${scenario.border} shadow-sm`
+                        }`}
+                      >
+                        {isActive && (
+                          <motion.div
+                            layoutId="scenarioIndicator"
+                            className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 20,
+                            }}
+                          >
+                            <CheckCircle2 className="w-3 h-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+                        <div
+                          className={`w-10 h-10 rounded-xl ${scenario.iconBg} flex items-center justify-center`}
+                        >
+                          <ScIcon className={`w-5 h-5 ${scenario.iconColor}`} />
+                        </div>
+                        <span className="text-sm font-bold text-foreground">
+                          {scenario.label}
+                        </span>
+                        <span className="text-xs text-muted-foreground font-medium">
+                          {scenario.subtitle}
+                        </span>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+
               {/* slider card */}
               <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 space-y-10 shadow-sm">
                 <motion.div variants={stagger.item}>
@@ -520,7 +703,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     step={1}
                     minLabel="1"
                     maxLabel="50"
-                    onChange={setPostes}
+                    onChange={handleManualChange(setPostes)}
                   />
                 </motion.div>
 
@@ -535,7 +718,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     minLabel="30 000 €"
                     maxLabel="150 000 €"
                     suffix="€"
-                    onChange={setSalaire}
+                    onChange={handleManualChange(setSalaire)}
                   />
                 </motion.div>
 
@@ -550,7 +733,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     minLabel="10%"
                     maxLabel="30%"
                     suffix="%"
-                    onChange={setCoutPct}
+                    onChange={handleManualChange(setCoutPct)}
                   />
                 </motion.div>
 
@@ -565,7 +748,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     minLabel="20 jours"
                     maxLabel="120 jours"
                     suffix="jours"
-                    onChange={setDelai}
+                    onChange={handleManualChange(setDelai)}
                   />
                 </motion.div>
 
@@ -579,7 +762,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     step={1}
                     minLabel="1"
                     maxLabel="200"
-                    onChange={setPostesAnnuels}
+                    onChange={handleManualChange(setPostesAnnuels)}
                   />
                 </motion.div>
               </div>
@@ -650,11 +833,26 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
                   {/* ── Horizontal bar comparison ─────────── */}
                   <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 space-y-6 shadow-sm">
-                    <div className="flex items-center gap-2 mb-2">
-                      <BarChart3 className="w-5 h-5 text-primary" />
-                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-                        Comparaison des coûts
-                      </h3>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <BarChart3 className="w-5 h-5 text-primary" />
+                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                          Comparaison des coûts
+                        </h3>
+                      </div>
+                      {/* Savings badge */}
+                      {calc.savingsPct > 0 && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20"
+                        >
+                          <TrendingDown className="w-3.5 h-3.5 text-primary" />
+                          <span className="text-sm font-bold text-primary">
+                            -{calc.savingsPct}% vs cabinet
+                          </span>
+                        </motion.div>
+                      )}
                     </div>
 
                     {bars.map((bar, i) => {
@@ -686,19 +884,43 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                               {formatCurrency(bar.value)}
                             </span>
                           </div>
-                          <div className="h-10 w-full rounded-lg bg-secondary/60 overflow-hidden relative">
+                          <div className="h-12 w-full rounded-lg bg-secondary/60 overflow-hidden relative">
                             <motion.div
-                              className={`h-full rounded-lg bg-gradient-to-r ${bar.gradient} ${
-                                isRPO ? "shadow-lg shadow-primary/20" : ""
+                              className={`h-full rounded-lg bg-gradient-to-r ${bar.gradient} relative overflow-hidden ${
+                                isRPO
+                                  ? "shadow-lg shadow-primary/20"
+                                  : ""
                               }`}
                               initial={{ width: 0 }}
                               animate={{ width: `${widthPct}%` }}
                               transition={{
-                                duration: 0.7,
+                                duration: 0.9,
                                 ease: [0.25, 0.46, 0.45, 0.94],
-                                delay: i * 0.12,
+                                delay: i * 0.15,
                               }}
-                            />
+                            >
+                              {/* Euro amount overlay on bar */}
+                              <motion.span
+                                className="absolute inset-0 flex items-center justify-end pr-3 text-sm font-bold text-white drop-shadow-md"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.5 + i * 0.15 }}
+                              >
+                                {formatCurrency(bar.value)}
+                              </motion.span>
+                              {/* RPO pulse glow */}
+                              {isRPO && (
+                                <motion.div
+                                  className="absolute inset-0 bg-white/10"
+                                  animate={{ opacity: [0, 0.15, 0] }}
+                                  transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                  }}
+                                />
+                              )}
+                            </motion.div>
                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium text-muted-foreground">
                               {bar.tag}
                             </span>
@@ -773,7 +995,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                       </p>
                     </div>
 
-                    {/* KPI: Réduction coût */}
+                    {/* KPI: Reduction cout */}
                     <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-blue-500/5 to-background p-6 text-center space-y-2 shadow-sm">
                       <div className="w-10 h-10 mx-auto rounded-xl bg-blue-500/10 flex items-center justify-center">
                         <TrendingDown className="w-5 h-5 text-blue-600" />
@@ -786,7 +1008,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                       </p>
                     </div>
 
-                    {/* KPI: Délai RPO */}
+                    {/* KPI: Delai RPO */}
                     <div className="rounded-2xl border border-border/60 bg-gradient-to-br from-amber-500/5 to-background p-6 text-center space-y-2 shadow-sm">
                       <div className="w-10 h-10 mx-auto rounded-xl bg-amber-500/10 flex items-center justify-center">
                         <Zap className="w-5 h-5 text-amber-600" />
@@ -842,6 +1064,26 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     </div>
                   </motion.div>
 
+                  {/* ── Download CTA ──────────────────────── */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="text-center"
+                  >
+                    <a
+                      href={HUBSPOT}
+                      className="group inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold rounded-2xl text-white bg-gradient-to-r from-[hsl(var(--rocket-teal))] via-emerald-500 to-[hsl(var(--rocket-teal))] bg-[length:200%_100%] hover:bg-right shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
+                    >
+                      <Download className="w-5 h-5" />
+                      Obtenir mon rapport personnalisé
+                      <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+                    </a>
+                    <p className="mt-3 text-xs text-muted-foreground">
+                      Gratuit et sans engagement — recevez votre analyse complète par email
+                    </p>
+                  </motion.div>
+
                   {/* ── Disclaimer ────────────────────────── */}
                   <p className="text-xs text-muted-foreground italic">
                     * Estimations basées sur nos données internes (TJM 500 €, 4
@@ -856,9 +1098,71 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          3. COMPARISON TABLE
+          3. IMPACT OPERATIONNEL
          ════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-background">
+        <div className="container-wide">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger.container}
+          >
+            <motion.div variants={stagger.item} className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-sm text-primary font-medium mb-4">
+                <Zap className="w-3.5 h-3.5" /> Au-delà des chiffres
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                Impact opérationnel
+              </h2>
+              <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+                Les avantages non financiers qui font la différence au quotidien.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={stagger.item}
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            >
+              {IMPACT_ITEMS.map((item) => {
+                const ImpactIcon = item.icon;
+                return (
+                  <motion.div
+                    key={item.title}
+                    variants={stagger.item}
+                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                    className={`rounded-2xl border ${item.borderColor} bg-gradient-to-br from-background to-background p-6 text-center space-y-3 shadow-sm hover:shadow-md transition-shadow duration-300`}
+                  >
+                    <div
+                      className={`w-12 h-12 mx-auto rounded-xl ${item.bgColor} flex items-center justify-center`}
+                    >
+                      <ImpactIcon className={`w-6 h-6 ${item.color}`} />
+                    </div>
+                    <h3 className="font-bold text-foreground">{item.title}</h3>
+                    {item.dynamicValue ? (
+                      <p className={`text-2xl font-bold ${item.color}`}>
+                        {Math.max(0, (delai - 21) * postes)} jours
+                        <span className="block text-xs font-medium text-muted-foreground mt-1">
+                          économisés sur le processus
+                        </span>
+                      </p>
+                    ) : (
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          4. COMPARISON TABLE
+         ════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <motion.div
             initial="hidden"
@@ -907,7 +1211,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   {COMPARISON_ROWS.map((row, i) => (
                     <tr
                       key={row.critere}
-                      className={`border-b border-border/40 ${
+                      className={`border-b border-border/40 transition-colors duration-200 hover:bg-primary/[0.04] ${
                         i % 2 === 0 ? "bg-muted/20" : "bg-background"
                       }`}
                     >
@@ -933,27 +1237,34 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          4. ANNUAL PROJECTION
+          5. PROJECTION ROI — Year 1 / 2 / 3 Timeline
          ════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-[hsl(var(--rocket-cream))]">
-        <div className="container-wide">
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Dark gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/3 left-[15%] w-[400px] h-[400px] rounded-full bg-rocket-teal/6 blur-[120px]" />
+          <div className="absolute bottom-1/4 right-[10%] w-[300px] h-[300px] rounded-full bg-emerald-500/4 blur-[100px]" />
+        </div>
+
+        <div className="relative container-wide">
           <motion.div
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
             variants={stagger.container}
-            className="max-w-4xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
-            <motion.div variants={stagger.item} className="text-center mb-12">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-sm text-primary font-medium mb-4">
-                <Target className="w-3.5 h-3.5" /> Projection annuelle
+            <motion.div variants={stagger.item} className="text-center mb-14">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium mb-4">
+                <Target className="w-3.5 h-3.5" /> Projection ROI
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold">
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
                 Votre économie sur le long terme
               </h2>
-              <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
+              <p className="mt-3 text-white/60 max-w-2xl mx-auto">
                 Basé sur{" "}
-                <span className="font-semibold text-foreground">
+                <span className="font-semibold text-white">
                   {postesAnnuels} recrutement{postesAnnuels > 1 ? "s" : ""} par
                   an
                 </span>{" "}
@@ -961,99 +1272,165 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               </p>
             </motion.div>
 
+            {/* Timeline connector line */}
+            <div className="relative">
+              <div className="hidden sm:block absolute top-1/2 left-[8%] right-[8%] h-0.5 bg-gradient-to-r from-rocket-teal/20 via-rocket-teal/40 to-rocket-teal/20 -translate-y-1/2 z-0" />
+
+              <motion.div
+                variants={stagger.item}
+                className="relative z-10 grid sm:grid-cols-3 gap-6"
+              >
+                {/* Year 1 */}
+                <motion.div
+                  variants={stagger.item}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 text-center shadow-lg"
+                >
+                  <div className="w-10 h-10 mx-auto rounded-full bg-rocket-teal/20 flex items-center justify-center mb-4">
+                    <span className="text-sm font-bold text-rocket-teal-glow">
+                      A1
+                    </span>
+                  </div>
+                  <p className="text-sm font-medium text-white/50 uppercase tracking-wider mb-3">
+                    Année 1
+                  </p>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={calc.economieAnnuelle}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-3xl md:text-4xl font-bold text-white"
+                    >
+                      {formatCurrency(calc.economieAnnuelle)}
+                    </motion.p>
+                  </AnimatePresence>
+                  <p className="mt-2 text-sm text-white/50">
+                    d&apos;économie vs. cabinet
+                  </p>
+                  <p className="mt-1 text-sm text-rocket-teal-glow font-medium">
+                    {calc.gainJoursAnnuel} jours gagnés
+                  </p>
+                </motion.div>
+
+                {/* Year 2 */}
+                <motion.div
+                  variants={stagger.item}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 text-center shadow-lg"
+                >
+                  <div className="w-10 h-10 mx-auto rounded-full bg-rocket-teal/20 flex items-center justify-center mb-4">
+                    <span className="text-sm font-bold text-rocket-teal-glow">
+                      A2
+                    </span>
+                  </div>
+                  <p className="text-sm font-medium text-white/50 uppercase tracking-wider mb-3">
+                    Année 2
+                  </p>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={calc.economieAnnuelle * 2}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-3xl md:text-[2.5rem] font-bold text-white"
+                    >
+                      {formatCurrency(calc.economieAnnuelle * 2)}
+                    </motion.p>
+                  </AnimatePresence>
+                  <p className="mt-2 text-sm text-white/50">
+                    d&apos;économie cumulée
+                  </p>
+                  <p className="mt-1 text-sm text-rocket-teal-glow font-medium">
+                    {calc.gainJoursAnnuel * 2} jours gagnés
+                  </p>
+                </motion.div>
+
+                {/* Year 3 — highlighted */}
+                <motion.div
+                  variants={stagger.item}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  className="rounded-2xl border-2 border-rocket-teal/40 bg-gradient-to-br from-rocket-teal/10 to-white/5 backdrop-blur-sm p-6 md:p-8 text-center shadow-xl relative overflow-hidden"
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-rocket-teal/5"
+                    animate={{ opacity: [0, 0.08, 0] }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  <div className="relative">
+                    <div className="absolute -top-2 -right-2 bg-rocket-teal-glow text-rocket-dark text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">
+                      Recommandé
+                    </div>
+                    <div className="w-10 h-10 mx-auto rounded-full bg-rocket-teal/30 flex items-center justify-center mb-4">
+                      <span className="text-sm font-bold text-rocket-teal-glow">
+                        A3
+                      </span>
+                    </div>
+                    <p className="text-sm font-medium text-white/50 uppercase tracking-wider mb-3">
+                      Année 3
+                    </p>
+                    <AnimatePresence mode="wait">
+                      <motion.p
+                        key={calc.economie3ans}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-4xl md:text-5xl font-bold text-rocket-teal-glow"
+                      >
+                        {formatCurrency(calc.economie3ans)}
+                      </motion.p>
+                    </AnimatePresence>
+                    <p className="mt-2 text-sm text-white/50">
+                      d&apos;économie cumulée
+                    </p>
+                    <p className="mt-1 text-sm text-rocket-teal-glow font-medium">
+                      {calc.gainJoursAnnuel * 3} jours gagnés
+                    </p>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Total sur 3 ans highlight card */}
             <motion.div
               variants={stagger.item}
-              className="grid sm:grid-cols-3 gap-6"
+              className="mt-10 max-w-lg mx-auto"
             >
-              {/* Year 1 */}
-              <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 text-center shadow-sm">
-                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
-                  Sur 1 an
-                </p>
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={calc.economieAnnuelle}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-3xl md:text-4xl font-bold text-primary"
-                  >
-                    {formatCurrency(calc.economieAnnuelle)}
-                  </motion.p>
-                </AnimatePresence>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  d'économie vs. cabinet
-                </p>
-                <p className="mt-1 text-sm text-emerald-600 font-medium">
-                  {calc.gainJoursAnnuel} jours gagnés
-                </p>
-              </div>
-
-              {/* Year 2 */}
-              <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 text-center shadow-sm">
-                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
-                  Sur 2 ans
-                </p>
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={calc.economieAnnuelle * 2}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-3xl md:text-4xl font-bold text-primary"
-                  >
-                    {formatCurrency(calc.economieAnnuelle * 2)}
-                  </motion.p>
-                </AnimatePresence>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  d'économie cumulée
-                </p>
-                <p className="mt-1 text-sm text-emerald-600 font-medium">
-                  {calc.gainJoursAnnuel * 2} jours gagnés
-                </p>
-              </div>
-
-              {/* Year 3 — highlighted */}
-              <div className="rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-background p-6 md:p-8 text-center shadow-md relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-bl-xl">
-                  Recommandé
-                </div>
-                <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
-                  Sur 3 ans
+              <div className="rounded-2xl border-2 border-rocket-teal/30 bg-gradient-to-r from-rocket-teal/10 via-white/5 to-rocket-teal/10 backdrop-blur-sm p-6 md:p-8 text-center">
+                <p className="text-sm font-medium text-white/60 uppercase tracking-widest mb-2">
+                  Total sur 3 ans
                 </p>
                 <AnimatePresence mode="wait">
                   <motion.p
                     key={calc.economie3ans}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-3xl md:text-4xl font-bold text-primary"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-5xl md:text-6xl font-bold text-rocket-teal-glow"
                   >
                     {formatCurrency(calc.economie3ans)}
                   </motion.p>
                 </AnimatePresence>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  d'économie cumulée
+                <p className="mt-2 text-sm text-white/50">
+                  d&apos;économie en passant au RPO
                 </p>
-                <p className="mt-1 text-sm text-emerald-600 font-medium">
-                  {calc.gainJoursAnnuel * 3} jours gagnés
-                </p>
+                <div className="mt-5">
+                  <a
+                    href={HUBSPOT}
+                    className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 text-base font-bold rounded-xl text-white bg-gradient-to-r from-[hsl(var(--rocket-teal))] to-emerald-500 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
+                  >
+                    Simuler mon projet
+                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </a>
+                </div>
               </div>
             </motion.div>
-
-            <motion.p
-              variants={stagger.item}
-              className="mt-6 text-center text-sm text-muted-foreground italic"
-            >
-              Sur 3 ans, vous économiseriez{" "}
-              <span className="font-bold text-primary not-italic">
-                {formatCurrency(calc.economie3ans)}
-              </span>{" "}
-              en passant au RPO.
-            </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          5. SOCIAL PROOF BAND
+          6. SOCIAL PROOF BAND
          ════════════════════════════════════════════════════════ */}
       <section className="py-14 bg-gradient-to-r from-rocket-dark via-rocket-navy-soft to-rocket-dark">
         <div className="container-wide">
@@ -1081,7 +1458,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          6. DUAL CTA
+          7. DUAL CTA
          ════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-background">
         <div className="container-wide">
@@ -1135,7 +1512,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          7. FAQ + CTA
+          8. FAQ + CTA
          ════════════════════════════════════════════════════════ */}
       <FAQSection faqs={faqs} />
       <CTASection />
