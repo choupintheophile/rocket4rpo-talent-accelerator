@@ -1,28 +1,13 @@
-import { Suspense } from "react";
 import { getCandidates, getCandidateStats } from "@/lib/candidates";
-import { StatsGrid } from "@/components/webapp/StatsGrid";
-import { CandidateCard } from "@/components/webapp/CandidateCard";
-import { VivierFilters } from "./VivierFilters";
+import { VivierClient } from "./VivierClient";
 
 export const dynamic = "force-dynamic";
 
-export default async function VivierPage({ searchParams }: { searchParams: Promise<{ filter?: string; q?: string }> }) {
-  const params = await searchParams;
-  const filter = params.filter || "all";
-  const q = (params.q || "").toLowerCase();
-
+export default async function VivierPage() {
   const [stats, candidates] = await Promise.all([
     getCandidateStats(),
-    getCandidates(filter),
+    getCandidates(),
   ]);
-
-  const filtered = q
-    ? candidates.filter((c) =>
-        `${c.prenom} ${c.nom}`.toLowerCase().includes(q) ||
-        (c.email?.toLowerCase().includes(q)) ||
-        (c.sector?.toLowerCase().includes(q))
-      )
-    : candidates;
 
   return (
     <>
@@ -40,22 +25,7 @@ export default async function VivierPage({ searchParams }: { searchParams: Promi
       </div>
 
       <div className="p-7 max-w-[980px]">
-        <StatsGrid total={stats.total} prioritaire={stats.prioritaire} secondaire={stats.secondaire} />
-
-        <Suspense fallback={null}>
-          <VivierFilters currentFilter={filter} currentQuery={q} />
-        </Suspense>
-
-        <div className="flex flex-col gap-1.5">
-          {filtered.length === 0 ? (
-            <div className="text-center py-16 text-gray-400">
-              <div className="text-4xl mb-3 text-gray-200">&#9675;</div>
-              <p>{stats.total === 0 ? "Aucun candidat. Cliquez + Nouveau." : "Aucun résultat pour ces filtres."}</p>
-            </div>
-          ) : (
-            filtered.map((c) => <CandidateCard key={c.id} candidate={c} />)
-          )}
-        </div>
+        <VivierClient candidates={candidates} stats={stats} />
       </div>
     </>
   );

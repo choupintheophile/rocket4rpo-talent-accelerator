@@ -140,7 +140,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       {/* Identity */}
       <section>
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">Identité</h3>
-        <div className="grid grid-cols-4 gap-3 mb-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
           <div className="flex flex-col gap-1">
             <label className={labelCls}>Prénom <span className="text-red-500">*</span></label>
             <input value={prenom} onChange={(e) => setPrenom(e.target.value)} className={inputCls} placeholder="Prénom" />
@@ -158,7 +158,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className={inputCls} placeholder="+33 6 ..." />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3 mb-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
           <div className="flex flex-col gap-1">
             <label className={labelCls}>LinkedIn</label>
             <input value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className={inputCls} placeholder="linkedin.com/in/..." />
@@ -172,7 +172,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             <input value={loc} onChange={(e) => setLoc(e.target.value)} className={inputCls} placeholder="Paris, Lyon..." />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           <div className="flex flex-col gap-1">
             <label className={labelCls}>Télétravail</label>
             <select value={remote} onChange={(e) => setRemote(e.target.value)} className={inputCls}>
@@ -205,7 +205,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       {/* Contract */}
       <section>
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">Contrat</h3>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           <div className="flex flex-col gap-1">
             <label className={labelCls}>Type</label>
             <select value={contrat} onChange={(e) => setContrat(e.target.value)} className={inputCls}>

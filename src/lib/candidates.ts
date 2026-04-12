@@ -14,7 +14,7 @@ function addVerdict(c: Candidate): CandidateWithVerdict {
   const pct = c.pct;
   let level: "top" | "mid" | "low" | "nc" = "nc";
   let label = "Incomplet";
-  if (filled >= 3) {
+  if (filled >= 5) {
     if (pct >= 80) { level = "top"; label = "Prioritaire"; }
     else if (pct >= 60) { level = "mid"; label = "Secondaire"; }
     else { level = "low"; label = "Non retenu"; }
@@ -161,8 +161,9 @@ export async function getCandidateStats() {
   });
 
   const total = all.length;
-  const prioritaire = all.filter((c) => c.filled >= 3 && c.pct >= 80).length;
-  const secondaire = all.filter((c) => c.filled >= 3 && c.pct >= 60 && c.pct < 80).length;
+  const prioritaire = all.filter((c) => c.filled >= 5 && c.pct >= 80).length;
+  const secondaire = all.filter((c) => c.filled >= 5 && c.pct >= 60 && c.pct < 80).length;
+  const nonRetenu = all.filter((c) => c.filled >= 5 && c.pct < 60).length;
 
-  return { total, prioritaire, secondaire };
+  return { total, prioritaire, secondaire, nonRetenu };
 }
