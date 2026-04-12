@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import RdvClient from "./RdvClient";
 
 export const metadata: Metadata = {
-  title: "Prendre rendez-vous — Diagnostic gratuit",
+  title: "Trouvez votre TA idéal — Diagnostic gratuit",
   description:
-    "Réservez un créneau de 30 minutes avec un expert RPO. Diagnostic gratuit, sans engagement. Réponse sous 24h.",
+    "Décrivez votre besoin en 3 questions et trouvez le Talent Acquisition Specialist parfait pour votre équipe. Diagnostic gratuit.",
   alternates: { canonical: "/rdv" },
 };
 
