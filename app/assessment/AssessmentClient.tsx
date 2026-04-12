@@ -61,8 +61,8 @@ const questions: Question[] = [
     ],
     optionEmojis: ["\u{1F62C}", "\u{1F914}", "\u2705", "\u{1F3AF}"],
     recommendation:
-      "Mettez en place un processus structure avec des etapes claires, des responsabilites definies et des criteres d'evaluation objectifs.",
-    actionSpecific: "Creez un template de processus recrutement en 6 etapes avec des SLA pour chaque phase",
+      "Mettez en place un processus structuré avec des étapes claires, des responsabilités définies et des critères d'évaluation objectifs.",
+    actionSpecific: "Créez un template de processus recrutement en 6 étapes avec des SLA pour chaque phase",
     estimatedImpact: "-30% time-to-hire",
     difficulty: "Rapide à mettre en place",
   },
@@ -70,19 +70,19 @@ const questions: Question[] = [
     id: "scorecards",
     icon: CheckCircle2,
     label: "Scorecards",
-    question: "Avez-vous des scorecards pour evaluer vos candidats ?",
-    options: ["Jamais", "Parfois", "Souvent", "Systematiquement"],
+    question: "Avez-vous des scorecards pour évaluer vos candidats ?",
+    options: ["Jamais", "Parfois", "Souvent", "Systématiquement"],
     optionDescriptions: [
       "L'evaluation repose uniquement sur le ressenti",
-      "Utilisees de maniere ponctuelle sur certains postes",
-      "La majorite des postes ont une grille d'evaluation",
-      "Chaque poste dispose d'une scorecard calibree et suivie",
+      "Utilisées de manière ponctuelle sur certains postes",
+      "La majorité des postes ont une grille d'evaluation",
+      "Chaque poste dispose d'une scorecard calibrée et suivie",
     ],
     optionEmojis: ["\u{1F62C}", "\u{1F914}", "\u2705", "\u{1F3AF}"],
     recommendation:
-      "Adoptez des scorecards structurees pour chaque poste afin de reduire les biais et d'ameliorer la qualite de vos recrutements.",
-    actionSpecific: "Deployez une scorecard standardisee avec 5 criteres cles ponderes pour chaque famille de poste",
-    estimatedImpact: "+20% qualite candidats",
+      "Adoptez des scorecards structurées pour chaque poste afin de réduire les biais et d'améliorer la qualité de vos recrutements.",
+    actionSpecific: "Déployez une scorecard standardisée avec 5 critères clés pondérés pour chaque famille de poste",
+    estimatedImpact: "+20% qualité candidats",
     difficulty: "Rapide à mettre en place",
   },
   {
@@ -92,15 +92,15 @@ const questions: Question[] = [
     question: "Quel est votre time-to-hire moyen ?",
     options: ["> 60 jours", "45-60 jours", "30-45 jours", "< 30 jours"],
     optionDescriptions: [
-      "Les recrutements trainent et les candidats se desengagent",
-      "Un delai courant mais perfectible",
-      "Un rythme correct, aligne sur le marche",
-      "Rapide et efficace, les meilleurs talents sont captes vite",
+      "Les recrutements traînent et les candidats se désengagent",
+      "Un délai courant mais perfectible",
+      "Un rythme correct, aligné sur le marché",
+      "Rapide et efficace, les meilleurs talents sont captés vite",
     ],
     optionEmojis: ["\u{1F422}", "\u23F3", "\u26A1", "\u{1F680}"],
     recommendation:
-      "Optimisez votre pipeline en identifiant les goulots d'etranglement et en parallelisant les etapes d'entretien.",
-    actionSpecific: "Identifiez et eliminez les 2 plus gros goulots de votre pipeline avec des entretiens paralleles",
+      "Optimisez votre pipeline en identifiant les goulots d'étranglement et en parallélisant les étapes d'entretien.",
+    actionSpecific: "Identifiez et éliminez les 2 plus gros goulots de votre pipeline avec des entretiens parallèles",
     estimatedImpact: "-15 jours time-to-hire",
     difficulty: "Moyen terme",
   },
@@ -108,12 +108,12 @@ const questions: Question[] = [
     id: "sourcing",
     icon: Search,
     label: "Sourcing",
-    question: "Utilisez-vous des outils de sourcing avances ?",
+    question: "Utilisez-vous des outils de sourcing avancés ?",
     options: ["Non", "LinkedIn basique", "LinkedIn Recruiter", "Multi-canal"],
     optionDescriptions: [
       "Uniquement les candidatures entrantes",
       "Recherche manuelle sur LinkedIn gratuit",
-      "Utilisation de LinkedIn Recruiter avec filtres avances",
+      "Utilisation de LinkedIn Recruiter avec filtres avancés",
       "LinkedIn, GitHub, meetups, cooptation, chasse directe",
     ],
     optionEmojis: ["\u{1F636}", "\u{1F440}", "\u{1F50D}", "\u{1F3AF}"],
@@ -126,20 +126,20 @@ const questions: Question[] = [
   {
     id: "retention",
     icon: Heart,
-    label: "Retention",
-    question: "Quel est votre taux de retention a 12 mois ?",
+    label: "Rétention",
+    question: "Quel est votre taux de rétention à 12 mois ?",
     options: ["< 70 %", "70-80 %", "80-90 %", "> 90 %"],
     optionDescriptions: [
-      "Turnover eleve, les recrutements ne tiennent pas",
-      "Quelques departs precoces, alignement a revoir",
-      "Bonne retention, les recrutements sont globalement reussis",
-      "Excellent, preuve d'un recrutement tres qualitatif",
+      "Turnover élevé, les recrutements ne tiennent pas",
+      "Quelques départs précoces, alignement à revoir",
+      "Bonne rétention, les recrutements sont globalement réussis",
+      "Excellent, preuve d'un recrutement très qualitatif",
     ],
     optionEmojis: ["\u{1F494}", "\u{1F615}", "\u{1F4AA}", "\u2764\uFE0F"],
     recommendation:
-      "Ameliorez votre onboarding et alignez mieux les attentes candidat/entreprise des la phase de recrutement.",
-    actionSpecific: "Structurez un onboarding de 90 jours avec checkpoints a J+7, J+30 et J+90",
-    estimatedImpact: "+15% retention a 12 mois",
+      "Améliorez votre onboarding et alignez mieux les attentes candidat/entreprise dès la phase de recrutement.",
+    actionSpecific: "Structurez un onboarding de 90 jours avec checkpoints à J+7, J+30 et J+90",
+    estimatedImpact: "+15% rétention à 12 mois",
     difficulty: "Transformation profonde",
   },
   {
@@ -147,18 +147,18 @@ const questions: Question[] = [
     icon: BarChart3,
     label: "KPIs",
     question: "Avez-vous un suivi KPI de votre recrutement ?",
-    options: ["Aucun", "Basique", "Dashboard", "Temps reel"],
+    options: ["Aucun", "Basique", "Dashboard", "Temps réel"],
     optionDescriptions: [
-      "Aucune donnee n'est collectee ni analysee",
-      "Quelques metriques suivies manuellement (tableur)",
-      "Un dashboard centralise avec les KPIs essentiels",
-      "Suivi en temps reel avec alertes et optimisation data-driven",
+      "Aucune donnée n'est collectée ni analysée",
+      "Quelques métriques suivies manuellement (tableur)",
+      "Un dashboard centralisé avec les KPIs essentiels",
+      "Suivi en temps réel avec alertes et optimisation data-driven",
     ],
     optionEmojis: ["\u{1FAE5}", "\u{1F4CB}", "\u{1F4CA}", "\u{1F3AF}"],
     recommendation:
-      "Mettez en place un dashboard avec les KPIs essentiels : time-to-hire, taux de conversion, cout par recrutement, qualite du sourcing.",
-    actionSpecific: "Creez un dashboard avec 5 KPIs cles : TTH, taux conversion, cout/recrutement, source quality, offer acceptance",
-    estimatedImpact: "+25% efficacite recrutement",
+      "Mettez en place un dashboard avec les KPIs essentiels : time-to-hire, taux de conversion, coût par recrutement, qualité du sourcing.",
+    actionSpecific: "Créez un dashboard avec 5 KPIs clés : TTH, taux conversion, coût/recrutement, source quality, offer acceptance",
+    estimatedImpact: "+25% efficacité recrutement",
     difficulty: "Rapide à mettre en place",
   },
   {
@@ -168,23 +168,23 @@ const questions: Question[] = [
     question: "Combien de postes recrutez-vous par trimestre ?",
     options: ["1-3", "4-10", "11-20", "20+"],
     optionDescriptions: [
-      "Volume faible, le recrutement n'est pas la priorite",
-      "Volume modere, necessitant une approche organisee",
+      "Volume faible, le recrutement n'est pas la priorité",
+      "Volume modéré, nécessitant une approche organisée",
       "Volume important, un processus robuste est indispensable",
-      "Volume eleve, necessitant une equipe TA dediee",
+      "Volume élevé, nécessitant une équipe TA dédiée",
     ],
     optionEmojis: ["\u{1F331}", "\u{1F4C8}", "\u{1F525}", "\u{1F680}"],
     recommendation:
-      "A votre volume, un TA Specialist dedie pourrait considerablement accelerer vos recrutements et reduire vos couts.",
-    actionSpecific: "Evaluez le ROI d'un TA Specialist dedie vs. le cout actuel de vos recrutements externalises",
-    estimatedImpact: "-35% cout par recrutement",
+      "A votre volume, un TA Specialist dédié pourrait considérablement accélérer vos recrutements et réduire vos coûts.",
+    actionSpecific: "Évaluez le ROI d'un TA Specialist dédié vs. le coût actuel de vos recrutements externalisés",
+    estimatedImpact: "-35% coût par recrutement",
     difficulty: "Transformation profonde",
   },
 ];
 
 const grades = [
   {
-    label: "Debutant",
+    label: "Débutant",
     min: 0,
     max: 7,
     color: "text-red-500",
@@ -193,7 +193,7 @@ const grades = [
     fill: "#ef4444",
     badge: "\u{1F949}",
     description:
-      "Votre TA manque de structure. Un RPO vous apporterait un cadre immediat.",
+      "Votre TA manque de structure. Un RPO vous apporterait un cadre immédiat.",
   },
   {
     label: "En progression",
@@ -217,7 +217,7 @@ const grades = [
     fill: "#10b981",
     badge: "\u{1F947}",
     description:
-      "Votre TA est bien structuree. Un RPO peut vous aider a scaler.",
+      "Votre TA est bien structurée. Un RPO peut vous aider a scaler.",
   },
   {
     label: "Expert",
@@ -229,7 +229,7 @@ const grades = [
     fill: "hsl(160,84%,39%)",
     badge: "\u{1F48E}",
     description:
-      "Excellent ! Votre maturite TA est au top. Explorez l'innovation.",
+      "Excellent ! Votre maturité TA est au top. Explorez l'innovation.",
   },
 ] as const;
 
@@ -790,7 +790,7 @@ function RadarChart({ answers }: { answers: number[] }) {
 function BenchmarkBars({ percentage }: { percentage: number }) {
   const benchmarks = [
     { label: "Votre score", value: percentage, color: "from-primary to-emerald-500" },
-    { label: "Moyenne marche", value: 55, color: "from-amber-500 to-amber-400" },
+    { label: "Moyenne marché", value: 55, color: "from-amber-500 to-amber-400" },
     { label: "Top performers", value: 85, color: "from-violet-500 to-violet-400" },
   ];
 
@@ -969,12 +969,12 @@ export default function AssessmentClient() {
     const percentage = Math.round((totalScore / 21) * 100);
 
     const lines = [
-      `Diagnostic Maturite Recrutement - Rocket4RPO`,
+      `Diagnostic Maturité Recrutement - Rocket4RPO`,
       ``,
       `Score : ${totalScore}/21 (${percentage}%)`,
       `Niveau : ${grade.label}`,
       ``,
-      `Detail par critere :`,
+      `Détail par critère :`,
       ...questions.map(
         (q, i) => `  ${q.label} : ${answers[i] ?? 0}/3`,
       ),
@@ -986,7 +986,7 @@ export default function AssessmentClient() {
 
     try {
       await navigator.clipboard.writeText(text);
-      setToastMessage("Resultats copies !");
+      setToastMessage("Résultats copiés !");
       setToastVisible(true);
       setTimeout(() => setToastVisible(false), 2500);
     } catch {
@@ -1100,7 +1100,7 @@ export default function AssessmentClient() {
                   >
                     Votre recrutement est-il{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rocket-teal-glow to-emerald-400">
-                      a la hauteur
+                      à la hauteur
                     </span>{" "}
                     ?
                   </motion.h1>
@@ -1112,9 +1112,9 @@ export default function AssessmentClient() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto"
                   >
-                    Evaluez la maturite de votre Talent Acquisition sur 7 dimensions
-                    cles et decouvrez vos axes d&apos;amelioration prioritaires avec
-                    des recommandations personnalisees.
+                    Évaluez la maturité de votre Talent Acquisition sur 7 dimensions
+                    clés et découvrez vos axes d&apos;amélioration prioritaires avec
+                    des recommandations personnalisées.
                   </motion.p>
 
                   {/* Animated gauge preview */}
@@ -1136,12 +1136,12 @@ export default function AssessmentClient() {
                   >
                     <span className="flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-primary/60" />
-                      200+ entreprises diagnostiquees
+                      200+ entreprises diagnostiquées
                     </span>
                     <span className="w-1 h-1 rounded-full bg-white/15" />
                     <span className="flex items-center gap-1.5">
                       <Award className="w-3.5 h-3.5 text-primary/60" />
-                      Methodologie validee par 50+ DRH
+                      Méthodologie validée par 50+ DRH
                     </span>
                   </motion.div>
 
@@ -1153,9 +1153,9 @@ export default function AssessmentClient() {
                     className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
                   >
                     {[
-                      { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "evaluees" },
+                      { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "évaluées" },
                       { icon: Clock, value: "1", label: "minute", sub: "chrono" },
-                      { icon: Zap, value: "", label: "Resultat", sub: "immediat" },
+                      { icon: Zap, value: "", label: "Résultat", sub: "immédiat" },
                     ].map((stat, i) => (
                       <motion.div
                         key={i}
@@ -1205,7 +1205,7 @@ export default function AssessmentClient() {
                       </Button>
                     </div>
                     <p className="mt-5 text-sm text-white/30">
-                      Gratuit, sans inscription, resultat en 1 minute
+                      Gratuit, sans inscription, résultat en 1 minute
                     </p>
                   </motion.div>
                 </div>
@@ -1489,7 +1489,7 @@ export default function AssessmentClient() {
                       className="gap-2 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                       <ArrowLeft className="w-4 h-4" />
-                      Precedent
+                      Précédent
                     </Button>
                   </motion.div>
                 </div>
@@ -1535,7 +1535,7 @@ export default function AssessmentClient() {
                     transition={{ delay: 0.2 }}
                     className="mt-6 text-2xl md:text-4xl font-bold text-white"
                   >
-                    Diagnostic de maturite recrutement
+                    Diagnostic de maturité recrutement
                   </motion.h2>
 
                   {/* Semi-circular gauge */}
@@ -1587,7 +1587,7 @@ export default function AssessmentClient() {
                         {grade.description}
                       </motion.p>
                       <p className="mt-2 text-xs text-white/25">
-                        {percentage}% de maturite recrutement
+                        {percentage}% de maturité recrutement
                       </p>
                     </motion.div>
                   </motion.div>
@@ -1606,7 +1606,7 @@ export default function AssessmentClient() {
                         </p>
                         <p className="text-sm text-white/60 leading-relaxed">
                           Votre point fort est <strong className="text-white/80">{strongestLabel}</strong>, tandis que{" "}
-                          <strong className="text-white/80">{weakestLabel}</strong> represente votre principal axe de progression.
+                          <strong className="text-white/80">{weakestLabel}</strong> représente votre principal axe de progression.
                         </p>
                       </div>
                     </motion.div>
@@ -1652,10 +1652,10 @@ export default function AssessmentClient() {
                 >
                   <div className="text-center mb-8">
                     <h3 className="text-xl md:text-2xl font-bold mb-2">
-                      Detail par critere
+                      Détail par critère
                     </h3>
                     <p className="text-muted-foreground text-sm">
-                      Score individuel sur chacun des 7 axes evalues
+                      Score individuel sur chacun des 7 axes évalués
                     </p>
                   </div>
 
@@ -1754,11 +1754,11 @@ export default function AssessmentClient() {
                     <div className="inline-flex items-center gap-2 mb-3">
                       <AlertTriangle className="w-5 h-5 text-amber-500" />
                       <h3 className="text-xl md:text-2xl font-bold">
-                        Vos 3 axes d&apos;amelioration prioritaires
+                        Vos 3 axes d&apos;amélioration prioritaires
                       </h3>
                     </div>
                     <p className="text-muted-foreground text-sm">
-                      Recommandations personnalisees basees sur vos reponses
+                      Recommandations personnalisées basées sur vos réponses
                     </p>
                   </div>
 
@@ -1879,7 +1879,7 @@ export default function AssessmentClient() {
                           {grade.badge} {grade.label}
                         </div>
                         <p className="text-white/40 text-sm mt-1">
-                          {percentage}% de maturite recrutement
+                          {percentage}% de maturité recrutement
                         </p>
                       </div>
 
@@ -1928,7 +1928,7 @@ export default function AssessmentClient() {
                           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all cursor-pointer"
                         >
                           <Copy className="w-3.5 h-3.5" />
-                          Partager mes resultats
+                          Partager mes résultats
                         </button>
                       </div>
                     </div>
@@ -1948,11 +1948,11 @@ export default function AssessmentClient() {
                     <div className="relative">
                       <Trophy className="w-10 h-10 text-primary mx-auto mb-4" />
                       <h3 className="text-lg md:text-xl font-bold mb-2">
-                        Le defi
+                        Le défi
                       </h3>
                       <p className="text-muted-foreground text-sm max-w-md mx-auto mb-6">
-                        Refaites ce diagnostic dans 3 mois apres avoir applique nos recommandations.
-                        Mesurez votre progression et visez le niveau superieur !
+                        Refaites ce diagnostic dans 3 mois après avoir appliqué nos recommandations.
+                        Mesurez votre progression et visez le niveau supérieur !
                       </p>
                       <Button
                         onClick={handleRestart}
@@ -1960,7 +1960,7 @@ export default function AssessmentClient() {
                         className="gap-2 px-8 py-5 rounded-xl border-primary/30 text-primary hover:bg-primary/10 font-semibold"
                       >
                         <RotateCcw className="w-4 h-4" />
-                        Relever le defi
+                        Relever le défi
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </div>
@@ -1987,7 +1987,7 @@ export default function AssessmentClient() {
                     </div>
                     <span className="text-sm text-muted-foreground">
                       <strong className="text-foreground">200+ entreprises</strong>{" "}
-                      ont optimise leur recrutement
+                      ont optimisé leur recrutement
                     </span>
                   </div>
                 </motion.div>
@@ -2005,7 +2005,7 @@ export default function AssessmentClient() {
                     className="gap-2 px-10 py-7 text-base font-semibold rounded-2xl shadow-xl shadow-primary/20 w-full sm:w-auto bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
                   >
                     <a href="/rdv">
-                      Recevoir votre rapport detaille
+                      Recevoir votre rapport détaillé
                       <ArrowRight className="w-5 h-5" />
                     </a>
                   </Button>
@@ -2018,7 +2018,7 @@ export default function AssessmentClient() {
                   >
                     <a href="/rdv">
                       <MessageSquare className="w-4 h-4" />
-                      Parler a un expert
+                      Parler à un expert
                     </a>
                   </Button>
 
@@ -2028,7 +2028,7 @@ export default function AssessmentClient() {
                     onClick={handleRestart}
                     className="gap-2 mt-2 text-muted-foreground hover:text-foreground"
                   >
-                    <RotateCcw className="w-4 h-4" /> Relever le defi
+                    <RotateCcw className="w-4 h-4" /> Relever le défi
                     <ArrowRight className="w-3 h-3" />
                   </Button>
                 </motion.div>
