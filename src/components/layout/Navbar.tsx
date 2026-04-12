@@ -76,9 +76,10 @@ export const Navbar = () => {
           <Link
             href="/recrutement"
             onClick={handleNav("/recrutement")}
-            className="px-4 py-2 text-sm font-medium rounded-lg border border-border/60 text-foreground/70 hover:text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="group relative px-4 py-2 text-sm font-semibold rounded-lg text-primary hover:text-primary transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             Postuler
+            <span className="absolute bottom-0.5 left-4 right-4 h-[2px] bg-primary/40 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
           </Link>
           <Link
             href="/webapp-testing"
