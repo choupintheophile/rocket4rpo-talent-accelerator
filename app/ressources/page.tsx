@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import RessourcesClient from "./RessourcesClient";
 
 export const metadata: Metadata = {
-  title: "Ressources RPO gratuites — Guides & Templates",
+  title: "Ressources RPO gratuites — Guides & PDF",
   description:
-    "20 ressources gratuites : guides RPO, templates scorecards, grilles salariales Tech & Sales 2026, KPIs, IA recrutement, RGPD, sourcing. Par des experts avec 200+ recrutements.",
+    "20 guides RPO gratuits : templates scorecards, grilles salariales Tech & Sales 2026, KPIs, IA recrutement. Par des experts avec 200+ recrutements.",
   alternates: { canonical: "/ressources" },
 };
 

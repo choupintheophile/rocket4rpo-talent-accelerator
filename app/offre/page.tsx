@@ -3,7 +3,7 @@ import OffreClient from "./OffreClient";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "RPO, CDD & CDI — Top 1% recruteurs en 1 semaine",
+  title: "RPO, CDD & CDI — Top 1% recruteurs",
   description:
     "RPO, CDD ou CDI : le top 1% des Talent Acquisition de France intégré à vos équipes en 1 semaine. Dès 550€/j. 200+ recrutements. Diagnostic gratuit →",
   alternates: { canonical: "/offre" },
