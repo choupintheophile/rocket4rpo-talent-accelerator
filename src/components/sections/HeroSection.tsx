@@ -127,7 +127,7 @@ function ProofCard() {
           <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/[0.12] border border-emerald-500/[0.2]">
             <span className="text-sm font-semibold text-white/90">RPO Rocket4RPO</span>
             <span className="text-xl font-bold text-emerald-400">
-              44 000 €
+              30 000 €
             </span>
           </div>
         </div>
@@ -218,8 +218,8 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
     <section className="relative overflow-hidden bg-[hsl(220,20%,8%)] text-white min-h-[90vh] flex flex-col justify-center">
       {/* ── Multi-layer gradient background ── */}
       <div className="absolute inset-0 bg-gradient-to-br from-[hsl(220,20%,8%)] via-[hsl(220,18%,12%)] to-[hsl(220,20%,8%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_20%_40%,hsl(160_84%_32%/0.08),transparent)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_80%_20%,hsl(200_80%_40%/0.05),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_50%_at_20%_40%,hsl(160_84%_32%/0.08),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_90%_20%,hsl(200_90%_40%/0.05),transparent)]" />
 
       {/* ── Grid pattern overlay ── */}
       <div
@@ -241,7 +241,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
       />
       <FloatingOrb
         size={300}
-        color="hsl(200 80% 40% / 0.08)"
+        color="hsl(200 90% 40% / 0.08)"
         top="60%"
         left="10%"
         delay={2}
@@ -250,7 +250,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
         size={250}
         color="hsl(160 84% 50% / 0.06)"
         top="30%"
-        left="80%"
+        left="90%"
         delay={4}
       />
       <FloatingOrb
@@ -308,7 +308,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
                 </motion.span>
               ))}
               <motion.span
-                className="inline-block bg-gradient-to-r from-[hsl(160,84%,50%)] via-[hsl(150,70%,55%)] to-[hsl(140,80%,45%)] bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-[hsl(160,84%,50%)] via-[hsl(150,70%,55%)] to-[hsl(140,90%,45%)] bg-clip-text text-transparent"
                 variants={fadeUp}
                 initial="hidden"
                 animate="visible"

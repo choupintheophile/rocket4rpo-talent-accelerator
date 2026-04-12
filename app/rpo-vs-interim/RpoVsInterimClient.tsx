@@ -60,7 +60,7 @@ const rows: Row[] = [
   },
   {
     criteria: "Modèle de coût",
-    rpo: "TJM 550 €/j, prévisible et transparent",
+    rpo: "TJM 500 €/j, prévisible et transparent",
     interim: "TJM × coefficient 1.8 à 2.2 (marge opaque)",
     rpoIcon: "check",
     interimIcon: "x",
@@ -118,7 +118,7 @@ const faqs = [
   {
     question: "Le RPO coûte-t-il plus cher que l'intérim ?",
     answer:
-      "Pas forcément. Le TJM d'un RPO (550 €/j) est transparent et sans marge cachée. L'intérim applique un coefficient de 1.8 à 2.2 (soit 80 à 120 % de marge), ce qui peut revenir plus cher pour un niveau d'expertise équivalent.",
+      "Pas forcément. Le TJM d'un RPO (500 €/j) est transparent et sans marge cachée. L'intérim applique un coefficient de 1.8 à 2.2 (soit 80 à 120 % de marge), ce qui peut revenir plus cher pour un niveau d'expertise équivalent.",
   },
   {
     question: "Peut-on utiliser un RPO pour un besoin court terme ?",
@@ -275,7 +275,7 @@ export default function RpoVsInterimPage() {
               { icon: <Users className="w-5 h-5" />, title: "Intégration", rpo: "Membre de votre équipe", interim: "Externe temporaire" },
               { icon: <Target className="w-5 h-5" />, title: "Autonomie", rpo: "Pilotage stratégique de A à Z", interim: "Exécution de tâches assignées" },
               { icon: <Shield className="w-5 h-5" />, title: "Marque employeur", rpo: "Représente votre marque", interim: "Non maîtrisée" },
-              { icon: <TrendingUp className="w-5 h-5" />, title: "Coût", rpo: "550 €/j transparent", interim: "Coeff. 1.8-2.2x opaque" },
+              { icon: <TrendingUp className="w-5 h-5" />, title: "Coût", rpo: "500 €/j transparent", interim: "Coeff. 1.8-2.2x opaque" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -403,7 +403,7 @@ export default function RpoVsInterimPage() {
                 </span>
                 <h3 className="font-bold text-lg">RPO Rocket4RPO</h3>
               </div>
-              <p className="text-4xl font-bold text-rocket-teal">550 €/jour</p>
+              <p className="text-4xl font-bold text-rocket-teal">500 €/jour</p>
               <p className="text-sm text-muted-foreground mt-1">TJM transparent, sans marge cachée</p>
               <ul className="mt-6 space-y-3 text-sm">
                 <li className="flex items-center gap-2.5">

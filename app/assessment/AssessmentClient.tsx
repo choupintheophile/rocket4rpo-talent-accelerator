@@ -306,7 +306,7 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
         {/* Tick marks with labels */}
         {[
           { val: 0, label: "0" },
-          { val: 7, label: "7" },
+          { val: 7, label: "15" },
           { val: 13, label: "13" },
           { val: 17, label: "17" },
           { val: 21, label: "21" },
@@ -533,7 +533,7 @@ export default function AssessmentClient() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto"
                   >
-                    Évaluez la maturité de votre Talent Acquisition sur 7 critères
+                    Évaluez la maturité de votre Talent Acquisition sur 15 critères
                     clés et découvrez vos axes d'amélioration prioritaires avec
                     des recommandations personnalisées.
                   </motion.p>
@@ -546,7 +546,7 @@ export default function AssessmentClient() {
                     className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
                   >
                     {[
-                      { icon: ClipboardCheck, value: "7", label: "questions", sub: "ciblées" },
+                      { icon: ClipboardCheck, value: "15", label: "questions", sub: "ciblées" },
                       { icon: Clock, value: "2", label: "minutes", sub: "chrono" },
                       { icon: Zap, value: "", label: "Résultat", sub: "immédiat" },
                     ].map((stat, i) => (

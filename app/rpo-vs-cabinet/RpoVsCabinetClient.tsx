@@ -39,7 +39,7 @@ interface Row {
 const rows: Row[] = [
   {
     criteria: "Coût pour 10 recrutements",
-    rpo: "~44 000 € (TJM 550 €/j)",
+    rpo: "~30 000 € (TJM 500 €/j)",
     cabinet: "120 000 – 200 000 € (15-25 % du salaire)",
     rpoIcon: "check",
     cabinetIcon: "x",
@@ -118,7 +118,7 @@ const faqs = [
   {
     question: "Le RPO est-il moins cher qu'un cabinet de recrutement ?",
     answer:
-      "Oui, en général. Pour 10 recrutements, un RPO coûte environ 44 000 € (TJM 550 €/j) contre 120 000 à 200 000 € pour un cabinet facturant 15-25 % du salaire annuel brut. Plus le volume est élevé, plus l'écart se creuse en faveur du RPO.",
+      "Oui, en général. Pour 10 recrutements, un RPO coûte environ 30 000 € (TJM 500 €/j) contre 120 000 à 200 000 € pour un cabinet facturant 15-25 % du salaire annuel brut. Plus le volume est élevé, plus l'écart se creuse en faveur du RPO.",
   },
   {
     question: "Peut-on combiner RPO et cabinet de recrutement ?",
@@ -350,8 +350,8 @@ export default function RpoVsCabinetPage() {
                 </span>
                 <h3 className="font-bold text-lg">RPO Rocket4RPO</h3>
               </div>
-              <p className="text-4xl font-bold text-rocket-teal">~44 000 €</p>
-              <p className="text-sm text-muted-foreground mt-1">Pour 10 recrutements (TJM 550 €/j)</p>
+              <p className="text-4xl font-bold text-rocket-teal">~30 000 €</p>
+              <p className="text-sm text-muted-foreground mt-1">Pour 10 recrutements (TJM 500 €/j)</p>
               <ul className="mt-6 space-y-3 text-sm">
                 <li className="flex items-center gap-2.5">
                   <StatusIcon type="check" /> Coût prévisible et fixe

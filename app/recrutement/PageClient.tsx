@@ -158,8 +158,8 @@ const PROCESS_STEPS = [
   },
   {
     step: "03",
-    title: "Évaluation sur 7 critères",
-    duration: "Score 80%+ requis",
+    title: "Évaluation sur 15 critères",
+    duration: "Score 90%+ requis",
     description:
       "Sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO.",
     icon: Target,

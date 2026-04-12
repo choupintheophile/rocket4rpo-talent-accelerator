@@ -159,7 +159,7 @@ export default function HomepageSections() {
                 stat: "120-200",
                 unit: "K€",
                 title: "Le coût d'un cabinet",
-                text: "15 à 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : ~44 000€.",
+                text: "15 à 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : ~30 000€.",
                 delay: 0.3,
               },
             ].map((item) => (
@@ -421,7 +421,7 @@ export default function HomepageSections() {
               {
                 icon: UserCheck,
                 number: "300+",
-                title: "TA évalués sur 7 critères",
+                title: "TA évalués sur 15 critères",
                 text: "Compétences techniques, soft skills, spécialisation sectorielle, culture fit. Chaque TA est audité en profondeur.",
                 gradient: "from-blue-500/10 to-blue-600/5",
                 iconBg: "bg-blue-500/10",
@@ -430,7 +430,7 @@ export default function HomepageSections() {
               },
               {
                 icon: Award,
-                number: "80%+",
+                number: "90%+",
                 title: "Score minimum pour intégrer le vivier",
                 text: "Seuls les meilleurs intègrent notre réseau. Si un TA ne passe pas nos critères, il ne travaille pas avec nos clients.",
                 gradient: "from-amber-500/10 to-amber-600/5",

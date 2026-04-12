@@ -54,7 +54,7 @@ export const professionalServiceSchema = {
         itemOffered: {
           "@type": "Service",
           name: "RPO — Recruteur externalisé intégré à votre équipe",
-          description: "Un Talent Acquisition Specialist senior intégré dans vos équipes de 1 à 5 jours par semaine. Première shortlist en 5-7 jours, tous types de postes, à partir de 550€/jour.",
+          description: "Un Talent Acquisition Specialist senior intégré dans vos équipes de 1 à 5 jours par semaine. Première shortlist en 5-7 jours, tous types de postes, à partir de 500€/jour.",
           url: "https://rocket4rpo.com/offre",
         },
       },

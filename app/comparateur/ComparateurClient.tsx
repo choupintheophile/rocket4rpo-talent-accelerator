@@ -41,7 +41,7 @@ interface Row {
 const rows: Row[] = [
   {
     criteria: "Coût pour 10 recrutements",
-    rpo: "~44 000 €",
+    rpo: "~30 000 €",
     cabinet: "120 000 – 200 000 €",
     interne: "40-55 K€/an + charges",
     rpoIcon: "check",
@@ -50,7 +50,7 @@ const rows: Row[] = [
   },
   {
     criteria: "Modèle de facturation",
-    rpo: "TJM prévisible (550 €/j)",
+    rpo: "TJM prévisible (500 €/j)",
     cabinet: "15-25 % du salaire annuel",
     interne: "Salaire fixe CDI",
     rpoIcon: "check",
@@ -150,7 +150,7 @@ const rows: Row[] = [
 ];
 
 const costBars = [
-  { label: "RPO Rocket4RPO", amount: 44000, color: "bg-rocket-teal", displayAmount: "~44 000 €" },
+  { label: "RPO Rocket4RPO", amount: 30000, color: "bg-rocket-teal", displayAmount: "~30 000 €" },
   { label: "Cabinet classique", amount: 160000, color: "bg-amber-500", displayAmount: "120-200K €" },
   { label: "Recruteur interne", amount: 70000, color: "bg-slate-400", displayAmount: "60-75K €/an" },
 ];
@@ -208,7 +208,7 @@ const faqs = [
   {
     question: "RPO, cabinet, recruteur interne : lequel est le moins cher ?",
     answer:
-      "Pour 10 recrutements, le RPO coûte environ 44 000 € (TJM 550 €/j), contre 120 000 à 200 000 € pour un cabinet (15-25 % du salaire annuel) et 60-75 K€/an charges incluses pour un recruteur interne en CDI. Le RPO offre le meilleur rapport coût/flexibilité pour des volumes de 5 à 15+ recrutements.",
+      "Pour 10 recrutements, le RPO coûte environ 30 000 € (TJM 500 €/j), contre 120 000 à 200 000 € pour un cabinet (15-25 % du salaire annuel) et 60-75 K€/an charges incluses pour un recruteur interne en CDI. Le RPO offre le meilleur rapport coût/flexibilité pour des volumes de 5 à 15+ recrutements.",
   },
   {
     question: "Peut-on combiner RPO et cabinet de recrutement ?",
@@ -228,7 +228,7 @@ const faqs = [
   {
     question: "Comment fonctionne la facturation du RPO ?",
     answer:
-      "Le RPO est facturé au TJM (Taux Journalier Moyen), soit 550 €/jour chez Rocket4RPO. Facturation mensuelle, prévisible, sans frais cachés ni surprise liée au salaire du candidat recruté.",
+      "Le RPO est facturé au TJM (Taux Journalier Moyen), soit 500 €/jour chez Rocket4RPO. Facturation mensuelle, prévisible, sans frais cachés ni surprise liée au salaire du candidat recruté.",
   },
   {
     question: "Le RPO peut-il remplacer un recruteur interne ?",
@@ -353,7 +353,7 @@ export default function ComparateurClient() {
           <div className="p-6 rounded-xl bg-primary/5 border border-primary/20">
             <p className="text-sm font-semibold text-primary mb-2">En bref</p>
             <p className="text-foreground font-medium">
-              Le RPO (Recruitment Process Outsourcing) coûte en moyenne 44 000 € pour 10 recrutements chez Rocket4RPO, contre 120 000 à 200 000 € avec un cabinet de recrutement traditionnel (15-25 % du salaire annuel). Le RPO offre une intégration dans l{"'"}équipe, un suivi KPI hebdomadaire, et une première shortlist en 48 h.
+              Le RPO (Recruitment Process Outsourcing) coûte en moyenne 30 000 € pour 10 recrutements chez Rocket4RPO, contre 120 000 à 200 000 € avec un cabinet de recrutement traditionnel (15-25 % du salaire annuel). Le RPO offre une intégration dans l{"'"}équipe, un suivi KPI hebdomadaire, et une première shortlist en 48 h.
             </p>
           </div>
         </div>

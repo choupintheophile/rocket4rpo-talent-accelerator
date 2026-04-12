@@ -18,7 +18,7 @@ const faqs = [
   {
     question: "Combien coûte un RPO par rapport à un recruteur en CDI ?",
     answer:
-      "Un RPO à 2 jours/semaine coûte environ 4 400 €/mois (TJM 550 €). Un recruteur en CDI coûte 60-75 K€/an charges comprises, soit 5 000-6 250 €/mois. Le RPO est plus économique si votre flux de recrutement ne justifie pas un temps plein permanent.",
+      "Un RPO à 2 jours/semaine coûte environ 4 400 €/mois (TJM 500 €). Un recruteur en CDI coûte 60-75 K€/an charges comprises, soit 5 000-6 250 €/mois. Le RPO est plus économique si votre flux de recrutement ne justifie pas un temps plein permanent.",
   },
   {
     question: "En combien de temps un RPO peut-il démarrer ?",

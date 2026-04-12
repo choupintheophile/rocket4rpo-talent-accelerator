@@ -287,7 +287,7 @@ export default function OutilsClient() {
                         {[
                           { label: "Cabinet", value: "180 000 €", pct: 100, color: "bg-red-400/60" },
                           { label: "Interne", value: "95 000 €", pct: 53, color: "bg-amber-400/60" },
-                          { label: "RPO Rocket", value: "44 000 €", pct: 24, color: "bg-rocket-teal-glow" },
+                          { label: "RPO Rocket", value: "30 000 €", pct: 24, color: "bg-rocket-teal-glow" },
                         ].map((row, i) => (
                           <div key={row.label} className="flex items-center gap-3">
                             <span className="text-[11px] text-white/50 w-20">{row.label}</span>

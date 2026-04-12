@@ -46,7 +46,7 @@ const faqs = [
   {
     question: "Combien ça coûte concrètement ?",
     answer:
-      "À partir de 550€/jour pour le RPO. Pour 10 recrutements sur 4 mois, comptez environ 44 000€ — soit jusqu'à 5x moins cher qu'un cabinet classique (120 000 à 200 000€). Facturation mensuelle, sans frais cachés. Pour le recrutement CDD/CDI, tarification sur devis.",
+      "À partir de 500€/jour pour le RPO. Pour 10 recrutements sur 4 mois, comptez environ 30 000€ — soit jusqu'à 5x moins cher qu'un cabinet classique (120 000 à 200 000€). Facturation mensuelle, sans frais cachés. Pour le recrutement CDD/CDI, tarification sur devis.",
   },
   {
     question: "En combien de temps le recruteur est-il opérationnel ?",
@@ -56,7 +56,7 @@ const faqs = [
   {
     question: "Comment sélectionnez-vous vos TA Specialists ?",
     answer:
-      "Nous maintenons un vivier de plus de 300+ Talent Acquisition Specialists freelances, évalués sur 7 critères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO). Seuls les profils notés 80%+ intègrent notre vivier prioritaire — c'est le top 1% du marché français.",
+      "Nous maintenons un vivier de plus de 300+ Talent Acquisition Specialists freelances, évalués sur 15 critères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO). Seuls les profils notés 90%+ intègrent notre vivier prioritaire — c'est le top 1% du marché français.",
   },
   {
     question: "Et si le recruteur ne convient pas ?",
@@ -131,7 +131,7 @@ export default function OffreClient() {
               Chaque jour sans recruteur performant, vous perdez des candidats,
               du temps et de l{"'"}argent. Nous mobilisons en 1 semaine un Talent
               Acquisition Specialist du top 1% français — sélectionné parmi
-              300+ experts évalués sur 7 critères — pour recruter à votre place.
+              300+ experts évalués sur 15 critères — pour recruter à votre place.
               RPO, CDD ou CDI : un seul partenaire, zéro risque.
             </p>
 
@@ -291,13 +291,13 @@ export default function OffreClient() {
                 l{"'"}inverse : nous avons construit{" "}
                 <strong>le vivier le plus exigeant du marché français</strong>.
                 Chaque TA a été évalué sur{" "}
-                <strong>7 critères exigeants</strong> — sourcing, outils,
+                <strong>15 critères exigeants</strong> — sourcing, outils,
                 autonomie, KPIs, qualification, posture conseil et expérience
                 RPO.
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed text-base">
                 Seuls les profils notés{" "}
-                <strong>80%+ sur notre grille propriétaire</strong> intègrent le
+                <strong>90%+ sur notre grille propriétaire</strong> intègrent le
                 vivier prioritaire. Résultat : quand vous nous dites
                 {" « "}j{"'"}ai besoin d{"'"}un recruteur{" » "}, on vous
                 envoie <strong>le meilleur du marché en 1 semaine</strong>. Pas un
@@ -306,8 +306,8 @@ export default function OffreClient() {
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {[
                   { value: "300+", label: "TA dans notre vivier" },
-                  { value: "7", label: "critères d'évaluation" },
-                  { value: "80%+", label: "score minimum requis" },
+                  { value: "15", label: "critères d'évaluation" },
+                  { value: "90%+", label: "score minimum requis" },
                   { value: "1 sem.", label: "délai de mobilisation" },
                 ].map((stat) => (
                   <div
@@ -350,7 +350,7 @@ export default function OffreClient() {
                       Grille d{"'"}évaluation R4RPO
                     </div>
                     <div className="text-xs text-muted-foreground">
-                      7 critères · Score sur 35
+                      15 critères · Score sur 35
                     </div>
                   </div>
                 </div>
@@ -432,7 +432,7 @@ export default function OffreClient() {
                   "Marque employeur protégée — le TA recrute en VOTRE nom",
                   "1 à 5 jours/semaine, 3 mois min",
                 ],
-                prix: "À partir de 550€/jour",
+                prix: "À partir de 500€/jour",
                 highlight: true,
                 color: "border-primary/30 ring-1 ring-primary/10",
                 badgeColor: "bg-primary text-primary-foreground",
@@ -728,7 +728,7 @@ export default function OffreClient() {
             {[
               {
                 model: "RPO Rocket4RPO",
-                price: "~44 000€",
+                price: "~30 000€",
                 detail: "TJM prévisible, tout inclus, zéro frais cachés",
                 highlight: true,
                 savings: "Jusqu'à 75% d'économies",
@@ -901,7 +901,7 @@ export default function OffreClient() {
               {
                 icon: Crown,
                 title: "Le top 1% des TA de France",
-                desc: "50+ recruteurs évalués sur 7 critères exigeants. Seuls les 80%+ intègrent notre vivier. Vous ne travaillez qu'avec l'élite absolue du recrutement français.",
+                desc: "50+ recruteurs évalués sur 15 critères exigeants. Seuls les 90%+ intègrent notre vivier. Vous ne travaillez qu'avec l'élite absolue du recrutement français.",
               },
               {
                 icon: Zap,
@@ -926,7 +926,7 @@ export default function OffreClient() {
               {
                 icon: TrendingUp,
                 title: "5x moins cher qu'un cabinet",
-                desc: "10 recrutements : ~44K€ vs 120-200K€ en cabinet. Même qualité (voire meilleure), 5x moins cher. Le choix rationnel est évident.",
+                desc: "10 recrutements : ~30K€ vs 120-200K€ en cabinet. Même qualité (voire meilleure), 5x moins cher. Le choix rationnel est évident.",
               },
             ].map((item, i) => (
               <motion.div
