@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ClipboardCheck,
@@ -21,10 +21,10 @@ import {
   Sparkles,
   ChevronRight,
   Zap,
-
   AlertTriangle,
   Copy,
   Check,
+  Trophy,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -41,6 +41,9 @@ interface Question {
   optionDescriptions: string[];
   optionEmojis: string[];
   recommendation: string;
+  actionSpecific: string;
+  estimatedImpact: string;
+  difficulty: "Rapide \u00e0 mettre en place" | "Moyen terme" | "Transformation profonde";
 }
 
 const questions: Question[] = [
@@ -49,32 +52,38 @@ const questions: Question[] = [
     icon: ClipboardCheck,
     label: "Processus",
     question: "Comment qualifieriez-vous votre processus de recrutement ?",
-    options: ["Inexistant", "Basique", "Structuré", "Optimisé"],
+    options: ["Inexistant", "Basique", "Structur\u00e9", "Optimis\u00e9"],
     optionDescriptions: [
-      "Pas de processus défini, chaque recrutement est improvisé",
-      "Quelques étapes identifiées mais peu formalisées",
-      "Étapes claires, responsabilités définies, critères établis",
-      "Processus documenté, mesuré et amélioré en continu",
+      "Pas de processus d\u00e9fini, chaque recrutement est improvis\u00e9",
+      "Quelques \u00e9tapes identifi\u00e9es mais peu formalis\u00e9es",
+      "\u00c9tapes claires, responsabilit\u00e9s d\u00e9finies, crit\u00e8res \u00e9tablis",
+      "Processus document\u00e9, mesur\u00e9 et am\u00e9lior\u00e9 en continu",
     ],
-    optionEmojis: ["😬", "🤔", "✅", "🎯"],
+    optionEmojis: ["\u{1F62C}", "\u{1F914}", "\u2705", "\u{1F3AF}"],
     recommendation:
-      "Mettez en place un processus structuré avec des étapes claires, des responsabilités définies et des critères d'évaluation objectifs.",
+      "Mettez en place un processus structure avec des etapes claires, des responsabilites definies et des criteres d'evaluation objectifs.",
+    actionSpecific: "Creez un template de processus recrutement en 6 etapes avec des SLA pour chaque phase",
+    estimatedImpact: "-30% time-to-hire",
+    difficulty: "Rapide à mettre en place",
   },
   {
     id: "scorecards",
     icon: CheckCircle2,
     label: "Scorecards",
-    question: "Avez-vous des scorecards pour évaluer vos candidats ?",
-    options: ["Jamais", "Parfois", "Souvent", "Systématiquement"],
+    question: "Avez-vous des scorecards pour evaluer vos candidats ?",
+    options: ["Jamais", "Parfois", "Souvent", "Systematiquement"],
     optionDescriptions: [
-      "L'évaluation repose uniquement sur le ressenti",
-      "Utilisées de manière ponctuelle sur certains postes",
-      "La majorité des postes ont une grille d'évaluation",
-      "Chaque poste dispose d'une scorecard calibrée et suivie",
+      "L'evaluation repose uniquement sur le ressenti",
+      "Utilisees de maniere ponctuelle sur certains postes",
+      "La majorite des postes ont une grille d'evaluation",
+      "Chaque poste dispose d'une scorecard calibree et suivie",
     ],
-    optionEmojis: ["😬", "🤔", "✅", "🎯"],
+    optionEmojis: ["\u{1F62C}", "\u{1F914}", "\u2705", "\u{1F3AF}"],
     recommendation:
-      "Adoptez des scorecards structurées pour chaque poste afin de réduire les biais et d'améliorer la qualité de vos recrutements.",
+      "Adoptez des scorecards structurees pour chaque poste afin de reduire les biais et d'ameliorer la qualite de vos recrutements.",
+    actionSpecific: "Deployez une scorecard standardisee avec 5 criteres cles ponderes pour chaque famille de poste",
+    estimatedImpact: "+20% qualite candidats",
+    difficulty: "Rapide à mettre en place",
   },
   {
     id: "tth",
@@ -83,62 +92,74 @@ const questions: Question[] = [
     question: "Quel est votre time-to-hire moyen ?",
     options: ["> 60 jours", "45-60 jours", "30-45 jours", "< 30 jours"],
     optionDescriptions: [
-      "Les recrutements traînent et les candidats se désengagent",
-      "Un délai courant mais perfectible",
-      "Un rythme correct, aligné sur le marché",
-      "Rapide et efficace, les meilleurs talents sont captés vite",
+      "Les recrutements trainent et les candidats se desengagent",
+      "Un delai courant mais perfectible",
+      "Un rythme correct, aligne sur le marche",
+      "Rapide et efficace, les meilleurs talents sont captes vite",
     ],
-    optionEmojis: ["🐢", "⏳", "⚡", "🚀"],
+    optionEmojis: ["\u{1F422}", "\u23F3", "\u26A1", "\u{1F680}"],
     recommendation:
-      "Optimisez votre pipeline en identifiant les goulots d'étranglement et en parallélisant les étapes d'entretien.",
+      "Optimisez votre pipeline en identifiant les goulots d'etranglement et en parallelisant les etapes d'entretien.",
+    actionSpecific: "Identifiez et eliminez les 2 plus gros goulots de votre pipeline avec des entretiens paralleles",
+    estimatedImpact: "-15 jours time-to-hire",
+    difficulty: "Moyen terme",
   },
   {
     id: "sourcing",
     icon: Search,
     label: "Sourcing",
-    question: "Utilisez-vous des outils de sourcing avancés ?",
+    question: "Utilisez-vous des outils de sourcing avances ?",
     options: ["Non", "LinkedIn basique", "LinkedIn Recruiter", "Multi-canal"],
     optionDescriptions: [
       "Uniquement les candidatures entrantes",
       "Recherche manuelle sur LinkedIn gratuit",
-      "Utilisation de LinkedIn Recruiter avec filtres avancés",
+      "Utilisation de LinkedIn Recruiter avec filtres avances",
       "LinkedIn, GitHub, meetups, cooptation, chasse directe",
     ],
-    optionEmojis: ["😶", "👀", "🔍", "🎯"],
+    optionEmojis: ["\u{1F636}", "\u{1F440}", "\u{1F50D}", "\u{1F3AF}"],
     recommendation:
       "Diversifiez vos canaux de sourcing (LinkedIn Recruiter, GitHub, meetups, cooptation) pour atteindre les talents passifs.",
+    actionSpecific: "Lancez un programme de cooptation avec prime et activez 2 nouveaux canaux de sourcing",
+    estimatedImpact: "+40% pipeline candidats",
+    difficulty: "Moyen terme",
   },
   {
     id: "retention",
     icon: Heart,
-    label: "Rétention",
-    question: "Quel est votre taux de rétention à 12 mois ?",
+    label: "Retention",
+    question: "Quel est votre taux de retention a 12 mois ?",
     options: ["< 70 %", "70-80 %", "80-90 %", "> 90 %"],
     optionDescriptions: [
-      "Turnover élevé, les recrutements ne tiennent pas",
-      "Quelques départs précoces, alignement à revoir",
-      "Bonne rétention, les recrutements sont globalement réussis",
-      "Excellent, preuve d'un recrutement très qualitatif",
+      "Turnover eleve, les recrutements ne tiennent pas",
+      "Quelques departs precoces, alignement a revoir",
+      "Bonne retention, les recrutements sont globalement reussis",
+      "Excellent, preuve d'un recrutement tres qualitatif",
     ],
-    optionEmojis: ["💔", "😕", "💪", "❤️"],
+    optionEmojis: ["\u{1F494}", "\u{1F615}", "\u{1F4AA}", "\u2764\uFE0F"],
     recommendation:
-      "Améliorez votre onboarding et alignez mieux les attentes candidat/entreprise dès la phase de recrutement.",
+      "Ameliorez votre onboarding et alignez mieux les attentes candidat/entreprise des la phase de recrutement.",
+    actionSpecific: "Structurez un onboarding de 90 jours avec checkpoints a J+7, J+30 et J+90",
+    estimatedImpact: "+15% retention a 12 mois",
+    difficulty: "Transformation profonde",
   },
   {
     id: "kpi",
     icon: BarChart3,
     label: "KPIs",
     question: "Avez-vous un suivi KPI de votre recrutement ?",
-    options: ["Aucun", "Basique", "Dashboard", "Temps réel"],
+    options: ["Aucun", "Basique", "Dashboard", "Temps reel"],
     optionDescriptions: [
-      "Aucune donnée n'est collectée ni analysée",
-      "Quelques métriques suivies manuellement (tableur)",
-      "Un dashboard centralisé avec les KPIs essentiels",
-      "Suivi en temps réel avec alertes et optimisation data-driven",
+      "Aucune donnee n'est collectee ni analysee",
+      "Quelques metriques suivies manuellement (tableur)",
+      "Un dashboard centralise avec les KPIs essentiels",
+      "Suivi en temps reel avec alertes et optimisation data-driven",
     ],
-    optionEmojis: ["🫥", "📋", "📊", "🎯"],
+    optionEmojis: ["\u{1FAE5}", "\u{1F4CB}", "\u{1F4CA}", "\u{1F3AF}"],
     recommendation:
-      "Mettez en place un dashboard avec les KPIs essentiels : time-to-hire, taux de conversion, coût par recrutement, qualité du sourcing.",
+      "Mettez en place un dashboard avec les KPIs essentiels : time-to-hire, taux de conversion, cout par recrutement, qualite du sourcing.",
+    actionSpecific: "Creez un dashboard avec 5 KPIs cles : TTH, taux conversion, cout/recrutement, source quality, offer acceptance",
+    estimatedImpact: "+25% efficacite recrutement",
+    difficulty: "Rapide à mettre en place",
   },
   {
     id: "volume",
@@ -147,28 +168,32 @@ const questions: Question[] = [
     question: "Combien de postes recrutez-vous par trimestre ?",
     options: ["1-3", "4-10", "11-20", "20+"],
     optionDescriptions: [
-      "Volume faible, le recrutement n'est pas la priorité",
-      "Volume modéré, nécessitant une approche organisée",
+      "Volume faible, le recrutement n'est pas la priorite",
+      "Volume modere, necessitant une approche organisee",
       "Volume important, un processus robuste est indispensable",
-      "Volume élevé, nécessitant une équipe TA dédiée",
+      "Volume eleve, necessitant une equipe TA dediee",
     ],
-    optionEmojis: ["🌱", "📈", "🔥", "🚀"],
+    optionEmojis: ["\u{1F331}", "\u{1F4C8}", "\u{1F525}", "\u{1F680}"],
     recommendation:
-      "À votre volume, un TA Specialist dédié pourrait considérablement accélérer vos recrutements et réduire vos coûts.",
+      "A votre volume, un TA Specialist dedie pourrait considerablement accelerer vos recrutements et reduire vos couts.",
+    actionSpecific: "Evaluez le ROI d'un TA Specialist dedie vs. le cout actuel de vos recrutements externalises",
+    estimatedImpact: "-35% cout par recrutement",
+    difficulty: "Transformation profonde",
   },
 ];
 
 const grades = [
   {
-    label: "Débutant",
+    label: "Debutant",
     min: 0,
     max: 7,
     color: "text-red-500",
     bg: "bg-red-500",
     stroke: "#ef4444",
     fill: "#ef4444",
+    badge: "\u{1F949}",
     description:
-      "Votre TA manque de structure. Un RPO vous apporterait un cadre immédiat.",
+      "Votre TA manque de structure. Un RPO vous apporterait un cadre immediat.",
   },
   {
     label: "En progression",
@@ -178,6 +203,7 @@ const grades = [
     bg: "bg-amber-500",
     stroke: "#f59e0b",
     fill: "#f59e0b",
+    badge: "\u{1F948}",
     description:
       "Vous avez les bases, mais des leviers d'optimisation importants existent.",
   },
@@ -189,8 +215,9 @@ const grades = [
     bg: "bg-emerald-500",
     stroke: "#10b981",
     fill: "#10b981",
+    badge: "\u{1F947}",
     description:
-      "Votre TA est bien structurée. Un RPO peut vous aider à scaler.",
+      "Votre TA est bien structuree. Un RPO peut vous aider a scaler.",
   },
   {
     label: "Expert",
@@ -200,8 +227,9 @@ const grades = [
     bg: "bg-primary",
     stroke: "hsl(160,84%,39%)",
     fill: "hsl(160,84%,39%)",
+    badge: "\u{1F48E}",
     description:
-      "Excellent ! Votre maturité TA est au top. Explorez l'innovation.",
+      "Excellent ! Votre maturite TA est au top. Explorez l'innovation.",
   },
 ] as const;
 
@@ -214,9 +242,9 @@ function getGrade(score: number) {
 /* ------------------------------------------------------------------ */
 
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (dir: number) => ({ x: dir < 0 ? 300 : -300, opacity: 0 }),
+  enter: (dir: number) => ({ y: dir > 0 ? 40 : -40, opacity: 0 }),
+  center: { y: 0, opacity: 1 },
+  exit: (dir: number) => ({ y: dir < 0 ? 40 : -40, opacity: 0 }),
 };
 
 const letterBadges = ["A", "B", "C", "D"];
@@ -248,6 +276,97 @@ function AnimatedCounter({
   });
 
   return <>{count}</>;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Countdown Timer Bar                                                */
+/* ------------------------------------------------------------------ */
+
+function CountdownBar({ questionIndex }: { questionIndex: number }) {
+  const [progress, setProgress] = useState(100);
+  const animRef = useRef<number | null>(null);
+  const startRef = useRef(Date.now());
+
+  useEffect(() => {
+    startRef.current = Date.now();
+    setProgress(100);
+
+    const tick = () => {
+      const elapsed = Date.now() - startRef.current;
+      const remaining = Math.max(0, 100 - (elapsed / 15000) * 100);
+      setProgress(remaining);
+      if (remaining > 0) {
+        animRef.current = requestAnimationFrame(tick);
+      }
+    };
+    animRef.current = requestAnimationFrame(tick);
+
+    return () => {
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+    };
+  }, [questionIndex]);
+
+  const barColor =
+    progress > 50
+      ? "bg-primary"
+      : progress > 25
+        ? "bg-amber-500"
+        : "bg-red-500";
+
+  return (
+    <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden mb-6">
+      <div
+        className={`h-full ${barColor} rounded-full transition-colors duration-500`}
+        style={{
+          width: `${progress}%`,
+          transition: "width 100ms linear",
+        }}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Floating Particles (quiz background)                               */
+/* ------------------------------------------------------------------ */
+
+function FloatingParticles() {
+  const particles = [
+    { x: "10%", y: "20%", size: 4, dur: 12, delay: 0 },
+    { x: "85%", y: "15%", size: 3, dur: 15, delay: 2 },
+    { x: "70%", y: "75%", size: 5, dur: 10, delay: 1 },
+    { x: "20%", y: "80%", size: 3, dur: 14, delay: 3 },
+    { x: "50%", y: "40%", size: 4, dur: 11, delay: 0.5 },
+    { x: "90%", y: "55%", size: 3, dur: 13, delay: 1.5 },
+  ];
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {particles.map((p, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full bg-primary/20"
+          style={{
+            left: p.x,
+            top: p.y,
+            width: p.size,
+            height: p.size,
+          }}
+          animate={{
+            y: [0, -30, 0, 20, 0],
+            x: [0, 15, -10, 5, 0],
+            opacity: [0.15, 0.4, 0.2, 0.35, 0.15],
+          }}
+          transition={{
+            duration: p.dur,
+            repeat: Infinity,
+            delay: p.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -319,6 +438,31 @@ function Confetti() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Color flash feedback                                               */
+/* ------------------------------------------------------------------ */
+
+function ColorFlash({ score }: { score: number | null }) {
+  if (score === null) return null;
+  const color =
+    score === 3
+      ? "bg-emerald-500/15"
+      : score === 2
+        ? "bg-amber-500/10"
+        : "bg-transparent";
+
+  if (score <= 1) return null;
+
+  return (
+    <motion.div
+      className={`fixed inset-0 pointer-events-none z-40 ${color}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0, 1, 0] }}
+      transition={{ duration: 0.6 }}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Clipboard toast                                                    */
 /* ------------------------------------------------------------------ */
 
@@ -353,7 +497,6 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
   const arcLength = Math.PI * r;
   const ratio = score / max;
 
-  // Needle angle: 180 degrees (left) to 0 degrees (right)
   const needleAngle = Math.PI - ratio * Math.PI;
   const needleLen = 60;
   const needleTipX = cx + needleLen * Math.cos(needleAngle);
@@ -381,7 +524,6 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           <filter id="needle-shadow">
             <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="rgba(0,0,0,0.3)" />
           </filter>
-          {/* Glow filter for score indicator */}
           <filter id="score-glow">
             <feGaussianBlur stdDeviation="4" result="blur" />
             <feMerge>
@@ -415,7 +557,7 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           transition={{ duration: 1.8, ease: "easeOut", delay: 0.4 }}
         />
 
-        {/* Tick marks with corrected labels: 0, 5, 10, 15, 21 */}
+        {/* Tick marks */}
         {[
           { val: 0, label: "0" },
           { val: 5, label: "5" },
@@ -451,7 +593,7 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           );
         })}
 
-        {/* Glow dot at needle tip position */}
+        {/* Glow dot at needle tip */}
         <motion.circle
           cx={cx}
           cy={cy}
@@ -464,7 +606,7 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           transition={{ duration: 1.8, ease: "easeOut", delay: 0.4 }}
         />
 
-        {/* Needle with smooth animation */}
+        {/* Needle */}
         <motion.line
           x1={cx}
           y1={cy}
@@ -502,6 +644,254 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
 }
 
 /* ------------------------------------------------------------------ */
+/*  Radar / Spider Chart (pure SVG)                                    */
+/* ------------------------------------------------------------------ */
+
+function RadarChart({ answers }: { answers: number[] }) {
+  const cx = 150;
+  const cy = 150;
+  const maxR = 110;
+  const levels = 3;
+  const n = questions.length;
+
+  function polarToXY(angle: number, radius: number) {
+    const a = angle - Math.PI / 2;
+    return {
+      x: cx + radius * Math.cos(a),
+      y: cy + radius * Math.sin(a),
+    };
+  }
+
+  const angleStep = (2 * Math.PI) / n;
+
+  // Max polygon (outline)
+  const maxPoints = Array.from({ length: n }, (_, i) => {
+    const p = polarToXY(i * angleStep, maxR);
+    return `${p.x},${p.y}`;
+  }).join(" ");
+
+  // User polygon
+  const userPoints = answers.map((score, i) => {
+    const r = (score / 3) * maxR;
+    const p = polarToXY(i * angleStep, Math.max(r, 8));
+    return `${p.x},${p.y}`;
+  }).join(" ");
+
+  return (
+    <div className="w-full max-w-sm mx-auto">
+      <svg viewBox="0 0 300 300" className="w-full">
+        <defs>
+          <linearGradient id="radar-fill-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#10b981" stopOpacity="0.15" />
+          </linearGradient>
+        </defs>
+
+        {/* Grid levels */}
+        {Array.from({ length: levels }, (_, lvl) => {
+          const r = ((lvl + 1) / levels) * maxR;
+          const pts = Array.from({ length: n }, (__, i) => {
+            const p = polarToXY(i * angleStep, r);
+            return `${p.x},${p.y}`;
+          }).join(" ");
+          return (
+            <polygon
+              key={lvl}
+              points={pts}
+              fill="none"
+              stroke="rgba(255,255,255,0.08)"
+              strokeWidth="1"
+            />
+          );
+        })}
+
+        {/* Axis lines */}
+        {Array.from({ length: n }, (_, i) => {
+          const p = polarToXY(i * angleStep, maxR);
+          return (
+            <line
+              key={i}
+              x1={cx}
+              y1={cy}
+              x2={p.x}
+              y2={p.y}
+              stroke="rgba(255,255,255,0.06)"
+              strokeWidth="1"
+            />
+          );
+        })}
+
+        {/* Max outline */}
+        <polygon
+          points={maxPoints}
+          fill="none"
+          stroke="rgba(255,255,255,0.12)"
+          strokeWidth="1.5"
+          strokeDasharray="4 3"
+        />
+
+        {/* User polygon */}
+        <motion.polygon
+          points={Array.from({ length: n }, () => `${cx},${cy}`).join(" ")}
+          animate={{ points: userPoints }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+          fill="url(#radar-fill-grad)"
+          stroke="#14b8a6"
+          strokeWidth="2"
+        />
+
+        {/* Data points */}
+        {answers.map((score, i) => {
+          const r = (score / 3) * maxR;
+          const p = polarToXY(i * angleStep, Math.max(r, 8));
+          return (
+            <motion.circle
+              key={i}
+              cx={cx}
+              cy={cy}
+              r="4"
+              fill="#14b8a6"
+              stroke="white"
+              strokeWidth="1.5"
+              animate={{ cx: p.x, cy: p.y }}
+              transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 + i * 0.05 }}
+            />
+          );
+        })}
+
+        {/* Labels */}
+        {questions.map((q, i) => {
+          const labelR = maxR + 22;
+          const p = polarToXY(i * angleStep, labelR);
+          return (
+            <text
+              key={q.id}
+              x={p.x}
+              y={p.y}
+              fill="rgba(255,255,255,0.5)"
+              fontSize="10"
+              fontWeight="500"
+              textAnchor="middle"
+              dominantBaseline="middle"
+            >
+              {q.label}
+            </text>
+          );
+        })}
+      </svg>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Benchmark Bars                                                     */
+/* ------------------------------------------------------------------ */
+
+function BenchmarkBars({ percentage }: { percentage: number }) {
+  const benchmarks = [
+    { label: "Votre score", value: percentage, color: "from-primary to-emerald-500" },
+    { label: "Moyenne marche", value: 55, color: "from-amber-500 to-amber-400" },
+    { label: "Top performers", value: 85, color: "from-violet-500 to-violet-400" },
+  ];
+
+  return (
+    <div className="space-y-4">
+      {benchmarks.map((b, i) => (
+        <motion.div
+          key={b.label}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.6 + i * 0.15 }}
+        >
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-xs font-medium text-white/50">{b.label}</span>
+            <span className="text-xs font-bold text-white/70">{b.value}%</span>
+          </div>
+          <div className="h-2.5 bg-white/[0.06] rounded-full overflow-hidden">
+            <motion.div
+              className={`h-full rounded-full bg-gradient-to-r ${b.color}`}
+              initial={{ width: 0 }}
+              animate={{ width: `${b.value}%` }}
+              transition={{ duration: 1, delay: 1.8 + i * 0.15, ease: "easeOut" }}
+            />
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Animated preview gauge (blurred placeholder for intro)             */
+/* ------------------------------------------------------------------ */
+
+function GaugePreview() {
+  return (
+    <motion.div
+      className="relative w-48 h-28 mx-auto opacity-40 blur-[2px]"
+      animate={{ rotate: [0, 2, -2, 0] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <svg viewBox="0 0 200 115" className="w-full h-full" fill="none">
+        <path
+          d="M 20 100 A 80 80 0 0 1 180 100"
+          stroke="rgba(255,255,255,0.1)"
+          strokeWidth="12"
+          strokeLinecap="round"
+        />
+        <motion.path
+          d="M 20 100 A 80 80 0 0 1 180 100"
+          stroke="url(#preview-grad)"
+          strokeWidth="12"
+          strokeLinecap="round"
+          strokeDasharray={Math.PI * 80}
+          animate={{
+            strokeDashoffset: [Math.PI * 80, Math.PI * 80 * 0.3, Math.PI * 80 * 0.5, Math.PI * 80 * 0.25],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <defs>
+          <linearGradient id="preview-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ef4444" />
+            <stop offset="50%" stopColor="#f59e0b" />
+            <stop offset="100%" stopColor="#10b981" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div className="absolute inset-0 flex items-end justify-center pb-1">
+        <motion.span
+          className="text-2xl font-bold text-white/50"
+          animate={{ opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
+          ?/21
+        </motion.span>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Difficulty Badge                                                   */
+/* ------------------------------------------------------------------ */
+
+function DifficultyBadge({ level }: { level: string }) {
+  const config =
+    level === "Rapide à mettre en place"
+      ? { bg: "bg-emerald-500/10 border-emerald-500/20", text: "text-emerald-400", icon: "\u26A1" }
+      : level === "Moyen terme"
+        ? { bg: "bg-amber-500/10 border-amber-500/20", text: "text-amber-400", icon: "\u23F3" }
+        : { bg: "bg-violet-500/10 border-violet-500/20", text: "text-violet-400", icon: "\u{1F680}" };
+
+  return (
+    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-semibold border ${config.bg} ${config.text}`}>
+      <span>{config.icon}</span>
+      {level}
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
@@ -516,6 +906,7 @@ export default function AssessmentClient() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [flashScore, setFlashScore] = useState<number | null>(null);
 
   const handleStart = useCallback(() => {
     setAnswers([]);
@@ -523,6 +914,7 @@ export default function AssessmentClient() {
     setDirection(1);
     setSelectedOption(null);
     setShowConfetti(false);
+    setFlashScore(null);
     setPhase("quiz");
   }, []);
 
@@ -530,6 +922,11 @@ export default function AssessmentClient() {
     (optionIndex: number) => {
       if (selectedOption !== null) return;
       setSelectedOption(optionIndex);
+
+      // Trigger color flash
+      setFlashScore(optionIndex);
+      setTimeout(() => setFlashScore(null), 700);
+
       setTimeout(() => {
         const next = [...answers, optionIndex];
         setAnswers(next);
@@ -538,14 +935,13 @@ export default function AssessmentClient() {
         if (current < questions.length - 1) {
           setCurrent((c) => c + 1);
         } else {
-          // Check if score >= 14 for confetti
           const finalScore = next.reduce((sum, a) => sum + a, 0);
           if (finalScore >= 14) {
             setShowConfetti(true);
           }
           setPhase("results");
         }
-      }, 400);
+      }, 500);
     },
     [answers, current, selectedOption],
   );
@@ -554,7 +950,6 @@ export default function AssessmentClient() {
     if (current === 0) return;
     setDirection(-1);
     setSelectedOption(null);
-    // Remove last answer and go back
     setAnswers((prev) => prev.slice(0, -1));
     setCurrent((c) => c - 1);
   }, [current]);
@@ -565,6 +960,7 @@ export default function AssessmentClient() {
     setCurrent(0);
     setSelectedOption(null);
     setShowConfetti(false);
+    setFlashScore(null);
   }, []);
 
   const handleShare = useCallback(async () => {
@@ -573,12 +969,12 @@ export default function AssessmentClient() {
     const percentage = Math.round((totalScore / 21) * 100);
 
     const lines = [
-      `Diagnostic Maturité Recrutement - Rocket4RPO`,
+      `Diagnostic Maturite Recrutement - Rocket4RPO`,
       ``,
       `Score : ${totalScore}/21 (${percentage}%)`,
       `Niveau : ${grade.label}`,
       ``,
-      `Détail par critère :`,
+      `Detail par critere :`,
       ...questions.map(
         (q, i) => `  ${q.label} : ${answers[i] ?? 0}/3`,
       ),
@@ -590,11 +986,10 @@ export default function AssessmentClient() {
 
     try {
       await navigator.clipboard.writeText(text);
-      setToastMessage("Résultats copiés !");
+      setToastMessage("Resultats copies !");
       setToastVisible(true);
       setTimeout(() => setToastVisible(false), 2500);
     } catch {
-      // Fallback: select text
       setToastMessage("Impossible de copier");
       setToastVisible(true);
       setTimeout(() => setToastVisible(false), 2500);
@@ -605,19 +1000,24 @@ export default function AssessmentClient() {
   const grade = getGrade(totalScore);
   const percentage = Math.round((totalScore / 21) * 100);
 
-  // Top 3 weakest areas for recommendations
+  // Top 3 weakest areas
   const weakest = answers
     .map((score, i) => ({ score, index: i }))
     .sort((a, b) => a.score - b.score)
     .slice(0, 3);
 
+  // Profile summary
+  const strongest = answers
+    .map((score, i) => ({ score, index: i }))
+    .sort((a, b) => b.score - a.score);
+  const strongestLabel = strongest.length > 0 ? questions[strongest[0].index].label : "";
+  const weakestLabel = weakest.length > 0 ? questions[weakest[0].index].label : "";
+
   return (
     <main className="min-h-screen bg-background">
-      {/* Confetti overlay */}
       {showConfetti && <Confetti />}
-
-      {/* Toast */}
       <Toast message={toastMessage} visible={toastVisible} />
+      <ColorFlash score={flashScore} />
 
       <AnimatePresence mode="wait" custom={direction}>
         {/* ================================================================ */}
@@ -700,7 +1100,7 @@ export default function AssessmentClient() {
                   >
                     Votre recrutement est-il{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rocket-teal-glow to-emerald-400">
-                      à la hauteur
+                      a la hauteur
                     </span>{" "}
                     ?
                   </motion.h1>
@@ -712,22 +1112,50 @@ export default function AssessmentClient() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto"
                   >
-                    Évaluez la maturité de votre Talent Acquisition sur 7 dimensions
-                    clés et découvrez vos axes d&apos;amélioration prioritaires avec
-                    des recommandations personnalisées.
+                    Evaluez la maturite de votre Talent Acquisition sur 7 dimensions
+                    cles et decouvrez vos axes d&apos;amelioration prioritaires avec
+                    des recommandations personnalisees.
                   </motion.p>
+
+                  {/* Animated gauge preview */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.35 }}
+                    className="mt-10"
+                  >
+                    <GaugePreview />
+                  </motion.div>
+
+                  {/* Trust indicators */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-white/35"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-primary/60" />
+                      200+ entreprises diagnostiquees
+                    </span>
+                    <span className="w-1 h-1 rounded-full bg-white/15" />
+                    <span className="flex items-center gap-1.5">
+                      <Award className="w-3.5 h-3.5 text-primary/60" />
+                      Methodologie validee par 50+ DRH
+                    </span>
+                  </motion.div>
 
                   {/* 3 Mini-stats cards */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.45 }}
-                    className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+                    className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
                   >
                     {[
-                      { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "évaluées" },
+                      { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "evaluees" },
                       { icon: Clock, value: "1", label: "minute", sub: "chrono" },
-                      { icon: Zap, value: "", label: "Résultat", sub: "immédiat" },
+                      { icon: Zap, value: "", label: "Resultat", sub: "immediat" },
                     ].map((stat, i) => (
                       <motion.div
                         key={i}
@@ -752,23 +1180,32 @@ export default function AssessmentClient() {
                     ))}
                   </motion.div>
 
-                  {/* CTA */}
+                  {/* CTA with bounce animation */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
                     className="mt-14"
                   >
-                    <Button
-                      size="lg"
-                      onClick={handleStart}
-                      className="gap-3 text-base px-12 py-7 text-lg font-semibold rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-primary/25 bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
-                    >
-                      Commencer le diagnostic
-                      <ArrowRight className="w-5 h-5" />
-                    </Button>
+                    <style>{`
+                      @keyframes subtle-bounce {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-6px); }
+                      }
+                    `}</style>
+                    <div style={{ animation: "subtle-bounce 2.5s ease-in-out infinite" }}>
+                      <Button
+                        size="lg"
+                        onClick={handleStart}
+                        className="gap-3 text-base px-14 py-8 text-lg font-bold rounded-2xl hover:scale-[1.03] active:scale-[0.97] transition-all shadow-2xl shadow-primary/30 bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
+                      >
+                        <Sparkles className="w-5 h-5" />
+                        Commencer le diagnostic
+                        <ArrowRight className="w-5 h-5" />
+                      </Button>
+                    </div>
                     <p className="mt-5 text-sm text-white/30">
-                      Gratuit, sans inscription, résultat en 1 minute
+                      Gratuit, sans inscription, resultat en 1 minute
                     </p>
                   </motion.div>
                 </div>
@@ -789,9 +1226,15 @@ export default function AssessmentClient() {
             animate="center"
             exit="exit"
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-muted/20"
+            className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-muted/20 relative"
           >
-            <div className="container-wide max-w-3xl mx-auto px-4 pt-24 pb-16 flex-1 flex flex-col">
+            {/* Background particles */}
+            <FloatingParticles />
+
+            <div className="container-wide max-w-3xl mx-auto px-4 pt-24 pb-16 flex-1 flex flex-col relative z-10">
+              {/* Countdown timer bar */}
+              <CountdownBar questionIndex={current} />
+
               {/* Progress section */}
               <div className="mb-10">
                 {/* Step indicator dots with connecting lines */}
@@ -807,13 +1250,11 @@ export default function AssessmentClient() {
                               : "w-7 h-7"
                         }`}
                       >
-                        {/* Filled (answered) */}
                         {i < current && (
                           <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
                             <CheckCircle2 className="w-4 h-4 text-primary-foreground" />
                           </div>
                         )}
-                        {/* Current (pulsing) */}
                         {i === current && (
                           <>
                             <motion.div
@@ -828,7 +1269,6 @@ export default function AssessmentClient() {
                             </div>
                           </>
                         )}
-                        {/* Future (gray) */}
                         {i > current && (
                           <div className="w-full h-full rounded-full bg-secondary border border-border/50 flex items-center justify-center">
                             <span className="text-[10px] font-medium text-muted-foreground">
@@ -837,7 +1277,6 @@ export default function AssessmentClient() {
                           </div>
                         )}
                       </motion.div>
-                      {/* Connecting line */}
                       {i < questions.length - 1 && (
                         <div
                           className={`w-4 md:w-8 h-0.5 rounded-full transition-colors duration-500 ${
@@ -907,7 +1346,7 @@ export default function AssessmentClient() {
                     </motion.h2>
                   </div>
 
-                  {/* Options as LARGE interactive cards */}
+                  {/* Options as interactive cards */}
                   <div className="grid gap-3">
                     {questions[current].options.map((opt, i) => {
                       const isSelected = selectedOption === i;
@@ -915,8 +1354,16 @@ export default function AssessmentClient() {
                         <motion.button
                           key={opt}
                           initial={{ opacity: 0, y: 15 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.15 + i * 0.07 }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                            scale: isSelected ? [1, 1.05, 1] : 1,
+                          }}
+                          transition={
+                            isSelected
+                              ? { scale: { duration: 0.35, times: [0, 0.5, 1] } }
+                              : { delay: 0.15 + i * 0.07 }
+                          }
                           whileHover={
                             selectedOption === null
                               ? { scale: 1.015, y: -3, transition: { duration: 0.2 } }
@@ -929,20 +1376,41 @@ export default function AssessmentClient() {
                             group relative w-full text-left rounded-2xl border-2 transition-all duration-250 overflow-hidden
                             ${
                               isSelected
-                                ? "border-primary bg-primary/10 shadow-xl shadow-primary/15 ring-2 ring-primary/20"
+                                ? "border-transparent shadow-xl shadow-primary/15 ring-2 ring-primary/20"
                                 : selectedOption !== null
                                   ? "border-border/40 bg-muted/30 opacity-50"
                                   : "border-border/60 bg-background hover:border-primary/50 hover:bg-primary/[0.03] hover:shadow-lg"
                             }
                           `}
+                          style={
+                            isSelected
+                              ? {
+                                  background: "linear-gradient(135deg, rgba(20,184,166,0.08), rgba(16,185,129,0.05))",
+                                  borderImage: "linear-gradient(135deg, #14b8a6, #10b981, #06b6d4) 1",
+                                  borderImageSlice: 1,
+                                }
+                              : undefined
+                          }
                         >
+                          {/* Gradient border overlay for selected */}
+                          {isSelected && (
+                            <div
+                              className="absolute inset-0 rounded-2xl pointer-events-none"
+                              style={{
+                                padding: "2px",
+                                background: "linear-gradient(135deg, #14b8a6, #10b981, #06b6d4)",
+                                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                                WebkitMaskComposite: "xor",
+                                maskComposite: "exclude",
+                              }}
+                            />
+                          )}
+
                           <div className="flex items-start gap-4 px-5 py-4 md:px-6 md:py-5">
-                            {/* Emoji indicator */}
                             <span className="flex-shrink-0 text-xl md:text-2xl mt-0.5 select-none">
                               {questions[current].optionEmojis[i]}
                             </span>
 
-                            {/* Letter badge */}
                             <span
                               className={`
                                 flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl text-sm font-bold transition-all duration-250
@@ -956,7 +1424,6 @@ export default function AssessmentClient() {
                               {letterBadges[i]}
                             </span>
 
-                            {/* Text content */}
                             <div className="flex-1 min-w-0 pt-0.5">
                               <span className="font-semibold text-sm md:text-base block">
                                 {opt}
@@ -972,7 +1439,6 @@ export default function AssessmentClient() {
                               </span>
                             </div>
 
-                            {/* Checkmark when selected */}
                             {isSelected && (
                               <motion.div
                                 initial={{ scale: 0, rotate: -90 }}
@@ -990,13 +1456,11 @@ export default function AssessmentClient() {
                               </motion.div>
                             )}
 
-                            {/* Hover arrow */}
                             {!isSelected && selectedOption === null && (
                               <ChevronRight className="w-5 h-5 text-muted-foreground/30 group-hover:text-primary/50 transition-colors flex-shrink-0 mt-2" />
                             )}
                           </div>
 
-                          {/* Selection flash effect */}
                           {isSelected && (
                             <motion.div
                               className="absolute inset-0 bg-primary/5"
@@ -1025,7 +1489,7 @@ export default function AssessmentClient() {
                       className="gap-2 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                       <ArrowLeft className="w-4 h-4" />
-                      Précédent
+                      Precedent
                     </Button>
                   </motion.div>
                 </div>
@@ -1045,7 +1509,7 @@ export default function AssessmentClient() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            {/* ---- Results Hero: Dark background with gauge ---- */}
+            {/* ---- Results Hero ---- */}
             <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark pt-24 pb-16 md:pt-28 md:pb-20">
               <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/3 left-[10%] w-[400px] h-[400px] rounded-full bg-primary/6 blur-[120px]" />
@@ -1061,7 +1525,7 @@ export default function AssessmentClient() {
                   >
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-sm text-white/70 font-medium">
                       <Award className="w-3.5 h-3.5 text-primary" /> Votre
-                      résultat
+                      resultat
                     </span>
                   </motion.div>
 
@@ -1071,7 +1535,7 @@ export default function AssessmentClient() {
                     transition={{ delay: 0.2 }}
                     className="mt-6 text-2xl md:text-4xl font-bold text-white"
                   >
-                    Diagnostic de maturité recrutement
+                    Diagnostic de maturite recrutement
                   </motion.h2>
 
                   {/* Semi-circular gauge */}
@@ -1083,7 +1547,7 @@ export default function AssessmentClient() {
                   >
                     <SemiCircularGauge score={totalScore} />
 
-                    {/* Grade badge */}
+                    {/* Grade badge with gamification badge */}
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1101,6 +1565,7 @@ export default function AssessmentClient() {
                           style={{ backgroundColor: grade.fill }}
                         />
                         <span className="relative flex items-center gap-2.5">
+                          <span className="text-2xl">{grade.badge}</span>
                           <span
                             className="w-3 h-3 rounded-full"
                             style={{
@@ -1122,15 +1587,60 @@ export default function AssessmentClient() {
                         {grade.description}
                       </motion.p>
                       <p className="mt-2 text-xs text-white/25">
-                        {percentage}% de maturité recrutement
+                        {percentage}% de maturite recrutement
                       </p>
                     </motion.div>
+                  </motion.div>
+
+                  {/* Profil TA summary */}
+                  {answers.length === questions.length && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 2 }}
+                      className="mt-8 max-w-lg mx-auto"
+                    >
+                      <div className="px-6 py-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
+                        <p className="text-xs font-semibold text-primary mb-1.5 uppercase tracking-wider">
+                          Votre profil TA
+                        </p>
+                        <p className="text-sm text-white/60 leading-relaxed">
+                          Votre point fort est <strong className="text-white/80">{strongestLabel}</strong>, tandis que{" "}
+                          <strong className="text-white/80">{weakestLabel}</strong> represente votre principal axe de progression.
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Radar Chart */}
+                  {answers.length === questions.length && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.6, duration: 0.6 }}
+                      className="mt-10"
+                    >
+                      <RadarChart answers={answers} />
+                    </motion.div>
+                  )}
+
+                  {/* Benchmark Bars: Comparez-vous */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.4 }}
+                    className="mt-10 max-w-sm mx-auto"
+                  >
+                    <h4 className="text-sm font-semibold text-white/50 mb-4 uppercase tracking-wider">
+                      Comparez-vous
+                    </h4>
+                    <BenchmarkBars percentage={percentage} />
                   </motion.div>
                 </div>
               </div>
             </section>
 
-            {/* ---- Results details: Light background ---- */}
+            {/* ---- Results details ---- */}
             <section className="section-padding bg-gradient-to-b from-background to-muted/30">
               <div className="container-wide max-w-4xl mx-auto px-4">
                 {/* Per-criteria breakdown */}
@@ -1142,10 +1652,10 @@ export default function AssessmentClient() {
                 >
                   <div className="text-center mb-8">
                     <h3 className="text-xl md:text-2xl font-bold mb-2">
-                      Détail par critère
+                      Detail par critere
                     </h3>
                     <p className="text-muted-foreground text-sm">
-                      Score individuel sur chacun des 7 axes évalués
+                      Score individuel sur chacun des 7 axes evalues
                     </p>
                   </div>
 
@@ -1233,7 +1743,7 @@ export default function AssessmentClient() {
                   </div>
                 </motion.div>
 
-                {/* Top 3 Recommendations */}
+                {/* Top 3 Recommendations (actionable) */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -1244,11 +1754,11 @@ export default function AssessmentClient() {
                     <div className="inline-flex items-center gap-2 mb-3">
                       <AlertTriangle className="w-5 h-5 text-amber-500" />
                       <h3 className="text-xl md:text-2xl font-bold">
-                        Vos 3 axes d&apos;amélioration prioritaires
+                        Vos 3 axes d&apos;amelioration prioritaires
                       </h3>
                     </div>
                     <p className="text-muted-foreground text-sm">
-                      Recommandations personnalisées basées sur vos réponses
+                      Recommandations personnalisees basees sur vos reponses
                     </p>
                   </div>
 
@@ -1320,11 +1830,26 @@ export default function AssessmentClient() {
                               </span>
                             </div>
 
+                            {/* Actionable recommendation */}
                             <div className="flex items-start gap-2 mt-3 p-3 rounded-xl bg-muted/50 border border-border/40">
                               <Sparkles className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                              <p className="text-sm text-muted-foreground leading-relaxed">
-                                {q.recommendation}
-                              </p>
+                              <div className="flex-1">
+                                <p className="text-sm font-medium text-foreground/90 leading-relaxed">
+                                  {q.actionSpecific}
+                                </p>
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  {q.recommendation}
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Impact + Difficulty badges */}
+                            <div className="flex flex-wrap items-center gap-2 mt-3">
+                              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-semibold border bg-primary/10 border-primary/20 text-primary">
+                                <TrendingUp className="w-3 h-3" />
+                                {q.estimatedImpact}
+                              </span>
+                              <DifficultyBadge level={q.difficulty} />
                             </div>
                           </div>
                         </motion.div>
@@ -1351,10 +1876,10 @@ export default function AssessmentClient() {
                         <div
                           className={`text-lg font-bold mt-2 ${grade.color}`}
                         >
-                          {grade.label}
+                          {grade.badge} {grade.label}
                         </div>
                         <p className="text-white/40 text-sm mt-1">
-                          {percentage}% de maturité recrutement
+                          {percentage}% de maturite recrutement
                         </p>
                       </div>
 
@@ -1393,7 +1918,7 @@ export default function AssessmentClient() {
                         })}
                       </div>
 
-                      {/* Share button — functional clipboard copy */}
+                      {/* Share button */}
                       <div className="pt-5 border-t border-white/[0.06]">
                         <p className="text-xs text-white/20 mb-3">
                           Diagnostic Rocket4RPO
@@ -1403,9 +1928,41 @@ export default function AssessmentClient() {
                           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all cursor-pointer"
                         >
                           <Copy className="w-3.5 h-3.5" />
-                          Partager mes résultats
+                          Partager mes resultats
                         </button>
                       </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Defi section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.85 }}
+                  className="mb-12"
+                >
+                  <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/[0.06] via-transparent to-primary/[0.06] p-8 md:p-10 text-center">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl" />
+                    <div className="relative">
+                      <Trophy className="w-10 h-10 text-primary mx-auto mb-4" />
+                      <h3 className="text-lg md:text-xl font-bold mb-2">
+                        Le defi
+                      </h3>
+                      <p className="text-muted-foreground text-sm max-w-md mx-auto mb-6">
+                        Refaites ce diagnostic dans 3 mois apres avoir applique nos recommandations.
+                        Mesurez votre progression et visez le niveau superieur !
+                      </p>
+                      <Button
+                        onClick={handleRestart}
+                        variant="outline"
+                        className="gap-2 px-8 py-5 rounded-xl border-primary/30 text-primary hover:bg-primary/10 font-semibold"
+                      >
+                        <RotateCcw className="w-4 h-4" />
+                        Relever le defi
+                        <ArrowRight className="w-4 h-4" />
+                      </Button>
                     </div>
                   </div>
                 </motion.div>
@@ -1430,7 +1987,7 @@ export default function AssessmentClient() {
                     </div>
                     <span className="text-sm text-muted-foreground">
                       <strong className="text-foreground">200+ entreprises</strong>{" "}
-                      ont optimisé leur recrutement
+                      ont optimise leur recrutement
                     </span>
                   </div>
                 </motion.div>
@@ -1442,43 +1999,37 @@ export default function AssessmentClient() {
                   transition={{ delay: 1 }}
                   className="flex flex-col items-center gap-4"
                 >
-                  {/* Primary CTA */}
                   <Button
                     asChild
                     size="lg"
                     className="gap-2 px-10 py-7 text-base font-semibold rounded-2xl shadow-xl shadow-primary/20 w-full sm:w-auto bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
                   >
-                    <a
-                      href="/rdv"
-                    >
-                      Recevoir votre rapport détaillé
+                    <a href="/rdv">
+                      Recevoir votre rapport detaille
                       <ArrowRight className="w-5 h-5" />
                     </a>
                   </Button>
 
-                  {/* Secondary CTA */}
                   <Button
                     asChild
                     variant="outline"
                     size="lg"
                     className="gap-2 px-10 py-6 text-base rounded-2xl w-full sm:w-auto"
                   >
-                    <a
-                      href="/rdv"
-                    >
+                    <a href="/rdv">
                       <MessageSquare className="w-4 h-4" />
-                      Parler à un expert
+                      Parler a un expert
                     </a>
                   </Button>
 
-                  {/* Restart */}
                   <Button
                     variant="ghost"
                     size="sm"
                     onClick={handleRestart}
                     className="gap-2 mt-2 text-muted-foreground hover:text-foreground"
                   >
-                    <RotateCcw className="w-4 h-4" /> Recommencer le diagnostic
+                    <RotateCcw className="w-4 h-4" /> Relever le defi
+                    <ArrowRight className="w-3 h-3" />
                   </Button>
                 </motion.div>
               </div>

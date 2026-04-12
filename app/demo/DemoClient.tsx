@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -17,25 +16,138 @@ import {
   Star,
   MessageSquare,
   Sparkles,
-  ChevronRight,
   Timer,
   Radar,
   RotateCcw,
   Shield,
   Award,
+  DollarSign,
+  ThumbsUp,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
-/*  Data                                                               */
+/*  Types                                                              */
 /* ------------------------------------------------------------------ */
 
-const mockCandidates = [
-  { name: "A. Martin", role: "AE SaaS", company: "Scale-up Fintech", experience: "4 ans", score: 94 },
-  { name: "S. Dubois", role: "Senior AE", company: "Editeur SaaS", experience: "6 ans", score: 91 },
-  { name: "M. Laurent", role: "AE Mid-Market", company: "Start-up B2B", experience: "3 ans", score: 88 },
-  { name: "T. Bernard", role: "AE Enterprise", company: "Licorne Tech", experience: "5 ans", score: 85 },
-  { name: "L. Petit", role: "AE SaaS", company: "Scale-up RH Tech", experience: "4 ans", score: 82 },
+interface Candidate {
+  name: string;
+  role: string;
+  company: string;
+  experience: string;
+  score: number;
+  specialite: string;
+  radarScores: [number, number, number, number]; // Sourcing, Qualification, Autonomie, Closing
+}
+
+/* ------------------------------------------------------------------ */
+/*  Name pools & candidate generation                                  */
+/* ------------------------------------------------------------------ */
+
+const FIRST_NAMES = [
+  "Alexandre", "Sophie", "Mathieu", "Camille", "Thomas", "Julie",
+  "Lucas", "Emma", "Antoine", "Lea", "Nicolas", "Marion",
+  "Pierre", "Clara", "Romain", "Pauline", "Hugo", "Margaux",
+  "Julien", "Elise", "Maxime", "Charlotte", "Adrien", "Sarah",
 ];
+
+const LAST_NAMES = [
+  "Martin", "Dubois", "Laurent", "Bernard", "Petit", "Moreau",
+  "Lefevre", "Garcia", "Roux", "Fournier", "Girard", "Andre",
+  "Leroy", "Mercier", "Dupont", "Lambert", "Bonnet", "Francois",
+  "Martinez", "Legrand", "Simon", "Blanc", "Chevalier", "Robin",
+];
+
+const COMPANIES = [
+  "Scale-up Fintech", "Editeur SaaS", "Start-up B2B", "Licorne Tech",
+  "Scale-up RH Tech", "Start-up IA", "Editeur Cloud", "Fintech Paris",
+  "Start-up Cyber", "Scale-up Data", "SaaS EdTech", "Licorne HealthTech",
+  "Scale-up MarTech", "Start-up PropTech", "Editeur ERP",
+];
+
+const EXPERIENCE_RANGE = ["2 ans", "3 ans", "4 ans", "5 ans", "6 ans", "7 ans", "8 ans"];
+
+function seededRandom(seed: string): () => number {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = Math.imul(31, h) + seed.charCodeAt(i) | 0;
+  }
+  return () => {
+    h = Math.imul(h ^ (h >>> 15), h | 1);
+    h ^= h + Math.imul(h ^ (h >>> 7), h | 61);
+    return ((h ^ (h >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function generateSpecialites(jobTitle: string): string[] {
+  const lower = jobTitle.toLowerCase();
+  const base: string[] = [];
+
+  if (lower.includes("sdr") || lower.includes("bdr")) {
+    base.push("Prospection outbound", "Cold calling", "Lead generation", "Social selling", "Pipeline building", "Account mapping", "Qualification BANT");
+  } else if (lower.includes("account executive") || lower.includes("ae")) {
+    base.push("Full-cycle SaaS", "Closing Mid-Market", "Demo & POC", "Negociation enterprise", "Upsell & cross-sell", "Gestion pipe complexe", "Vente consultative");
+  } else if (lower.includes("csm") || lower.includes("customer success")) {
+    base.push("Onboarding client", "Retention & churn", "Upsell account", "QBR management", "Health scoring", "Adoption produit", "Renouvellement contrat");
+  } else if (lower.includes("sales manager") || lower.includes("head of sales") || lower.includes("vp sales")) {
+    base.push("Management equipe", "Forecasting", "Coaching sales", "Strategy Go-to-Market", "Recrutement equipe", "KPI & reporting", "Sales enablement");
+  } else if (lower.includes("marketing") || lower.includes("growth")) {
+    base.push("Growth hacking", "Acquisition paid", "Content strategy", "Marketing automation", "Lead nurturing", "SEO/SEA", "Analytics & attribution");
+  } else if (lower.includes("developpeur") || lower.includes("dev") || lower.includes("engineer")) {
+    base.push("Architecture logicielle", "CI/CD pipelines", "Code review", "Performance & scalabilite", "API design", "Testing avance", "DevOps culture");
+  } else if (lower.includes("product") || lower.includes("pm")) {
+    base.push("Product discovery", "Roadmap strategy", "User research", "A/B testing", "Priorisation impact", "Stakeholder management", "Data-driven decisions");
+  } else {
+    base.push("Expertise metier", "Leadership", "Gestion de projet", "Communication", "Analyse strategique", "Collaboration transverse", "Resolution problemes");
+  }
+
+  return base;
+}
+
+function generateCandidates(jobTitle: string): Candidate[] {
+  const rng = seededRandom(jobTitle.trim().toLowerCase());
+  const count = 5 + Math.floor(rng() * 3); // 5-7 candidates
+  const specialites = generateSpecialites(jobTitle);
+  const usedNames = new Set<string>();
+  const candidates: Candidate[] = [];
+
+  for (let i = 0; i < count; i++) {
+    let name: string;
+    do {
+      const fi = Math.floor(rng() * FIRST_NAMES.length);
+      const li = Math.floor(rng() * LAST_NAMES.length);
+      name = `${FIRST_NAMES[fi].charAt(0)}. ${LAST_NAMES[li]}`;
+    } while (usedNames.has(name));
+    usedNames.add(name);
+
+    const score = 96 - Math.floor(rng() * 18); // 78-96
+    const ci = Math.floor(rng() * COMPANIES.length);
+    const ei = Math.floor(rng() * EXPERIENCE_RANGE.length);
+    const si = Math.floor(rng() * specialites.length);
+
+    candidates.push({
+      name,
+      role: jobTitle.length > 25 ? jobTitle.slice(0, 22) + "..." : jobTitle,
+      company: COMPANIES[ci],
+      experience: EXPERIENCE_RANGE[ei],
+      score,
+      specialite: specialites[si],
+      radarScores: [
+        60 + Math.floor(rng() * 40),
+        60 + Math.floor(rng() * 40),
+        60 + Math.floor(rng() * 40),
+        60 + Math.floor(rng() * 40),
+      ],
+    });
+  }
+
+  // Sort by score descending
+  candidates.sort((a, b) => b.score - a.score);
+  return candidates;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Steps definition                                                   */
+/* ------------------------------------------------------------------ */
 
 const steps = [
   { label: "Brief & Scorecard", icon: FileText },
@@ -225,6 +337,193 @@ function RadarPulse() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Mini SVG Radar Chart (4 axes)                                      */
+/* ------------------------------------------------------------------ */
+
+function MiniRadarChart({ scores, size = 100 }: { scores: [number, number, number, number]; size?: number }) {
+  const labels = ["Sourcing", "Qualif.", "Autonomie", "Closing"];
+  const cx = size / 2;
+  const cy = size / 2;
+  const maxR = size / 2 - 14;
+
+  // 4 axes at 0, 90, 180, 270 degrees (top, right, bottom, left)
+  const angles = [-90, 0, 90, 180].map((d) => (d * Math.PI) / 180);
+
+  const getPoint = (angle: number, value: number) => {
+    const r = (value / 100) * maxR;
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+  };
+
+  // Grid rings
+  const rings = [25, 50, 75, 100];
+
+  // Data polygon points
+  const dataPoints = scores.map((s, i) => getPoint(angles[i], s));
+  const dataPath = dataPoints.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ") + " Z";
+
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="flex-shrink-0">
+      {/* Grid rings */}
+      {rings.map((r) => (
+        <polygon
+          key={r}
+          points={angles
+            .map((a) => {
+              const p = getPoint(a, r);
+              return `${p.x},${p.y}`;
+            })
+            .join(" ")}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="0.5"
+          className="text-border/30"
+        />
+      ))}
+
+      {/* Axes */}
+      {angles.map((a, i) => {
+        const end = getPoint(a, 100);
+        return (
+          <line
+            key={i}
+            x1={cx}
+            y1={cy}
+            x2={end.x}
+            y2={end.y}
+            stroke="currentColor"
+            strokeWidth="0.5"
+            className="text-border/30"
+          />
+        );
+      })}
+
+      {/* Data polygon */}
+      <motion.path
+        d={dataPath}
+        fill="rgba(99, 102, 241, 0.15)"
+        stroke="rgba(99, 102, 241, 0.7)"
+        strokeWidth="1.5"
+        initial={{ opacity: 0, scale: 0.3 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        style={{ transformOrigin: `${cx}px ${cy}px` }}
+      />
+
+      {/* Data points */}
+      {dataPoints.map((p, i) => (
+        <motion.circle
+          key={i}
+          cx={p.x}
+          cy={p.y}
+          r="3"
+          fill="#6366f1"
+          stroke="#fff"
+          strokeWidth="1"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.3 + i * 0.1 }}
+        />
+      ))}
+
+      {/* Labels */}
+      {angles.map((a, i) => {
+        const labelR = maxR + 12;
+        const lp = getPoint(a, (labelR / maxR) * 100);
+        return (
+          <text
+            key={i}
+            x={lp.x}
+            y={lp.y}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="currentColor"
+            className="text-muted-foreground"
+            fontSize="7"
+            fontWeight="600"
+          >
+            {labels[i]}
+          </text>
+        );
+      })}
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Typing animation for TA notes                                      */
+/* ------------------------------------------------------------------ */
+
+function TypingText({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayed, setDisplayed] = useState("");
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimer = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(startTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    let idx = 0;
+    const interval = setInterval(() => {
+      idx++;
+      setDisplayed(text.slice(0, idx));
+      if (idx >= text.length) clearInterval(interval);
+    }, 25);
+    return () => clearInterval(interval);
+  }, [started, text]);
+
+  return (
+    <span>
+      {displayed}
+      {started && displayed.length < text.length && (
+        <motion.span
+          animate={{ opacity: [1, 0, 1] }}
+          transition={{ duration: 0.6, repeat: Infinity }}
+          className="inline-block w-0.5 h-3 bg-primary ml-0.5 align-middle"
+        />
+      )}
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Timeline comparison bar                                            */
+/* ------------------------------------------------------------------ */
+
+function TimelineBar({
+  label,
+  days,
+  maxDays,
+  color,
+  delay = 0,
+}: {
+  label: string;
+  days: number;
+  maxDays: number;
+  color: string;
+  delay?: number;
+}) {
+  const pct = (days / maxDays) * 100;
+  return (
+    <div className="space-y-1.5">
+      <div className="flex justify-between text-xs">
+        <span className="font-semibold">{label}</span>
+        <span className="font-bold tabular-nums">{days} jours</span>
+      </div>
+      <div className="h-3 rounded-full bg-muted/20 overflow-hidden">
+        <motion.div
+          className={`h-full rounded-full ${color}`}
+          initial={{ width: 0 }}
+          animate={{ width: `${pct}%` }}
+          transition={{ duration: 1, delay, ease: "easeOut" }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Step timeline navigation — vertical on mobile, horizontal desktop  */
 /* ------------------------------------------------------------------ */
 
@@ -382,15 +681,19 @@ function StepTimeline({
 /*  Step 1 — Brief & Scorecard                                         */
 /* ------------------------------------------------------------------ */
 
-function StepBrief({ onNext }: { onNext: () => void }) {
-  const [jobTitle, setJobTitle] = useState("Account Executive SaaS");
-  const [criteria, setCriteria] = useState({
-    saas: true,
-    fullCycle: true,
-    midMarket: false,
-    hunter: true,
-  });
-
+function StepBrief({
+  onNext,
+  jobTitle,
+  setJobTitle,
+  criteria,
+  setCriteria,
+}: {
+  onNext: () => void;
+  jobTitle: string;
+  setJobTitle: (v: string) => void;
+  criteria: Record<string, boolean>;
+  setCriteria: (v: Record<string, boolean>) => void;
+}) {
   const criteriaLabels: Record<string, string> = {
     saas: "Experience SaaS",
     fullCycle: "Full-cycle",
@@ -443,7 +746,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
               value={jobTitle}
               onChange={(e) => setJobTitle(e.target.value)}
               className="w-full rounded-xl border border-border/60 bg-rocket-dark/30 px-4 py-3.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all placeholder:text-muted-foreground"
-              placeholder="Ex: Account Executive SaaS"
+              placeholder="Ex: Account Executive SaaS, SDR, CSM, Dev Full-Stack..."
             />
           </div>
 
@@ -463,10 +766,10 @@ function StepBrief({ onNext }: { onNext: () => void }) {
                     whileTap={{ scale: 0.93 }}
                     whileHover={{ scale: 1.03 }}
                     onClick={() =>
-                      setCriteria((prev) => ({
-                        ...prev,
-                        [key]: !prev[key as keyof typeof prev],
-                      }))
+                      setCriteria({
+                        ...criteria,
+                        [key]: !criteria[key as keyof typeof criteria],
+                      })
                     }
                     className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
                       active
@@ -582,11 +885,30 @@ function StepBrief({ onNext }: { onNext: () => void }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Step 2 — Sourcing                                                  */
+/*  Step 2 — Sourcing (animated channels + filtrage IA)                */
 /* ------------------------------------------------------------------ */
 
-function StepSourcing({ onNext }: { onNext: () => void }) {
+const CHANNELS = [
+  { name: "LinkedIn", icon: "in" },
+  { name: "GitHub", icon: "gh" },
+  { name: "Vivier R4RPO", icon: "r4" },
+  { name: "Cooptation", icon: "co" },
+  { name: "JobBoards", icon: "jb" },
+];
+
+const FILTRAGE_STEPS = [
+  { count: "3 247", label: "profils identifies" },
+  { count: "847", label: "criteres primaires" },
+  { count: "127", label: "scoring IA" },
+  { count: "12", label: "profils qualifies" },
+];
+
+function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: Candidate[] }) {
   const [progress, setProgress] = useState(0);
+  const [visibleChannels, setVisibleChannels] = useState(0);
+  const [showFiltrage, setShowFiltrage] = useState(false);
+  const [filtrageStep, setFiltrageStep] = useState(0);
+  const [showCandidates, setShowCandidates] = useState(false);
   const [visibleCount, setVisibleCount] = useState(0);
   const [allLoaded, setAllLoaded] = useState(false);
 
@@ -604,16 +926,40 @@ function StepSourcing({ onNext }: { onNext: () => void }) {
     return () => clearInterval(interval);
   }, []);
 
+  // Channel scanning — one by one with 600ms delay
+  useEffect(() => {
+    if (visibleChannels < CHANNELS.length) {
+      const t = setTimeout(() => setVisibleChannels((c) => c + 1), 600);
+      return () => clearTimeout(t);
+    } else if (!showFiltrage) {
+      const t = setTimeout(() => setShowFiltrage(true), 500);
+      return () => clearTimeout(t);
+    }
+  }, [visibleChannels, showFiltrage]);
+
+  // Filtrage IA steps
+  useEffect(() => {
+    if (!showFiltrage) return;
+    if (filtrageStep < FILTRAGE_STEPS.length) {
+      const t = setTimeout(() => setFiltrageStep((s) => s + 1), 700);
+      return () => clearTimeout(t);
+    } else if (!showCandidates) {
+      const t = setTimeout(() => setShowCandidates(true), 500);
+      return () => clearTimeout(t);
+    }
+  }, [showFiltrage, filtrageStep, showCandidates]);
+
   // Staggered candidate appearance
   useEffect(() => {
-    if (visibleCount < mockCandidates.length) {
-      const timeout = setTimeout(() => setVisibleCount((c) => c + 1), 800);
+    if (!showCandidates) return;
+    if (visibleCount < Math.min(candidates.length, 5)) {
+      const timeout = setTimeout(() => setVisibleCount((c) => c + 1), 500);
       return () => clearTimeout(timeout);
-    } else if (visibleCount === mockCandidates.length && !allLoaded) {
+    } else if (!allLoaded) {
       const timeout = setTimeout(() => setAllLoaded(true), 400);
       return () => clearTimeout(timeout);
     }
-  }, [visibleCount, allLoaded]);
+  }, [showCandidates, visibleCount, allLoaded, candidates.length]);
 
   return (
     <motion.div
@@ -628,28 +974,32 @@ function StepSourcing({ onNext }: { onNext: () => void }) {
         <div className="p-6 flex flex-col sm:flex-row items-center gap-6">
           <RadarPulse />
           <div className="flex-1 text-center sm:text-left w-full">
+            {/* Live pulsing indicator */}
             <div className="flex items-center justify-center sm:justify-start gap-2 mb-3">
               <motion.div
-                animate={{ opacity: [1, 0.4, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="w-2 h-2 rounded-full bg-primary"
+                animate={{ opacity: [1, 0.3, 1], scale: [1, 1.3, 1] }}
+                transition={{ duration: 1.2, repeat: Infinity }}
+                className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-lg shadow-red-500/50"
               />
               <span className="text-sm font-bold">Sourcing en cours...</span>
+              <motion.span
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="px-2 py-0.5 rounded-full bg-red-500/10 text-red-400 text-[9px] font-bold border border-red-500/30"
+              >
+                LIVE
+              </motion.span>
             </div>
 
             <p className="text-3xl font-bold text-primary tabular-nums mb-1">
-              <FastCounter target={2847} duration={4000} />
+              <FastCounter target={3247} duration={4000} />
               <span className="text-sm font-normal text-muted-foreground ml-2">
                 profils analyses
               </span>
             </p>
 
-            <p className="text-xs text-muted-foreground mb-3">
-              LinkedIn, bases internes, reseau de referencement
-            </p>
-
             {/* Progress bar */}
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 mt-3">
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>Analyse multi-sources</span>
                 <span className="font-mono font-semibold text-foreground">
@@ -672,63 +1022,156 @@ function StepSourcing({ onNext }: { onNext: () => void }) {
             </div>
           </div>
         </div>
+
+        {/* Channel scanning */}
+        <div className="px-6 pb-5 space-y-2">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+            Sources scannees
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {CHANNELS.slice(0, visibleChannels).map((ch, i) => (
+              <motion.div
+                key={ch.name}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-400"
+              >
+                <CheckCircle2 className="w-3 h-3" />
+                {ch.name}
+              </motion.div>
+            ))}
+            {visibleChannels < CHANNELS.length && (
+              <motion.div
+                animate={{ opacity: [0.3, 0.8, 0.3] }}
+                transition={{ duration: 1, repeat: Infinity }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-xs font-semibold text-primary"
+              >
+                <Search className="w-3 h-3" />
+                Scan...
+              </motion.div>
+            )}
+          </div>
+        </div>
+
+        {/* Filtrage IA */}
+        <AnimatePresence>
+          {showFiltrage && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              className="px-6 pb-5"
+            >
+              <div className="rounded-xl bg-rocket-dark/30 border border-primary/20 p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles className="w-3.5 h-3.5 text-primary" />
+                  <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                    Filtrage IA
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {FILTRAGE_STEPS.slice(0, filtrageStep).map((fs, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="flex items-center gap-1.5"
+                    >
+                      {i > 0 && (
+                        <motion.span
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="text-muted-foreground text-xs"
+                        >
+                          &rarr;
+                        </motion.span>
+                      )}
+                      <span
+                        className={`px-2.5 py-1 rounded-lg text-xs font-bold ${
+                          i === filtrageStep - 1
+                            ? "bg-primary/20 text-primary border border-primary/30"
+                            : "bg-muted/10 text-muted-foreground border border-border/20"
+                        }`}
+                      >
+                        {fs.count}
+                      </span>
+                    </motion.div>
+                  ))}
+                  {filtrageStep >= FILTRAGE_STEPS.length && (
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="ml-1 text-emerald-400"
+                    >
+                      <CheckCircle2 className="w-4 h-4" />
+                    </motion.span>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Candidate cards */}
-      <div className="space-y-3">
-        <AnimatePresence>
-          {mockCandidates.slice(0, visibleCount).map((c, i) => (
-            <motion.div
-              key={c.name}
-              initial={{ opacity: 0, x: 80, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{
-                duration: 0.5,
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-              }}
-              className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-lg shadow-black/5 hover:border-border/80 transition-colors"
-            >
-              <div className="p-4 sm:p-5 flex items-center gap-4">
-                {/* Avatar */}
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
-                  className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${
-                    c.score >= 90
-                      ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
-                      : c.score >= 85
-                        ? "bg-amber-500/15 text-amber-400 border border-amber-500/30"
-                        : "bg-orange-500/15 text-orange-400 border border-orange-500/30"
-                  }`}
-                >
-                  {c.name.charAt(0)}
-                </motion.div>
+      {showCandidates && (
+        <div className="space-y-3">
+          <AnimatePresence>
+            {candidates.slice(0, visibleCount).map((c) => (
+              <motion.div
+                key={c.name}
+                initial={{ opacity: 0, x: 80, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{
+                  duration: 0.5,
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15,
+                }}
+                whileHover={{ scale: 1.015, borderColor: "rgba(99,102,241,0.3)" }}
+                className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-lg shadow-black/5 transition-all cursor-default"
+              >
+                <div className="p-4 sm:p-5 flex items-center gap-4">
+                  {/* Avatar */}
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${
+                      c.score >= 90
+                        ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
+                        : c.score >= 85
+                          ? "bg-amber-500/15 text-amber-400 border border-amber-500/30"
+                          : "bg-orange-500/15 text-orange-400 border border-orange-500/30"
+                    }`}
+                  >
+                    {c.name.charAt(0)}
+                  </motion.div>
 
-                {/* Info */}
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold truncate">{c.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">
-                    {c.role} &middot; {c.company}
-                  </p>
-                  <p className="text-[11px] text-muted-foreground/70">{c.experience}</p>
+                  {/* Info */}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold truncate">{c.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {c.specialite} &middot; {c.company}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground/70">{c.experience}</p>
+                  </div>
+
+                  {/* Score */}
+                  <motion.div
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                  >
+                    <ScoreBadge score={c.score} />
+                  </motion.div>
                 </div>
-
-                {/* Score */}
-                <motion.div
-                  initial={{ scale: 0, rotate: -20 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                >
-                  <ScoreBadge score={c.score} />
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      )}
 
       {/* CTA appears after all loaded */}
       <AnimatePresence>
@@ -752,15 +1195,51 @@ function StepSourcing({ onNext }: { onNext: () => void }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Step 3 — Shortlist                                                 */
+/*  Step 3 — Shortlist (interactive selection + radar charts)           */
 /* ------------------------------------------------------------------ */
 
-function StepShortlist({ onNext }: { onNext: () => void }) {
-  const shortlisted = mockCandidates.slice(0, 3);
-  const notes = [
-    "Excellent track record — +140% quota atteint 2 ans de suite",
-    "Forte expertise SaaS Mid-Market, reference par son VP Sales",
-    "Profil hunter, experience prospection outbound B2B",
+function StepShortlist({
+  onNext,
+  candidates,
+  criteria,
+}: {
+  onNext: () => void;
+  candidates: Candidate[];
+  criteria: Record<string, boolean>;
+}) {
+  const [selected, setSelected] = useState<Set<number>>(new Set([0, 1, 2]));
+  const maxSelection = 3;
+
+  const activeCriteriaCount = Object.values(criteria).filter(Boolean).length;
+
+  const toggleSelect = (idx: number) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(idx)) {
+        next.delete(idx);
+      } else {
+        if (next.size >= maxSelection) return prev;
+        next.add(idx);
+      }
+      return next;
+    });
+  };
+
+  // Compute match score based on criteria selection
+  const getMatchScore = (candidate: Candidate) => {
+    const base = candidate.score;
+    const criteriaBonus = activeCriteriaCount * 2;
+    return Math.min(base + criteriaBonus, 99);
+  };
+
+  const notesPool = [
+    "Excellent track record, +140% quota atteint 2 ans de suite. Tres bon relationnel.",
+    "Forte expertise sectorielle, reference par son VP Sales. Approche structuree.",
+    "Profil hunter confirme, experience prospection outbound B2B solide.",
+    "Parcours impressionnant en scale-up, capacite a monter en competence rapidement.",
+    "Tres bonne maitrise des cycles de vente complexes, orientee resultats.",
+    "Profil polyvalent, excellente communication et esprit d'equipe.",
+    "Forte capacite d'adaptation, experience multi-secteurs valorisante.",
   ];
 
   return (
@@ -803,81 +1282,153 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
               </motion.span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Votre shortlist qualifiee de 3 candidats est prete.
+              Selectionnez vos <span className="font-bold text-foreground">3 meilleurs candidats</span> pour passer aux entretiens.
             </p>
           </div>
         </div>
       </motion.div>
 
-      {/* Shortlisted candidates */}
-      <div className="space-y-4">
-        {shortlisted.map((c, i) => (
-          <motion.div
-            key={c.name}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 + i * 0.15, duration: 0.5 }}
-            className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-lg shadow-black/5"
-          >
-            <div className="p-5 sm:p-6 space-y-4">
-              {/* Header row */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0 border border-emerald-500/20">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <p className="text-sm font-bold truncate">{c.name}</p>
-                    {i === 0 && (
-                      <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 text-[10px] font-bold border border-amber-500/30 flex items-center gap-1 flex-shrink-0">
-                        <Star className="w-2.5 h-2.5" />
-                        TOP
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-muted-foreground">
-                    {c.role} &middot; {c.company} &middot; {c.experience}
-                  </p>
-                </div>
-                <ScoreBadge score={c.score} />
-              </div>
+      {/* Selection counter */}
+      <div className="flex items-center justify-between px-1">
+        <p className="text-xs font-semibold text-muted-foreground">
+          {selected.size}/{maxSelection} candidats selectionnes
+        </p>
+        <div className="flex gap-1">
+          {Array.from({ length: maxSelection }).map((_, i) => (
+            <div
+              key={i}
+              className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                i < selected.size ? "bg-primary" : "bg-muted/30"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
 
-              {/* TA note */}
-              <div className="rounded-xl bg-rocket-dark/20 border border-border/30 p-4">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <MessageSquare className="w-3 h-3 text-muted-foreground" />
-                  <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-                    Note du Talent Acquisition
-                  </span>
+      {/* All candidates with selection toggle */}
+      <div className="space-y-4">
+        {candidates.map((c, i) => {
+          const isSelected = selected.has(i);
+          const matchScore = getMatchScore(c);
+          return (
+            <motion.div
+              key={c.name}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + i * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.01 }}
+              onClick={() => toggleSelect(i)}
+              className={`rounded-2xl bg-background/80 backdrop-blur-xl border overflow-hidden shadow-lg shadow-black/5 cursor-pointer transition-all duration-300 ${
+                isSelected
+                  ? "border-primary/40 shadow-primary/10"
+                  : "border-border/50 hover:border-border/80"
+              }`}
+            >
+              <div className="p-5 sm:p-6 space-y-4">
+                {/* Header row */}
+                <div className="flex items-center gap-4">
+                  <motion.div
+                    animate={isSelected ? { scale: [1, 1.15, 1] } : {}}
+                    transition={{ duration: 0.3 }}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 border transition-all duration-300 ${
+                      isSelected
+                        ? "bg-primary/15 border-primary/40 text-primary"
+                        : "bg-muted/10 border-border/30 text-muted-foreground"
+                    }`}
+                  >
+                    {isSelected ? (
+                      <CheckCircle2 className="w-5 h-5" />
+                    ) : (
+                      <span className="text-sm font-bold">{c.name.charAt(0)}</span>
+                    )}
+                  </motion.div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-bold truncate">{c.name}</p>
+                      {i === 0 && (
+                        <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 text-[10px] font-bold border border-amber-500/30 flex items-center gap-1 flex-shrink-0">
+                          <Star className="w-2.5 h-2.5" />
+                          TOP
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {c.specialite} &middot; {c.company} &middot; {c.experience}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-end gap-1">
+                    <ScoreBadge score={c.score} />
+                    <span className="text-[10px] text-primary/70 font-semibold">
+                      Match: {matchScore}%
+                    </span>
+                  </div>
                 </div>
-                <p className="text-xs leading-relaxed italic text-foreground/80">
-                  &ldquo;{notes[i]}&rdquo;
-                </p>
+
+                {/* Expanded content for selected candidates */}
+                <AnimatePresence>
+                  {isSelected && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                        {/* Radar chart */}
+                        <div className="flex justify-center sm:justify-start">
+                          <MiniRadarChart scores={c.radarScores} size={110} />
+                        </div>
+
+                        {/* TA note with typing animation */}
+                        <div className="flex-1 rounded-xl bg-rocket-dark/20 border border-border/30 p-4">
+                          <div className="flex items-center gap-1.5 mb-2">
+                            <MessageSquare className="w-3 h-3 text-muted-foreground" />
+                            <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+                              Note du Talent Acquisition
+                            </span>
+                          </div>
+                          <p className="text-xs leading-relaxed italic text-foreground/80">
+                            &ldquo;<TypingText
+                              text={notesPool[i % notesPool.length]}
+                              delay={300}
+                            />&rdquo;
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* CTA */}
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(99,102,241,0.3)" }}
-        whileTap={{ scale: 0.97 }}
-        onClick={onNext}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
-      >
-        Voir les resultats
-        <ArrowRight className="w-4 h-4" />
-      </motion.button>
+      <AnimatePresence>
+        {selected.size > 0 && (
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(99,102,241,0.3)" }}
+            whileTap={{ scale: 0.97 }}
+            onClick={onNext}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
+          >
+            Voir les resultats ({selected.size} selectionnes)
+            <ArrowRight className="w-4 h-4" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Step 4 — Results                                                   */
+/*  Step 4 — Results (enhanced KPIs + timeline bars)                   */
 /* ------------------------------------------------------------------ */
 
 function StepResults({ onRestart }: { onRestart: () => void }) {
@@ -891,7 +1442,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
   const kpis = [
     {
       label: "Time-to-hire",
-      value: 28,
+      value: 21,
       suffix: " jours",
       icon: Clock,
       desc: "Du brief au contrat signe",
@@ -919,6 +1470,33 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
     },
   ];
 
+  const extraKpis = [
+    {
+      label: "Cout estime",
+      value: "3 000",
+      unit: "EUR / recrutement",
+      icon: DollarSign,
+      color: "text-emerald-400",
+      bgColor: "bg-emerald-500/10",
+    },
+    {
+      label: "Economie vs cabinet",
+      value: "-40%",
+      unit: "en moyenne",
+      icon: TrendingUp,
+      color: "text-primary",
+      bgColor: "bg-primary/10",
+    },
+    {
+      label: "Satisfaction client",
+      value: "97%",
+      unit: "de recommandation",
+      icon: ThumbsUp,
+      color: "text-amber-400",
+      bgColor: "bg-amber-500/10",
+    },
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -938,7 +1516,8 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: i * 0.12, type: "spring", stiffness: 100 }}
-            className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 p-5 md:p-6 text-center space-y-3 shadow-lg shadow-black/5"
+            whileHover={{ scale: 1.03 }}
+            className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 p-5 md:p-6 text-center space-y-3 shadow-lg shadow-black/5 transition-transform"
           >
             <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
               <kpi.icon className="w-6 h-6 text-primary" />
@@ -954,7 +1533,28 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
         ))}
       </div>
 
-      {/* Comparison: Rocket4RPO vs Marche — enhanced */}
+      {/* Extra KPIs row */}
+      <div className="grid grid-cols-3 gap-3">
+        {extraKpis.map((kpi, i) => (
+          <motion.div
+            key={kpi.label}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 + i * 0.1 }}
+            whileHover={{ scale: 1.04 }}
+            className="rounded-xl bg-background/80 backdrop-blur-xl border border-border/50 p-4 text-center shadow-md shadow-black/5 transition-transform"
+          >
+            <div className={`w-9 h-9 rounded-xl ${kpi.bgColor} flex items-center justify-center mx-auto mb-2`}>
+              <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
+            </div>
+            <p className={`text-lg font-bold ${kpi.color} tabular-nums`}>{kpi.value}</p>
+            <p className="text-[10px] text-muted-foreground font-medium">{kpi.label}</p>
+            <p className="text-[9px] text-muted-foreground/60 mt-0.5">{kpi.unit}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Timeline comparison bars */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -971,49 +1571,66 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
           </p>
         </div>
 
-        <div className="p-6">
-          <div className="grid grid-cols-2 gap-4 md:gap-6">
+        <div className="p-6 space-y-5">
+          {/* Timeline bars */}
+          <TimelineBar
+            label="Rocket4RPO"
+            days={21}
+            maxDays={52}
+            color="bg-gradient-to-r from-primary to-primary/70"
+            delay={0.3}
+          />
+          <TimelineBar
+            label="Marche"
+            days={52}
+            maxDays={52}
+            color="bg-gradient-to-r from-muted/50 to-muted/30"
+            delay={0.6}
+          />
+
+          {/* Two-column comparison */}
+          <div className="grid grid-cols-2 gap-4 mt-4">
             {/* Rocket4RPO column */}
-            <div className="rounded-xl bg-primary/5 border-2 border-primary/30 p-5 md:p-7 text-center relative overflow-hidden">
+            <div className="rounded-xl bg-primary/5 border-2 border-primary/30 p-5 text-center relative overflow-hidden">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-primary/8 to-transparent"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
               <div className="relative">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-4 border border-primary/20">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-3 border border-primary/20">
                   <Zap className="w-3 h-3" />
                   Rocket4RPO
                 </div>
-                <p className="text-5xl md:text-6xl font-bold text-primary tabular-nums leading-none">
-                  <AnimatedCounter target={28} duration={1200} />
+                <p className="text-4xl md:text-5xl font-bold text-primary tabular-nums leading-none">
+                  <AnimatedCounter target={21} duration={1200} />
                 </p>
-                <p className="text-sm text-muted-foreground mt-2 font-medium">jours</p>
+                <p className="text-sm text-muted-foreground mt-1.5 font-medium">jours</p>
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.8, type: "spring" }}
-                  className="mt-4"
+                  className="mt-3"
                 >
-                  <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500/15 text-emerald-400 text-sm font-bold border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
-                    <TrendingUp className="w-4 h-4" />
-                    -46% plus rapide
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    -60% plus rapide
                   </span>
                 </motion.div>
               </div>
             </div>
 
             {/* Marche column */}
-            <div className="rounded-xl bg-muted/10 border border-border/30 p-5 md:p-7 text-center">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold mb-4 border border-border/30">
+            <div className="rounded-xl bg-muted/10 border border-border/30 p-5 text-center">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold mb-3 border border-border/30">
                 Marche
               </div>
-              <p className="text-5xl md:text-6xl font-bold text-muted-foreground tabular-nums leading-none">
+              <p className="text-4xl md:text-5xl font-bold text-muted-foreground tabular-nums leading-none">
                 <AnimatedCounter target={52} duration={1200} />
               </p>
-              <p className="text-sm text-muted-foreground mt-2 font-medium">jours</p>
-              <div className="mt-4">
-                <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-muted/20 text-muted-foreground text-sm font-bold border border-border/30">
+              <p className="text-sm text-muted-foreground mt-1.5 font-medium">jours</p>
+              <div className="mt-3">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold border border-border/30">
                   Standard
                 </span>
               </div>
@@ -1025,13 +1642,13 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="mt-6 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-center"
+            className="mt-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-center"
           >
             <p className="text-sm font-semibold text-emerald-400">
-              Economisez <span className="text-lg font-bold">24 jours</span> sur votre recrutement
+              Economisez <span className="text-lg font-bold">31 jours</span> sur votre recrutement
             </p>
             <p className="text-xs text-muted-foreground mt-1">
-              Soit pres de <span className="font-semibold text-foreground/80">1 mois</span> de productivite gagnee pour votre equipe
+              Soit plus d&apos;un <span className="font-semibold text-foreground/80">mois</span> de productivite gagnee pour votre equipe
             </p>
           </motion.div>
         </div>
@@ -1100,6 +1717,16 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
 export default function DemoClient() {
   const [currentStep, setCurrentStep] = useState(0);
   const [started, setStarted] = useState(false);
+  const [jobTitle, setJobTitle] = useState("Account Executive SaaS");
+  const [criteria, setCriteria] = useState<Record<string, boolean>>({
+    saas: true,
+    fullCycle: true,
+    midMarket: false,
+    hunter: true,
+  });
+
+  // Generate candidates based on the job title (memoized)
+  const candidates = useMemo(() => generateCandidates(jobTitle), [jobTitle]);
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1233,9 +1860,27 @@ export default function DemoClient() {
 
           {/* Step content */}
           <AnimatePresence mode="wait">
-            {currentStep === 0 && <StepBrief key="brief" onNext={next} />}
-            {currentStep === 1 && <StepSourcing key="sourcing" onNext={next} />}
-            {currentStep === 2 && <StepShortlist key="shortlist" onNext={next} />}
+            {currentStep === 0 && (
+              <StepBrief
+                key="brief"
+                onNext={next}
+                jobTitle={jobTitle}
+                setJobTitle={setJobTitle}
+                criteria={criteria}
+                setCriteria={setCriteria}
+              />
+            )}
+            {currentStep === 1 && (
+              <StepSourcing key="sourcing" onNext={next} candidates={candidates} />
+            )}
+            {currentStep === 2 && (
+              <StepShortlist
+                key="shortlist"
+                onNext={next}
+                candidates={candidates}
+                criteria={criteria}
+              />
+            )}
             {currentStep === 3 && <StepResults key="results" onRestart={restart} />}
           </AnimatePresence>
         </div>
