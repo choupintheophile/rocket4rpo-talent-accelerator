@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -20,6 +20,9 @@ import {
   ChevronRight,
   Timer,
   Radar,
+  RotateCcw,
+  Shield,
+  Award,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -28,7 +31,7 @@ import {
 
 const mockCandidates = [
   { name: "A. Martin", role: "AE SaaS", company: "Scale-up Fintech", experience: "4 ans", score: 94 },
-  { name: "S. Dubois", role: "Senior AE", company: "Éditeur SaaS", experience: "6 ans", score: 91 },
+  { name: "S. Dubois", role: "Senior AE", company: "Editeur SaaS", experience: "6 ans", score: 91 },
   { name: "M. Laurent", role: "AE Mid-Market", company: "Start-up B2B", experience: "3 ans", score: 88 },
   { name: "T. Bernard", role: "AE Enterprise", company: "Licorne Tech", experience: "5 ans", score: 85 },
   { name: "L. Petit", role: "AE SaaS", company: "Scale-up RH Tech", experience: "4 ans", score: 82 },
@@ -38,10 +41,72 @@ const steps = [
   { label: "Brief & Scorecard", icon: FileText },
   { label: "Sourcing", icon: Search },
   { label: "Shortlist", icon: Users },
-  { label: "Résultats", icon: BarChart3 },
+  { label: "Resultats", icon: BarChart3 },
 ];
 
 const HUBSPOT_LINK = "/rdv";
+
+/* ------------------------------------------------------------------ */
+/*  Confetti CSS animation component                                   */
+/* ------------------------------------------------------------------ */
+
+function Confetti() {
+  const colors = [
+    "#6366f1", "#818cf8", "#a5b4fc", "#10b981", "#34d399",
+    "#f59e0b", "#fbbf24", "#ef4444", "#f87171", "#8b5cf6",
+    "#c084fc", "#ec4899", "#f472b6", "#06b6d4", "#22d3ee",
+  ];
+
+  const pieces = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    delay: Math.random() * 2,
+    duration: 2 + Math.random() * 3,
+    color: colors[i % colors.length],
+    size: 6 + Math.random() * 8,
+    rotation: Math.random() * 360,
+  }));
+
+  return (
+    <>
+      <style jsx>{`
+        @keyframes confetti-fall {
+          0% {
+            transform: translateY(-20px) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(calc(100vh + 20px)) rotate(720deg);
+            opacity: 0;
+          }
+        }
+        .confetti-piece {
+          position: fixed;
+          top: -20px;
+          z-index: 50;
+          pointer-events: none;
+          animation: confetti-fall var(--duration) ease-in var(--delay) forwards;
+        }
+      `}</style>
+      {pieces.map((p) => (
+        <div
+          key={p.id}
+          className="confetti-piece"
+          style={{
+            left: `${p.left}%`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            backgroundColor: p.color,
+            borderRadius: Math.random() > 0.5 ? "50%" : "2px",
+            "--delay": `${p.delay}s`,
+            "--duration": `${p.duration}s`,
+            transform: `rotate(${p.rotation}deg)`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /*  Animated counter                                                   */
@@ -160,7 +225,7 @@ function RadarPulse() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Step timeline navigation                                           */
+/*  Step timeline navigation — vertical on mobile, horizontal desktop  */
 /* ------------------------------------------------------------------ */
 
 function StepTimeline({
@@ -171,63 +236,145 @@ function StepTimeline({
   onStepClick: (i: number) => void;
 }) {
   return (
-    <div className="relative flex items-center justify-between max-w-2xl mx-auto mb-12 px-4">
-      {/* Connecting line behind steps */}
-      <div className="absolute top-6 left-[10%] right-[10%] h-0.5 bg-border/30 z-0" />
-      <motion.div
-        className="absolute top-6 left-[10%] h-0.5 bg-primary z-0"
-        initial={{ width: "0%" }}
-        animate={{
-          width: `${currentStep === 0 ? 0 : (currentStep / (steps.length - 1)) * 80}%`,
-        }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
-      />
+    <>
+      {/* Desktop: horizontal timeline */}
+      <div className="hidden md:block relative mb-12 px-4">
+        <div className="relative flex items-center justify-between max-w-2xl mx-auto">
+          {/* Connecting line behind steps */}
+          <div className="absolute top-6 left-[10%] right-[10%] h-0.5 bg-border/30 z-0" />
+          <motion.div
+            className="absolute top-6 left-[10%] h-0.5 bg-primary z-0"
+            initial={{ width: "0%" }}
+            animate={{
+              width: `${currentStep === 0 ? 0 : (currentStep / (steps.length - 1)) * 80}%`,
+            }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          />
 
-      {steps.map((step, i) => {
-        const isCompleted = i < currentStep;
-        const isCurrent = i === currentStep;
-        const isClickable = i <= currentStep;
+          {steps.map((step, i) => {
+            const isCompleted = i < currentStep;
+            const isCurrent = i === currentStep;
+            const isClickable = i <= currentStep;
 
-        return (
-          <button
-            key={i}
-            onClick={() => isClickable && onStepClick(i)}
-            className={`relative z-10 flex flex-col items-center gap-2 group ${
-              isClickable ? "cursor-pointer" : "cursor-default"
-            }`}
-          >
-            <motion.div
-              className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
-                isCompleted
-                  ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/25"
-                  : isCurrent
-                    ? "bg-primary border-primary text-primary-foreground shadow-lg shadow-primary/30"
-                    : "bg-background border-border/50 text-muted-foreground"
-              }`}
-              whileHover={isClickable ? { scale: 1.1 } : {}}
-              whileTap={isClickable ? { scale: 0.95 } : {}}
-            >
-              {isCompleted ? (
-                <CheckCircle2 className="w-5 h-5" />
-              ) : (
-                <step.icon className="w-5 h-5" />
-              )}
-            </motion.div>
-            <span
-              className={`text-[11px] font-semibold hidden sm:block transition-colors ${
-                isCurrent
-                  ? "text-primary"
-                  : isCompleted
-                    ? "text-emerald-400"
-                    : "text-muted-foreground"
-              }`}
-            >
-              {step.label}
-            </span>
-          </button>
-        );
-      })}
-    </div>
+            return (
+              <button
+                key={i}
+                onClick={() => isClickable && onStepClick(i)}
+                className={`relative z-10 flex flex-col items-center gap-2 group ${
+                  isClickable ? "cursor-pointer" : "cursor-default"
+                }`}
+              >
+                <motion.div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
+                    isCompleted
+                      ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/25"
+                      : isCurrent
+                        ? "bg-primary border-primary text-primary-foreground shadow-lg shadow-primary/30"
+                        : "bg-background border-border/50 text-muted-foreground"
+                  }`}
+                  whileHover={isClickable ? { scale: 1.1 } : {}}
+                  whileTap={isClickable ? { scale: 0.95 } : {}}
+                >
+                  {isCompleted ? (
+                    <CheckCircle2 className="w-5 h-5" />
+                  ) : (
+                    <step.icon className="w-5 h-5" />
+                  )}
+                </motion.div>
+                <span
+                  className={`text-[11px] font-semibold transition-colors ${
+                    isCurrent
+                      ? "text-primary"
+                      : isCompleted
+                        ? "text-emerald-400"
+                        : "text-muted-foreground"
+                  }`}
+                >
+                  {step.label}
+                </span>
+                {isCompleted && (
+                  <span className="text-[9px] text-emerald-400/70 font-medium -mt-1">
+                    Revoir
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile: vertical timeline */}
+      <div className="md:hidden mb-10 px-4">
+        <div className="relative flex flex-col gap-1 max-w-xs mx-auto">
+          {steps.map((step, i) => {
+            const isCompleted = i < currentStep;
+            const isCurrent = i === currentStep;
+            const isClickable = i <= currentStep;
+
+            return (
+              <div key={i} className="relative">
+                <button
+                  onClick={() => isClickable && onStepClick(i)}
+                  className={`relative z-10 flex items-center gap-3 w-full py-2 group ${
+                    isClickable ? "cursor-pointer" : "cursor-default"
+                  }`}
+                >
+                  <motion.div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-300 flex-shrink-0 ${
+                      isCompleted
+                        ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/25"
+                        : isCurrent
+                          ? "bg-primary border-primary text-primary-foreground shadow-lg shadow-primary/30"
+                          : "bg-background border-border/50 text-muted-foreground"
+                    }`}
+                    whileTap={isClickable ? { scale: 0.95 } : {}}
+                  >
+                    {isCompleted ? (
+                      <CheckCircle2 className="w-4 h-4" />
+                    ) : (
+                      <step.icon className="w-4 h-4" />
+                    )}
+                  </motion.div>
+                  <div className="flex items-center gap-2 flex-1">
+                    <span
+                      className={`text-sm font-semibold transition-colors ${
+                        isCurrent
+                          ? "text-primary"
+                          : isCompleted
+                            ? "text-emerald-400"
+                            : "text-muted-foreground"
+                      }`}
+                    >
+                      {step.label}
+                    </span>
+                    {isCompleted && (
+                      <span className="text-[9px] text-emerald-400/60 font-medium px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                        Revoir
+                      </span>
+                    )}
+                    {isCurrent && (
+                      <motion.span
+                        animate={{ opacity: [1, 0.4, 1] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="w-2 h-2 rounded-full bg-primary"
+                      />
+                    )}
+                  </div>
+                </button>
+                {/* Connecting line */}
+                {i < steps.length - 1 && (
+                  <div
+                    className={`absolute left-5 top-12 w-0.5 h-3 -translate-x-1/2 transition-colors duration-300 ${
+                      isCompleted ? "bg-emerald-500" : "bg-border/30"
+                    }`}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -245,7 +392,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
   });
 
   const criteriaLabels: Record<string, string> = {
-    saas: "Expérience SaaS",
+    saas: "Experience SaaS",
     fullCycle: "Full-cycle",
     midMarket: "Mid-Market",
     hunter: "Profil hunter",
@@ -278,7 +425,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
             <div>
               <h3 className="text-lg font-bold">Brief du poste</h3>
               <p className="text-xs text-muted-foreground">
-                Définissez le profil idéal en quelques clics
+                Definissez le profil ideal en quelques clics
               </p>
             </div>
           </div>
@@ -289,7 +436,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold mb-2.5">
               <Zap className="w-3.5 h-3.5 text-primary" />
-              Intitulé du poste
+              Intitule du poste
             </label>
             <input
               type="text"
@@ -304,7 +451,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold mb-3">
               <Target className="w-3.5 h-3.5 text-primary" />
-              Critères clés
+              Criteres cles
             </label>
             <div className="flex flex-wrap gap-2.5">
               {Object.entries(criteriaLabels).map(([key, label]) => {
@@ -365,7 +512,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
                   </div>
                   <div>
                     <h3 className="text-sm font-bold flex items-center gap-2">
-                      Aperçu Scorecard
+                      Apercu Scorecard
                       <motion.span
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -375,7 +522,7 @@ function StepBrief({ onNext }: { onNext: () => void }) {
                       </motion.span>
                     </h3>
                     <p className="text-xs text-muted-foreground">
-                      Votre grille d&apos;évaluation se construit automatiquement
+                      Votre grille d&apos;evaluation se construit automatiquement
                     </p>
                   </div>
                 </div>
@@ -493,12 +640,12 @@ function StepSourcing({ onNext }: { onNext: () => void }) {
             <p className="text-3xl font-bold text-primary tabular-nums mb-1">
               <FastCounter target={2847} duration={4000} />
               <span className="text-sm font-normal text-muted-foreground ml-2">
-                profils analysés
+                profils analyses
               </span>
             </p>
 
             <p className="text-xs text-muted-foreground mb-3">
-              LinkedIn, bases internes, réseau de référencement
+              LinkedIn, bases internes, reseau de referencement
             </p>
 
             {/* Progress bar */}
@@ -612,8 +759,8 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
   const shortlisted = mockCandidates.slice(0, 3);
   const notes = [
     "Excellent track record — +140% quota atteint 2 ans de suite",
-    "Forte expertise SaaS Mid-Market, référencé par son VP Sales",
-    "Profil hunter, expérience prospection outbound B2B",
+    "Forte expertise SaaS Mid-Market, reference par son VP Sales",
+    "Profil hunter, experience prospection outbound B2B",
   ];
 
   return (
@@ -624,7 +771,7 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
       transition={{ duration: 0.5 }}
       className="max-w-2xl mx-auto space-y-6"
     >
-      {/* 48h badge */}
+      {/* 1 semaine badge */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -646,17 +793,17 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
           </motion.div>
           <div>
             <div className="flex items-center gap-2.5 mb-1">
-              <span className="text-lg font-bold text-primary">48h écoulées</span>
+              <span className="text-lg font-bold text-primary">1 semaine ecoulee</span>
               <motion.span
                 animate={{ opacity: [1, 0.4, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
                 className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/30"
               >
-                LIVRÉE
+                LIVREE
               </motion.span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Votre shortlist qualifiée de 3 candidats est prête.
+              Votre shortlist qualifiee de 3 candidats est prete.
             </p>
           </div>
         </div>
@@ -722,7 +869,7 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
         onClick={onNext}
         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
       >
-        Voir les résultats
+        Voir les resultats
         <ArrowRight className="w-4 h-4" />
       </motion.button>
     </motion.div>
@@ -733,35 +880,42 @@ function StepShortlist({ onNext }: { onNext: () => void }) {
 /*  Step 4 — Results                                                   */
 /* ------------------------------------------------------------------ */
 
-function StepResults() {
+function StepResults({ onRestart }: { onRestart: () => void }) {
+  const [showConfetti, setShowConfetti] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowConfetti(false), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const kpis = [
     {
       label: "Time-to-hire",
       value: 28,
       suffix: " jours",
       icon: Clock,
-      desc: "Du brief au contrat signé",
+      desc: "Du brief au contrat signe",
     },
     {
-      label: "Candidats présentés",
+      label: "Candidats presentes",
       value: 12,
       suffix: "",
       icon: Users,
-      desc: "Profils qualifiés envoyés",
+      desc: "Profils qualifies envoyes",
     },
     {
       label: "Entretiens finaux",
       value: 4,
       suffix: "",
       icon: Target,
-      desc: "Candidats shortlistés",
+      desc: "Candidats shortlistes",
     },
     {
-      label: "Offre acceptée",
+      label: "Offre acceptee",
       value: 1,
       suffix: "",
       icon: TrendingUp,
-      desc: "Recrutement confirmé",
+      desc: "Recrutement confirme",
     },
   ];
 
@@ -773,6 +927,9 @@ function StepResults() {
       transition={{ duration: 0.5 }}
       className="max-w-2xl mx-auto space-y-6"
     >
+      {/* Confetti celebration */}
+      {showConfetti && <Confetti />}
+
       {/* KPI grid 2x2 */}
       <div className="grid grid-cols-2 gap-4">
         {kpis.map((kpi, i) => (
@@ -797,54 +954,86 @@ function StepResults() {
         ))}
       </div>
 
-      {/* Comparison: Vous vs Marché */}
+      {/* Comparison: Rocket4RPO vs Marche — enhanced */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 p-6 shadow-xl shadow-black/5"
+        className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl shadow-black/5"
       >
-        <h4 className="text-sm font-bold mb-5 flex items-center gap-2">
-          <TrendingUp className="w-4 h-4 text-primary" />
-          Vous vs Marché
-        </h4>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="rounded-xl bg-primary/5 border border-primary/20 p-5 text-center relative overflow-hidden">
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-            <div className="relative">
-              <p className="text-4xl font-bold text-primary tabular-nums">
-                <AnimatedCounter target={28} duration={1200} />
-                <span className="text-lg">j</span>
-              </p>
-              <p className="text-xs text-muted-foreground mt-2">Avec Rocket4Sales</p>
-              <div className="mt-3 flex justify-center">
-                <motion.span
+        <div className="px-6 py-5 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
+          <h4 className="text-lg font-bold flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-primary" />
+            Rocket4RPO vs Marche
+          </h4>
+          <p className="text-xs text-muted-foreground mt-1">
+            Comparez nos performances avec la moyenne du secteur
+          </p>
+        </div>
+
+        <div className="p-6">
+          <div className="grid grid-cols-2 gap-4 md:gap-6">
+            {/* Rocket4RPO column */}
+            <div className="rounded-xl bg-primary/5 border-2 border-primary/30 p-5 md:p-7 text-center relative overflow-hidden">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary/8 to-transparent"
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+              <div className="relative">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-4 border border-primary/20">
+                  <Zap className="w-3 h-3" />
+                  Rocket4RPO
+                </div>
+                <p className="text-5xl md:text-6xl font-bold text-primary tabular-nums leading-none">
+                  <AnimatedCounter target={28} duration={1200} />
+                </p>
+                <p className="text-sm text-muted-foreground mt-2 font-medium">jours</p>
+                <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.8, type: "spring" }}
-                  className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/30"
+                  className="mt-4"
                 >
-                  -46%
-                </motion.span>
+                  <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-500/15 text-emerald-400 text-sm font-bold border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
+                    <TrendingUp className="w-4 h-4" />
+                    -46% plus rapide
+                  </span>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Marche column */}
+            <div className="rounded-xl bg-muted/10 border border-border/30 p-5 md:p-7 text-center">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold mb-4 border border-border/30">
+                Marche
+              </div>
+              <p className="text-5xl md:text-6xl font-bold text-muted-foreground tabular-nums leading-none">
+                <AnimatedCounter target={52} duration={1200} />
+              </p>
+              <p className="text-sm text-muted-foreground mt-2 font-medium">jours</p>
+              <div className="mt-4">
+                <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-muted/20 text-muted-foreground text-sm font-bold border border-border/30">
+                  Standard
+                </span>
               </div>
             </div>
           </div>
-          <div className="rounded-xl bg-muted/10 border border-border/30 p-5 text-center">
-            <p className="text-4xl font-bold text-muted-foreground tabular-nums">
-              <AnimatedCounter target={52} duration={1200} />
-              <span className="text-lg">j</span>
+
+          {/* Savings highlight */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="mt-6 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-center"
+          >
+            <p className="text-sm font-semibold text-emerald-400">
+              Economisez <span className="text-lg font-bold">24 jours</span> sur votre recrutement
             </p>
-            <p className="text-xs text-muted-foreground mt-2">Moyenne du marché</p>
-            <div className="mt-3 flex justify-center">
-              <span className="px-3 py-1 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold border border-border/30">
-                Standard
-              </span>
-            </div>
-          </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Soit pres de <span className="font-semibold text-foreground/80">1 mois</span> de productivite gagnee pour votre equipe
+            </p>
+          </motion.div>
         </div>
       </motion.div>
 
@@ -864,24 +1053,36 @@ function StepResults() {
           </div>
 
           <h3 className="text-2xl font-bold mb-3">
-            Prêt à vivre ça pour de vrai ?
+            Pret a vivre ca pour de vrai ?
           </h3>
 
           <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-6">
             Nos clients recrutent leur premier Sales en 2-3 semaines en moyenne.
-            Réservez un appel de 15 min pour voir comment on peut faire pareil
+            Reservez un appel de 15 min pour voir comment on peut faire pareil
             pour vous.
           </p>
 
-          <a
-            href={HUBSPOT_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35"
-          >
-            Parler à un expert
-            <ArrowRight className="w-4 h-4" />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href={HUBSPOT_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35"
+            >
+              Parler a un expert
+              <ArrowRight className="w-4 h-4" />
+            </a>
+
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={onRestart}
+              className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-muted/10 border border-border/50 text-muted-foreground font-semibold text-sm hover:text-foreground hover:border-border/80 transition-all"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Recommencer la demo
+            </motion.button>
+          </div>
 
           <p className="text-[11px] text-muted-foreground mt-4">
             Appel gratuit &middot; 15 min &middot; Sans engagement
@@ -898,8 +1099,38 @@ function StepResults() {
 
 export default function DemoClient() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [started, setStarted] = useState(false);
 
-  const next = () => setCurrentStep((s) => Math.min(s + 1, 3));
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const goToStep = useCallback(
+    (step: number) => {
+      setCurrentStep(step);
+      scrollToTop();
+    },
+    [scrollToTop]
+  );
+
+  const next = () => {
+    setCurrentStep((s) => {
+      const nextStep = Math.min(s + 1, 3);
+      return nextStep;
+    });
+    scrollToTop();
+  };
+
+  const restart = () => {
+    setCurrentStep(0);
+    setStarted(false);
+    scrollToTop();
+  };
+
+  const handleStart = () => {
+    setStarted(true);
+    scrollToTop();
+  };
 
   return (
     <main className="min-h-screen">
@@ -931,36 +1162,84 @@ export default function DemoClient() {
               className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-bold rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm"
             >
               <Sparkles className="w-3 h-3" />
-              Démo interactive
+              Demo interactive
             </motion.span>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 leading-tight">
               Vivez le process RPO
               <br />
-              <span className="text-gradient">comme si vous y étiez</span>
+              <span className="text-gradient">comme si vous y etiez</span>
             </h1>
 
-            <p className="text-muted-foreground max-w-xl mx-auto text-base md:text-lg leading-relaxed">
-              Découvrez comment nous trouvons vos meilleurs candidats en 1 semaine,
-              du brief initial à la shortlist qualifiée.
+            <p className="text-muted-foreground max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-8">
+              Decouvrez comment nous trouvons vos meilleurs candidats en 1 semaine,
+              du brief initial a la shortlist qualifiee.
             </p>
+
+            {/* Trust indicators */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mb-8"
+            >
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
+                <Users className="w-4 h-4 text-primary" />
+                <span className="text-sm font-semibold">200+ recrutements</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
+                <Award className="w-4 h-4 text-emerald-400" />
+                <span className="text-sm font-semibold">90%+ score qualite</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
+                <Shield className="w-4 h-4 text-amber-400" />
+                <span className="text-sm font-semibold">Garantie remplacement</span>
+              </div>
+            </motion.div>
+
+            {/* Temps estime badge + Start CTA (before starting) */}
+            {!started && (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-col items-center gap-4"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
+                  <Timer className="w-4 h-4 text-primary" />
+                  <span>Temps estime : <span className="font-bold text-foreground">2 min</span></span>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.03, boxShadow: "0 8px 40px rgba(99,102,241,0.35)" }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={handleStart}
+                  className="inline-flex items-center gap-2 px-10 py-5 rounded-xl bg-primary text-primary-foreground font-bold text-base transition-all shadow-lg shadow-primary/25"
+                >
+                  Demarrer la demo
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </div>
 
-      {/* Content area */}
-      <div className="max-w-4xl mx-auto px-4 -mt-6 pb-20">
-        {/* Step timeline navigation */}
-        <StepTimeline currentStep={currentStep} onStepClick={setCurrentStep} />
+      {/* Content area — only show after started */}
+      {started && (
+        <div className="max-w-4xl mx-auto px-4 -mt-6 pb-20">
+          {/* Step timeline navigation */}
+          <StepTimeline currentStep={currentStep} onStepClick={goToStep} />
 
-        {/* Step content */}
-        <AnimatePresence mode="wait">
-          {currentStep === 0 && <StepBrief key="brief" onNext={next} />}
-          {currentStep === 1 && <StepSourcing key="sourcing" onNext={next} />}
-          {currentStep === 2 && <StepShortlist key="shortlist" onNext={next} />}
-          {currentStep === 3 && <StepResults key="results" />}
-        </AnimatePresence>
-      </div>
+          {/* Step content */}
+          <AnimatePresence mode="wait">
+            {currentStep === 0 && <StepBrief key="brief" onNext={next} />}
+            {currentStep === 1 && <StepSourcing key="sourcing" onNext={next} />}
+            {currentStep === 2 && <StepShortlist key="shortlist" onNext={next} />}
+            {currentStep === 3 && <StepResults key="results" onRestart={restart} />}
+          </AnimatePresence>
+        </div>
+      )}
     </main>
   );
 }
