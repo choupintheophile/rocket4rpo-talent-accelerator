@@ -319,8 +319,8 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
   const [postesAnnuels, setPostesAnnuels] = useState(15);
 
   /* ── constants ── */
-  const RPO_TJM = 550;
-  const RPO_JOURS_PAR_RECRUTEMENT = 4;
+  const RPO_TJM = 500;
+  const RPO_JOURS_PAR_RECRUTEMENT = 6;
   const RPO_DELAI = 35;
 
   /* ── calculations ── */
@@ -844,7 +844,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
                   {/* ── Disclaimer ────────────────────────── */}
                   <p className="text-xs text-muted-foreground italic">
-                    * Estimations basées sur nos données internes (TJM 550 €, 4
+                    * Estimations basées sur nos données internes (TJM 500 €, 4
                     jours/recrutement, délai moyen 2-3 semaines). Chaque situation
                     est unique.
                   </p>
