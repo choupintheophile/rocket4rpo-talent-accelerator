@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import {
   ClipboardCheck,
   Users,
@@ -12,6 +11,7 @@ import {
   BarChart3,
   Briefcase,
   ArrowRight,
+  ArrowLeft,
   RotateCcw,
   CheckCircle2,
   Target,
@@ -21,8 +21,10 @@ import {
   Sparkles,
   ChevronRight,
   Zap,
-  Star,
+
   AlertTriangle,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -37,6 +39,7 @@ interface Question {
   question: string;
   options: string[];
   optionDescriptions: string[];
+  optionEmojis: string[];
   recommendation: string;
 }
 
@@ -53,6 +56,7 @@ const questions: Question[] = [
       "Étapes claires, responsabilités définies, critères établis",
       "Processus documenté, mesuré et amélioré en continu",
     ],
+    optionEmojis: ["😬", "🤔", "✅", "🎯"],
     recommendation:
       "Mettez en place un processus structuré avec des étapes claires, des responsabilités définies et des critères d'évaluation objectifs.",
   },
@@ -68,6 +72,7 @@ const questions: Question[] = [
       "La majorité des postes ont une grille d'évaluation",
       "Chaque poste dispose d'une scorecard calibrée et suivie",
     ],
+    optionEmojis: ["😬", "🤔", "✅", "🎯"],
     recommendation:
       "Adoptez des scorecards structurées pour chaque poste afin de réduire les biais et d'améliorer la qualité de vos recrutements.",
   },
@@ -83,6 +88,7 @@ const questions: Question[] = [
       "Un rythme correct, aligné sur le marché",
       "Rapide et efficace, les meilleurs talents sont captés vite",
     ],
+    optionEmojis: ["🐢", "⏳", "⚡", "🚀"],
     recommendation:
       "Optimisez votre pipeline en identifiant les goulots d'étranglement et en parallélisant les étapes d'entretien.",
   },
@@ -98,6 +104,7 @@ const questions: Question[] = [
       "Utilisation de LinkedIn Recruiter avec filtres avancés",
       "LinkedIn, GitHub, meetups, cooptation, chasse directe",
     ],
+    optionEmojis: ["😶", "👀", "🔍", "🎯"],
     recommendation:
       "Diversifiez vos canaux de sourcing (LinkedIn Recruiter, GitHub, meetups, cooptation) pour atteindre les talents passifs.",
   },
@@ -113,6 +120,7 @@ const questions: Question[] = [
       "Bonne rétention, les recrutements sont globalement réussis",
       "Excellent, preuve d'un recrutement très qualitatif",
     ],
+    optionEmojis: ["💔", "😕", "💪", "❤️"],
     recommendation:
       "Améliorez votre onboarding et alignez mieux les attentes candidat/entreprise dès la phase de recrutement.",
   },
@@ -128,6 +136,7 @@ const questions: Question[] = [
       "Un dashboard centralisé avec les KPIs essentiels",
       "Suivi en temps réel avec alertes et optimisation data-driven",
     ],
+    optionEmojis: ["🫥", "📋", "📊", "🎯"],
     recommendation:
       "Mettez en place un dashboard avec les KPIs essentiels : time-to-hire, taux de conversion, coût par recrutement, qualité du sourcing.",
   },
@@ -143,6 +152,7 @@ const questions: Question[] = [
       "Volume important, un processus robuste est indispensable",
       "Volume élevé, nécessitant une équipe TA dédiée",
     ],
+    optionEmojis: ["🌱", "📈", "🔥", "🚀"],
     recommendation:
       "À votre volume, un TA Specialist dédié pourrait considérablement accélérer vos recrutements et réduire vos coûts.",
   },
@@ -158,7 +168,7 @@ const grades = [
     stroke: "#ef4444",
     fill: "#ef4444",
     description:
-      "Votre processus de recrutement nécessite une refonte structurelle. Les fondations sont à construire pour attirer et retenir les meilleurs talents.",
+      "Votre TA manque de structure. Un RPO vous apporterait un cadre immédiat.",
   },
   {
     label: "En progression",
@@ -169,7 +179,7 @@ const grades = [
     stroke: "#f59e0b",
     fill: "#f59e0b",
     description:
-      "Les bases sont posées mais des axes d'amélioration significatifs existent. Structurer votre approche vous permettra de gagner en efficacité rapidement.",
+      "Vous avez les bases, mais des leviers d'optimisation importants existent.",
   },
   {
     label: "Performant",
@@ -180,7 +190,7 @@ const grades = [
     stroke: "#10b981",
     fill: "#10b981",
     description:
-      "Votre recrutement est bien structuré. Quelques optimisations ciblées vous permettront d'atteindre l'excellence et de vous différencier sur le marché.",
+      "Votre TA est bien structurée. Un RPO peut vous aider à scaler.",
   },
   {
     label: "Expert",
@@ -191,7 +201,7 @@ const grades = [
     stroke: "hsl(160,84%,39%)",
     fill: "hsl(160,84%,39%)",
     description:
-      "Votre maturité recrutement est remarquable. Maintenez ce niveau d'excellence et explorez les innovations TA pour garder votre avance.",
+      "Excellent ! Votre maturité TA est au top. Explorez l'innovation.",
   },
 ] as const;
 
@@ -241,6 +251,97 @@ function AnimatedCounter({
 }
 
 /* ------------------------------------------------------------------ */
+/*  CSS Confetti component (no npm dependency)                         */
+/* ------------------------------------------------------------------ */
+
+function Confetti() {
+  const [particles] = useState(() => {
+    const colors = [
+      "#10b981",
+      "#34d399",
+      "#6ee7b7",
+      "#f59e0b",
+      "#fbbf24",
+      "#ef4444",
+      "#8b5cf6",
+      "#ec4899",
+      "#06b6d4",
+      "#14b8a6",
+    ];
+    return Array.from({ length: 25 }, (_, i) => ({
+      id: i,
+      color: colors[i % colors.length],
+      left: Math.random() * 100,
+      delay: Math.random() * 2,
+      duration: 2 + Math.random() * 2,
+      size: 6 + Math.random() * 6,
+      rotation: Math.random() * 360,
+      swayAmount: -50 + Math.random() * 100,
+    }));
+  });
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+      <style>{`
+        @keyframes confetti-fall {
+          0% {
+            transform: translateY(-20px) translateX(0px) rotate(0deg);
+            opacity: 1;
+          }
+          25% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(100vh) translateX(var(--sway)) rotate(720deg);
+            opacity: 0;
+          }
+        }
+      `}</style>
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          style={{
+            position: "absolute",
+            top: "-10px",
+            left: `${p.left}%`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            backgroundColor: p.color,
+            borderRadius: p.size > 9 ? "2px" : "50%",
+            animation: `confetti-fall ${p.duration}s ease-in ${p.delay}s forwards`,
+            ["--sway" as string]: `${p.swayAmount}px`,
+            transform: `rotate(${p.rotation}deg)`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Clipboard toast                                                    */
+/* ------------------------------------------------------------------ */
+
+function Toast({ message, visible }: { message: string; visible: boolean }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+          transition={{ duration: 0.3 }}
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 text-white text-sm font-medium shadow-xl shadow-emerald-600/30"
+        >
+          <Check className="w-4 h-4" />
+          {message}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Semi-circular gauge SVG                                            */
 /* ------------------------------------------------------------------ */
 
@@ -257,6 +358,8 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
   const needleLen = 60;
   const needleTipX = cx + needleLen * Math.cos(needleAngle);
   const needleTipY = cy - needleLen * Math.sin(needleAngle);
+
+  const grade = getGrade(score);
 
   return (
     <div className="relative w-72 h-40 md:w-[340px] md:h-48">
@@ -277,6 +380,15 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           </filter>
           <filter id="needle-shadow">
             <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="rgba(0,0,0,0.3)" />
+          </filter>
+          {/* Glow filter for score indicator */}
+          <filter id="score-glow">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
           </filter>
         </defs>
 
@@ -303,12 +415,12 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           transition={{ duration: 1.8, ease: "easeOut", delay: 0.4 }}
         />
 
-        {/* Tick marks with labels */}
+        {/* Tick marks with corrected labels: 0, 5, 10, 15, 21 */}
         {[
           { val: 0, label: "0" },
-          { val: 7, label: "15" },
-          { val: 13, label: "13" },
-          { val: 17, label: "17" },
+          { val: 5, label: "5" },
+          { val: 10, label: "10" },
+          { val: 15, label: "15" },
           { val: 21, label: "21" },
         ].map(({ val, label }) => {
           const angle = Math.PI - (val / max) * Math.PI;
@@ -339,26 +451,34 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           );
         })}
 
-        {/* Needle */}
-        <motion.g
-          filter="url(#needle-shadow)"
-          initial={{ rotate: -90, originX: "100px", originY: "100px" }}
-          animate={{ rotate: 0 }}
+        {/* Glow dot at needle tip position */}
+        <motion.circle
+          cx={cx}
+          cy={cy}
+          r="6"
+          fill={grade.fill}
+          opacity="0.4"
+          filter="url(#score-glow)"
+          initial={{ cx: cx + needleLen * Math.cos(Math.PI), cy: cy - needleLen * Math.sin(Math.PI) }}
+          animate={{ cx: needleTipX, cy: needleTipY }}
           transition={{ duration: 1.8, ease: "easeOut", delay: 0.4 }}
-        >
-          <motion.line
-            x1={cx}
-            y1={cy}
-            initial={{ x2: cx, y2: cy }}
-            animate={{ x2: needleTipX, y2: needleTipY }}
-            transition={{ duration: 1.8, ease: "easeOut", delay: 0.4 }}
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <circle cx={cx} cy={cy} r="4" fill="white" />
-          <circle cx={cx} cy={cy} r="2" fill="rgba(255,255,255,0.3)" />
-        </motion.g>
+        />
+
+        {/* Needle with smooth animation */}
+        <motion.line
+          x1={cx}
+          y1={cy}
+          x2={cx + needleLen * Math.cos(Math.PI)}
+          y2={cy - needleLen * Math.sin(Math.PI)}
+          animate={{ x2: needleTipX, y2: needleTipY }}
+          transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+          stroke="white"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          filter="url(#needle-shadow)"
+        />
+        <circle cx={cx} cy={cy} r="5" fill="white" />
+        <circle cx={cx} cy={cy} r="2.5" fill="rgba(255,255,255,0.3)" />
       </svg>
 
       {/* Central score display */}
@@ -393,12 +513,16 @@ export default function AssessmentClient() {
   const [answers, setAnswers] = useState<number[]>([]);
   const [direction, setDirection] = useState(1);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const handleStart = useCallback(() => {
     setAnswers([]);
     setCurrent(0);
     setDirection(1);
     setSelectedOption(null);
+    setShowConfetti(false);
     setPhase("quiz");
   }, []);
 
@@ -414,6 +538,11 @@ export default function AssessmentClient() {
         if (current < questions.length - 1) {
           setCurrent((c) => c + 1);
         } else {
+          // Check if score >= 14 for confetti
+          const finalScore = next.reduce((sum, a) => sum + a, 0);
+          if (finalScore >= 14) {
+            setShowConfetti(true);
+          }
           setPhase("results");
         }
       }, 400);
@@ -421,12 +550,56 @@ export default function AssessmentClient() {
     [answers, current, selectedOption],
   );
 
+  const handleBack = useCallback(() => {
+    if (current === 0) return;
+    setDirection(-1);
+    setSelectedOption(null);
+    // Remove last answer and go back
+    setAnswers((prev) => prev.slice(0, -1));
+    setCurrent((c) => c - 1);
+  }, [current]);
+
   const handleRestart = useCallback(() => {
     setPhase("intro");
     setAnswers([]);
     setCurrent(0);
     setSelectedOption(null);
+    setShowConfetti(false);
   }, []);
+
+  const handleShare = useCallback(async () => {
+    const totalScore = answers.reduce((sum, a) => sum + a, 0);
+    const grade = getGrade(totalScore);
+    const percentage = Math.round((totalScore / 21) * 100);
+
+    const lines = [
+      `Diagnostic Maturité Recrutement - Rocket4RPO`,
+      ``,
+      `Score : ${totalScore}/21 (${percentage}%)`,
+      `Niveau : ${grade.label}`,
+      ``,
+      `Détail par critère :`,
+      ...questions.map(
+        (q, i) => `  ${q.label} : ${answers[i] ?? 0}/3`,
+      ),
+      ``,
+      `Faites le test : ${typeof window !== "undefined" ? window.location.href : ""}`,
+    ];
+
+    const text = lines.join("\n");
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setToastMessage("Résultats copiés !");
+      setToastVisible(true);
+      setTimeout(() => setToastVisible(false), 2500);
+    } catch {
+      // Fallback: select text
+      setToastMessage("Impossible de copier");
+      setToastVisible(true);
+      setTimeout(() => setToastVisible(false), 2500);
+    }
+  }, [answers]);
 
   const totalScore = answers.reduce((sum, a) => sum + a, 0);
   const grade = getGrade(totalScore);
@@ -440,6 +613,12 @@ export default function AssessmentClient() {
 
   return (
     <main className="min-h-screen bg-background">
+      {/* Confetti overlay */}
+      {showConfetti && <Confetti />}
+
+      {/* Toast */}
+      <Toast message={toastMessage} visible={toastVisible} />
+
       <AnimatePresence mode="wait" custom={direction}>
         {/* ================================================================ */}
         {/*  INTRO PHASE                                                     */}
@@ -533,8 +712,8 @@ export default function AssessmentClient() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                     className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto"
                   >
-                    Évaluez la maturité de votre Talent Acquisition sur 15 critères
-                    clés et découvrez vos axes d'amélioration prioritaires avec
+                    Évaluez la maturité de votre Talent Acquisition sur 7 dimensions
+                    clés et découvrez vos axes d&apos;amélioration prioritaires avec
                     des recommandations personnalisées.
                   </motion.p>
 
@@ -546,8 +725,8 @@ export default function AssessmentClient() {
                     className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
                   >
                     {[
-                      { icon: ClipboardCheck, value: "15", label: "questions", sub: "ciblées" },
-                      { icon: Clock, value: "2", label: "minutes", sub: "chrono" },
+                      { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "évaluées" },
+                      { icon: Clock, value: "1", label: "minute", sub: "chrono" },
                       { icon: Zap, value: "", label: "Résultat", sub: "immédiat" },
                     ].map((stat, i) => (
                       <motion.div
@@ -589,7 +768,7 @@ export default function AssessmentClient() {
                       <ArrowRight className="w-5 h-5" />
                     </Button>
                     <p className="mt-5 text-sm text-white/30">
-                      Gratuit, sans inscription, résultat en 2 minutes
+                      Gratuit, sans inscription, résultat en 1 minute
                     </p>
                   </motion.div>
                 </div>
@@ -758,6 +937,11 @@ export default function AssessmentClient() {
                           `}
                         >
                           <div className="flex items-start gap-4 px-5 py-4 md:px-6 md:py-5">
+                            {/* Emoji indicator */}
+                            <span className="flex-shrink-0 text-xl md:text-2xl mt-0.5 select-none">
+                              {questions[current].optionEmojis[i]}
+                            </span>
+
                             {/* Letter badge */}
                             <span
                               className={`
@@ -825,6 +1009,25 @@ export default function AssessmentClient() {
                       );
                     })}
                   </div>
+
+                  {/* Back button */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="mt-6 flex justify-start"
+                  >
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleBack}
+                      disabled={current === 0}
+                      className="gap-2 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      Précédent
+                    </Button>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -1190,15 +1393,18 @@ export default function AssessmentClient() {
                         })}
                       </div>
 
-                      {/* Sharing conceptual area */}
+                      {/* Share button — functional clipboard copy */}
                       <div className="pt-5 border-t border-white/[0.06]">
                         <p className="text-xs text-white/20 mb-3">
                           Diagnostic Rocket4RPO
                         </p>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.06] border border-white/[0.08] text-xs text-white/40">
-                          <TrendingUp className="w-3.5 h-3.5" />
+                        <button
+                          onClick={handleShare}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all cursor-pointer"
+                        >
+                          <Copy className="w-3.5 h-3.5" />
                           Partager mes résultats
-                        </div>
+                        </button>
                       </div>
                     </div>
                   </div>
