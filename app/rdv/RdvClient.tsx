@@ -27,7 +27,7 @@ export default function RdvClient() {
               </h1>
 
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                Réservez 30 minutes avec un expert. On analyse vos besoins ensemble et on vous recommande le TA Specialist parfait parmi nos 307 profils évalués.
+                Réservez 30 minutes avec un expert. On analyse vos besoins ensemble et on vous recommande le TA Specialist parfait parmi plus de 4 100 profils évalués.
               </p>
 
               <div className="mt-8 space-y-4">
