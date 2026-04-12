@@ -232,20 +232,16 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
           Scoring — <span className="font-normal text-gray-400">Cliquer une note 1→5 · recliquer pour effacer</span>
         </h3>
-        <div className="border border-gray-200 rounded-xl overflow-hidden mb-4">
-          <div className="grid grid-cols-[1fr_180px] bg-gray-50 px-4 py-2 border-b border-gray-200">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">Critère</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400">Note (1 → 5)</span>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
           {CRITERIA.map((crit, i) => {
             const currentScore = scores[`c${i}`] || 0;
             return (
-              <div key={i} className="grid grid-cols-[1fr_180px] items-center px-4 py-2.5 border-b border-gray-200 last:border-b-0 bg-white even:bg-gray-50/30">
-                <div>
-                  <div className="text-[13px] font-medium">{crit.name}</div>
-                  <div className="text-[11px] text-gray-400 mt-0.5">{crit.desc}</div>
+              <div key={i} className="flex items-center gap-3 px-3 py-2.5 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors">
+                <div className="flex-1 min-w-0">
+                  <div className="text-[12px] font-medium truncate">{crit.name}</div>
+                  <div className="text-[10px] text-gray-400 truncate">{crit.desc}</div>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-0.5 flex-shrink-0">
                   {[1, 2, 3, 4, 5].map((v) => {
                     const isActive = currentScore >= v;
                     const bg = isActive ? SCORE_COLORS[v - 1] : "white";
@@ -254,7 +250,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                       <button
                         key={v}
                         onClick={() => setScore(i, v)}
-                        className="w-[30px] h-[30px] rounded-md border text-[12px] font-mono flex items-center justify-center transition-all hover:border-rocket-teal hover:text-rocket-teal"
+                        className="w-[26px] h-[26px] rounded-md border text-[11px] font-mono flex items-center justify-center transition-all hover:border-rocket-teal hover:text-rocket-teal"
                         style={{
                           background: bg,
                           color,
@@ -293,7 +289,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         </div>
 
         {/* Verdict */}
-        {sc.filled >= 3 && (
+        {sc.filled >= 5 && (
           <div className={`rounded-lg p-3 flex items-center gap-3 mb-4 ${
             verdict.level === "top" ? "bg-emerald-50 border border-emerald-300" :
             verdict.level === "mid" ? "bg-amber-50 border border-amber-300" :

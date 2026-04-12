@@ -20,9 +20,9 @@ export default async function ClassementPage() {
         <span className="text-[12px] text-gray-400">{sorted.length} candidat{sorted.length > 1 ? "s" : ""} notés</span>
       </div>
 
-      <div className="p-7 max-w-[980px]">
+      <div className="p-7">
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse bg-white rounded-xl overflow-hidden border border-gray-200 min-w-[700px]">
+          <table className="w-full border-collapse bg-white rounded-xl overflow-hidden border border-gray-200 min-w-[900px]">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200">
                 <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 px-3.5 py-2.5 text-left w-10">#</th>
