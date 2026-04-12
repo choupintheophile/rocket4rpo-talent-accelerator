@@ -36,14 +36,12 @@ export const Navbar = () => {
 
         {/* Desktop nav — liens principaux */}
         <div className="hidden lg:flex items-center gap-1">
-          <a
-            href={HUBSPOT}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/rdv"
             className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             Nos talents
-          </a>
+          </Link>
           {mainLinks.map((l) => (
             <Link
               key={l.href}
@@ -90,15 +88,13 @@ export const Navbar = () => {
           >
             <div className="container-wide py-4 space-y-1">
               <div className="px-3 pb-3">
-                <a
-                  href={HUBSPOT}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/rdv"
                   onClick={() => setMobileOpen(false)}
                   className="block w-full text-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-primary text-primary-foreground"
                 >
                   Nos talents
-                </a>
+                </Link>
               </div>
               <div className="border-t border-border my-2" />
               {mainLinks.map((l) => (
