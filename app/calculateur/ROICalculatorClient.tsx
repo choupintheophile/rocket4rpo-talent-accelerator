@@ -255,7 +255,7 @@ const COMPARISON_ROWS: {
 }[] = [
   {
     critere: "Coût moyen par recrutement",
-    rpo: "2 200 € (forfait)",
+    rpo: "3 000 € (forfait)",
     cabinet: "15-25% du salaire",
     interne: "8 000 - 12 000 €",
   },
