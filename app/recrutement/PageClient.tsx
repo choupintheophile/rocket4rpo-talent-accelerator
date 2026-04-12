@@ -25,8 +25,7 @@ import {
   Handshake,
 } from "lucide-react";
 
-const HUBSPOT_LINK =
-  "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT_LINK = "/rdv";
 
 /* ── Animation variants ── */
 const fadeUp = {
@@ -90,7 +89,7 @@ const BENEFITS = [
     title: "Communauté de TA seniors",
     description:
       "Échanges, entraide, événements. Rejoignez un réseau de recruteurs expérimentés qui partagent vos ambitions.",
-    highlight: "307 membres",
+    highlight: "300+ membres",
   },
   {
     icon: Shield,
@@ -296,7 +295,7 @@ export default function RecrutementPageClient() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               {[
-                { value: "307", label: "TA dans le réseau" },
+                { value: "300+", label: "TA dans le réseau" },
                 { value: "20+", label: "missions actives" },
                 { value: "350-600€", label: "TJM / jour" },
               ].map((stat, i) => (
@@ -328,7 +327,7 @@ export default function RecrutementPageClient() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
               <div className="absolute bottom-5 left-5 right-5">
                 <p className="text-white text-sm font-medium">L'{"é"}quipe Rocket4RPO</p>
-                <p className="text-white/60 text-xs mt-0.5">307 TA Specialists dans le r{"é"}seau</p>
+                <p className="text-white/60 text-xs mt-0.5">300+ TA Specialists dans le r{"é"}seau</p>
               </div>
             </div>
           </motion.div>

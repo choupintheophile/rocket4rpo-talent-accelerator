@@ -76,9 +76,7 @@ export const ExitIntentPopup = () => {
                 Faire le diagnostic (2 min)
               </Link>
               <a
-                href="https://meetings.hubspot.com/theophile-choupin/rpo"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/rdv"
                 onClick={() => setShow(false)}
                 className="flex-1 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold rounded-lg border border-border hover:bg-secondary"
               >

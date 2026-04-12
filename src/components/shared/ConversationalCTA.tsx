@@ -258,9 +258,7 @@ export function ConversationalCTA() {
                     )}
 
                     <a
-                      href="https://meetings.hubspot.com/theophile-choupin/rpo"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="/rdv"
                       className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
                     >
                       Réserver mon diagnostic gratuit

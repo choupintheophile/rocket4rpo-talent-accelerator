@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Mail, ArrowRight, Linkedin } from "lucide-react";
 
-const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT = "/rdv";
 
 export const Footer = () => (
   <footer className="bg-foreground text-background">

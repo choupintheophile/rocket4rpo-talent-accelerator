@@ -22,7 +22,7 @@ import {
   Repeat,
 } from "lucide-react";
 
-const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT = "/rdv";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */

@@ -41,9 +41,7 @@ export const StickyCTA = () => {
             className="bg-background/95 backdrop-blur-lg border-t border-border px-4 py-2 flex items-center gap-2 h-14"
           >
             <a
-              href="https://meetings.hubspot.com/theophile-choupin/rpo"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/rdv"
               className="flex-1 inline-flex items-center justify-center h-10 px-4 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               Diagnostic gratuit

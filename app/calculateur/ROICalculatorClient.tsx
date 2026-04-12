@@ -239,7 +239,7 @@ const fadeUp = {
 
 /* ── constants ──────────────────────────────────────────── */
 
-const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT = "/rdv";
 
 const SOCIAL_PROOF = [
   { value: "200+", label: "recrutements réalisés" },

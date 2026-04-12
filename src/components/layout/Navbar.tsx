@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT = "/rdv";
 
 const mainLinks = [
   { href: "/offre", label: "Notre offre" },

@@ -41,7 +41,7 @@ const steps = [
   { label: "Résultats", icon: BarChart3 },
 ];
 
-const HUBSPOT_LINK = "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT_LINK = "/rdv";
 
 /* ------------------------------------------------------------------ */
 /*  Animated counter                                                   */

@@ -1243,9 +1243,7 @@ export default function AssessmentClient() {
                     className="gap-2 px-10 py-7 text-base font-semibold rounded-2xl shadow-xl shadow-primary/20 w-full sm:w-auto bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
                   >
                     <a
-                      href="https://meetings.hubspot.com/theophile-choupin/rpo"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="/rdv"
                     >
                       Recevoir votre rapport détaillé
                       <ArrowRight className="w-5 h-5" />
@@ -1260,9 +1258,7 @@ export default function AssessmentClient() {
                     className="gap-2 px-10 py-6 text-base rounded-2xl w-full sm:w-auto"
                   >
                     <a
-                      href="https://meetings.hubspot.com/theophile-choupin/rpo"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="/rdv"
                     >
                       <MessageSquare className="w-4 h-4" />
                       Parler à un expert

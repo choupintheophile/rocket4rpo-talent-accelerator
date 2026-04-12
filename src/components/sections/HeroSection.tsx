@@ -338,9 +338,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
               custom={4}
             >
               <a
-                href="https://meetings.hubspot.com/theophile-choupin/rpo"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/rdv"
                 className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl bg-white text-[hsl(220,20%,10%)] hover:bg-white/90 shadow-lg shadow-white/10 hover:shadow-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 Réserver un diagnostic gratuit

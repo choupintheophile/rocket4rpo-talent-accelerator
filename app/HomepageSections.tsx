@@ -29,7 +29,7 @@ import {
   UserCheck,
 } from "lucide-react";
 
-const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT = "/rdv";
 
 /* ── Animated counter with eased counting ── */
 function Counter({ target, suffix = "", prefix = "" }: { target: number; suffix?: string; prefix?: string }) {
@@ -420,7 +420,7 @@ export default function HomepageSections() {
             {[
               {
                 icon: UserCheck,
-                number: "307",
+                number: "300+",
                 title: "TA évalués sur 7 critères",
                 text: "Compétences techniques, soft skills, spécialisation sectorielle, culture fit. Chaque TA est audité en profondeur.",
                 gradient: "from-blue-500/10 to-blue-600/5",

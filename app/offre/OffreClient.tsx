@@ -30,7 +30,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const HUBSPOT = "https://meetings.hubspot.com/theophile-choupin/rpo";
+const HUBSPOT = "/rdv";
 
 const faqs = [
   {
@@ -56,7 +56,7 @@ const faqs = [
   {
     question: "Comment sélectionnez-vous vos TA Specialists ?",
     answer:
-      "Nous maintenons un vivier de plus de 307 Talent Acquisition Specialists freelances, évalués sur 7 critères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO). Seuls les profils notés 80%+ intègrent notre vivier prioritaire — c'est le top 1% du marché français.",
+      "Nous maintenons un vivier de plus de 300+ Talent Acquisition Specialists freelances, évalués sur 7 critères (sourcing, outils, autonomie, KPIs, qualification, posture conseil, expérience RPO). Seuls les profils notés 80%+ intègrent notre vivier prioritaire — c'est le top 1% du marché français.",
   },
   {
     question: "Et si le recruteur ne convient pas ?",
@@ -131,7 +131,7 @@ export default function OffreClient() {
               Chaque jour sans recruteur performant, vous perdez des candidats,
               du temps et de l{"'"}argent. Nous mobilisons en 1 semaine un Talent
               Acquisition Specialist du top 1% français — sélectionné parmi
-              307 experts évalués sur 7 critères — pour recruter à votre place.
+              300+ experts évalués sur 7 critères — pour recruter à votre place.
               RPO, CDD ou CDI : un seul partenaire, zéro risque.
             </p>
 
@@ -305,7 +305,7 @@ export default function OffreClient() {
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {[
-                  { value: "307", label: "TA dans notre vivier" },
+                  { value: "300+", label: "TA dans notre vivier" },
                   { value: "7", label: "critères d'évaluation" },
                   { value: "80%+", label: "score minimum requis" },
                   { value: "1 sem.", label: "délai de mobilisation" },
@@ -915,7 +915,7 @@ export default function OffreClient() {
               },
               {
                 icon: Building2,
-                title: "Un vivier de 307 experts derrière chaque mission",
+                title: "Un vivier de 300+ experts derrière chaque mission",
                 desc: "Vous ne dépendez pas d'un seul recruteur. Derrière chaque mission, c'est toute la force de notre vivier. Le bon profil, immédiatement.",
               },
               {
