@@ -367,9 +367,9 @@ export default function OutilsClient() {
       </section>
 
       {/* ============================================================ */}
-      {/*  TOOL CARDS — spectacular, dark bg                           */}
+      {/*  TOOL CARDS — directly after hero, no gap                    */}
       {/* ============================================================ */}
-      <section className="py-14 md:py-20 lg:py-24 bg-gradient-to-b from-rocket-dark via-[#0a0f18] to-[#0d1117]">
+      <section className="py-10 md:py-14 bg-gradient-to-b from-rocket-dark via-[#0a0f18] to-[#0d1117]">
         <div className="container-wide">
           <motion.div
             ref={sectionRef}
