@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
+import { InternalLinks } from "@/components/shared/InternalLinks";
 import {
   ArrowRight,
   Check,
@@ -561,6 +562,9 @@ export default function RpoVsRecrutementInternePage() {
 
       {/* ══ FAQ ══ */}
       <FAQSection faqs={faqs} title="Questions fréquentes : RPO vs Recrutement interne" />
+
+      {/* ══ LIENS INTERNES ══ */}
+      <InternalLinks currentPath="/rpo-vs-recrutement-interne" paths={["/calculateur", "/assessment", "/rpo-vs-cabinet", "/rpo-vs-interim"]} title="Aller plus loin" />
 
       {/* ══ FINAL CTA ══ */}
       <CTASection />

@@ -29,7 +29,7 @@ export const Footer = () => (
 
     {/* Main grid */}
     <div className="container-wide pb-16">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 lg:gap-16">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-12">
         {/* Brand */}
         <div className="col-span-2 md:col-span-3 lg:col-span-1">
           <Link href="/" className="flex items-center">
@@ -50,30 +50,36 @@ export const Footer = () => (
           <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Découvrir</h4>
           <ul className="space-y-3 text-sm text-background/70">
             <li><Link href="/offre" className="hover:text-primary transition-colors">Notre offre RPO</Link></li>
-            <li><a href={HUBSPOT} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Parler à un expert</a></li>
+            <li><Link href="/rdv" className="hover:text-primary transition-colors">Parler à un expert</Link></li>
+            <li><Link href="/contact" className="hover:text-primary transition-colors">Nous contacter</Link></li>
             <li><Link href="/recrutement" className="hover:text-primary transition-colors">Devenir freelance TA</Link></li>
             <li><Link href="/rocket4gtm" className="hover:text-primary transition-colors">Le groupe Rocket4GTM</Link></li>
           </ul>
         </div>
 
-        {/* Outils & Ressources */}
+        {/* Outils gratuits */}
         <div>
-          <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Outils & Ressources</h4>
+          <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Outils gratuits</h4>
           <ul className="space-y-3 text-sm text-background/70">
-            <li><Link href="/outils" className="hover:text-primary transition-colors">Nos simulateurs</Link></li>
+            <li><Link href="/calculateur" className="hover:text-primary transition-colors">Calculateur ROI RPO</Link></li>
+            <li><Link href="/assessment" className="hover:text-primary transition-colors">Diagnostic recrutement</Link></li>
+            <li><Link href="/demo" className="hover:text-primary transition-colors">Démo interactive</Link></li>
+            <li><Link href="/outils" className="hover:text-primary transition-colors">Tous les simulateurs</Link></li>
             <li><Link href="/ressources" className="hover:text-primary transition-colors">Guides & templates</Link></li>
             <li><Link href="/blog" className="hover:text-primary transition-colors">Blog & conseils</Link></li>
+          </ul>
+        </div>
+
+        {/* Comparer */}
+        <div>
+          <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Comparer</h4>
+          <ul className="space-y-3 text-sm text-background/70">
             <li><Link href="/comparateur" className="hover:text-primary transition-colors">RPO vs Cabinet vs Interne</Link></li>
             <li><Link href="/rpo-vs-cabinet" className="hover:text-primary transition-colors">RPO vs Cabinet</Link></li>
             <li><Link href="/rpo-vs-interim" className="hover:text-primary transition-colors">RPO vs Intérim</Link></li>
             <li><Link href="/rpo-vs-recrutement-interne" className="hover:text-primary transition-colors">RPO vs Recrutement interne</Link></li>
-            <li><Link href="/demo" className="hover:text-primary transition-colors">Démo</Link></li>
           </ul>
-        </div>
-
-        {/* Légal */}
-        <div>
-          <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Légal</h4>
+          <h4 className="font-display text-sm font-semibold mb-4 mt-8 text-background/90">Légal</h4>
           <ul className="space-y-3 text-sm text-background/70">
             <li><Link href="/mentions-legales" className="hover:text-primary transition-colors">Mentions légales</Link></li>
             <li><Link href="/politique-confidentialite" className="hover:text-primary transition-colors">Confidentialité</Link></li>

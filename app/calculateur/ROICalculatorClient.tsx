@@ -31,6 +31,7 @@ import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
+import { InternalLinks } from "@/components/shared/InternalLinks";
 
 /* ── helpers ────────────────────────────────────────────── */
 
@@ -1515,6 +1516,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
           8. FAQ + CTA
          ════════════════════════════════════════════════════════ */}
       <FAQSection faqs={faqs} />
+      <InternalLinks currentPath="/calculateur" paths={["/assessment", "/demo", "/rpo-vs-cabinet", "/offre"]} title="Outils et comparatifs" />
       <CTASection />
     </>
   );
