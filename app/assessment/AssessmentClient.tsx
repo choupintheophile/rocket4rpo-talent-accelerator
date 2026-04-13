@@ -1026,10 +1026,10 @@ export default function AssessmentClient() {
         {phase === "intro" && (
           <motion.div
             key="intro"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark flex items-center">
               {/* Animated background orbs */}
