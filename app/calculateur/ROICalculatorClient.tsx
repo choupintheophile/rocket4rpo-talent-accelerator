@@ -537,82 +537,37 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
           }}
         />
 
-        <div className="relative container-wide py-8 md:py-12 lg:py-16">
-          <motion.div
-            initial="hidden"
-            animate="show"
-            variants={stagger.container}
-            className="max-w-4xl mx-auto text-center"
-          >
+        <div className="relative container-wide py-6 md:py-8 lg:py-10">
+          <div className="max-w-4xl mx-auto text-center">
             {/* badge */}
-            <motion.div variants={stagger.item}>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
-                <Zap className="w-3.5 h-3.5" /> Calculateur gratuit
-              </span>
-            </motion.div>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-xs text-rocket-teal-glow font-medium">
+              <Zap className="w-3 h-3" /> Calculateur gratuit
+            </span>
 
             {/* title */}
-            <motion.h1
-              variants={stagger.item}
-              className="mt-6 text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white"
-            >
+            <h1 className="mt-3 text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.12] text-white">
               Combien pourriez-vous{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
                 économiser
               </span>{" "}
               avec le RPO ?
-            </motion.h1>
+            </h1>
 
             {/* subtitle */}
-            <motion.p
-              variants={stagger.item}
-              className="mt-6 text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed"
-            >
-              Comparez le coût de votre recrutement actuel avec une solution RPO
-              externalisée. Ajustez les curseurs et visualisez instantanément
-              votre retour sur investissement.
-            </motion.p>
+            <p className="mt-3 text-sm md:text-base text-white/70 max-w-xl mx-auto leading-relaxed">
+              Ajustez les curseurs et visualisez instantanément votre retour sur investissement.
+            </p>
 
-            {/* hero savings counter */}
-            <motion.div
-              variants={stagger.item}
-              className="mt-10 flex flex-col items-center"
-            >
-              <span className="text-sm font-medium text-white/50 uppercase tracking-widest mb-2">
-                Économie estimée
-              </span>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={calc.economie}
-                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, y: -10 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className={`text-5xl md:text-6xl lg:text-7xl font-bold ${
-                    calc.economie > 0 ? "text-rocket-teal-glow" : "text-white/40"
-                  }`}
-                >
-                  {calc.economie > 0 ? "+" : ""}
-                  {formatCurrency(calc.economie)}
-                </motion.div>
-              </AnimatePresence>
-            </motion.div>
-
-            {/* social proof */}
-            <motion.div
-              variants={stagger.item}
-              className="mt-12 flex flex-wrap justify-center gap-8 md:gap-12"
-            >
+            {/* social proof — compact inline */}
+            <div className="mt-4 flex flex-wrap justify-center gap-6 text-white/60 text-xs">
               {SOCIAL_PROOF.map((item) => (
-                <div key={item.label} className="text-center">
-                  <p className="text-2xl md:text-3xl font-bold text-white">
-                    {item.value}
-                  </p>
-                  <p className="text-sm text-white/50 mt-1">{item.label}</p>
-                </div>
+                <span key={item.label} className="flex items-center gap-1.5">
+                  <span className="font-bold text-white text-sm">{item.value}</span>
+                  {item.label}
+                </span>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

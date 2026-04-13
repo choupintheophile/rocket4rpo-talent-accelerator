@@ -1078,54 +1078,32 @@ export default function AssessmentClient() {
                 />
               ))}
 
-              <div className="relative container-wide py-8 md:py-12 lg:py-16">
+              <div className="relative container-wide py-6 md:py-8 lg:py-10">
                 <div className="max-w-3xl mx-auto text-center">
                   {/* Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/15 border border-primary/20 text-sm text-primary font-medium">
-                      <Target className="w-3.5 h-3.5" /> Diagnostic gratuit
-                    </span>
-                  </motion.div>
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 border border-primary/20 text-xs text-primary font-medium">
+                    <Target className="w-3 h-3" /> Diagnostic gratuit
+                  </span>
 
                   {/* Title */}
-                  <motion.h1
-                    initial={{ opacity: 0, y: 25 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.15 }}
-                    className="mt-8 text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white"
-                  >
+                  <h1 className="mt-3 text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.12] text-white">
                     Votre recrutement est-il{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rocket-teal-glow to-emerald-400">
                       à la hauteur
                     </span>{" "}
                     ?
-                  </motion.h1>
+                  </h1>
 
                   {/* Subtitle */}
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl mx-auto"
-                  >
+                  <p className="mt-3 text-sm md:text-base text-white/70 leading-relaxed max-w-xl mx-auto">
                     Évaluez la maturité de votre Talent Acquisition sur 7 dimensions
-                    clés et découvrez vos axes d&apos;amélioration prioritaires avec
-                    des recommandations personnalisées.
-                  </motion.p>
+                    clés. Résultat immédiat avec recommandations personnalisées.
+                  </p>
 
-                  {/* Animated gauge preview */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.35 }}
-                    className="mt-10"
-                  >
+                  {/* Animated gauge preview — compact */}
+                  <div className="mt-4">
                     <GaugePreview />
-                  </motion.div>
+                  </div>
 
                   {/* Trust indicators */}
                   <motion.div

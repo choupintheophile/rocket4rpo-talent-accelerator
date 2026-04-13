@@ -1792,15 +1792,14 @@ export default function DemoClient() {
               Demo interactive
             </motion.span>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-5 leading-tight">
-              Vivez le process RPO
-              <br />
-              <span className="text-gradient">comme si vous y etiez</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 leading-tight">
+              Vivez le process RPO{" "}
+              <span className="text-gradient">comme si vous y étiez</span>
             </h1>
 
-            <p className="text-muted-foreground max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-8">
-              Decouvrez comment nous trouvons vos meilleurs candidats en 1 semaine,
-              du brief initial a la shortlist qualifiee.
+            <p className="text-muted-foreground max-w-xl mx-auto text-sm md:text-base leading-relaxed mb-5">
+              Découvrez comment nous trouvons vos meilleurs candidats en 1 semaine,
+              du brief initial à la shortlist qualifiée.
             </p>
 
             {/* Trust indicators */}
@@ -1808,19 +1807,19 @@ export default function DemoClient() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mb-8"
+              className="flex flex-wrap items-center justify-center gap-3 mb-5"
             >
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
-                <Users className="w-4 h-4 text-primary" />
-                <span className="text-sm font-semibold">200+ recrutements</span>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
+                <Users className="w-3 h-3 text-primary" />
+                <span className="text-xs font-semibold">200+ recrutements</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
-                <Award className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm font-semibold">90%+ score qualite</span>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
+                <Award className="w-3 h-3 text-emerald-400" />
+                <span className="text-xs font-semibold">90%+ score qualité</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
-                <Shield className="w-4 h-4 text-amber-400" />
-                <span className="text-sm font-semibold">Garantie remplacement</span>
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
+                <Shield className="w-3 h-3 text-amber-400" />
+                <span className="text-xs font-semibold">Garantie remplacement</span>
               </div>
             </motion.div>
 
