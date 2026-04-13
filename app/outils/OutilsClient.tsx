@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
@@ -317,34 +318,14 @@ export default function OutilsClient() {
       <Breadcrumbs items={[{ label: "Nos simulateurs" }]} />
 
       {/* ============================================================ */}
-      {/*  HERO — compact, animated background                         */}
+      {/*  HERO — split layout with photo                              */}
       {/* ============================================================ */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
-
-        {/* Animated gradient orbs */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-1/4 -left-20 w-[500px] h-[500px] rounded-full bg-rocket-teal/8 blur-[140px]"
-            animate={{ x: [0, 40, 0], y: [0, -20, 0], scale: [1, 1.15, 1] }}
-            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-violet-500/6 blur-[120px]"
-            animate={{ x: [0, -30, 0], y: [0, 25, 0], scale: [1, 1.1, 1] }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-          />
-          <motion.div
-            className="absolute top-0 right-1/3 w-[300px] h-[300px] rounded-full bg-blue-500/5 blur-[100px]"
-            animate={{ x: [0, 25, -15, 0], y: [0, 15, -10, 0] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 6 }}
-          />
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
         </div>
-
-        {/* Floating particles */}
-        <FloatingParticles />
-
-        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -354,32 +335,49 @@ export default function OutilsClient() {
           }}
         />
 
-        <div className="relative container-wide py-6 md:py-8 lg:py-10">
-          <motion.div
-            ref={heroRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80 mb-5">
-              <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
-              100% gratuit &middot; Sans inscription &middot; Résultats instantanés
+        <div className="relative container-wide py-12 md:py-16 lg:py-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Text side */}
+            <motion.div
+              ref={heroRef}
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="lg:w-[55%]"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
+                <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
+                100% gratuit &middot; Sans inscription &middot; Résultats instantanés
+              </div>
+
+              <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
+                Prenez les bonnes{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  décisions
+                </span>{" "}
+                en 2 minutes
+              </h1>
+
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                3 simulateurs conçus pour les décideurs. Calculez, diagnostiquez, visualisez — puis
+                décidez en connaissance de cause.
+              </p>
+            </motion.div>
+
+            {/* Photo side */}
+            <div className="hidden lg:block lg:w-[45%]">
+              <div className="relative">
+                <Image
+                  src="/photos/bureau-smile.jpg"
+                  alt="Équipe souriante au bureau"
+                  width={600}
+                  height={420}
+                  className="rounded-2xl shadow-2xl object-cover w-full"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              </div>
             </div>
-
-            <h1 className="text-3xl md:text-4xl font-bold leading-[1.12] text-white">
-              Prenez les bonnes{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                décisions
-              </span>{" "}
-              en 2 minutes
-            </h1>
-
-            <p className="mt-4 text-base text-white/50 leading-relaxed max-w-xl mx-auto">
-              3 simulateurs conçus pour les décideurs. Calculez, diagnostiquez, visualisez — puis
-              décidez en connaissance de cause.
-            </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 

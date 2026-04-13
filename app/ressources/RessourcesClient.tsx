@@ -541,64 +541,81 @@ export default function RessourcesClient() {
     <>
       <Breadcrumbs items={[{ label: "Ressources" }]} />
 
-      {/* ── HERO ── */}
+      {/* ── HERO (split layout with photo) ── */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/3 left-[15%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[140px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-[20%] w-[300px] h-[300px] rounded-full bg-blue-500/6 blur-[120px] animate-pulse" style={{ animationDelay: "1s" }} />
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
         </div>
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
 
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <motion.div
-            ref={heroRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80 mb-6">
-              <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
-              100% gratuit · Sans inscription · Téléchargement immédiat
-            </div>
-
-            <h1 className="text-3xl md:text-4xl font-bold leading-[1.08] text-white">
-              Les outils des{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                meilleurs recruteurs
-              </span>
-              {" "}sont maintenant les v{"ô"}tres
-            </h1>
-
-            <p className="mt-3 text-base md:text-lg text-white/55 leading-relaxed max-w-2xl">
-              Guides, templates et {"é"}tudes con{"ç"}us par des experts avec 200+ recrutements {"à"} leur actif. Les m{"ê"}mes outils que nos TA Specialists utilisent au quotidien.
-            </p>
-          </motion.div>
-
-          {/* Trust stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-3 flex flex-wrap gap-8"
-          >
-            {[
-              { icon: BookOpen, value: "6", label: "ressources disponibles" },
-              { icon: Award, value: "200+", label: "recrutements d'expérience" },
-              { icon: Download, value: "Gratuit", label: "sans inscription" },
-            ].map((stat) => (
-              <div key={stat.label} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                  <stat.icon className="w-5 h-5 text-rocket-teal-glow" />
-                </div>
-                <div>
-                  <div className="text-white font-semibold text-sm">{stat.value}</div>
-                  <div className="text-white/40 text-xs">{stat.label}</div>
-                </div>
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Text side */}
+            <motion.div
+              ref={heroRef}
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="lg:w-[55%]"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
+                <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
+                100% gratuit · Sans inscription · Téléchargement immédiat
               </div>
-            ))}
-          </motion.div>
+
+              <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
+                Les outils des{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  meilleurs recruteurs
+                </span>
+                {" "}sont maintenant les vôtres
+              </h1>
+
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                Guides, templates et études conçus par des experts avec 200+ recrutements à leur actif. Les mêmes outils que nos TA Specialists utilisent au quotidien.
+              </p>
+
+              {/* Trust stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-6 flex flex-wrap gap-8"
+              >
+                {[
+                  { icon: BookOpen, value: "6", label: "ressources disponibles" },
+                  { icon: Award, value: "200+", label: "recrutements d'expérience" },
+                  { icon: Download, value: "Gratuit", label: "sans inscription" },
+                ].map((stat) => (
+                  <div key={stat.label} className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+                      <stat.icon className="w-5 h-5 text-rocket-teal-glow" />
+                    </div>
+                    <div>
+                      <div className="text-white font-semibold text-sm">{stat.value}</div>
+                      <div className="text-white/40 text-xs">{stat.label}</div>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Photo side */}
+            <div className="hidden lg:block lg:w-[45%]">
+              <div className="relative">
+                <Image
+                  src="/photos/header-rocket4sales.webp"
+                  alt="Nos experts en action"
+                  width={600}
+                  height={420}
+                  className="rounded-2xl shadow-2xl object-cover w-full"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -690,21 +707,6 @@ export default function RessourcesClient() {
             </div>
 
             <div className="space-y-5">
-              {/* Expert photo */}
-              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl">
-                <Image
-                  src="/photos/header-rocket4sales.webp"
-                  alt="Nos experts en action"
-                  width={800}
-                  height={400}
-                  className="w-full h-[200px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <div className="absolute bottom-3 left-4 text-white/80 text-xs font-medium">
-                  Expertise et rigueur au quotidien
-                </div>
-              </div>
-
               <div className="space-y-4">
               {[
                 { icon: Eye, title: "Basé sur des données réelles", desc: "Chiffres issus de nos propres recrutements et benchmarks marché — pas de données génériques" },

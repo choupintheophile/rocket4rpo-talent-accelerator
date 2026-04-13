@@ -83,103 +83,93 @@ export default function OffreClient() {
     <>
       <Breadcrumbs items={[{ label: "Notre offre" }]} />
 
-      {/* ══ SECTION 1 — HERO (dark gradient) ══ */}
+      {/* ══ SECTION 1 — HERO (dark gradient, split layout) ══ */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/3 left-[10%] w-[500px] h-[500px] rounded-full bg-rocket-teal/8 blur-[150px]" />
-          <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] rounded-full bg-emerald-500/5 blur-[120px]" />
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
         </div>
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
+            backgroundSize: "60px 60px",
           }}
         />
 
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <motion.div
-            ref={heroRef}
-            initial={{ opacity: 0, y: 25 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="max-w-4xl"
-          >
-            {/* Badges */}
-            <div className="flex flex-wrap gap-3 mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
-                <Zap className="w-3.5 h-3.5" /> RPO
-              </span>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/20 text-sm text-blue-300 font-medium">
-                <Briefcase className="w-3.5 h-3.5" /> CDD / CDI
-              </span>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/20 text-sm text-amber-300 font-medium">
-                <Crown className="w-3.5 h-3.5" /> Top 1% des TA
-              </span>
-            </div>
-
-            <h1 className="text-3xl md:text-4xl font-bold leading-[1.08] text-white">
-              Arrêtez de perdre vos meilleurs candidats.{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                Recrutez avec le top 1% des TA de France.
-              </span>
-            </h1>
-
-            <p className="mt-3 text-base md:text-lg text-white/60 leading-relaxed max-w-3xl">
-              Chaque jour sans recruteur performant, vous perdez des candidats,
-              du temps et de l{"'"}argent. Nous mobilisons en 1 semaine un Talent
-              Acquisition Specialist du top 1% français — sélectionné parmi
-              300+ experts évalués sur 15 critères — pour recruter à votre place.
-              RPO, CDD ou CDI : un seul partenaire, zéro risque.
-            </p>
-
-            <div className="mt-3 flex flex-col sm:flex-row gap-3">
-              <a
-                href={HUBSPOT}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
-              >
-                Réserver un diagnostic gratuit{" "}
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="/calculateur"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/15 transition-all"
-              >
-                Calculer mes économies
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Trust bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {[
-              { value: "200+", label: "recrutements réalisés", icon: CheckCircle },
-              { value: "1 sem.", label: "pour démarrer", icon: Clock },
-              { value: "2-3 sem.", label: "time-to-hire moyen", icon: TrendingUp },
-              { value: "Top 1%", label: "des TA sélectionnés", icon: Crown },
-            ].map((stat) => (
-              <div key={stat.label} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                  <stat.icon className="w-5 h-5 text-rocket-teal-glow" />
-                </div>
-                <div>
-                  <div className="text-white font-bold text-lg">
-                    {stat.value}
-                  </div>
-                  <div className="text-white/40 text-xs">{stat.label}</div>
-                </div>
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Text side */}
+            <motion.div
+              ref={heroRef}
+              initial={{ opacity: 0, y: 25 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7 }}
+              className="lg:w-[55%]"
+            >
+              {/* Badges */}
+              <div className="flex flex-wrap gap-3 mb-6">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
+                  <Zap className="w-3.5 h-3.5" /> RPO
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/20 text-sm text-blue-300 font-medium">
+                  <Briefcase className="w-3.5 h-3.5" /> CDD / CDI
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/20 text-sm text-amber-300 font-medium">
+                  <Crown className="w-3.5 h-3.5" /> Top 1% des TA
+                </span>
               </div>
-            ))}
-          </motion.div>
+
+              <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
+                Arrêtez de perdre vos meilleurs candidats.{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  Recrutez avec le top 1% des TA de France.
+                </span>
+              </h1>
+
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                Chaque jour sans recruteur performant, vous perdez des candidats,
+                du temps et de l{"'"}argent. Nous mobilisons en 1 semaine un Talent
+                Acquisition Specialist du top 1% français — sélectionné parmi
+                300+ experts évalués sur 15 critères — pour recruter à votre place.
+                RPO, CDD ou CDI : un seul partenaire, zéro risque.
+              </p>
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <a
+                  href={HUBSPOT}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Réserver un diagnostic gratuit{" "}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="/calculateur"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/15 transition-all"
+                >
+                  Calculer mes économies
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Photo side */}
+            <div className="hidden lg:block lg:w-[45%]">
+              <div className="relative">
+                <Image
+                  src="/photos/reunion.webp"
+                  alt="Un TA Specialist Rocket4RPO intégré dans une équipe client"
+                  width={600}
+                  height={420}
+                  className="rounded-2xl shadow-2xl object-cover w-full"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -325,21 +315,8 @@ export default function OffreClient() {
               </div>
             </div>
 
-            {/* Visual: photo + scoring grid */}
+            {/* Visual: scoring grid */}
             <div className="space-y-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100">
-                <Image
-                  src="/photos/reunion.webp"
-                  alt="Un TA Specialist Rocket4RPO intégré dans une équipe client"
-                  width={800}
-                  height={450}
-                  className="w-full h-[220px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <div className="absolute bottom-4 left-5 text-white text-xs font-medium bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-lg">
-                  Intégration TA chez un client
-                </div>
-              </div>
               <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">

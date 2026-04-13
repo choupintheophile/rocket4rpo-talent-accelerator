@@ -58,27 +58,35 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
     <>
       <Breadcrumbs items={[{ label: "Nos conseils" }]} />
 
-      {/* Hero — dark, same style as other pages */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark text-white">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-rocket-teal/8 blur-[140px]" />
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+      {/* Hero — split layout with photo */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
         </div>
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Text side */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="lg:w-[55%]">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20 mb-6">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20">
                 <BookOpen className="w-3.5 h-3.5" /> Blog & conseils
               </span>
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.08]">
+              <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
                 Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">conseils</span>
               </h1>
-              <p className="mt-3 text-base md:text-lg text-white/55 max-w-xl leading-relaxed">
+              <p className="mt-4 text-base md:text-lg text-white/65 max-w-xl leading-relaxed">
                 {posts.length} articles pour recruter mieux, plus vite et moins cher. Par des experts avec 200+ recrutements.
               </p>
             </motion.div>
+            {/* Photo side */}
             <div className="hidden lg:block lg:w-[45%]">
-              <Image src="/photos/presenting-coworkers.webp" alt="Personne présentant à ses collègues" width={600} height={400} className="rounded-2xl shadow-2xl border border-white/10 object-cover" />
+              <div className="relative">
+                <Image src="/photos/presenting-coworkers.webp" alt="Personne présentant à ses collègues" width={600} height={420} className="rounded-2xl shadow-2xl object-cover w-full" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              </div>
             </div>
           </div>
         </div>
