@@ -537,7 +537,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
           }}
         />
 
-        <div className="relative container-wide py-12 md:py-20 lg:py-28">
+        <div className="relative container-wide py-8 md:py-12 lg:py-16">
           <motion.div
             initial="hidden"
             animate="show"
