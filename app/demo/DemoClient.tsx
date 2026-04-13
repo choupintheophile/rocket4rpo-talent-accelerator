@@ -35,7 +35,7 @@ interface Candidate {
   company: string;
   experience: string;
   score: number;
-  specialite: string;
+  spécialité: string;
   radarScores: [number, number, number, number]; // Sourcing, Qualification, Autonomie, Closing
 }
 
@@ -106,7 +106,7 @@ function generateSpecialites(jobTitle: string): string[] {
 function generateCandidates(jobTitle: string): Candidate[] {
   const rng = seededRandom(jobTitle.trim().toLowerCase());
   const count = 5 + Math.floor(rng() * 3); // 5-7 candidates
-  const specialites = generateSpecialites(jobTitle);
+  const spécialités = generateSpecialites(jobTitle);
   const usedNames = new Set<string>();
   const candidates: Candidate[] = [];
 
@@ -122,7 +122,7 @@ function generateCandidates(jobTitle: string): Candidate[] {
     const score = 96 - Math.floor(rng() * 18); // 78-96
     const ci = Math.floor(rng() * COMPANIES.length);
     const ei = Math.floor(rng() * EXPERIENCE_RANGE.length);
-    const si = Math.floor(rng() * specialites.length);
+    const si = Math.floor(rng() * spécialités.length);
 
     candidates.push({
       name,
@@ -130,7 +130,7 @@ function generateCandidates(jobTitle: string): Candidate[] {
       company: COMPANIES[ci],
       experience: EXPERIENCE_RANGE[ei],
       score,
-      specialite: specialites[si],
+      spécialité: spécialités[si],
       radarScores: [
         60 + Math.floor(rng() * 40),
         60 + Math.floor(rng() * 40),
@@ -153,7 +153,7 @@ const steps = [
   { label: "Brief & Scorecard", icon: FileText },
   { label: "Sourcing", icon: Search },
   { label: "Shortlist", icon: Users },
-  { label: "Resultats", icon: BarChart3 },
+  { label: "Résultats", icon: BarChart3 },
 ];
 
 const HUBSPOT_LINK = "/rdv";
@@ -695,7 +695,7 @@ function StepBrief({
   setCriteria: (v: Record<string, boolean>) => void;
 }) {
   const criteriaLabels: Record<string, string> = {
-    saas: "Experience SaaS",
+    saas: "Expérience SaaS",
     fullCycle: "Full-cycle",
     midMarket: "Mid-Market",
     hunter: "Profil hunter",
@@ -728,7 +728,7 @@ function StepBrief({
             <div>
               <h3 className="text-lg font-bold">Brief du poste</h3>
               <p className="text-xs text-muted-foreground">
-                Definissez le profil ideal en quelques clics
+                Définissez le profil idéal en quelques clics
               </p>
             </div>
           </div>
@@ -739,7 +739,7 @@ function StepBrief({
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold mb-2.5">
               <Zap className="w-3.5 h-3.5 text-primary" />
-              Intitule du poste
+              Intitulé du poste
             </label>
             <input
               type="text"
@@ -754,7 +754,7 @@ function StepBrief({
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold mb-3">
               <Target className="w-3.5 h-3.5 text-primary" />
-              Criteres cles
+              Critères clés
             </label>
             <div className="flex flex-wrap gap-2.5">
               {Object.entries(criteriaLabels).map(([key, label]) => {
@@ -815,7 +815,7 @@ function StepBrief({
                   </div>
                   <div>
                     <h3 className="text-sm font-bold flex items-center gap-2">
-                      Apercu Scorecard
+                      Aperçu Scorecard
                       <motion.span
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -825,7 +825,7 @@ function StepBrief({
                       </motion.span>
                     </h3>
                     <p className="text-xs text-muted-foreground">
-                      Votre grille d&apos;evaluation se construit automatiquement
+                      Votre grille d&apos;évaluation se construit automatiquement
                     </p>
                   </div>
                 </div>
@@ -897,10 +897,10 @@ const CHANNELS = [
 ];
 
 const FILTRAGE_STEPS = [
-  { count: "3 247", label: "profils identifies" },
+  { count: "3 247", label: "profils identifiés" },
   { count: "847", label: "filtre 15 critères" },
   { count: "127", label: "scoring IA" },
-  { count: "12", label: "profils qualifies" },
+  { count: "12", label: "profils qualifiés" },
 ];
 
 function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: Candidate[] }) {
@@ -1153,7 +1153,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold truncate">{c.name}</p>
                     <p className="text-xs text-muted-foreground truncate">
-                      {c.specialite} &middot; {c.company}
+                      {c.spécialité} &middot; {c.company}
                     </p>
                     <p className="text-[11px] text-muted-foreground/70">{c.experience}</p>
                   </div>
@@ -1272,7 +1272,7 @@ function StepShortlist({
           </motion.div>
           <div>
             <div className="flex items-center gap-2.5 mb-1">
-              <span className="text-lg font-bold text-primary">1 semaine ecoulee</span>
+              <span className="text-lg font-bold text-primary">1 semaine écoulée</span>
               <motion.span
                 animate={{ opacity: [1, 0.4, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -1291,7 +1291,7 @@ function StepShortlist({
       {/* Selection counter */}
       <div className="flex items-center justify-between px-1">
         <p className="text-xs font-semibold text-muted-foreground">
-          {selected.size}/{maxSelection} candidats selectionnes
+          {selected.size}/{maxSelection} candidats sélectionnés
         </p>
         <div className="flex gap-1">
           {Array.from({ length: maxSelection }).map((_, i) => (
@@ -1353,7 +1353,7 @@ function StepShortlist({
                       )}
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      {c.specialite} &middot; {c.company} &middot; {c.experience}
+                      {c.spécialité} &middot; {c.company} &middot; {c.experience}
                     </p>
                   </div>
                   <div className="flex flex-col items-end gap-1">
@@ -1418,7 +1418,7 @@ function StepShortlist({
             onClick={onNext}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
           >
-            Voir les resultats ({selected.size} selectionnes)
+            Voir les resultats ({selected.size} sélectionnés)
             <ArrowRight className="w-4 h-4" />
           </motion.button>
         )}
@@ -1480,7 +1480,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       bgColor: "bg-emerald-500/10",
     },
     {
-      label: "Economie vs cabinet",
+      label: "Économie vs cabinet",
       value: "-40%",
       unit: "en moyenne",
       icon: TrendingUp,
@@ -1645,7 +1645,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             className="mt-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-center"
           >
             <p className="text-sm font-semibold text-emerald-400">
-              Economisez <span className="text-lg font-bold">31 jours</span> sur votre recrutement
+              Économisez <span className="text-lg font-bold">31 jours</span> sur votre recrutement
             </p>
             <p className="text-xs text-muted-foreground mt-1">
               Soit plus d&apos;un <span className="font-semibold text-foreground/80">mois</span> de productivite gagnee pour votre equipe
@@ -1697,7 +1697,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
               className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-muted/10 border border-border/50 text-muted-foreground font-semibold text-sm hover:text-foreground hover:border-border/80 transition-all"
             >
               <RotateCcw className="w-4 h-4" />
-              Recommencer la demo
+              Recommencer la démo
             </motion.button>
           </div>
 
@@ -1823,7 +1823,7 @@ export default function DemoClient() {
               </div>
             </motion.div>
 
-            {/* Temps estime badge + Start CTA (before starting) */}
+            {/* Temps estimé badge + Start CTA (before starting) */}
             {!started && (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
@@ -1833,7 +1833,7 @@ export default function DemoClient() {
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
                   <Timer className="w-4 h-4 text-primary" />
-                  <span>Temps estime : <span className="font-bold text-foreground">2 min</span></span>
+                  <span>Temps estimé : <span className="font-bold text-foreground">2 min</span></span>
                 </div>
 
                 <motion.button
@@ -1842,7 +1842,7 @@ export default function DemoClient() {
                   onClick={handleStart}
                   className="inline-flex items-center gap-2 px-10 py-5 rounded-xl bg-primary text-primary-foreground font-bold text-base transition-all shadow-lg shadow-primary/25"
                 >
-                  Demarrer la demo
+                  Démarrer la démo
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </motion.div>

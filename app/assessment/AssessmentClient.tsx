@@ -75,7 +75,7 @@ const questions: Question[] = [
     optionDescriptions: [
       "L'evaluation repose uniquement sur le ressenti",
       "Utilisées de manière ponctuelle sur certains postes",
-      "La majorité des postes ont une grille d'evaluation",
+      "La majorité des postes ont une grille d'évaluation",
       "Chaque poste dispose d'une scorecard calibrée et suivie",
     ],
     optionEmojis: ["\u{1F62C}", "\u{1F914}", "\u2705", "\u{1F3AF}"],
@@ -1503,7 +1503,7 @@ export default function AssessmentClient() {
                   >
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-sm text-white/70 font-medium">
                       <Award className="w-3.5 h-3.5 text-primary" /> Votre
-                      resultat
+                      résultat
                     </span>
                   </motion.div>
 
