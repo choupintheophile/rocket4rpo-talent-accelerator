@@ -1001,7 +1001,7 @@ export default function HomepageSections() {
           <FadeIn delay={0.4}>
             <div className="mt-8 text-center">
               <Link
-                href="/outils"
+                href="/simulateurs"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300"
               >
                 Voir tous nos outils <ArrowRight className="w-4 h-4" />

@@ -64,7 +64,7 @@ export const Footer = () => (
             <li><Link href="/calculateur" className="hover:text-primary transition-colors">Calculateur ROI RPO</Link></li>
             <li><Link href="/assessment" className="hover:text-primary transition-colors">Diagnostic recrutement</Link></li>
             <li><Link href="/demo" className="hover:text-primary transition-colors">Démo interactive</Link></li>
-            <li><Link href="/outils" className="hover:text-primary transition-colors">Tous les simulateurs</Link></li>
+            <li><Link href="/simulateurs" className="hover:text-primary transition-colors">Tous les simulateurs</Link></li>
             <li><Link href="/ressources" className="hover:text-primary transition-colors">Guides & templates</Link></li>
             <li><Link href="/blog" className="hover:text-primary transition-colors">Blog & conseils</Link></li>
           </ul>

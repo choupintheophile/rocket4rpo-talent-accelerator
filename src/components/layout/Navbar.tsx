@@ -11,8 +11,8 @@ const HUBSPOT = "/rdv";
 
 const mainLinks = [
   { href: "/offre", label: "Notre offre" },
-  { href: "/outils", label: "Nos simulateurs" },
-  { href: "/ressources", label: "Nos outils" },
+  { href: "/simulateurs", label: "Nos simulateurs" },
+  { href: "/ressources", label: "Nos ressources" },
   { href: "/blog", label: "Nos conseils" },
 ];
 

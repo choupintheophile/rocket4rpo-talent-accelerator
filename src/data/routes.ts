@@ -8,7 +8,7 @@ export interface SitemapRoute {
 export const sitemapRoutes: SitemapRoute[] = [
   { path: "/", label: "Accueil", category: "Principal", priority: 1.0 },
   { path: "/offre", label: "Notre offre RPO", category: "Offre", priority: 0.9 },
-  { path: "/outils", label: "Outils RPO gratuits", category: "Ressources", priority: 0.8 },
+  { path: "/simulateurs", label: "Outils RPO gratuits", category: "Ressources", priority: 0.8 },
   { path: "/blog", label: "Blog", category: "Ressources", priority: 0.7 },
   { path: "/comparateur", label: "Comparateur RPO vs Cabinet vs Interne", category: "Ressources", priority: 0.8 },
   { path: "/rpo-vs-cabinet", label: "RPO vs Cabinet de recrutement", category: "Comparatifs", priority: 0.8 },

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Simulateurs RPO gratuits — Calculez votre ROI",
   description:
     "3 outils RPO gratuits : démo interactive, calculateur ROI, diagnostic recrutement. Évaluez vos besoins en 5 min →",
-  alternates: { canonical: "/outils" },
+  alternates: { canonical: "/simulateurs" },
 };
 
 export default function Page() {

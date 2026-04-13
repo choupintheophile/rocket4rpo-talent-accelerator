@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
       { source: "/rpo-temps-partage", destination: "/offre", permanent: true },
       { source: "/rpo-temps-plein", destination: "/offre", permanent: true },
       { source: "/recrutement-tech-startup", destination: "/offre", permanent: true },
+      // Rename /outils → /simulateurs
+      { source: "/outils", destination: "/simulateurs", permanent: true },
       // Fix 404 from old site / external links
       { source: "/metiers/recrutement-it", destination: "/offre", permanent: true },
       { source: "/metiers/:slug*", destination: "/offre", permanent: true },
