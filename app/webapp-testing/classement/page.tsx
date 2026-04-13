@@ -1,6 +1,7 @@
 import { getCandidates } from "@/lib/candidates";
 import { CRITERIA, SCORE_COLORS } from "@/lib/r4rpo-constants";
 import { VerdictBadge } from "@/components/webapp/VerdictBadge";
+import { Download } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -22,8 +23,18 @@ export default async function ClassementPage() {
       <div className="bg-white border-b border-gray-200 px-7 h-14 flex items-center gap-2.5 sticky top-0 z-10">
         <span className="text-[15px] font-medium">Classement</span>
         <span className="text-[12px] text-gray-400">
-          {sorted.length} candidat{sorted.length > 1 ? "s" : ""} {"évalués"} · Moyenne {avgPct}%
+          {sorted.length} candidat{sorted.length > 1 ? "s" : ""} {"evalues"} · Moyenne {avgPct}%
         </span>
+        <div className="ml-auto">
+          <button
+            disabled
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded-lg border border-gray-200 text-gray-400 cursor-not-allowed"
+            title="Export bientot disponible"
+          >
+            <Download className="w-3.5 h-3.5" />
+            Export
+          </button>
+        </div>
       </div>
 
       <div className="p-7">
@@ -57,6 +68,7 @@ export default async function ClassementPage() {
                     </th>
                   ))}
                   <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 px-3 py-2.5 text-left">Verdict</th>
+                  <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 px-3 py-2.5 text-center w-10">CV</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,8 +83,10 @@ export default async function ClassementPage() {
                           ? "bg-orange-100 text-orange-700"
                           : "bg-gray-50 text-gray-400";
 
+                  const isFirst = idx === 0;
+
                   return (
-                    <tr key={c.id} className="border-b border-gray-200 last:border-b-0 hover:bg-blue-50/30 transition-colors">
+                    <tr key={c.id} className={`border-b border-gray-200 last:border-b-0 hover:bg-blue-50/30 transition-colors ${isFirst ? "bg-amber-50/50" : ""}`}>
                       <td className="px-3 py-2.5">
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold font-mono ${rankCls}`}>
                           {idx + 1}
@@ -116,6 +130,11 @@ export default async function ClassementPage() {
                       })}
                       <td className="px-3 py-2.5">
                         <VerdictBadge level={c.verdictLevel} label={c.verdictLabel} />
+                      </td>
+                      <td className="px-3 py-2.5 text-center">
+                        <span className={`text-[12px] ${c.hasCv ? "text-emerald-600 font-medium" : "text-gray-300"}`}>
+                          {c.hasCv ? "\u2713" : "\u2014"}
+                        </span>
                       </td>
                     </tr>
                   );

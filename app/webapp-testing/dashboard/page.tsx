@@ -70,14 +70,16 @@ function StatCard({
   label,
   value,
   sub,
+  borderColor = "border-l-rocket-teal",
 }: {
   icon: React.ReactNode;
   label: string;
   value: string | number;
   sub?: string;
+  borderColor?: string;
 }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-xl px-5 py-4 flex flex-col gap-1">
+    <div className={`bg-white border border-gray-200 rounded-xl px-5 py-4 flex flex-col gap-1 border-l-4 ${borderColor} hover:-translate-y-1 hover:shadow-md transition-all duration-200`}>
       <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
         {icon}
         {label}
@@ -202,6 +204,16 @@ export default async function DashboardPage() {
     Incomplet: "text-gray-400",
   };
 
+  /* --- greeting date --- */
+  const now = new Date();
+  const formattedDate = now.toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const lastActivity = recent.length > 0 ? relativeTime(new Date(recent[0].updatedAt)) : null;
+
   return (
     <>
       {/* ── Header ── */}
@@ -209,9 +221,21 @@ export default async function DashboardPage() {
         <BarChart3 size={16} className="text-rocket-teal" />
         <span className="text-[15px] font-medium">Analytics</span>
         <span className="text-[12px] text-gray-400">{total} candidat{total > 1 ? "s" : ""}</span>
+        {lastActivity && (
+          <span className="ml-auto text-[11px] text-gray-400 flex items-center gap-1.5">
+            <Clock size={11} />
+            Derniere activite : {lastActivity}
+          </span>
+        )}
       </div>
 
       <div className="p-7 max-w-[1060px] space-y-2">
+        {/* ── Greeting ── */}
+        <div className="mb-4">
+          <h1 className="text-xl font-semibold text-gray-800">Bonjour 👋</h1>
+          <p className="text-[13px] text-gray-400 capitalize">{formattedDate}</p>
+        </div>
+
         {/* ── KPIs principaux ── */}
         <SectionTitle>Vue d&apos;ensemble</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -220,30 +244,34 @@ export default async function DashboardPage() {
             label="Total"
             value={total}
             sub={`${evaluated} evalu${evaluated > 1 ? "es" : "e"}`}
+            borderColor="border-l-rocket-teal"
           />
           <StatCard
             icon={<CheckCircle2 size={13} />}
-            label="Evalues"
-            value={evaluated}
-            sub={`${pctLabel(evaluated, total)} du vivier`}
+            label="Prioritaire"
+            value={verdictCounts.Prioritaire}
+            sub={`${pctLabel(verdictCounts.Prioritaire, total)} du vivier`}
+            borderColor="border-l-emerald-500"
           />
           <StatCard
             icon={<Target size={13} />}
-            label="Complets"
-            value={complete}
-            sub={`${pctLabel(complete, total)} du vivier`}
+            label="Secondaire"
+            value={verdictCounts.Secondaire}
+            sub={`${pctLabel(verdictCounts.Secondaire, total)} du vivier`}
+            borderColor="border-l-amber-400"
           />
           <StatCard
-            icon={<TrendingUp size={13} />}
-            label="Score moyen"
-            value={`${avgPct}%`}
-            sub={`sur ${evaluatedCandidates.length} evalues`}
+            icon={<AlertTriangle size={13} />}
+            label="Non retenu"
+            value={verdictCounts["Non retenu"]}
+            sub={`${pctLabel(verdictCounts["Non retenu"], total)} du vivier`}
+            borderColor="border-l-red-400"
           />
         </div>
 
         {/* ── Verdict breakdown ── */}
         <SectionTitle>Repartition des verdicts</SectionTitle>
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
+        <div className="bg-white border border-gray-200 rounded-xl p-5 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
           {/* stacked bar */}
           <div className="flex h-5 rounded-full overflow-hidden mb-4">
             {(Object.entries(verdictCounts) as [string, number][]).map(([label, count]) =>
@@ -276,7 +304,7 @@ export default async function DashboardPage() {
 
         {/* ── Scores par critere ── */}
         <SectionTitle>Scores moyens par critere (/5)</SectionTitle>
-        <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2">
+        <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
           {criterionAvgs.map((cr) => {
             const pct = (cr.avg / 5) * 100;
             const color =
@@ -303,7 +331,7 @@ export default async function DashboardPage() {
           {/* Forces */}
           <div>
             <SectionTitle>Top 5 forces</SectionTitle>
-            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2">
+            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
               {topForces.length === 0 && (
                 <p className="text-[13px] text-gray-300">Aucune donnee</p>
               )}
@@ -321,7 +349,7 @@ export default async function DashboardPage() {
           {/* Risques */}
           <div>
             <SectionTitle>Top 5 risques</SectionTitle>
-            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2">
+            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
               {topRisks.length === 0 && (
                 <p className="text-[13px] text-gray-300">Aucune donnee</p>
               )}
@@ -348,7 +376,7 @@ export default async function DashboardPage() {
                 Secteur
               </span>
             </SectionTitle>
-            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2">
+            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
               {sectorDist.length === 0 && (
                 <p className="text-[13px] text-gray-300">Aucune donnee</p>
               )}
@@ -366,7 +394,7 @@ export default async function DashboardPage() {
                 Type de contrat
               </span>
             </SectionTitle>
-            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2">
+            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
               {contratDist.length === 0 && (
                 <p className="text-[13px] text-gray-300">Aucune donnee</p>
               )}
@@ -384,7 +412,7 @@ export default async function DashboardPage() {
                 Disponibilite
               </span>
             </SectionTitle>
-            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2">
+            <div className="bg-white border border-gray-200 rounded-xl p-5 space-y-2 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
               {dispoDist.length === 0 && (
                 <p className="text-[13px] text-gray-300">Aucune donnee</p>
               )}
@@ -402,7 +430,7 @@ export default async function DashboardPage() {
             Activite recente
           </span>
         </SectionTitle>
-        <div className="bg-white border border-gray-200 rounded-xl divide-y divide-gray-100">
+        <div className="bg-white border border-gray-200 rounded-xl divide-y divide-gray-100 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
           {recent.length === 0 && (
             <p className="text-[13px] text-gray-300 p-5">Aucun candidat</p>
           )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
-import { CheckCircle2, Clock, Shield, Users, Search, Zap } from "lucide-react";
+import { Clock, Shield, CheckCircle2, MessageSquare, Search, Rocket } from "lucide-react";
 
 const HUBSPOT_URL = "https://meetings.hubspot.com/theophile-choupin/rpo";
 
@@ -10,58 +10,114 @@ export default function RdvClient() {
     <>
       <Breadcrumbs items={[{ label: "Trouver votre TA" }]} />
 
-      <section className="section-padding">
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 items-start">
+      {/* ── HERO — dark gradient, split layout ── */}
+      <section className="relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
+        </div>
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
 
-            {/* Left — Messaging */}
-            <div className="lg:sticky lg:top-28">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-5">
-                <Users className="w-3 h-3" /> Échangeons
+        <div className="relative container-wide py-12 md:py-16 lg:py-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Left — Text */}
+            <div className="lg:w-[55%]">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium mb-4">
+                📅 Diagnostic gratuit
               </span>
 
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight">
-                Trouvez le recruteur{" "}
-                <span className="text-primary">idéal</span>{" "}
-                pour votre équipe
+              <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
+                Échangeons sur vos besoins en{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  recrutement.
+                </span>
               </h1>
 
-              <p className="mt-4 text-muted-foreground leading-relaxed">
-                Réservez 30 minutes avec un expert. On analyse vos besoins ensemble et on vous recommande le TA Specialist parfait parmi plus de 4 100 profils évalués.
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                30 minutes pour comprendre votre contexte, identifier votre TA idéal, et vous proposer une solution sur-mesure. Sans engagement.
               </p>
 
-              <div className="mt-8 space-y-4">
-                <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Ce qu{"'"}on fera pendant l{"'"}appel</h2>
-                {[
-                  { icon: Search, text: "Comprendre vos postes à pourvoir et vos enjeux" },
-                  { icon: Zap, text: "Identifier le format adapté : RPO, CDD ou CDI" },
-                  { icon: Users, text: "Vous présenter le profil de TA qui matche" },
-                  { icon: CheckCircle2, text: "Vous donner un planning et un budget réalistes" },
-                ].map((item) => (
-                  <div key={item.text} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <item.icon className="w-4 h-4 text-primary" />
-                    </div>
-                    <p className="text-sm leading-relaxed">{item.text}</p>
+              {/* Inline stats */}
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <Clock className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">30 min</strong> chrono</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Shield className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">Sans</strong> engagement</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <MessageSquare className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">Réponse</strong> sous 24h</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — Steps card */}
+            <div className="lg:w-[45%] w-full">
+              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-8 h-8 rounded-full bg-rocket-teal/20 flex items-center justify-center">
+                    <Rocket className="w-4 h-4 text-rocket-teal-glow" />
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">Comment ça marche</div>
+                    <div className="text-[10px] text-white/40">3 étapes simples</div>
+                  </div>
+                </div>
 
-              <div className="mt-8 flex items-center gap-4 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" /> 30 min</span>
-                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> Gratuit & sans engagement</span>
+                <div className="space-y-4">
+                  {[
+                    { step: "1", title: "On échange sur vos besoins", icon: Search, desc: "Postes ouverts, enjeux, délais, budget — on fait le point ensemble." },
+                    { step: "2", title: "On identifie le TA idéal", icon: CheckCircle2, desc: "Parmi 300+ experts évalués, on vous recommande le profil parfait." },
+                    { step: "3", title: "Démarrage en 1 semaine", icon: Rocket, desc: "Votre TA Specialist rejoint vos équipes et vos outils dès J+7." },
+                  ].map((item) => (
+                    <div key={item.step} className="flex gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-rocket-teal/15 border border-rocket-teal/20 flex items-center justify-center">
+                        <span className="text-sm font-bold text-rocket-teal-glow">{item.step}</span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-white">{item.title}</p>
+                        <p className="text-xs text-white/45 mt-0.5 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Right — Calendar */}
-            <div className="rounded-2xl border border-border/40 overflow-hidden bg-white shadow-sm">
-              <iframe
-                src={HUBSPOT_URL}
-                className="w-full border-0"
-                style={{ height: "700px" }}
-                title="Réserver un créneau"
-              />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
+      </section>
+
+      {/* ── CALENDAR EMBED ── */}
+      <section className="section-padding">
+        <div className="container-wide max-w-4xl mx-auto">
+          <div className="rounded-2xl overflow-hidden border border-border/60 bg-background shadow-lg shadow-black/5">
+            <div className="flex items-center gap-3 px-5 py-3.5 border-b border-border/60 bg-secondary/50">
+              <Clock className="w-4 h-4 text-[hsl(var(--rocket-teal))]" />
+              <span className="text-sm font-medium text-foreground">
+                Choisissez votre créneau
+              </span>
             </div>
+            <iframe
+              src={HUBSPOT_URL}
+              className="w-full border-0"
+              style={{ height: "700px" }}
+              title="Réserver un créneau"
+            />
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGrid, BarChart3, HelpCircle, LogOut, Menu, X, PieChart, Plus } from "lucide-react";
@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const navItems = [
   { href: "/webapp-testing/dashboard", label: "Dashboard", icon: PieChart },
-  { href: "/webapp-testing/vivier", label: "Vivier", icon: LayoutGrid },
+  { href: "/webapp-testing/vivier", label: "Vivier", icon: LayoutGrid, showBadge: true },
   { href: "/webapp-testing/classement", label: "Classement", icon: BarChart3 },
   { href: "/webapp-testing/questions", label: "Questions", icon: HelpCircle },
 ];

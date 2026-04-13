@@ -25,12 +25,6 @@ import { CTASection } from "@/components/shared/CTASection";
 
 /* ─────────────────────────── data ─────────────────────────── */
 
-const trustPoints = [
-  { icon: Clock, label: "30 min" },
-  { icon: Shield, label: "Sans engagement" },
-  { icon: MessageCircle, label: "Réponse sous 24h" },
-];
-
 const benefits = [
   {
     icon: Search,
@@ -145,9 +139,6 @@ const scaleIn = {
 /* ─────────────────────────── component ─────────────────────────── */
 
 export default function ContactClient() {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true });
-
   const benefitsRef = useRef(null);
   const benefitsInView = useInView(benefitsRef, { once: true, margin: "-80px" });
 
@@ -163,74 +154,113 @@ export default function ContactClient() {
     <>
       <Breadcrumbs items={[{ label: "Contact" }]} />
 
-      {/* ───────── HERO — dark premium ───────── */}
-      <section
-        ref={heroRef}
-        className="relative overflow-hidden bg-rocket-navy-soft text-background"
-      >
-        {/* Subtle radial glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[hsl(var(--rocket-teal)/0.06)] blur-[120px]" />
+      {/* ───────── HERO — dark gradient, split layout ───────── */}
+      <section className="relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
         </div>
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
 
-        <div className="relative container-tight py-12 md:py-16 lg:py-20 text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-background/15 bg-background/5 backdrop-blur-sm text-sm font-medium text-background/90 mb-6"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[hsl(var(--rocket-teal))]" />
-            Diagnostic gratuit
-          </motion.div>
+        <div className="relative container-wide py-12 md:py-16 lg:py-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Left — Text */}
+            <div className="lg:w-[55%]">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium mb-4">
+                ✉️ Contact
+              </span>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight"
-          >
-            Parlons de vos{" "}
-            <span className="text-gradient">recrutements</span>
-          </motion.h1>
+              <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
+                Parlons de vos{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  recrutements.
+                </span>
+              </h1>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-3 text-base md:text-lg text-background/75 max-w-2xl mx-auto leading-relaxed"
-          >
-            Réservez un appel de 30 minutes avec un expert recrutement.
-            Nous analysons votre besoin et vous proposons le meilleur dispositif
-            — gratuitement.
-          </motion.p>
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                Une question ? Un projet ? Notre équipe vous répond sous 24h.
+              </p>
 
-          {/* Trust points */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex flex-wrap justify-center gap-6 md:gap-10 mt-3"
-          >
-            {trustPoints.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex items-center gap-2.5 text-sm md:text-base font-medium text-background/85"
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[hsl(var(--rocket-teal)/0.15)] border border-[hsl(var(--rocket-teal)/0.25)]">
-                  <Icon className="w-4 h-4 text-[hsl(var(--rocket-teal))]" />
+              {/* Inline stats */}
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <Clock className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">Réponse</strong> sous 24h</span>
                 </div>
-                {label}
+                <div className="flex items-center gap-2 text-white/60">
+                  <Users className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">2 bureaux</strong> (Paris + Lyon)</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <CheckCircle2 className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">50+</strong> clients satisfaits</span>
+                </div>
               </div>
-            ))}
-          </motion.div>
+            </div>
+
+            {/* Right — Contact info glass card */}
+            <div className="lg:w-[45%] w-full">
+              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-8 h-8 rounded-full bg-rocket-teal/20 flex items-center justify-center">
+                    <MessageCircle className="w-4 h-4 text-rocket-teal-glow" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">Nos coordonnées</div>
+                    <div className="text-[10px] text-white/40">Contactez-nous directement</div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-rocket-teal/15 border border-rocket-teal/20 flex items-center justify-center">
+                      <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/45 uppercase tracking-wider font-medium">Email</p>
+                      <a href="mailto:contact@rocket4sales.com" className="text-sm font-semibold text-white hover:text-rocket-teal-glow transition-colors">
+                        contact@rocket4sales.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-rocket-teal/15 border border-rocket-teal/20 flex items-center justify-center">
+                      <Shield className="w-4 h-4 text-rocket-teal-glow" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/45 uppercase tracking-wider font-medium">Téléphone</p>
+                      <p className="text-sm font-semibold text-white">+33 6 52 15 73 42</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-rocket-teal/15 border border-rocket-teal/20 flex items-center justify-center">
+                      <Target className="w-4 h-4 text-rocket-teal-glow" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/45 uppercase tracking-wider font-medium">Bureaux</p>
+                      <p className="text-sm font-semibold text-white">Paris &amp; Lyon</p>
+                      <p className="text-xs text-white/45 mt-0.5">France</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* ───────── MAIN — 2 columns ───────── */}

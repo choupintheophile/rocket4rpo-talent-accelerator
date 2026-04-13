@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import {
   ArrowRight,
@@ -15,7 +14,6 @@ import {
   Globe,
   Clock,
   Star,
-  ChevronRight,
   Mail,
   Calendar,
   Target,
@@ -214,127 +212,120 @@ export default function RecrutementPageClient() {
       <Breadcrumbs items={[{ label: "Nous rejoindre" }]} />
 
       {/* ═══════════════════════════════════════════
-          HERO — Dark, immersive, high-impact
+          HERO — Dark gradient, split layout
       ═══════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-[hsl(var(--rocket-dark))] text-white">
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--rocket-dark))] via-[hsl(var(--rocket-navy-soft))] to-[hsl(var(--rocket-dark))]" />
-        {/* Decorative glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[hsl(var(--rocket-teal))] opacity-[0.04] blur-[120px]" />
+      <section className="relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
+        </div>
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
 
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-center">
-          <div className="max-w-4xl">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-[hsl(var(--rocket-teal))]/10 text-[hsl(var(--rocket-teal-glow))] border border-[hsl(var(--rocket-teal))]/20">
-                <Award className="w-3.5 h-3.5" />
-                Rejoignez le top 1%
-              </span>
-            </motion.div>
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Left — Text */}
+            <div className="lg:w-[55%]">
+              {/* Badges */}
+              <div className="flex flex-wrap gap-3 mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
+                  🚀 Rejoignez-nous
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/20 text-sm text-amber-300 font-medium">
+                  💰 Freelance
+                </span>
+              </div>
 
-            {/* Headline */}
-            <motion.h1
-              className="mt-3 text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-            >
-              Vous êtes un expert du recrutement ?{" "}
-              <span className="text-gradient">
-                Nous cherchons les meilleurs.
-              </span>
-            </motion.h1>
+              <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
+                Devenez Talent Acquisition freelance chez{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  Rocket4RPO.
+                </span>
+              </h1>
 
-            {/* Subtitle */}
-            <motion.p
-              className="mt-3 text-base md:text-lg text-white/60 leading-relaxed max-w-2xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              Rocket4RPO sélectionne les meilleurs Talent Acquisition freelance
-              pour des missions RPO chez des entreprises ambitieuses. Rejoignez
-              un réseau d\’élite, accédez à des missions longues et bien rémunérées.
-            </motion.p>
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                Vous êtes un expert du recrutement ? Rejoignez notre réseau de 300+ TA Specialists et travaillez avec les meilleures startups et scale-ups de France.
+              </p>
 
-            {/* Dual CTA */}
-            <motion.div
-              className="mt-3 flex flex-wrap gap-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-            >
-              <a
-                href={HUBSPOT_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold rounded-xl bg-[hsl(var(--rocket-teal))] text-white hover:bg-[hsl(var(--rocket-teal-glow))] transition-all duration-300 shadow-lg shadow-[hsl(var(--rocket-teal))]/20 hover:shadow-[hsl(var(--rocket-teal))]/30"
-              >
-                Postuler maintenant
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#pourquoi"
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border border-white/20 text-white/90 hover:bg-white/5 hover:border-white/30 transition-all duration-300"
-              >
-                En savoir plus
-                <ChevronRight className="w-4 h-4" />
-              </a>
-            </motion.div>
-
-            {/* Trust stats */}
-            <motion.div
-              className="mt-16 grid grid-cols-3 gap-8 max-w-xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              {[
-                { value: "300+", label: "TA dans le réseau" },
-                { value: "20+", label: "missions actives" },
-                { value: "350-600€", label: "TJM / jour" },
-              ].map((stat, i) => (
-                <div key={i} className="text-center">
-                  <p className="text-3xl md:text-4xl font-bold text-[hsl(var(--rocket-teal-glow))]">
-                    {stat.value}
-                  </p>
-                  <p className="mt-1 text-sm text-white/40">{stat.label}</p>
+              {/* Inline stats */}
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <Users className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">300+</strong> TA dans le vivier</span>
                 </div>
-              ))}
-            </motion.div>
-          </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Briefcase className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">50+</strong> missions actives</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Zap className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">500€/jour</strong> TJM moyen</span>
+                </div>
+              </div>
 
-          {/* Team photo */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="hidden lg:block"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10">
-              <Image
-                src="/photos/equipe-escalier.webp"
-                alt="L'{'é'}quipe Rocket4RPO"
-                width={760}
-                height={900}
-                className="w-full h-[480px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10" />
-              <div className="absolute bottom-5 left-5 right-5">
-                <p className="text-white text-sm font-medium">L'{"é"}quipe Rocket4RPO</p>
-                <p className="text-white/60 text-xs mt-0.5">300+ TA Specialists dans le r{"é"}seau</p>
+              {/* Dual CTA */}
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <a
+                  href={HUBSPOT_LINK}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Postuler maintenant
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="#pourquoi"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/15 transition-all"
+                >
+                  Voir nos missions
+                </a>
               </div>
             </div>
-          </motion.div>
+
+            {/* Right — Benefits glass card */}
+            <div className="lg:w-[45%] w-full">
+              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-8 h-8 rounded-full bg-rocket-teal/20 flex items-center justify-center">
+                    <Award className="w-4 h-4 text-rocket-teal-glow" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-white">Pourquoi nous rejoindre</div>
+                    <div className="text-[10px] text-white/40">Les avantages Rocket4RPO</div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {[
+                    { icon: Star, title: "Missions premium", desc: "Startups, scale-ups et grands comptes ambitieux. Des missions longues et bien rémunérées." },
+                    { icon: Globe, title: "Flexibilité totale", desc: "Full remote, horaires libres. Travaillez où et quand vous le souhaitez." },
+                    { icon: Users, title: "Réseau d’experts", desc: "Échanges, entraide et événements avec 300+ TA Specialists expérimentés." },
+                    { icon: Shield, title: "Support continu", desc: "Facturation, contrats, admin — on gère tout pour vous. Zéro galère." },
+                  ].map((item) => (
+                    <div key={item.title} className="flex gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-rocket-teal/15 border border-rocket-teal/20 flex items-center justify-center">
+                        <item.icon className="w-4.5 h-4.5 text-rocket-teal-glow" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-white">{item.title}</p>
+                        <p className="text-xs text-white/45 mt-0.5 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom fade to white */}
+        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
       </section>
 

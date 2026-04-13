@@ -20,13 +20,16 @@ export function QuestionsClient({ questions }: { questions: QuestionCategory[] }
 
   return (
     <>
-      <div className="flex gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-4">
         <button onClick={expandAll} className="px-3 py-1.5 text-[12px] border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-          Tout déplier
+          Tout deplier
         </button>
         <button onClick={collapseAll} className="px-3 py-1.5 text-[12px] border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
           Tout replier
         </button>
+        <span className="ml-auto text-[11px] text-gray-400">
+          Appuyez sur Entree pour deplier/replier
+        </span>
       </div>
 
       <div className="space-y-2.5">
@@ -36,6 +39,7 @@ export function QuestionsClient({ questions }: { questions: QuestionCategory[] }
             <div key={idx} className="border border-gray-200 rounded-xl overflow-hidden">
               <button
                 onClick={() => toggle(idx)}
+                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); toggle(idx); } }}
                 className="w-full flex items-center gap-2.5 px-4 py-3 bg-gray-50 hover:bg-rocket-teal-light/50 transition-colors text-left"
               >
                 <div className="w-7 h-7 rounded-full bg-rocket-teal text-white text-[11px] font-semibold flex items-center justify-center flex-shrink-0">
@@ -50,11 +54,11 @@ export function QuestionsClient({ questions }: { questions: QuestionCategory[] }
                   {cat.questions.map((q, qi) => (
                     <div
                       key={qi}
-                      className={`flex gap-2.5 px-4 py-3 border-b border-gray-200 last:border-b-0 ${q.star ? "bg-rocket-teal-light/30" : ""}`}
+                      className={`flex gap-2.5 px-4 py-3 border-b border-gray-200 last:border-b-0 ${q.star ? "bg-amber-50 border-l-2 border-l-amber-400" : ""}`}
                     >
-                      <div className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${q.star ? "bg-rocket-teal" : "bg-gray-300"}`} />
-                      <p className="text-[13px] leading-relaxed flex-1">{q.q}</p>
-                      {q.star && <Star className="w-3.5 h-3.5 text-rocket-teal flex-shrink-0 mt-1" />}
+                      <div className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${q.star ? "bg-amber-500" : "bg-gray-300"}`} />
+                      <p className={`text-[13px] leading-relaxed flex-1 ${q.star ? "font-medium" : ""}`}>{q.q}</p>
+                      {q.star && <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500 flex-shrink-0 mt-1" />}
                     </div>
                   ))}
 
