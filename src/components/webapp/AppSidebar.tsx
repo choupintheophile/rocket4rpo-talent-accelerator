@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { LayoutGrid, BarChart3, HelpCircle, LogOut, Menu, X, PieChart, Plus } from "lucide-react";
 import Image from "next/image";
 
-const navItems = [
+const navItems: { href: string; label: string; icon: typeof PieChart; showBadge?: boolean }[] = [
   { href: "/webapp-testing/dashboard", label: "Dashboard", icon: PieChart },
   { href: "/webapp-testing/vivier", label: "Vivier", icon: LayoutGrid, showBadge: true },
   { href: "/webapp-testing/classement", label: "Classement", icon: BarChart3 },
@@ -16,6 +16,14 @@ const navItems = [
 export function AppSidebar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [candidateCount, setCandidateCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("/api/candidates/count")
+      .then((r) => r.json())
+      .then((d) => setCandidateCount(d.total))
+      .catch(() => {});
+  }, []);
 
   const navContent = (
     <>
@@ -49,7 +57,12 @@ export function AppSidebar() {
               }`}
             >
               <item.icon className="w-[15px] h-[15px] flex-shrink-0" />
-              <span>{item.label}</span>
+              <span className="flex-1">{item.label}</span>
+              {item.showBadge && candidateCount !== null && (
+                <span className="ml-auto text-[10px] font-semibold bg-rocket-teal text-white px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+                  {candidateCount}
+                </span>
+              )}
             </Link>
           );
         })}
