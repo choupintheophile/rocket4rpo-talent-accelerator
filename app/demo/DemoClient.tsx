@@ -849,9 +849,11 @@ function StepBrief({
 }) {
   const criteriaLabels: Record<string, string> = {
     saas: "Expérience SaaS",
-    fullCycle: "Full-cycle",
-    midMarket: "Mid-Market",
-    hunter: "Profil hunter",
+    fullCycle: "Full-cycle (A→Z)",
+    midMarket: "Mid-Market / Enterprise",
+    hunter: "Profil chasseur",
+    remote: "Remote / Hybride",
+    international: "International",
   };
 
   const criteriaIcons: Record<string, typeof Zap> = {
@@ -859,7 +861,13 @@ function StepBrief({
     fullCycle: Target,
     midMarket: BarChart3,
     hunter: Search,
+    remote: Users,
+    international: Zap,
   };
+
+  const [seniority, setSeniority] = useState("senior");
+  const [sector, setSector] = useState("saas");
+  const [urgency, setUrgency] = useState("normal");
 
   const activeCriteria = Object.entries(criteria).filter(([, v]) => v);
 
@@ -887,62 +895,73 @@ function StepBrief({
           </div>
         </div>
 
-        <div className="p-3 space-y-2.5">
-          {/* Job title input */}
-          <div>
-            <label className="flex items-center gap-1.5 text-xs font-semibold mb-1">
-              <Zap className="w-3.5 h-3.5 text-primary" />
-              Intitulé du poste
-            </label>
-            <input
-              type="text"
-              value={jobTitle}
-              onChange={(e) => setJobTitle(e.target.value)}
-              className="w-full rounded-lg border border-border/60 bg-rocket-dark/30 px-3 py-1.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all placeholder:text-muted-foreground"
-              placeholder="Ex: Account Executive SaaS, SDR, CSM, Dev Full-Stack..."
-            />
+        <div className="p-3 space-y-2">
+          {/* Row 1: Job title + Seniority */}
+          <div className="grid grid-cols-3 gap-2">
+            <div className="col-span-2">
+              <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-0.5 block">Intitulé du poste</label>
+              <input
+                type="text"
+                value={jobTitle}
+                onChange={(e) => setJobTitle(e.target.value)}
+                className="w-full rounded-lg border border-border/60 bg-muted/30 px-3 py-1.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all placeholder:text-muted-foreground/50"
+                placeholder="Ex: Account Executive, SDR, Dev..."
+              />
+            </div>
+            <div>
+              <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-0.5 block">Séniorité</label>
+              <select value={seniority} onChange={(e) => setSeniority(e.target.value)} className="w-full rounded-lg border border-border/60 bg-muted/30 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all">
+                <option value="junior">Junior (0-2 ans)</option>
+                <option value="confirmed">Confirmé (3-5 ans)</option>
+                <option value="senior">Senior (5+ ans)</option>
+                <option value="lead">Lead / Manager</option>
+              </select>
+            </div>
           </div>
 
-          {/* Criteria chips */}
+          {/* Row 2: Sector + Urgency */}
+          <div className="grid grid-cols-2 gap-2">
+            <div>
+              <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-0.5 block">Secteur</label>
+              <select value={sector} onChange={(e) => setSector(e.target.value)} className="w-full rounded-lg border border-border/60 bg-muted/30 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all">
+                <option value="saas">SaaS / Tech</option>
+                <option value="esn">ESN / Consulting</option>
+                <option value="fintech">Fintech</option>
+                <option value="healthtech">HealthTech</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-0.5 block">Urgence</label>
+              <select value={urgency} onChange={(e) => setUrgency(e.target.value)} className="w-full rounded-lg border border-border/60 bg-muted/30 px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all">
+                <option value="asap">ASAP ({"<"} 2 semaines)</option>
+                <option value="normal">Normal (2-4 semaines)</option>
+                <option value="planifie">Planifié (1-2 mois)</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Row 3: Criteria chips */}
           <div>
-            <label className="flex items-center gap-1.5 text-xs font-semibold mb-1">
-              <Target className="w-3 h-3 text-primary" />
-              Critères clés
-            </label>
-            <div className="flex flex-wrap gap-2">
+            <label className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-1 block">Compétences clés recherchées</label>
+            <div className="flex flex-wrap gap-1.5">
               {Object.entries(criteriaLabels).map(([key, label]) => {
                 const active = criteria[key as keyof typeof criteria];
                 const Icon = criteriaIcons[key];
                 return (
-                  <motion.button
+                  <button
                     key={key}
-                    whileTap={{ scale: 0.93 }}
-                    whileHover={{ scale: 1.03 }}
-                    onClick={() =>
-                      setCriteria({
-                        ...criteria,
-                        [key]: !criteria[key as keyof typeof criteria],
-                      })
-                    }
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all duration-200 ${
+                    onClick={() => setCriteria({ ...criteria, [key]: !criteria[key as keyof typeof criteria] })}
+                    className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold border transition-all ${
                       active
-                        ? "bg-primary/15 border-primary/40 text-primary shadow-[0_0_16px_rgba(99,102,241,0.15)]"
-                        : "bg-rocket-dark/20 border-border/40 text-muted-foreground hover:border-border/70 hover:text-foreground"
+                        ? "bg-primary/15 border-primary/40 text-primary"
+                        : "bg-muted/20 border-border/40 text-muted-foreground hover:border-border/70"
                     }`}
                   >
-                    {active ? (
-                      <motion.span
-                        initial={{ scale: 0, rotate: -90 }}
-                        animate={{ scale: 1, rotate: 0 }}
-                        transition={{ type: "spring", stiffness: 500 }}
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                      </motion.span>
-                    ) : (
-                      <Icon className="w-3.5 h-3.5 opacity-50" />
-                    )}
+                    {active ? <CheckCircle2 className="w-3 h-3" /> : <Icon className="w-3 h-3 opacity-50" />}
                     {label}
-                  </motion.button>
+                  </button>
                 );
               })}
             </div>
@@ -1953,6 +1972,8 @@ export default function DemoClient() {
     fullCycle: true,
     midMarket: false,
     hunter: true,
+    remote: false,
+    international: false,
   });
 
   // Generate candidates based on the job title (memoized)

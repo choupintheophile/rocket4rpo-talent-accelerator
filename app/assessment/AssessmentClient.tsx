@@ -1634,15 +1634,9 @@ export default function AssessmentClient() {
         {/*  RESULTS PHASE                                                   */}
         {/* ================================================================ */}
         {phase === "results" && (
-          <motion.div
-            key="results"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* ---- Results Hero ---- */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark pt-4 pb-4 md:pt-6 md:pb-6">
+          <div key="results">
+            {/* ---- Results Hero (compact: gauge + badge + description) ---- */}
+            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark pt-4 pb-4">
               <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/3 left-[10%] w-[400px] h-[400px] rounded-full bg-primary/6 blur-[120px]" />
                 <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
@@ -1650,27 +1644,16 @@ export default function AssessmentClient() {
 
               <div className="relative container-wide max-w-4xl mx-auto px-4">
                 <div className="text-center">
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-sm text-white/70 font-medium">
-                      <Award className="w-3.5 h-3.5 text-primary" /> Votre
-                      résultat
-                    </span>
-                  </motion.div>
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-sm text-white/70 font-medium">
+                    <Award className="w-3.5 h-3.5 text-primary" /> Votre
+                    résultat
+                  </span>
 
-                  <motion.h2
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="mt-6 text-2xl md:text-4xl font-bold text-white"
-                  >
+                  <h2 className="mt-4 text-xl md:text-2xl font-bold text-white">
                     Diagnostic de maturité recrutement
-                  </motion.h2>
+                  </h2>
 
-                  {/* Calculating dots — then gauge */}
+                  {/* Calculating dots -- then gauge */}
                   <AnimatePresence mode="wait">
                     {showCalculating ? (
                       <CalculatingDots
@@ -1685,10 +1668,10 @@ export default function AssessmentClient() {
                         transition={{ delay: 0.1, duration: 0.6 }}
                       >
                         {/* Semi-circular gauge */}
-                        <div className="mt-10 flex flex-col items-center">
+                        <div className="mt-6 flex flex-col items-center">
                           <SemiCircularGauge score={totalScore} />
 
-                          {/* Grade badge with dramatic reveal */}
+                          {/* Grade badge */}
                           <motion.div
                             initial={{ opacity: 0, scale: 0, y: 10 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1698,12 +1681,12 @@ export default function AssessmentClient() {
                               stiffness: 200,
                               damping: 12,
                             }}
-                            className="mt-8"
+                            className="mt-4"
                             onAnimationComplete={() => setGradeRevealed(true)}
                           >
                             <div
                               className={`
-                                relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-lg
+                                relative inline-flex items-center gap-2.5 px-6 py-3 rounded-full font-bold text-lg
                                 ${grade.color} bg-white/5 border border-white/10
                               `}
                             >
@@ -1712,7 +1695,6 @@ export default function AssessmentClient() {
                                 style={{ backgroundColor: grade.fill }}
                               />
                               <span className="relative flex items-center gap-2.5">
-                                {/* Badge emoji — bounce scale from 0 */}
                                 <motion.span
                                   className="text-2xl"
                                   initial={{ scale: 0 }}
@@ -1733,7 +1715,6 @@ export default function AssessmentClient() {
                                     boxShadow: `0 0 12px ${grade.fill}`,
                                   }}
                                 />
-                                {/* Grade name — typewriter effect */}
                                 <TypewriterText
                                   text={grade.label}
                                   delay={2500}
@@ -1743,64 +1724,14 @@ export default function AssessmentClient() {
                             </div>
 
                             {/* Grade description */}
-                            <motion.p
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 3.2 }}
-                              className="mt-5 text-sm text-white/70 max-w-lg mx-auto leading-relaxed"
-                            >
+                            <p className="mt-3 text-sm text-white/70 max-w-lg mx-auto leading-relaxed">
                               {grade.description}
-                            </motion.p>
-                            <p className="mt-2 text-xs text-white/25">
+                            </p>
+                            <p className="mt-1 text-xs text-white/25">
                               {percentage}% de maturité recrutement
                             </p>
                           </motion.div>
                         </div>
-
-                        {/* Profil TA summary */}
-                        {answers.length === questions.length && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 3.5 }}
-                            className="mt-8 max-w-lg mx-auto"
-                          >
-                            <div className="px-6 py-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
-                              <p className="text-xs font-semibold text-primary mb-1.5 uppercase tracking-wider">
-                                Votre profil TA
-                              </p>
-                              <p className="text-sm text-white/60 leading-relaxed">
-                                Votre point fort est <strong className="text-white/80">{strongestLabel}</strong>, tandis que{" "}
-                                <strong className="text-white/80">{weakestLabel}</strong> représente votre principal axe de progression.
-                              </p>
-                            </div>
-                          </motion.div>
-                        )}
-
-                        {/* Radar Chart */}
-                        {answers.length === questions.length && (
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.6, duration: 0.6 }}
-                            className="mt-10"
-                          >
-                            <RadarChart answers={answers} />
-                          </motion.div>
-                        )}
-
-                        {/* Benchmark Bars: Comparez-vous */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 15 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 1.4 }}
-                          className="mt-10 max-w-sm mx-auto"
-                        >
-                          <h4 className="text-sm font-semibold text-white/50 mb-4 uppercase tracking-wider">
-                            Comparez-vous
-                          </h4>
-                          <BenchmarkBars percentage={percentage} />
-                        </motion.div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -1809,17 +1740,12 @@ export default function AssessmentClient() {
             </section>
 
             {/* ---- Results details ---- */}
-            <section className="section-padding bg-gradient-to-b from-background to-muted/30">
+            <section className="py-6 md:py-8 bg-gradient-to-b from-background to-muted/30">
               <div className="container-wide max-w-4xl mx-auto px-4">
                 {/* Per-criteria breakdown */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="mb-16"
-                >
-                  <div className="text-center mb-8">
-                    <h3 className="text-xl md:text-2xl font-bold mb-2">
+                <div className="mb-6">
+                  <div className="text-center mb-4">
+                    <h3 className="text-lg md:text-xl font-bold mb-1">
                       Détail par critère
                     </h3>
                     <p className="text-muted-foreground text-sm">
@@ -1827,8 +1753,8 @@ export default function AssessmentClient() {
                     </p>
                   </div>
 
-                  <div className="bg-background rounded-2xl p-6 md:p-8 border border-border/60 shadow-sm">
-                    <div className="space-y-5">
+                  <div className="bg-background rounded-2xl p-4 md:p-6 border border-border/60 shadow-sm">
+                    <div className="space-y-3">
                       {questions.map((q, i) => {
                         const score = answers[i] ?? 0;
                         const pct = Math.round((score / 3) * 100);
@@ -1850,30 +1776,18 @@ export default function AssessmentClient() {
                                 ? "text-emerald-500"
                                 : "text-primary";
                         return (
-                          <motion.div
-                            key={q.id}
-                            initial={{ opacity: 0, x: -15 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5 + i * 0.08 }}
-                            className="group"
-                          >
-                            <div className="flex items-center gap-3 md:gap-4">
-                              <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-primary/10 border border-primary/10 flex items-center justify-center">
-                                <Icon className="w-4.5 h-4.5 text-primary" />
+                          <div key={q.id}>
+                            <div className="flex items-center gap-3">
+                              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 border border-primary/10 flex items-center justify-center">
+                                <Icon className="w-4 h-4 text-primary" />
                               </div>
                               <span className="text-xs md:text-sm font-medium text-muted-foreground w-24 md:w-32 shrink-0 truncate">
                                 {q.label}
                               </span>
-                              <div className="flex-1 h-3 bg-secondary rounded-full overflow-hidden">
-                                <motion.div
+                              <div className="flex-1 h-2.5 bg-secondary rounded-full overflow-hidden">
+                                <div
                                   className={`h-full rounded-full ${barColor}`}
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${Math.max(pct, 4)}%` }}
-                                  transition={{
-                                    duration: 0.8,
-                                    delay: 0.6 + i * 0.08,
-                                    ease: "easeOut",
-                                  }}
+                                  style={{ width: `${Math.max(pct, 4)}%` }}
                                 />
                               </div>
                               <span
@@ -1882,25 +1796,21 @@ export default function AssessmentClient() {
                                 {score}/3
                               </span>
                             </div>
-                          </motion.div>
+                          </div>
                         );
                       })}
                     </div>
 
                     {/* Summary row */}
-                    <div className="mt-6 pt-5 border-t border-border/60 flex items-center justify-between">
+                    <div className="mt-4 pt-3 border-t border-border/60 flex items-center justify-between">
                       <span className="text-sm font-medium text-muted-foreground">
                         Score global
                       </span>
                       <div className="flex items-center gap-3">
                         <div className="h-2.5 w-24 bg-secondary rounded-full overflow-hidden">
-                          <motion.div
+                          <div
                             className="h-full rounded-full bg-gradient-to-r from-primary to-emerald-500"
-                            initial={{ width: 0 }}
-                            animate={{
-                              width: `${percentage}%`,
-                            }}
-                            transition={{ duration: 1, delay: 1.2 }}
+                            style={{ width: `${percentage}%` }}
                           />
                         </div>
                         <span className={`text-lg font-bold ${grade.color}`}>
@@ -1909,19 +1819,14 @@ export default function AssessmentClient() {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
-                {/* Top 3 Recommendations (actionable) — staggered slide from left */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="mb-16"
-                >
-                  <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 mb-3">
-                      <AlertTriangle className="w-5 h-5 text-amber-500" />
-                      <h3 className="text-xl md:text-2xl font-bold">
+                {/* Top 3 Recommendations */}
+                <div className="mb-6">
+                  <div className="text-center mb-4">
+                    <div className="inline-flex items-center gap-2 mb-1">
+                      <AlertTriangle className="w-4 h-4 text-amber-500" />
+                      <h3 className="text-lg md:text-xl font-bold">
                         Vos 3 axes d&apos;amélioration prioritaires
                       </h3>
                     </div>
@@ -1930,7 +1835,7 @@ export default function AssessmentClient() {
                     </p>
                   </div>
 
-                  <div className="grid gap-4">
+                  <div className="grid gap-3">
                     {weakest.map(({ index, score }, rank) => {
                       const q = questions[index];
                       const Icon = q.icon;
@@ -1958,62 +1863,59 @@ export default function AssessmentClient() {
                               ? "text-emerald-500 bg-emerald-500/10"
                               : "text-primary bg-primary/10";
                       return (
-                        <motion.div
+                        <div
                           key={q.id}
-                          initial={{ opacity: 0, x: -40 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.8 + rank * 0.2, type: "spring", stiffness: 200, damping: 20 }}
                           className={`
-                            relative flex gap-4 md:gap-5 p-5 md:p-7 rounded-2xl border border-border/60 bg-background
-                            border-l-4 ${priorityBorderColors[rank]} shadow-sm hover:shadow-md transition-shadow
+                            relative flex gap-3 md:gap-4 p-4 md:p-5 rounded-xl border border-border/60 bg-background
+                            border-l-4 ${priorityBorderColors[rank]} shadow-sm
                           `}
                         >
                           {/* Priority number badge */}
                           <div
-                            className={`absolute -top-3 -left-3 w-7 h-7 rounded-full ${priorityBgColors[rank]} text-white text-xs font-bold flex items-center justify-center shadow-md`}
+                            className={`absolute -top-2.5 -left-2.5 w-6 h-6 rounded-full ${priorityBgColors[rank]} text-white text-xs font-bold flex items-center justify-center shadow-md`}
                           >
                             {rank + 1}
                           </div>
 
-                          <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 border border-primary/10 flex items-center justify-center">
-                            <Icon className="w-6 h-6 text-primary" />
+                          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 border border-primary/10 flex items-center justify-center">
+                            <Icon className="w-5 h-5 text-primary" />
                           </div>
 
                           <div className="flex-1 min-w-0">
-                            <div className="flex items-start justify-between gap-3 mb-2">
+                            <div className="flex items-start justify-between gap-2 mb-1">
                               <div>
                                 <span
                                   className={`text-xs font-semibold uppercase tracking-wide ${priorityTextColors[rank]}`}
                                 >
                                   {q.label}
                                 </span>
-                                <p className="font-semibold text-sm md:text-base mt-0.5">
+                                <p className="font-semibold text-sm mt-0.5">
                                   {q.question}
                                 </p>
                               </div>
                               <span
-                                className={`flex-shrink-0 text-xs font-bold px-2.5 py-1 rounded-lg ${scoreColor}`}
+                                className={`flex-shrink-0 text-xs font-bold px-2 py-0.5 rounded-lg ${scoreColor}`}
                               >
                                 {score}/3
                               </span>
                             </div>
 
                             {/* Actionable recommendation */}
-                            <div className="flex items-start gap-2 mt-3 p-3 rounded-xl bg-muted/50 border border-border/40">
-                              <Sparkles className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                            <div className="flex items-start gap-2 mt-2 p-2.5 rounded-lg bg-muted/50 border border-border/40">
+                              <Sparkles className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
                               <div className="flex-1">
                                 <p className="text-sm font-medium text-foreground/90 leading-relaxed">
                                   {q.actionSpecific}
                                 </p>
-                                <p className="text-xs text-muted-foreground mt-1">
+                                <p className="text-xs text-muted-foreground mt-0.5">
                                   {q.recommendation}
                                 </p>
                               </div>
                             </div>
 
                             {/* Impact + Difficulty badges */}
-                            <div className="flex flex-wrap items-center gap-2 mt-3">
-                              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-semibold border bg-primary/10 border-primary/20 text-primary">
+                            <div className="flex flex-wrap items-center gap-2 mt-2">
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[10px] font-semibold border bg-primary/10 border-primary/20 text-primary">
                                 <TrendingUp className="w-3 h-3" />
                                 {q.estimatedImpact}
                               </span>
@@ -2022,14 +1924,14 @@ export default function AssessmentClient() {
 
                             {/* Ressources recommandées */}
                             {q.resources && q.resources.length > 0 && (
-                              <div className="mt-3 flex flex-wrap gap-2">
+                              <div className="mt-2 flex flex-wrap gap-2">
                                 {q.resources.map((r) => (
                                   <a
                                     key={r.url}
                                     href={r.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/5 border border-primary/15 hover:bg-primary/10 hover:border-primary/30 transition-all text-xs group"
+                                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/5 border border-primary/15 hover:bg-primary/10 hover:border-primary/30 transition-all text-xs group"
                                   >
                                     <span className="text-primary text-sm">📄</span>
                                     <span className="font-medium text-foreground/80 group-hover:text-primary transition-colors">{r.title}</span>
@@ -2040,207 +1942,45 @@ export default function AssessmentClient() {
                               </div>
                             )}
                           </div>
-                        </motion.div>
+                        </div>
                       );
                     })}
                   </div>
-                </motion.div>
+                </div>
 
-                {/* Visual summary card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="mb-16"
-                >
-                  <div className="bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark rounded-2xl p-8 md:p-10 border border-white/5">
-                    <div className="max-w-md mx-auto text-center">
-                      {/* Score display */}
-                      <div className="mb-6">
-                        <div className="text-6xl font-bold text-white tracking-tight">
-                          {totalScore}
-                          <span className="text-2xl text-white/30 ml-1">/21</span>
-                        </div>
-                        <div
-                          className={`text-lg font-bold mt-2 ${grade.color}`}
-                        >
-                          {grade.badge} {grade.label}
-                        </div>
-                        <p className="text-white/40 text-sm mt-1">
-                          {percentage}% de maturité recrutement
-                        </p>
-                      </div>
-
-                      {/* Visual score bars */}
-                      <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 sm:gap-2 mb-8">
-                        {questions.map((q, i) => {
-                          const s = answers[i] ?? 0;
-                          const barColor =
-                            s === 0
-                              ? "bg-red-500"
-                              : s === 1
-                                ? "bg-amber-500"
-                                : s === 2
-                                  ? "bg-emerald-500"
-                                  : "bg-primary";
-                          return (
-                            <div key={q.id} className="flex flex-col items-center gap-2">
-                              <div className="w-full h-16 bg-white/[0.04] rounded-lg flex flex-col-reverse overflow-hidden">
-                                <motion.div
-                                  className={`w-full rounded-lg ${barColor}`}
-                                  initial={{ height: 0 }}
-                                  animate={{
-                                    height: `${(s / 3) * 100}%`,
-                                  }}
-                                  transition={{
-                                    duration: 0.6,
-                                    delay: 0.8 + i * 0.05,
-                                  }}
-                                />
-                              </div>
-                              <span className="text-[10px] text-white/30 font-medium truncate w-full text-center">
-                                {q.label}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-
-                      {/* Share buttons */}
-                      <div className="pt-5 border-t border-white/[0.06]">
-                        <p className="text-xs text-white/20 mb-3">
-                          Diagnostic Rocket4RPO
-                        </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                          <button
-                            onClick={handleShare}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all cursor-pointer"
-                          >
-                            <Copy className="w-3.5 h-3.5" />
-                            Partager mes résultats
-                          </button>
-                          <a
-                            href="/rdv"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all"
-                          >
-                            <Mail className="w-3.5 h-3.5" />
-                            Discuter avec un expert
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Defi section — enhanced with before/after visual and pulsing glow */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.85 }}
-                  className="mb-12"
-                >
-                  <style>{`
-                    @keyframes pulse-glow {
-                      0%, 100% { box-shadow: 0 0 0 0 rgba(20,184,166,0.4); }
-                      50% { box-shadow: 0 0 20px 4px rgba(20,184,166,0.3); }
-                    }
-                  `}</style>
-                  <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/[0.06] via-transparent to-primary/[0.06] p-8 md:p-10 text-center">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl" />
-                    <div className="relative">
-                      <Trophy className="w-10 h-10 text-primary mx-auto mb-4" />
-                      <h3 className="text-lg md:text-xl font-bold mb-2">
-                        Le défi
-                      </h3>
-
-                      {/* Before / After visual */}
-                      <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/50 border border-border/40">
-                          <span className="text-xs text-muted-foreground">Aujourd&apos;hui</span>
-                          <span className={`text-lg font-bold ${grade.color}`}>{totalScore}/21</span>
-                        </div>
-                        <ArrowRight className="w-5 h-5 text-primary" />
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 border border-primary/20">
-                          <span className="text-xs text-primary">Dans 3 mois</span>
-                          <span className="text-lg font-bold text-primary">{targetScore}/21</span>
-                        </div>
-                      </div>
-
-                      <p className="text-muted-foreground text-sm max-w-md mx-auto mb-6">
-                        Refaites ce diagnostic dans 3 mois après avoir appliqué nos recommandations.
-                        Mesurez votre progression et visez le niveau supérieur !
-                      </p>
-                      <Button
-                        onClick={handleRestart}
-                        variant="outline"
-                        className="gap-2 px-8 py-5 rounded-xl border-primary/30 text-primary hover:bg-primary/10 font-semibold"
-                        style={{ animation: "pulse-glow 2s ease-in-out infinite" }}
-                      >
-                        <RotateCcw className="w-4 h-4" />
-                        Relever le défi
-                        <ArrowRight className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Social proof */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9 }}
-                  className="text-center mb-12"
-                >
-                  <div className="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-muted/50 border border-border/40">
-                    <div className="flex -space-x-1.5">
-                      {[0, 1, 2].map((i) => (
-                        <div
-                          key={i}
-                          className="w-6 h-6 rounded-full bg-primary/20 border-2 border-background flex items-center justify-center"
-                        >
-                          <Users className="w-3 h-3 text-primary" />
-                        </div>
-                      ))}
-                    </div>
-                    <span className="text-sm text-muted-foreground">
-                      <strong className="text-foreground">50+ entreprises accompagnées</strong>{" "}
-                      ont optimisé leur recrutement
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* CTAs — single primary CTA + restart */}
-                <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1 }}
-                  className="flex flex-col items-center gap-4"
-                >
+                {/* Compact CTA row: Partager + Recommencer + Discuter */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 pb-2">
+                  <button
+                    onClick={handleShare}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border/60 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all cursor-pointer"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    Partager
+                  </button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleRestart}
+                    className="gap-2 rounded-xl"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    Recommencer
+                  </Button>
                   <Button
                     asChild
-                    size="lg"
-                    className="gap-2 px-10 py-7 text-base font-semibold rounded-2xl shadow-xl shadow-primary/20 w-full sm:w-auto bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
+                    size="default"
+                    className="gap-2 px-6 py-5 font-semibold rounded-xl shadow-lg shadow-primary/20 bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
                   >
                     <a href="/rdv">
                       <MessageSquare className="w-4 h-4" />
                       Discuter avec un expert
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-4 h-4" />
                     </a>
                   </Button>
-
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleRestart}
-                    className="gap-2 mt-2 text-muted-foreground hover:text-foreground"
-                  >
-                    <RotateCcw className="w-4 h-4" /> Recommencer le diagnostic
-                  </Button>
-                </motion.div>
+                </div>
               </div>
             </section>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </main>
