@@ -358,30 +358,41 @@ export default function OutilsClient() {
               en 2 minutes
             </h1>
 
-            <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl mx-auto">
-              3 simulateurs conçus pour les décideurs. Calculez, diagnostiquez, visualisez — puis
-              décidez en connaissance de cause.
+            <p className="mt-3 text-sm md:text-base text-white/65 leading-relaxed max-w-xl mx-auto">
+              Calculez, diagnostiquez, visualisez — puis décidez en connaissance de cause.
             </p>
+
+            {/* Quick access — 3 mini cards inline */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto">
+              {tools.map((tool) => {
+                const TIcon = tool.icon;
+                return (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className="group flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 hover:border-rocket-teal/40 hover:bg-white/[0.1] transition-all duration-300"
+                  >
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-rocket-teal/15 text-rocket-teal-glow group-hover:scale-110 transition-transform">
+                      <TIcon className="w-4 h-4" />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-sm font-semibold text-white">{tool.title}</div>
+                      <div className="text-[10px] text-white/45">{tool.badge}</div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ============================================================ */}
-      {/*  TOOL CARDS — directly after hero, no gap                    */}
+      {/*  TOOL CARDS — detailed                                       */}
       {/* ============================================================ */}
       <section className="py-10 md:py-14 bg-gradient-to-b from-rocket-dark via-[#0a0f18] to-[#0d1117]">
         <div className="container-wide">
-          <motion.div
-            ref={sectionRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={sectionInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-rocket-teal-glow px-3 py-1 rounded-full bg-rocket-teal/10 border border-rocket-teal/20 mb-4">
-              <Zap className="w-3 h-3" />
-              Choisissez votre simulateur
-            </span>
+          <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-white mt-3">
               Une question ? Un outil pour y répondre.
             </h2>
@@ -389,7 +400,7 @@ export default function OutilsClient() {
               Chaque simulateur est conçu pour vous aider à prendre une décision éclairée sur votre
               stratégie de recrutement.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
             {tools.map((tool, i) => (
