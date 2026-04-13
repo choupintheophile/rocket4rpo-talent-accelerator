@@ -45,6 +45,7 @@ interface Question {
   actionSpecific: string;
   estimatedImpact: string;
   difficulty: "Rapide à mettre en place" | "Moyen terme" | "Transformation profonde";
+  resources: { title: string; url: string; pages: string }[];
 }
 
 const questions: Question[] = [
@@ -66,6 +67,10 @@ const questions: Question[] = [
     actionSpecific: "Créez un template de processus recrutement en 6 étapes avec des SLA pour chaque phase",
     estimatedImpact: "-30% time-to-hire",
     difficulty: "Rapide à mettre en place",
+    resources: [
+      { title: "Template processus de recrutement complet", url: "/resources/template-processus-recrutement.pdf", pages: "7 pages" },
+      { title: "RPO vs Cabinet — Le comparatif complet", url: "/resources/guide-rpo-vs-cabinet.pdf", pages: "12 pages" },
+    ],
   },
   {
     id: "scorecards",
@@ -85,6 +90,10 @@ const questions: Question[] = [
     actionSpecific: "Déployez une scorecard standardisée avec 5 critères clés pondérés pour chaque famille de poste",
     estimatedImpact: "+20% qualité candidats",
     difficulty: "Rapide à mettre en place",
+    resources: [
+      { title: "Scorecard de recrutement — Template", url: "/resources/scorecard-recrutement.pdf", pages: "4 pages" },
+      { title: "50 questions d'entretien structuré", url: "/resources/questions-entretien-structure.pdf", pages: "14 pages" },
+    ],
   },
   {
     id: "tth",
@@ -104,6 +113,10 @@ const questions: Question[] = [
     actionSpecific: "Identifiez et éliminez les 2 plus gros goulots de votre pipeline avec des entretiens parallèles",
     estimatedImpact: "-15 jours time-to-hire",
     difficulty: "Moyen terme",
+    resources: [
+      { title: "Étude : Time-to-hire par secteur en France 2026", url: "/resources/etude-time-to-hire-france-2026.pdf", pages: "12 pages" },
+      { title: "Guide complet du sourcing multicanal", url: "/resources/guide-sourcing-multicanal.pdf", pages: "20 pages" },
+    ],
   },
   {
     id: "sourcing",
@@ -123,6 +136,10 @@ const questions: Question[] = [
     actionSpecific: "Lancez un programme de cooptation avec prime et activez 2 nouveaux canaux de sourcing",
     estimatedImpact: "+40% pipeline candidats",
     difficulty: "Moyen terme",
+    resources: [
+      { title: "Guide complet du sourcing multicanal", url: "/resources/guide-sourcing-multicanal.pdf", pages: "20 pages" },
+      { title: "Guide de l'IA en recrutement", url: "/resources/guide-ia-recrutement.pdf", pages: "11 pages" },
+    ],
   },
   {
     id: "retention",
@@ -142,6 +159,10 @@ const questions: Question[] = [
     actionSpecific: "Structurez un onboarding de 90 jours avec checkpoints à J+7, J+30 et J+90",
     estimatedImpact: "+15% rétention à 12 mois",
     difficulty: "Transformation profonde",
+    resources: [
+      { title: "Les 10 étapes d'un onboarding réussi", url: "/resources/checklist-onboarding.pdf", pages: "6 pages" },
+      { title: "Guide du plan 30-60-90 jours", url: "/resources/guide-plan-30-60-90.pdf", pages: "10 pages" },
+    ],
   },
   {
     id: "kpi",
@@ -161,6 +182,10 @@ const questions: Question[] = [
     actionSpecific: "Créez un dashboard avec 5 KPIs clés : TTH, taux conversion, coût/recrutement, source quality, offer acceptance",
     estimatedImpact: "+25% efficacité recrutement",
     difficulty: "Rapide à mettre en place",
+    resources: [
+      { title: "KPIs recrutement — Le dashboard essentiel", url: "/resources/guide-kpis-recrutement.pdf", pages: "8 pages" },
+      { title: "Template reporting recrutement COMEX", url: "/resources/template-reporting-comex.pdf", pages: "10 pages" },
+    ],
   },
   {
     id: "volume",
@@ -180,6 +205,10 @@ const questions: Question[] = [
     actionSpecific: "Évaluez le ROI d'un TA Specialist dédié vs. le coût actuel de vos recrutements externalisés",
     estimatedImpact: "-35% coût par recrutement",
     difficulty: "Transformation profonde",
+    resources: [
+      { title: "RPO vs Cabinet — Le comparatif complet", url: "/resources/guide-rpo-vs-cabinet.pdf", pages: "12 pages" },
+      { title: "Benchmark RPO France 2026", url: "/resources/benchmark-rpo-france-2026.pdf", pages: "14 pages" },
+    ],
   },
 ];
 
@@ -2037,6 +2066,26 @@ export default function AssessmentClient() {
                               </span>
                               <DifficultyBadge level={q.difficulty} />
                             </div>
+
+                            {/* Ressources recommandées */}
+                            {q.resources && q.resources.length > 0 && (
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {q.resources.map((r) => (
+                                  <a
+                                    key={r.url}
+                                    href={r.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/5 border border-primary/15 hover:bg-primary/10 hover:border-primary/30 transition-all text-xs group"
+                                  >
+                                    <span className="text-primary text-sm">📄</span>
+                                    <span className="font-medium text-foreground/80 group-hover:text-primary transition-colors">{r.title}</span>
+                                    <span className="text-muted-foreground text-[10px]">{r.pages}</span>
+                                    <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">↓</span>
+                                  </a>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </motion.div>
                       );
