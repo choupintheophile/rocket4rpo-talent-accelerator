@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -428,6 +428,9 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
   const [delai, setDelai] = useState(45);
   const [postesAnnuels, setPostesAnnuels] = useState(15);
   const [activeScenario, setActiveScenario] = useState<string | null>(null);
+
+  // Scroll to top on mount
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   /* ── constants ── */
   const RPO_TJM = 500;

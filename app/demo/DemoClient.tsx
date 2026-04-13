@@ -2001,8 +2001,9 @@ export default function DemoClient() {
     scrollToTop();
   };
 
-  // Auto-start the demo
+  // Auto-start the demo + scroll to top
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (!started) handleStart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

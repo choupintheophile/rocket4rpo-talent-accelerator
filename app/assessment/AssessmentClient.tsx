@@ -1083,6 +1083,9 @@ export default function AssessmentClient() {
   const [gradeRevealed, setGradeRevealed] = useState(false);
   const [showCalculating, setShowCalculating] = useState(true);
 
+  // Scroll to top on mount
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   // Track card glow pulse per question
   const [cardGlow, setCardGlow] = useState<number | null>(null);
 
