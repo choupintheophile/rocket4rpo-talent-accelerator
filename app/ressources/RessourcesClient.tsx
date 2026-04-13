@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 import {
   FileText,
@@ -613,45 +614,17 @@ export default function RessourcesClient() {
               </div>
             </div>
 
-            {/* Visual side — Resource library preview */}
+            {/* Photo side */}
             <div className="hidden lg:block lg:w-[45%]">
-              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-5 shadow-2xl">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                  <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Bibliothèque</span>
-                  <span className="ml-auto text-[10px] text-white/30 font-mono">20+ ressources</span>
-                </div>
-
-                {/* 4 mini resource cards */}
-                <div className="space-y-2.5">
-                  {[
-                    { icon: "📘", title: "Guide RPO complet", type: "PDF · 24 pages", color: "border-emerald-500/30" },
-                    { icon: "📊", title: "Scorecard recrutement", type: "Template Excel", color: "border-blue-500/30" },
-                    { icon: "📋", title: "Checklist process TA", type: "PDF · 8 pages", color: "border-amber-500/30" },
-                    { icon: "📈", title: "Étude marché RPO 2026", type: "PDF · 32 pages", color: "border-violet-500/30" },
-                  ].map((r) => (
-                    <div key={r.title} className={`flex items-center gap-3 p-3 rounded-xl bg-white/[0.04] border ${r.color} hover:bg-white/[0.08] transition-colors`}>
-                      <span className="text-xl">{r.icon}</span>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium text-white truncate">{r.title}</div>
-                        <div className="text-[10px] text-white/40">{r.type}</div>
-                      </div>
-                      <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-white/50">
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Download badge */}
-                <div className="mt-4 text-center">
-                  <span className="inline-flex items-center gap-1.5 text-[10px] text-white/40">
-                    <Zap className="w-3 h-3 text-rocket-teal-glow" />
-                    Téléchargement immédiat · Sans inscription
-                  </span>
-                </div>
-
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-emerald-500/8 via-transparent to-blue-500/5 -z-10 blur-xl" />
+              <div className="relative">
+                <Image
+                  src="/photos/header-rocket4sales.webp"
+                  alt="Nos experts créent les ressources utilisées au quotidien"
+                  width={600}
+                  height={420}
+                  className="rounded-2xl shadow-2xl object-cover w-full"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
               </div>
             </div>
           </div>
