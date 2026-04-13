@@ -262,7 +262,7 @@ export default function HomepageSections() {
             <div className="text-center mb-14">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-red-500/10 text-red-400 mb-5">
                 <AlertTriangle className="w-3.5 h-3.5" />
-                Le probl&egrave;me
+                Le problème
               </span>
               <h2 className="text-2xl md:text-3xl font-bold max-w-3xl mx-auto leading-tight">
                 Chaque semaine sans le bon recruteur vous{" "}
@@ -379,15 +379,15 @@ export default function HomepageSections() {
                 La solution
               </span>
               <h2 className="text-2xl md:text-3xl font-bold max-w-4xl mx-auto leading-tight">
-                Un recruteur senior int&eacute;gr&eacute; en 1 semaine.{" "}
+                Un recruteur senior intégré en 1 semaine.{" "}
                 <span className="text-gradient">
                   Pas un cabinet. Pas un freelance. Un expert.
                 </span>
               </h2>
               <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Un Talent Acquisition Specialist qui rejoint vos outils, vos
-                rituels et votre culture. Il repr&eacute;sente votre marque, pas
-                la n&ocirc;tre.
+                rituels et votre culture. Il représente votre marque, pas
+                la nôtre.
               </p>
             </div>
           </FadeIn>
@@ -406,8 +406,8 @@ export default function HomepageSections() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
                   <p className="text-white text-sm font-medium">
-                    Votre TA Specialist, int&eacute;gr&eacute; directement dans
-                    votre &eacute;quipe
+                    Votre TA Specialist, intégré directement dans
+                    votre équipe
                   </p>
                 </div>
               </div>
@@ -497,7 +497,7 @@ export default function HomepageSections() {
                 <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
 
                 <p className="text-xs font-bold text-primary uppercase tracking-widest mb-6 relative">
-                  R&eacute;sultat concret
+                  Résultat concret
                 </p>
 
                 <div className="space-y-5 relative">
@@ -540,7 +540,7 @@ export default function HomepageSections() {
                           }}
                         >
                           <CheckCircle className="w-2.5 h-2.5" />
-                          Recommand&eacute;
+                          Recommandé
                         </motion.span>
                       </div>
                       <span className="text-2xl font-bold text-primary">
@@ -571,7 +571,7 @@ export default function HomepageSections() {
                 href="/offre"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all duration-300"
               >
-                Voir le d&eacute;tail de l&apos;offre{" "}
+                Voir le détail de l&apos;offre{" "}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -601,8 +601,8 @@ export default function HomepageSections() {
               </h2>
               <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Nous ne travaillons pas avec n&apos;importe quel recruteur.
-                Notre processus de s&eacute;lection est le plus exigeant du
-                march&eacute;.
+                Notre processus de sélection est le plus exigeant du
+                marché.
               </p>
             </div>
           </FadeIn>
@@ -711,7 +711,7 @@ export default function HomepageSections() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-primary/5 border border-border/40">
                 <Image
                   src="/photos/equipe-interieur.webp"
-                  alt="L'&eacute;quipe Rocket4RPO"
+                  alt="L'équipe Rocket4RPO"
                   width={560}
                   height={560}
                   className="w-full h-full object-cover"
@@ -729,9 +729,9 @@ export default function HomepageSections() {
                 </div>
                 <p className="text-sm text-muted-foreground italic leading-relaxed mb-3">
                   &ldquo;En 4 mois, 8 postes pourvus. Le TA s&apos;est
-                  int&eacute;gr&eacute; comme un membre de l&apos;&eacute;quipe.
-                  On a divis&eacute; notre time-to-hire par deux et
-                  lib&eacute;r&eacute; nos managers.&rdquo;
+                  intégré comme un membre de l&apos;équipe.
+                  On a divisé notre time-to-hire par deux et
+                  libéré nos managers.&rdquo;
                 </p>
                 <p className="text-sm font-semibold text-foreground">
                   &mdash; VP People, Scale-up SaaS (120 pers.)
@@ -756,14 +756,14 @@ export default function HomepageSections() {
           <FadeIn>
             <div className="text-center mb-14">
               <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-primary/15 text-primary mb-5">
-                Comment &ccedil;a marche
+                Comment ça marche
               </span>
               <h2 className="text-2xl md:text-3xl font-bold">
                 Du premier appel aux premiers{" "}
-                <span className="text-primary">recrutements sign&eacute;s</span>
+                <span className="text-primary">recrutements signés</span>
               </h2>
               <p className="mt-5 text-lg text-white/60 max-w-2xl mx-auto">
-                Du premier appel &agrave; votre premi&egrave;re shortlist : 1
+                Du premier appel à votre première shortlist : 1
                 semaine.
               </p>
             </div>
@@ -837,7 +837,7 @@ export default function HomepageSections() {
               <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                 <Image
                   src="/photos/perso-home-bureau-main.jpg"
-                  alt="Recrutement sign&eacute; — mission accomplie"
+                  alt="Recrutement signé — mission accomplie"
                   width={1000}
                   height={500}
                   className="w-full h-[200px] md:h-[240px] object-cover"
@@ -845,7 +845,7 @@ export default function HomepageSections() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between">
                   <p className="text-white text-sm font-medium">
-                    Recrutement sign&eacute;. Mission accomplie.
+                    Recrutement signé. Mission accomplie.
                   </p>
                   <span className="text-xs text-white/60 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
                     2-3 semaines en moyenne
@@ -863,7 +863,7 @@ export default function HomepageSections() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white font-semibold text-sm hover:brightness-110 transition-all duration-300 hover:gap-3 shadow-lg shadow-primary/25"
               >
-                R&eacute;server un appel d&eacute;couverte{" "}
+                Réserver un appel découverte{" "}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -890,7 +890,7 @@ export default function HomepageSections() {
                 <span className="text-gradient">gratuits</span>
               </h2>
               <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
-                Pas besoin de s&apos;engager pour commencer &agrave; optimiser
+                Pas besoin de s&apos;engager pour commencer à optimiser
                 votre recrutement.
               </p>
             </div>
@@ -1007,7 +1007,7 @@ export default function HomepageSections() {
                 Voir tous nos outils <ArrowRight className="w-4 h-4" />
               </Link>
               <p className="mt-3 text-xs text-muted-foreground">
-                Utilis&eacute;s par 300+ DRH et CEO &mdash; sans cr&eacute;er
+                Utilisés par 300+ DRH et CEO &mdash; sans créer
                 de compte
               </p>
             </div>
