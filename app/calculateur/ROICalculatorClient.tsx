@@ -537,7 +537,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
           }}
         />
 
-        <div className="relative container-wide py-20 md:py-28 lg:py-32">
+        <div className="relative container-wide py-12 md:py-20 lg:py-28">
           <motion.div
             initial="hidden"
             animate="show"
@@ -644,7 +644,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                 <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
                   Scénario rapide
                 </p>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
                   {SCENARIOS.map((scenario) => {
                     const ScIcon = scenario.icon;
                     const isActive = activeScenario === scenario.id;

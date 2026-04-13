@@ -1509,7 +1509,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       {showConfetti && <Confetti />}
 
       {/* KPI grid 2x2 */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {kpis.map((kpi, i) => (
           <motion.div
             key={kpi.label}
@@ -1534,7 +1534,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       </div>
 
       {/* Extra KPIs row */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {extraKpis.map((kpi, i) => (
           <motion.div
             key={kpi.label}
@@ -1589,7 +1589,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
           />
 
           {/* Two-column comparison */}
-          <div className="grid grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4">
             {/* Rocket4RPO column */}
             <div className="rounded-xl bg-primary/5 border-2 border-primary/30 p-5 text-center relative overflow-hidden">
               <motion.div
@@ -1762,7 +1762,7 @@ export default function DemoClient() {
   return (
     <main className="min-h-screen">
       {/* Dark hero header */}
-      <div className="relative bg-gradient-to-b from-rocket-dark via-rocket-navy-soft to-background pt-28 pb-20 overflow-hidden">
+      <div className="relative bg-gradient-to-b from-rocket-dark via-rocket-navy-soft to-background pt-12 pb-10 md:pt-20 md:pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-16 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />

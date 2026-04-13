@@ -1031,7 +1031,7 @@ export default function AssessmentClient() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark min-h-[100vh] flex items-center">
+            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark flex items-center">
               {/* Animated background orbs */}
               <div className="absolute inset-0 overflow-hidden">
                 <motion.div
@@ -1078,7 +1078,7 @@ export default function AssessmentClient() {
                 />
               ))}
 
-              <div className="relative container-wide py-20 md:py-28 lg:py-32">
+              <div className="relative container-wide py-12 md:py-20 lg:py-28">
                 <div className="max-w-3xl mx-auto text-center">
                   {/* Badge */}
                   <motion.div
@@ -1884,7 +1884,7 @@ export default function AssessmentClient() {
                       </div>
 
                       {/* Visual score bars */}
-                      <div className="grid grid-cols-7 gap-2 mb-8">
+                      <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 sm:gap-2 mb-8">
                         {questions.map((q, i) => {
                           const s = answers[i] ?? 0;
                           const barColor =
