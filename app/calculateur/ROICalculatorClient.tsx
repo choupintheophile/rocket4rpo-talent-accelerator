@@ -1028,21 +1028,21 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     className="text-center"
                   >
                     <a
-                      href={HUBSPOT}
+                      href="/rdv"
                       className="group inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold rounded-2xl text-white bg-gradient-to-r from-[hsl(var(--rocket-teal))] via-emerald-500 to-[hsl(var(--rocket-teal))] bg-[length:200%_100%] hover:bg-right shadow-xl shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
                     >
-                      <Download className="w-5 h-5" />
-                      Obtenir mon rapport personnalisé
+                      <MessageCircle className="w-5 h-5" />
+                      Discuter avec un expert
                       <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
                     </a>
                     <p className="mt-3 text-xs text-muted-foreground">
-                      Gratuit et sans engagement — recevez votre analyse complète par email
+                      30 min de diagnostic gratuit — sans engagement
                     </p>
                   </motion.div>
 
                   {/* ── Disclaimer ────────────────────────── */}
                   <p className="text-xs text-muted-foreground italic">
-                    * Estimations basées sur nos données internes (TJM 500 €, 4
+                    * Estimations basées sur nos données internes (TJM 500 €, 6
                     jours/recrutement, délai moyen 2-3 semaines). Chaque situation
                     est unique.
                   </p>

@@ -2171,7 +2171,7 @@ export default function AssessmentClient() {
                             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all"
                           >
                             <Mail className="w-3.5 h-3.5" />
-                            Recevoir par email
+                            Discuter avec un expert
                           </a>
                         </div>
                       </div>
@@ -2271,7 +2271,7 @@ export default function AssessmentClient() {
                   >
                     <a href="/rdv">
                       <MessageSquare className="w-4 h-4" />
-                      Recevoir votre rapport détaillé
+                      Discuter avec un expert
                       <ArrowRight className="w-5 h-5" />
                     </a>
                   </Button>
