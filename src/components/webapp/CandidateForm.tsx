@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { CRITERIA, NB_CRIT, FORCE_PRESETS, RISK_PRESETS, IMPRESSION_POSITIVES, IMPRESSION_NEGATIVES, SCORE_COLORS, calcScore, getVerdict } from "@/lib/r4rpo-constants";
+import { CRITERIA, NB_CRIT, FORCE_PRESETS, RISK_PRESETS, SCORE_COLORS, calcScore, getVerdict } from "@/lib/r4rpo-constants";
 import { createCandidate, updateCandidate, deleteCandidate } from "@/lib/candidates";
 import type { Candidate } from "@prisma/client";
 
@@ -37,6 +37,11 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
     const sc = (candidate?.scores as Record<string, number>) || {};
     return { ...sc };
   });
+
+  // CV
+  const [hasCv, setHasCv] = useState(candidate?.hasCv || false);
+  const [cvPath, setCvPath] = useState(candidate?.cvPath || "");
+  const [cvUploading, setCvUploading] = useState(false);
 
   // Tags
   const [forces, setForces] = useState<Set<string>>(() => new Set((candidate?.forces as string[]) || []));
@@ -97,6 +102,8 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       scores,
       forces: Array.from(forces),
       risks: Array.from(risks),
+      hasCv,
+      cvPath: cvPath || null,
     };
 
     startTransition(async () => {
@@ -124,6 +131,65 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
 
   return (
     <div className="space-y-6">
+      {/* CV Upload */}
+      <section>
+        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
+          CV du candidat
+        </h3>
+        {hasCv && cvPath ? (
+          <div className="flex items-center gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
+            <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 text-sm">📄</div>
+            <div className="flex-1">
+              <a href={cvPath} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-emerald-700 hover:underline">
+                Voir le CV
+              </a>
+              <p className="text-[11px] text-emerald-600/60">Fichier uploadé</p>
+            </div>
+            <button
+              type="button"
+              onClick={async () => {
+                await fetch("/api/upload", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ cvPath }) });
+                setHasCv(false);
+                setCvPath("");
+              }}
+              className="text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors"
+            >
+              Supprimer
+            </button>
+          </div>
+        ) : (
+          <div className="relative">
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              disabled={cvUploading}
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                setCvUploading(true);
+                try {
+                  const fd = new FormData();
+                  fd.append("file", file);
+                  fd.append("candidateId", candidate?.id || "new-" + Date.now());
+                  const res = await fetch("/api/upload", { method: "POST", body: fd });
+                  const data = await res.json();
+                  if (res.ok && data.cvPath) {
+                    setCvPath(data.cvPath);
+                    setHasCv(true);
+                  } else {
+                    alert(data.error || "Erreur upload");
+                  }
+                } catch { alert("Erreur de connexion"); }
+                setCvUploading(false);
+              }}
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-rocket-teal/10 file:text-rocket-teal hover:file:bg-rocket-teal/20 file:cursor-pointer cursor-pointer disabled:opacity-50"
+            />
+            {cvUploading && <p className="text-xs text-gray-400 mt-1 animate-pulse">Upload en cours...</p>}
+            <p className="text-[10px] text-gray-400 mt-1">PDF, DOC ou DOCX · Max 10 Mo</p>
+          </div>
+        )}
+      </section>
+
       {/* Resume */}
       <section>
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
@@ -313,27 +379,12 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
           Impression entretien — points positifs
         </h3>
-        <div className="flex flex-wrap gap-1.5 mb-2">
+        <div className="flex flex-wrap gap-1.5">
           {FORCE_PRESETS.map((tag) => (
             <button
               key={tag}
               onClick={() => toggleForce(tag)}
-              className={`text-[12px] px-3 py-1 rounded-full border transition-colors ${
-                forces.has(tag)
-                  ? "bg-emerald-100 border-emerald-400 text-emerald-800"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {IMPRESSION_POSITIVES.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleForce(tag)}
-              className={`text-[12px] px-3 py-1 rounded-full border transition-colors ${
+              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
                 forces.has(tag)
                   ? "bg-emerald-100 border-emerald-400 text-emerald-800"
                   : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
@@ -348,29 +399,14 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       {/* Risks */}
       <section>
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
-          Impression entretien — alertes
+          Alertes
         </h3>
-        <div className="flex flex-wrap gap-1.5 mb-2">
+        <div className="flex flex-wrap gap-1.5">
           {RISK_PRESETS.map((tag) => (
             <button
               key={tag}
               onClick={() => toggleRisk(tag)}
-              className={`text-[12px] px-3 py-1 rounded-full border transition-colors ${
-                risks.has(tag)
-                  ? "bg-red-100 border-red-400 text-red-700"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {IMPRESSION_NEGATIVES.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleRisk(tag)}
-              className={`text-[12px] px-3 py-1 rounded-full border transition-colors ${
+              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
                 risks.has(tag)
                   ? "bg-red-100 border-red-400 text-red-700"
                   : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"

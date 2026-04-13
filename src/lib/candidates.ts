@@ -61,6 +61,8 @@ export async function createCandidate(data: {
   scores?: Record<string, number>;
   forces?: string[];
   risks?: string[];
+  hasCv?: boolean;
+  cvPath?: string;
 }): Promise<Candidate> {
   const sc = calcScore(data.scores || null);
 
@@ -88,6 +90,8 @@ export async function createCandidate(data: {
       maxScore: sc.max,
       pct: sc.pct,
       filled: sc.filled,
+      hasCv: data.hasCv || false,
+      cvPath: data.cvPath || null,
     },
   });
 }
@@ -113,6 +117,8 @@ export async function updateCandidate(
     scores?: Record<string, number>;
     forces?: string[];
     risks?: string[];
+    hasCv?: boolean;
+    cvPath?: string | null;
   }
 ): Promise<Candidate> {
   const sc = data.scores ? calcScore(data.scores) : null;
@@ -137,6 +143,8 @@ export async function updateCandidate(
   if (data.scores !== undefined) updateData.scores = data.scores;
   if (data.forces !== undefined) updateData.forces = data.forces;
   if (data.risks !== undefined) updateData.risks = data.risks;
+  if (data.hasCv !== undefined) updateData.hasCv = data.hasCv;
+  if (data.cvPath !== undefined) updateData.cvPath = data.cvPath;
 
   if (sc) {
     updateData.score = sc.total;

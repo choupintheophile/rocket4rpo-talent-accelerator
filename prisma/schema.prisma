@@ -101,6 +101,7 @@ model Candidate {
   pct        Int      @default(0)
   filled     Int      @default(0)
   hasCv      Boolean  @default(false)
+  cvPath     String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 

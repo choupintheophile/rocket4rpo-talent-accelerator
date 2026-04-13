@@ -24,56 +24,16 @@ export const FORCE_PRESETS = [
   "Sourcing proactif fort",
   "Chiffres précis spontanés",
   "Autonomie démontrée",
-  "Stack outils maîtrisée",
-  "Réseau crédible",
-  "Qualification pointue",
-  "Storytelling convaincant",
-  "Fit RPO évident",
-  "International opérationnel",
-  "Process structuré A→Z",
   "Closing efficace",
-  "KPIs & reporting rigoureux",
-  "Bilingue / multilingue",
-  "Multi-secteurs ESN + SaaS",
-  "Disponible immédiatement",
+  "Fit RPO évident",
 ] as const;
 
 export const RISK_PRESETS = [
   "Manque de chiffres",
   "Peu autonome",
-  "Réseau limité",
-  "Qualification superficielle",
-  "Faible connaissance marché",
   "Pas de fit RPO",
-  "Expérience sectorielle faible",
   "Communication floue",
-  "Instabilité / mobilité courte",
-  "Trop généraliste",
-  "Se survend",
   "Outils mal maîtrisés",
-  "Pas de closing",
-  "Faible volume recrutements",
-  "Vague & généraliste",
-] as const;
-
-export const IMPRESSION_POSITIVES = [
-  "Ponctuel & préparé",
-  "Conversation fluide",
-  "Écoute active",
-  "Concis & structuré",
-  "Énergie & motivation",
-  "Humble & transparent",
-  "Exemples concrets",
-] as const;
-
-export const IMPRESSION_NEGATIVES = [
-  "En retard / pas prêt",
-  "Conversation laborieuse",
-  "Parle trop / hors-sujet",
-  "Vague & généraliste",
-  "Peu motivé / passif",
-  "Se survend",
-  "Rigide / défensif",
 ] as const;
 
 export const SCORE_COLORS = ["#EF9A9A", "#FFD54F", "#AED581", "#66BB6A", "#124944"] as const;
