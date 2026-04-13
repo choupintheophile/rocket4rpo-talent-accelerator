@@ -73,9 +73,9 @@ function FloatingParticles() {
 const tools = [
   {
     title: "Calculateur ROI",
-    subtitle: "Mesurez vos \u00e9conomies",
+    subtitle: "Mesurez vos économies",
     description:
-      "Comparez le co\u00fbt r\u00e9el du RPO vs cabinet vs recrutement interne. Ajustez vos param\u00e8tres, voyez l\u2019impact instantan\u00e9ment.",
+      "Comparez le coût réel du RPO vs cabinet vs recrutement interne. Ajustez vos paramètres, voyez l’impact instantanément.",
     icon: Calculator,
     href: "/calculateur",
     cta: "Calculer mon ROI",
@@ -91,13 +91,13 @@ const tools = [
     accentBg: "bg-teal-500/10",
     ctaBg: "bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-400 hover:to-emerald-500",
     number: "01",
-    benefits: ["Chiffres personnalis\u00e9s", "Comparaison 3 mod\u00e8les", "R\u00e9sultat imm\u00e9diat"],
+    benefits: ["Chiffres personnalisés", "Comparaison 3 modèles", "Résultat immédiat"],
   },
   {
     title: "Diagnostic recrutement",
-    subtitle: "\u00c9valuez votre maturit\u00e9",
+    subtitle: "Évaluez votre maturité",
     description:
-      "7 questions strat\u00e9giques pour scorer votre process recrutement. Obtenez un diagnostic personnalis\u00e9 avec vos 3 axes de progression prioritaires.",
+      "7 questions stratégiques pour scorer votre process recrutement. Obtenez un diagnostic personnalisé avec vos 3 axes de progression prioritaires.",
     icon: ClipboardCheck,
     href: "/assessment",
     cta: "Lancer le diagnostic",
@@ -116,13 +116,13 @@ const tools = [
     benefits: ["Score sur 21 points", "Top 3 faiblesses", "Plan d'action clair"],
   },
   {
-    title: "D\u00e9mo interactive",
+    title: "Démo interactive",
     subtitle: "Vivez le process RPO",
     description:
-      "D\u00e9couvrez en 4 \u00e9tapes interactives comment nos TA Specialists identifient, qualifient et pr\u00e9sentent vos candidats.",
+      "Découvrez en 4 étapes interactives comment nos TA Specialists identifient, qualifient et présentent vos candidats.",
     icon: Play,
     href: "/demo",
-    cta: "D\u00e9marrer la d\u00e9mo",
+    cta: "Démarrer la démo",
     ctaArrow: true,
     badge: "2 min",
     badgeExtra: "Immersif",
@@ -136,7 +136,7 @@ const tools = [
     ctaBg:
       "bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-400 hover:to-purple-500",
     number: "03",
-    benefits: ["Processus transparent", "R\u00e9sultats en temps r\u00e9el", "0 engagement"],
+    benefits: ["Processus transparent", "Résultats en temps réel", "0 engagement"],
   },
 ];
 
@@ -256,22 +256,22 @@ const benefits = [
   {
     icon: Shield,
     title: "100% gratuit, sans inscription",
-    desc: "Aucune carte bancaire, aucun compte \u00e0 cr\u00e9er. Lancez un simulateur en un clic.",
+    desc: "Aucune carte bancaire, aucun compte à créer. Lancez un simulateur en un clic.",
   },
   {
     icon: Zap,
-    title: "R\u00e9sultats personnalis\u00e9s en temps r\u00e9el",
-    desc: "Chaque r\u00e9ponse adapte les calculs et recommandations \u00e0 votre situation pr\u00e9cise.",
+    title: "Résultats personnalisés en temps réel",
+    desc: "Chaque réponse adapte les calculs et recommandations à votre situation précise.",
   },
   {
     icon: BarChart3,
-    title: "Bas\u00e9 sur 200+ recrutements r\u00e9alis\u00e9s",
-    desc: "Nos benchmarks viennent de donn\u00e9es terrain, pas de moyennes sectorielles g\u00e9n\u00e9riques.",
+    title: "Basé sur 200+ recrutements réalisés",
+    desc: "Nos benchmarks viennent de données terrain, pas de moyennes sectorielles génériques.",
   },
   {
     icon: Target,
     title: "Recommandations actionnables",
-    desc: "Pas de th\u00e9orie : des actions concr\u00e8tes \u00e0 mettre en place d\u00e8s demain.",
+    desc: "Pas de théorie : des actions concrètes à mettre en place dès demain.",
   },
 ];
 
@@ -281,21 +281,21 @@ const benefits = [
 const testimonials = [
   {
     quote:
-      "Le calculateur m\u2019a permis de convaincre mon COMEX en 10 minutes. Les chiffres parlent d\u2019eux-m\u00eames.",
+      "Le calculateur m’a permis de convaincre mon COMEX en 10 minutes. Les chiffres parlent d’eux-mêmes.",
     author: "Marie L.",
-    role: "DRH, Scale-up SaaS (120 salari\u00e9s)",
+    role: "DRH, Scale-up SaaS (120 salariés)",
   },
   {
     quote:
-      "Le diagnostic a r\u00e9v\u00e9l\u00e9 que notre point faible \u00e9tait le sourcing, pas le process. On a r\u00e9orient\u00e9 toute notre strat\u00e9gie.",
+      "Le diagnostic a révélé que notre point faible était le sourcing, pas le process. On a réorienté toute notre stratégie.",
     author: "Thomas D.",
     role: "Head of Talent Acquisition, E-commerce",
   },
   {
     quote:
-      "La d\u00e9mo interactive nous a rassur\u00e9s sur la transparence du mod\u00e8le RPO. On a sign\u00e9 dans la foul\u00e9e.",
+      "La démo interactive nous a rassurés sur la transparence du modèle RPO. On a signé dans la foulée.",
     author: "Sophie M.",
-    role: "COO, Startup Fintech (45 salari\u00e9s)",
+    role: "COO, Startup Fintech (45 salariés)",
   },
 ];
 
@@ -364,20 +364,20 @@ export default function OutilsClient() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80 mb-5">
               <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
-              100% gratuit &middot; Sans inscription &middot; R\u00e9sultats instantan\u00e9s
+              100% gratuit &middot; Sans inscription &middot; Résultats instantanés
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold leading-[1.12] text-white">
               Prenez les bonnes{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                d\u00e9cisions
+                décisions
               </span>{" "}
               en 2 minutes
             </h1>
 
             <p className="mt-4 text-base text-white/50 leading-relaxed max-w-xl mx-auto">
-              3 simulateurs con\u00e7us pour les d\u00e9cideurs. Calculez, diagnostiquez, visualisez — puis
-              d\u00e9cidez en connaissance de cause.
+              3 simulateurs conçus pour les décideurs. Calculez, diagnostiquez, visualisez — puis
+              décidez en connaissance de cause.
             </p>
           </motion.div>
         </div>
@@ -400,11 +400,11 @@ export default function OutilsClient() {
               Choisissez votre simulateur
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-white mt-3">
-              Une question ? Un outil pour y r\u00e9pondre.
+              Une question ? Un outil pour y répondre.
             </h2>
             <p className="mt-4 text-white/40 max-w-2xl mx-auto text-base">
-              Chaque simulateur est con\u00e7u pour vous aider \u00e0 prendre une d\u00e9cision \u00e9clair\u00e9e sur votre
-              strat\u00e9gie de recrutement.
+              Chaque simulateur est conçu pour vous aider à prendre une décision éclairée sur votre
+              stratégie de recrutement.
             </p>
           </motion.div>
 
@@ -432,7 +432,7 @@ export default function OutilsClient() {
               Pourquoi utiliser nos outils ?
             </h2>
             <p className="mt-3 text-white/40 max-w-xl mx-auto">
-              Des outils concrets, bas\u00e9s sur notre exp\u00e9rience terrain.
+              Des outils concrets, basés sur notre expérience terrain.
             </p>
           </motion.div>
 
@@ -471,7 +471,7 @@ export default function OutilsClient() {
           >
             <div className="inline-flex items-center gap-2 text-xs font-medium text-white/50 mb-4">
               <Users className="w-4 h-4 text-rocket-teal-glow/60" />
-              Utilis\u00e9 par 50+ entreprises pour optimiser leur recrutement
+              Utilisé par 50+ entreprises pour optimiser leur recrutement
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               Ce qu'en disent nos utilisateurs
@@ -515,8 +515,8 @@ export default function OutilsClient() {
       {/* ============================================================ */}
       <CTASection
         title="Besoin d'un accompagnement sur mesure ?"
-        subtitle="Discutez avec un expert Talent Acquisition senior. Il analysera vos besoins et vous proposera le meilleur mod\u00e8le — RPO, CDD/CDI ou mission ponctuelle."
-        ctaLabel="R\u00e9server un diagnostic gratuit"
+        subtitle="Discutez avec un expert Talent Acquisition senior. Il analysera vos besoins et vous proposera le meilleur modèle — RPO, CDD/CDI ou mission ponctuelle."
+        ctaLabel="Réserver un diagnostic gratuit"
       />
     </>
   );

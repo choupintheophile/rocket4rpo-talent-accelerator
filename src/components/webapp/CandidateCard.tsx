@@ -60,7 +60,7 @@ export function CandidateCard({ candidate: c }: { candidate: CandidateWithVerdic
         )}
 
         <div className="text-[12px] text-gray-400 mt-0.5">
-          {meta || "\u2014"}
+          {meta || "—"}
           {c.tjm && (
             <span className="ml-2 text-[11px] font-medium text-gray-600 bg-gray-100 px-1.5 py-0.5 rounded">
               {c.tjm}
