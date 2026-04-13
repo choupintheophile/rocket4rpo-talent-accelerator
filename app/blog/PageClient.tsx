@@ -2,7 +2,7 @@
 
 import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import Image from "next/image";
+
 import Link from "next/link";
 import {
   ArrowRight,
@@ -115,11 +115,29 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
                 </div>
               </div>
             </div>
-            {/* Photo side */}
+            {/* Visual side — Trending articles preview */}
             <div className="hidden lg:block lg:w-[45%]">
-              <div className="relative">
-                <Image src="/photos/presenting-coworkers.webp" alt="Personne présentant à ses collègues" width={600} height={420} className="rounded-2xl shadow-2xl object-cover w-full" />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-5 shadow-2xl">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2.5 h-2.5 rounded-full bg-rose-400 animate-pulse" />
+                  <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Tendances</span>
+                  <span className="ml-auto text-[10px] text-white/30 font-mono">{posts.length} articles</span>
+                </div>
+
+                {/* 4 trending article previews */}
+                <div className="space-y-2.5">
+                  {posts.slice(0, 4).map((post, i) => (
+                    <Link key={post.slug} href={`/blog/${post.slug}`} className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.12] transition-all group">
+                      <span className="w-6 h-6 rounded-lg bg-rocket-teal/15 flex items-center justify-center text-rocket-teal-glow text-[10px] font-bold flex-shrink-0 mt-0.5">{i + 1}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium text-white/80 group-hover:text-white truncate transition-colors">{post.title}</div>
+                        <div className="text-[10px] text-white/30 mt-0.5">{post.category}</div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-rose-500/8 via-transparent to-rocket-teal/5 -z-10 blur-xl" />
               </div>
             </div>
           </div>

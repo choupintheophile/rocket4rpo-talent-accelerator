@@ -158,17 +158,65 @@ export default function OffreClient() {
               </div>
             </div>
 
-            {/* Photo side */}
+            {/* Visual side — TA Scorecard */}
             <div className="hidden lg:block lg:w-[45%]">
-              <div className="relative">
-                <Image
-                  src="/photos/reunion.webp"
-                  alt="Un TA Specialist Rocket4RPO intégré dans une équipe client"
-                  width={600}
-                  height={420}
-                  className="rounded-2xl shadow-2xl object-cover w-full"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-rocket-teal/20 flex items-center justify-center text-rocket-teal-glow text-xs font-bold">TA</div>
+                    <div>
+                      <div className="text-sm font-semibold text-white">Évaluation TA Specialist</div>
+                      <div className="text-[10px] text-white/40">Score minimum requis : 90%</div>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold">PRIORITAIRE</span>
+                </div>
+
+                {/* 5 scoring criteria with animated bars */}
+                <div className="space-y-3 mb-5">
+                  {[
+                    { name: "Sourcing & identification", score: 95 },
+                    { name: "Qualification candidat", score: 92 },
+                    { name: "Autonomie & ownership", score: 88 },
+                    { name: "Pilotage & KPIs", score: 94 },
+                    { name: "Closing & négo", score: 90 },
+                  ].map((c, i) => (
+                    <div key={c.name}>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span className="text-white/60">{c.name}</span>
+                        <span className="text-rocket-teal-glow font-mono font-semibold">{c.score}%</span>
+                      </div>
+                      <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full rounded-full bg-gradient-to-r from-rocket-teal to-emerald-400"
+                          initial={{ width: "0%" }}
+                          animate={{ width: `${c.score}%` }}
+                          transition={{ duration: 1.2, delay: 0.2 + i * 0.15, ease: "easeOut" }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom stats */}
+                <div className="flex items-center justify-between pt-4 border-t border-white/[0.08]">
+                  <div className="text-center">
+                    <div className="text-lg font-bold font-mono text-white">300+</div>
+                    <div className="text-[10px] text-white/40">experts évalués</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold font-mono text-rocket-teal-glow">15</div>
+                    <div className="text-[10px] text-white/40">critères</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg font-bold font-mono text-emerald-400">90%+</div>
+                    <div className="text-[10px] text-white/40">seuil requis</div>
+                  </div>
+                </div>
+
+                {/* Glow */}
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-rocket-teal/10 via-transparent to-emerald-500/5 -z-10 blur-xl" />
               </div>
             </div>
           </div>
