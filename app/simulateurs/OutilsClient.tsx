@@ -152,7 +152,7 @@ function ToolCard({ tool, index }: { tool: (typeof tools)[number]; index: number
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 1, y: 0 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
     >
@@ -417,7 +417,7 @@ export default function OutilsClient() {
         <div className="container-wide">
           <motion.div
             ref={benefitsRef}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={benefitsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
@@ -434,7 +434,7 @@ export default function OutilsClient() {
             {benefits.map((b, i) => (
               <motion.div
                 key={b.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -458,7 +458,7 @@ export default function OutilsClient() {
         <div className="container-wide">
           <motion.div
             ref={proofRef}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={proofInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="text-center mb-12"
@@ -476,7 +476,7 @@ export default function OutilsClient() {
             {testimonials.map((t, i) => (
               <motion.div
                 key={t.author}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
