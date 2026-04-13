@@ -2001,10 +2001,13 @@ export default function DemoClient() {
     scrollToTop();
   };
 
-  // Auto-start the demo + scroll to top
+  // Auto-start the demo + force scroll to top
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
+    // Also force after a small delay (for client-side nav)
+    const t = setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 100);
     if (!started) handleStart();
+    return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
