@@ -1231,7 +1231,7 @@ export default function AssessmentClient() {
             {/* Background particles */}
             <FloatingParticles />
 
-            <div className="container-wide max-w-3xl mx-auto px-4 pt-24 pb-16 flex-1 flex flex-col relative z-10">
+            <div className="container-wide max-w-3xl mx-auto px-4 pt-10 pb-8 md:pt-14 md:pb-12 flex-1 flex flex-col relative z-10">
               {/* Countdown timer bar */}
               <CountdownBar questionIndex={current} />
 
@@ -1510,7 +1510,7 @@ export default function AssessmentClient() {
             transition={{ duration: 0.5 }}
           >
             {/* ---- Results Hero ---- */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark pt-24 pb-16 md:pt-28 md:pb-20">
+            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark pt-10 pb-8 md:pt-14 md:pb-12">
               <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/3 left-[10%] w-[400px] h-[400px] rounded-full bg-primary/6 blur-[120px]" />
                 <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
@@ -1582,7 +1582,7 @@ export default function AssessmentClient() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.8 }}
-                        className="mt-5 text-sm text-white/45 max-w-lg mx-auto leading-relaxed"
+                        className="mt-5 text-sm text-white/70 max-w-lg mx-auto leading-relaxed"
                       >
                         {grade.description}
                       </motion.p>

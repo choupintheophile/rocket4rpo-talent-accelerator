@@ -898,7 +898,7 @@ const CHANNELS = [
 
 const FILTRAGE_STEPS = [
   { count: "3 247", label: "profils identifies" },
-  { count: "847", label: "criteres primaires" },
+  { count: "847", label: "filtre 15 critères" },
   { count: "127", label: "scoring IA" },
   { count: "12", label: "profils qualifies" },
 ];
@@ -1762,7 +1762,7 @@ export default function DemoClient() {
   return (
     <main className="min-h-screen">
       {/* Dark hero header */}
-      <div className="relative bg-gradient-to-b from-rocket-dark via-rocket-navy-soft to-background pt-12 pb-10 md:pt-20 md:pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
+      <div className="relative bg-gradient-to-b from-rocket-dark via-rocket-navy-soft to-background pt-8 pb-6 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12 overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-16 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />

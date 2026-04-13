@@ -432,7 +432,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
   /* ── constants ── */
   const RPO_TJM = 500;
   const RPO_JOURS_PAR_RECRUTEMENT = 6;
-  const RPO_DELAI = 35;
+  const RPO_DELAI = 21;
 
   /* ── scenario handler ── */
   const applyScenario = useCallback(
@@ -619,7 +619,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       {/* ════════════════════════════════════════════════════════
           2. CALCULATOR SECTION — 2 columns
          ════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-[hsl(var(--rocket-cream))]">
+      <section className="py-10 md:py-16 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
             {/* ── LEFT: Inputs ────────────────────────────── */}
@@ -1163,7 +1163,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
       {/* ════════════════════════════════════════════════════════
           4. COMPARISON TABLE
          ════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-[hsl(var(--rocket-cream))]">
+      <section className="py-10 md:py-16 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <motion.div
             initial="hidden"
