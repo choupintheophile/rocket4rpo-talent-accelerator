@@ -327,13 +327,13 @@ const COMPARISON_ROWS: {
     critere: "Coût moyen par recrutement",
     rpo: "3 000 € (forfait)",
     cabinet: "15-25% du salaire",
-    interne: "8 000 - 12 000 €",
+    interne: "5 000 - 10 000 €",
   },
   {
     critere: "Délai moyen",
     rpo: "2-3 semaines",
     cabinet: "45-90 jours",
-    interne: "60-120 jours",
+    interne: "80-120 jours",
   },
   {
     critere: "Flexibilité (montée/descente en charge)",
@@ -362,7 +362,7 @@ const COMPARISON_ROWS: {
   {
     critere: "Scalabilité",
     rpo: "1 à 50+ postes",
-    cabinet: "1 à 5 postes",
+    cabinet: "1 à 10 postes",
     interne: "Limité par l'équipe",
   },
   {
@@ -1435,8 +1435,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               variants={stagger.item}
               className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto"
             >
-              Recevez une analyse personnalisée ou échangez directement avec un
-              expert RPO.
+              Échangez 30 minutes avec un expert RPO. Diagnostic gratuit, sans engagement.
             </motion.p>
 
             <motion.div
@@ -1444,23 +1443,12 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href={HUBSPOT}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary/20"
+                href="/rdv"
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary/20"
               >
-                <Send className="w-4 h-4" />
-                Recevoir cette analyse par email
-              </a>
-              <a
-                href={HUBSPOT}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border-2 border-primary text-primary hover:bg-primary/5 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-              >
-                <MessageCircle className="w-4 h-4" />
-                Parler à un expert
-                <ArrowRight className="w-4 h-4" />
+                <MessageCircle className="w-5 h-5" />
+                Discuter avec un expert
+                <ArrowRight className="w-5 h-5" />
               </a>
             </motion.div>
           </motion.div>
