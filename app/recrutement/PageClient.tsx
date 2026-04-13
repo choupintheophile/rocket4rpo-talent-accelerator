@@ -222,7 +222,7 @@ export default function RecrutementPageClient() {
         {/* Decorative glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[hsl(var(--rocket-teal))] opacity-[0.04] blur-[120px]" />
 
-        <div className="relative container-wide section-padding pt-8">
+        <div className="relative container-wide py-8 md:py-12 lg:py-14">
           <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-center">
           <div className="max-w-4xl">
             {/* Badge */}
@@ -239,7 +239,7 @@ export default function RecrutementPageClient() {
 
             {/* Headline */}
             <motion.h1
-              className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight"
+              className="mt-3 text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
@@ -252,7 +252,7 @@ export default function RecrutementPageClient() {
 
             {/* Subtitle */}
             <motion.p
-              className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl"
+              className="mt-3 text-base md:text-lg text-white/60 leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -264,7 +264,7 @@ export default function RecrutementPageClient() {
 
             {/* Dual CTA */}
             <motion.div
-              className="mt-10 flex flex-wrap gap-4"
+              className="mt-3 flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}

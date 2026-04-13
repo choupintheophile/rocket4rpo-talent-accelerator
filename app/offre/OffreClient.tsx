@@ -99,7 +99,7 @@ export default function OffreClient() {
           }}
         />
 
-        <div className="relative container-wide py-20 md:py-28 lg:py-32">
+        <div className="relative container-wide py-8 md:py-12 lg:py-14">
           <motion.div
             ref={heroRef}
             initial={{ opacity: 0, y: 25 }}
@@ -120,14 +120,14 @@ export default function OffreClient() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white">
+            <h1 className="text-3xl md:text-4xl font-bold leading-[1.08] text-white">
               Arrêtez de perdre vos meilleurs candidats.{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
                 Recrutez avec le top 1% des TA de France.
               </span>
             </h1>
 
-            <p className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl">
+            <p className="mt-3 text-base md:text-lg text-white/60 leading-relaxed max-w-3xl">
               Chaque jour sans recruteur performant, vous perdez des candidats,
               du temps et de l{"'"}argent. Nous mobilisons en 1 semaine un Talent
               Acquisition Specialist du top 1% français — sélectionné parmi
@@ -135,7 +135,7 @@ export default function OffreClient() {
               RPO, CDD ou CDI : un seul partenaire, zéro risque.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <div className="mt-3 flex flex-col sm:flex-row gap-3">
               <a
                 href={HUBSPOT}
                 target="_blank"

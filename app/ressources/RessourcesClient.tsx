@@ -550,7 +550,7 @@ export default function RessourcesClient() {
         </div>
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
 
-        <div className="relative container-wide py-20 md:py-28">
+        <div className="relative container-wide py-8 md:py-12 lg:py-14">
           <motion.div
             ref={heroRef}
             initial={{ opacity: 0, y: 20 }}
@@ -563,7 +563,7 @@ export default function RessourcesClient() {
               100% gratuit · Sans inscription · Téléchargement immédiat
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white">
+            <h1 className="text-3xl md:text-4xl font-bold leading-[1.08] text-white">
               Les outils des{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
                 meilleurs recruteurs
@@ -571,7 +571,7 @@ export default function RessourcesClient() {
               {" "}sont maintenant les v{"ô"}tres
             </h1>
 
-            <p className="mt-5 text-lg text-white/55 leading-relaxed max-w-2xl">
+            <p className="mt-3 text-base md:text-lg text-white/55 leading-relaxed max-w-2xl">
               Guides, templates et {"é"}tudes con{"ç"}us par des experts avec 200+ recrutements {"à"} leur actif. Les m{"ê"}mes outils que nos TA Specialists utilisent au quotidien.
             </p>
           </motion.div>
@@ -581,7 +581,7 @@ export default function RessourcesClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-12 flex flex-wrap gap-8"
+            className="mt-3 flex flex-wrap gap-8"
           >
             {[
               { icon: BookOpen, value: "6", label: "ressources disponibles" },

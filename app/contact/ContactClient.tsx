@@ -173,7 +173,7 @@ export default function ContactClient() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[hsl(var(--rocket-teal)/0.06)] blur-[120px]" />
         </div>
 
-        <div className="relative container-tight py-16 md:py-24 lg:py-28 text-center">
+        <div className="relative container-tight py-8 md:py-12 lg:py-14 text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -190,7 +190,7 @@ export default function ContactClient() {
             initial={{ opacity: 0, y: 24 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] tracking-tight"
+            className="text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight"
           >
             Parlons de vos{" "}
             <span className="text-gradient">recrutements</span>
@@ -201,7 +201,7 @@ export default function ContactClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-5 text-lg md:text-xl text-background/75 max-w-2xl mx-auto leading-relaxed"
+            className="mt-3 text-base md:text-lg text-background/75 max-w-2xl mx-auto leading-relaxed"
           >
             Réservez un appel de 30 minutes avec un expert recrutement.
             Nous analysons votre besoin et vous proposons le meilleur dispositif
@@ -213,7 +213,7 @@ export default function ContactClient() {
             initial={{ opacity: 0, y: 16 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex flex-wrap justify-center gap-6 md:gap-10 mt-10"
+            className="flex flex-wrap justify-center gap-6 md:gap-10 mt-3"
           >
             {trustPoints.map(({ icon: Icon, label }) => (
               <div

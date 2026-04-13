@@ -63,15 +63,15 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-rocket-teal/8 blur-[140px]" />
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         </div>
-        <div className="relative container-wide py-16 md:py-24">
+        <div className="relative container-wide py-8 md:py-12 lg:py-14">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20 mb-6">
               <BookOpen className="w-3.5 h-3.5" /> Blog & conseils
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08]">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.08]">
               Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">conseils</span>
             </h1>
-            <p className="mt-5 text-lg text-white/55 max-w-xl leading-relaxed">
+            <p className="mt-3 text-base md:text-lg text-white/55 max-w-xl leading-relaxed">
               {posts.length} articles pour recruter mieux, plus vite et moins cher. Par des experts avec 200+ recrutements.
             </p>
           </motion.div>

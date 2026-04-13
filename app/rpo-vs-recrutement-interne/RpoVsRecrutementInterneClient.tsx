@@ -208,7 +208,7 @@ export default function RpoVsRecrutementInternePage() {
           }}
         />
 
-        <div className="relative container-wide py-20 md:py-28 lg:py-32">
+        <div className="relative container-wide py-8 md:py-12 lg:py-14">
           <motion.div
             ref={heroRef}
             initial={{ opacity: 0, y: 25 }}
@@ -225,20 +225,20 @@ export default function RpoVsRecrutementInternePage() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.08] text-white">
+            <h1 className="text-3xl md:text-4xl font-bold leading-[1.08] text-white">
               RPO vs Recruteur interne :{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
                 flexibilité vs stabilité
               </span>
             </h1>
 
-            <p className="mt-6 text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl">
+            <p className="mt-3 text-base md:text-lg text-white/60 leading-relaxed max-w-3xl">
               Recruter un recruteur en CDI ou faire appel à un RPO externalisé ?
               Délai de démarrage (48 h vs 3 mois), flexibilité, coût fixe vs
               variable : voici un comparatif objectif pour vous aider à trancher.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <div className="mt-3 flex flex-col sm:flex-row gap-3">
               <a
                 href={HUBSPOT}
                 target="_blank"
