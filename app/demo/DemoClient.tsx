@@ -23,6 +23,7 @@ import {
   Award,
   DollarSign,
   ThumbsUp,
+  Play,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -2002,95 +2003,102 @@ export default function DemoClient() {
 
   return (
     <main className="min-h-screen">
-      {/* Dark hero header */}
-      <div className="relative bg-gradient-to-b from-rocket-dark via-rocket-navy-soft to-background pt-8 pb-6 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12 overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-16 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute top-8 right-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          />
+      {/* Dark hero header — split layout matching other pages */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
         </div>
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
 
-        <div className="max-w-3xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center"
-          >
-            <motion.span
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.15 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-bold rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm"
-            >
-              <Sparkles className="w-3 h-3" />
-              Démo interactive
-            </motion.span>
-
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 leading-tight">
-              Vivez le process RPO{" "}
-              <span className="text-gradient">comme si vous y étiez</span>
-            </h1>
-
-            <p className="text-muted-foreground max-w-xl mx-auto text-sm md:text-base leading-relaxed mb-5">
-              Découvrez comment nous trouvons vos meilleurs candidats en 1 semaine,
-              du brief initial à la shortlist qualifiée.
-            </p>
-
-            {/* Trust indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="flex flex-wrap items-center justify-center gap-3 mb-5"
-            >
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
-                <Users className="w-3 h-3 text-primary" />
-                <span className="text-xs font-semibold">200+ recrutements</span>
+        <div className="relative container-wide py-12 md:py-16 lg:py-20">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Text side */}
+            <div className="lg:w-[55%]">
+              <div className="flex flex-wrap gap-3 mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
+                  <Play className="w-3.5 h-3.5" /> Démo interactive
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/15 border border-violet-400/20 text-sm text-violet-300 font-medium">
+                  <Timer className="w-3.5 h-3.5" /> 2 min
+                </span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
-                <Award className="w-3 h-3 text-emerald-400" />
-                <span className="text-xs font-semibold">90%+ score qualité</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-background/50 backdrop-blur-sm border border-border/30">
-                <Shield className="w-3 h-3 text-amber-400" />
-                <span className="text-xs font-semibold">Garantie remplacement</span>
-              </div>
-            </motion.div>
 
-            {/* Temps estimé badge + Start CTA (before starting) */}
-            {!started && (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-col items-center gap-4"
-              >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/15 text-sm text-muted-foreground">
-                  <Timer className="w-4 h-4 text-primary" />
-                  <span>Temps estimé : <span className="font-bold text-foreground">2 min</span></span>
+              <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
+                Vivez le process RPO{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  comme si vous y étiez
+                </span>
+              </h1>
+
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                Découvrez en 4 étapes comment Rocket4RPO trouve vos meilleurs candidats en 1 semaine. Du brief initial à la shortlist qualifiée — un exemple concret de notre méthode.
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <CheckCircle2 className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">200+</strong> recrutements réalisés</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Award className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">90%+</strong> score qualité</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Shield className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">Garantie</strong> remplacement</span>
+                </div>
+              </div>
+
+              {/* CTA */}
+              {!started && (
+                <div className="mt-6">
+                  <button
+                    onClick={handleStart}
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  >
+                    Démarrer la démo <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Visual side — 4-step process preview */}
+            <div className="hidden lg:block lg:w-[45%]">
+              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-rocket-teal-glow animate-pulse" />
+                  <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Process RPO en 4 étapes</span>
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.03, boxShadow: "0 8px 40px rgba(99,102,241,0.35)" }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={handleStart}
-                  className="inline-flex items-center gap-2 px-10 py-5 rounded-xl bg-primary text-primary-foreground font-bold text-base transition-all shadow-lg shadow-primary/25"
-                >
-                  Démarrer la démo
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </motion.div>
-            )}
-          </motion.div>
+                <div className="space-y-3">
+                  {[
+                    { step: "01", label: "Brief & Scorecard", desc: "Analyse des besoins + grille d'évaluation", color: "border-rocket-teal/30" },
+                    { step: "02", label: "Sourcing multicanal", desc: "LinkedIn, GitHub, vivier, cooptation", color: "border-blue-500/30" },
+                    { step: "03", label: "Shortlist qualifiée", desc: "3-5 candidats évalués sur 15 critères", color: "border-violet-500/30" },
+                    { step: "04", label: "Résultats & KPIs", desc: "Recrutement signé en 2-3 semaines", color: "border-emerald-500/30" },
+                  ].map((s) => (
+                    <div key={s.step} className={`flex items-center gap-3 p-3 rounded-xl bg-white/[0.04] border ${s.color}`}>
+                      <span className="w-8 h-8 rounded-lg bg-rocket-teal/15 flex items-center justify-center text-rocket-teal-glow text-xs font-bold flex-shrink-0">{s.step}</span>
+                      <div>
+                        <div className="text-sm font-medium text-white">{s.label}</div>
+                        <div className="text-[10px] text-white/40">{s.desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 text-center">
+                  <span className="text-[10px] text-white/30">Exemple basé sur un recrutement Account Executive SaaS</span>
+                </div>
+
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-rocket-teal/10 via-transparent to-violet-500/5 -z-10 blur-xl" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Content area — only show after started */}
       {started && (
