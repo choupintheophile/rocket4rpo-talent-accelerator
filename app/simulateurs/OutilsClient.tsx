@@ -390,17 +390,82 @@ export default function OutilsClient() {
               </div>
             </div>
 
-            {/* Photo side */}
+            {/* Visual side — animated dashboard preview */}
             <div className="hidden lg:block lg:w-[45%]">
-              <div className="relative">
-                <Image
-                  src="/photos/bureau-smile.jpg"
-                  alt="Équipe utilisant les simulateurs Rocket4RPO"
-                  width={600}
-                  height={420}
-                  className="rounded-2xl shadow-2xl object-cover w-full"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
+                {/* Mini header */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Aperçu en direct</span>
+                  </div>
+                  <span className="text-[10px] text-white/30 font-mono">Rocket4RPO</span>
+                </div>
+
+                {/* Comparison bars */}
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-white/50">Cabinet classique</span>
+                      <span className="text-red-400 font-semibold font-mono">99 000 €</span>
+                    </div>
+                    <div className="h-3 bg-white/[0.06] rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "95%" }}
+                        transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-white/50">Recrutement interne</span>
+                      <span className="text-amber-400 font-semibold font-mono">55 000 €</span>
+                    </div>
+                    <div className="h-3 bg-white/[0.06] rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full rounded-full bg-gradient-to-r from-amber-500 to-amber-400"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "55%" }}
+                        transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5">
+                      <span className="text-white/80 font-medium">RPO Rocket4RPO</span>
+                      <span className="text-rocket-teal-glow font-bold font-mono">30 000 €</span>
+                    </div>
+                    <div className="h-3 bg-white/[0.06] rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full rounded-full bg-gradient-to-r from-rocket-teal to-emerald-400"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "30%" }}
+                        transition={{ duration: 1.5, delay: 0.7, ease: "easeOut" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* KPI row */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="rounded-xl bg-white/[0.05] border border-white/[0.08] p-3 text-center">
+                    <div className="text-xl font-bold font-mono text-rocket-teal-glow">-70%</div>
+                    <div className="text-[10px] text-white/40 mt-0.5">coût vs cabinet</div>
+                  </div>
+                  <div className="rounded-xl bg-white/[0.05] border border-white/[0.08] p-3 text-center">
+                    <div className="text-xl font-bold font-mono text-emerald-400">21j</div>
+                    <div className="text-[10px] text-white/40 mt-0.5">time-to-hire</div>
+                  </div>
+                  <div className="rounded-xl bg-white/[0.05] border border-white/[0.08] p-3 text-center">
+                    <div className="text-xl font-bold font-mono text-white">90%+</div>
+                    <div className="text-[10px] text-white/40 mt-0.5">score qualité</div>
+                  </div>
+                </div>
+
+                {/* Decorative glow */}
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-rocket-teal/10 via-transparent to-emerald-500/5 -z-10 blur-xl" />
               </div>
             </div>
           </div>
