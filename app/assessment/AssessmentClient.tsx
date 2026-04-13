@@ -1410,7 +1410,7 @@ export default function AssessmentClient() {
             {/* Background particles */}
             <FloatingParticles />
 
-            <div className="container-wide max-w-3xl mx-auto px-4 pt-10 pb-8 md:pt-14 md:pb-12 flex-1 flex flex-col relative z-10">
+            <div className="container-wide max-w-3xl mx-auto px-4 pt-4 pb-4 md:pt-6 md:pb-6 flex-1 flex flex-col relative z-10">
               {/* Countdown timer bar */}
               <CountdownBar questionIndex={current} />
 
@@ -1692,7 +1692,7 @@ export default function AssessmentClient() {
             transition={{ duration: 0.5 }}
           >
             {/* ---- Results Hero ---- */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark pt-10 pb-8 md:pt-14 md:pb-12">
+            <section className="relative overflow-hidden bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark pt-4 pb-4 md:pt-6 md:pb-6">
               <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute top-1/3 left-[10%] w-[400px] h-[400px] rounded-full bg-primary/6 blur-[120px]" />
                 <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />

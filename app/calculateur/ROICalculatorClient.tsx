@@ -519,18 +519,16 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
   return (
     <>
-      {/* No hero — calculator starts directly */}
-      {/* Calculator starts directly — no hero */}
-      <section className="pt-4 pb-10 md:pb-16 bg-[hsl(var(--rocket-cream))]">
+      {/* Calculator starts directly */}
+      <section className="pt-2 pb-8 md:pb-12 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">
             {/* ── LEFT: Inputs ────────────────────────────── */}
             <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-80px" }}
+              initial="show"
+              animate="show"
               variants={stagger.container}
-              className="lg:col-span-5 space-y-8"
+              className="lg:col-span-5 space-y-5"
             >
               <motion.div variants={stagger.item}>
                 <h2 className="text-2xl md:text-3xl font-bold">
@@ -672,7 +670,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
             </motion.div>
 
             {/* ── RIGHT: Results ───────────────────────────── */}
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-7 space-y-5">
               <motion.div
                 initial="hidden"
                 whileInView="show"
