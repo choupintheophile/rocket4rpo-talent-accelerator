@@ -2001,108 +2001,17 @@ export default function DemoClient() {
     scrollToTop();
   };
 
+  // Auto-start the demo
+  useEffect(() => {
+    if (!started) handleStart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <main className="min-h-screen">
-      {/* Dark hero header — split layout matching other pages */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
-          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
-        </div>
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+    <main className="min-h-screen pt-4">
 
-        <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
-            {/* Text side */}
-            <div className="lg:w-[55%]">
-              <div className="flex flex-wrap gap-3 mb-4">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
-                  <Play className="w-3.5 h-3.5" /> Démo interactive
-                </span>
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/15 border border-violet-400/20 text-sm text-violet-300 font-medium">
-                  <Timer className="w-3.5 h-3.5" /> 2 min
-                </span>
-              </div>
-
-              <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
-                Vivez le process RPO{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                  comme si vous y étiez
-                </span>
-              </h1>
-
-              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
-                Découvrez en 4 étapes comment Rocket4RPO trouve vos meilleurs candidats en 1 semaine. Du brief initial à la shortlist qualifiée — un exemple concret de notre méthode.
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-6 text-sm">
-                <div className="flex items-center gap-2 text-white/60">
-                  <CheckCircle2 className="w-4 h-4 text-rocket-teal-glow" />
-                  <span><strong className="text-white">200+</strong> recrutements réalisés</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/60">
-                  <Award className="w-4 h-4 text-rocket-teal-glow" />
-                  <span><strong className="text-white">90%+</strong> score qualité</span>
-                </div>
-                <div className="flex items-center gap-2 text-white/60">
-                  <Shield className="w-4 h-4 text-rocket-teal-glow" />
-                  <span><strong className="text-white">Garantie</strong> remplacement</span>
-                </div>
-              </div>
-
-              {/* CTA */}
-              {!started && (
-                <div className="mt-6">
-                  <button
-                    onClick={handleStart}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                  >
-                    Démarrer la démo <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Visual side — 4-step process preview */}
-            <div className="hidden lg:block lg:w-[45%]">
-              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-rocket-teal-glow animate-pulse" />
-                  <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Process RPO en 4 étapes</span>
-                </div>
-
-                <div className="space-y-3">
-                  {[
-                    { step: "01", label: "Brief & Scorecard", desc: "Analyse des besoins + grille d'évaluation", color: "border-rocket-teal/30" },
-                    { step: "02", label: "Sourcing multicanal", desc: "LinkedIn, GitHub, vivier, cooptation", color: "border-blue-500/30" },
-                    { step: "03", label: "Shortlist qualifiée", desc: "3-5 candidats évalués sur 15 critères", color: "border-violet-500/30" },
-                    { step: "04", label: "Résultats & KPIs", desc: "Recrutement signé en 2-3 semaines", color: "border-emerald-500/30" },
-                  ].map((s) => (
-                    <div key={s.step} className={`flex items-center gap-3 p-3 rounded-xl bg-white/[0.04] border ${s.color}`}>
-                      <span className="w-8 h-8 rounded-lg bg-rocket-teal/15 flex items-center justify-center text-rocket-teal-glow text-xs font-bold flex-shrink-0">{s.step}</span>
-                      <div>
-                        <div className="text-sm font-medium text-white">{s.label}</div>
-                        <div className="text-[10px] text-white/40">{s.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-4 text-center">
-                  <span className="text-[10px] text-white/30">Exemple basé sur un recrutement Account Executive SaaS</span>
-                </div>
-
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-rocket-teal/10 via-transparent to-violet-500/5 -z-10 blur-xl" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Content area — only show after started */}
-      {started && (
-        <div className="max-w-4xl mx-auto px-4 -mt-6 pb-20 relative">
+      {/* Demo starts directly — no hero */}
+        <div className="max-w-4xl mx-auto px-4 pb-20 relative">
           {/* Step transition shimmer */}
           <AnimatePresence>
             {showShimmer && <StepShimmer />}
@@ -2137,7 +2046,6 @@ export default function DemoClient() {
             {currentStep === 3 && <StepResults key="results" onRestart={restart} />}
           </AnimatePresence>
         </div>
-      )}
     </main>
   );
 }

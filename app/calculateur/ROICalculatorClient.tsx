@@ -516,65 +516,9 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
   return (
     <>
-      <Breadcrumbs items={[{ label: "Calculateur ROI" }]} />
-
-      {/* ════════════════════════════════════════════════════════
-          1. DARK HERO
-         ════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden">
-        {/* background layers */}
-        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-[8%] w-[500px] h-[500px] rounded-full bg-rocket-teal/8 blur-[150px]" />
-          <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] rounded-full bg-emerald-500/5 blur-[120px]" />
-        </div>
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-
-        <div className="relative container-wide py-6 md:py-8 lg:py-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* badge */}
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-xs text-rocket-teal-glow font-medium">
-              <Zap className="w-3 h-3" /> Calculateur gratuit
-            </span>
-
-            {/* title */}
-            <h1 className="mt-3 text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.12] text-white">
-              Combien pourriez-vous{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                économiser
-              </span>{" "}
-              avec le RPO ?
-            </h1>
-
-            {/* subtitle */}
-            <p className="mt-3 text-sm md:text-base text-white/70 max-w-xl mx-auto leading-relaxed">
-              Ajustez les curseurs et visualisez instantanément votre retour sur investissement.
-            </p>
-
-            {/* social proof — compact inline */}
-            <div className="mt-4 flex flex-wrap justify-center gap-6 text-white/60 text-xs">
-              {SOCIAL_PROOF.map((item) => (
-                <span key={item.label} className="flex items-center gap-1.5">
-                  <span className="font-bold text-white text-sm">{item.value}</span>
-                  {item.label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════
-          2. CALCULATOR SECTION — 2 columns
-         ════════════════════════════════════════════════════════ */}
-      <section className="py-10 md:py-16 bg-[hsl(var(--rocket-cream))]">
+      {/* No hero — calculator starts directly */}
+      {/* Calculator starts directly — no hero */}
+      <section className="pt-4 pb-10 md:pb-16 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
             {/* ── LEFT: Inputs ────────────────────────────── */}
