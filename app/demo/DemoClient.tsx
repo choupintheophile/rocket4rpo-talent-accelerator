@@ -676,9 +676,9 @@ function StepTimeline({
   return (
     <>
       {/* Desktop: horizontal timeline */}
-      <div className="hidden md:block relative mb-12 px-4">
+      <div className="hidden md:block relative mb-6 px-4">
         {/* Step progress indicator */}
-        <div className="text-center mb-4">
+        <div className="text-center mb-2">
           <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
             Étape {currentStep + 1}/{steps.length}
           </span>
@@ -686,9 +686,9 @@ function StepTimeline({
 
         <div className="relative flex items-center justify-between max-w-2xl mx-auto">
           {/* Connecting line behind steps */}
-          <div className="absolute top-6 left-[10%] right-[10%] h-0.5 bg-border/30 z-0" />
+          <div className="absolute top-[18px] left-[10%] right-[10%] h-0.5 bg-border/30 z-0" />
           <motion.div
-            className="absolute top-6 left-[10%] h-0.5 bg-primary z-0"
+            className="absolute top-[18px] left-[10%] h-0.5 bg-primary z-0"
             initial={{ width: "0%" }}
             animate={{
               width: `${currentStep === 0 ? 0 : (currentStep / (steps.length - 1)) * 80}%`,
@@ -710,7 +710,7 @@ function StepTimeline({
                 }`}
               >
                 <motion.div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
+                  className={`w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
                     isCompleted
                       ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/25"
                       : isCurrent
@@ -721,9 +721,9 @@ function StepTimeline({
                   whileTap={isClickable ? { scale: 0.95 } : {}}
                 >
                   {isCompleted ? (
-                    <CheckCircle2 className="w-5 h-5" />
+                    <CheckCircle2 className="w-4 h-4" />
                   ) : (
-                    <step.icon className="w-5 h-5" />
+                    <step.icon className="w-4 h-4" />
                   )}
                 </motion.div>
                 <span
@@ -749,7 +749,7 @@ function StepTimeline({
       </div>
 
       {/* Mobile: vertical timeline */}
-      <div className="md:hidden mb-10 px-4">
+      <div className="md:hidden mb-6 px-4">
         {/* Step progress indicator mobile */}
         <div className="text-center mb-4">
           <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
@@ -772,7 +772,7 @@ function StepTimeline({
                   }`}
                 >
                   <motion.div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-300 flex-shrink-0 ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all duration-300 flex-shrink-0 ${
                       isCompleted
                         ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/25"
                         : isCurrent
@@ -869,17 +869,17 @@ function StepBrief({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="max-w-2xl mx-auto space-y-6"
+      className="max-w-2xl mx-auto space-y-4"
     >
       {/* Brief form */}
       <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl shadow-black/5">
-        <div className="px-6 py-5 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-              <FileText className="w-5 h-5 text-primary" />
+        <div className="px-5 py-3.5 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+              <FileText className="w-4 h-4 text-primary" />
             </div>
             <div>
-              <h3 className="text-lg font-bold">Brief du poste</h3>
+              <h3 className="text-base font-bold">Brief du poste</h3>
               <p className="text-xs text-muted-foreground">
                 Définissez le profil idéal en quelques clics
               </p>
@@ -887,10 +887,10 @@ function StepBrief({
           </div>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 space-y-4">
           {/* Job title input */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold mb-2.5">
+            <label className="flex items-center gap-2 text-sm font-semibold mb-2">
               <Zap className="w-3.5 h-3.5 text-primary" />
               Intitulé du poste
             </label>
@@ -898,18 +898,18 @@ function StepBrief({
               type="text"
               value={jobTitle}
               onChange={(e) => setJobTitle(e.target.value)}
-              className="w-full rounded-xl border border-border/60 bg-rocket-dark/30 px-4 py-3.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all placeholder:text-muted-foreground"
+              className="w-full rounded-xl border border-border/60 bg-rocket-dark/30 px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all placeholder:text-muted-foreground"
               placeholder="Ex: Account Executive SaaS, SDR, CSM, Dev Full-Stack..."
             />
           </div>
 
           {/* Criteria chips */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold mb-3">
+            <label className="flex items-center gap-2 text-sm font-semibold mb-2">
               <Target className="w-3.5 h-3.5 text-primary" />
               Critères clés
             </label>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2">
               {Object.entries(criteriaLabels).map(([key, label]) => {
                 const active = criteria[key as keyof typeof criteria];
                 const Icon = criteriaIcons[key];
@@ -2015,7 +2015,7 @@ export default function DemoClient() {
     <main className="min-h-screen pt-4">
 
       {/* Demo starts directly — no hero */}
-        <div className="max-w-4xl mx-auto px-4 pb-20 relative">
+        <div className="max-w-4xl mx-auto px-4 pb-10 relative">
           {/* Step transition shimmer */}
           <AnimatePresence>
             {showShimmer && <StepShimmer />}

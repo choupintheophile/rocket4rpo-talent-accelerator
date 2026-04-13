@@ -999,7 +999,7 @@ function BenchmarkBars({ percentage }: { percentage: number }) {
 function GaugePreview() {
   return (
     <motion.div
-      className="relative w-48 h-28 mx-auto opacity-40 blur-[2px]"
+      className="relative w-32 h-20 mx-auto opacity-40 blur-[2px]"
       animate={{ rotate: [0, 2, -2, 0] }}
       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
     >
@@ -1279,7 +1279,7 @@ export default function AssessmentClient() {
                 />
               ))}
 
-              <div className="relative container-wide py-6 md:py-8 lg:py-10">
+              <div className="relative container-wide py-4 md:py-5 lg:py-6">
                 <div className="max-w-3xl mx-auto text-center">
                   {/* Badge */}
                   <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 border border-primary/20 text-xs text-primary font-medium">
@@ -1287,7 +1287,7 @@ export default function AssessmentClient() {
                   </span>
 
                   {/* Title */}
-                  <h1 className="mt-3 text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.12] text-white">
+                  <h1 className="mt-2 text-2xl md:text-3xl font-bold leading-[1.12] text-white">
                     Votre recrutement est-il{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rocket-teal-glow to-emerald-400">
                       à la hauteur
@@ -1296,13 +1296,13 @@ export default function AssessmentClient() {
                   </h1>
 
                   {/* Subtitle */}
-                  <p className="mt-3 text-sm md:text-base text-white/70 leading-relaxed max-w-xl mx-auto">
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed max-w-xl mx-auto">
                     Évaluez la maturité de votre Talent Acquisition sur 7 dimensions
                     clés. Résultat immédiat avec recommandations personnalisées.
                   </p>
 
                   {/* Animated gauge preview — compact */}
-                  <div className="mt-4">
+                  <div className="mt-2">
                     <GaugePreview />
                   </div>
 
@@ -1311,7 +1311,7 @@ export default function AssessmentClient() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-white/35"
+                    className="mt-3 flex flex-wrap items-center justify-center gap-4 text-xs text-white/35"
                   >
                     <span className="flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-primary/60" />
@@ -1329,7 +1329,7 @@ export default function AssessmentClient() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.45 }}
-                    className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+                    className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
                   >
                     {[
                       { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "évaluées" },
@@ -1341,10 +1341,10 @@ export default function AssessmentClient() {
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 + i * 0.1 }}
-                        className="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm"
+                        className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm"
                       >
-                        <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center">
-                          <stat.icon className="w-5 h-5 text-primary" />
+                        <div className="w-8 h-8 rounded-lg bg-primary/15 border border-primary/20 flex items-center justify-center">
+                          <stat.icon className="w-4 h-4 text-primary" />
                         </div>
                         <div className="text-left">
                           <div className="text-sm font-bold text-white">
@@ -1364,7 +1364,7 @@ export default function AssessmentClient() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
-                    className="mt-14"
+                    className="mt-6"
                   >
                     <style>{`
                       @keyframes subtle-bounce {
@@ -1376,14 +1376,14 @@ export default function AssessmentClient() {
                       <Button
                         size="lg"
                         onClick={handleStart}
-                        className="gap-3 text-base px-14 py-8 text-lg font-bold rounded-2xl hover:scale-[1.03] active:scale-[0.97] transition-all shadow-2xl shadow-primary/30 bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
+                        className="gap-2.5 text-base px-10 py-5 font-bold rounded-xl hover:scale-[1.03] active:scale-[0.97] transition-all shadow-2xl shadow-primary/30 bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
                       >
                         <Sparkles className="w-5 h-5" />
                         Commencer le diagnostic
                         <ArrowRight className="w-5 h-5" />
                       </Button>
                     </div>
-                    <p className="mt-5 text-sm text-white/30">
+                    <p className="mt-3 text-sm text-white/30">
                       Gratuit, sans inscription, résultat en 1 minute
                     </p>
                   </motion.div>

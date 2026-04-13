@@ -175,10 +175,10 @@ function ParameterCard({
   onChange: (v: number) => void;
 }) {
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between gap-4">
-        <label className="flex items-center gap-2.5 text-sm font-medium text-foreground">
-          <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 shrink-0">
+    <div className="space-y-2">
+      <div className="flex items-center justify-between gap-3">
+        <label className="flex items-center gap-2 text-sm font-medium text-foreground">
+          <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-primary/10 shrink-0">
             <Icon className="w-4.5 h-4.5 text-primary" />
           </span>
           {label}
@@ -531,10 +531,10 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               className="lg:col-span-5 space-y-5"
             >
               <motion.div variants={stagger.item}>
-                <h2 className="text-2xl md:text-3xl font-bold">
+                <h2 className="text-lg md:text-xl font-bold">
                   Vos paramètres
                 </h2>
-                <p className="mt-2 text-muted-foreground">
+                <p className="mt-1 text-muted-foreground text-sm">
                   Ajustez les valeurs pour refléter votre situation.
                 </p>
               </motion.div>
@@ -554,7 +554,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                         onClick={() => applyScenario(scenario)}
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border-2 bg-gradient-to-br ${scenario.color} transition-all duration-300 cursor-pointer ${
+                        className={`relative flex flex-col items-center gap-1.5 p-3 rounded-2xl border-2 bg-gradient-to-br ${scenario.color} transition-all duration-300 cursor-pointer ${
                           isActive
                             ? `${scenario.border} ring-2 ${scenario.activeRing} shadow-lg`
                             : `${scenario.border} shadow-sm`
@@ -593,7 +593,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
               </motion.div>
 
               {/* slider card */}
-              <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 space-y-10 shadow-sm">
+              <div className="rounded-2xl border border-border/60 bg-background p-4 md:p-5 space-y-6 shadow-sm">
                 <motion.div variants={stagger.item}>
                   <ParameterCard
                     icon={Users}
@@ -677,10 +677,10 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={fadeUp}
               >
-                <h2 className="text-2xl md:text-3xl font-bold">
+                <h2 className="text-lg md:text-xl font-bold">
                   Résultats estimés
                 </h2>
-                <p className="mt-2 text-muted-foreground">
+                <p className="mt-1 text-muted-foreground text-sm">
                   Comparaison en temps réel de 3 modèles de recrutement.
                 </p>
               </motion.div>
@@ -696,11 +696,11 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                     stiffness: 300,
                     damping: 30,
                   }}
-                  className="space-y-8"
+                  className="space-y-4"
                 >
                   {/* ── Giant economy number ──────────────── */}
-                  <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 text-center shadow-sm">
-                    <p className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">
+                  <div className="rounded-2xl border border-border/60 bg-background p-4 text-center shadow-sm">
+                    <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
                       Vous économisez
                     </p>
                     <AnimatePresence mode="wait">
@@ -714,7 +714,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                           stiffness: 280,
                           damping: 22,
                         }}
-                        className={`text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight ${
+                        className={`text-3xl md:text-4xl font-bold tracking-tight ${
                           calc.economie > 0
                             ? "text-primary"
                             : "text-muted-foreground"
@@ -733,11 +733,11 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   </div>
 
                   {/* ── Horizontal bar comparison ─────────── */}
-                  <div className="rounded-2xl border border-border/60 bg-background p-6 md:p-8 space-y-6 shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
+                  <div className="rounded-2xl border border-border/60 bg-background p-4 space-y-4 shadow-sm">
+                    <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
-                        <BarChart3 className="w-5 h-5 text-primary" />
-                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                        <BarChart3 className="w-4 h-4 text-primary" />
+                        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                           Comparaison des coûts
                         </h3>
                       </div>
