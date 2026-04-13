@@ -25,6 +25,7 @@ import {
   Copy,
   Check,
   Trophy,
+  Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -61,29 +62,29 @@ const questions: Question[] = [
     ],
     optionEmojis: ["\u{1F62C}", "\u{1F914}", "\u2705", "\u{1F3AF}"],
     recommendation:
-      "Mettez en place un processus structuré avec des étapes claires, des responsabilités définies et des critères d'évaluation objectifs.",
-    actionSpecific: "Créez un template de processus recrutement en 6 étapes avec des SLA pour chaque phase",
+      "Mettez en place un processus structur\u00e9 avec des \u00e9tapes claires, des responsabilit\u00e9s d\u00e9finies et des crit\u00e8res d'\u00e9valuation objectifs.",
+    actionSpecific: "Cr\u00e9ez un template de processus recrutement en 6 \u00e9tapes avec des SLA pour chaque phase",
     estimatedImpact: "-30% time-to-hire",
-    difficulty: "Rapide à mettre en place",
+    difficulty: "Rapide \u00e0 mettre en place",
   },
   {
     id: "scorecards",
     icon: CheckCircle2,
     label: "Scorecards",
-    question: "Avez-vous des scorecards pour évaluer vos candidats ?",
-    options: ["Jamais", "Parfois", "Souvent", "Systématiquement"],
+    question: "Avez-vous des scorecards pour \u00e9valuer vos candidats ?",
+    options: ["Jamais", "Parfois", "Souvent", "Syst\u00e9matiquement"],
     optionDescriptions: [
-      "L'evaluation repose uniquement sur le ressenti",
-      "Utilisées de manière ponctuelle sur certains postes",
-      "La majorité des postes ont une grille d'évaluation",
-      "Chaque poste dispose d'une scorecard calibrée et suivie",
+      "L'\u00e9valuation repose uniquement sur le ressenti",
+      "Utilis\u00e9es de mani\u00e8re ponctuelle sur certains postes",
+      "La majorit\u00e9 des postes ont une grille d'\u00e9valuation",
+      "Chaque poste dispose d'une scorecard calibr\u00e9e et suivie",
     ],
     optionEmojis: ["\u{1F62C}", "\u{1F914}", "\u2705", "\u{1F3AF}"],
     recommendation:
-      "Adoptez des scorecards structurées pour chaque poste afin de réduire les biais et d'améliorer la qualité de vos recrutements.",
-    actionSpecific: "Déployez une scorecard standardisée avec 5 critères clés pondérés pour chaque famille de poste",
-    estimatedImpact: "+20% qualité candidats",
-    difficulty: "Rapide à mettre en place",
+      "Adoptez des scorecards structur\u00e9es pour chaque poste afin de r\u00e9duire les biais et d'am\u00e9liorer la qualit\u00e9 de vos recrutements.",
+    actionSpecific: "D\u00e9ployez une scorecard standardis\u00e9e avec 5 crit\u00e8res cl\u00e9s pond\u00e9r\u00e9s pour chaque famille de poste",
+    estimatedImpact: "+20% qualit\u00e9 candidats",
+    difficulty: "Rapide \u00e0 mettre en place",
   },
   {
     id: "tth",
@@ -92,15 +93,15 @@ const questions: Question[] = [
     question: "Quel est votre time-to-hire moyen ?",
     options: ["> 60 jours", "45-60 jours", "30-45 jours", "< 30 jours"],
     optionDescriptions: [
-      "Les recrutements traînent et les candidats se désengagent",
-      "Un délai courant mais perfectible",
-      "Un rythme correct, aligné sur le marché",
-      "Rapide et efficace, les meilleurs talents sont captés vite",
+      "Les recrutements tra\u00eenent et les candidats se d\u00e9sengagent",
+      "Un d\u00e9lai courant mais perfectible",
+      "Un rythme correct, align\u00e9 sur le march\u00e9",
+      "Rapide et efficace, les meilleurs talents sont capt\u00e9s vite",
     ],
     optionEmojis: ["\u{1F422}", "\u23F3", "\u26A1", "\u{1F680}"],
     recommendation:
-      "Optimisez votre pipeline en identifiant les goulots d'étranglement et en parallélisant les étapes d'entretien.",
-    actionSpecific: "Identifiez et éliminez les 2 plus gros goulots de votre pipeline avec des entretiens parallèles",
+      "Optimisez votre pipeline en identifiant les goulots d'\u00e9tranglement et en parall\u00e9lisant les \u00e9tapes d'entretien.",
+    actionSpecific: "Identifiez et \u00e9liminez les 2 plus gros goulots de votre pipeline avec des entretiens parall\u00e8les",
     estimatedImpact: "-15 jours time-to-hire",
     difficulty: "Moyen terme",
   },
@@ -108,12 +109,12 @@ const questions: Question[] = [
     id: "sourcing",
     icon: Search,
     label: "Sourcing",
-    question: "Utilisez-vous des outils de sourcing avancés ?",
+    question: "Utilisez-vous des outils de sourcing avanc\u00e9s ?",
     options: ["Non", "LinkedIn basique", "LinkedIn Recruiter", "Multi-canal"],
     optionDescriptions: [
       "Uniquement les candidatures entrantes",
       "Recherche manuelle sur LinkedIn gratuit",
-      "Utilisation de LinkedIn Recruiter avec filtres avancés",
+      "Utilisation de LinkedIn Recruiter avec filtres avanc\u00e9s",
       "LinkedIn, GitHub, meetups, cooptation, chasse directe",
     ],
     optionEmojis: ["\u{1F636}", "\u{1F440}", "\u{1F50D}", "\u{1F3AF}"],
@@ -126,20 +127,20 @@ const questions: Question[] = [
   {
     id: "retention",
     icon: Heart,
-    label: "Rétention",
-    question: "Quel est votre taux de rétention à 12 mois ?",
+    label: "R\u00e9tention",
+    question: "Quel est votre taux de r\u00e9tention \u00e0 12 mois ?",
     options: ["< 70 %", "70-80 %", "80-90 %", "> 90 %"],
     optionDescriptions: [
-      "Turnover élevé, les recrutements ne tiennent pas",
-      "Quelques départs précoces, alignement à revoir",
-      "Bonne rétention, les recrutements sont globalement réussis",
-      "Excellent, preuve d'un recrutement très qualitatif",
+      "Turnover \u00e9lev\u00e9, les recrutements ne tiennent pas",
+      "Quelques d\u00e9parts pr\u00e9coces, alignement \u00e0 revoir",
+      "Bonne r\u00e9tention, les recrutements sont globalement r\u00e9ussis",
+      "Excellent, preuve d'un recrutement tr\u00e8s qualitatif",
     ],
     optionEmojis: ["\u{1F494}", "\u{1F615}", "\u{1F4AA}", "\u2764\uFE0F"],
     recommendation:
-      "Améliorez votre onboarding et alignez mieux les attentes candidat/entreprise dès la phase de recrutement.",
-    actionSpecific: "Structurez un onboarding de 90 jours avec checkpoints à J+7, J+30 et J+90",
-    estimatedImpact: "+15% rétention à 12 mois",
+      "Am\u00e9liorez votre onboarding et alignez mieux les attentes candidat/entreprise d\u00e8s la phase de recrutement.",
+    actionSpecific: "Structurez un onboarding de 90 jours avec checkpoints \u00e0 J+7, J+30 et J+90",
+    estimatedImpact: "+15% r\u00e9tention \u00e0 12 mois",
     difficulty: "Transformation profonde",
   },
   {
@@ -147,19 +148,19 @@ const questions: Question[] = [
     icon: BarChart3,
     label: "KPIs",
     question: "Avez-vous un suivi KPI de votre recrutement ?",
-    options: ["Aucun", "Basique", "Dashboard", "Temps réel"],
+    options: ["Aucun", "Basique", "Dashboard", "Temps r\u00e9el"],
     optionDescriptions: [
-      "Aucune donnée n'est collectée ni analysée",
-      "Quelques métriques suivies manuellement (tableur)",
-      "Un dashboard centralisé avec les KPIs essentiels",
-      "Suivi en temps réel avec alertes et optimisation data-driven",
+      "Aucune donn\u00e9e n'est collect\u00e9e ni analys\u00e9e",
+      "Quelques m\u00e9triques suivies manuellement (tableur)",
+      "Un dashboard centralis\u00e9 avec les KPIs essentiels",
+      "Suivi en temps r\u00e9el avec alertes et optimisation data-driven",
     ],
     optionEmojis: ["\u{1FAE5}", "\u{1F4CB}", "\u{1F4CA}", "\u{1F3AF}"],
     recommendation:
-      "Mettez en place un dashboard avec les KPIs essentiels : time-to-hire, taux de conversion, coût par recrutement, qualité du sourcing.",
-    actionSpecific: "Créez un dashboard avec 5 KPIs clés : TTH, taux conversion, coût/recrutement, source quality, offer acceptance",
-    estimatedImpact: "+25% efficacité recrutement",
-    difficulty: "Rapide à mettre en place",
+      "Mettez en place un dashboard avec les KPIs essentiels : time-to-hire, taux de conversion, co\u00fbt par recrutement, qualit\u00e9 du sourcing.",
+    actionSpecific: "Cr\u00e9ez un dashboard avec 5 KPIs cl\u00e9s : TTH, taux conversion, co\u00fbt/recrutement, source quality, offer acceptance",
+    estimatedImpact: "+25% efficacit\u00e9 recrutement",
+    difficulty: "Rapide \u00e0 mettre en place",
   },
   {
     id: "volume",
@@ -168,23 +169,23 @@ const questions: Question[] = [
     question: "Combien de postes recrutez-vous par trimestre ?",
     options: ["1-3", "4-10", "11-20", "20+"],
     optionDescriptions: [
-      "Volume faible, le recrutement n'est pas la priorité",
-      "Volume modéré, nécessitant une approche organisée",
+      "Volume faible, le recrutement n'est pas la priorit\u00e9",
+      "Volume mod\u00e9r\u00e9, n\u00e9cessitant une approche organis\u00e9e",
       "Volume important, un processus robuste est indispensable",
-      "Volume élevé, nécessitant une équipe TA dédiée",
+      "Volume \u00e9lev\u00e9, n\u00e9cessitant une \u00e9quipe TA d\u00e9di\u00e9e",
     ],
     optionEmojis: ["\u{1F331}", "\u{1F4C8}", "\u{1F525}", "\u{1F680}"],
     recommendation:
-      "A votre volume, un TA Specialist dédié pourrait considérablement accélérer vos recrutements et réduire vos coûts.",
-    actionSpecific: "Évaluez le ROI d'un TA Specialist dédié vs. le coût actuel de vos recrutements externalisés",
-    estimatedImpact: "-35% coût par recrutement",
+      "\u00c0 votre volume, un TA Specialist d\u00e9di\u00e9 pourrait consid\u00e9rablement acc\u00e9l\u00e9rer vos recrutements et r\u00e9duire vos co\u00fbts.",
+    actionSpecific: "\u00c9valuez le ROI d'un TA Specialist d\u00e9di\u00e9 vs. le co\u00fbt actuel de vos recrutements externalis\u00e9s",
+    estimatedImpact: "-35% co\u00fbt par recrutement",
     difficulty: "Transformation profonde",
   },
 ];
 
 const grades = [
   {
-    label: "Débutant",
+    label: "D\u00e9butant",
     min: 0,
     max: 7,
     color: "text-red-500",
@@ -193,7 +194,7 @@ const grades = [
     fill: "#ef4444",
     badge: "\u{1F949}",
     description:
-      "Votre TA manque de structure. Un RPO vous apporterait un cadre immédiat.",
+      "Votre TA manque de structure. Un RPO vous apporterait un cadre imm\u00e9diat.",
   },
   {
     label: "En progression",
@@ -217,7 +218,7 @@ const grades = [
     fill: "#10b981",
     badge: "\u{1F947}",
     description:
-      "Votre TA est bien structurée. Un RPO peut vous aider a scaler.",
+      "Votre TA est bien structur\u00e9e. Un RPO peut vous aider \u00e0 scaler.",
   },
   {
     label: "Expert",
@@ -229,7 +230,7 @@ const grades = [
     fill: "hsl(160,84%,39%)",
     badge: "\u{1F48E}",
     description:
-      "Excellent ! Votre maturité TA est au top. Explorez l'innovation.",
+      "Excellent ! Votre maturit\u00e9 TA est au top. Explorez l'innovation.",
   },
 ] as const;
 
@@ -242,9 +243,9 @@ function getGrade(score: number) {
 /* ------------------------------------------------------------------ */
 
 const slideVariants = {
-  enter: (dir: number) => ({ y: dir > 0 ? 40 : -40, opacity: 0 }),
-  center: { y: 0, opacity: 1 },
-  exit: (dir: number) => ({ y: dir < 0 ? 40 : -40, opacity: 0 }),
+  enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir: number) => ({ x: dir < 0 ? 60 : -60, opacity: 0 }),
 };
 
 const letterBadges = ["A", "B", "C", "D"];
@@ -276,6 +277,79 @@ function AnimatedCounter({
   });
 
   return <>{count}</>;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Typewriter text                                                    */
+/* ------------------------------------------------------------------ */
+
+function TypewriterText({ text, delay = 0, speed = 50 }: { text: string; delay?: number; speed?: number }) {
+  const [displayed, setDisplayed] = useState("");
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    let idx = 0;
+    const interval = setInterval(() => {
+      idx++;
+      setDisplayed(text.slice(0, idx));
+      if (idx >= text.length) clearInterval(interval);
+    }, speed);
+    return () => clearInterval(interval);
+  }, [started, text, speed]);
+
+  return (
+    <span>
+      {displayed}
+      {started && displayed.length < text.length && (
+        <motion.span
+          animate={{ opacity: [1, 0] }}
+          transition={{ duration: 0.5, repeat: Infinity }}
+          className="inline-block w-0.5 h-[1em] bg-current ml-0.5 align-middle"
+        />
+      )}
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Calculating dots animation                                         */
+/* ------------------------------------------------------------------ */
+
+function CalculatingDots({ onComplete }: { onComplete: () => void }) {
+  useEffect(() => {
+    const timer = setTimeout(onComplete, 1200);
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="flex items-center justify-center gap-1.5 py-4"
+    >
+      <span className="text-sm text-white/60 font-medium">Calcul en cours</span>
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className="w-2 h-2 rounded-full bg-primary"
+          animate={{ y: [0, -8, 0], opacity: [0.3, 1, 0.3] }}
+          transition={{
+            duration: 0.6,
+            repeat: Infinity,
+            delay: i * 0.15,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </motion.div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -373,21 +447,21 @@ function FloatingParticles() {
 /*  CSS Confetti component (no npm dependency)                         */
 /* ------------------------------------------------------------------ */
 
-function Confetti() {
+function Confetti({ count = 40 }: { count?: number }) {
   const [particles] = useState(() => {
     const colors = [
+      "#14b8a6",
       "#10b981",
       "#34d399",
       "#6ee7b7",
       "#f59e0b",
       "#fbbf24",
-      "#ef4444",
-      "#8b5cf6",
-      "#ec4899",
       "#06b6d4",
-      "#14b8a6",
+      "#0d9488",
+      "#059669",
+      "#eab308",
     ];
-    return Array.from({ length: 25 }, (_, i) => ({
+    return Array.from({ length: count }, (_, i) => ({
       id: i,
       color: colors[i % colors.length],
       left: Math.random() * 100,
@@ -458,6 +532,58 @@ function ColorFlash({ score }: { score: number | null }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: [0, 1, 0] }}
       transition={{ duration: 0.6 }}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Streak Badge                                                       */
+/* ------------------------------------------------------------------ */
+
+function StreakBadge({ streak }: { streak: number }) {
+  if (streak < 2) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.5, y: -10 }}
+      transition={{ type: "spring", stiffness: 400, damping: 15 }}
+      className="fixed top-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold text-sm shadow-xl shadow-amber-500/30"
+    >
+      <span className="text-lg">&#x1F525;</span>
+      Streak x{streak} !
+      <motion.div
+        className="absolute inset-0 rounded-full bg-white/20"
+        animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+        transition={{ duration: 1, repeat: Infinity }}
+      />
+    </motion.div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Card Glow Pulse (on answer selection)                              */
+/* ------------------------------------------------------------------ */
+
+function CardGlowPulse({ score }: { score: number | null }) {
+  if (score === null) return null;
+  const glowColor =
+    score === 3
+      ? "0 0 30px rgba(16,185,129,0.4), 0 0 60px rgba(16,185,129,0.15)"
+      : score === 2
+        ? "0 0 30px rgba(245,158,11,0.35), 0 0 60px rgba(245,158,11,0.1)"
+        : "none";
+
+  if (score <= 1) return null;
+
+  return (
+    <motion.div
+      className="absolute inset-0 rounded-2xl pointer-events-none z-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0, 1, 0] }}
+      transition={{ duration: 0.5 }}
+      style={{ boxShadow: glowColor }}
     />
   );
 }
@@ -554,7 +680,7 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           strokeDasharray={arcLength}
           initial={{ strokeDashoffset: arcLength }}
           animate={{ strokeDashoffset: arcLength - ratio * arcLength }}
-          transition={{ duration: 1.8, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 1.8, ease: "easeOut", delay: 0.9 }}
         />
 
         {/* Tick marks */}
@@ -603,17 +729,17 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
           filter="url(#score-glow)"
           initial={{ cx: cx + needleLen * Math.cos(Math.PI), cy: cy - needleLen * Math.sin(Math.PI) }}
           animate={{ cx: needleTipX, cy: needleTipY }}
-          transition={{ duration: 1.8, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 1.4, type: "spring", stiffness: 80, damping: 12, delay: 0.9 }}
         />
 
-        {/* Needle */}
+        {/* Needle — dramatic spring entrance: starts at 0, pauses, then sweeps */}
         <motion.line
           x1={cx}
           y1={cy}
           x2={cx + needleLen * Math.cos(Math.PI)}
           y2={cy - needleLen * Math.sin(Math.PI)}
           animate={{ x2: needleTipX, y2: needleTipY }}
-          transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+          transition={{ duration: 1.4, type: "spring", stiffness: 80, damping: 12, delay: 0.9 }}
           stroke="white"
           strokeWidth="2.5"
           strokeLinecap="round"
@@ -644,7 +770,7 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
 }
 
 /* ------------------------------------------------------------------ */
-/*  Radar / Spider Chart (pure SVG)                                    */
+/*  Radar / Spider Chart (pure SVG) — with pathLength draw animation   */
 /* ------------------------------------------------------------------ */
 
 function RadarChart({ answers }: { answers: number[] }) {
@@ -670,12 +796,15 @@ function RadarChart({ answers }: { answers: number[] }) {
     return `${p.x},${p.y}`;
   }).join(" ");
 
-  // User polygon
-  const userPoints = answers.map((score, i) => {
+  // User polygon — as an SVG path for pathLength animation
+  const userPathPoints = answers.map((score, i) => {
     const r = (score / 3) * maxR;
     const p = polarToXY(i * angleStep, Math.max(r, 8));
-    return `${p.x},${p.y}`;
-  }).join(" ");
+    return p;
+  });
+  const userPathD = userPathPoints
+    .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
+    .join(" ") + " Z";
 
   return (
     <div className="w-full max-w-sm mx-auto">
@@ -730,14 +859,26 @@ function RadarChart({ answers }: { answers: number[] }) {
           strokeDasharray="4 3"
         />
 
-        {/* User polygon */}
-        <motion.polygon
-          points={Array.from({ length: n }, () => `${cx},${cy}`).join(" ")}
-          animate={{ points: userPoints }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+        {/* User polygon fill — fades in */}
+        <motion.path
+          d={userPathD}
           fill="url(#radar-fill-grad)"
+          stroke="none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1.5 }}
+        />
+
+        {/* User polygon stroke — draws itself with pathLength */}
+        <motion.path
+          d={userPathD}
+          fill="none"
           stroke="#14b8a6"
           strokeWidth="2"
+          pathLength={1}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ pathLength: { duration: 1.5, ease: "easeInOut", delay: 0.5 }, opacity: { duration: 0.1, delay: 0.5 } }}
         />
 
         {/* Data points */}
@@ -747,14 +888,15 @@ function RadarChart({ answers }: { answers: number[] }) {
           return (
             <motion.circle
               key={i}
-              cx={cx}
-              cy={cy}
+              cx={p.x}
+              cy={p.y}
               r="4"
               fill="#14b8a6"
               stroke="white"
               strokeWidth="1.5"
-              animate={{ cx: p.x, cy: p.y }}
-              transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 + i * 0.05 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.5 + i * 0.2 }}
             />
           );
         })}
@@ -784,13 +926,13 @@ function RadarChart({ answers }: { answers: number[] }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Benchmark Bars                                                     */
+/*  Benchmark Bars — animate from 0% to final width over 1s easeOut   */
 /* ------------------------------------------------------------------ */
 
 function BenchmarkBars({ percentage }: { percentage: number }) {
   const benchmarks = [
     { label: "Votre score", value: percentage, color: "from-primary to-emerald-500" },
-    { label: "Moyenne marché", value: 55, color: "from-amber-500 to-amber-400" },
+    { label: "Moyenne march\u00e9", value: 55, color: "from-amber-500 to-amber-400" },
     { label: "Top performers", value: 85, color: "from-violet-500 to-violet-400" },
   ];
 
@@ -877,7 +1019,7 @@ function GaugePreview() {
 
 function DifficultyBadge({ level }: { level: string }) {
   const config =
-    level === "Rapide à mettre en place"
+    level === "Rapide \u00e0 mettre en place"
       ? { bg: "bg-emerald-500/10 border-emerald-500/20", text: "text-emerald-400", icon: "\u26A1" }
       : level === "Moyen terme"
         ? { bg: "bg-amber-500/10 border-amber-500/20", text: "text-amber-400", icon: "\u23F3" }
@@ -907,6 +1049,13 @@ export default function AssessmentClient() {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [flashScore, setFlashScore] = useState<number | null>(null);
+  const [streak, setStreak] = useState(0);
+  const [showStreak, setShowStreak] = useState(false);
+  const [gradeRevealed, setGradeRevealed] = useState(false);
+  const [showCalculating, setShowCalculating] = useState(true);
+
+  // Track card glow pulse per question
+  const [cardGlow, setCardGlow] = useState<number | null>(null);
 
   const handleStart = useCallback(() => {
     setAnswers([]);
@@ -915,6 +1064,11 @@ export default function AssessmentClient() {
     setSelectedOption(null);
     setShowConfetti(false);
     setFlashScore(null);
+    setStreak(0);
+    setShowStreak(false);
+    setGradeRevealed(false);
+    setShowCalculating(true);
+    setCardGlow(null);
     setPhase("quiz");
   }, []);
 
@@ -927,6 +1081,19 @@ export default function AssessmentClient() {
       setFlashScore(optionIndex);
       setTimeout(() => setFlashScore(null), 700);
 
+      // Trigger card glow pulse
+      setCardGlow(optionIndex);
+      setTimeout(() => setCardGlow(null), 600);
+
+      // Track streak (score 3 = max)
+      if (optionIndex === 3) {
+        setStreak((prev) => prev + 1);
+        setShowStreak(true);
+        setTimeout(() => setShowStreak(false), 1500);
+      } else {
+        setStreak(0);
+      }
+
       setTimeout(() => {
         const next = [...answers, optionIndex];
         setAnswers(next);
@@ -935,11 +1102,15 @@ export default function AssessmentClient() {
         if (current < questions.length - 1) {
           setCurrent((c) => c + 1);
         } else {
-          const finalScore = next.reduce((sum, a) => sum + a, 0);
-          if (finalScore >= 14) {
-            setShowConfetti(true);
-          }
+          setShowCalculating(true);
           setPhase("results");
+          // Confetti triggered after gauge reveal
+          const finalScore = next.reduce((sum, a) => sum + a, 0);
+          setTimeout(() => {
+            if (finalScore >= 14) {
+              setShowConfetti(true);
+            }
+          }, 2500);
         }
       }, 500);
     },
@@ -961,6 +1132,11 @@ export default function AssessmentClient() {
     setSelectedOption(null);
     setShowConfetti(false);
     setFlashScore(null);
+    setStreak(0);
+    setShowStreak(false);
+    setGradeRevealed(false);
+    setShowCalculating(true);
+    setCardGlow(null);
   }, []);
 
   const handleShare = useCallback(async () => {
@@ -968,27 +1144,13 @@ export default function AssessmentClient() {
     const grade = getGrade(totalScore);
     const percentage = Math.round((totalScore / 21) * 100);
 
-    const lines = [
-      `Diagnostic Maturité Recrutement - Rocket4RPO`,
-      ``,
-      `Score : ${totalScore}/21 (${percentage}%)`,
-      `Niveau : ${grade.label}`,
-      ``,
-      `Détail par critère :`,
-      ...questions.map(
-        (q, i) => `  ${q.label} : ${answers[i] ?? 0}/3`,
-      ),
-      ``,
-      `Faites le test : ${typeof window !== "undefined" ? window.location.href : ""}`,
-    ];
-
-    const text = lines.join("\n");
+    const text = `\u{1F3AF} Mon diagnostic recrutement Rocket4RPO: ${totalScore}/21 (${percentage}%) \u2014 Grade: ${grade.label}. Faites le v\u00f4tre sur rocket4rpo.com/assessment`;
 
     try {
       await navigator.clipboard.writeText(text);
-      setToastMessage("Résultats copiés !");
+      setToastMessage("\u2705 R\u00e9sultats copi\u00e9s !");
       setToastVisible(true);
-      setTimeout(() => setToastVisible(false), 2500);
+      setTimeout(() => setToastVisible(false), 2000);
     } catch {
       setToastMessage("Impossible de copier");
       setToastVisible(true);
@@ -1013,11 +1175,18 @@ export default function AssessmentClient() {
   const strongestLabel = strongest.length > 0 ? questions[strongest[0].index].label : "";
   const weakestLabel = weakest.length > 0 ? questions[weakest[0].index].label : "";
 
+  // Target score for challenge section (capped at 21)
+  const targetScore = Math.min(totalScore + 5, 21);
+
   return (
     <main className="min-h-screen bg-background">
-      {showConfetti && <Confetti />}
+      {showConfetti && <Confetti count={40} />}
       <Toast message={toastMessage} visible={toastVisible} />
       <ColorFlash score={flashScore} />
+
+      <AnimatePresence>
+        {showStreak && streak >= 2 && <StreakBadge streak={streak} />}
+      </AnimatePresence>
 
       <AnimatePresence mode="wait" custom={direction}>
         {/* ================================================================ */}
@@ -1089,15 +1258,15 @@ export default function AssessmentClient() {
                   <h1 className="mt-3 text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.12] text-white">
                     Votre recrutement est-il{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rocket-teal-glow to-emerald-400">
-                      à la hauteur
+                      \u00e0 la hauteur
                     </span>{" "}
                     ?
                   </h1>
 
                   {/* Subtitle */}
                   <p className="mt-3 text-sm md:text-base text-white/70 leading-relaxed max-w-xl mx-auto">
-                    Évaluez la maturité de votre Talent Acquisition sur 7 dimensions
-                    clés. Résultat immédiat avec recommandations personnalisées.
+                    \u00c9valuez la maturit\u00e9 de votre Talent Acquisition sur 7 dimensions
+                    cl\u00e9s. R\u00e9sultat imm\u00e9diat avec recommandations personnalis\u00e9es.
                   </p>
 
                   {/* Animated gauge preview — compact */}
@@ -1114,12 +1283,12 @@ export default function AssessmentClient() {
                   >
                     <span className="flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-primary/60" />
-                      200+ entreprises diagnostiquées
+                      200+ entreprises diagnostiqu\u00e9es
                     </span>
                     <span className="w-1 h-1 rounded-full bg-white/15" />
                     <span className="flex items-center gap-1.5">
                       <Award className="w-3.5 h-3.5 text-primary/60" />
-                      Méthodologie validée par 50+ DRH
+                      M\u00e9thodologie valid\u00e9e par 50+ DRH
                     </span>
                   </motion.div>
 
@@ -1131,9 +1300,9 @@ export default function AssessmentClient() {
                     className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
                   >
                     {[
-                      { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "évaluées" },
+                      { icon: ClipboardCheck, value: "7", label: "dimensions", sub: "\u00e9valu\u00e9es" },
                       { icon: Clock, value: "1", label: "minute", sub: "chrono" },
-                      { icon: Zap, value: "", label: "Résultat", sub: "immédiat" },
+                      { icon: Zap, value: "", label: "R\u00e9sultat", sub: "imm\u00e9diat" },
                     ].map((stat, i) => (
                       <motion.div
                         key={i}
@@ -1183,7 +1352,7 @@ export default function AssessmentClient() {
                       </Button>
                     </div>
                     <p className="mt-5 text-sm text-white/30">
-                      Gratuit, sans inscription, résultat en 1 minute
+                      Gratuit, sans inscription, r\u00e9sultat en 1 minute
                     </p>
                   </motion.div>
                 </div>
@@ -1298,7 +1467,10 @@ export default function AssessmentClient() {
 
               {/* Question area */}
               <div className="flex-1 flex flex-col items-center justify-center">
-                <div className="w-full max-w-2xl">
+                <div className="w-full max-w-2xl relative">
+                  {/* Card glow pulse overlay */}
+                  <CardGlowPulse score={cardGlow} />
+
                   {/* Question header */}
                   <div className="text-center mb-10">
                     {(() => {
@@ -1331,10 +1503,10 @@ export default function AssessmentClient() {
                       return (
                         <motion.button
                           key={opt}
-                          initial={{ opacity: 0, y: 15 }}
+                          initial={{ opacity: 0, x: 30 }}
                           animate={{
                             opacity: 1,
-                            y: 0,
+                            x: 0,
                             scale: isSelected ? [1, 1.05, 1] : 1,
                           }}
                           transition={
@@ -1467,7 +1639,7 @@ export default function AssessmentClient() {
                       className="gap-2 text-muted-foreground hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                       <ArrowLeft className="w-4 h-4" />
-                      Précédent
+                      Pr\u00e9c\u00e9dent
                     </Button>
                   </motion.div>
                 </div>
@@ -1503,7 +1675,7 @@ export default function AssessmentClient() {
                   >
                     <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-sm text-white/70 font-medium">
                       <Award className="w-3.5 h-3.5 text-primary" /> Votre
-                      résultat
+                      r\u00e9sultat
                     </span>
                   </motion.div>
 
@@ -1513,107 +1685,143 @@ export default function AssessmentClient() {
                     transition={{ delay: 0.2 }}
                     className="mt-6 text-2xl md:text-4xl font-bold text-white"
                   >
-                    Diagnostic de maturité recrutement
+                    Diagnostic de maturit\u00e9 recrutement
                   </motion.h2>
 
-                  {/* Semi-circular gauge */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                    className="mt-10 flex flex-col items-center"
-                  >
-                    <SemiCircularGauge score={totalScore} />
-
-                    {/* Grade badge with gamification badge */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={{ delay: 1.4 }}
-                      className="mt-8"
-                    >
-                      <div
-                        className={`
-                          relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-lg
-                          ${grade.color} bg-white/5 border border-white/10
-                        `}
+                  {/* Calculating dots — then gauge */}
+                  <AnimatePresence mode="wait">
+                    {showCalculating ? (
+                      <CalculatingDots
+                        key="calc"
+                        onComplete={() => setShowCalculating(false)}
+                      />
+                    ) : (
+                      <motion.div
+                        key="gauge-reveal"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1, duration: 0.6 }}
                       >
-                        <div
-                          className="absolute inset-0 rounded-full blur-xl opacity-30"
-                          style={{ backgroundColor: grade.fill }}
-                        />
-                        <span className="relative flex items-center gap-2.5">
-                          <span className="text-2xl">{grade.badge}</span>
-                          <span
-                            className="w-3 h-3 rounded-full"
-                            style={{
-                              backgroundColor: grade.fill,
-                              boxShadow: `0 0 12px ${grade.fill}`,
+                        {/* Semi-circular gauge */}
+                        <div className="mt-10 flex flex-col items-center">
+                          <SemiCircularGauge score={totalScore} />
+
+                          {/* Grade badge with dramatic reveal */}
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0, y: 10 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            transition={{
+                              delay: 2.2,
+                              type: "spring",
+                              stiffness: 200,
+                              damping: 12,
                             }}
-                          />
-                          {grade.label}
-                        </span>
-                      </div>
+                            className="mt-8"
+                            onAnimationComplete={() => setGradeRevealed(true)}
+                          >
+                            <div
+                              className={`
+                                relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-lg
+                                ${grade.color} bg-white/5 border border-white/10
+                              `}
+                            >
+                              <div
+                                className="absolute inset-0 rounded-full blur-xl opacity-30"
+                                style={{ backgroundColor: grade.fill }}
+                              />
+                              <span className="relative flex items-center gap-2.5">
+                                {/* Badge emoji — bounce scale from 0 */}
+                                <motion.span
+                                  className="text-2xl"
+                                  initial={{ scale: 0 }}
+                                  animate={{ scale: [0, 1.3, 1] }}
+                                  transition={{
+                                    delay: 2.4,
+                                    duration: 0.5,
+                                    times: [0, 0.6, 1],
+                                    ease: "easeOut",
+                                  }}
+                                >
+                                  {grade.badge}
+                                </motion.span>
+                                <span
+                                  className="w-3 h-3 rounded-full"
+                                  style={{
+                                    backgroundColor: grade.fill,
+                                    boxShadow: `0 0 12px ${grade.fill}`,
+                                  }}
+                                />
+                                {/* Grade name — typewriter effect */}
+                                <TypewriterText
+                                  text={grade.label}
+                                  delay={2500}
+                                  speed={50}
+                                />
+                              </span>
+                            </div>
 
-                      {/* Grade description */}
-                      <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.8 }}
-                        className="mt-5 text-sm text-white/70 max-w-lg mx-auto leading-relaxed"
-                      >
-                        {grade.description}
-                      </motion.p>
-                      <p className="mt-2 text-xs text-white/25">
-                        {percentage}% de maturité recrutement
-                      </p>
-                    </motion.div>
-                  </motion.div>
+                            {/* Grade description */}
+                            <motion.p
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 3.2 }}
+                              className="mt-5 text-sm text-white/70 max-w-lg mx-auto leading-relaxed"
+                            >
+                              {grade.description}
+                            </motion.p>
+                            <p className="mt-2 text-xs text-white/25">
+                              {percentage}% de maturit\u00e9 recrutement
+                            </p>
+                          </motion.div>
+                        </div>
 
-                  {/* Profil TA summary */}
-                  {answers.length === questions.length && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 2 }}
-                      className="mt-8 max-w-lg mx-auto"
-                    >
-                      <div className="px-6 py-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
-                        <p className="text-xs font-semibold text-primary mb-1.5 uppercase tracking-wider">
-                          Votre profil TA
-                        </p>
-                        <p className="text-sm text-white/60 leading-relaxed">
-                          Votre point fort est <strong className="text-white/80">{strongestLabel}</strong>, tandis que{" "}
-                          <strong className="text-white/80">{weakestLabel}</strong> représente votre principal axe de progression.
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
+                        {/* Profil TA summary */}
+                        {answers.length === questions.length && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 3.5 }}
+                            className="mt-8 max-w-lg mx-auto"
+                          >
+                            <div className="px-6 py-4 rounded-2xl bg-white/[0.04] border border-white/[0.08]">
+                              <p className="text-xs font-semibold text-primary mb-1.5 uppercase tracking-wider">
+                                Votre profil TA
+                              </p>
+                              <p className="text-sm text-white/60 leading-relaxed">
+                                Votre point fort est <strong className="text-white/80">{strongestLabel}</strong>, tandis que{" "}
+                                <strong className="text-white/80">{weakestLabel}</strong> repr\u00e9sente votre principal axe de progression.
+                              </p>
+                            </div>
+                          </motion.div>
+                        )}
 
-                  {/* Radar Chart */}
-                  {answers.length === questions.length && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.6, duration: 0.6 }}
-                      className="mt-10"
-                    >
-                      <RadarChart answers={answers} />
-                    </motion.div>
-                  )}
+                        {/* Radar Chart */}
+                        {answers.length === questions.length && (
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.6, duration: 0.6 }}
+                            className="mt-10"
+                          >
+                            <RadarChart answers={answers} />
+                          </motion.div>
+                        )}
 
-                  {/* Benchmark Bars: Comparez-vous */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.4 }}
-                    className="mt-10 max-w-sm mx-auto"
-                  >
-                    <h4 className="text-sm font-semibold text-white/50 mb-4 uppercase tracking-wider">
-                      Comparez-vous
-                    </h4>
-                    <BenchmarkBars percentage={percentage} />
-                  </motion.div>
+                        {/* Benchmark Bars: Comparez-vous */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 1.4 }}
+                          className="mt-10 max-w-sm mx-auto"
+                        >
+                          <h4 className="text-sm font-semibold text-white/50 mb-4 uppercase tracking-wider">
+                            Comparez-vous
+                          </h4>
+                          <BenchmarkBars percentage={percentage} />
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </section>
@@ -1630,10 +1838,10 @@ export default function AssessmentClient() {
                 >
                   <div className="text-center mb-8">
                     <h3 className="text-xl md:text-2xl font-bold mb-2">
-                      Détail par critère
+                      D\u00e9tail par crit\u00e8re
                     </h3>
                     <p className="text-muted-foreground text-sm">
-                      Score individuel sur chacun des 7 axes évalués
+                      Score individuel sur chacun des 7 axes \u00e9valu\u00e9s
                     </p>
                   </div>
 
@@ -1721,7 +1929,7 @@ export default function AssessmentClient() {
                   </div>
                 </motion.div>
 
-                {/* Top 3 Recommendations (actionable) */}
+                {/* Top 3 Recommendations (actionable) — staggered slide from left */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -1732,11 +1940,11 @@ export default function AssessmentClient() {
                     <div className="inline-flex items-center gap-2 mb-3">
                       <AlertTriangle className="w-5 h-5 text-amber-500" />
                       <h3 className="text-xl md:text-2xl font-bold">
-                        Vos 3 axes d&apos;amélioration prioritaires
+                        Vos 3 axes d&apos;am\u00e9lioration prioritaires
                       </h3>
                     </div>
                     <p className="text-muted-foreground text-sm">
-                      Recommandations personnalisées basées sur vos réponses
+                      Recommandations personnalis\u00e9es bas\u00e9es sur vos r\u00e9ponses
                     </p>
                   </div>
 
@@ -1770,9 +1978,9 @@ export default function AssessmentClient() {
                       return (
                         <motion.div
                           key={q.id}
-                          initial={{ opacity: 0, x: -20 }}
+                          initial={{ opacity: 0, x: -40 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.8 + rank * 0.15 }}
+                          transition={{ delay: 0.8 + rank * 0.2, type: "spring", stiffness: 200, damping: 20 }}
                           className={`
                             relative flex gap-4 md:gap-5 p-5 md:p-7 rounded-2xl border border-border/60 bg-background
                             border-l-4 ${priorityBorderColors[rank]} shadow-sm hover:shadow-md transition-shadow
@@ -1857,7 +2065,7 @@ export default function AssessmentClient() {
                           {grade.badge} {grade.label}
                         </div>
                         <p className="text-white/40 text-sm mt-1">
-                          {percentage}% de maturité recrutement
+                          {percentage}% de maturit\u00e9 recrutement
                         </p>
                       </div>
 
@@ -1896,49 +2104,79 @@ export default function AssessmentClient() {
                         })}
                       </div>
 
-                      {/* Share button */}
+                      {/* Share buttons */}
                       <div className="pt-5 border-t border-white/[0.06]">
                         <p className="text-xs text-white/20 mb-3">
                           Diagnostic Rocket4RPO
                         </p>
-                        <button
-                          onClick={handleShare}
-                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all cursor-pointer"
-                        >
-                          <Copy className="w-3.5 h-3.5" />
-                          Partager mes résultats
-                        </button>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                          <button
+                            onClick={handleShare}
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all cursor-pointer"
+                          >
+                            <Copy className="w-3.5 h-3.5" />
+                            Partager mes r\u00e9sultats
+                          </button>
+                          <a
+                            href="/rdv"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.08] border border-white/[0.12] text-sm text-white/60 hover:text-white hover:bg-white/[0.12] transition-all"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                            Recevoir par email
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </motion.div>
 
-                {/* Defi section */}
+                {/* Defi section — enhanced with before/after visual and pulsing glow */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.85 }}
                   className="mb-12"
                 >
+                  <style>{`
+                    @keyframes pulse-glow {
+                      0%, 100% { box-shadow: 0 0 0 0 rgba(20,184,166,0.4); }
+                      50% { box-shadow: 0 0 20px 4px rgba(20,184,166,0.3); }
+                    }
+                  `}</style>
                   <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/[0.06] via-transparent to-primary/[0.06] p-8 md:p-10 text-center">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
                     <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl" />
                     <div className="relative">
                       <Trophy className="w-10 h-10 text-primary mx-auto mb-4" />
                       <h3 className="text-lg md:text-xl font-bold mb-2">
-                        Le défi
+                        Le d\u00e9fi
                       </h3>
+
+                      {/* Before / After visual */}
+                      <div className="flex items-center justify-center gap-3 mb-4">
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/50 border border-border/40">
+                          <span className="text-xs text-muted-foreground">Aujourd&apos;hui</span>
+                          <span className={`text-lg font-bold ${grade.color}`}>{totalScore}/21</span>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-primary" />
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 border border-primary/20">
+                          <span className="text-xs text-primary">Dans 3 mois</span>
+                          <span className="text-lg font-bold text-primary">{targetScore}/21</span>
+                        </div>
+                      </div>
+
                       <p className="text-muted-foreground text-sm max-w-md mx-auto mb-6">
-                        Refaites ce diagnostic dans 3 mois après avoir appliqué nos recommandations.
-                        Mesurez votre progression et visez le niveau supérieur !
+                        Refaites ce diagnostic dans 3 mois apr\u00e8s avoir appliqu\u00e9 nos recommandations.
+                        Mesurez votre progression et visez le niveau sup\u00e9rieur !
                       </p>
                       <Button
                         onClick={handleRestart}
                         variant="outline"
                         className="gap-2 px-8 py-5 rounded-xl border-primary/30 text-primary hover:bg-primary/10 font-semibold"
+                        style={{ animation: "pulse-glow 2s ease-in-out infinite" }}
                       >
                         <RotateCcw className="w-4 h-4" />
-                        Relever le défi
+                        Relever le d\u00e9fi
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </div>
@@ -1964,13 +2202,13 @@ export default function AssessmentClient() {
                       ))}
                     </div>
                     <span className="text-sm text-muted-foreground">
-                      <strong className="text-foreground">200+ entreprises</strong>{" "}
-                      ont optimisé leur recrutement
+                      <strong className="text-foreground">50+ entreprises accompagn\u00e9es</strong>{" "}
+                      ont optimis\u00e9 leur recrutement
                     </span>
                   </div>
                 </motion.div>
 
-                {/* CTAs */}
+                {/* CTAs — single primary CTA + restart */}
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -1983,20 +2221,9 @@ export default function AssessmentClient() {
                     className="gap-2 px-10 py-7 text-base font-semibold rounded-2xl shadow-xl shadow-primary/20 w-full sm:w-auto bg-gradient-to-r from-primary to-emerald-500 hover:from-primary hover:to-emerald-400"
                   >
                     <a href="/rdv">
-                      Recevoir votre rapport détaillé
-                      <ArrowRight className="w-5 h-5" />
-                    </a>
-                  </Button>
-
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="gap-2 px-10 py-6 text-base rounded-2xl w-full sm:w-auto"
-                  >
-                    <a href="/rdv">
                       <MessageSquare className="w-4 h-4" />
-                      Parler à un expert
+                      Recevoir votre rapport d\u00e9taill\u00e9
+                      <ArrowRight className="w-5 h-5" />
                     </a>
                   </Button>
 
@@ -2006,8 +2233,7 @@ export default function AssessmentClient() {
                     onClick={handleRestart}
                     className="gap-2 mt-2 text-muted-foreground hover:text-foreground"
                   >
-                    <RotateCcw className="w-4 h-4" /> Relever le défi
-                    <ArrowRight className="w-3 h-3" />
+                    <RotateCcw className="w-4 h-4" /> Recommencer le diagnostic
                   </Button>
                 </motion.div>
               </div>
