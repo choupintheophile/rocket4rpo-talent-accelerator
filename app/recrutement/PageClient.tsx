@@ -267,7 +267,7 @@ export default function RecrutementPageClient() {
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
                   <Zap className="w-4 h-4 text-rocket-teal-glow" />
-                  <span><strong className="text-white">500€/jour</strong> TJM moyen</span>
+                  <span><strong className="text-white">500€/jour</strong> TJM minimum</span>
                 </div>
               </div>
 
