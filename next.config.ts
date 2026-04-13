@@ -15,6 +15,18 @@ const nextConfig: NextConfig = {
       { source: "/rpo-temps-partage", destination: "/offre", permanent: true },
       { source: "/rpo-temps-plein", destination: "/offre", permanent: true },
       { source: "/recrutement-tech-startup", destination: "/offre", permanent: true },
+      // Fix 404 from old site / external links
+      { source: "/metiers/recrutement-it", destination: "/offre", permanent: true },
+      { source: "/metiers/:slug*", destination: "/offre", permanent: true },
+      { source: "/cas-clients", destination: "/offre", permanent: true },
+      { source: "/cas-clients/:slug*", destination: "/offre", permanent: true },
+      { source: "/equipe", destination: "/recrutement", permanent: true },
+      { source: "/a-propos", destination: "/rocket4gtm", permanent: true },
+      { source: "/about", destination: "/rocket4gtm", permanent: true },
+      { source: "/pricing", destination: "/offre", permanent: true },
+      { source: "/tarifs", destination: "/offre", permanent: true },
+      { source: "/services", destination: "/offre", permanent: true },
+      { source: "/services/:slug*", destination: "/offre", permanent: true },
     ];
   },
   async headers() {
