@@ -2,6 +2,7 @@
 
 import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -64,17 +65,22 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
         </div>
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20 mb-6">
-              <BookOpen className="w-3.5 h-3.5" /> Blog & conseils
-            </span>
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.08]">
-              Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">conseils</span>
-            </h1>
-            <p className="mt-3 text-base md:text-lg text-white/55 max-w-xl leading-relaxed">
-              {posts.length} articles pour recruter mieux, plus vite et moins cher. Par des experts avec 200+ recrutements.
-            </p>
-          </motion.div>
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="lg:w-[55%]">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20 mb-6">
+                <BookOpen className="w-3.5 h-3.5" /> Blog & conseils
+              </span>
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight leading-[1.08]">
+                Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">conseils</span>
+              </h1>
+              <p className="mt-3 text-base md:text-lg text-white/55 max-w-xl leading-relaxed">
+                {posts.length} articles pour recruter mieux, plus vite et moins cher. Par des experts avec 200+ recrutements.
+              </p>
+            </motion.div>
+            <div className="hidden lg:block lg:w-[45%]">
+              <Image src="/photos/presenting-coworkers.webp" alt="Personne présentant à ses collègues" width={600} height={400} className="rounded-2xl shadow-2xl border border-white/10 object-cover" />
+            </div>
+          </div>
         </div>
       </section>
 

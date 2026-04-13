@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
@@ -209,47 +210,52 @@ export default function RpoVsInterimPage() {
         />
 
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <motion.div
-            ref={heroRef}
-            initial={{ opacity: 0, y: 25 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="max-w-4xl"
-          >
-            <div className="flex flex-wrap gap-3 mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
-                <Rocket className="w-3.5 h-3.5" /> RPO
-              </span>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/15 border border-purple-400/20 text-sm text-purple-300 font-medium">
-                <Repeat className="w-3.5 h-3.5" /> Intérim
-              </span>
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            <motion.div
+              ref={heroRef}
+              initial={{ opacity: 0, y: 25 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7 }}
+              className="lg:w-[55%]"
+            >
+              <div className="flex flex-wrap gap-3 mb-6">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
+                  <Rocket className="w-3.5 h-3.5" /> RPO
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/15 border border-purple-400/20 text-sm text-purple-300 font-medium">
+                  <Repeat className="w-3.5 h-3.5" /> Intérim
+                </span>
+              </div>
+
+              <h1 className="text-3xl md:text-4xl font-bold leading-[1.08] text-white">
+                RPO vs Intérim :{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  quelle solution pour vos besoins ?
+                </span>
+              </h1>
+
+              <p className="mt-3 text-base md:text-lg text-white/60 leading-relaxed max-w-3xl">
+                RPO intégré ou intérimaire détaché ? Les deux externalisent le
+                recrutement, mais les approches sont radicalement différentes.
+                Intégration, autonomie, marque employeur, coût : ce comparatif
+                vous aide à choisir en connaissance de cause.
+              </p>
+
+              <div className="mt-3 flex flex-col sm:flex-row gap-3">
+                <a
+                  href={HUBSPOT}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Réserver un diagnostic gratuit <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </motion.div>
+            <div className="hidden lg:block lg:w-[45%]">
+              <Image src="/photos/bureau-smile.jpg" alt="Personne souriante au bureau" width={600} height={400} className="rounded-2xl shadow-2xl border border-white/10 object-cover" />
             </div>
-
-            <h1 className="text-3xl md:text-4xl font-bold leading-[1.08] text-white">
-              RPO vs Intérim :{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                quelle solution pour vos besoins ?
-              </span>
-            </h1>
-
-            <p className="mt-3 text-base md:text-lg text-white/60 leading-relaxed max-w-3xl">
-              RPO intégré ou intérimaire détaché ? Les deux externalisent le
-              recrutement, mais les approches sont radicalement différentes.
-              Intégration, autonomie, marque employeur, coût : ce comparatif
-              vous aide à choisir en connaissance de cause.
-            </p>
-
-            <div className="mt-3 flex flex-col sm:flex-row gap-3">
-              <a
-                href={HUBSPOT}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
-              >
-                Réserver un diagnostic gratuit <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
