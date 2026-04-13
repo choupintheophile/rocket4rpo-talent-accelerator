@@ -335,55 +335,64 @@ export default function OutilsClient() {
           }}
         />
 
-        <FloatingParticles />
-
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <motion.div
-            ref={heroRef}
-            initial={{ opacity: 1, y: 0 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
-              <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
-              100% gratuit · Sans inscription · Résultats instantanés
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
+            {/* Text side */}
+            <div className="lg:w-[55%]">
+              <div className="flex flex-wrap gap-3 mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
+                  <Calculator className="w-3.5 h-3.5" /> Calculateur
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/20 text-sm text-blue-300 font-medium">
+                  <ClipboardCheck className="w-3.5 h-3.5" /> Diagnostic
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-500/15 border border-violet-400/20 text-sm text-violet-300 font-medium">
+                  <Play className="w-3.5 h-3.5" /> Démo
+                </span>
+              </div>
+
+              <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
+                Prenez les bonnes{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  décisions
+                </span>{" "}
+                en 2 minutes
+              </h1>
+
+              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
+                3 simulateurs conçus pour les décideurs RH. Calculez votre ROI, évaluez votre maturité recrutement, ou visualisez un process RPO en temps réel. 100% gratuit, sans inscription.
+              </p>
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/calculateur"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Calculer mon ROI <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/assessment"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white/10 border border-white/20 text-white hover:bg-white/15 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Lancer le diagnostic
+                </Link>
+              </div>
             </div>
 
-            <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
-              Prenez les bonnes{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                décisions
-              </span>{" "}
-              en 2 minutes
-            </h1>
-
-            <p className="mt-3 text-sm md:text-base text-white/65 leading-relaxed max-w-xl mx-auto">
-              Calculez, diagnostiquez, visualisez — puis décidez en connaissance de cause.
-            </p>
-
-            {/* Quick access — 3 mini cards inline */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl mx-auto">
-              {tools.map((tool) => {
-                const TIcon = tool.icon;
-                return (
-                  <Link
-                    key={tool.href}
-                    href={tool.href}
-                    className="group flex items-center gap-3 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 hover:border-rocket-teal/40 hover:bg-white/[0.1] transition-all duration-300"
-                  >
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-rocket-teal/15 text-rocket-teal-glow group-hover:scale-110 transition-transform">
-                      <TIcon className="w-4 h-4" />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-sm font-semibold text-white">{tool.title}</div>
-                      <div className="text-[10px] text-white/45">{tool.badge}</div>
-                    </div>
-                  </Link>
-                );
-              })}
+            {/* Photo side */}
+            <div className="hidden lg:block lg:w-[45%]">
+              <div className="relative">
+                <Image
+                  src="/photos/bureau-smile.jpg"
+                  alt="Équipe utilisant les simulateurs Rocket4RPO"
+                  width={600}
+                  height={420}
+                  className="rounded-2xl shadow-2xl object-cover w-full"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
