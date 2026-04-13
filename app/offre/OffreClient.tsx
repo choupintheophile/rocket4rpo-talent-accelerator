@@ -104,7 +104,7 @@ export default function OffreClient() {
             {/* Text side */}
             <motion.div
               ref={heroRef}
-              initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 1, y: 0 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7 }}
               className="lg:w-[55%]"

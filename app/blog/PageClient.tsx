@@ -70,7 +70,7 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
             {/* Text side */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="lg:w-[55%]">
+            <div className="lg:w-[55%]">
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20">
                 <BookOpen className="w-3.5 h-3.5" /> Blog & conseils
               </span>
@@ -80,7 +80,7 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
               <p className="mt-4 text-base md:text-lg text-white/65 max-w-xl leading-relaxed">
                 {posts.length} articles pour recruter mieux, plus vite et moins cher. Par des experts avec 200+ recrutements.
               </p>
-            </motion.div>
+            </div>
             {/* Photo side */}
             <div className="hidden lg:block lg:w-[45%]">
               <div className="relative">
