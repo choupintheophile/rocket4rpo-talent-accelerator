@@ -676,9 +676,9 @@ function StepTimeline({
   return (
     <>
       {/* Desktop: horizontal timeline */}
-      <div className="hidden md:block relative mb-6 px-4">
+      <div className="hidden md:block relative mb-3 px-4">
         {/* Step progress indicator */}
-        <div className="text-center mb-2">
+        <div className="text-center mb-1">
           <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
             Étape {currentStep + 1}/{steps.length}
           </span>
@@ -705,12 +705,12 @@ function StepTimeline({
               <button
                 key={i}
                 onClick={() => isClickable && onStepClick(i)}
-                className={`relative z-10 flex flex-col items-center gap-2 group ${
+                className={`relative z-10 flex flex-col items-center gap-1 group ${
                   isClickable ? "cursor-pointer" : "cursor-default"
                 }`}
               >
                 <motion.div
-                  className={`w-9 h-9 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
+                  className={`w-7 h-7 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
                     isCompleted
                       ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/25"
                       : isCurrent
@@ -749,9 +749,9 @@ function StepTimeline({
       </div>
 
       {/* Mobile: vertical timeline */}
-      <div className="md:hidden mb-6 px-4">
+      <div className="md:hidden mb-3 px-4">
         {/* Step progress indicator mobile */}
-        <div className="text-center mb-4">
+        <div className="text-center mb-2">
           <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
             Étape {currentStep + 1}/{steps.length}
           </span>
@@ -869,28 +869,28 @@ function StepBrief({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="max-w-2xl mx-auto space-y-4"
+      className="max-w-2xl mx-auto space-y-2"
     >
       {/* Brief form */}
       <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl shadow-black/5">
-        <div className="px-5 py-3.5 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
-              <FileText className="w-4 h-4 text-primary" />
+        <div className="px-4 py-2 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+              <FileText className="w-3.5 h-3.5 text-primary" />
             </div>
             <div>
-              <h3 className="text-base font-bold">Brief du poste</h3>
-              <p className="text-xs text-muted-foreground">
+              <h3 className="text-sm font-bold">Brief du poste</h3>
+              <p className="text-[11px] text-muted-foreground">
                 Définissez le profil idéal en quelques clics
               </p>
             </div>
           </div>
         </div>
 
-        <div className="p-4 space-y-4">
+        <div className="p-3 space-y-2.5">
           {/* Job title input */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold mb-2">
+            <label className="flex items-center gap-1.5 text-xs font-semibold mb-1">
               <Zap className="w-3.5 h-3.5 text-primary" />
               Intitulé du poste
             </label>
@@ -898,15 +898,15 @@ function StepBrief({
               type="text"
               value={jobTitle}
               onChange={(e) => setJobTitle(e.target.value)}
-              className="w-full rounded-xl border border-border/60 bg-rocket-dark/30 px-4 py-2.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all placeholder:text-muted-foreground"
+              className="w-full rounded-lg border border-border/60 bg-rocket-dark/30 px-3 py-1.5 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all placeholder:text-muted-foreground"
               placeholder="Ex: Account Executive SaaS, SDR, CSM, Dev Full-Stack..."
             />
           </div>
 
           {/* Criteria chips */}
           <div>
-            <label className="flex items-center gap-2 text-sm font-semibold mb-2">
-              <Target className="w-3.5 h-3.5 text-primary" />
+            <label className="flex items-center gap-1.5 text-xs font-semibold mb-1">
+              <Target className="w-3 h-3 text-primary" />
               Critères clés
             </label>
             <div className="flex flex-wrap gap-2">
@@ -924,7 +924,7 @@ function StepBrief({
                         [key]: !criteria[key as keyof typeof criteria],
                       })
                     }
-                    className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all duration-200 ${
                       active
                         ? "bg-primary/15 border-primary/40 text-primary shadow-[0_0_16px_rgba(99,102,241,0.15)]"
                         : "bg-rocket-dark/20 border-border/40 text-muted-foreground hover:border-border/70 hover:text-foreground"
@@ -961,13 +961,13 @@ function StepBrief({
             className="overflow-hidden"
           >
             <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-emerald-500/20 overflow-hidden shadow-xl shadow-emerald-500/5">
-              <div className="px-6 py-4 bg-gradient-to-r from-emerald-500/8 to-transparent border-b border-emerald-500/10">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-                    <BarChart3 className="w-5 h-5 text-emerald-400" />
+              <div className="px-4 py-2 bg-gradient-to-r from-emerald-500/8 to-transparent border-b border-emerald-500/10">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold flex items-center gap-2">
+                    <h3 className="text-xs font-bold flex items-center gap-1.5">
                       Aperçu Scorecard
                       <motion.span
                         animate={{ opacity: [0.5, 1, 0.5] }}
@@ -977,14 +977,14 @@ function StepBrief({
                         LIVE
                       </motion.span>
                     </h3>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-[10px] text-muted-foreground">
                       Votre grille d&apos;évaluation se construit automatiquement
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-5 space-y-2.5">
+              <div className="p-3 space-y-1.5">
                 <AnimatePresence>
                   {activeCriteria.map(([key], i) => (
                     <motion.div
@@ -993,10 +993,10 @@ function StepBrief({
                       animate={{ opacity: 1, x: 0, height: "auto" }}
                       exit={{ opacity: 0, x: 20, height: 0 }}
                       transition={{ delay: i * 0.08, duration: 0.3 }}
-                      className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-rocket-dark/20 border border-border/30"
+                      className="flex items-center gap-2 px-3 py-2 rounded-lg bg-rocket-dark/20 border border-border/30"
                     >
-                      <div className="w-7 h-7 rounded-full bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <div className="w-5 h-5 rounded-full bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                       </div>
                       <span className="text-sm font-medium flex-1">
                         {criteriaLabels[key]}
@@ -1028,7 +1028,7 @@ function StepBrief({
         whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(99,102,241,0.3)" }}
         whileTap={{ scale: 0.97 }}
         onClick={onNext}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
+        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
       >
         Lancer le sourcing
         <ArrowRight className="w-4 h-4" />
@@ -1128,7 +1128,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="max-w-2xl mx-auto space-y-6"
+      className="max-w-2xl mx-auto space-y-3"
     >
       {/* Scanning panel */}
       <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl shadow-black/5 relative">
@@ -1145,7 +1145,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
           )}
         </AnimatePresence>
 
-        <div className="p-6 flex flex-col sm:flex-row items-center gap-6">
+        <div className="p-4 flex flex-col sm:flex-row items-center gap-4">
           <RadarPulse />
           <div className="flex-1 text-center sm:text-left w-full">
             {/* Live pulsing indicator */}
@@ -1198,8 +1198,8 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
         </div>
 
         {/* Channel scanning */}
-        <div className="px-6 pb-5 space-y-2">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+        <div className="px-4 pb-3 space-y-1.5">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
             Sources scannées
           </p>
           <div className="flex flex-wrap gap-2">
@@ -1290,7 +1290,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
 
       {/* Candidate cards — dramatic entrance from right with scale */}
       {showCandidates && (
-        <div className="space-y-3">
+        <div className="space-y-2">
           <AnimatePresence>
             {candidates.slice(0, visibleCount).map((c, idx) => (
               <motion.div
@@ -1306,13 +1306,13 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
                 whileHover={{ scale: 1.015, borderColor: "rgba(99,102,241,0.3)" }}
                 className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-lg shadow-black/5 transition-all cursor-default"
               >
-                <div className="p-4 sm:p-5 flex items-center gap-4">
+                <div className="p-3 sm:p-3.5 flex items-center gap-3">
                   {/* Avatar */}
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
-                    className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                       c.score >= 90
                         ? "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
                         : c.score >= 85
@@ -1357,7 +1357,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
             whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(99,102,241,0.3)" }}
             whileTap={{ scale: 0.97 }}
             onClick={onNext}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
           >
             Voir la shortlist
             <ArrowRight className="w-4 h-4" />
@@ -1427,15 +1427,15 @@ function StepShortlist({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="max-w-2xl mx-auto space-y-6"
+      className="max-w-2xl mx-auto space-y-3"
     >
       {/* 1 semaine badge */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="rounded-2xl bg-background/80 backdrop-blur-xl border border-primary/20 p-5 shadow-xl shadow-black/5"
+        className="rounded-2xl bg-background/80 backdrop-blur-xl border border-primary/20 p-3 shadow-xl shadow-black/5"
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <motion.div
             animate={{
               boxShadow: [
@@ -1445,13 +1445,13 @@ function StepShortlist({
               ],
             }}
             transition={{ duration: 2.5, repeat: Infinity }}
-            className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center flex-shrink-0"
+            className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0"
           >
-            <Clock className="w-7 h-7 text-primary" />
+            <Clock className="w-5 h-5 text-primary" />
           </motion.div>
           <div>
-            <div className="flex items-center gap-2.5 mb-1">
-              <span className="text-lg font-bold text-primary">1 semaine écoulée</span>
+            <div className="flex items-center gap-2 mb-0.5">
+              <span className="text-sm font-bold text-primary">1 semaine écoulée</span>
               <motion.span
                 animate={{ opacity: [1, 0.4, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -1460,7 +1460,7 @@ function StepShortlist({
                 LIVRÉE
               </motion.span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Sélectionnez vos <span className="font-bold text-foreground">3 meilleurs candidats</span> pour passer aux entretiens.
             </p>
           </div>
@@ -1485,7 +1485,7 @@ function StepShortlist({
       </div>
 
       {/* All candidates with selection toggle */}
-      <div className="space-y-4">
+      <div className="space-y-2.5">
         {candidates.map((c, i) => {
           const isSelected = selected.has(i);
           const matchScore = getMatchScore(c);
@@ -1503,7 +1503,7 @@ function StepShortlist({
                   : "border-border/50 hover:border-border/80"
               }`}
             >
-              <div className="p-5 sm:p-6 space-y-4">
+              <div className="p-3 sm:p-4 space-y-2">
                 {/* Header row */}
                 <div className="flex items-center gap-4">
                   <div className="relative">
@@ -1599,7 +1599,7 @@ function StepShortlist({
             whileHover={{ scale: 1.02, boxShadow: "0 8px 30px rgba(99,102,241,0.3)" }}
             whileTap={{ scale: 0.97 }}
             onClick={onNext}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
           >
             Voir les résultats ({selected.size} sélectionnés)
             <ArrowRight className="w-4 h-4" />
@@ -1702,13 +1702,13 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className="max-w-2xl mx-auto space-y-6"
+      className="max-w-2xl mx-auto space-y-3"
     >
       {/* Confetti celebration */}
       {showConfetti && <Confetti />}
 
       {/* KPI grid 2x2 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 gap-2">
         {kpis.map((kpi, i) => (
           <motion.div
             key={kpi.label}
@@ -1716,12 +1716,12 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: i * 0.12, type: "spring", stiffness: 100 }}
             whileHover={{ scale: 1.03 }}
-            className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 p-5 md:p-6 text-center space-y-3 shadow-lg shadow-black/5 transition-transform"
+            className="rounded-xl bg-background/80 backdrop-blur-xl border border-border/50 p-3 text-center space-y-1.5 shadow-lg shadow-black/5 transition-transform"
           >
-            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto">
-              <kpi.icon className="w-6 h-6 text-primary" />
+            <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center mx-auto">
+              <kpi.icon className="w-4 h-4 text-primary" />
             </div>
-            <p className="text-3xl md:text-4xl font-bold text-foreground tabular-nums">
+            <p className="text-2xl font-bold text-foreground tabular-nums">
               <AnimatedCounter target={kpi.value} suffix={kpi.suffix} duration={1500} />
             </p>
             <div>
@@ -1733,7 +1733,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       </div>
 
       {/* Extra KPIs row */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2">
         {extraKpis.map((kpi, i) => (
           <motion.div
             key={kpi.label}
@@ -1741,9 +1741,9 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 + i * 0.1 }}
             whileHover={{ scale: 1.04 }}
-            className="rounded-xl bg-background/80 backdrop-blur-xl border border-border/50 p-4 text-center shadow-md shadow-black/5 transition-transform"
+            className="rounded-lg bg-background/80 backdrop-blur-xl border border-border/50 p-2.5 text-center shadow-md shadow-black/5 transition-transform"
           >
-            <div className={`w-9 h-9 rounded-xl ${kpi.bgColor} flex items-center justify-center mx-auto mb-2`}>
+            <div className={`w-7 h-7 rounded-lg ${kpi.bgColor} flex items-center justify-center mx-auto mb-1`}>
               <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
             </div>
             <p className={`text-lg font-bold ${kpi.color} tabular-nums`}>{kpi.value}</p>
@@ -1768,17 +1768,17 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
         transition={{ delay: 0.5 }}
         className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl shadow-black/5"
       >
-        <div className="px-6 py-5 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
-          <h4 className="text-lg font-bold flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-primary" />
+        <div className="px-4 py-2.5 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
+          <h4 className="text-sm font-bold flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-primary" />
             Rocket4RPO vs Marché
           </h4>
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="text-[10px] text-muted-foreground mt-0.5">
             Comparez nos performances avec la moyenne du secteur
           </p>
         </div>
 
-        <div className="p-6 space-y-5">
+        <div className="p-4 space-y-3">
           {/* Timeline bars with bounce */}
           <TimelineBar
             label="Rocket4RPO"
@@ -1797,9 +1797,9 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
           />
 
           {/* Two-column comparison */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4">
+          <div className="grid grid-cols-2 gap-2 mt-2">
             {/* Rocket4RPO column with glow pulse */}
-            <div className="rounded-xl bg-primary/5 border-2 border-primary/30 p-5 text-center relative overflow-hidden">
+            <div className="rounded-xl bg-primary/5 border-2 border-primary/30 p-3 text-center relative overflow-hidden">
               {/* Glow pulse behind Rocket4RPO column */}
               <motion.div
                 className="absolute inset-0 rounded-xl"
@@ -1818,21 +1818,21 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
                 transition={{ duration: 3, repeat: Infinity }}
               />
               <div className="relative">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-3 border border-primary/20">
+                <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold mb-1.5 border border-primary/20">
                   <Zap className="w-3 h-3" />
                   Rocket4RPO
                 </div>
-                <p className="text-4xl md:text-5xl font-bold text-primary tabular-nums leading-none">
+                <p className="text-2xl md:text-3xl font-bold text-primary tabular-nums leading-none">
                   <AnimatedCounter target={21} duration={1200} />
                 </p>
-                <p className="text-sm text-muted-foreground mt-1.5 font-medium">jours</p>
+                <p className="text-xs text-muted-foreground mt-1 font-medium">jours</p>
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.8, type: "spring" }}
-                  className="mt-3"
+                  className="mt-1.5"
                 >
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-bold border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-[10px] font-bold border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
                     <TrendingUp className="w-3.5 h-3.5" />
                     -60% plus rapide
                   </span>
@@ -1841,16 +1841,16 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             </div>
 
             {/* Marché column */}
-            <div className="rounded-xl bg-muted/10 border border-border/30 p-5 text-center">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold mb-3 border border-border/30">
+            <div className="rounded-xl bg-muted/10 border border-border/30 p-3 text-center">
+              <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-muted/20 text-muted-foreground text-[10px] font-bold mb-1.5 border border-border/30">
                 Marché
               </div>
-              <p className="text-4xl md:text-5xl font-bold text-muted-foreground tabular-nums leading-none">
+              <p className="text-2xl md:text-3xl font-bold text-muted-foreground tabular-nums leading-none">
                 <AnimatedCounter target={52} duration={1200} />
               </p>
-              <p className="text-sm text-muted-foreground mt-1.5 font-medium">jours</p>
-              <div className="mt-3">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold border border-border/30">
+              <p className="text-xs text-muted-foreground mt-1 font-medium">jours</p>
+              <div className="mt-1.5">
+                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-muted/20 text-muted-foreground text-[10px] font-bold border border-border/30">
                   Standard
                 </span>
               </div>
@@ -1862,7 +1862,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="mt-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-center relative overflow-hidden"
+            className="mt-2 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-2.5 text-center relative overflow-hidden"
           >
             {showSavingsConfetti && <Confetti />}
             <p className="text-sm font-semibold text-emerald-400">
@@ -1888,32 +1888,32 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8 }}
-        className="rounded-2xl bg-gradient-to-br from-rocket-dark via-rocket-dark/95 to-rocket-dark border border-primary/20 p-8 md:p-10 text-center space-y-5 shadow-2xl shadow-primary/10 relative overflow-hidden"
+        className="rounded-xl bg-gradient-to-br from-rocket-dark via-rocket-dark/95 to-rocket-dark border border-primary/20 p-5 text-center space-y-2 shadow-2xl shadow-primary/10 relative overflow-hidden"
       >
         {/* Decorative glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative">
-          <div className="w-16 h-16 rounded-2xl bg-primary/15 flex items-center justify-center mx-auto mb-5">
-            <Sparkles className="w-8 h-8 text-primary" />
+          <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mx-auto mb-2">
+            <Sparkles className="w-5 h-5 text-primary" />
           </div>
 
-          <h3 className="text-2xl font-bold mb-3">
+          <h3 className="text-lg font-bold mb-1.5">
             Prêt à vivre ça pour de vrai ?
           </h3>
 
-          <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-6">
+          <p className="text-xs text-muted-foreground max-w-md mx-auto leading-relaxed mb-3">
             Nos clients recrutent leur premier Sales en 2-3 semaines en moyenne.
             Réservez un appel de 15 min pour voir comment on peut faire pareil
             pour vous.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
             <a
               href={HUBSPOT_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35"
             >
               Parler à un expert
               <ArrowRight className="w-4 h-4" />
@@ -1923,14 +1923,14 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               onClick={onRestart}
-              className="inline-flex items-center gap-2 px-6 py-4 rounded-xl bg-muted/10 border border-border/50 text-muted-foreground font-semibold text-sm hover:text-foreground hover:border-border/80 transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-muted/10 border border-border/50 text-muted-foreground font-semibold text-sm hover:text-foreground hover:border-border/80 transition-all"
             >
               <RotateCcw className="w-4 h-4" />
               Recommencer la démo
             </motion.button>
           </div>
 
-          <p className="text-[11px] text-muted-foreground mt-4">
+          <p className="text-[11px] text-muted-foreground mt-2">
             Appel gratuit &middot; 15 min &middot; Sans engagement
           </p>
         </div>
@@ -2012,10 +2012,10 @@ export default function DemoClient() {
   }, []);
 
   return (
-    <main className="min-h-screen pt-4">
+    <main className="min-h-0 pt-2">
 
       {/* Demo starts directly — no hero */}
-        <div className="max-w-4xl mx-auto px-4 pb-10 relative">
+        <div className="max-w-4xl mx-auto px-4 pb-4 relative">
           {/* Step transition shimmer */}
           <AnimatePresence>
             {showShimmer && <StepShimmer />}

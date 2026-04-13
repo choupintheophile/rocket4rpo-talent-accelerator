@@ -417,7 +417,7 @@ function CountdownBar({ questionIndex }: { questionIndex: number }) {
         : "bg-red-500";
 
   return (
-    <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden mb-6">
+    <div className="w-full h-0.5 bg-white/5 rounded-full overflow-hidden mb-2">
       <div
         className={`h-full ${barColor} rounded-full transition-colors duration-500`}
         style={{
@@ -1355,33 +1355,33 @@ export default function AssessmentClient() {
             animate="center"
             exit="exit"
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background to-muted/20 relative"
+            className="min-h-0 flex flex-col bg-gradient-to-b from-background via-background to-muted/20 relative"
           >
             {/* Background particles */}
             <FloatingParticles />
 
-            <div className="container-wide max-w-3xl mx-auto px-4 pt-4 pb-4 md:pt-6 md:pb-6 flex-1 flex flex-col relative z-10">
+            <div className="container-wide max-w-3xl mx-auto px-4 pt-2 pb-2 md:pt-3 md:pb-3 flex-1 flex flex-col relative z-10">
               {/* Countdown timer bar */}
               <CountdownBar questionIndex={current} />
 
               {/* Progress section */}
-              <div className="mb-10">
+              <div className="mb-3">
                 {/* Step indicator dots with connecting lines */}
-                <div className="flex items-center justify-center gap-1.5 mb-8">
+                <div className="flex items-center justify-center gap-1 mb-3">
                   {questions.map((_, i) => (
-                    <div key={i} className="flex items-center gap-1.5">
+                    <div key={i} className="flex items-center gap-1">
                       <motion.div
                         className={`relative flex items-center justify-center transition-all duration-300 ${
                           i < current
-                            ? "w-7 h-7"
+                            ? "w-5 h-5"
                             : i === current
-                              ? "w-8 h-8"
-                              : "w-7 h-7"
+                              ? "w-6 h-6"
+                              : "w-5 h-5"
                         }`}
                       >
                         {i < current && (
                           <div className="w-full h-full rounded-full bg-primary flex items-center justify-center">
-                            <CheckCircle2 className="w-4 h-4 text-primary-foreground" />
+                            <CheckCircle2 className="w-3 h-3 text-primary-foreground" />
                           </div>
                         )}
                         {i === current && (
@@ -1392,7 +1392,7 @@ export default function AssessmentClient() {
                               transition={{ duration: 2, repeat: Infinity }}
                             />
                             <div className="w-full h-full rounded-full bg-primary border-2 border-primary shadow-lg shadow-primary/30 flex items-center justify-center">
-                              <span className="text-xs font-bold text-primary-foreground">
+                              <span className="text-[9px] font-bold text-primary-foreground">
                                 {i + 1}
                               </span>
                             </div>
@@ -1400,7 +1400,7 @@ export default function AssessmentClient() {
                         )}
                         {i > current && (
                           <div className="w-full h-full rounded-full bg-secondary border border-border/50 flex items-center justify-center">
-                            <span className="text-[10px] font-medium text-muted-foreground">
+                            <span className="text-[8px] font-medium text-muted-foreground">
                               {i + 1}
                             </span>
                           </div>
@@ -1408,7 +1408,7 @@ export default function AssessmentClient() {
                       </motion.div>
                       {i < questions.length - 1 && (
                         <div
-                          className={`w-4 md:w-8 h-0.5 rounded-full transition-colors duration-500 ${
+                          className={`w-3 md:w-5 h-0.5 rounded-full transition-colors duration-500 ${
                             i < current ? "bg-primary" : "bg-secondary"
                           }`}
                         />
@@ -1418,7 +1418,7 @@ export default function AssessmentClient() {
                 </div>
 
                 {/* Category badge + progress bar */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-primary/10 border border-primary/15 text-xs font-semibold text-primary">
                       {(() => {
@@ -1435,7 +1435,7 @@ export default function AssessmentClient() {
                     {Math.round(((current + 1) / questions.length) * 100)}%
                   </span>
                 </div>
-                <div className="h-2 rounded-full bg-secondary overflow-hidden">
+                <div className="h-1.5 rounded-full bg-secondary overflow-hidden">
                   <motion.div
                     className="h-full rounded-full bg-gradient-to-r from-primary to-rocket-teal-glow"
                     initial={{ width: `${(current / questions.length) * 100}%` }}
@@ -1454,7 +1454,7 @@ export default function AssessmentClient() {
                   <CardGlowPulse score={cardGlow} />
 
                   {/* Question header */}
-                  <div className="text-center mb-10">
+                  <div className="text-center mb-4">
                     {(() => {
                       const Icon = questions[current].icon;
                       return (
@@ -1462,9 +1462,9 @@ export default function AssessmentClient() {
                           initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
                           animate={{ scale: 1, opacity: 1, rotate: 0 }}
                           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                          className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 mb-6 shadow-lg shadow-primary/5"
+                          className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-primary/10 border border-primary/20 mb-2 shadow-lg shadow-primary/5"
                         >
-                          <Icon className="w-8 h-8 text-primary" />
+                          <Icon className="w-4 h-4 text-primary" />
                         </motion.div>
                       );
                     })()}
@@ -1472,14 +1472,14 @@ export default function AssessmentClient() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 }}
-                      className="text-xl md:text-2xl lg:text-3xl font-bold leading-snug"
+                      className="text-lg md:text-xl font-bold leading-snug"
                     >
                       {questions[current].question}
                     </motion.h2>
                   </div>
 
                   {/* Options as interactive cards */}
-                  <div className="grid gap-3">
+                  <div className="grid gap-2">
                     {questions[current].options.map((opt, i) => {
                       const isSelected = selectedOption === i;
                       return (
@@ -1538,14 +1538,14 @@ export default function AssessmentClient() {
                             />
                           )}
 
-                          <div className="flex items-start gap-4 px-5 py-4 md:px-6 md:py-5">
-                            <span className="flex-shrink-0 text-xl md:text-2xl mt-0.5 select-none">
+                          <div className="flex items-start gap-3 px-4 py-2.5 md:px-5 md:py-3">
+                            <span className="flex-shrink-0 text-base md:text-lg mt-0.5 select-none">
                               {questions[current].optionEmojis[i]}
                             </span>
 
                             <span
                               className={`
-                                flex-shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-xl text-sm font-bold transition-all duration-250
+                                flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-bold transition-all duration-250
                                 ${
                                   isSelected
                                     ? "bg-primary text-primary-foreground scale-110 shadow-md shadow-primary/20"
@@ -1556,12 +1556,12 @@ export default function AssessmentClient() {
                               {letterBadges[i]}
                             </span>
 
-                            <div className="flex-1 min-w-0 pt-0.5">
-                              <span className="font-semibold text-sm md:text-base block">
+                            <div className="flex-1 min-w-0">
+                              <span className="font-semibold text-xs md:text-sm block">
                                 {opt}
                               </span>
                               <span
-                                className={`text-xs md:text-sm mt-1 block transition-colors duration-200 ${
+                                className={`text-[11px] md:text-xs mt-0.5 block transition-colors duration-200 ${
                                   isSelected
                                     ? "text-primary/70"
                                     : "text-muted-foreground/70 group-hover:text-muted-foreground"
@@ -1582,8 +1582,8 @@ export default function AssessmentClient() {
                                 }}
                                 className="flex-shrink-0 mt-0.5"
                               >
-                                <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-md shadow-primary/20">
-                                  <CheckCircle2 className="w-5 h-5 text-primary-foreground" />
+                                <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-md shadow-primary/20">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-primary-foreground" />
                                 </div>
                               </motion.div>
                             )}
