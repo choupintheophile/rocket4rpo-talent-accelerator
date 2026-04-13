@@ -85,19 +85,19 @@ function generateSpecialites(jobTitle: string): string[] {
   if (lower.includes("sdr") || lower.includes("bdr")) {
     base.push("Prospection outbound", "Cold calling", "Lead generation", "Social selling", "Pipeline building", "Account mapping", "Qualification BANT");
   } else if (lower.includes("account executive") || lower.includes("ae")) {
-    base.push("Full-cycle SaaS", "Closing Mid-Market", "Demo & POC", "Negociation enterprise", "Upsell & cross-sell", "Gestion pipe complexe", "Vente consultative");
+    base.push("Full-cycle SaaS", "Closing Mid-Market", "Demo & POC", "Négociation enterprise", "Upsell & cross-sell", "Gestion pipe complexe", "Vente consultative");
   } else if (lower.includes("csm") || lower.includes("customer success")) {
     base.push("Onboarding client", "Retention & churn", "Upsell account", "QBR management", "Health scoring", "Adoption produit", "Renouvellement contrat");
   } else if (lower.includes("sales manager") || lower.includes("head of sales") || lower.includes("vp sales")) {
-    base.push("Management equipe", "Forecasting", "Coaching sales", "Strategy Go-to-Market", "Recrutement equipe", "KPI & reporting", "Sales enablement");
+    base.push("Management équipe", "Forecasting", "Coaching sales", "Strategy Go-to-Market", "Recrutement équipe", "KPI & reporting", "Sales enablement");
   } else if (lower.includes("marketing") || lower.includes("growth")) {
     base.push("Growth hacking", "Acquisition paid", "Content strategy", "Marketing automation", "Lead nurturing", "SEO/SEA", "Analytics & attribution");
   } else if (lower.includes("developpeur") || lower.includes("dev") || lower.includes("engineer")) {
-    base.push("Architecture logicielle", "CI/CD pipelines", "Code review", "Performance & scalabilite", "API design", "Testing avance", "DevOps culture");
+    base.push("Architecture logicielle", "CI/CD pipelines", "Code review", "Performance & scalabilité", "API design", "Testing avancé", "DevOps culture");
   } else if (lower.includes("product") || lower.includes("pm")) {
     base.push("Product discovery", "Roadmap strategy", "User research", "A/B testing", "Priorisation impact", "Stakeholder management", "Data-driven decisions");
   } else {
-    base.push("Expertise metier", "Leadership", "Gestion de projet", "Communication", "Analyse strategique", "Collaboration transverse", "Resolution problemes");
+    base.push("Expertise métier", "Leadership", "Gestion de projet", "Communication", "Analyse stratégique", "Collaboration transverse", "Résolution problèmes");
   }
 
   return base;
@@ -159,7 +159,7 @@ const steps = [
 const HUBSPOT_LINK = "/rdv";
 
 /* ------------------------------------------------------------------ */
-/*  Confetti CSS animation component                                   */
+/*  Confetti CSS animation component (40 particles)                    */
 /* ------------------------------------------------------------------ */
 
 function Confetti() {
@@ -169,7 +169,7 @@ function Confetti() {
     "#c084fc", "#ec4899", "#f472b6", "#06b6d4", "#22d3ee",
   ];
 
-  const pieces = Array.from({ length: 30 }, (_, i) => ({
+  const pieces = Array.from({ length: 40 }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
     delay: Math.random() * 2,
@@ -221,6 +221,53 @@ function Confetti() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Particle burst (small dots expanding outward around an avatar)     */
+/* ------------------------------------------------------------------ */
+
+function ParticleBurst() {
+  const particles = Array.from({ length: 4 }, (_, i) => {
+    const angle = (i / 4) * Math.PI * 2;
+    return {
+      id: i,
+      x: Math.cos(angle) * 28,
+      y: Math.sin(angle) * 28,
+    };
+  });
+
+  return (
+    <>
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute w-2 h-2 rounded-full bg-primary"
+          style={{ top: "50%", left: "50%", marginTop: -4, marginLeft: -4 }}
+          initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+          animate={{ x: p.x, y: p.y, opacity: 0, scale: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        />
+      ))}
+    </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Step transition shimmer overlay                                    */
+/* ------------------------------------------------------------------ */
+
+function StepShimmer() {
+  return (
+    <motion.div
+      className="absolute inset-0 z-20 pointer-events-none"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0, 0.6, 0] }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      <div className="w-full h-full bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
+    </motion.div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Animated counter                                                   */
 /* ------------------------------------------------------------------ */
 
@@ -257,6 +304,44 @@ function AnimatedCounter({
       {suffix}
     </span>
   );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Large savings counter (counts up with locale formatting)           */
+/* ------------------------------------------------------------------ */
+
+function SavingsCounter({
+  target,
+  duration = 2000,
+}: {
+  target: number;
+  duration?: number;
+}) {
+  const [count, setCount] = useState(0);
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let frame: number;
+    const start = performance.now();
+
+    function tick(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      } else {
+        setDone(true);
+      }
+    }
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [target, duration]);
+
+  return { count, done };
 }
 
 /* ------------------------------------------------------------------ */
@@ -337,10 +422,10 @@ function RadarPulse() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Mini SVG Radar Chart (4 axes)                                      */
+/*  Mini SVG Radar Chart (4 axes) — with draw animation                */
 /* ------------------------------------------------------------------ */
 
-function MiniRadarChart({ scores, size = 100 }: { scores: [number, number, number, number]; size?: number }) {
+function MiniRadarChart({ scores, size = 100, animate: shouldAnimate = false }: { scores: [number, number, number, number]; size?: number; animate?: boolean }) {
   const labels = ["Sourcing", "Qualif.", "Autonomie", "Closing"];
   const cx = size / 2;
   const cy = size / 2;
@@ -360,6 +445,15 @@ function MiniRadarChart({ scores, size = 100 }: { scores: [number, number, numbe
   // Data polygon points
   const dataPoints = scores.map((s, i) => getPoint(angles[i], s));
   const dataPath = dataPoints.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ") + " Z";
+
+  // Calculate approximate path length for draw animation
+  let pathLen = 0;
+  for (let i = 0; i < dataPoints.length; i++) {
+    const next = dataPoints[(i + 1) % dataPoints.length];
+    const dx = next.x - dataPoints[i].x;
+    const dy = next.y - dataPoints[i].y;
+    pathLen += Math.sqrt(dx * dx + dy * dy);
+  }
 
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="flex-shrink-0">
@@ -397,16 +491,16 @@ function MiniRadarChart({ scores, size = 100 }: { scores: [number, number, numbe
         );
       })}
 
-      {/* Data polygon */}
+      {/* Data polygon with draw animation */}
       <motion.path
         d={dataPath}
         fill="rgba(99, 102, 241, 0.15)"
         stroke="rgba(99, 102, 241, 0.7)"
         strokeWidth="1.5"
-        initial={{ opacity: 0, scale: 0.3 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        style={{ transformOrigin: `${cx}px ${cy}px` }}
+        initial={shouldAnimate ? { pathLength: 0, opacity: 0 } : { opacity: 0, scale: 0.3 }}
+        animate={shouldAnimate ? { pathLength: 1, opacity: 1 } : { opacity: 1, scale: 1 }}
+        transition={shouldAnimate ? { duration: 0.8, ease: "easeOut" } : { duration: 0.6, ease: "easeOut" }}
+        style={shouldAnimate ? { pathLength: 0 } : { transformOrigin: `${cx}px ${cy}px` }}
       />
 
       {/* Data points */}
@@ -421,7 +515,7 @@ function MiniRadarChart({ scores, size = 100 }: { scores: [number, number, numbe
           strokeWidth="1"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          transition={{ delay: 0.3 + i * 0.1 }}
+          transition={{ delay: shouldAnimate ? 0.6 + i * 0.1 : 0.3 + i * 0.1 }}
         />
       ))}
 
@@ -488,7 +582,7 @@ function TypingText({ text, delay = 0 }: { text: string; delay?: number }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Timeline comparison bar                                            */
+/*  Timeline comparison bar (with bounce animation)                    */
 /* ------------------------------------------------------------------ */
 
 function TimelineBar({
@@ -497,18 +591,27 @@ function TimelineBar({
   maxDays,
   color,
   delay = 0,
+  sourceNote,
 }: {
   label: string;
   days: number;
   maxDays: number;
   color: string;
   delay?: number;
+  sourceNote?: string;
 }) {
   const pct = (days / maxDays) * 100;
   return (
     <div className="space-y-1.5">
       <div className="flex justify-between text-xs">
-        <span className="font-semibold">{label}</span>
+        <span className="font-semibold">
+          {label}
+          {sourceNote && (
+            <span className="text-[9px] text-muted-foreground/60 ml-1.5 font-normal">
+              {sourceNote}
+            </span>
+          )}
+        </span>
         <span className="font-bold tabular-nums">{days} jours</span>
       </div>
       <div className="h-3 rounded-full bg-muted/20 overflow-hidden">
@@ -516,10 +619,45 @@ function TimelineBar({
           className={`h-full rounded-full ${color}`}
           initial={{ width: 0 }}
           animate={{ width: `${pct}%` }}
-          transition={{ duration: 1, delay, ease: "easeOut" }}
+          transition={{
+            duration: 1.5,
+            delay,
+            ease: [0.34, 1.56, 0.64, 1], // slight bounce at end
+          }}
         />
       </div>
     </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Tooltip component for footnotes                                    */
+/* ------------------------------------------------------------------ */
+
+function Tooltip({ text, children }: { text: string; children: React.ReactNode }) {
+  const [show, setShow] = useState(false);
+
+  return (
+    <span
+      className="relative inline-block cursor-help"
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
+      {children}
+      <AnimatePresence>
+        {show && (
+          <motion.span
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.15 }}
+            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 rounded-lg bg-rocket-dark border border-border/50 text-[10px] text-muted-foreground whitespace-nowrap z-50 shadow-xl pointer-events-none"
+          >
+            {text}
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </span>
   );
 }
 
@@ -538,6 +676,13 @@ function StepTimeline({
     <>
       {/* Desktop: horizontal timeline */}
       <div className="hidden md:block relative mb-12 px-4">
+        {/* Step progress indicator */}
+        <div className="text-center mb-4">
+          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
+            Étape {currentStep + 1}/{steps.length}
+          </span>
+        </div>
+
         <div className="relative flex items-center justify-between max-w-2xl mx-auto">
           {/* Connecting line behind steps */}
           <div className="absolute top-6 left-[10%] right-[10%] h-0.5 bg-border/30 z-0" />
@@ -604,6 +749,13 @@ function StepTimeline({
 
       {/* Mobile: vertical timeline */}
       <div className="md:hidden mb-10 px-4">
+        {/* Step progress indicator mobile */}
+        <div className="text-center mb-4">
+          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
+            Étape {currentStep + 1}/{steps.length}
+          </span>
+        </div>
+
         <div className="relative flex flex-col gap-1 max-w-xs mx-auto">
           {steps.map((step, i) => {
             const isCompleted = i < currentStep;
@@ -911,6 +1063,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
   const [showCandidates, setShowCandidates] = useState(false);
   const [visibleCount, setVisibleCount] = useState(0);
   const [allLoaded, setAllLoaded] = useState(false);
+  const [showFlash, setShowFlash] = useState(false);
 
   // Progress bar animation
   useEffect(() => {
@@ -925,6 +1078,13 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
     }, 50);
     return () => clearInterval(interval);
   }, []);
+
+  // Flash effect when progress hits 100%
+  useEffect(() => {
+    if (Math.round(progress) >= 100 && !showFlash) {
+      setShowFlash(true);
+    }
+  }, [progress, showFlash]);
 
   // Channel scanning — one by one with 600ms delay
   useEffect(() => {
@@ -970,7 +1130,20 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
       className="max-w-2xl mx-auto space-y-6"
     >
       {/* Scanning panel */}
-      <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl shadow-black/5">
+      <div className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-xl shadow-black/5 relative">
+        {/* Flash effect overlay */}
+        <AnimatePresence>
+          {showFlash && (
+            <motion.div
+              className="absolute inset-0 bg-white/30 z-30 pointer-events-none rounded-2xl"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onAnimationComplete={() => setShowFlash(false)}
+            />
+          )}
+        </AnimatePresence>
+
         <div className="p-6 flex flex-col sm:flex-row items-center gap-6">
           <RadarPulse />
           <div className="flex-1 text-center sm:text-left w-full">
@@ -994,7 +1167,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
             <p className="text-3xl font-bold text-primary tabular-nums mb-1">
               <FastCounter target={3247} duration={4000} />
               <span className="text-sm font-normal text-muted-foreground ml-2">
-                profils analyses
+                profils analysés
               </span>
             </p>
 
@@ -1026,7 +1199,7 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
         {/* Channel scanning */}
         <div className="px-6 pb-5 space-y-2">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-            Sources scannees
+            Sources scannées
           </p>
           <div className="flex flex-wrap gap-2">
             {CHANNELS.slice(0, visibleChannels).map((ch, i) => (
@@ -1114,20 +1287,20 @@ function StepSourcing({ onNext, candidates }: { onNext: () => void; candidates: 
         </AnimatePresence>
       </div>
 
-      {/* Candidate cards */}
+      {/* Candidate cards — dramatic entrance from right with scale */}
       {showCandidates && (
         <div className="space-y-3">
           <AnimatePresence>
-            {candidates.slice(0, visibleCount).map((c) => (
+            {candidates.slice(0, visibleCount).map((c, idx) => (
               <motion.div
                 key={c.name}
-                initial={{ opacity: 0, x: 80, scale: 0.9 }}
+                initial={{ opacity: 0, x: 120, scale: 0.8 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{
-                  duration: 0.5,
+                  duration: 0.6,
                   type: "spring",
-                  stiffness: 100,
-                  damping: 15,
+                  stiffness: 90,
+                  damping: 14,
                 }}
                 whileHover={{ scale: 1.015, borderColor: "rgba(99,102,241,0.3)" }}
                 className="rounded-2xl bg-background/80 backdrop-blur-xl border border-border/50 overflow-hidden shadow-lg shadow-black/5 transition-all cursor-default"
@@ -1208,6 +1381,7 @@ function StepShortlist({
   criteria: Record<string, boolean>;
 }) {
   const [selected, setSelected] = useState<Set<number>>(new Set([0, 1, 2]));
+  const [justSelected, setJustSelected] = useState<number | null>(null);
   const maxSelection = 3;
 
   const activeCriteriaCount = Object.values(criteria).filter(Boolean).length;
@@ -1217,11 +1391,15 @@ function StepShortlist({
       const next = new Set(prev);
       if (next.has(idx)) {
         next.delete(idx);
+        return next;
       } else {
         if (next.size >= maxSelection) return prev;
         next.add(idx);
+        setJustSelected(idx);
+        // Clear justSelected after particle animation
+        setTimeout(() => setJustSelected(null), 700);
+        return next;
       }
-      return next;
     });
   };
 
@@ -1233,13 +1411,13 @@ function StepShortlist({
   };
 
   const notesPool = [
-    "Excellent track record, +140% quota atteint 2 ans de suite. Tres bon relationnel.",
-    "Forte expertise sectorielle, reference par son VP Sales. Approche structuree.",
-    "Profil hunter confirme, experience prospection outbound B2B solide.",
-    "Parcours impressionnant en scale-up, capacite a monter en competence rapidement.",
-    "Tres bonne maitrise des cycles de vente complexes, orientee resultats.",
-    "Profil polyvalent, excellente communication et esprit d'equipe.",
-    "Forte capacite d'adaptation, experience multi-secteurs valorisante.",
+    "Excellent track record, +140% quota atteint 2 ans de suite. Très bon relationnel.",
+    "Forte expertise sectorielle, référencé par son VP Sales. Approche structurée.",
+    "Profil hunter confirmé, expérience prospection outbound B2B solide.",
+    "Parcours impressionnant en scale-up, capacité à monter en compétence rapidement.",
+    "Très bonne maîtrise des cycles de vente complexes, orientée résultats.",
+    "Profil polyvalent, excellente communication et esprit d'équipe.",
+    "Forte capacité d'adaptation, expérience multi-secteurs valorisante.",
   ];
 
   return (
@@ -1278,11 +1456,11 @@ function StepShortlist({
                 transition={{ duration: 1.5, repeat: Infinity }}
                 className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/30"
               >
-                LIVREE
+                LIVRÉE
               </motion.span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Selectionnez vos <span className="font-bold text-foreground">3 meilleurs candidats</span> pour passer aux entretiens.
+              Sélectionnez vos <span className="font-bold text-foreground">3 meilleurs candidats</span> pour passer aux entretiens.
             </p>
           </div>
         </div>
@@ -1327,21 +1505,25 @@ function StepShortlist({
               <div className="p-5 sm:p-6 space-y-4">
                 {/* Header row */}
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    animate={isSelected ? { scale: [1, 1.15, 1] } : {}}
-                    transition={{ duration: 0.3 }}
-                    className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 border transition-all duration-300 ${
-                      isSelected
-                        ? "bg-primary/15 border-primary/40 text-primary"
-                        : "bg-muted/10 border-border/30 text-muted-foreground"
-                    }`}
-                  >
-                    {isSelected ? (
-                      <CheckCircle2 className="w-5 h-5" />
-                    ) : (
-                      <span className="text-sm font-bold">{c.name.charAt(0)}</span>
-                    )}
-                  </motion.div>
+                  <div className="relative">
+                    <motion.div
+                      animate={isSelected ? { scale: [1, 1.15, 1] } : {}}
+                      transition={{ duration: 0.3 }}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 border transition-all duration-300 ${
+                        isSelected
+                          ? "bg-primary/15 border-primary/40 text-primary"
+                          : "bg-muted/10 border-border/30 text-muted-foreground"
+                      }`}
+                    >
+                      {isSelected ? (
+                        <CheckCircle2 className="w-5 h-5" />
+                      ) : (
+                        <span className="text-sm font-bold">{c.name.charAt(0)}</span>
+                      )}
+                    </motion.div>
+                    {/* Particle burst on selection */}
+                    {justSelected === i && <ParticleBurst />}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <p className="text-sm font-bold truncate">{c.name}</p>
@@ -1375,9 +1557,9 @@ function StepShortlist({
                       className="overflow-hidden"
                     >
                       <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                        {/* Radar chart */}
+                        {/* Radar chart with draw animation */}
                         <div className="flex justify-center sm:justify-start">
-                          <MiniRadarChart scores={c.radarScores} size={110} />
+                          <MiniRadarChart scores={c.radarScores} size={110} animate={true} />
                         </div>
 
                         {/* TA note with typing animation */}
@@ -1418,7 +1600,7 @@ function StepShortlist({
             onClick={onNext}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm transition-all shadow-lg shadow-primary/20"
           >
-            Voir les resultats ({selected.size} sélectionnés)
+            Voir les résultats ({selected.size} sélectionnés)
             <ArrowRight className="w-4 h-4" />
           </motion.button>
         )}
@@ -1432,12 +1614,25 @@ function StepShortlist({
 /* ------------------------------------------------------------------ */
 
 function StepResults({ onRestart }: { onRestart: () => void }) {
-  const [showConfetti, setShowConfetti] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showSavingsConfetti, setShowSavingsConfetti] = useState(false);
+  const savingsResult = SavingsCounter({ target: 31, duration: 2000 });
 
+  // Trigger confetti on mount
   useEffect(() => {
+    setShowConfetti(true);
     const timer = setTimeout(() => setShowConfetti(false), 5000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Trigger savings confetti when counter finishes
+  useEffect(() => {
+    if (savingsResult.done && !showSavingsConfetti) {
+      setShowSavingsConfetti(true);
+      const timer = setTimeout(() => setShowSavingsConfetti(false), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [savingsResult.done, showSavingsConfetti]);
 
   const kpis = [
     {
@@ -1445,39 +1640,40 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       value: 21,
       suffix: " jours",
       icon: Clock,
-      desc: "Du brief au contrat signe",
+      desc: "Du brief au contrat signé",
     },
     {
-      label: "Candidats presentes",
+      label: "Candidats présentés",
       value: 12,
       suffix: "",
       icon: Users,
-      desc: "Profils qualifies envoyes",
+      desc: "Profils qualifiés envoyés",
     },
     {
       label: "Entretiens finaux",
       value: 4,
       suffix: "",
       icon: Target,
-      desc: "Candidats shortlistes",
+      desc: "Candidats shortlistés",
     },
     {
-      label: "Offre acceptee",
+      label: "Offre acceptée",
       value: 1,
       suffix: "",
       icon: TrendingUp,
-      desc: "Recrutement confirme",
+      desc: "Recrutement confirmé",
     },
   ];
 
   const extraKpis = [
     {
-      label: "Cout estime",
+      label: "Coût estimé",
       value: "3 000",
       unit: "EUR / recrutement",
       icon: DollarSign,
       color: "text-emerald-400",
       bgColor: "bg-emerald-500/10",
+      tooltip: null,
     },
     {
       label: "Économie vs cabinet",
@@ -1486,6 +1682,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       icon: TrendingUp,
       color: "text-primary",
       bgColor: "bg-primary/10",
+      tooltip: null,
     },
     {
       label: "Satisfaction client",
@@ -1494,6 +1691,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
       icon: ThumbsUp,
       color: "text-amber-400",
       bgColor: "bg-amber-500/10",
+      tooltip: "(basé sur nos clients 2025-2026)",
     },
   ];
 
@@ -1549,7 +1747,15 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             </div>
             <p className={`text-lg font-bold ${kpi.color} tabular-nums`}>{kpi.value}</p>
             <p className="text-[10px] text-muted-foreground font-medium">{kpi.label}</p>
-            <p className="text-[9px] text-muted-foreground/60 mt-0.5">{kpi.unit}</p>
+            {kpi.tooltip ? (
+              <Tooltip text={kpi.tooltip}>
+                <p className="text-[9px] text-muted-foreground/60 mt-0.5 border-b border-dashed border-muted-foreground/30 inline-block cursor-help">
+                  {kpi.unit}
+                </p>
+              </Tooltip>
+            ) : (
+              <p className="text-[9px] text-muted-foreground/60 mt-0.5">{kpi.unit}</p>
+            )}
           </motion.div>
         ))}
       </div>
@@ -1564,7 +1770,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
         <div className="px-6 py-5 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent border-b border-border/30">
           <h4 className="text-lg font-bold flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-primary" />
-            Rocket4RPO vs Marche
+            Rocket4RPO vs Marché
           </h4>
           <p className="text-xs text-muted-foreground mt-1">
             Comparez nos performances avec la moyenne du secteur
@@ -1572,7 +1778,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
         </div>
 
         <div className="p-6 space-y-5">
-          {/* Timeline bars */}
+          {/* Timeline bars with bounce */}
           <TimelineBar
             label="Rocket4RPO"
             days={21}
@@ -1581,17 +1787,30 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             delay={0.3}
           />
           <TimelineBar
-            label="Marche"
+            label="Marché"
             days={52}
             maxDays={52}
             color="bg-gradient-to-r from-muted/50 to-muted/30"
             delay={0.6}
+            sourceNote="(source: LinkedIn Talent Solutions 2025)"
           />
 
           {/* Two-column comparison */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4">
-            {/* Rocket4RPO column */}
+            {/* Rocket4RPO column with glow pulse */}
             <div className="rounded-xl bg-primary/5 border-2 border-primary/30 p-5 text-center relative overflow-hidden">
+              {/* Glow pulse behind Rocket4RPO column */}
+              <motion.div
+                className="absolute inset-0 rounded-xl"
+                animate={{
+                  boxShadow: [
+                    "inset 0 0 20px 0 rgba(99, 102, 241, 0.05)",
+                    "inset 0 0 40px 5px rgba(99, 102, 241, 0.12)",
+                    "inset 0 0 20px 0 rgba(99, 102, 241, 0.05)",
+                  ],
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              />
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-primary/8 to-transparent"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -1620,10 +1839,10 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
               </div>
             </div>
 
-            {/* Marche column */}
+            {/* Marché column */}
             <div className="rounded-xl bg-muted/10 border border-border/30 p-5 text-center">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/20 text-muted-foreground text-xs font-bold mb-3 border border-border/30">
-                Marche
+                Marché
               </div>
               <p className="text-4xl md:text-5xl font-bold text-muted-foreground tabular-nums leading-none">
                 <AnimatedCounter target={52} duration={1200} />
@@ -1637,18 +1856,27 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
             </div>
           </div>
 
-          {/* Savings highlight */}
+          {/* Savings highlight with animated counter and confetti */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="mt-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-center"
+            className="mt-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 text-center relative overflow-hidden"
           >
+            {showSavingsConfetti && <Confetti />}
             <p className="text-sm font-semibold text-emerald-400">
-              Économisez <span className="text-lg font-bold">31 jours</span> sur votre recrutement
+              Économisez{" "}
+              <motion.span
+                className="text-2xl font-bold inline-block"
+                animate={savingsResult.done ? { scale: [1, 1.15, 1] } : {}}
+                transition={{ duration: 0.3 }}
+              >
+                {savingsResult.count} jours
+              </motion.span>{" "}
+              sur votre recrutement
             </p>
             <p className="text-xs text-muted-foreground mt-1">
-              Soit plus d&apos;un <span className="font-semibold text-foreground/80">mois</span> de productivite gagnee pour votre equipe
+              Soit plus d&apos;un <span className="font-semibold text-foreground/80">mois</span> de productivité gagnée pour votre équipe
             </p>
           </motion.div>
         </div>
@@ -1670,12 +1898,12 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
           </div>
 
           <h3 className="text-2xl font-bold mb-3">
-            Pret a vivre ca pour de vrai ?
+            Prêt à vivre ça pour de vrai ?
           </h3>
 
           <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-6">
             Nos clients recrutent leur premier Sales en 2-3 semaines en moyenne.
-            Reservez un appel de 15 min pour voir comment on peut faire pareil
+            Réservez un appel de 15 min pour voir comment on peut faire pareil
             pour vous.
           </p>
 
@@ -1686,7 +1914,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35"
             >
-              Parler a un expert
+              Parler à un expert
               <ArrowRight className="w-4 h-4" />
             </a>
 
@@ -1717,6 +1945,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
 export default function DemoClient() {
   const [currentStep, setCurrentStep] = useState(0);
   const [started, setStarted] = useState(false);
+  const [showShimmer, setShowShimmer] = useState(false);
   const [jobTitle, setJobTitle] = useState("Account Executive SaaS");
   const [criteria, setCriteria] = useState<Record<string, boolean>>({
     saas: true,
@@ -1734,24 +1963,36 @@ export default function DemoClient() {
 
   const goToStep = useCallback(
     (step: number) => {
-      setCurrentStep(step);
-      scrollToTop();
+      setShowShimmer(true);
+      setTimeout(() => {
+        setCurrentStep(step);
+        setShowShimmer(false);
+        scrollToTop();
+      }, 250);
     },
     [scrollToTop]
   );
 
   const next = () => {
-    setCurrentStep((s) => {
-      const nextStep = Math.min(s + 1, 3);
-      return nextStep;
-    });
-    scrollToTop();
+    setShowShimmer(true);
+    setTimeout(() => {
+      setCurrentStep((s) => {
+        const nextStep = Math.min(s + 1, 3);
+        return nextStep;
+      });
+      setShowShimmer(false);
+      scrollToTop();
+    }, 250);
   };
 
   const restart = () => {
-    setCurrentStep(0);
-    setStarted(false);
-    scrollToTop();
+    setShowShimmer(true);
+    setTimeout(() => {
+      setCurrentStep(0);
+      setStarted(false);
+      setShowShimmer(false);
+      scrollToTop();
+    }, 250);
   };
 
   const handleStart = () => {
@@ -1789,7 +2030,7 @@ export default function DemoClient() {
               className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-bold rounded-full bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm"
             >
               <Sparkles className="w-3 h-3" />
-              Demo interactive
+              Démo interactive
             </motion.span>
 
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 leading-tight">
@@ -1853,7 +2094,12 @@ export default function DemoClient() {
 
       {/* Content area — only show after started */}
       {started && (
-        <div className="max-w-4xl mx-auto px-4 -mt-6 pb-20">
+        <div className="max-w-4xl mx-auto px-4 -mt-6 pb-20 relative">
+          {/* Step transition shimmer */}
+          <AnimatePresence>
+            {showShimmer && <StepShimmer />}
+          </AnimatePresence>
+
           {/* Step timeline navigation */}
           <StepTimeline currentStep={currentStep} onStepClick={goToStep} />
 
