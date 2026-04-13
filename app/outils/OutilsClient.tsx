@@ -335,49 +335,34 @@ export default function OutilsClient() {
           }}
         />
 
+        <FloatingParticles />
+
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
-            {/* Text side */}
-            <motion.div
-              ref={heroRef}
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="lg:w-[55%]"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
-                <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
-                100% gratuit &middot; Sans inscription &middot; Résultats instantanés
-              </div>
-
-              <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
-                Prenez les bonnes{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                  décisions
-                </span>{" "}
-                en 2 minutes
-              </h1>
-
-              <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
-                3 simulateurs conçus pour les décideurs. Calculez, diagnostiquez, visualisez — puis
-                décidez en connaissance de cause.
-              </p>
-            </motion.div>
-
-            {/* Photo side */}
-            <div className="hidden lg:block lg:w-[45%]">
-              <div className="relative">
-                <Image
-                  src="/photos/bureau-smile.jpg"
-                  alt="Équipe souriante au bureau"
-                  width={600}
-                  height={420}
-                  className="rounded-2xl shadow-2xl object-cover w-full"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-rocket-dark/30 to-transparent" />
-              </div>
+          <motion.div
+            ref={heroRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
+              <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
+              100% gratuit · Sans inscription · Résultats instantanés
             </div>
-          </div>
+
+            <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
+              Prenez les bonnes{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                décisions
+              </span>{" "}
+              en 2 minutes
+            </h1>
+
+            <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl mx-auto">
+              3 simulateurs conçus pour les décideurs. Calculez, diagnostiquez, visualisez — puis
+              décidez en connaissance de cause.
+            </p>
+          </motion.div>
         </div>
       </section>
 
