@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { CRITERIA, NB_CRIT, FORCE_PRESETS, RISK_PRESETS, SCORE_COLORS, calcScore, getVerdict } from "@/lib/r4rpo-constants";
+import { CRITERIA, NB_CRIT, FORCE_PRESETS, RISK_PRESETS, SCORE_COLORS, calcScore, getVerdict, autoScore } from "@/lib/r4rpo-constants";
 import { createCandidate, updateCandidate, deleteCandidate } from "@/lib/candidates";
 import type { Candidate } from "@prisma/client";
 
@@ -190,7 +190,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         )}
       </section>
 
-      {/* Resume */}
+      {/* Resume + Auto-scoring */}
       <section>
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
           Résumé d&apos;entretien
@@ -198,9 +198,49 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         <textarea
           value={resumeText}
           onChange={(e) => setResumeText(e.target.value)}
-          placeholder="Collez ici le compte-rendu d'entretien, les notes, ou tout contexte sur le candidat..."
-          className={`${inputCls} min-h-[120px] resize-y`}
+          placeholder={"Collez ici le compte-rendu d'entretien, vos notes ou tout contexte sur le candidat...\n\nExemple : \"Profil senior avec 8 ans d'expérience en sourcing SaaS. Maîtrise Sales Navigator et boolean search. Autonome, a géré des missions RPO chez 3 clients. TTF moyen de 25 jours. Closing efficace, a géré plusieurs contre-offres.\""}
+          className={`${inputCls} min-h-[140px] resize-y`}
         />
+        {resumeText.trim().length > 30 && (
+          <button
+            type="button"
+            onClick={() => {
+              const result = autoScore(resumeText);
+              // Merge scores (don't override manually set ones)
+              setScores((prev) => {
+                const merged = { ...prev };
+                for (const [key, val] of Object.entries(result.scores)) {
+                  if (!merged[key] || merged[key] === 0) {
+                    merged[key] = val;
+                  }
+                }
+                return merged;
+              });
+              // Merge forces
+              if (result.forces.length > 0) {
+                setForces((prev) => {
+                  const next = new Set(prev);
+                  result.forces.forEach((f) => next.add(f));
+                  return next;
+                });
+              }
+              // Merge risks
+              if (result.risks.length > 0) {
+                setRisks((prev) => {
+                  const next = new Set(prev);
+                  result.risks.forEach((r) => next.add(r));
+                  return next;
+                });
+              }
+            }}
+            className="mt-2 inline-flex items-center gap-2 px-4 py-2 text-[12px] font-semibold rounded-lg bg-rocket-teal text-white hover:bg-rocket-teal/90 transition-colors"
+          >
+            ⚡ Analyser et pré-remplir le scoring
+          </button>
+        )}
+        {resumeText.trim().length > 0 && resumeText.trim().length <= 30 && (
+          <p className="mt-1.5 text-[10px] text-gray-400">Ajoutez au moins 30 caractères pour activer l&apos;analyse automatique</p>
+        )}
       </section>
 
       {/* Identity */}

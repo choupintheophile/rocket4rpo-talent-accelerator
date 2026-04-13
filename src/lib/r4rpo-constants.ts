@@ -258,3 +258,163 @@ export function calcScore(scores: Record<string, number> | null): { total: numbe
 export function initials(prenom: string, nom: string): string {
   return ((prenom?.[0] || "").toUpperCase() + (nom?.[0] || "").toUpperCase()) || "?";
 }
+
+/* ── Auto-scoring engine (keyword-based) ── */
+
+const SCORING_KEYWORDS: { keywords: string[]; weight: number }[][] = [
+  // c0: Sourcing & identification
+  [
+    { keywords: ["sourcing", "approche directe", "chasse", "booléen", "boolean", "linkedin recruiter", "multicanal", "vivier", "inmail", "approche proactive"], weight: 1 },
+    { keywords: ["volume", "taux de retour", "messages par semaine", "pipe", "pipeline sourcing"], weight: 1 },
+    { keywords: ["github", "stackoverflow", "meetup", "cooptation", "réseau"], weight: 1 },
+  ],
+  // c1: Qualification candidat
+  [
+    { keywords: ["qualification", "grille", "scorecard", "évaluer", "calibr", "entretien structuré", "fit culturel", "soft skills"], weight: 1 },
+    { keywords: ["technique", "test technique", "case study", "mise en situation"], weight: 1 },
+    { keywords: ["hiring manager", "brief", "calibration", "profil idéal"], weight: 1 },
+  ],
+  // c2: Spécialisation sectorielle
+  [
+    { keywords: ["saas", "esn", "fintech", "healthtech", "hr tech", "biotech", "edtech", "cybersécurité"], weight: 1 },
+    { keywords: ["secteur", "industrie", "vertical", "marché", "spécialisé", "expertise sectorielle"], weight: 1 },
+    { keywords: ["startup", "scale-up", "grand compte", "pme", "licorne"], weight: 1 },
+  ],
+  // c3: International
+  [
+    { keywords: ["international", "anglais", "bilingue", "multilingue", "cross-border", "europe", "us", "uk", "remote international"], weight: 1 },
+    { keywords: ["langue", "espagnol", "allemand", "marché étranger", "recrutement international"], weight: 1 },
+  ],
+  // c4: Structure de chasse
+  [
+    { keywords: ["process", "méthodologie", "structuré", "étapes", "workflow", "process de chasse", "plan de chasse"], weight: 1 },
+    { keywords: ["réplicable", "scalable", "template", "playbook", "système"], weight: 1 },
+    { keywords: ["autonome", "organisé", "rigueur", "planification", "priorisation"], weight: 1 },
+  ],
+  // c5: Outils & stack
+  [
+    { keywords: ["ats", "crm", "sales navigator", "linkedin recruiter", "salesforce", "hubspot", "lever", "greenhouse", "workable"], weight: 1 },
+    { keywords: ["automatisation", "zapier", "make", "lemlist", "la growth machine", "phantom", "waalaxy"], weight: 1 },
+    { keywords: ["configuré", "paramétré", "maîtrise", "stack", "outil"], weight: 1 },
+  ],
+  // c6: Connaissance marché
+  [
+    { keywords: ["marché", "benchmark", "salaire", "rémunération", "fourchette", "grille salariale"], weight: 1 },
+    { keywords: ["leader", "top boîte", "concurrence", "tendance", "veille"], weight: 1 },
+    { keywords: ["crédible", "connaissance", "réseau sectoriel", "écosystème"], weight: 1 },
+  ],
+  // c7: Autonomie & ownership
+  [
+    { keywords: ["autonome", "décision", "initiative", "ownership", "proactif", "sans supervision"], weight: 1 },
+    { keywords: ["pushback", "challenger", "refusé", "assumé", "conviction"], weight: 1 },
+    { keywords: ["responsable", "prise de décision", "seul", "indépendant"], weight: 1 },
+  ],
+  // c8: Pilotage & KPIs
+  [
+    { keywords: ["kpi", "reporting", "ttf", "time to fill", "time to hire", "taux de conversion", "pipe", "dashboard"], weight: 1 },
+    { keywords: ["chiffre", "métrique", "data", "suivi", "sla", "objectif"], weight: 1 },
+    { keywords: ["postes closés", "recrutements réalisés", "ratio", "taux d'acceptation", "volume"], weight: 1 },
+  ],
+  // c9: Closing & négo
+  [
+    { keywords: ["closing", "négociation", "offre", "contre-offre", "package", "rémunération"], weight: 1 },
+    { keywords: ["convaincre", "pitch", "vendre", "closer", "signer", "acceptation"], weight: 1 },
+    { keywords: ["conseil", "accompagn", "hiring manager", "aide à la décision"], weight: 1 },
+  ],
+  // c10: Expérience RPO/embedded
+  [
+    { keywords: ["rpo", "embedded", "intégré", "chez le client", "mission", "externalisé"], weight: 1 },
+    { keywords: ["cabinet", "freelance", "différence", "modèle rpo", "plug and play", "plug & play"], weight: 1 },
+    { keywords: ["jour 1", "j1", "démarrage", "onboarding client", "immersion"], weight: 1 },
+  ],
+  // c11: Storytelling & exemples
+  [
+    { keywords: ["exemple", "raconte", "histoire", "anecdote", "cas concret", "meilleur recrutement"], weight: 1 },
+    { keywords: ["étape par étape", "step by step", "du brief au closing", "succès"], weight: 1 },
+    { keywords: ["échec", "appris", "leçon", "erreur", "expérience marquante"], weight: 1 },
+  ],
+  // c12: Disponibilité & flexibilité
+  [
+    { keywords: ["disponible", "immédiat", "dès maintenant", "libre", "dispo"], weight: 1 },
+    { keywords: ["jours par semaine", "temps partiel", "temps plein", "flexible", "adaptable"], weight: 1 },
+    { keywords: ["démarrage rapide", "préavis", "1 semaine", "sous 15 jours"], weight: 1 },
+  ],
+  // c13: Type de profils recrutés
+  [
+    { keywords: ["sales", "tech", "dev", "product", "marketing", "ops", "sdr", "account executive", "csm"], weight: 1 },
+    { keywords: ["cycle de vente", "panier moyen", "b2b", "b2c", "enterprise", "mid-market", "smb"], weight: 1 },
+    { keywords: ["profil senior", "management", "c-level", "head of", "vp", "directeur"], weight: 1 },
+  ],
+  // c14: Fit culturel R4RPO
+  [
+    { keywords: ["motivé", "énergie", "passionné", "engagé", "drive", "ambition"], weight: 1 },
+    { keywords: ["premium", "exigent", "qualité", "excellence", "top", "haut niveau"], weight: 1 },
+    { keywords: ["structuré", "organisé", "professionnel", "fiable", "transparent"], weight: 1 },
+  ],
+];
+
+/**
+ * Analyse un résumé d'entretien et retourne un scoring automatique
+ * pour les 15 critères (1-5 chacun).
+ */
+export function autoScore(text: string): { scores: Record<string, number>; forces: string[]; risks: string[] } {
+  const lower = text.toLowerCase();
+  const scores: Record<string, number> = {};
+  const detectedForces: string[] = [];
+  const detectedRisks: string[] = [];
+
+  // Score each criterion based on keyword matches
+  for (let i = 0; i < SCORING_KEYWORDS.length; i++) {
+    const groups = SCORING_KEYWORDS[i];
+    let matchCount = 0;
+    let totalGroups = groups.length;
+
+    for (const group of groups) {
+      const hasMatch = group.keywords.some((kw) => lower.includes(kw.toLowerCase()));
+      if (hasMatch) matchCount++;
+    }
+
+    // Convert match ratio to 1-5 score
+    const ratio = matchCount / totalGroups;
+    let score = 0;
+    if (ratio >= 0.9) score = 5;
+    else if (ratio >= 0.66) score = 4;
+    else if (ratio >= 0.33) score = 3;
+    else if (ratio > 0) score = 2;
+    // 0 = no match, leave unscored
+
+    if (score > 0) {
+      scores[`c${i}`] = score;
+    }
+  }
+
+  // Auto-detect forces
+  const forceKeywords: [string, string][] = [
+    ["sourcing proactif", "Sourcing proactif fort"],
+    ["chiffres précis", "Chiffres précis spontanés"],
+    ["autonome", "Autonomie démontrée"],
+    ["closing", "Closing efficace"],
+    ["rpo", "Fit RPO évident"],
+  ];
+  for (const [kw, tag] of forceKeywords) {
+    if (lower.includes(kw) && detectedForces.length < 5) {
+      detectedForces.push(tag);
+    }
+  }
+
+  // Auto-detect risks (negative signals)
+  const riskKeywords: [string, string][] = [
+    ["pas de chiffre", "Manque de chiffres"],
+    ["vague", "Communication floue"],
+    ["peu autonome", "Peu autonome"],
+    ["ne connaît pas", "Pas de fit RPO"],
+    ["mal maîtrisé", "Outils mal maîtrisés"],
+  ];
+  for (const [kw, tag] of riskKeywords) {
+    if (lower.includes(kw) && detectedRisks.length < 5) {
+      detectedRisks.push(tag);
+    }
+  }
+
+  return { scores, forces: detectedForces, risks: detectedRisks };
+}
