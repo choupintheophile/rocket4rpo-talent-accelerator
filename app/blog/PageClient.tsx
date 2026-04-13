@@ -8,8 +8,12 @@ import {
   ArrowRight,
   BookOpen,
   Calendar,
+  CheckCircle2,
   Clock,
+  FileText,
+  Lightbulb,
   Search,
+  TrendingUp,
   X,
 } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
@@ -71,15 +75,45 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
             {/* Text side */}
             <div className="lg:w-[55%]">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold tracking-wider uppercase rounded-full bg-primary/15 text-primary border border-primary/20">
-                <BookOpen className="w-3.5 h-3.5" /> Blog & conseils
-              </span>
+              <div className="flex flex-wrap gap-3 mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
+                  <BookOpen className="w-3.5 h-3.5" /> Articles
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/20 text-sm text-amber-300 font-medium">
+                  <Lightbulb className="w-3.5 h-3.5" /> Conseils
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/15 border border-rose-400/20 text-sm text-rose-300 font-medium">
+                  <TrendingUp className="w-3.5 h-3.5" /> Tendances
+                </span>
+              </div>
+
               <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
-                Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">conseils</span>
+                Conseils recrutement par des{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                  experts terrain
+                </span>
+                .
               </h1>
+
               <p className="mt-4 text-base md:text-lg text-white/65 max-w-xl leading-relaxed">
-                {posts.length} articles pour recruter mieux, plus vite et moins cher. Par des experts avec 200+ recrutements.
+                {posts.length} articles écrits par des professionnels qui recrutent vraiment. Sourcing, qualification, outils, tendances marché — tout ce qu{"'"}il faut pour recruter mieux, plus vite et moins cher.
               </p>
+
+              {/* Stats inline */}
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <FileText className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">{posts.length}</strong> articles publiés</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <CheckCircle2 className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">200+</strong> recrutements d{"'"}expérience</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Clock className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">Nouveau</strong> contenu chaque semaine</span>
+                </div>
+              </div>
             </div>
             {/* Photo side */}
             <div className="hidden lg:block lg:w-[45%]">

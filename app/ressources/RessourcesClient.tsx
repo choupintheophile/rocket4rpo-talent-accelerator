@@ -11,7 +11,6 @@ import {
   CheckSquare,
   ArrowRight,
   Download,
-  Sparkles,
   BookOpen,
   Award,
   Users,
@@ -37,6 +36,7 @@ import {
   Lightbulb,
   GraduationCap,
   Search,
+  CheckCircle2,
 } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
@@ -530,8 +530,6 @@ function FeaturedCard({ resource }: { resource: (typeof resources)[number] }) {
 /* ── Main ── */
 
 export default function RessourcesClient() {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true });
   const [filter, setFilter] = useState<Category>("all");
 
   const featured = resources.filter((r) => r.featured);
@@ -553,54 +551,67 @@ export default function RessourcesClient() {
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
             {/* Text side */}
-            <motion.div
-              ref={heroRef}
-            initial={{ opacity: 1, y: 0 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="lg:w-[55%]"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
-                <Sparkles className="w-4 h-4 text-rocket-teal-glow" />
-                100% gratuit · Sans inscription · Téléchargement immédiat
+            <div className="lg:w-[55%]">
+              <div className="flex flex-wrap gap-3 mb-4">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/20 text-sm text-emerald-300 font-medium">
+                  <BookOpen className="w-3.5 h-3.5" /> Guides
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/15 border border-blue-400/20 text-sm text-blue-300 font-medium">
+                  <FileText className="w-3.5 h-3.5" /> Templates
+                </span>
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/20 text-sm text-amber-300 font-medium">
+                  <BarChart3 className="w-3.5 h-3.5" /> Études
+                </span>
               </div>
 
               <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
-                Les outils des{" "}
+                Les ressources que nos{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                  meilleurs recruteurs
-                </span>
-                {" "}sont maintenant les vôtres
+                  experts utilisent
+                </span>{" "}
+                au quotidien.
               </h1>
 
               <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
-                Guides, templates et études conçus par des experts avec 200+ recrutements à leur actif. Les mêmes outils que nos TA Specialists utilisent au quotidien.
+                Guides pratiques, templates de scorecards, études de marché — les mêmes outils qui nous ont permis de réaliser 200+ recrutements. Téléchargement immédiat, 100% gratuit.
               </p>
 
-              {/* Trust stats */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-6 flex flex-wrap gap-8"
-              >
-                {[
-                  { icon: BookOpen, value: "6", label: "ressources disponibles" },
-                  { icon: Award, value: "200+", label: "recrutements d'expérience" },
-                  { icon: Download, value: "Gratuit", label: "sans inscription" },
-                ].map((stat) => (
-                  <div key={stat.label} className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                      <stat.icon className="w-5 h-5 text-rocket-teal-glow" />
-                    </div>
-                    <div>
-                      <div className="text-white font-semibold text-sm">{stat.value}</div>
-                      <div className="text-white/40 text-xs">{stat.label}</div>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </motion.div>
+              {/* Stats inline */}
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <FileText className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">20+</strong> ressources disponibles</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <CheckCircle2 className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">200+</strong> recrutements d{"'"}expérience</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Zap className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">Téléchargement</strong> immédiat</span>
+                </div>
+              </div>
+
+              {/* CTAs */}
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="#ressources"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("ressources")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 transition-all shadow-lg"
+                >
+                  Parcourir les ressources <ArrowRight className="w-4 h-4" />
+                </a>
+                <Link
+                  href="/simulateurs"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl border border-white/10 text-white hover:bg-white/5 transition-all"
+                >
+                  Voir les simulateurs
+                </Link>
+              </div>
+            </div>
 
             {/* Photo side */}
             <div className="hidden lg:block lg:w-[45%]">
@@ -620,7 +631,7 @@ export default function RessourcesClient() {
       </section>
 
       {/* ── FEATURED RESOURCES ── */}
-      <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+      <section id="ressources" className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-wide">
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/5 border border-primary/10 mb-4">

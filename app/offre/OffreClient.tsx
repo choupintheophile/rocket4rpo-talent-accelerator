@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
@@ -28,6 +27,7 @@ import {
   UserCheck,
   Building2,
   Sparkles,
+  TrendingDown,
 } from "lucide-react";
 
 const HUBSPOT = "/rdv";
@@ -76,9 +76,6 @@ const faqs = [
 ];
 
 export default function OffreClient() {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true });
-
   return (
     <>
       <Breadcrumbs items={[{ label: "Notre offre" }]} />
@@ -102,15 +99,9 @@ export default function OffreClient() {
         <div className="relative container-wide py-12 md:py-16 lg:py-20">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
             {/* Text side */}
-            <motion.div
-              ref={heroRef}
-            initial={{ opacity: 1, y: 0 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7 }}
-              className="lg:w-[55%]"
-            >
+            <div className="lg:w-[55%]">
               {/* Badges */}
-              <div className="flex flex-wrap gap-3 mb-6">
+              <div className="flex flex-wrap gap-3 mb-4">
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium">
                   <Zap className="w-3.5 h-3.5" /> RPO
                 </span>
@@ -118,24 +109,36 @@ export default function OffreClient() {
                   <Briefcase className="w-3.5 h-3.5" /> CDD / CDI
                 </span>
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/20 text-sm text-amber-300 font-medium">
-                  <Crown className="w-3.5 h-3.5" /> Top 1% des TA
+                  <Crown className="w-3.5 h-3.5" /> Top 1%
                 </span>
               </div>
 
-              <h1 className="mt-4 text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] text-white">
-                Arrêtez de perdre vos meilleurs candidats.{" "}
+              <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
+                Recrutez avec le{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                  Recrutez avec le top 1% des TA de France.
-                </span>
+                  top 1% des Talent Acquisition
+                </span>{" "}
+                de France.
               </h1>
 
               <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
-                Chaque jour sans recruteur performant, vous perdez des candidats,
-                du temps et de l{"'"}argent. Nous mobilisons en 1 semaine un Talent
-                Acquisition Specialist du top 1% français — sélectionné parmi
-                300+ experts évalués sur 15 critères — pour recruter à votre place.
-                RPO, CDD ou CDI : un seul partenaire, zéro risque.
+                300+ experts évalués sur 15 critères. Seuls les profils à 90%+ intègrent notre vivier. Votre TA Specialist est opérationnel en 1 semaine — pas 3 mois. Dès 500€/jour.
               </p>
+
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <CheckCircle2 className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">200+</strong> recrutements réalisés</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Clock className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">2-3 sem.</strong> time-to-hire moyen</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <TrendingDown className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">5x</strong> moins cher qu{"'"}un cabinet</span>
+                </div>
+              </div>
 
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <a
@@ -144,17 +147,16 @@ export default function OffreClient() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
-                  Réserver un diagnostic gratuit{" "}
-                  <ArrowRight className="w-4 h-4" />
+                  Réserver un diagnostic gratuit →
                 </a>
                 <a
-                  href="/calculateur"
+                  href="#tarifs"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/15 transition-all"
                 >
-                  Calculer mes économies
+                  Voir nos tarifs
                 </a>
               </div>
-            </motion.div>
+            </div>
 
             {/* Photo side */}
             <div className="hidden lg:block lg:w-[45%]">

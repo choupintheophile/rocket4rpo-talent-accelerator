@@ -304,10 +304,6 @@ const testimonials = [
 /*  Main component                                                     */
 /* ------------------------------------------------------------------ */
 export default function OutilsClient() {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true });
-  const sectionRef = useRef(null);
-  const sectionInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const benefitsRef = useRef(null);
   const benefitsInView = useInView(benefitsRef, { once: true, margin: "-80px" });
   const proofRef = useRef(null);
@@ -352,23 +348,38 @@ export default function OutilsClient() {
               </div>
 
               <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white">
-                Prenez les bonnes{" "}
+                3 outils gratuits pour{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
-                  décisions
-                </span>{" "}
-                en 2 minutes
+                  décider en 2 minutes
+                </span>
+                .
               </h1>
 
               <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
-                3 simulateurs conçus pour les décideurs RH. Calculez votre ROI, évaluez votre maturité recrutement, ou visualisez un process RPO en temps réel. 100% gratuit, sans inscription.
+                Calculez combien vous économiseriez avec le RPO, évaluez la maturité de votre recrutement, ou vivez un process RPO comme si vous y étiez. Sans inscription, résultats immédiats.
               </p>
+
+              <div className="mt-5 flex flex-wrap gap-6 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <Shield className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">100%</strong> gratuit</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Clock className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">30 sec à 2 min</strong> par simulateur</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Users className="w-4 h-4 text-rocket-teal-glow" />
+                  <span><strong className="text-white">50+</strong> entreprises l{"'"}utilisent</span>
+                </div>
+              </div>
 
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/calculateur"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl bg-white text-rocket-dark hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
                 >
-                  Calculer mon ROI <ArrowRight className="w-4 h-4" />
+                  Calculer mon ROI →
                 </Link>
                 <Link
                   href="/assessment"
