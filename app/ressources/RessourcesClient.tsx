@@ -550,7 +550,7 @@ export default function RessourcesClient() {
         </div>
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
 
-        <div className="relative container-wide py-8 md:py-12 lg:py-14">
+        <div className="relative container-wide py-12 md:py-16 lg:py-20">
           <motion.div
             ref={heroRef}
             initial={{ opacity: 0, y: 20 }}

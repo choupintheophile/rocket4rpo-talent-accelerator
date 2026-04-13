@@ -208,7 +208,7 @@ export default function RpoVsInterimPage() {
           }}
         />
 
-        <div className="relative container-wide py-8 md:py-12 lg:py-14">
+        <div className="relative container-wide py-12 md:py-16 lg:py-20">
           <motion.div
             ref={heroRef}
             initial={{ opacity: 0, y: 25 }}

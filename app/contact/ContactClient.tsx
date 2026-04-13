@@ -173,7 +173,7 @@ export default function ContactClient() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[hsl(var(--rocket-teal)/0.06)] blur-[120px]" />
         </div>
 
-        <div className="relative container-tight py-8 md:py-12 lg:py-14 text-center">
+        <div className="relative container-tight py-12 md:py-16 lg:py-20 text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}

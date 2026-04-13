@@ -222,7 +222,7 @@ export default function RecrutementPageClient() {
         {/* Decorative glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[hsl(var(--rocket-teal))] opacity-[0.04] blur-[120px]" />
 
-        <div className="relative container-wide py-8 md:py-12 lg:py-14">
+        <div className="relative container-wide py-12 md:py-16 lg:py-20">
           <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-center">
           <div className="max-w-4xl">
             {/* Badge */}
