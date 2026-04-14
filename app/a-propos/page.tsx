@@ -53,6 +53,13 @@ export default function Page() {
       url: "https://rocket4rpo.com/a-propos",
       description:
         "Rocket4RPO est un cabinet spécialisé en Recruitment Process Outsourcing, fondé en 2020 à Paris. 200+ recrutements, 50+ clients.",
+      image: {
+        "@type": "ImageObject",
+        url: "https://rocket4rpo.com/opengraph-image",
+        width: 1200,
+        height: 630,
+      },
+      inLanguage: "fr-FR",
       mainEntity: organizationSchema,
     },
     {

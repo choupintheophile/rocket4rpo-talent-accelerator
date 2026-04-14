@@ -74,6 +74,13 @@ export default function Page() {
       headline: "Qu'est-ce que le RPO ? Définition, coût et fonctionnement (2026)",
       description:
         "Guide complet sur le RPO (Recruitment Process Outsourcing) : définition, fonctionnement en 4 étapes, coût, comparaison avec les autres modèles et cas d'usage.",
+      image: {
+        "@type": "ImageObject",
+        url: "https://rocket4rpo.com/opengraph-image",
+        width: 1200,
+        height: 630,
+      },
+      inLanguage: "fr-FR",
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": "https://rocket4rpo.com/qu-est-ce-que-le-rpo",
@@ -90,6 +97,8 @@ export default function Page() {
         logo: {
           "@type": "ImageObject",
           url: "https://rocket4rpo.com/logo-rocket4rpo.webp",
+          width: 600,
+          height: 60,
         },
       },
       datePublished: "2026-04-14",

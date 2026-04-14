@@ -33,6 +33,13 @@ export default function Page() {
       headline: "Glossaire RPO & Recrutement — 15 termes essentiels",
       description:
         "Glossaire RPO : définitions de RPO, Talent Acquisition, Time-to-hire, Sourcing, ATS, Scorecard, Cooptation et 8 autres termes clés du recrutement.",
+      image: {
+        "@type": "ImageObject",
+        url: "https://rocket4rpo.com/opengraph-image",
+        width: 1200,
+        height: 630,
+      },
+      inLanguage: "fr-FR",
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": "https://rocket4rpo.com/glossaire-rpo",
@@ -49,6 +56,8 @@ export default function Page() {
         logo: {
           "@type": "ImageObject",
           url: "https://rocket4rpo.com/logo-rocket4rpo.webp",
+          width: 600,
+          height: 60,
         },
       },
       datePublished: "2026-04-14",

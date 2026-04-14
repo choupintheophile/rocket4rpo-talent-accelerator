@@ -50,6 +50,13 @@ export default function Page() {
       headline: "Combien coûte un RPO en France ? Prix, modèles et exemples (2026)",
       description:
         "Guide des prix RPO en France : modèles de facturation, fourchettes par taille d'entreprise, scénario 10 recrutements vs cabinet et interne.",
+      image: {
+        "@type": "ImageObject",
+        url: "https://rocket4rpo.com/opengraph-image",
+        width: 1200,
+        height: 630,
+      },
+      inLanguage: "fr-FR",
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": "https://rocket4rpo.com/combien-coute-un-rpo",
@@ -66,6 +73,8 @@ export default function Page() {
         logo: {
           "@type": "ImageObject",
           url: "https://rocket4rpo.com/logo-rocket4rpo.webp",
+          width: 600,
+          height: 60,
         },
       },
       datePublished: "2026-04-14",
