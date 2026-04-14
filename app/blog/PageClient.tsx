@@ -176,7 +176,15 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
                       <div className="grid lg:grid-cols-2 gap-0 rounded-2xl overflow-hidden border border-border/40 hover:shadow-xl transition-shadow duration-500">
                         <div className="relative h-[260px] lg:h-[380px] overflow-hidden bg-gray-100">
                           {featured.imageUrl ? (
-                            <img src={featured.imageUrl} alt={featured.title} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700" />
+                            <Image
+                              src={featured.imageUrl}
+                              alt={featured.title}
+                              width={1200}
+                              height={630}
+                              priority
+                              sizes="(max-width: 1024px) 100vw, 50vw"
+                              className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                            />
                           ) : (
                             <div className="w-full h-full bg-gradient-to-br from-primary/10 to-emerald-500/10 flex items-center justify-center">
                               <BookOpen className="w-16 h-16 text-primary/20" />
@@ -207,7 +215,15 @@ export default function BlogPageClient({ posts }: { posts: BlogPost[]; categorie
                       <Link href={`/blog/${post.slug}`} className="group flex flex-col h-full rounded-xl overflow-hidden border border-border/40 bg-white hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                         {post.imageUrl && (
                           <div className="h-[170px] overflow-hidden bg-gray-100">
-                            <img src={post.imageUrl} alt="" className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500" loading="lazy" />
+                            <Image
+                              src={post.imageUrl}
+                              alt={post.title}
+                              width={600}
+                              height={340}
+                              loading="lazy"
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                              className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                            />
                           </div>
                         )}
                         <div className="flex flex-col flex-1 p-5">

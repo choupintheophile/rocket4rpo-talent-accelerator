@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import RecrutementPageClient from "./PageClient";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Missions RPO Freelance TA — Rejoignez le réseau",
@@ -38,11 +39,16 @@ export default function Page() {
     },
   };
 
+  const breadcrumb = breadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Rejoindre Rocket4RPO", url: "/recrutement" },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([schema, breadcrumb]) }}
       />
       <RecrutementPageClient />
     </>

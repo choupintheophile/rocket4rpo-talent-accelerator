@@ -4,7 +4,6 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ClipboardCheck,
-  Users,
   Clock,
   Search,
   Heart,
@@ -24,8 +23,6 @@ import {
   AlertTriangle,
   Copy,
   Check,
-  Trophy,
-  Mail,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -799,200 +796,6 @@ function SemiCircularGauge({ score, max = 21 }: { score: number; max?: number })
 }
 
 /* ------------------------------------------------------------------ */
-/*  Radar / Spider Chart (pure SVG) — with pathLength draw animation   */
-/* ------------------------------------------------------------------ */
-
-function RadarChart({ answers }: { answers: number[] }) {
-  const cx = 150;
-  const cy = 150;
-  const maxR = 110;
-  const levels = 3;
-  const n = questions.length;
-
-  function polarToXY(angle: number, radius: number) {
-    const a = angle - Math.PI / 2;
-    return {
-      x: cx + radius * Math.cos(a),
-      y: cy + radius * Math.sin(a),
-    };
-  }
-
-  const angleStep = (2 * Math.PI) / n;
-
-  // Max polygon (outline)
-  const maxPoints = Array.from({ length: n }, (_, i) => {
-    const p = polarToXY(i * angleStep, maxR);
-    return `${p.x},${p.y}`;
-  }).join(" ");
-
-  // User polygon — as an SVG path for pathLength animation
-  const userPathPoints = answers.map((score, i) => {
-    const r = (score / 3) * maxR;
-    const p = polarToXY(i * angleStep, Math.max(r, 8));
-    return p;
-  });
-  const userPathD = userPathPoints
-    .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
-    .join(" ") + " Z";
-
-  return (
-    <div className="w-full max-w-sm mx-auto">
-      <svg viewBox="0 0 300 300" className="w-full">
-        <defs>
-          <linearGradient id="radar-fill-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#14b8a6" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#10b981" stopOpacity="0.15" />
-          </linearGradient>
-        </defs>
-
-        {/* Grid levels */}
-        {Array.from({ length: levels }, (_, lvl) => {
-          const r = ((lvl + 1) / levels) * maxR;
-          const pts = Array.from({ length: n }, (__, i) => {
-            const p = polarToXY(i * angleStep, r);
-            return `${p.x},${p.y}`;
-          }).join(" ");
-          return (
-            <polygon
-              key={lvl}
-              points={pts}
-              fill="none"
-              stroke="rgba(255,255,255,0.08)"
-              strokeWidth="1"
-            />
-          );
-        })}
-
-        {/* Axis lines */}
-        {Array.from({ length: n }, (_, i) => {
-          const p = polarToXY(i * angleStep, maxR);
-          return (
-            <line
-              key={i}
-              x1={cx}
-              y1={cy}
-              x2={p.x}
-              y2={p.y}
-              stroke="rgba(255,255,255,0.06)"
-              strokeWidth="1"
-            />
-          );
-        })}
-
-        {/* Max outline */}
-        <polygon
-          points={maxPoints}
-          fill="none"
-          stroke="rgba(255,255,255,0.12)"
-          strokeWidth="1.5"
-          strokeDasharray="4 3"
-        />
-
-        {/* User polygon fill — fades in */}
-        <motion.path
-          d={userPathD}
-          fill="url(#radar-fill-grad)"
-          stroke="none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.5 }}
-        />
-
-        {/* User polygon stroke — draws itself with pathLength */}
-        <motion.path
-          d={userPathD}
-          fill="none"
-          stroke="#14b8a6"
-          strokeWidth="2"
-          pathLength={1}
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ pathLength: { duration: 1.5, ease: "easeInOut", delay: 0.5 }, opacity: { duration: 0.1, delay: 0.5 } }}
-        />
-
-        {/* Data points */}
-        {answers.map((score, i) => {
-          const r = (score / 3) * maxR;
-          const p = polarToXY(i * angleStep, Math.max(r, 8));
-          return (
-            <motion.circle
-              key={i}
-              cx={p.x}
-              cy={p.y}
-              r="4"
-              fill="#14b8a6"
-              stroke="white"
-              strokeWidth="1.5"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.5 + i * 0.2 }}
-            />
-          );
-        })}
-
-        {/* Labels */}
-        {questions.map((q, i) => {
-          const labelR = maxR + 22;
-          const p = polarToXY(i * angleStep, labelR);
-          return (
-            <text
-              key={q.id}
-              x={p.x}
-              y={p.y}
-              fill="rgba(255,255,255,0.5)"
-              fontSize="10"
-              fontWeight="500"
-              textAnchor="middle"
-              dominantBaseline="middle"
-            >
-              {q.label}
-            </text>
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Benchmark Bars — animate from 0% to final width over 1s easeOut   */
-/* ------------------------------------------------------------------ */
-
-function BenchmarkBars({ percentage }: { percentage: number }) {
-  const benchmarks = [
-    { label: "Votre score", value: percentage, color: "from-primary to-emerald-500" },
-    { label: "Moyenne marché", value: 55, color: "from-amber-500 to-amber-400" },
-    { label: "Top performers", value: 85, color: "from-violet-500 to-violet-400" },
-  ];
-
-  return (
-    <div className="space-y-4">
-      {benchmarks.map((b, i) => (
-        <motion.div
-          key={b.label}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.6 + i * 0.15 }}
-        >
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-xs font-medium text-white/50">{b.label}</span>
-            <span className="text-xs font-bold text-white/70">{b.value}%</span>
-          </div>
-          <div className="h-2.5 bg-white/[0.06] rounded-full overflow-hidden">
-            <motion.div
-              className={`h-full rounded-full bg-gradient-to-r ${b.color}`}
-              initial={{ width: 0 }}
-              animate={{ width: `${b.value}%` }}
-              transition={{ duration: 1, delay: 1.8 + i * 0.15, ease: "easeOut" }}
-            />
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /*  Animated preview gauge (blurred placeholder for intro)             */
 /* ------------------------------------------------------------------ */
 
@@ -1199,16 +1002,6 @@ export default function AssessmentClient() {
     .map((score, i) => ({ score, index: i }))
     .sort((a, b) => a.score - b.score)
     .slice(0, 3);
-
-  // Profile summary
-  const strongest = answers
-    .map((score, i) => ({ score, index: i }))
-    .sort((a, b) => b.score - a.score);
-  const strongestLabel = strongest.length > 0 ? questions[strongest[0].index].label : "";
-  const weakestLabel = weakest.length > 0 ? questions[weakest[0].index].label : "";
-
-  // Target score for challenge section (capped at 21)
-  const targetScore = Math.min(totalScore + 5, 21);
 
   return (
     <main className="min-h-screen bg-background">

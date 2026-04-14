@@ -6,14 +6,33 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Rocket4RPO",
+  alternateName: ["Rocket 4 RPO", "R4RPO"],
   url: "https://rocket4rpo.com",
   logo: "https://rocket4rpo.com/logo-rocket4rpo.webp",
-  description: "Talent Acquisition à temps partagé ou à temps plein pour accélérer vos recrutements",
+  description: "Talent Acquisition à temps partagé ou à temps plein pour accélérer vos recrutements. Cabinet RPO France depuis 2020, 200+ recrutements réalisés.",
+  foundingDate: "2020",
+  founder: {
+    "@type": "Person",
+    name: "Clément Martin",
+    jobTitle: "CEO & Founder",
+  },
   parentOrganization: {
     "@type": "Organization",
     name: "Rocket4GTM",
+    url: "https://rocket4rpo.com/rocket4gtm",
   },
-  sameAs: ["https://www.linkedin.com/company/rocket4rpo"],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "22 rue de l'Échiquier",
+    postalCode: "75010",
+    addressLocality: "Paris",
+    addressCountry: "FR",
+  },
+  areaServed: { "@type": "Country", name: "France" },
+  sameAs: [
+    "https://www.linkedin.com/company/rocket4rpo",
+    "https://www.rocket4sales.com",
+  ],
 };
 
 export const professionalServiceSchema = {

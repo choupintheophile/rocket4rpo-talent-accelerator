@@ -5,7 +5,7 @@ import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "RPO, CDD & CDI — Top 1% recruteurs",
   description:
-    "RPO, CDD ou CDI : le top 1% des Talent Acquisition de France intégré à vos équipes en 1 semaine. 200+ recrutements réalisés. Diagnostic gratuit →",
+    "RPO, CDD ou CDI : le top 1% des TA de France intégré à vos équipes en 1 semaine. 200+ recrutements. Diagnostic gratuit →",
   alternates: { canonical: "/offre" },
 };
 

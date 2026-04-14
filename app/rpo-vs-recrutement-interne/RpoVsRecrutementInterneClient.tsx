@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
+import { EnBref } from "@/components/shared/EnBref";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { InternalLinks } from "@/components/shared/InternalLinks";
 import {
@@ -239,6 +240,15 @@ export default function RpoVsRecrutementInternePage() {
                 Délai de démarrage (48 h vs 3 mois), flexibilité, coût fixe vs
                 variable : voici un comparatif objectif pour vous aider à trancher.
               </p>
+
+              <EnBref
+                bullets={[
+                  "RPO : démarrage en 48 h. Recruteur interne en CDI : 2-3 mois de process + préavis.",
+                  "CDI recruteur : 60-75 K€/an charges incluses (engagement permanent).",
+                  "RPO : ajustable ou arrêtable chaque mois selon le flux — plus économique si < 15 recrutements/an.",
+                  "Idéal en hybride : CDI pour le leadership TA + RPO pour absorber les pics.",
+                ]}
+              />
 
               <div className="mt-3 flex flex-col sm:flex-row gap-3">
                 <a

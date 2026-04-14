@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
+import { EnBref } from "@/components/shared/EnBref";
 import { FAQSection } from "@/components/shared/FAQSection";
 import {
   ArrowRight,
@@ -124,6 +125,15 @@ export default function OffreClient() {
               <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
                 300+ experts évalués sur 15 critères. Seuls les profils à 90%+ intègrent notre vivier. Votre TA Specialist est opérationnel en 1 semaine — pas 3 mois.
               </p>
+
+              <EnBref
+                bullets={[
+                  "Un TA Specialist senior intégré à votre équipe de 1 à 5 jours/semaine.",
+                  "Première shortlist qualifiée en 48 h, opérationnel dès la semaine 1.",
+                  "Tarification prévisible sur devis — jusqu'à 5x moins cher qu'un cabinet.",
+                  "3 modes : RPO récurrent (recommandé), CDD temporaire, recrutement CDI à l'unité.",
+                ]}
+              />
 
               <div className="mt-5 flex flex-wrap gap-6 text-sm">
                 <div className="flex items-center gap-2 text-white/60">

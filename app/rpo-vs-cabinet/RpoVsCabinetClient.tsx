@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { InternalLinks } from "@/components/shared/InternalLinks";
+import { EnBref } from "@/components/shared/EnBref";
 import {
   ArrowRight,
   Check,
@@ -240,6 +241,15 @@ export default function RpoVsCabinetPage() {
                 ce comparatif factuel vous aide à choisir le modèle le plus
                 adapté à votre contexte.
               </p>
+
+              <EnBref
+                bullets={[
+                  "Le RPO est jusqu'à 5x moins cher qu'un cabinet classique (15-25 % du salaire annuel vs tarification prévisible).",
+                  "Première shortlist en 48 h avec le RPO, contre 2-3 semaines pour un cabinet traditionnel.",
+                  "Le RPO s'intègre à vos outils et rituels ; le cabinet reste externe à votre équipe.",
+                  "Combinaison possible : RPO pour le flux récurrent, cabinet pour les profils C-level rares.",
+                ]}
+              />
 
               <div className="mt-3 flex flex-col sm:flex-row gap-3">
                 <a

@@ -10,7 +10,7 @@ export const FAQSection = ({ faqs, title = "Questions fréquentes", className }:
   <section className={`section-padding ${className ?? ""}`}>
     <div className="container-tight">
       <SectionHeading title={title} />
-      <Accordion type="single" collapsible className="max-w-2xl mx-auto">
+      <Accordion type="single" collapsible defaultValue="faq-0" className="max-w-2xl mx-auto">
         {faqs.map((faq, i) => (
           <AccordionItem key={faq.question} value={`faq-${i}`}>
             <AccordionTrigger className="text-left text-base font-medium">{faq.question}</AccordionTrigger>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ROICalculatorClient from "./ROICalculatorClient";
-import { faqSchema } from "@/lib/seo";
+import { faqSchema, breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Calculateur ROI RPO — estimez vos économies",
@@ -38,10 +38,14 @@ export default function Page() {
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
   };
 
+  const breadcrumb = breadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Calculateur ROI", url: "/calculateur" },
+  ]);
+
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(calcSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(calculatorFaqs)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([calcSchema, faqSchema(calculatorFaqs), breadcrumb]) }} />
       <ROICalculatorClient faqs={calculatorFaqs} />
     </>
   );

@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { InternalLinks } from "@/components/shared/InternalLinks";
+import { EnBref } from "@/components/shared/EnBref";
 import {
   ArrowRight,
   Check,
@@ -240,6 +241,15 @@ export default function RpoVsInterimPage() {
                 Intégration, autonomie, marque employeur, coût : ce comparatif
                 vous aide à choisir en connaissance de cause.
               </p>
+
+              <EnBref
+                bullets={[
+                  "Le RPO pilote le process en autonomie ; l'intérim exécute les tâches assignées.",
+                  "L'intérim applique un coefficient 1.8-2.2 (80-120 % de marge) ; le RPO est facturé sans marge cachée.",
+                  "Le RPO représente votre marque employeur ; l'intérim reste extérieur.",
+                  "RPO : minimum 3 mois conseillé. Intérim : adapté aux besoins très courts (< 2 mois).",
+                ]}
+              />
 
               <div className="mt-3 flex flex-col sm:flex-row gap-3">
                 <a

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { faqSchema } from "@/lib/seo";
+import { faqSchema, breadcrumbSchema } from "@/lib/seo";
 import RpoVsInterimClient from "./RpoVsInterimClient";
 
 export const metadata: Metadata = {
@@ -43,11 +43,17 @@ const faqs = [
 ];
 
 export default function RpoVsInterimPage() {
+  const breadcrumb = breadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Comparatifs", url: "/comparateur" },
+    { name: "RPO vs Intérim", url: "/rpo-vs-interim" },
+  ]);
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqs)) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([faqSchema(faqs), breadcrumb]) }}
       />
       <RpoVsInterimClient />
     </>

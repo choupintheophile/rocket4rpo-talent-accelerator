@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import RessourcesClient from "./RessourcesClient";
+import { breadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Ressources RPO gratuites — Guides & PDF",
   description:
-    "20 guides RPO gratuits : templates scorecards, grilles salariales Tech & Sales 2026, KPIs, IA recrutement. Par des experts avec 200+ recrutements.",
+    "20 guides RPO gratuits : scorecards, grilles salariales Tech & Sales 2026, KPIs, IA recrutement. 200+ recrutements d'expertise.",
   alternates: { canonical: "/ressources" },
 };
 
 export default function Page() {
+  const breadcrumb = breadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Ressources", url: "/ressources" },
+  ]);
   const ressourcesSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -42,7 +47,7 @@ export default function Page() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ressourcesSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([ressourcesSchema, breadcrumb]) }} />
       <RessourcesClient />
     </>
   );

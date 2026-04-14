@@ -4,7 +4,7 @@ import ComparateurClient from "./ComparateurClient";
 export const metadata: Metadata = {
   title: "RPO vs Cabinet vs Interne — Comparatif 2026",
   description:
-    "Comparez le coût, la flexibilité et l'efficacité du RPO Rocket4RPO face aux cabinets de recrutement et au recrutement interne. Chiffres concrets.",
+    "Comparez coût, flexibilité et efficacité du RPO vs cabinet et recrutement interne. Chiffres concrets, calculateur inclus.",
   alternates: { canonical: "/comparateur" },
 };
 

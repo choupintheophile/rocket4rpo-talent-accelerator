@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
+import { EnBref } from "@/components/shared/EnBref";
 import {
   ArrowRight,
   Check,
@@ -328,6 +329,15 @@ export default function ComparateurClient() {
                 équipe. Le cabinet intervient mission par mission. Le recruteur
                 interne pilote en CDI. Voici les chiffres pour trancher.
               </p>
+
+              <EnBref
+                bullets={[
+                  "Cabinet : 15-25 % du salaire annuel (120-200 K€ pour 10 recrutements). Le plus cher, intervention ponctuelle.",
+                  "RPO : tarification prévisible, jusqu'à 5x moins cher qu'un cabinet. Expert intégré à votre équipe.",
+                  "Recruteur interne en CDI : 60-75 K€/an charges incluses. Rentable à partir de 15+ recrutements/an.",
+                  "Meilleur rapport coût/flexibilité pour 5 à 15 recrutements/an : le RPO.",
+                ]}
+              />
 
               <div className="mt-3 flex flex-col sm:flex-row gap-3">
                 <a

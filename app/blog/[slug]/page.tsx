@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 export const revalidate = 3600;
 import { notFound } from "next/navigation";
-import { getBlogPosts, getBlogPostBySlug } from "@/lib/db";
+import { getBlogPostBySlug } from "@/lib/db";
+import { getCanonicalForSlug, isAutoGenThin } from "@/lib/blog-canonicals";
 import BlogArticleClient from "./BlogArticleClient";
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+const SITE_URL = "https://rocket4rpo.com";
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function countWords(plainText: string): number {
+  return plainText.split(/\s+/).filter(Boolean).length;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -13,24 +24,46 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getBlogPostBySlug(slug);
   if (!post) return { title: "Article non trouvé" };
 
-  const isStub = !post.content || post.content.length < 200;
+  const plainText = stripHtml(post.content || "");
+  const thin = isAutoGenThin(post.slug, plainText);
+  const canonicalOverride = getCanonicalForSlug(post.slug);
 
-  const canonicalOverrides: Record<string, string> = {
-    "rpo-vs-cabinet-recrutement-comparatif": "/rpo-vs-cabinet",
-  };
+  // Canonical: override → pillar URL (absolute), otherwise /blog/{slug}
+  const canonical = canonicalOverride ?? `/blog/${post.slug}`;
+
+  // Robots:
+  //   - Thin / auto-gen → noindex, follow (let link juice flow, don't index)
+  //   - Canonical-override → also noindex, follow (canonical alone is not
+  //     always respected by Google on thin duplicates; belt-and-suspenders)
+  const shouldNoindex = thin || !!canonicalOverride;
+
+  const ogImage = post.imageUrl
+    ? [
+        {
+          url: post.imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ]
+    : undefined;
 
   return {
     title: post.title,
     description: post.excerpt,
     alternates: {
-      canonical: canonicalOverrides[post.slug] || `/blog/${post.slug}`,
+      canonical,
     },
     openGraph: {
       type: "article",
+      title: post.title,
+      description: post.excerpt,
       publishedTime: post.date.toISOString(),
+      modifiedTime: post.updatedAt.toISOString(),
       authors: ["Clément Martin"],
+      ...(ogImage && { images: ogImage }),
     },
-    ...(isStub && { robots: { index: false } }),
+    ...(shouldNoindex && { robots: { index: false, follow: true } }),
   };
 }
 
@@ -39,6 +72,9 @@ export default async function BlogArticlePage({ params }: Props) {
   const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
+  const plainText = stripHtml(post.content || "");
+  const wordCount = countWords(plainText);
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -46,6 +82,9 @@ export default async function BlogArticlePage({ params }: Props) {
     description: post.excerpt,
     datePublished: post.date.toISOString(),
     dateModified: post.updatedAt.toISOString(),
+    inLanguage: "fr-FR",
+    wordCount,
+    ...(post.imageUrl && { image: post.imageUrl }),
     author: {
       "@type": "Person",
       name: "Clément Martin",
@@ -55,11 +94,11 @@ export default async function BlogArticlePage({ params }: Props) {
     publisher: {
       "@type": "Organization",
       name: "Rocket4RPO",
-      url: "https://rocket4rpo.com",
+      url: SITE_URL,
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://rocket4rpo.com/blog/${post.slug}`,
+      "@id": `${SITE_URL}/blog/${post.slug}`,
     },
   };
 

@@ -9,6 +9,7 @@ import { StickyCTA } from "@/components/shared/StickyCTA";
 import { ExitIntentPopup } from "@/components/shared/ExitIntentPopup";
 import { ConversationalCTA } from "@/components/shared/ConversationalCTA";
 import { CookieBanner } from "@/components/shared/CookieBanner";
+import { organizationSchema, professionalServiceSchema } from "@/lib/seo";
 
 import { Providers } from "./providers";
 
@@ -76,6 +77,13 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${spaceGrotesk.variable} ${dmSerif.variable}`}>
       <head>
+        {/* Global structured data (Organization + ProfessionalService) — crawled on every page */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationSchema, professionalServiceSchema]),
+          }}
+        />
         <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

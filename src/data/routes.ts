@@ -21,4 +21,8 @@ export const sitemapRoutes: SitemapRoute[] = [
   { path: "/contact", label: "Nous contacter", category: "Contact", priority: 0.7 },
   { path: "/recrutement", label: "Nous rejoindre", category: "Contact", priority: 0.7 },
   { path: "/rocket4gtm", label: "Rocket4GTM", category: "Ressources", priority: 0.6 },
+  { path: "/qu-est-ce-que-le-rpo", label: "Qu'est-ce que le RPO", category: "Ressources", priority: 0.9 },
+  { path: "/combien-coute-un-rpo", label: "Combien coûte un RPO", category: "Ressources", priority: 0.9 },
+  { path: "/a-propos", label: "À propos", category: "Principal", priority: 0.8 },
+  { path: "/glossaire-rpo", label: "Glossaire RPO", category: "Ressources", priority: 0.7 },
 ];

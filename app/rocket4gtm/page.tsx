@@ -3,7 +3,7 @@ import Rocket4GTMPageClient from "./PageClient";
 
 export const metadata: Metadata = {
   title: "Rocket4GTM — Groupe Rocket4RPO & Sales",
-  description: "Rocket4GTM est un groupe d'experts go-to-market qui aide les entreprises Tech à accélérer leur croissance via le recrutement, le Talent Acquisition et le consulting GTM.",
+  description: "Rocket4GTM : groupe d'experts go-to-market pour accélérer la croissance Tech. Recrutement, Talent Acquisition et consulting GTM.",
   alternates: { canonical: "/rocket4gtm" },
 };
 
