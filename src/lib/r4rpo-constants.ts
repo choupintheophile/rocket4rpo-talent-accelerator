@@ -132,6 +132,154 @@ export const INTELLIGENCE_TYPES_PRESETS = [
   "Opérationnelle",
 ] as const;
 
+/* ═══════════════════════════════════════════════════════════════════════
+   v18 — Nouveaux presets pour l'entretien live
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/** Types de motivation (multi-select) */
+export const MOTIVATION_TYPES_PRESETS = [
+  "Sharp / Brillant",
+  "Hungry / Affamé",
+  "Ambitieux",
+  "Drivé par le challenge",
+  "Drivé par l'impact",
+  "Calme et posé",
+] as const;
+
+/** Types de sympathie (multi-select) */
+export const SYMPATHY_TYPES_PRESETS = [
+  "Chaleureux",
+  "Bienveillant",
+  "Direct / cash",
+  "Enthousiaste",
+  "Humble",
+  "Charismatique",
+] as const;
+
+/** Niveaux (single-select) utilisés pour Intelligence / Motivation / Sympathie */
+export const LEVEL_PRESETS = ["Faible", "Moyen", "Fort", "Exceptionnel"] as const;
+export type Level = (typeof LEVEL_PRESETS)[number];
+
+/** Index des 8 critères visibles dans le scoring (ordre narratif du process RPO)
+ *  Mapping vers CRITERIA (c0-c14) :
+ *  c0  = Sourcing & identification  (étape 1 : trouver les profils)
+ *  c1  = Qualification candidat      (étape 2 : les évaluer)
+ *  c5  = Outils & stack              (avec quels outils)
+ *  c7  = Autonomie & ownership       (savoir bosser seul)
+ *  c8  = Pilotage & KPIs             (être data-driven)
+ *  c9  = Closing & négo              (fin de process)
+ *  c11 = Storytelling & exemples     (savoir démontrer)
+ *  c10 = Expérience RPO/embedded     (fit final) */
+export const SCORING_VISIBLE_ORDER = [0, 1, 5, 7, 8, 9, 11, 10] as const;
+
+/** Chemin de qualification — étape 1 */
+export const QUALIF_PROFILES = ["Généraliste", "Sales", "IT"] as const;
+
+/** Chemin de qualification — étape 2 : niveau d'expertise (tous profils) */
+export const QUALIF_LEVELS = ["Junior", "Mid (3-5 ans)", "Senior (6-10 ans)", "Expert (10+ ans)"] as const;
+
+/** Chemin de qualification — étape 2 : types recrutés selon profil (multi-select) */
+export const QUALIF_RECRUITED_TYPES: Record<(typeof QUALIF_PROFILES)[number], readonly string[]> = {
+  "Généraliste": [
+    "Finance / Comptabilité",
+    "RH / People",
+    "Marketing / Communication",
+    "Direction / C-level",
+    "Ops / Administratif",
+    "Legal / Juridique",
+    "Customer / CSM",
+    "Product / Design",
+    "Métiers support",
+  ],
+  "Sales": [
+    "SDR / BDR",
+    "Account Executive",
+    "Account Manager",
+    "Sales Manager",
+    "VP Sales",
+    "CRO",
+    "Sales Engineer",
+    "Pre-Sales / Solutions",
+    "Customer Success",
+    "Business Developer",
+  ],
+  "IT": [
+    "Dev front",
+    "Dev back",
+    "Fullstack",
+    "DevOps / SRE",
+    "Data Engineer",
+    "Data Scientist / ML",
+    "Engineering Manager",
+    "CTO / VP Eng",
+    "Product Manager",
+    "Product Designer",
+    "Cybersécurité",
+    "Mobile (iOS/Android)",
+  ],
+};
+
+/** Chemin de qualification — étape 3 : précisions contextuelles (multi-select) */
+export const QUALIF_CONTEXT_BY_PROFILE: Record<(typeof QUALIF_PROFILES)[number], {
+  title: string;
+  options: readonly string[];
+}[]> = {
+  "Généraliste": [
+    {
+      title: "Taille d'entreprise chassée",
+      options: ["TPE / PME", "ETI", "Grand groupe", "Startup / Scale-up"],
+    },
+    {
+      title: "Secteur dominant",
+      options: ["Industrie", "Santé", "Finance / Banque", "Retail / Luxe", "Public / ONG", "BTP", "Services", "Autre"],
+    },
+    {
+      title: "Séniorité moyenne",
+      options: ["Junior", "Middle", "Senior", "Executive / C-level"],
+    },
+    {
+      title: "International",
+      options: ["France uniquement", "Europe", "Monde entier"],
+    },
+  ],
+  "Sales": [
+    {
+      title: "Cycle de vente",
+      options: ["Transactionnel (cycle court)", "Mid-market", "Enterprise (cycle long)"],
+    },
+    {
+      title: "Taille de contrats",
+      options: ["SMB (<50K ARR)", "Mid-market (50-500K ARR)", "Enterprise (500K+ ARR)"],
+    },
+    {
+      title: "Modèle business des clients",
+      options: ["SaaS B2B", "SaaS B2C", "Marketplace", "Services / ESN", "E-commerce", "Industrie"],
+    },
+    {
+      title: "Géographie",
+      options: ["France", "Europe (DACH/UK/Nordics)", "US / Amérique", "Monde entier"],
+    },
+  ],
+  "IT": [
+    {
+      title: "Stack principale",
+      options: ["JS / TS / React", "Python / Django / FastAPI", "Java / JVM", "Go / Rust", ".NET / C#", "Mobile natif", "Polyvalent"],
+    },
+    {
+      title: "Domaine",
+      options: ["Produit / Startup", "Infrastructure / Cloud", "Data / IA", "Cybersécurité", "Embedded / IoT", "Gaming / 3D"],
+    },
+    {
+      title: "Environnement",
+      options: ["Startup early", "Scale-up", "Grand groupe", "ESN / Consulting", "RPO / Embedded"],
+    },
+    {
+      title: "International",
+      options: ["France uniquement", "Europe", "US / Monde", "Full remote distribué"],
+    },
+  ],
+};
+
 export const SCORE_COLORS = ["#EF9A9A", "#FFD54F", "#AED581", "#66BB6A", "#124944"] as const;
 
 export interface QuestionCategory {

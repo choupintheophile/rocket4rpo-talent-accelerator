@@ -57,11 +57,22 @@ export async function createCandidate(data: {
   scores?: Record<string, number>;
   forces?: string[];
   risks?: string[];
-  // v17 — taxonomies multi-select
+  // v17 — taxonomies multi-select (auto-détectées)
   profileTypes?: string[];
   companyTypes?: string[];
   profileStyle?: string[];
   intelligenceTypes?: string[];
+  // v18 — nouveaux champs entretien
+  openCddCdi?: boolean;
+  qualifProfile?: string;
+  qualifLevel?: string;
+  qualifRecruitedTypes?: string[];
+  qualifContext?: Record<string, string[]>;
+  intelligenceLevel?: string;
+  motivationTypes?: string[];
+  motivationLevel?: string;
+  sympathyTypes?: string[];
+  sympathyLevel?: string;
   hasCv?: boolean;
   cvPath?: string;
 }): Promise<Candidate> {
@@ -87,6 +98,16 @@ export async function createCandidate(data: {
       companyTypes: data.companyTypes || [],
       profileStyle: data.profileStyle || [],
       intelligenceTypes: data.intelligenceTypes || [],
+      openCddCdi: data.openCddCdi ?? null,
+      qualifProfile: data.qualifProfile || null,
+      qualifLevel: data.qualifLevel || null,
+      qualifRecruitedTypes: data.qualifRecruitedTypes || [],
+      qualifContext: data.qualifContext || {},
+      intelligenceLevel: data.intelligenceLevel || null,
+      motivationTypes: data.motivationTypes || [],
+      motivationLevel: data.motivationLevel || null,
+      sympathyTypes: data.sympathyTypes || [],
+      sympathyLevel: data.sympathyLevel || null,
       score: sc.total,
       maxScore: sc.max,
       pct: sc.pct,
@@ -119,6 +140,17 @@ export async function updateCandidate(
     companyTypes?: string[];
     profileStyle?: string[];
     intelligenceTypes?: string[];
+    // v18 — nouveaux champs entretien
+    openCddCdi?: boolean;
+    qualifProfile?: string;
+    qualifLevel?: string;
+    qualifRecruitedTypes?: string[];
+    qualifContext?: Record<string, string[]>;
+    intelligenceLevel?: string;
+    motivationTypes?: string[];
+    motivationLevel?: string;
+    sympathyTypes?: string[];
+    sympathyLevel?: string;
     hasCv?: boolean;
     cvPath?: string | null;
   }
@@ -145,6 +177,17 @@ export async function updateCandidate(
   if (data.companyTypes !== undefined) updateData.companyTypes = data.companyTypes;
   if (data.profileStyle !== undefined) updateData.profileStyle = data.profileStyle;
   if (data.intelligenceTypes !== undefined) updateData.intelligenceTypes = data.intelligenceTypes;
+  // v18
+  if (data.openCddCdi !== undefined) updateData.openCddCdi = data.openCddCdi;
+  if (data.qualifProfile !== undefined) updateData.qualifProfile = data.qualifProfile || null;
+  if (data.qualifLevel !== undefined) updateData.qualifLevel = data.qualifLevel || null;
+  if (data.qualifRecruitedTypes !== undefined) updateData.qualifRecruitedTypes = data.qualifRecruitedTypes;
+  if (data.qualifContext !== undefined) updateData.qualifContext = data.qualifContext;
+  if (data.intelligenceLevel !== undefined) updateData.intelligenceLevel = data.intelligenceLevel || null;
+  if (data.motivationTypes !== undefined) updateData.motivationTypes = data.motivationTypes;
+  if (data.motivationLevel !== undefined) updateData.motivationLevel = data.motivationLevel || null;
+  if (data.sympathyTypes !== undefined) updateData.sympathyTypes = data.sympathyTypes;
+  if (data.sympathyLevel !== undefined) updateData.sympathyLevel = data.sympathyLevel || null;
   if (data.hasCv !== undefined) updateData.hasCv = data.hasCv;
   if (data.cvPath !== undefined) updateData.cvPath = data.cvPath;
 

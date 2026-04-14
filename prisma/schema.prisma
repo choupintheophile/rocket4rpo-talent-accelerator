@@ -101,6 +101,17 @@ model Candidate {
   companyTypes      Json?    // types de boîtes pour lesquelles il a travaillé (Startup seed/SaaS B2B/...)
   profileStyle      Json?    // style de personnalité (Sharp / Hunter / Architecte / ...)
   intelligenceTypes Json?    // types d'intelligence (analytique / émotionnelle / stratégique / ...)
+  // v18 — nouvelle structure entretien
+  openCddCdi        Boolean? // candidat ouvert à un CDD ou CDI ?
+  qualifProfile     String?  // Généraliste / Sales / IT (étape 1 du chemin)
+  qualifLevel       String?  // Junior / Mid / Senior / Expert (étape 2)
+  qualifRecruitedTypes Json? // types de profils recrutés selon branche (étape 2)
+  qualifContext     Json?    // précisions contextuelles (étape 3)
+  intelligenceLevel String?  // Faible / Moyen / Fort / Exceptionnel
+  motivationTypes   Json?    // Sharp / Hungry / Ambitieux / Calme posé / ...
+  motivationLevel   String?  // Faible / Moyen / Fort / Exceptionnel
+  sympathyTypes     Json?    // Chaleureux / Bienveillant / Direct cash / ...
+  sympathyLevel     String?  // Faible / Moyen / Fort / Exceptionnel
   score             Int      @default(0)
   maxScore          Int      @default(0)
   pct               Int      @default(0)

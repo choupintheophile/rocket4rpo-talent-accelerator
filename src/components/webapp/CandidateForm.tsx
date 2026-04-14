@@ -5,13 +5,16 @@ import { useRouter } from "next/navigation";
 import {
   CRITERIA,
   NB_CRIT,
-  FORCE_PRESETS,
-  RISK_PRESETS,
   SCORE_COLORS,
-  PROFILE_TYPES_PRESETS,
-  COMPANY_TYPES_PRESETS,
-  PROFILE_STYLE_PRESETS,
   INTELLIGENCE_TYPES_PRESETS,
+  MOTIVATION_TYPES_PRESETS,
+  SYMPATHY_TYPES_PRESETS,
+  LEVEL_PRESETS,
+  SCORING_VISIBLE_ORDER,
+  QUALIF_PROFILES,
+  QUALIF_LEVELS,
+  QUALIF_RECRUITED_TYPES,
+  QUALIF_CONTEXT_BY_PROFILE,
   calcScore,
   getVerdict,
   autoScore,
@@ -41,10 +44,52 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
   const [linkedin, setLinkedin] = useState(candidate?.linkedin || "");
   const [date, setDate] = useState(candidate?.date ? new Date(candidate.date).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10));
   const [loc, setLoc] = useState(candidate?.loc || "");
-  const [contrat, setContrat] = useState(candidate?.contrat || "");
   const [tjm, setTjm] = useState(candidate?.tjm || "");
   const [notes, setNotes] = useState(candidate?.notes || "");
   const [resumeText, setResumeText] = useState(candidate?.resumeText || "");
+
+  // v18 — Ouverture CDD/CDI
+  const candidateWithV18 = candidate as (Candidate & {
+    openCddCdi?: boolean | null;
+    qualifProfile?: string | null;
+    qualifLevel?: string | null;
+    qualifRecruitedTypes?: string[] | null;
+    qualifContext?: Record<string, string[]> | null;
+    intelligenceLevel?: string | null;
+    motivationTypes?: string[] | null;
+    motivationLevel?: string | null;
+    sympathyTypes?: string[] | null;
+    sympathyLevel?: string | null;
+  }) | null | undefined;
+  const [openCddCdi, setOpenCddCdi] = useState<boolean | null>(
+    candidateWithV18?.openCddCdi ?? null
+  );
+
+  // v18 — Chemin de qualification (étapes 1-3)
+  const [qualifProfile, setQualifProfile] = useState<string>(candidateWithV18?.qualifProfile || "");
+  const [qualifLevel, setQualifLevel] = useState<string>(candidateWithV18?.qualifLevel || "");
+  const [qualifRecruitedTypes, setQualifRecruitedTypes] = useState<Set<string>>(
+    () => new Set(candidateWithV18?.qualifRecruitedTypes || [])
+  );
+  const [qualifContext, setQualifContext] = useState<Record<string, Set<string>>>(() => {
+    const stored = candidateWithV18?.qualifContext || {};
+    const result: Record<string, Set<string>> = {};
+    for (const [key, val] of Object.entries(stored)) {
+      if (Array.isArray(val)) result[key] = new Set(val);
+    }
+    return result;
+  });
+
+  // v18 — Intelligence / Motivation / Sympathie avec niveau
+  const [intelligenceLevel, setIntelligenceLevel] = useState<string>(candidateWithV18?.intelligenceLevel || "");
+  const [motivationTypes, setMotivationTypes] = useState<Set<string>>(
+    () => new Set(candidateWithV18?.motivationTypes || [])
+  );
+  const [motivationLevel, setMotivationLevel] = useState<string>(candidateWithV18?.motivationLevel || "");
+  const [sympathyTypes, setSympathyTypes] = useState<Set<string>>(
+    () => new Set(candidateWithV18?.sympathyTypes || [])
+  );
+  const [sympathyLevel, setSympathyLevel] = useState<string>(candidateWithV18?.sympathyLevel || "");
 
   // Scoring
   const [scores, setScores] = useState<Record<string, number>>(() => {
@@ -117,9 +162,17 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
     } catch {}
   }, [resumeText, lsLoaded, isEdit]);
 
-  // Computed score
-  const sc = calcScore(scores);
+  // Computed score — v18 : calculé uniquement sur les 8 critères visibles
+  const sc = useMemo(() => {
+    const visibleScores: Record<string, number> = {};
+    for (const idx of SCORING_VISIBLE_ORDER) {
+      const key = `c${idx}`;
+      if (scores[key]) visibleScores[key] = scores[key];
+    }
+    return calcScore(visibleScores);
+  }, [scores]);
   const verdict = getVerdict(sc.pct, sc.filled);
+  const visibleCount = SCORING_VISIBLE_ORDER.length;
 
   const charCount = resumeText.trim().length;
   const canAnalyze = charCount >= MIN_CHARS;
@@ -214,8 +267,13 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
     if (id.prenom && !prenom.trim()) setPrenom(id.prenom);
     if (id.nom && !nom.trim()) setNom(id.nom);
 
-    // v17 — Auto-fill contrat (single-select) — uniquement si vide
-    if (result.contrat && !contrat) setContrat(result.contrat);
+    // v18 — Auto-fill openCddCdi selon le contrat détecté par autoScore
+    if (openCddCdi === null) {
+      if (result.contrat === "CDI" || result.contrat === "CDD" || result.contrat === "Les deux") {
+        setOpenCddCdi(true);
+      }
+      // Si "TJM Freelance" seul, on laisse null (indéterminé sans info explicite)
+    }
 
     // v17 — Merger les 4 taxonomies (ADD sans remove, préserve les choix manuels)
     if (result.profileTypes.length > 0) {
@@ -273,6 +331,12 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
   function handleSave() {
     if (!prenom.trim() && !nom.trim()) return;
 
+    // Sérialiser qualifContext Set → string[]
+    const contextSerialized: Record<string, string[]> = {};
+    for (const [key, set] of Object.entries(qualifContext)) {
+      if (set.size > 0) contextSerialized[key] = Array.from(set);
+    }
+
     const data = {
       prenom: prenom.trim(),
       nom: nom.trim(),
@@ -280,7 +344,6 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       phone: phone.trim(),
       linkedin: linkedin.trim(),
       date,
-      contrat,
       tjm: tjm.trim(),
       loc: loc.trim(),
       notes: notes.trim(),
@@ -292,6 +355,17 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       companyTypes: Array.from(companyTypes),
       profileStyle: Array.from(profileStyle),
       intelligenceTypes: Array.from(intelligenceTypes),
+      // v18
+      openCddCdi: openCddCdi ?? undefined,
+      qualifProfile: qualifProfile || undefined,
+      qualifLevel: qualifLevel || undefined,
+      qualifRecruitedTypes: Array.from(qualifRecruitedTypes),
+      qualifContext: contextSerialized,
+      intelligenceLevel: intelligenceLevel || undefined,
+      motivationTypes: Array.from(motivationTypes),
+      motivationLevel: motivationLevel || undefined,
+      sympathyTypes: Array.from(sympathyTypes),
+      sympathyLevel: sympathyLevel || undefined,
       hasCv,
       cvPath: cvPath || null,
     };
@@ -734,19 +808,41 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         </div>
       </section>
 
-      {/* Contract */}
+      {/* v18 — Ouvert CDD/CDI + TJM */}
       <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">Contrat</h3>
+        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
+          Contrat & rémunération
+        </h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <div className="flex flex-col gap-1">
-            <label className={labelCls}>Type</label>
-            <select value={contrat} onChange={(e) => setContrat(e.target.value)} className={inputCls}>
-              <option value="">—</option>
-              <option>TJM Freelance</option>
-              <option>CDI</option>
-              <option>CDD</option>
-              <option>Les deux</option>
-            </select>
+            <label className={labelCls}>Ouvert à un CDD / CDI ?</label>
+            <div className="flex gap-1.5">
+              {[
+                { label: "Oui", value: true },
+                { label: "Non", value: false },
+                { label: "—", value: null },
+              ].map((opt) => {
+                const isActive = openCddCdi === opt.value;
+                return (
+                  <button
+                    key={String(opt.value)}
+                    type="button"
+                    onClick={() => setOpenCddCdi(opt.value)}
+                    className={`flex-1 px-3 py-2 text-[13px] font-medium rounded-lg border transition-colors ${
+                      isActive
+                        ? opt.value === true
+                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
+                          : opt.value === false
+                          ? "bg-red-50 border-red-300 text-red-700"
+                          : "bg-gray-100 border-gray-300 text-gray-600"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
           <div className="flex flex-col gap-1">
             <label className={labelCls}>TJM / Salaire</label>
@@ -755,133 +851,168 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         </div>
       </section>
 
-      {/* v17 — Profils recrutés (flat, haut niveau) */}
+      {/* v18 — Chemin de qualification (arbre pieuvre : profil → niveau + types → précisions) */}
       <section>
         <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Profils déjà recrutés
+            Qualification du candidat
             <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · familles de postes déjà chassées
+              · à remplir pendant la visio
             </span>
           </h3>
-          {profileTypes.size > 0 && (
-            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
-              {profileTypes.size}
+          {qualifProfile && (
+            <span className="text-[11px] text-rocket-teal font-medium">
+              {qualifProfile}
+              {qualifLevel && ` · ${qualifLevel}`}
+              {qualifRecruitedTypes.size > 0 && ` · ${qualifRecruitedTypes.size} type${qualifRecruitedTypes.size > 1 ? "s" : ""}`}
             </span>
           )}
         </div>
-        <div className="flex flex-wrap gap-1.5">
-          {PROFILE_TYPES_PRESETS.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleProfileType(tag)}
-              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                profileTypes.has(tag)
-                  ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal font-medium"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
+
+        {/* Étape 1 : Type de profil */}
+        <div className="mb-4">
+          <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">
+            1. Type de profil
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            {QUALIF_PROFILES.map((profile) => {
+              const isActive = qualifProfile === profile;
+              return (
+                <button
+                  key={profile}
+                  type="button"
+                  onClick={() => {
+                    if (isActive) {
+                      // Désélectionner : reset tout l'arbre
+                      setQualifProfile("");
+                      setQualifLevel("");
+                      setQualifRecruitedTypes(new Set());
+                      setQualifContext({});
+                    } else {
+                      setQualifProfile(profile);
+                      // Reset l'étape 2 et 3 quand on change de profil
+                      setQualifRecruitedTypes(new Set());
+                      setQualifContext({});
+                    }
+                  }}
+                  className={`px-3 py-2.5 text-[13px] font-medium rounded-lg border transition-colors ${
+                    isActive
+                      ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal"
+                      : "bg-white border-gray-300 text-gray-600 hover:border-gray-400"
+                  }`}
+                >
+                  {profile}
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Étape 2 : Niveau + Types recrutés (affiché si étape 1 sélectionnée) */}
+        {qualifProfile && (
+          <div className="mb-4 space-y-3 pl-4 border-l-2 border-rocket-teal/30">
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">
+                2a. Niveau d&apos;expertise
+              </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5">
+                {QUALIF_LEVELS.map((level) => {
+                  const isActive = qualifLevel === level;
+                  return (
+                    <button
+                      key={level}
+                      type="button"
+                      onClick={() => setQualifLevel(isActive ? "" : level)}
+                      className={`px-3 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
+                        isActive
+                          ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal"
+                          : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                      }`}
+                    >
+                      {level}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">
+                2b. Profils qu&apos;il a chassés (multi-select)
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {QUALIF_RECRUITED_TYPES[qualifProfile as keyof typeof QUALIF_RECRUITED_TYPES]?.map((t) => {
+                  const isActive = qualifRecruitedTypes.has(t);
+                  return (
+                    <button
+                      key={t}
+                      type="button"
+                      onClick={() => {
+                        setQualifRecruitedTypes((prev) => {
+                          const next = new Set(prev);
+                          next.has(t) ? next.delete(t) : next.add(t);
+                          return next;
+                        });
+                      }}
+                      className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                        isActive
+                          ? "bg-blue-50 border-blue-400 text-blue-700 font-medium"
+                          : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                      }`}
+                    >
+                      {t}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Étape 3 : Précisions contextuelles (affiché si étape 1 sélectionnée) */}
+        {qualifProfile && (
+          <div className="space-y-3 pl-4 border-l-2 border-rocket-teal/30">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+              3. Précisions contextuelles
+            </div>
+            {QUALIF_CONTEXT_BY_PROFILE[qualifProfile as keyof typeof QUALIF_CONTEXT_BY_PROFILE]?.map((group) => (
+              <div key={group.title}>
+                <div className="text-[11px] text-gray-600 mb-1.5">{group.title}</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {group.options.map((opt) => {
+                    const setForGroup = qualifContext[group.title] || new Set<string>();
+                    const isActive = setForGroup.has(opt);
+                    return (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => {
+                          setQualifContext((prev) => {
+                            const prevSet = prev[group.title] || new Set<string>();
+                            const nextSet = new Set(prevSet);
+                            nextSet.has(opt) ? nextSet.delete(opt) : nextSet.add(opt);
+                            return { ...prev, [group.title]: nextSet };
+                          });
+                        }}
+                        className={`text-[11px] px-2.5 py-1 rounded-full border transition-colors ${
+                          isActive
+                            ? "bg-purple-50 border-purple-400 text-purple-700"
+                            : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
-      {/* v17 — Type de boîte (flat, haut niveau) */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Type de boîte
-            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · maturité & modèle des entreprises clientes
-            </span>
-          </h3>
-          {companyTypes.size > 0 && (
-            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
-              {companyTypes.size}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {COMPANY_TYPES_PRESETS.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleCompanyType(tag)}
-              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                companyTypes.has(tag)
-                  ? "bg-blue-50 border-blue-400 text-blue-700 font-medium"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* v17 — Style de profil (flat, haut niveau) */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Style de profil
-            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · posture dominante
-            </span>
-          </h3>
-          {profileStyle.size > 0 && (
-            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
-              {profileStyle.size}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {PROFILE_STYLE_PRESETS.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleProfileStyle(tag)}
-              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                profileStyle.has(tag)
-                  ? "bg-purple-50 border-purple-400 text-purple-700 font-medium"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* v17 — Type d'intelligence (flat, haut niveau) */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Type d&apos;intelligence
-            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · intelligence dominante
-            </span>
-          </h3>
-          {intelligenceTypes.size > 0 && (
-            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
-              {intelligenceTypes.size}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {INTELLIGENCE_TYPES_PRESETS.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleIntelligence(tag)}
-              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                intelligenceTypes.has(tag)
-                  ? "bg-amber-50 border-amber-400 text-amber-800 font-medium"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-      </section>
+{/* v18 : les 4 taxonomies (profileTypes, companyTypes, profileStyle) sont
+          auto-détectées et persistées en DB, mais plus affichées dans le form.
+          intelligenceTypes reste utilisé dans la section Intelligence ci-dessus. */}
 
       {/* Scoring */}
       <section>
@@ -904,27 +1035,33 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             {copyStatus === "ok" ? "✓ Copié !" : "📋 Copier le scoring"}
           </button>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
-          {CRITERIA.map((crit, i) => {
-            const currentScore = scores[`c${i}`] || 0;
-            const isIntl = i === 3;
-            const isSkipped = skipInternational && isIntl;
+        <div className="grid grid-cols-1 gap-2 mb-4">
+          {SCORING_VISIBLE_ORDER.map((critIdx, displayIdx) => {
+            const crit = CRITERIA[critIdx];
+            const currentScore = scores[`c${critIdx}`] || 0;
             return (
               <div
-                key={i}
-                className={`flex items-start gap-3 px-3 py-2.5 border rounded-lg transition-colors ${
-                  isSkipped ? "border-gray-200 bg-gray-50 opacity-60" : "border-gray-200 bg-white hover:border-gray-300"
-                }`}
+                key={critIdx}
+                className="flex items-start gap-3 px-3 py-2.5 border rounded-lg transition-colors border-gray-200 bg-white hover:border-gray-300"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="text-[12px] font-medium flex items-center gap-1.5">
-                    <span className="text-gray-300 font-mono tabular-nums text-[10px]">{String(i + 1).padStart(2, "0")}</span>
+                  <div className="text-[13px] font-medium flex items-center gap-1.5">
+                    <span className="text-gray-300 font-mono tabular-nums text-[10px]">
+                      {String(displayIdx + 1).padStart(2, "0")}
+                    </span>
                     {crit.name}
-                    {isSkipped && <span className="text-[9px] px-1.5 py-0.5 rounded bg-gray-200 text-gray-500">Skipped</span>}
+                    {currentScore >= 4 && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 font-semibold">
+                        Top
+                      </span>
+                    )}
                   </div>
-                  <div className="text-[10px] text-gray-500 mt-0.5 leading-snug" title={crit.desc}>{crit.desc}</div>
+                  <div className="text-[10px] text-gray-500 mt-1 leading-relaxed">
+                    <span className="font-semibold text-gray-600">Pour un 5/5 : </span>
+                    {crit.desc}
+                  </div>
                 </div>
-                <div className="flex gap-0.5 flex-shrink-0">
+                <div className="flex gap-0.5 flex-shrink-0 items-center">
                   {[1, 2, 3, 4, 5].map((v) => {
                     const isActive = currentScore >= v;
                     const bg = isActive ? SCORE_COLORS[v - 1] : "white";
@@ -932,9 +1069,8 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                     return (
                       <button
                         key={v}
-                        onClick={() => setScore(i, v)}
-                        disabled={isSkipped}
-                        className="w-[26px] h-[26px] rounded-md border text-[11px] font-mono flex items-center justify-center transition-all hover:border-rocket-teal hover:text-rocket-teal disabled:cursor-not-allowed"
+                        onClick={() => setScore(critIdx, v)}
+                        className="w-[28px] h-[28px] rounded-md border text-[12px] font-mono flex items-center justify-center transition-all hover:border-rocket-teal hover:text-rocket-teal"
                         style={{
                           background: bg,
                           color,
@@ -952,7 +1088,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
           })}
         </div>
 
-        {/* Score summary */}
+        {/* Score summary — v18 : basé sur 8 critères visibles */}
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div className="bg-white border border-gray-200 rounded-lg p-3">
             <div className="text-2xl font-medium font-mono text-rocket-teal">
@@ -967,7 +1103,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             <div className="text-[11px] text-gray-400 mt-0.5">score sur critères notés</div>
           </div>
           <div className="bg-white border border-gray-200 rounded-lg p-3">
-            <div className="text-2xl font-medium font-mono">{sc.filled}<span className="text-sm text-gray-400"> /{NB_CRIT}</span></div>
+            <div className="text-2xl font-medium font-mono">{sc.filled}<span className="text-sm text-gray-400"> /{visibleCount}</span></div>
             <div className="text-[11px] text-gray-400 mt-0.5">critères évalués</div>
           </div>
         </div>
@@ -992,47 +1128,216 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         )}
       </section>
 
-      {/* Forces */}
+      {/* v18 — Intelligence : type + niveau */}
       <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
-          Impression entretien — points positifs
-        </h3>
-        <div className="flex flex-wrap gap-1.5">
-          {FORCE_PRESETS.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleForce(tag)}
-              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                forces.has(tag)
-                  ? "bg-emerald-100 border-emerald-400 text-emerald-800"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Intelligence
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
+              · type(s) dominant(s) & niveau global
+            </span>
+          </h3>
+          {intelligenceLevel && (
+            <span className="text-[11px] text-rocket-teal font-medium">{intelligenceLevel}</span>
+          )}
+        </div>
+        <div className="space-y-2.5">
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Types (multi)</div>
+            <div className="flex flex-wrap gap-1.5">
+              {INTELLIGENCE_TYPES_PRESETS.map((t) => {
+                const isActive = intelligenceTypes.has(t);
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => toggleIntelligence(t)}
+                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                      isActive
+                        ? "bg-amber-50 border-amber-400 text-amber-800 font-medium"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {t}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Niveau global</div>
+            <div className="grid grid-cols-4 gap-1.5">
+              {LEVEL_PRESETS.map((lvl) => {
+                const isActive = intelligenceLevel === lvl;
+                return (
+                  <button
+                    key={lvl}
+                    type="button"
+                    onClick={() => setIntelligenceLevel(isActive ? "" : lvl)}
+                    className={`px-2.5 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
+                      isActive
+                        ? lvl === "Exceptionnel"
+                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
+                          : lvl === "Fort"
+                          ? "bg-emerald-50 border-emerald-300 text-emerald-700"
+                          : lvl === "Moyen"
+                          ? "bg-amber-50 border-amber-300 text-amber-700"
+                          : "bg-red-50 border-red-300 text-red-700"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {lvl}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Risks */}
+      {/* v18 — Motivation : type + niveau */}
       <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
-          Alertes
-        </h3>
-        <div className="flex flex-wrap gap-1.5">
-          {RISK_PRESETS.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => toggleRisk(tag)}
-              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                risks.has(tag)
-                  ? "bg-red-100 border-red-400 text-red-700"
-                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-              }`}
-            >
-              {tag}
-            </button>
-          ))}
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Motivation & posture
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
+              · sharp / hungry / ambition…
+            </span>
+          </h3>
+          {motivationLevel && (
+            <span className="text-[11px] text-rocket-teal font-medium">{motivationLevel}</span>
+          )}
+        </div>
+        <div className="space-y-2.5">
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Types (multi)</div>
+            <div className="flex flex-wrap gap-1.5">
+              {MOTIVATION_TYPES_PRESETS.map((t) => {
+                const isActive = motivationTypes.has(t);
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() =>
+                      setMotivationTypes((prev) => {
+                        const next = new Set(prev);
+                        next.has(t) ? next.delete(t) : next.add(t);
+                        return next;
+                      })
+                    }
+                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                      isActive
+                        ? "bg-purple-50 border-purple-400 text-purple-700 font-medium"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {t}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Niveau global</div>
+            <div className="grid grid-cols-4 gap-1.5">
+              {LEVEL_PRESETS.map((lvl) => {
+                const isActive = motivationLevel === lvl;
+                return (
+                  <button
+                    key={lvl}
+                    type="button"
+                    onClick={() => setMotivationLevel(isActive ? "" : lvl)}
+                    className={`px-2.5 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
+                      isActive
+                        ? lvl === "Exceptionnel"
+                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
+                          : lvl === "Fort"
+                          ? "bg-emerald-50 border-emerald-300 text-emerald-700"
+                          : lvl === "Moyen"
+                          ? "bg-amber-50 border-amber-300 text-amber-700"
+                          : "bg-red-50 border-red-300 text-red-700"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {lvl}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* v18 — Sympathie : type + niveau */}
+      <section>
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Sympathie & gentillesse
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
+              · posture humaine perçue
+            </span>
+          </h3>
+          {sympathyLevel && (
+            <span className="text-[11px] text-rocket-teal font-medium">{sympathyLevel}</span>
+          )}
+        </div>
+        <div className="space-y-2.5">
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Types (multi)</div>
+            <div className="flex flex-wrap gap-1.5">
+              {SYMPATHY_TYPES_PRESETS.map((t) => {
+                const isActive = sympathyTypes.has(t);
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() =>
+                      setSympathyTypes((prev) => {
+                        const next = new Set(prev);
+                        next.has(t) ? next.delete(t) : next.add(t);
+                        return next;
+                      })
+                    }
+                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                      isActive
+                        ? "bg-pink-50 border-pink-400 text-pink-700 font-medium"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {t}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Niveau global</div>
+            <div className="grid grid-cols-4 gap-1.5">
+              {LEVEL_PRESETS.map((lvl) => {
+                const isActive = sympathyLevel === lvl;
+                return (
+                  <button
+                    key={lvl}
+                    type="button"
+                    onClick={() => setSympathyLevel(isActive ? "" : lvl)}
+                    className={`px-2.5 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
+                      isActive
+                        ? lvl === "Exceptionnel"
+                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
+                          : lvl === "Fort"
+                          ? "bg-emerald-50 border-emerald-300 text-emerald-700"
+                          : lvl === "Moyen"
+                          ? "bg-amber-50 border-amber-300 text-amber-700"
+                          : "bg-red-50 border-red-300 text-red-700"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {lvl}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
