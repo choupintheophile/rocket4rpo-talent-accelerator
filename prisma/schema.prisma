@@ -77,33 +77,38 @@ model ClientLogo {
 }
 
 model Candidate {
-  id         String   @id @default(cuid())
-  prenom     String
-  nom        String
-  email      String?
-  phone      String?
-  linkedin   String?
-  date       DateTime?
-  contrat    String?
-  tjm        String?
-  dispo      String?
-  loc        String?
-  remote     String?
-  days       String?
-  sector     String?
-  notes      String?  @db.Text
-  resumeText String?  @db.Text
-  scores     Json?
-  forces     Json?
-  risks      Json?
-  score      Int      @default(0)
-  maxScore   Int      @default(0)
-  pct        Int      @default(0)
-  filled     Int      @default(0)
-  hasCv      Boolean  @default(false)
-  cvPath     String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id                String   @id @default(cuid())
+  prenom            String
+  nom               String
+  email             String?
+  phone             String?
+  linkedin          String?
+  date              DateTime?
+  contrat           String?
+  tjm               String?
+  dispo             String?
+  loc               String?
+  remote            String?
+  days              String?
+  sector            String?
+  notes             String?  @db.Text
+  resumeText        String?  @db.Text
+  scores            Json?
+  forces            Json?
+  risks             Json?
+  // v17 — taxonomies multi-select
+  profileTypes      Json?    // types de profils qu'il recrute (Sales/Tech/Product/...)
+  companyTypes      Json?    // types de boîtes pour lesquelles il a travaillé (Startup seed/SaaS B2B/...)
+  profileStyle      Json?    // style de personnalité (Sharp / Hunter / Architecte / ...)
+  intelligenceTypes Json?    // types d'intelligence (analytique / émotionnelle / stratégique / ...)
+  score             Int      @default(0)
+  maxScore          Int      @default(0)
+  pct               Int      @default(0)
+  filled            Int      @default(0)
+  hasCv             Boolean  @default(false)
+  cvPath            String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
   @@map("candidates")
 }

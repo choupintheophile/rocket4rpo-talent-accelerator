@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useEffect, useMemo } from "react";
+import { useState, useTransition, useEffect, useMemo, type Dispatch, type SetStateAction } from "react";
 import { useRouter } from "next/navigation";
 import {
   CRITERIA,
@@ -8,6 +8,10 @@ import {
   FORCE_PRESETS,
   RISK_PRESETS,
   SCORE_COLORS,
+  PROFILE_TYPES_PRESETS,
+  COMPANY_TYPES_PRESETS,
+  PROFILE_STYLE_PRESETS,
+  INTELLIGENCE_TYPES_PRESETS,
   calcScore,
   getVerdict,
   autoScore,
@@ -37,12 +41,8 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
   const [linkedin, setLinkedin] = useState(candidate?.linkedin || "");
   const [date, setDate] = useState(candidate?.date ? new Date(candidate.date).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10));
   const [loc, setLoc] = useState(candidate?.loc || "");
-  const [remote, setRemote] = useState(candidate?.remote || "");
-  const [days, setDays] = useState(candidate?.days || "");
-  const [dispo, setDispo] = useState(candidate?.dispo || "");
   const [contrat, setContrat] = useState(candidate?.contrat || "");
   const [tjm, setTjm] = useState(candidate?.tjm || "");
-  const [sector, setSector] = useState(candidate?.sector || "");
   const [notes, setNotes] = useState(candidate?.notes || "");
   const [resumeText, setResumeText] = useState(candidate?.resumeText || "");
 
@@ -60,6 +60,20 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
   // Tags
   const [forces, setForces] = useState<Set<string>>(() => new Set((candidate?.forces as string[]) || []));
   const [risks, setRisks] = useState<Set<string>>(() => new Set((candidate?.risks as string[]) || []));
+
+  // v17 — Taxonomies multi-select
+  const [profileTypes, setProfileTypes] = useState<Set<string>>(
+    () => new Set((candidate as { profileTypes?: string[] } | null | undefined)?.profileTypes || [])
+  );
+  const [companyTypes, setCompanyTypes] = useState<Set<string>>(
+    () => new Set((candidate as { companyTypes?: string[] } | null | undefined)?.companyTypes || [])
+  );
+  const [profileStyle, setProfileStyle] = useState<Set<string>>(
+    () => new Set((candidate as { profileStyle?: string[] } | null | undefined)?.profileStyle || [])
+  );
+  const [intelligenceTypes, setIntelligenceTypes] = useState<Set<string>>(
+    () => new Set((candidate as { intelligenceTypes?: string[] } | null | undefined)?.intelligenceTypes || [])
+  );
 
   // v16 — UX analyse
   const [skipInternational, setSkipInternational] = useState(false);
@@ -139,6 +153,20 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       return next;
     });
   }
+
+  function toggleSet(setter: Dispatch<SetStateAction<Set<string>>>) {
+    return (tag: string) => {
+      setter((prev) => {
+        const next = new Set(prev);
+        next.has(tag) ? next.delete(tag) : next.add(tag);
+        return next;
+      });
+    };
+  }
+  const toggleProfileType = toggleSet(setProfileTypes);
+  const toggleCompanyType = toggleSet(setCompanyTypes);
+  const toggleProfileStyle = toggleSet(setProfileStyle);
+  const toggleIntelligence = toggleSet(setIntelligenceTypes);
 
   function handleAnalyze() {
     if (!canAnalyze) return;
@@ -221,16 +249,16 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       date,
       contrat,
       tjm: tjm.trim(),
-      dispo,
       loc: loc.trim(),
-      remote,
-      days,
-      sector: sector.trim(),
       notes: notes.trim(),
       resumeText: resumeText.trim(),
       scores,
       forces: Array.from(forces),
       risks: Array.from(risks),
+      profileTypes: Array.from(profileTypes),
+      companyTypes: Array.from(companyTypes),
+      profileStyle: Array.from(profileStyle),
+      intelligenceTypes: Array.from(intelligenceTypes),
       hasCv,
       cvPath: cvPath || null,
     };
@@ -538,40 +566,12 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             <input value={loc} onChange={(e) => setLoc(e.target.value)} className={inputCls} placeholder="Paris, Lyon..." />
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-          <div className="flex flex-col gap-1">
-            <label className={labelCls}>Télétravail</label>
-            <select value={remote} onChange={(e) => setRemote(e.target.value)} className={inputCls}>
-              <option value="">—</option>
-              <option>Full remote</option>
-              <option>Hybride</option>
-              <option>Onsite</option>
-            </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className={labelCls}>Jours/semaine</label>
-            <select value={days} onChange={(e) => setDays(e.target.value)} className={inputCls}>
-              <option value="">—</option>
-              <option>1j</option><option>2j</option><option>3j</option><option>4j</option><option>5j</option>
-            </select>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className={labelCls}>Disponibilité</label>
-            <select value={dispo} onChange={(e) => setDispo(e.target.value)} className={inputCls}>
-              <option value="">—</option>
-              <option>Immédiate</option>
-              <option>1 mois</option>
-              <option>2 mois</option>
-              <option>3 mois+</option>
-            </select>
-          </div>
-        </div>
       </section>
 
       {/* Contract */}
       <section>
         <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">Contrat</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           <div className="flex flex-col gap-1">
             <label className={labelCls}>Type</label>
             <select value={contrat} onChange={(e) => setContrat(e.target.value)} className={inputCls}>
@@ -586,10 +586,148 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             <label className={labelCls}>TJM / Salaire</label>
             <input value={tjm} onChange={(e) => setTjm(e.target.value)} className={inputCls} placeholder="ex: 600 €/j" />
           </div>
-          <div className="flex flex-col gap-1">
-            <label className={labelCls}>Spécialisation secteur</label>
-            <input value={sector} onChange={(e) => setSector(e.target.value)} className={inputCls} placeholder="ex: SaaS, ESN, Fintech..." />
-          </div>
+        </div>
+      </section>
+
+      {/* v17 — Profils recrutés (multi-select groupé) */}
+      <section>
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Profils déjà recrutés
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
+              · cochez tous les types de postes que le candidat a déjà chassés
+            </span>
+          </h3>
+          {profileTypes.size > 0 && (
+            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
+              {profileTypes.size}
+            </span>
+          )}
+        </div>
+        <div className="space-y-3">
+          {Object.entries(PROFILE_TYPES_PRESETS).map(([groupName, items]) => (
+            <div key={groupName}>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">{groupName}</div>
+              <div className="flex flex-wrap gap-1.5">
+                {items.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleProfileType(tag)}
+                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                      profileTypes.has(tag)
+                        ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal font-medium"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* v17 — Type de boîte (multi-select groupé) */}
+      <section>
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Type de boîte
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
+              · environnements dans lesquels le candidat a évolué
+            </span>
+          </h3>
+          {companyTypes.size > 0 && (
+            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
+              {companyTypes.size}
+            </span>
+          )}
+        </div>
+        <div className="space-y-3">
+          {Object.entries(COMPANY_TYPES_PRESETS).map(([groupName, items]) => (
+            <div key={groupName}>
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">{groupName}</div>
+              <div className="flex flex-wrap gap-1.5">
+                {items.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => toggleCompanyType(tag)}
+                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                      companyTypes.has(tag)
+                        ? "bg-blue-50 border-blue-400 text-blue-700 font-medium"
+                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* v17 — Style de profil (multi-select flat) */}
+      <section>
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Style de profil
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
+              · personnalité et posture du candidat (multi-select)
+            </span>
+          </h3>
+          {profileStyle.size > 0 && (
+            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
+              {profileStyle.size}
+            </span>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {PROFILE_STYLE_PRESETS.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => toggleProfileStyle(tag)}
+              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                profileStyle.has(tag)
+                  ? "bg-purple-50 border-purple-400 text-purple-700 font-medium"
+                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* v17 — Type d'intelligence (multi-select flat) */}
+      <section>
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Type d&apos;intelligence
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
+              · nature de l&apos;intelligence dominante perçue en entretien
+            </span>
+          </h3>
+          {intelligenceTypes.size > 0 && (
+            <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded">
+              {intelligenceTypes.size}
+            </span>
+          )}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {INTELLIGENCE_TYPES_PRESETS.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => toggleIntelligence(tag)}
+              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                intelligenceTypes.has(tag)
+                  ? "bg-amber-50 border-amber-400 text-amber-800 font-medium"
+                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
         </div>
       </section>
 
@@ -622,16 +760,17 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             return (
               <div
                 key={i}
-                className={`flex items-center gap-3 px-3 py-2.5 border rounded-lg transition-colors ${
+                className={`flex items-start gap-3 px-3 py-2.5 border rounded-lg transition-colors ${
                   isSkipped ? "border-gray-200 bg-gray-50 opacity-60" : "border-gray-200 bg-white hover:border-gray-300"
                 }`}
               >
                 <div className="flex-1 min-w-0">
-                  <div className="text-[12px] font-medium truncate flex items-center gap-1.5">
+                  <div className="text-[12px] font-medium flex items-center gap-1.5">
+                    <span className="text-gray-300 font-mono tabular-nums text-[10px]">{String(i + 1).padStart(2, "0")}</span>
                     {crit.name}
                     {isSkipped && <span className="text-[9px] px-1.5 py-0.5 rounded bg-gray-200 text-gray-500">Skipped</span>}
                   </div>
-                  <div className="text-[10px] text-gray-400 truncate">{crit.desc}</div>
+                  <div className="text-[10px] text-gray-500 mt-0.5 leading-snug" title={crit.desc}>{crit.desc}</div>
                 </div>
                 <div className="flex gap-0.5 flex-shrink-0">
                   {[1, 2, 3, 4, 5].map((v) => {

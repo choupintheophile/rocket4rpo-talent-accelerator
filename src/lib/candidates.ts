@@ -51,16 +51,17 @@ export async function createCandidate(data: {
   date?: string;
   contrat?: string;
   tjm?: string;
-  dispo?: string;
   loc?: string;
-  remote?: string;
-  days?: string;
-  sector?: string;
   notes?: string;
   resumeText?: string;
   scores?: Record<string, number>;
   forces?: string[];
   risks?: string[];
+  // v17 — taxonomies multi-select
+  profileTypes?: string[];
+  companyTypes?: string[];
+  profileStyle?: string[];
+  intelligenceTypes?: string[];
   hasCv?: boolean;
   cvPath?: string;
 }): Promise<Candidate> {
@@ -76,16 +77,16 @@ export async function createCandidate(data: {
       date: data.date ? new Date(data.date) : null,
       contrat: data.contrat || null,
       tjm: data.tjm || null,
-      dispo: data.dispo || null,
       loc: data.loc || null,
-      remote: data.remote || null,
-      days: data.days || null,
-      sector: data.sector || null,
       notes: data.notes || null,
       resumeText: data.resumeText || null,
       scores: data.scores || {},
       forces: data.forces || [],
       risks: data.risks || [],
+      profileTypes: data.profileTypes || [],
+      companyTypes: data.companyTypes || [],
+      profileStyle: data.profileStyle || [],
+      intelligenceTypes: data.intelligenceTypes || [],
       score: sc.total,
       maxScore: sc.max,
       pct: sc.pct,
@@ -107,16 +108,17 @@ export async function updateCandidate(
     date?: string;
     contrat?: string;
     tjm?: string;
-    dispo?: string;
     loc?: string;
-    remote?: string;
-    days?: string;
-    sector?: string;
     notes?: string;
     resumeText?: string;
     scores?: Record<string, number>;
     forces?: string[];
     risks?: string[];
+    // v17 — taxonomies multi-select
+    profileTypes?: string[];
+    companyTypes?: string[];
+    profileStyle?: string[];
+    intelligenceTypes?: string[];
     hasCv?: boolean;
     cvPath?: string | null;
   }
@@ -133,16 +135,16 @@ export async function updateCandidate(
   if (data.date !== undefined) updateData.date = data.date ? new Date(data.date) : null;
   if (data.contrat !== undefined) updateData.contrat = data.contrat || null;
   if (data.tjm !== undefined) updateData.tjm = data.tjm || null;
-  if (data.dispo !== undefined) updateData.dispo = data.dispo || null;
   if (data.loc !== undefined) updateData.loc = data.loc || null;
-  if (data.remote !== undefined) updateData.remote = data.remote || null;
-  if (data.days !== undefined) updateData.days = data.days || null;
-  if (data.sector !== undefined) updateData.sector = data.sector || null;
   if (data.notes !== undefined) updateData.notes = data.notes || null;
   if (data.resumeText !== undefined) updateData.resumeText = data.resumeText || null;
   if (data.scores !== undefined) updateData.scores = data.scores;
   if (data.forces !== undefined) updateData.forces = data.forces;
   if (data.risks !== undefined) updateData.risks = data.risks;
+  if (data.profileTypes !== undefined) updateData.profileTypes = data.profileTypes;
+  if (data.companyTypes !== undefined) updateData.companyTypes = data.companyTypes;
+  if (data.profileStyle !== undefined) updateData.profileStyle = data.profileStyle;
+  if (data.intelligenceTypes !== undefined) updateData.intelligenceTypes = data.intelligenceTypes;
   if (data.hasCv !== undefined) updateData.hasCv = data.hasCv;
   if (data.cvPath !== undefined) updateData.cvPath = data.cvPath;
 

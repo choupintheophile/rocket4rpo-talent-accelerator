@@ -3,21 +3,66 @@
 //        + forces conditionnelles + score de confiance + debug matches + export texte
 
 export const CRITERIA = [
-  { name: "Sourcing & identification", desc: "Volume, approche directe, booléen, multicanal" },
-  { name: "Qualification candidat", desc: "Évaluer tech/fit/sales sans être expert du domaine" },
-  { name: "Spécialisation sectorielle", desc: "ESN, SaaS, Fintech, HealthTech, HR Tech" },
-  { name: "International", desc: "Chasse internationale, langues, marchés étrangers" },
-  { name: "Structure de chasse", desc: "Méthodologie A→Z, process réplicable et structuré" },
-  { name: "Outils & stack", desc: "CRM, Sales Nav, ATS, automatisation, configuration autonome" },
-  { name: "Connaissance marché", desc: "Top boîtes, leaders, crédibilité sectorielle directe" },
-  { name: "Autonomie & ownership", desc: "Décisions seul, pushback HM, pas suiveur" },
-  { name: "Pilotage & KPIs", desc: "Chiffres précis, TTF, taux de conversion, reporting structuré" },
-  { name: "Closing & négo", desc: "Posture conseil HM, contre-offre, négo offre, closing" },
-  { name: "Expérience RPO/embedded", desc: "Déjà intégré chez client, connaît le modèle, plug & play" },
-  { name: "Storytelling & exemples", desc: "Meilleur recrutement, exemples concrets, narration convaincante" },
-  { name: "Disponibilité & flexibilité", desc: "Jours/semaine, délai démarrage, souplesse" },
-  { name: "Type de profils recrutés", desc: "Tech US, Sales, Ops, cycle de vente, panier moyen" },
-  { name: "Fit culturel R4RPO", desc: "Motivation, énergie, posture premium, structuré" },
+  {
+    name: "Sourcing & identification",
+    desc: "Approche directe ≥10/sem, booléen avancé, multicanal (LinkedIn + Github + cooptation), automatisation",
+  },
+  {
+    name: "Qualification candidat",
+    desc: "Grille de scorecard structurée, mise en situation, calibration brief HM, évaluation soft + hard skills",
+  },
+  {
+    name: "Spécialisation sectorielle",
+    desc: "Connaît les codes du secteur (SaaS/Fintech/HealthTech/Deeptech), comprend les jobs sans formation",
+  },
+  {
+    name: "International",
+    desc: "Anglais opérationnel C1+, chasse cross-border (UK/DACH/Nordics/US), gestion fuseaux horaires",
+  },
+  {
+    name: "Structure de chasse",
+    desc: "Plan de chasse documenté A→Z, KPIs intermédiaires (taux retour, conversion), process réplicable",
+  },
+  {
+    name: "Outils & stack",
+    desc: "Maîtrise ATS (Greenhouse/Lever/Welcome), Sales Nav avancé, automation (Lemlist/LGM/Phantom), config autonome",
+  },
+  {
+    name: "Connaissance marché",
+    desc: "Top boîtes du secteur (top 20), salaires/grilles à jour, veille active, réseau direct activable",
+  },
+  {
+    name: "Autonomie & ownership",
+    desc: "Pushback HM si brief flou, décisions seul sans validation, refuse missions hors cible, drive son pipe",
+  },
+  {
+    name: "Pilotage & KPIs",
+    desc: "TTF cible, taux d'acceptation > 85%, ratio CV/closing, reporting hebdo data-driven, dashboard maintenu",
+  },
+  {
+    name: "Closing & négo",
+    desc: "Gestion contre-offres, négo package, posture conseil HM, traitement objections, clôture sous 7j",
+  },
+  {
+    name: "Expérience RPO/embedded",
+    desc: "≥1 mission embedded chez client, comprend différence cabinet/RPO, plug & play en 5 jours, immersion",
+  },
+  {
+    name: "Storytelling & exemples",
+    desc: "STAR (Situation/Tâche/Action/Résultat) sur 3+ recrutements, chiffres précis, du brief au closing",
+  },
+  {
+    name: "Disponibilité & flexibilité",
+    desc: "Démarrage ≤ 2 sem, 3-5 j/sem, ajustement scope en cours de mission, présence onsite ponctuelle OK",
+  },
+  {
+    name: "Type de profils recrutés",
+    desc: "Sales US/EMEA, Tech (back/front/data), Product, C-level, Mid → Sr → Executive, B2B SaaS prioritaire",
+  },
+  {
+    name: "Fit culturel R4RPO",
+    desc: "Énergie haute, posture premium, exigence qualité, transparence, ambition long terme, drive entrepreneur",
+  },
 ] as const;
 
 export const NB_CRIT = CRITERIA.length;
@@ -36,6 +81,92 @@ export const RISK_PRESETS = [
   "Pas de fit RPO",
   "Communication floue",
   "Outils mal maîtrisés",
+] as const;
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v17 — Taxonomies multi-select (cases à cocher)
+   Présets organisés par groupes pour faciliter le scoring qualitatif
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/** Type de profils que le candidat a déjà recrutés (multi-select) */
+export const PROFILE_TYPES_PRESETS = {
+  Sales: ["SDR / BDR", "Account Executive", "Account Manager", "Sales Manager", "VP Sales", "CRO", "Sales Engineer"],
+  Tech: ["Dev front", "Dev back", "Fullstack", "DevOps / SRE", "Data Engineer", "Data Scientist / ML", "Engineering Manager", "CTO"],
+  Product: ["Product Manager", "Product Owner", "Product Designer", "UX / UI", "Head of Product", "CPO"],
+  Marketing: ["Growth", "Content", "Brand", "Acquisition / SEA", "SEO", "CMO"],
+  "Customer & Ops": ["Customer Success", "Pre-Sales / Solutions", "RevOps", "SalesOps", "People Ops / RH"],
+  "Direction & C-level": ["C-level (CEO/CFO/COO)", "VP / Head of", "Director", "Founder / Co-founder"],
+  Finance: ["Finance / Controlling", "FP&A", "CFO"],
+} as const;
+
+/** Type de boîte pour laquelle il a travaillé (multi-select, groupé maturité + secteur) */
+export const COMPANY_TYPES_PRESETS = {
+  "Maturité": [
+    "Pré-seed / Seed (<10p)",
+    "Série A (10-50p)",
+    "Série B/C (50-300p)",
+    "Série D+ / Licorne (300+p)",
+    "ETI Tech française",
+    "Grand groupe / corporate",
+  ],
+  "Modèle business": [
+    "SaaS B2B",
+    "SaaS B2C",
+    "Marketplace",
+    "E-commerce / DTC",
+    "Services / ESN",
+    "Cabinet conseil",
+    "Cabinet recrutement",
+    "RPO / Embedded",
+  ],
+  "Secteur": [
+    "Fintech",
+    "HealthTech / BioTech",
+    "DeepTech / AI",
+    "Cybersecurity",
+    "AdTech / MarTech",
+    "EdTech",
+    "HR Tech",
+    "Mobility",
+    "GreenTech / ClimateTech",
+    "Gaming",
+    "Crypto / Web3",
+  ],
+} as const;
+
+/** Style / personnalité du recruteur (multi-select) */
+export const PROFILE_STYLE_PRESETS = [
+  "Sharp (intellectuellement brillant)",
+  "Hunter (chasse agressive)",
+  "Farmer (relation long terme)",
+  "Architecte (très structuré)",
+  "Operator (très opérationnel)",
+  "Senior calme et posé",
+  "Junior à fort potentiel",
+  "Profil consultant",
+  "Profil entrepreneur",
+  "Profil corporate",
+  "People-first / soft-skills",
+  "Data-driven / analytical",
+  "Hands-on / get-things-done",
+  "Mentor / pédagogue",
+  "Profil premium / haut de gamme",
+] as const;
+
+/** Type d'intelligence dominante (multi-select) */
+export const INTELLIGENCE_TYPES_PRESETS = [
+  "Analytique (raisonnement, data)",
+  "Émotionnelle (lecture EQ, empathie)",
+  "Stratégique (vision, anticipation)",
+  "Relationnelle (réseau, charisme)",
+  "Politique (navigation orga complexe)",
+  "Opérationnelle (exécution, delivery)",
+  "Créative (idées originales)",
+  "Apprentissage rapide (curiosité)",
+  "Vision business / commerciale",
+  "Sens du détail / craftsmanship",
+  "Pragmatique (priorisation)",
+  "Synthèse (capte l'essentiel)",
 ] as const;
 
 export const SCORE_COLORS = ["#EF9A9A", "#FFD54F", "#AED581", "#66BB6A", "#124944"] as const;
