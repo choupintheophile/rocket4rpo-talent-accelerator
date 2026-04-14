@@ -8,7 +8,7 @@ export const caseStudies = [
     metrics: [
       { value: "8", label: "recrutements" },
       { value: "6 mois", label: "délai moyen" },
-      { value: "2-3 sem.", label: "time-to-hire moyen" },
+      { value: "4 sem.", label: "time-to-hire moyen" },
     ],
   },
   {

@@ -341,9 +341,9 @@ export default function HomepageSections() {
 
           <FadeIn delay={0.5}>
             <div className="mt-12 text-center">
-              <p className="text-lg md:text-xl font-medium text-white/70 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl font-medium text-white/70 max-w-2xl mx-auto text-center text-balance">
                 Le recrutement ne devrait pas{" "}
-                <span className="text-white font-bold">
+                <span className="text-white font-bold whitespace-nowrap">
                   freiner votre croissance.
                 </span>
               </p>
@@ -420,7 +420,7 @@ export default function HomepageSections() {
               {
                 icon: Search,
                 title: "Sourcing multicanal",
-                text: "LinkedIn, approche directe, réseau, communautés. Pas des CVs de job boards. Des profils qualifiés et motivés.",
+                text: "LinkedIn, approche directe, réseau, communautés, job boards ciblés. Tous les canaux pertinents activés pour sourcer des profils qualifiés et motivés.",
                 gradient: "from-blue-500/10 to-blue-600/5",
                 iconBg: "bg-blue-500/10",
                 iconColor: "text-blue-500",
@@ -428,7 +428,7 @@ export default function HomepageSections() {
               },
               {
                 icon: FileCheck,
-                title: "Shortlists en 5-7 jours",
+                title: "Shortlists en 48h",
                 text: "Chaque candidat évalué : compétences, motivation, culture fit. Pas de volume — de la qualité.",
                 gradient: "from-emerald-500/10 to-emerald-600/5",
                 iconBg: "bg-emerald-500/10",
@@ -544,7 +544,7 @@ export default function HomepageSections() {
                         </motion.span>
                       </div>
                       <span className="text-2xl font-bold text-primary">
-                        2-3 semaines
+                        4 semaines
                       </span>
                     </div>
                     <AnimatedBar
@@ -809,7 +809,7 @@ export default function HomepageSections() {
                   icon: Rocket,
                   title: "Intégration",
                   badge: "J2",
-                  text: "Le TA rejoint vos outils et rituels. Première shortlist en 5-7 jours.",
+                  text: "Le TA rejoint vos outils et rituels. Première shortlist en 48h.",
                   delay: 0.3,
                 },
                 {
@@ -848,7 +848,7 @@ export default function HomepageSections() {
                     Recrutement signé. Mission accomplie.
                   </p>
                   <span className="text-xs text-white/60 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
-                    2-3 semaines en moyenne
+                    4 semaines en moyenne
                   </span>
                 </div>
               </div>

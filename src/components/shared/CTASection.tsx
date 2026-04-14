@@ -12,7 +12,7 @@ interface Props {
 export const CTASection = ({
   title = "Prêt à accélérer vos recrutements\ ?",
   gradientWord = "accélérer",
-  subtitle = "30 minutes de diagnostic gratuit. Sans engagement. Première shortlist en 5-7 jours.",
+  subtitle = "30 minutes de diagnostic gratuit. Sans engagement. Première shortlist en 48h.",
   ctaLabel = "Réserver mon diagnostic gratuit",
 }: Props) => {
   return (

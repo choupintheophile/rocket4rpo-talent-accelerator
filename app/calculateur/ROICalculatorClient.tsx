@@ -313,7 +313,7 @@ const HUBSPOT = "/rdv";
 
 const SOCIAL_PROOF = [
   { value: "200+", label: "recrutements réalisés" },
-  { value: "2-3 sem.", label: "time-to-hire moyen" },
+  { value: "4 sem.", label: "time-to-hire moyen" },
   { value: "1 sem.", label: "pour démarrer" },
 ];
 
@@ -331,7 +331,7 @@ const COMPARISON_ROWS: {
   },
   {
     critere: "Délai moyen",
-    rpo: "2-3 semaines",
+    rpo: "4 semaines",
     cabinet: "45-90 jours",
     interne: "80-120 jours",
   },
@@ -917,7 +917,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                         Délai moyen RPO
                       </p>
                       <p className="text-2xl md:text-3xl font-bold text-amber-600">
-                        2-3 semaines
+                        4 semaines
                       </p>
                     </div>
                   </div>
@@ -987,7 +987,7 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                   {/* ── Disclaimer ────────────────────────── */}
                   <p className="text-xs text-muted-foreground italic">
                     * Estimations basées sur nos données internes (TJM 500 €, 6
-                    jours/recrutement, délai moyen 2-3 semaines). Chaque situation
+                    jours/recrutement, délai moyen 4 semaines). Chaque situation
                     est unique.
                   </p>
                 </motion.div>

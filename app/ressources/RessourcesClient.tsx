@@ -708,7 +708,7 @@ export default function RessourcesClient() {
                   { value: "200+", label: "recrutements réalisés" },
                   { value: "50+", label: "entreprises accompagnées" },
                   { value: "7 ans", label: "d'expertise TA" },
-                  { value: "2-3 sem.", label: "time-to-hire moyen" },
+                  { value: "4 sem.", label: "time-to-hire moyen" },
                 ].map((stat) => (
                   <div key={stat.label} className="p-4 rounded-xl bg-white/5 border border-white/10">
                     <div className="text-xl font-bold text-rocket-teal-glow font-mono">{stat.value}</div>

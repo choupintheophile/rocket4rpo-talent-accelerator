@@ -1922,7 +1922,7 @@ function StepResults({ onRestart }: { onRestart: () => void }) {
           </h3>
 
           <p className="text-xs text-muted-foreground max-w-md mx-auto leading-relaxed mb-3">
-            Nos clients recrutent leur premier Sales en 2-3 semaines en moyenne.
+            Nos clients recrutent leur premier Sales en 4 semaines en moyenne.
             Réservez un appel de 15 min pour voir comment on peut faire pareil
             pour vous.
           </p>

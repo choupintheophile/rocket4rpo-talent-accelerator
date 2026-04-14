@@ -85,7 +85,7 @@ const testimonials = [
 const stats = [
   { value: "200+", label: "Recrutements réalisés", icon: CheckCircle2 },
   { value: "50+", label: "Entreprises accompagnées", icon: TrendingUp },
-  { value: "2-3 sem.", label: "Time-to-hire moyen", icon: Zap },
+  { value: "4 sem.", label: "Time-to-hire moyen", icon: Zap },
 ];
 
 const faqs = [

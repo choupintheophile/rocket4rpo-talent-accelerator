@@ -267,7 +267,7 @@ export default function RecrutementPageClient() {
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
                   <Zap className="w-4 h-4 text-rocket-teal-glow" />
-                  <span><strong className="text-white">500€/jour</strong> TJM minimum</span>
+                  <span><strong className="text-white">500 €</strong> TJM</span>
                 </div>
               </div>
 
@@ -481,7 +481,7 @@ export default function RecrutementPageClient() {
               4 étapes pour rejoindre le réseau
             </h2>
             <p className="mt-4 text-white/50 text-lg">
-              Un process transparent et rapide. De la candidature à l\’intégration
+              Un process transparent et rapide. De la candidature à l’intégration
               en moins de 2 semaines.
             </p>
           </motion.div>
@@ -637,7 +637,8 @@ export default function RecrutementPageClient() {
             custom={1}
           >
             Prêt à rejoindre le réseau{" "}
-            <span className="text-gradient">Rocket4RPO</span> ?
+            <span className="text-gradient">Rocket4RPO</span>
+            {" "}?
           </motion.h2>
 
           <motion.p

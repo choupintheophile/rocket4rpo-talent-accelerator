@@ -51,7 +51,7 @@ const faqs = [
   {
     question: "En combien de temps le recruteur est-il opérationnel ?",
     answer:
-      "1 semaine. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée en 5-7 jours.",
+      "1 semaine. Le TA Specialist rejoint vos outils (ATS, Slack, Teams) et vos rituels dès le premier jour. Première shortlist qualifiée en 48h.",
   },
   {
     question: "Comment sélectionnez-vous vos TA Specialists ?",
@@ -132,7 +132,7 @@ export default function OffreClient() {
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
                   <Clock className="w-4 h-4 text-rocket-teal-glow" />
-                  <span><strong className="text-white">2-3 sem.</strong> time-to-hire moyen</span>
+                  <span><strong className="text-white">4 sem.</strong> time-to-hire moyen</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
                   <TrendingDown className="w-4 h-4 text-rocket-teal-glow" />
@@ -567,8 +567,8 @@ export default function OffreClient() {
               Ce que vous obtenez concrètement
             </h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-base">
-              Pas de promesses vagues. Voici exactement ce que chaque TA
-              Specialist délivre, dès la première semaine.
+              Pas de promesses vagues. Voici les résultats concrets que votre TA
+              Specialist produit dès les premières semaines.
             </p>
           </div>
 
@@ -596,8 +596,8 @@ export default function OffreClient() {
             {[
               {
                 icon: Search,
-                title: "Sourcing multi-canal agressif",
-                text: "LinkedIn Recruiter, approche directe, réseau, communautés spécialisées. Votre TA chasse activement les meilleurs profils du marché — pas des CV de job boards périmés.",
+                title: "Sourcing multi-canal",
+                text: "LinkedIn Recruiter, approche directe, réseau, communautés spécialisées, job boards ciblés. Votre TA active tous les canaux pertinents pour chasser les meilleurs profils du marché.",
               },
               {
                 icon: FileCheck,
@@ -947,8 +947,8 @@ export default function OffreClient() {
               },
               {
                 icon: Target,
-                title: "200+ recrutements, Time-to-hire : 2-3 semaines",
-                desc: "200+ recrutements réalisés avec Time-to-hire : 2-3 semaines à 12 mois. Ce n'est pas du volume — c'est de la précision. Chaque recrutement est un succès mesurable.",
+                title: "200+ recrutements, Time-to-hire : 4 semaines",
+                desc: "200+ recrutements réalisés avec Time-to-hire : 4 semaines en moyenne. Ce n'est pas du volume — c'est de la précision. Chaque recrutement est un succès mesurable.",
               },
               {
                 icon: TrendingUp,

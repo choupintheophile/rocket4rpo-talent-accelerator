@@ -37,7 +37,7 @@ export const heroContent: Record<VisitorSegment, HeroContent> = {
   tech: {
     badge: "RPO — Recrutement externalisé sur-mesure",
     headline: "Vos postes Tech restent ouverts trop longtemps\ ?",
-    highlightedText: "Première shortlist en 5-7 jours",
+    highlightedText: "Première shortlist en 48h",
     subtitle:
       "Nos TA parlent votre stack. Sourcing GitHub, communautés tech, approche directe. Une équipe cumulant 200+ recrutements, 92\ % de rétention à 12 mois.",
   },
