@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
   Search,
@@ -19,6 +19,15 @@ import {
   Heart,
   Languages as LanguagesIcon,
   FileText,
+  LayoutGrid,
+  Table as TableIcon,
+  Keyboard,
+  AlertTriangle,
+  CheckCircle2,
+  Calendar,
+  Zap,
+  GitCompare,
+  Trash2,
 } from "lucide-react";
 import {
   CRITERIA,
@@ -46,11 +55,11 @@ type SortMode = "score-desc" | "score-asc" | "recent" | "oldest" | "tjm-desc" | 
    ═══════════════════════════════════════════════════════════════════════ */
 interface Filters {
   query: string;
-  verdicts: Set<string>; // "top" | "mid" | "low" | "nc"
+  verdicts: Set<string>;
   scoreMin: number;
   scoreMax: number;
   minFilled: number;
-  openCddCdi: Set<"true" | "false" | "null">; // filtre multi
+  openCddCdi: Set<"true" | "false" | "null">;
   tjmMin: string;
   tjmMax: string;
   hasCv: "any" | "yes" | "no";
@@ -60,12 +69,18 @@ interface Filters {
   intelligenceLevel: Set<string>;
   motivationLevel: Set<string>;
   sympathyLevel: Set<string>;
-  languages: Set<string>; // langues au moins parlées
-  minLangLevel: string; // niveau minimum requis
+  languages: Set<string>;
+  minLangLevel: string;
   loc: string;
   profileTypes: Set<string>;
   companyTypes: Set<string>;
-  critScores: Record<number, number>; // critIdx → score minimum (0-5)
+  critScores: Record<number, number>;
+  // v20.5
+  forces: Set<string>; // au moins une force présente (AND-ish → OR simple)
+  risks: Set<string>; // au moins une alerte présente
+  interviewSince: number; // jours ("entretien <= X jours")
+  updatedSince: number; // jours (mis à jour <= X jours)
+  onlyShortlist: boolean;
 }
 
 const EMPTY_FILTERS: Filters = {
@@ -90,7 +105,76 @@ const EMPTY_FILTERS: Filters = {
   profileTypes: new Set(),
   companyTypes: new Set(),
   critScores: {},
+  forces: new Set(),
+  risks: new Set(),
+  interviewSince: 0,
+  updatedSince: 0,
+  onlyShortlist: false,
 };
+
+const SHORTLIST_LS_KEY = "r4rpo_shortlist_v1";
+const VIEW_LS_KEY = "r4rpo_classement_view_v1";
+
+// Presets rapides — bookmarks de filtres
+const QUICK_PRESETS: { id: string; label: string; emoji: string; apply: (f: Filters) => Filters }[] = [
+  {
+    id: "favorites",
+    label: "Favoris",
+    emoji: "⭐",
+    apply: (f) => ({ ...EMPTY_FILTERS, query: f.query, onlyShortlist: true }),
+  },
+  {
+    id: "stars",
+    label: "Stars ≥85%",
+    emoji: "🏆",
+    apply: (f) => ({ ...EMPTY_FILTERS, query: f.query, scoreMin: 85, minFilled: 5 }),
+  },
+  {
+    id: "sales-sr",
+    label: "Sales senior",
+    emoji: "💼",
+    apply: (f) => ({
+      ...EMPTY_FILTERS,
+      query: f.query,
+      qualifProfile: new Set(["Sales"]),
+      qualifLevel: new Set(["Senior (6-10 ans)", "Expert (10+ ans)"]),
+    }),
+  },
+  {
+    id: "it-sr",
+    label: "IT senior",
+    emoji: "💻",
+    apply: (f) => ({
+      ...EMPTY_FILTERS,
+      query: f.query,
+      qualifProfile: new Set(["IT"]),
+      qualifLevel: new Set(["Senior (6-10 ans)", "Expert (10+ ans)"]),
+    }),
+  },
+  {
+    id: "open-cdi",
+    label: "Ouvert CDI",
+    emoji: "✓",
+    apply: (f) => ({ ...EMPTY_FILTERS, query: f.query, openCddCdi: new Set(["true"]) }),
+  },
+  {
+    id: "this-week",
+    label: "Cette semaine",
+    emoji: "📅",
+    apply: (f) => ({ ...EMPTY_FILTERS, query: f.query, updatedSince: 7 }),
+  },
+  {
+    id: "intl",
+    label: "Profil international",
+    emoji: "🌍",
+    apply: (f) => ({
+      ...EMPTY_FILTERS,
+      query: f.query,
+      languages: new Set(["Anglais"]),
+      minLangLevel: "Courant (C1-C2)",
+    }),
+  },
+];
 
 /* ═══════════════════════════════════════════════════════════════════════
    Helpers
@@ -197,10 +281,99 @@ function FilterGroup({
 export function SearchEngineClient({ candidates }: { candidates: EnrichedCandidate[] }) {
   const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
   const [sort, setSort] = useState<SortMode>("score-desc");
+  const [view, setView] = useState<"cards" | "table">("cards");
+  const [shortlist, setShortlist] = useState<Set<string>>(new Set());
+  const [compareMode, setCompareMode] = useState(false);
+  const [compareIds, setCompareIds] = useState<Set<string>>(new Set());
+  const [showCompare, setShowCompare] = useState(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
+  const [activePreset, setActivePreset] = useState<string | null>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Charger shortlist + vue depuis localStorage
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(SHORTLIST_LS_KEY);
+      if (stored) setShortlist(new Set(JSON.parse(stored)));
+      const storedView = window.localStorage.getItem(VIEW_LS_KEY);
+      if (storedView === "cards" || storedView === "table") setView(storedView);
+    } catch {}
+  }, []);
+
+  // Persister shortlist
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(SHORTLIST_LS_KEY, JSON.stringify(Array.from(shortlist)));
+    } catch {}
+  }, [shortlist]);
+
+  // Persister vue
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(VIEW_LS_KEY, view);
+    } catch {}
+  }, [view]);
+
+  // Raccourcis clavier globaux
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      const target = e.target as HTMLElement;
+      const isTyping = target?.tagName === "INPUT" || target?.tagName === "TEXTAREA" || target?.tagName === "SELECT";
+
+      if (e.key === "/" && !isTyping) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      } else if (e.key === "Escape" && !isTyping) {
+        setFilters(EMPTY_FILTERS);
+        setActivePreset(null);
+      } else if (e.key === "?" && !isTyping) {
+        e.preventDefault();
+        setShowShortcuts((v) => !v);
+      } else if (e.key.toLowerCase() === "c" && !isTyping && !e.ctrlKey && !e.metaKey) {
+        setCompareMode((v) => !v);
+      } else if (e.key === "v" && !isTyping && !e.ctrlKey && !e.metaKey) {
+        setView((v) => (v === "cards" ? "table" : "cards"));
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  function toggleShortlist(id: string) {
+    setShortlist((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  }
+
+  function toggleCompareId(id: string) {
+    setCompareIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else if (next.size < 4) {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
+  function applyPreset(preset: (typeof QUICK_PRESETS)[number]) {
+    if (activePreset === preset.id) {
+      // Toggle off
+      setFilters(EMPTY_FILTERS);
+      setActivePreset(null);
+    } else {
+      setFilters(preset.apply(filters));
+      setActivePreset(preset.id);
+    }
+  }
 
   // Helper pour updates
   const updateFilter = useCallback(<K extends keyof Filters>(key: K, value: Filters[K]) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
+    setActivePreset(null); // reset preset si on modifie manuellement
   }, []);
 
   const toggleSetValue = useCallback((key: keyof Filters, value: string) => {
@@ -331,6 +504,35 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
         if (s < minScore) return false;
       }
 
+      // v20.5 — Forces (au moins une match)
+      if (filters.forces.size > 0) {
+        const cForces = asStringArray(c.forces);
+        const hasMatch = cForces.some((f) => filters.forces.has(f));
+        if (!hasMatch) return false;
+      }
+
+      // v20.5 — Risques (au moins un match)
+      if (filters.risks.size > 0) {
+        const cRisks = asStringArray(c.risks);
+        const hasMatch = cRisks.some((r) => filters.risks.has(r));
+        if (!hasMatch) return false;
+      }
+
+      // v20.5 — Date entretien (candidats entretenus il y a ≤ N jours)
+      if (filters.interviewSince > 0 && c.date) {
+        const days = Math.floor((Date.now() - new Date(c.date).getTime()) / (1000 * 60 * 60 * 24));
+        if (days > filters.interviewSince) return false;
+      }
+
+      // v20.5 — Date update (dernière modif ≤ N jours)
+      if (filters.updatedSince > 0) {
+        const days = Math.floor((Date.now() - new Date(c.updatedAt).getTime()) / (1000 * 60 * 60 * 24));
+        if (days > filters.updatedSince) return false;
+      }
+
+      // v20.5 — Shortlist only
+      if (filters.onlyShortlist && !shortlist.has(c.id)) return false;
+
       return true;
     });
 
@@ -357,7 +559,51 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
     });
 
     return result;
-  }, [candidates, filters, sort]);
+  }, [candidates, filters, sort, shortlist]);
+
+  // Stats dashboard
+  const stats = useMemo(() => {
+    const total = candidates.length;
+    const evaluated = candidates.filter((c) => c.filled >= 1).length;
+    const priorities = candidates.filter((c) => c.verdictLevel === "top").length;
+    const secondaries = candidates.filter((c) => c.verdictLevel === "mid").length;
+    const noRetained = candidates.filter((c) => c.verdictLevel === "low").length;
+    const incompletes = candidates.filter((c) => c.verdictLevel === "nc").length;
+    const sumPct = candidates.reduce((s, c) => s + c.pct, 0);
+    const avgPct = evaluated > 0 ? Math.round(sumPct / evaluated) : 0;
+    const favorites = shortlist.size;
+
+    // Distribution qualif profile
+    const qualifDist: Record<string, number> = { Généraliste: 0, Sales: 0, IT: 0 };
+    candidates.forEach((c) => {
+      if (c.qualifProfile && c.qualifProfile in qualifDist) qualifDist[c.qualifProfile]++;
+    });
+
+    // Top langues
+    const langCount: Record<string, number> = {};
+    candidates.forEach((c) => {
+      const langs = (Array.isArray(c.languagesSpoken) ? c.languagesSpoken : []) as Array<{ lang: string; level: string }>;
+      langs.forEach((l) => {
+        langCount[l.lang] = (langCount[l.lang] || 0) + 1;
+      });
+    });
+    const topLangs = Object.entries(langCount).sort((a, b) => b[1] - a[1]).slice(0, 5);
+
+    return { total, evaluated, priorities, secondaries, noRetained, incompletes, avgPct, favorites, qualifDist, topLangs };
+  }, [candidates, shortlist]);
+
+  // Collecter forces/risques uniques pour proposer en filtres
+  const allForces = useMemo(() => {
+    const s = new Set<string>();
+    candidates.forEach((c) => asStringArray(c.forces).forEach((f) => s.add(f)));
+    return Array.from(s).sort();
+  }, [candidates]);
+
+  const allRisks = useMemo(() => {
+    const s = new Set<string>();
+    candidates.forEach((c) => asStringArray(c.risks).forEach((r) => s.add(r)));
+    return Array.from(s).sort();
+  }, [candidates]);
 
   const activeFilterCount = useMemo(() => {
     let count = 0;
@@ -377,6 +623,11 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
     if (filters.loc) count++;
     count += filters.profileTypes.size + filters.companyTypes.size;
     count += Object.keys(filters.critScores).length;
+    // v20.5
+    count += filters.forces.size + filters.risks.size;
+    if (filters.interviewSince > 0) count++;
+    if (filters.updatedSince > 0) count++;
+    if (filters.onlyShortlist) count++;
     return count;
   }, [filters]);
 
@@ -419,7 +670,90 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-5 h-full">
+    <div className="space-y-5">
+      {/* ═══ STATS DASHBOARD ═══ */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        <StatCard label="Total" value={stats.total} sub="en base" color="gray" icon={<Users className="w-4 h-4" />} />
+        <StatCard
+          label="Évalués"
+          value={stats.evaluated}
+          sub={`${Math.round((stats.evaluated / Math.max(1, stats.total)) * 100)}%`}
+          color="blue"
+          icon={<CheckCircle2 className="w-4 h-4" />}
+        />
+        <StatCard label="Score moyen" value={`${stats.avgPct}%`} sub="sur évalués" color="teal" icon={<Sparkles className="w-4 h-4" />} />
+        <StatCard label="Prioritaires" value={stats.priorities} sub="≥80%" color="emerald" icon={<Star className="w-4 h-4" />} />
+        <StatCard label="Favoris" value={stats.favorites} sub="shortlist" color="amber" icon={<Star className="w-4 h-4 fill-current" />} />
+        <StatCard
+          label="Qualif"
+          value={Object.values(stats.qualifDist).reduce((a, b) => a + b, 0)}
+          sub={`S:${stats.qualifDist.Sales} · IT:${stats.qualifDist.IT} · G:${stats.qualifDist["Généraliste"]}`}
+          color="purple"
+          icon={<Compass className="w-4 h-4" />}
+        />
+      </div>
+
+      {/* ═══ PRESETS RAPIDES ═══ */}
+      <div className="bg-white border border-gray-200/80 rounded-2xl p-4 shadow-sm">
+        <div className="flex items-center gap-2 mb-3">
+          <Zap className="w-4 h-4 text-amber-500" />
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-600">
+            Recherches rapides
+          </span>
+          <span className="text-[10px] text-gray-400">· clic pour activer / désactiver</span>
+          <button
+            type="button"
+            onClick={() => setShowShortcuts((v) => !v)}
+            className="ml-auto text-[10px] text-gray-500 hover:text-rocket-teal flex items-center gap-1"
+            title="Raccourcis clavier"
+          >
+            <Keyboard className="w-3 h-3" />
+            Raccourcis
+          </button>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {QUICK_PRESETS.map((preset) => {
+            const isActive = activePreset === preset.id;
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() => applyPreset(preset)}
+                className={`text-[12px] px-3 py-1.5 rounded-full border-2 transition-all font-medium ${
+                  isActive
+                    ? "bg-gradient-to-br from-rocket-teal to-rocket-teal/90 border-rocket-teal text-white shadow-sm"
+                    : "bg-white border-gray-200 text-gray-600 hover:border-rocket-teal/50 hover:bg-rocket-teal/5"
+                }`}
+              >
+                <span className="mr-1">{preset.emoji}</span>
+                {preset.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ═══ SHORTCUTS OVERLAY ═══ */}
+      {showShortcuts && (
+        <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl p-5 shadow-lg">
+          <div className="flex items-center gap-2 mb-3">
+            <Keyboard className="w-4 h-4" />
+            <span className="text-[13px] font-semibold">Raccourcis clavier</span>
+            <button onClick={() => setShowShortcuts(false)} className="ml-auto text-gray-400 hover:text-white">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[11px]">
+            <div><kbd className="bg-white/10 px-1.5 py-0.5 rounded font-mono">/</kbd> Focus recherche</div>
+            <div><kbd className="bg-white/10 px-1.5 py-0.5 rounded font-mono">Esc</kbd> Reset filtres</div>
+            <div><kbd className="bg-white/10 px-1.5 py-0.5 rounded font-mono">c</kbd> Mode comparaison</div>
+            <div><kbd className="bg-white/10 px-1.5 py-0.5 rounded font-mono">v</kbd> Toggle vue</div>
+            <div><kbd className="bg-white/10 px-1.5 py-0.5 rounded font-mono">?</kbd> Cette popup</div>
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-col lg:flex-row gap-5 h-full">
       {/* ═══ SIDEBAR FILTRES ═══ */}
       <aside className="lg:w-[340px] lg:flex-shrink-0">
         <div className="bg-white border border-gray-200/80 rounded-2xl p-5 shadow-sm lg:sticky lg:top-20 lg:max-h-[calc(100vh-110px)] lg:overflow-y-auto">
@@ -445,10 +779,11 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
               <input
+                ref={searchInputRef}
                 type="text"
                 value={filters.query}
                 onChange={(e) => updateFilter("query", e.target.value)}
-                placeholder="Nom, email, résumé, notes..."
+                placeholder="Nom, email, résumé, notes... (/ pour focus)"
                 className="w-full pl-9 pr-8 py-2.5 text-[13px] border border-gray-200 rounded-lg focus:outline-none focus:border-rocket-teal focus:ring-2 focus:ring-rocket-teal/10 transition-all"
               />
               {filters.query && (
@@ -812,6 +1147,103 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
             </div>
           </FilterGroup>
 
+          {/* FORCES détectées */}
+          {allForces.length > 0 && (
+            <FilterGroup
+              title="Forces détectées"
+              icon={<CheckCircle2 className="w-3 h-3" />}
+              badge={filters.forces.size}
+              defaultOpen={false}
+            >
+              <div className="flex flex-wrap gap-1">
+                {allForces.map((f) => (
+                  <ChipButton
+                    key={f}
+                    active={filters.forces.has(f)}
+                    onClick={() => toggleSetValue("forces", f)}
+                    color="emerald"
+                  >
+                    {f}
+                  </ChipButton>
+                ))}
+              </div>
+            </FilterGroup>
+          )}
+
+          {/* ALERTES détectées */}
+          {allRisks.length > 0 && (
+            <FilterGroup
+              title="Alertes détectées"
+              icon={<AlertTriangle className="w-3 h-3" />}
+              badge={filters.risks.size}
+              defaultOpen={false}
+            >
+              <div className="flex flex-wrap gap-1">
+                {allRisks.map((r) => (
+                  <ChipButton
+                    key={r}
+                    active={filters.risks.has(r)}
+                    onClick={() => toggleSetValue("risks", r)}
+                    color="pink"
+                  >
+                    {r}
+                  </ChipButton>
+                ))}
+              </div>
+            </FilterGroup>
+          )}
+
+          {/* DATES */}
+          <FilterGroup
+            title="Dates"
+            icon={<Calendar className="w-3 h-3" />}
+            badge={(filters.interviewSince > 0 ? 1 : 0) + (filters.updatedSince > 0 ? 1 : 0)}
+            defaultOpen={false}
+          >
+            <div className="space-y-2">
+              <div>
+                <div className="text-[10px] text-gray-500 mb-1">Entretien il y a ≤</div>
+                <div className="flex gap-1 flex-wrap">
+                  {[0, 7, 30, 90, 180].map((d) => (
+                    <ChipButton
+                      key={d}
+                      active={filters.interviewSince === d && d > 0}
+                      onClick={() => updateFilter("interviewSince", filters.interviewSince === d ? 0 : d)}
+                      color="blue"
+                    >
+                      {d === 0 ? "Tous" : d === 7 ? "1 sem" : d === 30 ? "1 mois" : d === 90 ? "3 mois" : "6 mois"}
+                    </ChipButton>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div className="text-[10px] text-gray-500 mb-1">Modifié il y a ≤</div>
+                <div className="flex gap-1 flex-wrap">
+                  {[0, 7, 30, 90].map((d) => (
+                    <ChipButton
+                      key={d}
+                      active={filters.updatedSince === d && d > 0}
+                      onClick={() => updateFilter("updatedSince", filters.updatedSince === d ? 0 : d)}
+                      color="blue"
+                    >
+                      {d === 0 ? "Tous" : d === 7 ? "1 sem" : d === 30 ? "1 mois" : "3 mois"}
+                    </ChipButton>
+                  ))}
+                </div>
+              </div>
+              <label className="flex items-center gap-2 text-[11px] text-gray-600 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={filters.onlyShortlist}
+                  onChange={(e) => updateFilter("onlyShortlist", e.target.checked)}
+                  className="accent-rocket-teal"
+                />
+                <Star className="w-3 h-3 text-amber-500 fill-current" />
+                Uniquement les favoris
+              </label>
+            </div>
+          </FilterGroup>
+
           {/* SCORES MIN PAR CRITÈRE */}
           <FilterGroup
             title="Scores minimum par critère"
@@ -880,8 +1312,43 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
             </span>
           )}
 
-          <div className="ml-auto flex items-center gap-2">
-            <label className="text-[11px] text-gray-500">Trier par :</label>
+          <div className="ml-auto flex items-center gap-2 flex-wrap">
+            {/* Toggle vue Cards / Table */}
+            <div className="flex bg-gray-100 rounded-lg p-0.5">
+              <button
+                type="button"
+                onClick={() => setView("cards")}
+                title="Vue cards"
+                className={`p-1.5 rounded transition-all ${view === "cards" ? "bg-white shadow-sm text-rocket-teal" : "text-gray-400 hover:text-gray-600"}`}
+              >
+                <LayoutGrid className="w-3.5 h-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setView("table")}
+                title="Vue tableau"
+                className={`p-1.5 rounded transition-all ${view === "table" ? "bg-white shadow-sm text-rocket-teal" : "text-gray-400 hover:text-gray-600"}`}
+              >
+                <TableIcon className="w-3.5 h-3.5" />
+              </button>
+            </div>
+
+            {/* Toggle mode comparaison */}
+            <button
+              type="button"
+              onClick={() => setCompareMode((v) => !v)}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
+                compareMode
+                  ? "border-rocket-teal bg-rocket-teal/10 text-rocket-teal"
+                  : "border-gray-200 text-gray-600 hover:border-rocket-teal hover:text-rocket-teal"
+              }`}
+              title="Comparer 2-4 candidats (c)"
+            >
+              <GitCompare className="w-3.5 h-3.5" />
+              Comparer
+            </button>
+
+            <label className="text-[11px] text-gray-500">Tri :</label>
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as SortMode)}
@@ -925,22 +1392,133 @@ export function SearchEngineClient({ candidates }: { candidates: EnrichedCandida
               </button>
             )}
           </div>
-        ) : (
+        ) : view === "cards" ? (
           <div className="space-y-2.5">
             {filtered.map((c, idx) => (
-              <CandidateCard key={c.id} candidate={c} rank={idx + 1} />
+              <CandidateCard
+                key={c.id}
+                candidate={c}
+                rank={idx + 1}
+                isFavorite={shortlist.has(c.id)}
+                onToggleFavorite={() => toggleShortlist(c.id)}
+                compareMode={compareMode}
+                isSelected={compareIds.has(c.id)}
+                onToggleCompare={() => toggleCompareId(c.id)}
+              />
             ))}
           </div>
+        ) : (
+          <CompactTable
+            candidates={filtered}
+            shortlist={shortlist}
+            onToggleShortlist={toggleShortlist}
+            compareMode={compareMode}
+            compareIds={compareIds}
+            onToggleCompare={toggleCompareId}
+          />
         )}
       </main>
+      </div>
+
+      {/* Footer flottant pour mode comparaison */}
+      {compareMode && compareIds.size > 0 && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl shadow-2xl p-3 flex items-center gap-3 z-30 border border-white/10">
+          <GitCompare className="w-4 h-4 text-rocket-teal" />
+          <span className="text-[12px] font-medium">
+            {compareIds.size} candidat{compareIds.size > 1 ? "s" : ""} sélectionné{compareIds.size > 1 ? "s" : ""}
+            <span className="text-gray-400 ml-1">(max 4)</span>
+          </span>
+          <button
+            type="button"
+            onClick={() => setShowCompare(true)}
+            disabled={compareIds.size < 2}
+            className="px-3 py-1.5 text-[12px] font-semibold rounded-lg bg-rocket-teal hover:bg-rocket-teal/90 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          >
+            Comparer →
+          </button>
+          <button
+            type="button"
+            onClick={() => setCompareIds(new Set())}
+            className="p-1.5 text-gray-400 hover:text-white transition-colors"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
+      {/* Modal comparaison */}
+      {showCompare && compareIds.size >= 2 && (
+        <ComparisonModal
+          candidates={candidates.filter((c) => compareIds.has(c.id))}
+          onClose={() => setShowCompare(false)}
+        />
+      )}
     </div>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   Carte candidat individuelle
+   StatCard — bloc statistique du dashboard
    ═══════════════════════════════════════════════════════════════════════ */
-function CandidateCard({ candidate: c, rank }: { candidate: EnrichedCandidate; rank: number }) {
+function StatCard({
+  label,
+  value,
+  sub,
+  color,
+  icon,
+}: {
+  label: string;
+  value: string | number;
+  sub?: string;
+  color: "gray" | "blue" | "teal" | "emerald" | "amber" | "purple";
+  icon?: React.ReactNode;
+}) {
+  const colorCls: Record<string, string> = {
+    gray: "bg-gray-50 text-gray-600 border-gray-200",
+    blue: "bg-blue-50 text-blue-700 border-blue-100",
+    teal: "bg-rocket-teal/10 text-rocket-teal border-rocket-teal/20",
+    emerald: "bg-emerald-50 text-emerald-700 border-emerald-100",
+    amber: "bg-amber-50 text-amber-700 border-amber-100",
+    purple: "bg-purple-50 text-purple-700 border-purple-100",
+  };
+  return (
+    <div className="bg-white border border-gray-200/80 rounded-2xl p-3 shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-center gap-2 mb-1.5">
+        {icon && (
+          <div className={`w-6 h-6 rounded-lg border flex items-center justify-center ${colorCls[color]}`}>
+            {icon}
+          </div>
+        )}
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">{label}</span>
+      </div>
+      <div className="flex items-baseline gap-1.5">
+        <span className="text-[22px] font-bold font-mono tabular-nums text-gray-900">{value}</span>
+      </div>
+      {sub && <div className="text-[10px] text-gray-400 mt-0.5 truncate">{sub}</div>}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Carte candidat individuelle (avec star favoris + checkbox compare)
+   ═══════════════════════════════════════════════════════════════════════ */
+function CandidateCard({
+  candidate: c,
+  rank,
+  isFavorite,
+  onToggleFavorite,
+  compareMode,
+  isSelected,
+  onToggleCompare,
+}: {
+  candidate: EnrichedCandidate;
+  rank: number;
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
+  compareMode: boolean;
+  isSelected: boolean;
+  onToggleCompare: () => void;
+}) {
   const scores = (c.scores as Record<string, number>) || {};
   const langs = (Array.isArray(c.languagesSpoken) ? c.languagesSpoken : []) as Array<{
     lang: string;
@@ -959,12 +1537,33 @@ function CandidateCard({ candidate: c, rank }: { candidate: EnrichedCandidate; r
           ? "bg-orange-100 text-orange-700 border-orange-300"
           : "bg-gray-50 text-gray-500 border-gray-200";
 
-  return (
-    <Link
-      href={`/webapp-testing/candidat/${c.id}`}
-      className="block bg-white border border-gray-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md hover:border-rocket-teal/30 transition-all group"
-    >
+  const cardCls = `relative block bg-white border rounded-2xl p-4 shadow-sm hover:shadow-md transition-all group ${
+    isSelected ? "border-rocket-teal ring-2 ring-rocket-teal/20" : "border-gray-200/80 hover:border-rocket-teal/30"
+  }`;
+
+  const content = (
+    <>
       <div className="flex items-start gap-4">
+        {/* Checkbox compare (mode actif) */}
+        {compareMode && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleCompare();
+            }}
+            className={`w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 mt-1 transition-colors ${
+              isSelected
+                ? "bg-rocket-teal border-rocket-teal text-white"
+                : "bg-white border-gray-300 hover:border-rocket-teal"
+            }`}
+            title="Cocher pour comparer"
+          >
+            {isSelected && <CheckCircle2 className="w-3 h-3" />}
+          </button>
+        )}
+
         {/* Rank */}
         <div className={`w-10 h-10 rounded-xl border flex items-center justify-center text-[13px] font-bold font-mono flex-shrink-0 ${rankCls}`}>
           {rank}
@@ -1086,6 +1685,415 @@ function CandidateCard({ candidate: c, rank }: { candidate: EnrichedCandidate; r
           </div>
         </div>
       </div>
+
+      {/* Bouton favori (top-right absolue) */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onToggleFavorite();
+        }}
+        className={`absolute top-3 right-3 p-1.5 rounded-lg transition-all ${
+          isFavorite
+            ? "text-amber-500 hover:bg-amber-50"
+            : "text-gray-300 hover:text-amber-500 hover:bg-amber-50 opacity-0 group-hover:opacity-100"
+        }`}
+        title={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+      >
+        <Star className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
+      </button>
+    </>
+  );
+
+  // En mode compare, la carte toggle la sélection ; sinon ouvre le candidat
+  if (compareMode) {
+    return (
+      <div
+        onClick={onToggleCompare}
+        className={`${cardCls} cursor-pointer`}
+      >
+        {content}
+      </div>
+    );
+  }
+  return (
+    <Link href={`/webapp-testing/candidat/${c.id}`} className={cardCls}>
+      {content}
     </Link>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Vue tableau compacte (alternative aux cards)
+   ═══════════════════════════════════════════════════════════════════════ */
+function CompactTable({
+  candidates,
+  shortlist,
+  onToggleShortlist,
+  compareMode,
+  compareIds,
+  onToggleCompare,
+}: {
+  candidates: EnrichedCandidate[];
+  shortlist: Set<string>;
+  onToggleShortlist: (id: string) => void;
+  compareMode: boolean;
+  compareIds: Set<string>;
+  onToggleCompare: (id: string) => void;
+}) {
+  return (
+    <div className="bg-white border border-gray-200/80 rounded-2xl shadow-sm overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse min-w-[900px]">
+          <thead>
+            <tr className="bg-gray-50 border-b border-gray-200">
+              <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 px-2 py-2.5 text-center w-8">{compareMode ? "✓" : "★"}</th>
+              <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 px-2 py-2.5 text-center w-10">#</th>
+              <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 px-3 py-2.5 text-left">Candidat</th>
+              <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 px-3 py-2.5 text-left">Qualif</th>
+              <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 px-3 py-2.5 text-left">TJM</th>
+              <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 px-3 py-2.5 text-center w-20">Score</th>
+              {SCORING_VISIBLE_ORDER.map((idx, disp) => (
+                <th
+                  key={idx}
+                  className="text-[9px] font-semibold uppercase tracking-wider text-gray-400 px-1 py-2.5 text-center w-8"
+                  title={CRITERIA[idx].name}
+                >
+                  {String(disp + 1).padStart(2, "0")}
+                </th>
+              ))}
+              <th className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 px-3 py-2.5 text-left">Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            {candidates.map((c, idx) => {
+              const scores = (c.scores as Record<string, number>) || {};
+              const isFav = shortlist.has(c.id);
+              const isSel = compareIds.has(c.id);
+              return (
+                <tr
+                  key={c.id}
+                  className={`border-b border-gray-100 last:border-b-0 transition-colors ${
+                    isSel ? "bg-rocket-teal/5" : "hover:bg-gray-50"
+                  }`}
+                >
+                  <td className="px-2 py-2 text-center">
+                    {compareMode ? (
+                      <button
+                        type="button"
+                        onClick={() => onToggleCompare(c.id)}
+                        className={`w-4 h-4 rounded border-2 inline-flex items-center justify-center transition-colors ${
+                          isSel ? "bg-rocket-teal border-rocket-teal text-white" : "border-gray-300 hover:border-rocket-teal"
+                        }`}
+                      >
+                        {isSel && <CheckCircle2 className="w-2.5 h-2.5" />}
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => onToggleShortlist(c.id)}
+                        className={`p-1 rounded transition-colors ${isFav ? "text-amber-500" : "text-gray-300 hover:text-amber-500"}`}
+                      >
+                        <Star className={`w-3.5 h-3.5 ${isFav ? "fill-current" : ""}`} />
+                      </button>
+                    )}
+                  </td>
+                  <td className="px-2 py-2 text-center text-[11px] text-gray-500 font-mono">{idx + 1}</td>
+                  <td className="px-3 py-2">
+                    <Link href={`/webapp-testing/candidat/${c.id}`} className="hover:text-rocket-teal transition-colors">
+                      <div className="text-[12px] font-medium truncate max-w-[200px]">
+                        {c.prenom} {c.nom}
+                      </div>
+                      <div className="text-[10px] text-gray-400 truncate max-w-[200px]">{c.loc || "—"}</div>
+                    </Link>
+                  </td>
+                  <td className="px-3 py-2 text-[11px]">
+                    {c.qualifProfile ? (
+                      <span className="text-purple-700">
+                        {c.qualifProfile}
+                        {c.qualifLevel && <span className="text-gray-400"> · {c.qualifLevel.split(" ")[0]}</span>}
+                      </span>
+                    ) : (
+                      <span className="text-gray-300">—</span>
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-[11px] text-gray-700 font-mono">{c.tjm || "—"}</td>
+                  <td className="px-3 py-2 text-center">
+                    <div className="text-[13px] font-bold text-rocket-teal font-mono">{c.pct}%</div>
+                    <div className="text-[9px] text-gray-400">{c.filled}/{CRITERIA.length}</div>
+                  </td>
+                  {SCORING_VISIBLE_ORDER.map((critIdx) => {
+                    const s = scores[`c${critIdx}`] || 0;
+                    const bg = s > 0 ? SCORE_COLORS[s - 1] : "#f3f4f6";
+                    const color = s >= 4 ? "#fff" : s > 0 ? "#444" : "#ccc";
+                    return (
+                      <td key={critIdx} className="px-1 py-2 text-center">
+                        <div
+                          className="w-5 h-5 rounded inline-flex items-center justify-center text-[9px] font-mono font-bold"
+                          style={{ background: bg, color }}
+                        >
+                          {s || "·"}
+                        </div>
+                      </td>
+                    );
+                  })}
+                  <td className="px-3 py-2">
+                    <VerdictBadge level={c.verdictLevel} label={c.verdictLabel} />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Modal de comparaison — côte à côte 2-4 candidats
+   ═══════════════════════════════════════════════════════════════════════ */
+function ComparisonModal({
+  candidates,
+  onClose,
+}: {
+  candidates: EnrichedCandidate[];
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-2xl shadow-2xl max-w-[1400px] w-full max-h-[92vh] overflow-hidden flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-gray-200 bg-gradient-to-br from-gray-50 to-white">
+          <div className="w-9 h-9 rounded-xl bg-rocket-teal/10 text-rocket-teal flex items-center justify-center">
+            <GitCompare className="w-4 h-4" />
+          </div>
+          <div className="flex-1">
+            <h2 className="text-[15px] font-semibold text-gray-900">Comparaison de {candidates.length} candidats</h2>
+            <p className="text-[11px] text-gray-500">Identifiez les forces et différences critère par critère</p>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-2 text-gray-400 hover:text-gray-700 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-auto p-5">
+          <div className={`grid gap-3`} style={{ gridTemplateColumns: `180px repeat(${candidates.length}, minmax(200px, 1fr))` }}>
+            {/* Ligne : identité */}
+            <ComparisonRow label="Nom" />
+            {candidates.map((c) => (
+              <div key={c.id} className="bg-gradient-to-br from-rocket-teal/5 to-transparent border border-rocket-teal/20 rounded-xl p-3">
+                <div className="text-[13px] font-semibold text-gray-900">{c.prenom} {c.nom}</div>
+                {c.loc && <div className="text-[10px] text-gray-500 mt-0.5">📍 {c.loc}</div>}
+              </div>
+            ))}
+
+            <ComparisonRow label="Score global" />
+            {candidates.map((c) => (
+              <div key={c.id} className="flex items-center gap-2 p-2 border border-gray-100 rounded-lg">
+                <div className="text-[24px] font-bold font-mono text-rocket-teal tabular-nums">{c.pct}%</div>
+                <div>
+                  <VerdictBadge level={c.verdictLevel} label={c.verdictLabel} />
+                  <div className="text-[10px] text-gray-400 mt-0.5">{c.filled}/{CRITERIA.length}</div>
+                </div>
+              </div>
+            ))}
+
+            <ComparisonRow label="Qualification" />
+            {candidates.map((c) => (
+              <div key={c.id} className="p-2 border border-gray-100 rounded-lg text-[12px]">
+                {c.qualifProfile ? (
+                  <>
+                    <div className="font-medium text-purple-700">{c.qualifProfile}</div>
+                    {c.qualifLevel && <div className="text-[11px] text-gray-600 mt-0.5">{c.qualifLevel}</div>}
+                    {Array.isArray(c.qualifRecruitedTypes) && c.qualifRecruitedTypes.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-1.5">
+                        {(c.qualifRecruitedTypes as string[]).slice(0, 4).map((t, i) => (
+                          <span key={i} className="text-[9px] px-1.5 py-0.5 rounded bg-blue-50 text-blue-700">{t}</span>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <span className="text-gray-300">—</span>
+                )}
+              </div>
+            ))}
+
+            <ComparisonRow label="TJM / Contrat" />
+            {candidates.map((c) => (
+              <div key={c.id} className="p-2 border border-gray-100 rounded-lg text-[12px]">
+                <div className="font-medium">{c.tjm || <span className="text-gray-300">—</span>}</div>
+                <div className="text-[11px] text-gray-500 mt-0.5">
+                  {c.openCddCdi === true && <span className="text-emerald-600">✓ CDI ok</span>}
+                  {c.openCddCdi === false && <span className="text-gray-500">✗ Freelance only</span>}
+                  {c.openCddCdi === null && <span className="text-gray-300">—</span>}
+                </div>
+              </div>
+            ))}
+
+            {/* Évaluation humaine */}
+            <ComparisonRow label="Intelligence" />
+            {candidates.map((c) => (
+              <LevelCell key={c.id} level={c.intelligenceLevel} />
+            ))}
+
+            <ComparisonRow label="Motivation" />
+            {candidates.map((c) => (
+              <LevelCell key={c.id} level={c.motivationLevel} />
+            ))}
+
+            <ComparisonRow label="Sympathie" />
+            {candidates.map((c) => (
+              <LevelCell key={c.id} level={c.sympathyLevel} />
+            ))}
+
+            {/* Langues */}
+            <ComparisonRow label="Langues" />
+            {candidates.map((c) => {
+              const langs = (Array.isArray(c.languagesSpoken) ? c.languagesSpoken : []) as Array<{ lang: string; level: string }>;
+              return (
+                <div key={c.id} className="p-2 border border-gray-100 rounded-lg text-[11px]">
+                  {langs.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {langs.map((l, i) => (
+                        <span key={i} className="px-1.5 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200 text-[10px]">
+                          {l.lang}
+                          {l.level && <span className="text-sky-400 ml-0.5">· {l.level.split(" ")[0]}</span>}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-gray-300">—</span>
+                  )}
+                </div>
+              );
+            })}
+
+            {/* Scoring par critère */}
+            {SCORING_VISIBLE_ORDER.map((critIdx) => {
+              const crit = CRITERIA[critIdx];
+              return (
+                <React.Fragment key={critIdx}>
+                  <ComparisonRow label={crit.name} small />
+                  {candidates.map((c) => {
+                    const scores = (c.scores as Record<string, number>) || {};
+                    const s = scores[`c${critIdx}`] || 0;
+                    const bg = s > 0 ? SCORE_COLORS[s - 1] : "#f3f4f6";
+                    const color = s >= 4 ? "#fff" : s > 0 ? "#444" : "#ccc";
+                    return (
+                      <div key={c.id} className="p-2 border border-gray-100 rounded-lg flex items-center gap-2">
+                        <div
+                          className="w-7 h-7 rounded-md flex items-center justify-center text-[11px] font-mono font-bold"
+                          style={{ background: bg, color }}
+                        >
+                          {s || "·"}
+                        </div>
+                        <span className="text-[11px] text-gray-500">/5</span>
+                      </div>
+                    );
+                  })}
+                </React.Fragment>
+              );
+            })}
+
+            {/* Forces / Alertes */}
+            <ComparisonRow label="Forces" />
+            {candidates.map((c) => {
+              const f = asStringArray(c.forces);
+              return (
+                <div key={c.id} className="p-2 border border-gray-100 rounded-lg text-[10px]">
+                  {f.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {f.map((x, i) => (
+                        <span key={i} className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          {x}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-gray-300">—</span>
+                  )}
+                </div>
+              );
+            })}
+
+            <ComparisonRow label="Alertes" />
+            {candidates.map((c) => {
+              const r = asStringArray(c.risks);
+              return (
+                <div key={c.id} className="p-2 border border-gray-100 rounded-lg text-[10px]">
+                  {r.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {r.map((x, i) => (
+                        <span key={i} className="px-1.5 py-0.5 rounded bg-red-50 text-red-700 border border-red-200">
+                          {x}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-gray-300">—</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="px-5 py-3 border-t border-gray-200 bg-gray-50 flex items-center gap-2">
+          <div className="text-[11px] text-gray-500">
+            Clique en dehors ou sur <kbd className="bg-white border px-1.5 py-0.5 rounded font-mono text-[10px]">Esc</kbd> pour fermer
+          </div>
+          <div className="ml-auto flex gap-2">
+            {candidates.map((c) => (
+              <Link
+                key={c.id}
+                href={`/webapp-testing/candidat/${c.id}`}
+                className="text-[11px] px-3 py-1.5 rounded-lg border border-gray-200 text-gray-700 hover:border-rocket-teal hover:text-rocket-teal transition-colors"
+              >
+                Ouvrir {c.prenom} →
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ComparisonRow({ label, small = false }: { label: string; small?: boolean }) {
+  return (
+    <div className={`flex items-center font-medium text-gray-600 border-r border-gray-100 pr-3 ${small ? "text-[11px]" : "text-[12px]"}`}>
+      {label}
+    </div>
+  );
+}
+
+function LevelCell({ level }: { level?: string | null }) {
+  if (!level) {
+    return <div className="p-2 border border-gray-100 rounded-lg text-[11px] text-gray-300">—</div>;
+  }
+  const bg =
+    level === "Exceptionnel"
+      ? "bg-emerald-100 text-emerald-800 border-emerald-300"
+      : level === "Fort"
+      ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+      : level === "Moyen"
+      ? "bg-amber-50 text-amber-700 border-amber-200"
+      : "bg-red-50 text-red-700 border-red-200";
+  return (
+    <div className="p-2 border border-gray-100 rounded-lg">
+      <span className={`text-[11px] px-2 py-0.5 rounded-full border font-medium ${bg}`}>{level}</span>
+    </div>
   );
 }
