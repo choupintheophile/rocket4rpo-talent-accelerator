@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import RecrutementPageClient from "./PageClient";
 
 export const metadata: Metadata = {
-  title: "Missions RPO Freelance TA — TJM dès 500€/jour",
+  title: "Missions RPO Freelance TA — Rejoignez le réseau",
   description:
-    "Rejoignez le réseau Rocket4RPO. Missions RPO de 3 à 12 mois, TJM dès 500€/jour, remote-friendly. Postulez en 15 minutes.",
+    "Rejoignez le réseau Rocket4RPO. Missions RPO de 3 à 12 mois, rémunération attractive, remote-friendly. Postulez en 15 minutes.",
   alternates: { canonical: "/recrutement" },
 };
 

@@ -127,7 +127,7 @@ function ProofCard() {
           <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-500/[0.12] border border-emerald-500/[0.2]">
             <span className="text-sm font-semibold text-white/90">RPO Rocket4RPO</span>
             <span className="text-xl font-bold text-emerald-400">
-              30 000 €
+              jusqu'à −75%
             </span>
           </div>
         </div>

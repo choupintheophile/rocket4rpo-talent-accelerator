@@ -799,15 +799,6 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
                                 delay: i * 0.15,
                               }}
                             >
-                              {/* Euro amount overlay on bar */}
-                              <motion.span
-                                className="absolute inset-0 flex items-center justify-end pr-3 text-sm font-bold text-white drop-shadow-md"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.5 + i * 0.15 }}
-                              >
-                                {formatCurrency(bar.value)}
-                              </motion.span>
                               {/* RPO pulse glow */}
                               {isRPO && (
                                 <motion.div
@@ -986,9 +977,10 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
                   {/* ── Disclaimer ────────────────────────── */}
                   <p className="text-xs text-muted-foreground italic">
-                    * Estimations basées sur nos données internes (TJM 500 €, 6
-                    jours/recrutement, délai moyen 4 semaines). Chaque situation
-                    est unique.
+                    * Estimations basées sur nos données internes (délai moyen
+                    4 semaines, 6 jours de travail par recrutement). Chaque
+                    situation est unique — pour un chiffrage précis, réservez
+                    un diagnostic gratuit.
                   </p>
                 </motion.div>
               </AnimatePresence>

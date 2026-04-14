@@ -435,7 +435,7 @@ export default function OutilsClient() {
                   <div>
                     <div className="flex justify-between text-xs mb-1.5">
                       <span className="text-white/80 font-medium">RPO Rocket4RPO</span>
-                      <span className="text-rocket-teal-glow font-bold font-mono">30 000 €</span>
+                      <span className="text-rocket-teal-glow font-bold font-mono">Sur devis</span>
                     </div>
                     <div className="h-3 bg-white/[0.06] rounded-full overflow-hidden">
                       <motion.div

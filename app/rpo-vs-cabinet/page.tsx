@@ -18,7 +18,7 @@ const faqs = [
   {
     question: "Le RPO est-il moins cher qu'un cabinet de recrutement ?",
     answer:
-      "Oui, en général. Pour 10 recrutements, un RPO coûte environ 30 000 € (TJM 500 €/j) contre 120 000 à 200 000 € pour un cabinet facturant 15-25 % du salaire annuel brut. Plus le volume est élevé, plus l'écart se creuse en faveur du RPO.",
+      "Oui, en général. Un cabinet classique facture 15-25 % du salaire annuel brut, ce qui représente 120 000 à 200 000 € pour 10 recrutements. Le RPO est facturé sur un modèle prévisible et transparent, jusqu'à 5x moins cher. Plus le volume est élevé, plus l'écart se creuse en faveur du RPO.",
   },
   {
     question: "Peut-on combiner RPO et cabinet de recrutement ?",

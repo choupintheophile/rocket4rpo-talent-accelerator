@@ -295,7 +295,7 @@ export default function HomepageSections() {
                 statPrefix: "120-",
                 unit: "K€",
                 title: "Le coût d’un cabinet",
-                text: "15 à 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : ~30 000€.",
+                text: "15 à 25% du salaire annuel par recrutement. Pour 10 recrutements, la facture explose. Avec le RPO : jusqu’à 5x moins cher.",
                 delay: 0.3,
               },
             ].map((item, idx) => (

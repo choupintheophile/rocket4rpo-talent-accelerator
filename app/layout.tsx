@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: "%s | Rocket4RPO",
   },
   description:
-    "Recruteur senior intégré en 1 semaine, 5x moins cher qu'un cabinet. 200+ recrutements, dès 500€/j. Diagnostic gratuit →",
+    "Recruteur senior intégré en 1 semaine, 5x moins cher qu'un cabinet. 200+ recrutements réalisés. Diagnostic gratuit →",
   metadataBase: new URL("https://rocket4rpo.com"),
   openGraph: {
     type: "website",

@@ -8,7 +8,7 @@ const ALL_LINKS = [
   { href: "/rpo-vs-cabinet", label: "RPO vs Cabinet", desc: "Comparez les modèles de recrutement", icon: GitCompare, color: "text-amber-400" },
   { href: "/rpo-vs-interim", label: "RPO vs Intérim", desc: "Quel modèle choisir pour vos recrutements ?", icon: GitCompare, color: "text-orange-400" },
   { href: "/rpo-vs-recrutement-interne", label: "RPO vs Interne", desc: "Externaliser ou recruter en interne ?", icon: GitCompare, color: "text-rose-400" },
-  { href: "/offre", label: "Notre offre RPO", desc: "TA intégrés à vos équipes dès 500€/jour", icon: FileText, color: "text-teal-400" },
+  { href: "/offre", label: "Notre offre RPO", desc: "TA intégrés à vos équipes en 1 semaine", icon: FileText, color: "text-teal-400" },
   { href: "/blog", label: "Blog & conseils", desc: "Articles et bonnes pratiques recrutement", icon: BookOpen, color: "text-cyan-400" },
   { href: "/ressources", label: "Guides & templates", desc: "Ressources gratuites à télécharger", icon: FileText, color: "text-indigo-400" },
 ] as const;

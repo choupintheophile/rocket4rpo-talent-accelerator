@@ -850,7 +850,7 @@ function StepBrief({
   const criteriaLabels: Record<string, string> = {
     saas: "Expérience SaaS",
     fullCycle: "Full-cycle (A→Z)",
-    midMarket: "Mid-Market / Enterprise",
+    midMarket: "Grands comptes",
     hunter: "Profil chasseur",
     remote: "Remote / Hybride",
     international: "International",

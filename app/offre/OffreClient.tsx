@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "Quelle est la différence entre RPO et cabinet de recrutement ?",
     answer:
-      "Un cabinet travaille en externe sur des missions ponctuelles, facturées 15-25% du salaire annuel. Le RPO intègre un recruteur directement dans vos équipes, vos outils et vos rituels — comme un membre de votre entreprise, mais sans CDI. Coût prévisible au TJM, zéro mauvaise surprise.",
+      "Un cabinet travaille en externe sur des missions ponctuelles, facturées 15-25% du salaire annuel. Le RPO intègre un recruteur directement dans vos équipes, vos outils et vos rituels — comme un membre de votre entreprise, mais sans CDI. Coût prévisible et transparent, zéro mauvaise surprise.",
   },
   {
     question: "Vous ne faites que du RPO ?",
@@ -46,7 +46,7 @@ const faqs = [
   {
     question: "Combien ça coûte concrètement ?",
     answer:
-      "À partir de 500€/jour pour le RPO. Pour 10 recrutements sur 4 mois, comptez environ 30 000€ — soit jusqu'à 5x moins cher qu'un cabinet classique (120 000 à 200 000€). Facturation mensuelle, sans frais cachés. Pour le recrutement CDD/CDI, tarification sur devis.",
+      "Tarification sur devis, adaptée à votre volume et à la nature des postes. Jusqu'à 5x moins cher qu'un cabinet classique (qui facturerait 120 000 à 200 000€ pour 10 recrutements). Facturation mensuelle, sans frais cachés. Réservez un diagnostic gratuit pour un chiffrage précis.",
   },
   {
     question: "En combien de temps le recruteur est-il opérationnel ?",
@@ -122,7 +122,7 @@ export default function OffreClient() {
               </h1>
 
               <p className="mt-4 text-base md:text-lg text-white/65 leading-relaxed max-w-xl">
-                300+ experts évalués sur 15 critères. Seuls les profils à 90%+ intègrent notre vivier. Votre TA Specialist est opérationnel en 1 semaine — pas 3 mois. Dès 500€/jour.
+                300+ experts évalués sur 15 critères. Seuls les profils à 90%+ intègrent notre vivier. Votre TA Specialist est opérationnel en 1 semaine — pas 3 mois.
               </p>
 
               <div className="mt-5 flex flex-wrap gap-6 text-sm">
@@ -459,7 +459,6 @@ export default function OffreClient() {
                   "Marque employeur protégée — le TA recrute en VOTRE nom",
                   "1 à 5 jours/semaine, 3 mois min",
                 ],
-                prix: "À partir de 500€/jour",
                 highlight: true,
                 color: "border-primary/30 ring-1 ring-primary/10",
                 badgeColor: "bg-primary text-primary-foreground",
@@ -476,7 +475,6 @@ export default function OffreClient() {
                   "Garantie de remplacement incluse",
                   "Tous secteurs, tous niveaux",
                 ],
-                prix: "Sur devis",
                 highlight: false,
                 color: "border-blue-200/60",
                 badgeColor: "",
@@ -493,7 +491,6 @@ export default function OffreClient() {
                   "Conversion CDI possible à tout moment",
                   "Flexibilité totale sur la durée",
                 ],
-                prix: "Sur devis",
                 highlight: false,
                 color: "border-amber-200/60",
                 badgeColor: "",
@@ -534,11 +531,6 @@ export default function OffreClient() {
                 </ul>
 
                 <div className="pt-5 border-t border-gray-100">
-                  <div
-                    className={`text-lg font-bold mb-4 ${mode.highlight ? "text-primary" : ""}`}
-                  >
-                    {mode.prix}
-                  </div>
                   <a
                     href={HUBSPOT}
                     target="_blank"
@@ -755,10 +747,10 @@ export default function OffreClient() {
             {[
               {
                 model: "RPO Rocket4RPO",
-                price: "~30 000€",
-                detail: "TJM prévisible, tout inclus, zéro frais cachés",
+                price: "Sur devis",
+                detail: "Tarif prévisible, tout inclus, zéro frais cachés",
                 highlight: true,
-                savings: "Jusqu'à 75% d'économies",
+                savings: "Jusqu'à 75% d'économies vs cabinet",
               },
               {
                 model: "Cabinet classique",

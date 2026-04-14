@@ -70,10 +70,10 @@ const BENEFITS = [
   },
   {
     icon: Zap,
-    title: "TJM compétitifs",
+    title: "Rémunération attractive",
     description:
-      "350 à 600\ €/jour selon votre expérience et spécialisation. Paiement à 30\ jours, sans surprise.",
-    highlight: "350-600€/jour",
+      "Tarif journalier compétitif selon votre expérience et spécialisation. Paiement à 30\ jours, sans surprise.",
+    highlight: "Paiement 30j",
   },
   {
     icon: Globe,
@@ -267,7 +267,7 @@ export default function RecrutementPageClient() {
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
                   <Zap className="w-4 h-4 text-rocket-teal-glow" />
-                  <span><strong className="text-white">500 €</strong> TJM</span>
+                  <span><strong className="text-white">100%</strong> remote-friendly</span>
                 </div>
               </div>
 

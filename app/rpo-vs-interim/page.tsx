@@ -18,7 +18,7 @@ const faqs = [
   {
     question: "Le RPO coûte-t-il plus cher que l'intérim ?",
     answer:
-      "Pas forcément. Le TJM d'un RPO (500 €/j) est transparent et sans marge cachée. L'intérim applique un coefficient de 1.8 à 2.2 (soit 80 à 120 % de marge), ce qui peut revenir plus cher pour un niveau d'expertise équivalent.",
+      "Pas forcément. Le RPO est facturé de façon transparente et sans marge cachée. L'intérim applique un coefficient de 1.8 à 2.2 (soit 80 à 120 % de marge), ce qui peut revenir plus cher pour un niveau d'expertise équivalent.",
   },
   {
     question: "Peut-on utiliser un RPO pour un besoin court terme ?",
