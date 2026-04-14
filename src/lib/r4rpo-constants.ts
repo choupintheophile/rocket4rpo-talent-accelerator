@@ -160,6 +160,36 @@ export const SYMPATHY_TYPES_PRESETS = [
 export const LEVEL_PRESETS = ["Faible", "Moyen", "Fort", "Exceptionnel"] as const;
 export type Level = (typeof LEVEL_PRESETS)[number];
 
+/** v19 — Langues principales proposées dans l'identité (multi-select avec niveau) */
+export const LANGUAGES_PRESETS = [
+  "Français",
+  "Anglais",
+  "Espagnol",
+  "Allemand",
+  "Italien",
+  "Portugais",
+  "Néerlandais",
+  "Arabe",
+  "Chinois",
+  "Russe",
+] as const;
+
+/** v19 — Niveaux de langue CEFR-friendly */
+export const LANGUAGE_LEVELS = [
+  "Natif",
+  "Bilingue",
+  "Courant (C1-C2)",
+  "Opérationnel (B2)",
+  "Intermédiaire (B1)",
+  "Notions",
+] as const;
+export type LanguageLevel = (typeof LANGUAGE_LEVELS)[number];
+
+export interface SpokenLanguage {
+  lang: string;
+  level: LanguageLevel | "";
+}
+
 /** Index des 8 critères visibles dans le scoring (ordre narratif du process RPO)
  *  Mapping vers CRITERIA (c0-c14) :
  *  c0  = Sourcing & identification  (étape 1 : trouver les profils)

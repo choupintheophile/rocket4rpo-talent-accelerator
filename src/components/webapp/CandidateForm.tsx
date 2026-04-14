@@ -4,23 +4,35 @@ import { useState, useTransition, useEffect, useMemo, type Dispatch, type SetSta
 import { useRouter } from "next/navigation";
 import {
   CRITERIA,
-  NB_CRIT,
   SCORE_COLORS,
-  INTELLIGENCE_TYPES_PRESETS,
-  MOTIVATION_TYPES_PRESETS,
-  SYMPATHY_TYPES_PRESETS,
   LEVEL_PRESETS,
   SCORING_VISIBLE_ORDER,
   QUALIF_PROFILES,
   QUALIF_LEVELS,
   QUALIF_RECRUITED_TYPES,
   QUALIF_CONTEXT_BY_PROFILE,
+  LANGUAGES_PRESETS,
+  LANGUAGE_LEVELS,
   calcScore,
   getVerdict,
   autoScore,
   exportScoringText,
   type AutoScoreDetails,
+  type SpokenLanguage,
 } from "@/lib/r4rpo-constants";
+import {
+  FileText,
+  Sparkles,
+  User2,
+  Languages,
+  Coins,
+  Compass,
+  Target,
+  Brain,
+  Flame,
+  Heart,
+  NotebookPen,
+} from "lucide-react";
 import { createCandidate, updateCandidate, deleteCandidate } from "@/lib/candidates";
 import type { Candidate } from "@prisma/client";
 
@@ -80,16 +92,32 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
     return result;
   });
 
-  // v18 — Intelligence / Motivation / Sympathie avec niveau
+  // v18 — Intelligence / Motivation / Sympathie : conserve seulement le niveau global
   const [intelligenceLevel, setIntelligenceLevel] = useState<string>(candidateWithV18?.intelligenceLevel || "");
-  const [motivationTypes, setMotivationTypes] = useState<Set<string>>(
-    () => new Set(candidateWithV18?.motivationTypes || [])
-  );
   const [motivationLevel, setMotivationLevel] = useState<string>(candidateWithV18?.motivationLevel || "");
-  const [sympathyTypes, setSympathyTypes] = useState<Set<string>>(
-    () => new Set(candidateWithV18?.sympathyTypes || [])
-  );
   const [sympathyLevel, setSympathyLevel] = useState<string>(candidateWithV18?.sympathyLevel || "");
+
+  // v19 — Langues parlées (liste d'objets { lang, level })
+  const candidateWithV19 = candidate as (Candidate & { languagesSpoken?: SpokenLanguage[] | null }) | null | undefined;
+  const [languagesSpoken, setLanguagesSpoken] = useState<SpokenLanguage[]>(
+    () => (candidateWithV19?.languagesSpoken as SpokenLanguage[]) || []
+  );
+
+  function toggleLanguage(lang: string) {
+    setLanguagesSpoken((prev) => {
+      const existing = prev.find((l) => l.lang === lang);
+      if (existing) {
+        return prev.filter((l) => l.lang !== lang);
+      }
+      return [...prev, { lang, level: "" }];
+    });
+  }
+
+  function setLanguageLevel(lang: string, level: string) {
+    setLanguagesSpoken((prev) =>
+      prev.map((l) => (l.lang === lang ? { ...l, level: level as SpokenLanguage["level"] } : l))
+    );
+  }
 
   // Scoring
   const [scores, setScores] = useState<Record<string, number>>(() => {
@@ -362,10 +390,9 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       qualifRecruitedTypes: Array.from(qualifRecruitedTypes),
       qualifContext: contextSerialized,
       intelligenceLevel: intelligenceLevel || undefined,
-      motivationTypes: Array.from(motivationTypes),
       motivationLevel: motivationLevel || undefined,
-      sympathyTypes: Array.from(sympathyTypes),
       sympathyLevel: sympathyLevel || undefined,
+      languagesSpoken: languagesSpoken.filter((l) => l.lang),
       hasCv,
       cvPath: cvPath || null,
     };
@@ -406,16 +433,38 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
     return { totalMatched, totalGroups };
   }, [lastAnalysis]);
 
-  const inputCls = "px-3 py-2 text-[13px] border border-gray-300 rounded-lg w-full focus:outline-none focus:border-rocket-teal transition-colors";
-  const labelCls = "text-[11px] text-gray-500 font-medium";
+  const inputCls =
+    "px-3.5 py-2.5 text-[13px] border border-gray-200 rounded-lg w-full bg-white focus:outline-none focus:border-rocket-teal focus:ring-2 focus:ring-rocket-teal/10 transition-all placeholder:text-gray-300";
+  const labelCls = "text-[11px] text-gray-500 font-semibold uppercase tracking-wider";
+  const sectionCls = "bg-white border border-gray-200/80 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow";
+  const sectionHeaderCls = "flex items-center gap-2.5 mb-4 pb-3 border-b border-gray-100";
+  const sectionTitleCls = "text-[13px] font-semibold text-gray-800 tracking-tight";
+  const sectionSubtitleCls = "text-[11px] text-gray-400 font-normal tracking-normal normal-case";
+
+  // v19 — Classes utilitaires pour boutons de niveau (Faible/Moyen/Fort/Exceptionnel)
+  function levelBtnClass(isActive: boolean, level: string) {
+    if (!isActive) {
+      return "bg-white border-gray-200 text-gray-500 hover:border-gray-300 hover:bg-gray-50";
+    }
+    if (level === "Exceptionnel") return "bg-gradient-to-br from-emerald-500 to-emerald-600 border-emerald-600 text-white shadow-sm shadow-emerald-200";
+    if (level === "Fort") return "bg-emerald-50 border-emerald-300 text-emerald-700";
+    if (level === "Moyen") return "bg-amber-50 border-amber-300 text-amber-700";
+    return "bg-red-50 border-red-300 text-red-700";
+  }
 
   return (
-    <div className="space-y-6">
-      {/* CV Upload */}
-      <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
-          CV du candidat
-        </h3>
+    <div className="space-y-5 pb-10">
+      {/* CV Upload — v19 */}
+      <section className={sectionCls}>
+        <div className={sectionHeaderCls}>
+          <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+            <FileText className="w-4 h-4" />
+          </div>
+          <h3 className={sectionTitleCls}>
+            CV du candidat
+            <span className={`ml-2 ${sectionSubtitleCls}`}>· upload PDF / DOC / DOCX</span>
+          </h3>
+        </div>
         {hasCv && cvPath ? (
           <div className="flex items-center gap-3 p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
             <div className="w-8 h-8 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 text-sm">📄</div>
@@ -470,20 +519,24 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         )}
       </section>
 
-      {/* Resume + Auto-scoring */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+      {/* Resume + Auto-scoring — v19 */}
+      <section className={sectionCls}>
+        <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-gray-100">
+          <div className="w-8 h-8 rounded-lg bg-rocket-teal/10 text-rocket-teal flex items-center justify-center">
+            <Sparkles className="w-4 h-4" />
+          </div>
+          <h3 className={sectionTitleCls}>
             Résumé d&apos;entretien
+            <span className={`ml-2 ${sectionSubtitleCls}`}>· transcription / notes → auto-scoring IA</span>
           </h3>
-          <label className="flex items-center gap-1.5 text-[11px] text-gray-500 cursor-pointer select-none">
+          <label className="ml-auto flex items-center gap-1.5 text-[11px] text-gray-500 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={skipInternational}
               onChange={(e) => setSkipInternational(e.target.checked)}
               className="accent-rocket-teal"
             />
-            Profil France-only (skip International)
+            Profil France-only
           </label>
         </div>
 
@@ -771,55 +824,119 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         )}
       </section>
 
-      {/* Identity */}
-      <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">Identité</h3>
+      {/* Identity — v19 style */}
+      <section className={sectionCls}>
+        <div className={sectionHeaderCls}>
+          <div className="w-8 h-8 rounded-lg bg-rocket-teal/10 text-rocket-teal flex items-center justify-center">
+            <User2 className="w-4 h-4" />
+          </div>
+          <h3 className={sectionTitleCls}>
+            Identité
+            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal text-[11px]">
+              · coordonnées du candidat
+            </span>
+          </h3>
+        </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Prénom <span className="text-red-500">*</span></label>
             <input value={prenom} onChange={(e) => setPrenom(e.target.value)} className={inputCls} placeholder="Prénom" />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Nom <span className="text-red-500">*</span></label>
             <input value={nom} onChange={(e) => setNom(e.target.value)} className={inputCls} placeholder="Nom" />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Email</label>
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className={inputCls} placeholder="email@exemple.com" />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Téléphone</label>
             <input value={phone} onChange={(e) => setPhone(e.target.value)} type="tel" className={inputCls} placeholder="+33 6 ..." />
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
-          <div className="flex flex-col gap-1">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-5">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>LinkedIn</label>
             <input value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className={inputCls} placeholder="linkedin.com/in/..." />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Date entretien</label>
             <input value={date} onChange={(e) => setDate(e.target.value)} type="date" className={inputCls} />
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Localisation</label>
             <input value={loc} onChange={(e) => setLoc(e.target.value)} className={inputCls} placeholder="Paris, Lyon..." />
           </div>
         </div>
+
+        {/* v19 — Langues parlées */}
+        <div className="pt-4 border-t border-gray-100">
+          <div className="flex items-center gap-2 mb-2.5">
+            <Languages className="w-3.5 h-3.5 text-gray-400" />
+            <label className={labelCls}>Langues parlées</label>
+            {languagesSpoken.length > 0 && (
+              <span className="text-[11px] font-mono tabular-nums text-rocket-teal bg-rocket-teal/10 px-2 py-0.5 rounded-full">
+                {languagesSpoken.length}
+              </span>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {LANGUAGES_PRESETS.map((lang) => {
+              const entry = languagesSpoken.find((l) => l.lang === lang);
+              const isActive = !!entry;
+              return (
+                <div key={lang} className="flex items-center">
+                  <button
+                    type="button"
+                    onClick={() => toggleLanguage(lang)}
+                    className={`text-[12px] px-3 py-1.5 border transition-all ${
+                      isActive
+                        ? "bg-sky-50 border-sky-400 text-sky-700 font-medium rounded-l-full border-r-0"
+                        : "bg-white border-gray-200 text-gray-500 hover:border-gray-300 hover:bg-gray-50 rounded-full"
+                    }`}
+                  >
+                    {lang}
+                  </button>
+                  {isActive && (
+                    <select
+                      value={entry.level}
+                      onChange={(e) => setLanguageLevel(lang, e.target.value)}
+                      className="text-[11px] px-2 py-[7px] border border-sky-400 bg-sky-50 text-sky-700 rounded-r-full focus:outline-none focus:ring-2 focus:ring-sky-300 cursor-pointer"
+                    >
+                      <option value="">— Niveau</option>
+                      {LANGUAGE_LEVELS.map((lvl) => (
+                        <option key={lvl} value={lvl}>
+                          {lvl}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
-      {/* v18 — Ouvert CDD/CDI + TJM */}
-      <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
-          Contrat & rémunération
-        </h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-          <div className="flex flex-col gap-1">
+      {/* v18/v19 — Ouvert CDD/CDI + TJM */}
+      <section className={sectionCls}>
+        <div className={sectionHeaderCls}>
+          <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <Coins className="w-4 h-4" />
+          </div>
+          <h3 className={sectionTitleCls}>
+            Contrat & rémunération
+            <span className={`ml-2 ${sectionSubtitleCls}`}>· conditions financières</span>
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>Ouvert à un CDD / CDI ?</label>
             <div className="flex gap-1.5">
               {[
-                { label: "Oui", value: true },
-                { label: "Non", value: false },
+                { label: "✓ Oui", value: true },
+                { label: "✗ Non", value: false },
                 { label: "—", value: null },
               ].map((opt) => {
                 const isActive = openCddCdi === opt.value;
@@ -828,14 +945,14 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                     key={String(opt.value)}
                     type="button"
                     onClick={() => setOpenCddCdi(opt.value)}
-                    className={`flex-1 px-3 py-2 text-[13px] font-medium rounded-lg border transition-colors ${
+                    className={`flex-1 px-3 py-2.5 text-[13px] font-semibold rounded-lg border transition-all ${
                       isActive
                         ? opt.value === true
-                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
+                          ? "bg-gradient-to-br from-emerald-500 to-emerald-600 border-emerald-600 text-white shadow-sm shadow-emerald-200"
                           : opt.value === false
                           ? "bg-red-50 border-red-300 text-red-700"
                           : "bg-gray-100 border-gray-300 text-gray-600"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                        : "bg-white border-gray-200 text-gray-500 hover:border-gray-300 hover:bg-gray-50"
                     }`}
                   >
                     {opt.label}
@@ -844,24 +961,25 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
               })}
             </div>
           </div>
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1.5">
             <label className={labelCls}>TJM / Salaire</label>
-            <input value={tjm} onChange={(e) => setTjm(e.target.value)} className={inputCls} placeholder="ex: 600 €/j" />
+            <input value={tjm} onChange={(e) => setTjm(e.target.value)} className={inputCls} placeholder="ex: 600 €/j ou 65K CDI" />
           </div>
         </div>
       </section>
 
-      {/* v18 — Chemin de qualification (arbre pieuvre : profil → niveau + types → précisions) */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+      {/* v18/v19 — Chemin de qualification (arbre pieuvre : profil → niveau + types → précisions) */}
+      <section className={sectionCls}>
+        <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-gray-100">
+          <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
+            <Compass className="w-4 h-4" />
+          </div>
+          <h3 className={sectionTitleCls}>
             Qualification du candidat
-            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · à remplir pendant la visio
-            </span>
+            <span className={`ml-2 ${sectionSubtitleCls}`}>· à remplir pendant la visio</span>
           </h3>
           {qualifProfile && (
-            <span className="text-[11px] text-rocket-teal font-medium">
+            <span className="ml-auto text-[11px] text-purple-700 bg-purple-50 border border-purple-200 px-2.5 py-0.5 rounded-full font-medium">
               {qualifProfile}
               {qualifLevel && ` · ${qualifLevel}`}
               {qualifRecruitedTypes.size > 0 && ` · ${qualifRecruitedTypes.size} type${qualifRecruitedTypes.size > 1 ? "s" : ""}`}
@@ -870,11 +988,12 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         </div>
 
         {/* Étape 1 : Type de profil */}
-        <div className="mb-4">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">
-            1. Type de profil
+        <div className="mb-5">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-5 h-5 rounded-full bg-purple-100 text-purple-700 text-[10px] font-bold flex items-center justify-center">1</div>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-600">Type de profil</span>
           </div>
-          <div className="grid grid-cols-3 gap-1.5">
+          <div className="grid grid-cols-3 gap-2">
             {QUALIF_PROFILES.map((profile) => {
               const isActive = qualifProfile === profile;
               return (
@@ -883,22 +1002,20 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                   type="button"
                   onClick={() => {
                     if (isActive) {
-                      // Désélectionner : reset tout l'arbre
                       setQualifProfile("");
                       setQualifLevel("");
                       setQualifRecruitedTypes(new Set());
                       setQualifContext({});
                     } else {
                       setQualifProfile(profile);
-                      // Reset l'étape 2 et 3 quand on change de profil
                       setQualifRecruitedTypes(new Set());
                       setQualifContext({});
                     }
                   }}
-                  className={`px-3 py-2.5 text-[13px] font-medium rounded-lg border transition-colors ${
+                  className={`px-4 py-3 text-[14px] font-semibold rounded-xl border-2 transition-all ${
                     isActive
-                      ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal"
-                      : "bg-white border-gray-300 text-gray-600 hover:border-gray-400"
+                      ? "bg-gradient-to-br from-purple-500 to-purple-600 border-purple-600 text-white shadow-md shadow-purple-200"
+                      : "bg-white border-gray-200 text-gray-600 hover:border-purple-300 hover:bg-purple-50/30 hover:text-purple-700"
                   }`}
                 >
                   {profile}
@@ -908,12 +1025,14 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
           </div>
         </div>
 
-        {/* Étape 2 : Niveau + Types recrutés (affiché si étape 1 sélectionnée) */}
+        {/* Étape 2 : Niveau + Types recrutés */}
         {qualifProfile && (
-          <div className="mb-4 space-y-3 pl-4 border-l-2 border-rocket-teal/30">
+          <div className="mb-5 space-y-4 pl-5 border-l-2 border-purple-200 relative">
+            <div className="absolute -left-[7px] top-0 w-3 h-3 rounded-full bg-purple-500" />
             <div>
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">
-                2a. Niveau d&apos;expertise
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-5 h-5 rounded-full bg-purple-100 text-purple-700 text-[10px] font-bold flex items-center justify-center">2a</div>
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-600">Niveau d&apos;expertise</span>
               </div>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-1.5">
                 {QUALIF_LEVELS.map((level) => {
@@ -923,10 +1042,10 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                       key={level}
                       type="button"
                       onClick={() => setQualifLevel(isActive ? "" : level)}
-                      className={`px-3 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
+                      className={`px-3 py-2 text-[12px] font-medium rounded-lg border transition-all ${
                         isActive
-                          ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal"
-                          : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                          ? "bg-purple-50 border-purple-400 text-purple-700"
+                          : "bg-white border-gray-200 text-gray-500 hover:border-purple-300 hover:bg-purple-50/30"
                       }`}
                     >
                       {level}
@@ -936,8 +1055,11 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
               </div>
             </div>
             <div>
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">
-                2b. Profils qu&apos;il a chassés (multi-select)
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-5 h-5 rounded-full bg-purple-100 text-purple-700 text-[10px] font-bold flex items-center justify-center">2b</div>
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-600">
+                  Profils qu&apos;il a chassés
+                </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {QUALIF_RECRUITED_TYPES[qualifProfile as keyof typeof QUALIF_RECRUITED_TYPES]?.map((t) => {
@@ -953,10 +1075,10 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                           return next;
                         });
                       }}
-                      className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                      className={`text-[12px] px-3 py-1.5 rounded-full border transition-all ${
                         isActive
-                          ? "bg-blue-50 border-blue-400 text-blue-700 font-medium"
-                          : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                          ? "bg-blue-50 border-blue-400 text-blue-700 font-medium shadow-sm"
+                          : "bg-white border-gray-200 text-gray-500 hover:border-blue-300 hover:bg-blue-50/30"
                       }`}
                     >
                       {t}
@@ -968,15 +1090,19 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
           </div>
         )}
 
-        {/* Étape 3 : Précisions contextuelles (affiché si étape 1 sélectionnée) */}
+        {/* Étape 3 : Précisions contextuelles */}
         {qualifProfile && (
-          <div className="space-y-3 pl-4 border-l-2 border-rocket-teal/30">
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
-              3. Précisions contextuelles
+          <div className="space-y-4 pl-5 border-l-2 border-purple-200 relative">
+            <div className="absolute -left-[7px] top-0 w-3 h-3 rounded-full bg-purple-500" />
+            <div className="flex items-center gap-2">
+              <div className="w-5 h-5 rounded-full bg-purple-100 text-purple-700 text-[10px] font-bold flex items-center justify-center">3</div>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-gray-600">
+                Précisions contextuelles
+              </span>
             </div>
             {QUALIF_CONTEXT_BY_PROFILE[qualifProfile as keyof typeof QUALIF_CONTEXT_BY_PROFILE]?.map((group) => (
               <div key={group.title}>
-                <div className="text-[11px] text-gray-600 mb-1.5">{group.title}</div>
+                <div className="text-[11px] text-gray-500 mb-1.5 font-medium">{group.title}</div>
                 <div className="flex flex-wrap gap-1.5">
                   {group.options.map((opt) => {
                     const setForGroup = qualifContext[group.title] || new Set<string>();
@@ -993,10 +1119,10 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                             return { ...prev, [group.title]: nextSet };
                           });
                         }}
-                        className={`text-[11px] px-2.5 py-1 rounded-full border transition-colors ${
+                        className={`text-[11px] px-2.5 py-1.5 rounded-full border transition-all ${
                           isActive
-                            ? "bg-purple-50 border-purple-400 text-purple-700"
-                            : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                            ? "bg-gradient-to-br from-purple-500 to-purple-600 border-purple-600 text-white shadow-sm"
+                            : "bg-white border-gray-200 text-gray-500 hover:border-purple-300 hover:bg-purple-50/30"
                         }`}
                       >
                         {opt}
@@ -1014,22 +1140,26 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
           auto-détectées et persistées en DB, mais plus affichées dans le form.
           intelligenceTypes reste utilisé dans la section Intelligence ci-dessus. */}
 
-      {/* Scoring */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Scoring — <span className="font-normal text-gray-400">Cliquer une note 1→5 · recliquer pour effacer</span>
+      {/* Scoring — v19 */}
+      <section className={sectionCls}>
+        <div className="flex items-center gap-2.5 mb-4 pb-3 border-b border-gray-100">
+          <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <Target className="w-4 h-4" />
+          </div>
+          <h3 className={sectionTitleCls}>
+            Scoring
+            <span className={`ml-2 ${sectionSubtitleCls}`}>· cliquer 1→5 · recliquer pour effacer · ordre du process RPO</span>
           </h3>
           <button
             type="button"
             onClick={handleCopyScoring}
             disabled={sc.filled === 0}
-            className={`text-[11px] font-semibold px-3 py-1 rounded-md border transition-colors ${
+            className={`ml-auto text-[11px] font-semibold px-3 py-1.5 rounded-lg border transition-all ${
               sc.filled === 0
                 ? "border-gray-200 text-gray-300 cursor-not-allowed"
                 : copyStatus === "ok"
                 ? "border-emerald-300 bg-emerald-50 text-emerald-700"
-                : "border-gray-300 text-gray-600 hover:border-rocket-teal hover:text-rocket-teal"
+                : "border-gray-300 text-gray-600 hover:border-rocket-teal hover:text-rocket-teal hover:bg-rocket-teal/5"
             }`}
           >
             {copyStatus === "ok" ? "✓ Copié !" : "📋 Copier le scoring"}
@@ -1128,45 +1258,31 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         )}
       </section>
 
-      {/* v18 — Intelligence : type + niveau */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Intelligence
-            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · type(s) dominant(s) & niveau global
-            </span>
-          </h3>
-          {intelligenceLevel && (
-            <span className="text-[11px] text-rocket-teal font-medium">{intelligenceLevel}</span>
-          )}
-        </div>
-        <div className="space-y-2.5">
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Types (multi)</div>
-            <div className="flex flex-wrap gap-1.5">
-              {INTELLIGENCE_TYPES_PRESETS.map((t) => {
-                const isActive = intelligenceTypes.has(t);
-                return (
-                  <button
-                    key={t}
-                    type="button"
-                    onClick={() => toggleIntelligence(t)}
-                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                      isActive
-                        ? "bg-amber-50 border-amber-400 text-amber-800 font-medium"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
-                  >
-                    {t}
-                  </button>
-                );
-              })}
-            </div>
+      {/* v19 — Évaluation humaine : 3 dimensions en grille, niveau uniquement */}
+      <section className={sectionCls}>
+        <div className={sectionHeaderCls}>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-100 to-pink-100 text-amber-600 flex items-center justify-center">
+            <Heart className="w-4 h-4" />
           </div>
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Niveau global</div>
-            <div className="grid grid-cols-4 gap-1.5">
+          <h3 className={sectionTitleCls}>
+            Évaluation humaine
+            <span className={`ml-2 ${sectionSubtitleCls}`}>· ton ressenti d&apos;entretien</span>
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {/* Intelligence */}
+          <div className="bg-gradient-to-br from-amber-50/50 to-transparent border border-amber-100 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center">
+                <Brain className="w-3.5 h-3.5" />
+              </div>
+              <div>
+                <div className="text-[12px] font-semibold text-gray-800">Intelligence</div>
+                <div className="text-[10px] text-gray-400">vivacité & profondeur</div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-1.5">
               {LEVEL_PRESETS.map((lvl) => {
                 const isActive = intelligenceLevel === lvl;
                 return (
@@ -1174,17 +1290,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                     key={lvl}
                     type="button"
                     onClick={() => setIntelligenceLevel(isActive ? "" : lvl)}
-                    className={`px-2.5 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
-                      isActive
-                        ? lvl === "Exceptionnel"
-                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
-                          : lvl === "Fort"
-                          ? "bg-emerald-50 border-emerald-300 text-emerald-700"
-                          : lvl === "Moyen"
-                          ? "bg-amber-50 border-amber-300 text-amber-700"
-                          : "bg-red-50 border-red-300 text-red-700"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
+                    className={`px-2.5 py-2 text-[12px] font-semibold rounded-lg border transition-all ${levelBtnClass(isActive, lvl)}`}
                   >
                     {lvl}
                   </button>
@@ -1192,54 +1298,19 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
               })}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* v18 — Motivation : type + niveau */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Motivation & posture
-            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · sharp / hungry / ambition…
-            </span>
-          </h3>
-          {motivationLevel && (
-            <span className="text-[11px] text-rocket-teal font-medium">{motivationLevel}</span>
-          )}
-        </div>
-        <div className="space-y-2.5">
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Types (multi)</div>
-            <div className="flex flex-wrap gap-1.5">
-              {MOTIVATION_TYPES_PRESETS.map((t) => {
-                const isActive = motivationTypes.has(t);
-                return (
-                  <button
-                    key={t}
-                    type="button"
-                    onClick={() =>
-                      setMotivationTypes((prev) => {
-                        const next = new Set(prev);
-                        next.has(t) ? next.delete(t) : next.add(t);
-                        return next;
-                      })
-                    }
-                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                      isActive
-                        ? "bg-purple-50 border-purple-400 text-purple-700 font-medium"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
-                  >
-                    {t}
-                  </button>
-                );
-              })}
+          {/* Motivation */}
+          <div className="bg-gradient-to-br from-orange-50/50 to-transparent border border-orange-100 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center">
+                <Flame className="w-3.5 h-3.5" />
+              </div>
+              <div>
+                <div className="text-[12px] font-semibold text-gray-800">Motivation</div>
+                <div className="text-[10px] text-gray-400">sharp, hungry, drive</div>
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Niveau global</div>
-            <div className="grid grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-2 gap-1.5">
               {LEVEL_PRESETS.map((lvl) => {
                 const isActive = motivationLevel === lvl;
                 return (
@@ -1247,17 +1318,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                     key={lvl}
                     type="button"
                     onClick={() => setMotivationLevel(isActive ? "" : lvl)}
-                    className={`px-2.5 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
-                      isActive
-                        ? lvl === "Exceptionnel"
-                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
-                          : lvl === "Fort"
-                          ? "bg-emerald-50 border-emerald-300 text-emerald-700"
-                          : lvl === "Moyen"
-                          ? "bg-amber-50 border-amber-300 text-amber-700"
-                          : "bg-red-50 border-red-300 text-red-700"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
+                    className={`px-2.5 py-2 text-[12px] font-semibold rounded-lg border transition-all ${levelBtnClass(isActive, lvl)}`}
                   >
                     {lvl}
                   </button>
@@ -1265,54 +1326,19 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
               })}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* v18 — Sympathie : type + niveau */}
-      <section>
-        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
-          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
-            Sympathie & gentillesse
-            <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · posture humaine perçue
-            </span>
-          </h3>
-          {sympathyLevel && (
-            <span className="text-[11px] text-rocket-teal font-medium">{sympathyLevel}</span>
-          )}
-        </div>
-        <div className="space-y-2.5">
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Types (multi)</div>
-            <div className="flex flex-wrap gap-1.5">
-              {SYMPATHY_TYPES_PRESETS.map((t) => {
-                const isActive = sympathyTypes.has(t);
-                return (
-                  <button
-                    key={t}
-                    type="button"
-                    onClick={() =>
-                      setSympathyTypes((prev) => {
-                        const next = new Set(prev);
-                        next.has(t) ? next.delete(t) : next.add(t);
-                        return next;
-                      })
-                    }
-                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                      isActive
-                        ? "bg-pink-50 border-pink-400 text-pink-700 font-medium"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
-                  >
-                    {t}
-                  </button>
-                );
-              })}
+          {/* Sympathie */}
+          <div className="bg-gradient-to-br from-pink-50/50 to-transparent border border-pink-100 rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-7 h-7 rounded-lg bg-pink-100 text-pink-700 flex items-center justify-center">
+                <Heart className="w-3.5 h-3.5" />
+              </div>
+              <div>
+                <div className="text-[12px] font-semibold text-gray-800">Sympathie</div>
+                <div className="text-[10px] text-gray-400">chaleur, bienveillance</div>
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Niveau global</div>
-            <div className="grid grid-cols-4 gap-1.5">
+            <div className="grid grid-cols-2 gap-1.5">
               {LEVEL_PRESETS.map((lvl) => {
                 const isActive = sympathyLevel === lvl;
                 return (
@@ -1320,17 +1346,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                     key={lvl}
                     type="button"
                     onClick={() => setSympathyLevel(isActive ? "" : lvl)}
-                    className={`px-2.5 py-1.5 text-[12px] font-medium rounded-lg border transition-colors ${
-                      isActive
-                        ? lvl === "Exceptionnel"
-                          ? "bg-emerald-100 border-emerald-400 text-emerald-800"
-                          : lvl === "Fort"
-                          ? "bg-emerald-50 border-emerald-300 text-emerald-700"
-                          : lvl === "Moyen"
-                          ? "bg-amber-50 border-amber-300 text-amber-700"
-                          : "bg-red-50 border-red-300 text-red-700"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
+                    className={`px-2.5 py-2 text-[12px] font-semibold rounded-lg border transition-all ${levelBtnClass(isActive, lvl)}`}
                   >
                     {lvl}
                   </button>
@@ -1341,24 +1357,32 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         </div>
       </section>
 
-      {/* Notes */}
-      <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">Notes libres</h3>
+      {/* Notes libres — v19 */}
+      <section className={sectionCls}>
+        <div className={sectionHeaderCls}>
+          <div className="w-8 h-8 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center">
+            <NotebookPen className="w-4 h-4" />
+          </div>
+          <h3 className={sectionTitleCls}>
+            Notes libres
+            <span className={`ml-2 ${sectionSubtitleCls}`}>· observations, points à revalider, contexte</span>
+          </h3>
+        </div>
         <textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
-          placeholder="Observations, points à revalider..."
-          className={`${inputCls} min-h-[80px] resize-y`}
+          placeholder="Observations, points à revalider, éléments à creuser en prochain échange..."
+          className={`${inputCls} min-h-[100px] resize-y`}
         />
       </section>
 
-      {/* Actions */}
-      <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+      {/* Actions — v19 sticky-like footer */}
+      <div className="sticky bottom-0 -mx-5 px-5 py-4 bg-white/95 backdrop-blur-sm border-t border-gray-200 flex items-center gap-3 z-10">
         {isEdit && (
           <button
             onClick={handleDelete}
             disabled={isPending}
-            className="px-4 py-2 text-[13px] font-medium rounded-lg border border-red-300 text-red-600 hover:bg-red-50 transition-colors disabled:opacity-50"
+            className="px-4 py-2.5 text-[13px] font-semibold rounded-lg border border-red-300 text-red-600 hover:bg-red-50 transition-colors disabled:opacity-50"
           >
             Supprimer
           </button>
@@ -1366,16 +1390,16 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         <div className="ml-auto flex gap-2">
           <button
             onClick={() => router.push("/webapp-testing/vivier")}
-            className="px-4 py-2 text-[13px] font-medium rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
+            className="px-4 py-2.5 text-[13px] font-semibold rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors"
           >
             Annuler
           </button>
           <button
             onClick={handleSave}
             disabled={isPending || (!prenom.trim() && !nom.trim())}
-            className="px-4 py-2 text-[13px] font-medium rounded-lg bg-rocket-teal text-white hover:bg-rocket-teal/90 transition-colors disabled:opacity-50"
+            className="px-5 py-2.5 text-[13px] font-semibold rounded-lg bg-gradient-to-br from-rocket-teal to-rocket-teal/90 text-white shadow-sm hover:shadow-md hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {isPending ? "Enregistrement..." : "Enregistrer"}
+            {isPending ? "Enregistrement..." : "✓ Enregistrer"}
           </button>
         </div>
       </div>

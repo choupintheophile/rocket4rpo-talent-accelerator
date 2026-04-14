@@ -73,6 +73,8 @@ export async function createCandidate(data: {
   motivationLevel?: string;
   sympathyTypes?: string[];
   sympathyLevel?: string;
+  // v19
+  languagesSpoken?: { lang: string; level: string }[];
   hasCv?: boolean;
   cvPath?: string;
 }): Promise<Candidate> {
@@ -108,6 +110,7 @@ export async function createCandidate(data: {
       motivationLevel: data.motivationLevel || null,
       sympathyTypes: data.sympathyTypes || [],
       sympathyLevel: data.sympathyLevel || null,
+      languagesSpoken: data.languagesSpoken || [],
       score: sc.total,
       maxScore: sc.max,
       pct: sc.pct,
@@ -151,6 +154,8 @@ export async function updateCandidate(
     motivationLevel?: string;
     sympathyTypes?: string[];
     sympathyLevel?: string;
+    // v19
+    languagesSpoken?: { lang: string; level: string }[];
     hasCv?: boolean;
     cvPath?: string | null;
   }
@@ -188,6 +193,7 @@ export async function updateCandidate(
   if (data.motivationLevel !== undefined) updateData.motivationLevel = data.motivationLevel || null;
   if (data.sympathyTypes !== undefined) updateData.sympathyTypes = data.sympathyTypes;
   if (data.sympathyLevel !== undefined) updateData.sympathyLevel = data.sympathyLevel || null;
+  if (data.languagesSpoken !== undefined) updateData.languagesSpoken = data.languagesSpoken;
   if (data.hasCv !== undefined) updateData.hasCv = data.hasCv;
   if (data.cvPath !== undefined) updateData.cvPath = data.cvPath;
 

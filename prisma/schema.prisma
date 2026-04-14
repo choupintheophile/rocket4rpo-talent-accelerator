@@ -112,6 +112,8 @@ model Candidate {
   motivationLevel   String?  // Faible / Moyen / Fort / Exceptionnel
   sympathyTypes     Json?    // Chaleureux / Bienveillant / Direct cash / ...
   sympathyLevel     String?  // Faible / Moyen / Fort / Exceptionnel
+  // v19 — langues parlées (liste d'objets { lang, level })
+  languagesSpoken   Json?
   score             Int      @default(0)
   maxScore          Int      @default(0)
   pct               Int      @default(0)
