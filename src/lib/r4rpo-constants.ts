@@ -470,6 +470,189 @@ export const QUESTIONS: QuestionCategory[] = [
   },
 ];
 
+/** Version anglaise de QUESTIONS — mêmes catégories, même structure, traduites.
+ *  L'index correspond exactement à QUESTIONS (même ordre, mêmes star flags). */
+export const QUESTIONS_EN: QuestionCategory[] = [
+  // ── 1. Sourcing & identification ──
+  {
+    title: "Sourcing & identification",
+    questions: [
+      { q: "How do you identify a senior profile who isn't actively looking? Walk me through your method step by step.", star: true },
+      { q: "Outside of LinkedIn, where do you source?", star: true },
+      { q: "Give me a Boolean search for a senior tech profile. Let's see your logic." },
+      { q: "How many outreach messages do you send per week? What's your reply rate?" },
+      { q: "Do you use automation for sourcing? What volume? Give me exact numbers." },
+    ],
+    signalOk: "Method described step by step, multi-channel, Boolean mastered, volume quantified.",
+    signalKo: "I post a job ad — no proactive method, no numbers.",
+  },
+  // ── 2. Candidate qualification ──
+  {
+    title: "Candidate qualification",
+    questions: [
+      { q: "How do you assess a senior profile without being an expert in their domain?", star: true },
+      { q: "What questions do you ask the hiring manager to calibrate the expected level?", star: true },
+      { q: "A candidate claims to be an expert on a topic. How do you verify without being technical?" },
+      { q: "IT, SalesOps, Sales qualification — how do you adapt your approach? Sales = 70% of jobs.", star: true },
+    ],
+    signalOk: "Question framework, secondary sourcing, cross-validation with manager.",
+    signalKo: "I trust the CV — fully delegates, no clean framework.",
+  },
+  // ── 3. Sector specialization ──
+  {
+    title: "Sector specialization",
+    questions: [
+      { q: "Are you more specialized in IT Services, HR Tech, Fintech, HealthTech or other? Why?", star: true },
+      { q: "What are the recruitment differences between IT Services and SaaS? Give concrete examples.", star: true },
+      { q: "How do you prepare before a meeting with a client in a sector you're less familiar with?" },
+      { q: "What info do you grab from LinkedIn before the first exchange with a candidate?", star: true },
+    ],
+    signalOk: "Sector mastered, clear Services/SaaS differences, systematic LinkedIn preparation.",
+    signalKo: "I do everything, no specialization, no sector prep.",
+  },
+  // ── 4. International ──
+  {
+    title: "International",
+    questions: [
+      { q: "Have you done international hunting? Which markets? What results?", star: true },
+      { q: "What languages do you speak? At what operational level?", star: true },
+      { q: "How do you adapt your approach for a candidate based abroad vs. in France?" },
+      { q: "Do you have examples of successful cross-border hires?" },
+    ],
+    signalOk: "Multi-country experience, operational languages, adapted method.",
+    signalKo: "Never recruited outside France, only one language, no interest.",
+  },
+  // ── 5. Hunting structure ──
+  {
+    title: "Hunting structure",
+    questions: [
+      { q: "How do you structure your candidate hunt A-to-Z? Describe your full process.", star: true },
+      { q: "Process structuring: are you more of a follower or do you make decisions? Give an example.", star: true },
+      { q: "How do you manage a pipe of 50+ candidates in parallel without dropping anyone?" },
+      { q: "Is your process replicable from one mission to another? How do you adapt it?" },
+    ],
+    signalOk: "Process described step by step, replicable, structured, decisions owned.",
+    signalKo: "No method, gut feeling, follows instructions without initiative.",
+  },
+  // ── 6. Tools & stack ──
+  {
+    title: "Tools & stack",
+    questions: [
+      { q: "Describe your full stack. Did you configure the tools yourself or just use them?", star: true },
+      { q: "What have you automated in your sourcing? What concrete gain?", star: true },
+      { q: "Which CRM do you use? Sales Navigator? How exactly?" },
+      { q: "How specifically do you use Sales Navigator or LinkedIn Recruiter?" },
+    ],
+    signalOk: "Precise stack, autonomous configuration, quantified gains, advanced usage.",
+    signalKo: "I use LinkedIn — never configured anything, no measured gains.",
+  },
+  // ── 7. Market knowledge ──
+  {
+    title: "Market knowledge",
+    questions: [
+      { q: "Name me the top companies / leaders in your sector. Immediate credibility.", star: true },
+      { q: "What are the average salaries for the roles you recruit for? Precise ranges.", star: true },
+      { q: "How do you stay informed about market trends and talent moves?" },
+      { q: "A client asks you for a salary benchmark. How do you handle it?" },
+    ],
+    signalOk: "Company names spontaneously, precise salary ranges, active market watch.",
+    signalKo: "Vague knowledge, no names, no market figures.",
+  },
+  // ── 8. Autonomy & ownership ──
+  {
+    title: "Autonomy & ownership",
+    questions: [
+      { q: "Give me a decision you made alone on a hire, against the client's view. What happened?", star: true },
+      { q: "You refused to present a candidate despite the pressure. Tell me.", star: true },
+      { q: "Day 1 on an RPO mission with no TA process in place. What do you prioritize?" },
+    ],
+    signalOk: "Precise examples, confident narration, decisions defended with conviction.",
+    signalKo: "I do what the client asks — no examples, avoids the question.",
+  },
+  // ── 9. KPIs & reporting ──
+  {
+    title: "KPIs & reporting",
+    questions: [
+      { q: "Over your last 12 months: how many roles closed? Average TTF? Acceptance rate? Exact numbers.", star: true },
+      { q: "What's your outreach-to-client-submission ratio?", star: true },
+      { q: "How do you track and present your KPIs to your RPO client?" },
+    ],
+    signalOk: "Precise numbers spontaneously, TTF/TTH/rates named, consistent with each other.",
+    signalKo: "It depends, around — absence of numbers = red flag.",
+  },
+  // ── 10. Closing & negotiation ──
+  {
+    title: "Closing & negotiation",
+    questions: [
+      { q: "A hiring manager gives you an unrealistic brief. What do you do?", star: true },
+      { q: "Tell me about your best tough closing: hesitant candidate, employer counter-offer.", star: true },
+      { q: "How do you pitch an unattractive role to a senior candidate who has 3 offers?" },
+      { q: "How do you manage 3 hiring managers with very different decision styles?" },
+    ],
+    signalOk: "Structured push-back, explicit closing techniques, mastered offer negotiation.",
+    signalKo: "Accepts everything without challenge, no closing technique, loses to counter-offers.",
+  },
+  // ── 11. RPO/embedded experience ──
+  {
+    title: "RPO/embedded experience",
+    questions: [
+      { q: "Concrete difference between RPO and a recruitment agency. What attracts you to RPO?", star: true },
+      { q: "You start an RPO mission on Monday: what do you do in the first 3 days?", star: true },
+      { q: "How do you handle pressure from an HM who wants 5 profiles in 3 weeks with a vague brief?" },
+    ],
+    signalOk: "Understands the difference, concrete Day-1 plan, autonomous pressure management.",
+    signalKo: "Confuses RPO with agency, waits for framing, hierarchical dependency.",
+  },
+  // ── 12. Storytelling & examples ──
+  {
+    title: "Storytelling & examples",
+    questions: [
+      { q: "Tell me about your best hire. From brief to closing, step by step.", star: true },
+      { q: "What sales cycle and average deal size in the companies where you worked?", star: true },
+      { q: "Give me an example of a failed hire. What did you learn?" },
+      { q: "How do you convince a passive candidate to move? Your go-to pitch." },
+    ],
+    signalOk: "Fluent narration, integrated numbers, lessons drawn from failures.",
+    signalKo: "No concrete example, stays vague, no numbers in the story.",
+  },
+  // ── 13. Availability & flexibility ──
+  {
+    title: "Availability & flexibility",
+    questions: [
+      { q: "Current availability to work? How many days per week?", star: true },
+      { q: "Day-rate (freelance) or permanent / fixed-term? What's your preference and why?", star: true },
+      { q: "Location + remote work: how do you operate?" },
+      { q: "When can you start? Current notice period?" },
+    ],
+    signalOk: "Clear availability, flexible on format, short notice, transparent.",
+    signalKo: "Not available before 3 months, rigid on format, fuzzy on dates.",
+  },
+  // ── 14. Profile types recruited ──
+  {
+    title: "Profile types recruited",
+    questions: [
+      { q: "What type of companies have you worked for? More US Tech / Sales / other?", star: true },
+      { q: "What sales cycle + average deal size in the companies where you recruited?", star: true },
+      { q: "Do you recruit more tech, sales, ops profiles? Breakdown?" },
+      { q: "How do you adapt your qualification for a Sales profile vs a DevOps profile?" },
+    ],
+    signalOk: "Varied profiles, sales cycle understanding, adaptation by type.",
+    signalKo: "Single profile type, no business understanding, no adaptation.",
+  },
+  // ── 15. R4RPO culture fit ──
+  {
+    title: "R4RPO culture fit",
+    questions: [
+      { q: "What motivates you in recruitment? Why do you do this job?", star: true },
+      { q: "What's a top 1% recruiter to you? How do you position yourself?", star: true },
+      { q: "Process structuring: no followers, only motivated people who make decisions. Give an example.", star: true },
+      { q: "How do you react when a client puts pressure on you with an impossible deadline?" },
+    ],
+    signalOk: "Motivated, structured, takes initiative, premium posture, positive energy.",
+    signalKo: "Passive, waits for instructions, no vision, fuzzy motivation.",
+  },
+];
+
 // Verdict calculation
 export type VerdictLevel = "top" | "mid" | "low" | "nc";
 

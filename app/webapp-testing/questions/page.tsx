@@ -1,4 +1,4 @@
-import { QUESTIONS } from "@/lib/r4rpo-constants";
+import { QUESTIONS, QUESTIONS_EN } from "@/lib/r4rpo-constants";
 import { QuestionsClient } from "./QuestionsClient";
 
 const totalQuestions = QUESTIONS.reduce((sum, cat) => sum + cat.questions.length, 0);
@@ -14,12 +14,7 @@ export default function QuestionsPage() {
       </div>
 
       <div className="p-7 max-w-[980px]">
-        <div className="flex items-center gap-3 text-[12px] text-gray-500 mb-4 pb-3 border-b border-gray-200">
-          <span><strong className="text-rocket-teal">&#9679;</strong> Prioritaire</span>
-          <span><strong className="text-gray-400">&#9733;</strong> a poser systematiquement</span>
-        </div>
-
-        <QuestionsClient questions={QUESTIONS} />
+        <QuestionsClient questionsFr={QUESTIONS} questionsEn={QUESTIONS_EN} />
       </div>
     </>
   );
