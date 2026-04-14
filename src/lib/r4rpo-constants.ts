@@ -380,6 +380,67 @@ function normalize(text: string): string {
   return ` ${normalized} `;
 }
 
+/**
+ * v17.4 — Sépare le texte du candidat de celui du recruteur (Théophile / Théo).
+ * Détecte les patterns "Nom Prénom à HH:MM" en début de ligne.
+ * Si pas de structure reconnue, retourne le texte intégral.
+ */
+export interface SplitTranscriptResult {
+  /** Texte du candidat uniquement (sans Théophile) */
+  candidate: string;
+  /** Texte complet original */
+  full: string;
+  /** true si la structure "Speaker à HH:MM" a été détectée */
+  hasSpeakers: boolean;
+  /** Proportion 0-1 du texte attribué à Théophile (si structuré) */
+  recruiterRatio: number;
+}
+
+export function splitTranscript(text: string): SplitTranscriptResult {
+  const speakerPattern = /^(.+?)\s+à\s+\d{1,2}:\d{2}\s*$/gm;
+  const matches = [...text.matchAll(speakerPattern)];
+
+  if (matches.length < 2) {
+    return { candidate: text, full: text, hasSpeakers: false, recruiterRatio: 0 };
+  }
+
+  // Split : [intro, speaker1, content1, speaker2, content2, ...]
+  const parts = text.split(speakerPattern);
+  const candidateSegments: string[] = [];
+  let theoLen = 0;
+  let candidateLen = 0;
+
+  for (let i = 1; i < parts.length; i += 2) {
+    const speaker = (parts[i] || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+    const content = (parts[i + 1] || "").trim();
+
+    const isRecruiter =
+      speaker.includes("theophile") ||
+      speaker.startsWith("theo ") ||
+      speaker === "theo";
+
+    if (isRecruiter) {
+      theoLen += content.length;
+    } else {
+      candidateSegments.push(content);
+      candidateLen += content.length;
+    }
+  }
+
+  const totalLen = theoLen + candidateLen;
+  const recruiterRatio = totalLen > 0 ? theoLen / totalLen : 0;
+
+  return {
+    candidate: candidateSegments.join("\n\n").trim() || text,
+    full: text,
+    hasSpeakers: true,
+    recruiterRatio,
+  };
+}
+
 const SCORING_KEYWORDS: { keywords: string[] }[][] = [
   // c0: Sourcing & identification (3 groupes)
   [
@@ -485,9 +546,20 @@ export interface AutoScoreDetails {
     phone?: string;
     linkedin?: string;
     tjm?: string;
+    /** v17.4 — TJM max détecté si fourchette (ex: "entre 500 et 600") */
+    tjmMax?: string;
     loc?: string;
     prenom?: string;
     nom?: string;
+    /** v17.4 — extensions */
+    age?: string;
+    yearsExperience?: string;
+    languages: string[];
+    tools: string[];
+    methodologies: string[];
+    companies: string[];
+    mobility?: "Full remote" | "Hybride" | "Présentiel";
+    availability?: "Immédiate" | "Court-terme (<1 mois)" | "Moyen-terme (1-3 mois)" | "Long-terme (3 mois+)";
   };
   /** v17 — Type de contrat détecté (single) */
   contrat?: "TJM Freelance" | "CDI" | "CDD" | "Les deux";
@@ -496,6 +568,10 @@ export interface AutoScoreDetails {
   companyTypes: string[];
   profileStyle: string[];
   intelligenceTypes: string[];
+  /** v17.4 — Méta : transcription segmentée par speaker ? */
+  speakerSegmented: boolean;
+  /** v17.4 — Ratio 0-1 du texte attribué au recruteur (Théophile) */
+  recruiterRatio: number;
   /** Score de confiance 0-100 basé sur la longueur du texte */
   confidence: number;
   /** Niveau de confiance lisible */
@@ -509,11 +585,106 @@ export interface AutoScoreOptions {
   skipInternational?: boolean;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   v17.4 — Listes de détection étendues
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/** Outils du recrutement / productivité / IA (référentiel curé) */
+const TOOLS_CATALOG = [
+  // ATS & CRM
+  "LinkedIn Recruiter", "LinkedIn recruteur", "Sales Navigator", "Sales Nav",
+  "Greenhouse", "Lever", "Welcome to the Jungle", "Smart Recruiter",
+  "SmartRecruiters", "Talent Link", "TalentLink", "Flatchr", "Flatcher",
+  "Hello Work", "HelloWork", "Teamtailor", "Workable", "Ashby",
+  "Notion", "Airtable", "HubSpot", "Salesforce",
+  // Sourcing / outreach
+  "Apollo", "Lemlist", "La Growth Machine", "LGM ", "Phantom Buster",
+  "PhantomBuster", "Waalaxy", "Kaspr", "Lusha", "RocketReach",
+  "Full & Rich", "Dropcontact", "Hunter.io",
+  // Boards
+  "APEC", "France Travail", "Malt", "Collectif Work", "Collectif",
+  "Welcome to the Jungle", "Monster", "Jobteaser", "Indeed",
+  // Dev
+  "GitHub", "GitLab", "Stack Overflow", "StackOverflow",
+  // Communication / meeting
+  "Slack", "Microsoft Teams", "Zoom", "Google Meet",
+  "Fireflies", "Modjo", "Nouta", "Nota ", "Loom",
+  // IA
+  "ChatGPT", "Claude", "Cursor", "GitHub Copilot", "Copilot", "Manus",
+  "Perplexity", "Gemini",
+  // Process
+  "Calent", "Covalent", "Calendly",
+];
+
+/** Méthodologies / concepts recrutement */
+const METHODOLOGIES_CATALOG = [
+  "STAR", "Scorecard", "Scorecards", "Agile", "Scrum", "Kanban",
+  "Plan de chasse", "Booléen", "Boolean", "Multicanal", "Multi-canal",
+  "Cooptation", "ATS", "Talent review", "NPS",
+  "Kick-off", "Kickoff", "Retainer", "Success fee",
+  "Mapping", "Market intelligence", "Talent intelligence",
+  "OKR", "KPI", "Dashboard", "Funnel", "Pipeline",
+  "Employer branding", "Marque employeur",
+  "Onboarding", "Preboarding", "Offboarding",
+  "Interview guide", "Guide d'entretien",
+  "Embedded recruitment", "RPO",
+];
+
+/** Catalogue de boîtes (grandes + startups/scale-up FR connues)
+ *  Note : LinkedIn / Salesforce / HubSpot / SAP retirés pour éviter doublon avec outils */
+const COMPANIES_CATALOG = [
+  // GAFAM + géants tech
+  "Amazon", "Microsoft", "Google", "Apple", "Meta", "Facebook",
+  "Adobe", "Oracle", "IBM", "Intel", "AMD", "NVIDIA",
+  "Netflix", "Uber", "Airbnb", "Spotify", "Twitter", "TikTok",
+  // Consulting / ESN
+  "Accenture", "Capgemini", "Sopra", "Sopra Steria", "Deloitte", "BCG",
+  "McKinsey", "KPMG", "PwC", "EY", "Atos", "Altran", "Wavestone",
+  "Davidson", "Excelsior", "YouMake", "Sully Group", "Pragmatan",
+  "AFD Tech", "Calictus", "Insight Conseil", "Sword", "iTech Solutions",
+  "Fed", "FedAfrica", "Cloud International", "Allegis",
+  // Luxe / retail FR
+  "LVMH", "L'Oréal", "Hermès", "Kering", "Chanel", "Dior", "Louis Vuitton",
+  "Publicis", "Havas", "Carrefour", "Auchan", "Leclerc", "Decathlon",
+  "Aubert", "Casino", "Monoprix",
+  // Grand groupe FR
+  "Air France", "Accor", "BNP", "BNP Paribas", "Société Générale",
+  "Crédit Agricole", "Orange", "SFR", "Bouygues", "Free", "Total", "TotalEnergies",
+  "Airbus", "Renault", "Peugeot", "Stellantis", "Alstom", "Thales",
+  "Dassault", "Naval Group", "Safran", "Michelin", "Schneider",
+  "Roquette", "Sanofi", "Pfizer", "Valeo", "Faurecia",
+  // Santé / industrie
+  "Euris", "Biotech",
+  // Startups / scale-up FR
+  "Doctolib", "Alan", "Back Market", "Aircall", "Mirakl", "PayFit",
+  "Spendesk", "Agicap", "Qonto", "Lemonway", "Alma", "Swile",
+  "Blablacar", "Contentsquare", "Pigment", "Dataiku", "Ledger",
+  "PrestaShop", "Ankama", "Deezer", "Criteo", "OVH", "OVHcloud",
+  "Wind", "Tech4Kin", "Pixies", "Volt",
+  // Rocket & ecosystem (retire "Rocket" seul car mentionné par Théophile en contexte)
+  "Rocket4Sales", "Rocket4RPO", "Rocket for Sales", "Rocket for RPO",
+  "Evoa", "Walix",
+  "Monotov TV", "iMedia", "Allopass", "Oberture Technologie",
+  "Adyen", "Stripe", "Revolut", "N26", "Mistral AI", "Mistraliers",
+  // Hôtellerie / voyage
+  "Booking", "Expedia", "Wordia", "Bayredo", "LVB",
+  // Institutions
+  "AFD", "Agence Française de Développement", "Accord", "iPay",
+  // Finance / insurance
+  "Allianz", "Axa", "Generali",
+];
+
 /**
  * Extrait les champs identité (email, téléphone, LinkedIn, TJM, localisation, prénom/nom)
+ * v17.4 : + âge, années d'exp, langues, outils, méthodologies, boîtes, mobilité, dispo
  */
 function extractIdentity(text: string): AutoScoreDetails["identity"] {
-  const out: AutoScoreDetails["identity"] = {};
+  const out: AutoScoreDetails["identity"] = {
+    languages: [],
+    tools: [],
+    methodologies: [],
+    companies: [],
+  };
 
   // Email
   const emailMatch = text.match(/[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}/);
@@ -567,12 +738,157 @@ function extractIdentity(text: string): AutoScoreDetails["identity"] {
   }
 
   // Prénom/Nom — formats : "Je m'appelle X Y" / "Prénom Nom —" / "Candidat : X Y"
+  // v17.4 : + détection via pattern "Speaker à HH:MM" si transcription structurée
   const nameMatch =
     text.match(/(?:je\s+m['']appelle|candidat\s*:?\s*|je\s+suis)\s+([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)/) ||
     text.match(/^([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)\s*[—\-|,]/m);
   if (nameMatch) {
     out.prenom = nameMatch[1];
     out.nom = nameMatch[2];
+  } else {
+    // Fallback : premier speaker "Nom Prénom à HH:MM" qui n'est PAS Théophile
+    const speakerMatches = [...text.matchAll(/^(.+?)\s+à\s+\d{1,2}:\d{2}\s*$/gm)];
+    for (const m of speakerMatches) {
+      const name = m[1].trim();
+      const normalized = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (!normalized.includes("theo")) {
+        const parts = name.split(/\s+/);
+        if (parts.length >= 2) {
+          out.prenom = parts[0];
+          out.nom = parts.slice(1).join(" ");
+          break;
+        }
+      }
+    }
+  }
+
+  // v17.4 — Fourchette TJM (ex: "entre 500 et 600", "500 à 600")
+  const tjmRangeMatch = text.match(/entre\s+(\d{3,4})\s+et\s+(\d{3,4})|(\d{3,4})\s*[-à]\s*(\d{3,4})\s*(?:€|eur|euros)?\s*(?:\/|par|au)\s*j/i);
+  if (tjmRangeMatch) {
+    const min = tjmRangeMatch[1] || tjmRangeMatch[3];
+    const max = tjmRangeMatch[2] || tjmRangeMatch[4];
+    if (min && max && parseInt(min) >= 200 && parseInt(max) <= 1500) {
+      if (!out.tjm) out.tjm = `${min} €/j`;
+      out.tjmMax = `${max} €/j`;
+    }
+  }
+
+  // v17.4 — Âge (exclut "j'ai X ans d'expérience", "X ans de métier", etc.)
+  const ageMatch = text.match(/j['']ai\s+(\d{2})\s+ans\b(?!\s+(?:d['']|de\s+(?:metier|m[eé]tier|recrutement|cabinet|anciennet|experience|exp)))/i);
+  if (ageMatch) {
+    const age = parseInt(ageMatch[1], 10);
+    if (age >= 18 && age <= 75) out.age = `${age} ans`;
+  }
+
+  // v17.4 — Années d'expérience
+  // "X ans d'expérience", "ça fait X ans", "depuis X ans", "plus de X ans"
+  const yearsPatterns = [
+    /(\d{1,2})\s+ans?\s+d['']exp(?:erience)?/i,
+    /ca\s+fait\s+(\d{1,2})\s+ans?/i,
+    /depuis\s+(\d{1,2})\s+an(?:nee)?s?/i,
+    /plus\s+de\s+(\d{1,2})\s+ans?/i,
+  ];
+  let yearsExp: number | null = null;
+  for (const pattern of yearsPatterns) {
+    const m = text.match(pattern);
+    if (m) {
+      const n = parseInt(m[1], 10);
+      if (n >= 1 && n <= 40 && (yearsExp === null || n > yearsExp)) {
+        yearsExp = n;
+      }
+    }
+  }
+  if (yearsExp !== null) out.yearsExperience = `${yearsExp} ans`;
+
+  // v17.4 — Langues avec niveau
+  const languagesCatalog = [
+    { name: "Anglais", keywords: ["anglais"] },
+    { name: "Espagnol", keywords: ["espagnol"] },
+    { name: "Allemand", keywords: ["allemand"] },
+    { name: "Italien", keywords: ["italien"] },
+    { name: "Portugais", keywords: ["portugais"] },
+    { name: "Chinois", keywords: ["chinois", "mandarin"] },
+    { name: "Arabe", keywords: ["arabe"] },
+    { name: "Néerlandais", keywords: ["neerlandais", "hollandais"] },
+    { name: "Russe", keywords: ["russe"] },
+  ];
+  const levelKeywords = [
+    { re: /bilingue/i, level: "bilingue" },
+    { re: /\bfluent\b|\bcourant\b|\bcourante\b|c[12]/i, level: "courant" },
+    { re: /op[eé]rationnel/i, level: "opérationnel" },
+    { re: /\bb[12]\b/i, level: "intermédiaire" },
+    { re: /notion|debutant|scolaire/i, level: "notions" },
+  ];
+  const normalizedText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const detectedLangs = new Set<string>();
+  for (const lang of languagesCatalog) {
+    for (const kw of lang.keywords) {
+      const re = new RegExp(`\\b${kw}\\b`, "i");
+      if (re.test(normalizedText)) {
+        // Cherche le niveau dans un rayon de 60 chars autour du keyword
+        const idx = normalizedText.indexOf(kw);
+        const window = normalizedText.slice(Math.max(0, idx - 30), Math.min(normalizedText.length, idx + kw.length + 40));
+        let level: string | null = null;
+        for (const lvl of levelKeywords) {
+          if (lvl.re.test(window)) {
+            level = lvl.level;
+            break;
+          }
+        }
+        detectedLangs.add(level ? `${lang.name} (${level})` : lang.name);
+        break;
+      }
+    }
+  }
+  out.languages = Array.from(detectedLangs);
+
+  // v17.4 — Outils détectés
+  const detectedTools = new Set<string>();
+  for (const tool of TOOLS_CATALOG) {
+    const re = new RegExp(`\\b${tool.replace(/[.&+*?^$()[\]{}|\\]/g, "\\$&")}\\b`, "i");
+    if (re.test(text)) {
+      detectedTools.add(tool.trim());
+    }
+  }
+  out.tools = Array.from(detectedTools).slice(0, 15); // cap à 15 pour lisibilité
+
+  // v17.4 — Méthodologies détectées
+  const detectedMethodologies = new Set<string>();
+  for (const method of METHODOLOGIES_CATALOG) {
+    const re = new RegExp(`\\b${method.replace(/[.&+*?^$()[\]{}|\\]/g, "\\$&")}\\b`, "i");
+    if (re.test(text)) {
+      detectedMethodologies.add(method);
+    }
+  }
+  out.methodologies = Array.from(detectedMethodologies).slice(0, 12);
+
+  // v17.4 — Entreprises détectées
+  const detectedCompanies = new Set<string>();
+  for (const company of COMPANIES_CATALOG) {
+    const re = new RegExp(`\\b${company.replace(/[.&+*?^$()[\]{}|\\]/g, "\\$&")}\\b`, "i");
+    if (re.test(text)) {
+      detectedCompanies.add(company);
+    }
+  }
+  out.companies = Array.from(detectedCompanies).slice(0, 12);
+
+  // v17.4 — Mobilité (télétravail / présentiel)
+  if (/full\s+remote|100\s*%\s*t[eé]l[eé]travail|full\s+t[eé]l[eé]travail|t[eé]l[eé]travail\s+total/i.test(text)) {
+    out.mobility = "Full remote";
+  } else if (/hybride|2\s+jours\s+sur\s+place|3\s+jours\s+sur\s+place|2\s*-\s*3\s+jours|mix.*bureau|flex.*bureau/i.test(text)) {
+    out.mobility = "Hybride";
+  } else if (/full\s+pr[eé]sentiel|5\s+jours\s+sur\s+place|tous\s+les\s+jours\s+au\s+bureau/i.test(text)) {
+    out.mobility = "Présentiel";
+  }
+
+  // v17.4 — Disponibilité
+  if (/dispo(?:nible)?\s+(?:de suite|imm[eé]diat|tout\s+de\s+suite|asap)|imm[eé]diatement|d[eè]s\s+(?:maintenant|demain)|disponible\s+imm[eé]diat/i.test(text)) {
+    out.availability = "Immédiate";
+  } else if (/sous\s+(?:une?\s+semaine|2\s+semaines?|15\s+jours?)|pr[eé]avis\s+(?:d['']une?\s+semaine|court)|dans\s+quelques\s+semaines/i.test(text)) {
+    out.availability = "Court-terme (<1 mois)";
+  } else if (/fin\s+(?:de\s+)?mission\s+(?:en|dans)|dans\s+(?:un|2|deux|3|trois)\s+moi?s|pr[eé]avis\s+(?:de\s+)?(?:1|2|un|deux)\s+moi?s|janvier|f[eé]vrier|mars|avril|mai|juin|juillet|ao[uû]t|septembre|octobre|novembre|d[eé]cembre/i.test(text) &&
+             /(?:je suis|je termine|la mission|mission se termine|mission finit|jusqu'[àa])/i.test(text)) {
+    out.availability = "Moyen-terme (1-3 mois)";
   }
 
   return out;
@@ -827,10 +1143,16 @@ function detectMultiSelect(
  * v16 : matching tolérant (accents, pluriels), extraction identité, forces
  * conditionnelles au score du critère, score de confiance, debug matches.
  * v17 : + détection contrat + 4 taxonomies multi-select.
+ * v17.4 : + séparation candidat/recruteur, extraction étendue (âge, exp, langues,
+ *          outils, méthodologies, entreprises, mobilité, dispo).
  */
 export function autoScore(text: string, options: AutoScoreOptions = {}): AutoScoreDetails {
-  const normalized = normalize(text);
-  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+  // v17.4 — Sépare candidat vs Théophile si structure détectée
+  const split = splitTranscript(text);
+  // Scoring uniquement sur la partie candidat (si disponible), extractions sur tout
+  const scoringText = split.hasSpeakers ? split.candidate : text;
+  const normalized = normalize(scoringText);
+  const wordCount = scoringText.trim().split(/\s+/).filter(Boolean).length;
 
   const scores: Record<string, number> = {};
   const matchedKeywords: AutoScoreDetails["matchedKeywords"] = {};
@@ -876,63 +1198,168 @@ export function autoScore(text: string, options: AutoScoreOptions = {}): AutoSco
     scores[`c${i}`] = score;
   }
 
-  // Fix Bug 3 : Forces conditionnelles — liées au score du critère correspondant
-  // Chaque force n'est déclenchée que si le critère lié a un score ≥ 4
-  const detectedForces: string[] = [];
-  // Tableau : [phrase_trigger_normalisée, label, critère_min_score ≥ 4]
+  // v17.4 — Forces étendues (conditionnelles au score du critère lié quand applicable)
+  const uniqueForces = new Set<string>();
+  // Tableau : [phrase_trigger, label, critère_min_score (0 = toujours)]
   const forceTriggers: [string, string, number][] = [
+    // Sourcing
     ["sourcing proactif", "Sourcing proactif fort", 0],
-    ["chiffre precis", "Chiffres précis spontanés", 8],
-    ["demontre son autonomie", "Autonomie démontrée", 7],
-    ["closing reussi", "Closing efficace", 9],
-    ["experience rpo", "Fit RPO évident", 10],
+    ["approche directe", "Sourcing proactif fort", 0],
+    ["chasse directe", "Sourcing proactif fort", 0],
+    ["booleen maitrise", "Sourcing proactif fort", 0],
+    ["automatisation", "Sourcing proactif fort", 0],
+    // Chiffres
+    ["chiffre precis", "Chiffres précis spontanés", 0],
+    ["taux de conversion", "Chiffres précis spontanés", 0],
+    ["time to hire", "Chiffres précis spontanés", 0],
+    ["ratio cv", "Chiffres précis spontanés", 0],
+    ["kpi suivi", "Chiffres précis spontanés", 0],
+    // Autonomie
+    ["demontre son autonomie", "Autonomie démontrée", 0],
+    ["a monte sa boite", "Autonomie démontrée", 0],
+    ["autonome", "Autonomie démontrée", 7],
+    ["a son compte", "Autonomie démontrée", 0],
+    ["a mon compte", "Autonomie démontrée", 0],
+    ["mon propre cabinet", "Autonomie démontrée", 0],
+    ["ma structure", "Autonomie démontrée", 0],
+    ["refuse des mission", "Autonomie démontrée", 0],
+    // Closing
+    ["closing reussi", "Closing efficace", 0],
+    ["contre offre", "Closing efficace", 0],
+    ["contre-offre", "Closing efficace", 0],
+    ["negociation salariale", "Closing efficace", 0],
+    ["taux d'acceptation", "Closing efficace", 0],
+    // RPO
+    ["experience rpo", "Fit RPO évident", 0],
+    ["embedded chez", "Fit RPO évident", 0],
+    ["integre dans l'equipe", "Fit RPO évident", 0],
+    ["plug and play", "Fit RPO évident", 0],
+    ["plug & play", "Fit RPO évident", 0],
+    // Nouvelles forces v17.4
+    ["manage une equipe", "Management d'équipe", 0],
+    ["manager une equipe", "Management d'équipe", 0],
+    ["manage des recruteurs", "Management d'équipe", 0],
+    ["equipe de recruteurs", "Management d'équipe", 0],
+    ["forme des recruteurs", "Management d'équipe", 0],
+    ["head of talent", "Leadership TA senior", 0],
+    ["directrice recrutement", "Leadership TA senior", 0],
+    ["directeur recrutement", "Leadership TA senior", 0],
+    ["responsable recrutement", "Leadership TA senior", 0],
+    ["top 5%", "Profil élite", 0],
+    ["top 1%", "Profil élite", 0],
+    ["meilleur de sa generation", "Profil élite", 0],
+    ["mon reseau", "Fort réseau mobilisable", 0],
+    ["9000 contact", "Fort réseau mobilisable", 0],
+    ["8000 contact", "Fort réseau mobilisable", 0],
+    ["5000 contact", "Fort réseau mobilisable", 0],
+    ["reseau activable", "Fort réseau mobilisable", 0],
+    ["mis en place un process", "Structurateur de process", 0],
+    ["mis en place des process", "Structurateur de process", 0],
+    ["structuration du pole", "Structurateur de process", 0],
+    ["cree un pole", "Structurateur de process", 0],
+    ["monte un pole", "Structurateur de process", 0],
+    ["a recrute 100", "Fort volume de placement", 0],
+    ["une centaine de", "Fort volume de placement", 0],
+    ["130 recrutement", "Fort volume de placement", 0],
+    ["200 recrutement", "Fort volume de placement", 0],
+    ["40 recrutement par an", "Fort volume de placement", 0],
+    ["objectif atteint", "Deliverer (atteint ses KPI)", 0],
+    ["toujours atteint", "Deliverer (atteint ses KPI)", 0],
+    ["je depasse", "Deliverer (atteint ses KPI)", 0],
+    ["depasser les objectif", "Deliverer (atteint ses KPI)", 0],
+    ["amazon", "Expérience en top boîte", 0],
+    ["accenture", "Expérience en top boîte", 0],
+    ["doctolib", "Expérience en top boîte", 0],
+    ["adobe", "Expérience en top boîte", 0],
+    ["lvmh", "Expérience en top boîte", 0],
+    ["bilingue", "Bilingue / profil international", 0],
+    ["15 ans d'exp", "Senior 15+ ans", 0],
+    ["16 ans", "Senior 15+ ans", 0],
+    ["17 ans", "Senior 15+ ans", 0],
+    ["20 ans d'exp", "Senior 15+ ans", 0],
+    ["executive search", "Expertise executive search", 0],
+    ["c-level", "Expertise executive search", 0],
+    ["top management", "Expertise executive search", 0],
   ];
 
   for (const [trigger, label, critIdx] of forceTriggers) {
     const triggerNormalized = normalize(trigger);
-    if (normalized.includes(triggerNormalized) && scores[`c${critIdx}`] >= 4) {
-      detectedForces.push(label);
+    if (normalized.includes(triggerNormalized)) {
+      // Si critIdx > 0 et score du critère < 4, on skip
+      if (critIdx > 0 && (scores[`c${critIdx}`] || 0) < 4) continue;
+      uniqueForces.add(label);
     }
   }
+  const detectedForces = Array.from(uniqueForces);
 
-  // Fallback : si aucune force conditionnelle mais mots simples présents + score c14 ≥ 4
-  if (detectedForces.length === 0) {
-    if (normalized.includes(normalize("autonome")) && scores.c7 >= 4) {
-      detectedForces.push("Autonomie démontrée");
-    }
-    if (normalized.includes("closing") && scores.c9 >= 4) {
-      detectedForces.push("Closing efficace");
-    }
-  }
-
-  // Risques : triggers plus spécifiques (phrases) pour éviter faux positifs
-  const detectedRisks: string[] = [];
+  // v17.4 — Risques étendus
+  const uniqueRisks = new Set<string>();
   const riskTriggers: [string, string][] = [
+    // Communication
     ["pas de chiffre", "Manque de chiffres"],
     ["aucun chiffre", "Manque de chiffres"],
+    ["sans chiffre", "Manque de chiffres"],
     ["communication floue", "Communication floue"],
     ["reponse vague", "Communication floue"],
     ["reste vague", "Communication floue"],
+    ["reponses vagues", "Communication floue"],
+    ["floue", "Communication floue"],
+    // Autonomie
     ["peu autonome", "Peu autonome"],
     ["manque d'autonomie", "Peu autonome"],
+    ["n'est pas autonome", "Peu autonome"],
+    ["pas assez autonome", "Peu autonome"],
+    // RPO
     ["ne connait pas le rpo", "Pas de fit RPO"],
     ["pas fait de rpo", "Pas de fit RPO"],
+    ["jamais fait de rpo", "Pas de fit RPO"],
+    ["pas d'experience rpo", "Pas de fit RPO"],
+    // Outils
     ["outil mal maitrise", "Outils mal maîtrisés"],
     ["stack mal maitrisee", "Outils mal maîtrisés"],
+    ["pas les bons outil", "Outils mal maîtrisés"],
+    // Nouveaux risques v17.4
+    ["en reconversion", "Reconversion (profil à valider)"],
+    ["sortait de rupture", "Rupture conventionnelle récente"],
+    ["rupture conventionnelle", "Rupture conventionnelle récente"],
+    ["mission de 2 mois", "Mission courte (< 3 mois)"],
+    ["mission d'un mois", "Mission courte (< 3 mois)"],
+    ["tres court", "Mission courte (< 3 mois)"],
+    ["pas reussi a placer", "Echec de placement récent"],
+    ["n'a pas reussi", "Echec de placement récent"],
+    ["ca ne s'est pas bien passe", "Expérience négative récente"],
+    ["mal passe", "Expérience négative récente"],
+    ["compliqu", "Contexte difficile évoqué"],
+    ["a ete suppim", "Poste supprimé récemment"],
+    ["on m'a supprime", "Poste supprimé récemment"],
+    ["poste supprim", "Poste supprimé récemment"],
+    ["supprime mon poste", "Poste supprimé récemment"],
+    ["n'a pas de licence", "Manque de budget/outils"],
+    ["pas de licence", "Manque de budget/outils"],
+    ["pas de budget", "Manque de budget/outils"],
+    ["refus client", "Refus client(s) reporté(s)"],
+    ["le client a refuse", "Refus client(s) reporté(s)"],
+    ["pas de mission", "Pipe commercial faible"],
+    ["pas de client en direct", "Pipe commercial faible"],
+    ["difficile d'avoir les client", "Pipe commercial faible"],
+    ["dernier placement", "Activité irrégulière"],
+    ["pas regulier", "Activité irrégulière"],
+    ["tres peu de poste", "Marché limité"],
+    ["marche tendu", "Marché limité"],
+    ["ressenti marche tendu", "Marché limité"],
   ];
 
-  const uniqueRisks = new Set<string>();
   for (const [trigger, label] of riskTriggers) {
     if (normalized.includes(normalize(trigger))) {
       uniqueRisks.add(label);
     }
   }
-  detectedRisks.push(...uniqueRisks);
+  const detectedRisks = Array.from(uniqueRisks);
 
-  // Extraction identité
+  // Extraction identité (sur tout le texte, pas juste candidat — extrait mieux)
   const identity = extractIdentity(text);
 
-  // v17 — Détection contrat + 4 taxonomies multi-select
+  // v17 — Détection contrat + 4 taxonomies multi-select (sur partie candidat)
   const contrat = detectContrat(normalized);
   const profileTypes = detectMultiSelect(normalized, PROFILE_TYPES_DETECTION);
   const companyTypes = detectMultiSelect(normalized, COMPANY_TYPES_DETECTION);
@@ -958,6 +1385,8 @@ export function autoScore(text: string, options: AutoScoreOptions = {}): AutoSco
     companyTypes,
     profileStyle,
     intelligenceTypes,
+    speakerSegmented: split.hasSpeakers,
+    recruiterRatio: split.recruiterRatio,
     confidence,
     confidenceLevel,
     wordCount,

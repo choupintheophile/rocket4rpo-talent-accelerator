@@ -521,6 +521,116 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                 <div className="font-mono tabular-nums">{lastAnalysis.intelligenceTypes.length} / 5</div>
               </div>
             </div>
+
+            {/* v17.4 — Highlights : infos extraites détaillées */}
+            {(lastAnalysis.identity.age ||
+              lastAnalysis.identity.yearsExperience ||
+              lastAnalysis.identity.mobility ||
+              lastAnalysis.identity.availability ||
+              lastAnalysis.identity.tjmMax ||
+              lastAnalysis.identity.languages.length > 0 ||
+              lastAnalysis.identity.tools.length > 0 ||
+              lastAnalysis.identity.methodologies.length > 0 ||
+              lastAnalysis.identity.companies.length > 0 ||
+              lastAnalysis.speakerSegmented) && (
+              <div className="mt-3 pt-3 border-t border-gray-100 space-y-2">
+                <div className="text-[9px] font-semibold uppercase tracking-wider text-gray-500">
+                  Highlights extraits
+                </div>
+                {/* Stats rapides */}
+                <div className="flex flex-wrap gap-1.5 text-[11px]">
+                  {lastAnalysis.speakerSegmented && (
+                    <span className="px-2 py-0.5 rounded bg-rocket-teal/10 text-rocket-teal border border-rocket-teal/30">
+                      🎙 Transcription segmentée — {Math.round(lastAnalysis.recruiterRatio * 100)}% recruteur filtré
+                    </span>
+                  )}
+                  {lastAnalysis.identity.age && (
+                    <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
+                      🎂 {lastAnalysis.identity.age}
+                    </span>
+                  )}
+                  {lastAnalysis.identity.yearsExperience && (
+                    <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
+                      ⏳ {lastAnalysis.identity.yearsExperience} d&apos;expérience
+                    </span>
+                  )}
+                  {lastAnalysis.identity.tjmMax && (
+                    <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
+                      💶 Fourchette TJM : {lastAnalysis.identity.tjm} → {lastAnalysis.identity.tjmMax}
+                    </span>
+                  )}
+                  {lastAnalysis.identity.mobility && (
+                    <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
+                      🏢 {lastAnalysis.identity.mobility}
+                    </span>
+                  )}
+                  {lastAnalysis.identity.availability && (
+                    <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
+                      📅 Dispo : {lastAnalysis.identity.availability}
+                    </span>
+                  )}
+                </div>
+                {/* Langues */}
+                {lastAnalysis.identity.languages.length > 0 && (
+                  <div>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Langues :</span>
+                    <span className="ml-2 text-[11px]">
+                      {lastAnalysis.identity.languages.map((l, i) => (
+                        <span key={i} className="inline-block mr-1.5 px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                          {l}
+                        </span>
+                      ))}
+                    </span>
+                  </div>
+                )}
+                {/* Outils */}
+                {lastAnalysis.identity.tools.length > 0 && (
+                  <div>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Outils ({lastAnalysis.identity.tools.length}) :</span>
+                    <span className="ml-2 text-[11px]">
+                      {lastAnalysis.identity.tools.slice(0, 12).map((t, i) => (
+                        <span key={i} className="inline-block mr-1.5 mb-1 px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">
+                          {t}
+                        </span>
+                      ))}
+                      {lastAnalysis.identity.tools.length > 12 && (
+                        <span className="text-gray-400">+{lastAnalysis.identity.tools.length - 12}</span>
+                      )}
+                    </span>
+                  </div>
+                )}
+                {/* Méthodologies */}
+                {lastAnalysis.identity.methodologies.length > 0 && (
+                  <div>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Méthodologies :</span>
+                    <span className="ml-2 text-[11px]">
+                      {lastAnalysis.identity.methodologies.map((m, i) => (
+                        <span key={i} className="inline-block mr-1.5 mb-1 px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
+                          {m}
+                        </span>
+                      ))}
+                    </span>
+                  </div>
+                )}
+                {/* Entreprises mentionnées */}
+                {lastAnalysis.identity.companies.length > 0 && (
+                  <div>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Entreprises mentionnées ({lastAnalysis.identity.companies.length}) :</span>
+                    <span className="ml-2 text-[11px]">
+                      {lastAnalysis.identity.companies.slice(0, 10).map((c, i) => (
+                        <span key={i} className="inline-block mr-1.5 mb-1 px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                          {c}
+                        </span>
+                      ))}
+                      {lastAnalysis.identity.companies.length > 10 && (
+                        <span className="text-gray-400">+{lastAnalysis.identity.companies.length - 10}</span>
+                      )}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+
             {lastAnalysis.confidenceLevel === "faible" && (
               <p className="mt-2 text-[11px] text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-1">
                 ⚠ Résumé court — fiabilité du scoring limitée. Complétez pour un résultat plus précis.
