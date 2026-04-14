@@ -33,8 +33,8 @@ const nextConfig: NextConfig = {
       { source: "/cas-clients", destination: "/offre", permanent: true },
       { source: "/cas-clients/:slug*", destination: "/offre", permanent: true },
       { source: "/equipe", destination: "/recrutement", permanent: true },
-      { source: "/a-propos", destination: "/rocket4gtm", permanent: true },
-      { source: "/about", destination: "/rocket4gtm", permanent: true },
+      // /a-propos : désormais une vraie page dédiée — redirect retiré.
+      { source: "/about", destination: "/a-propos", permanent: true },
       { source: "/pricing", destination: "/offre", permanent: true },
       { source: "/tarifs", destination: "/offre", permanent: true },
       { source: "/services", destination: "/offre", permanent: true },
