@@ -88,85 +88,48 @@ export const RISK_PRESETS = [
    Présets organisés par groupes pour faciliter le scoring qualitatif
    ═══════════════════════════════════════════════════════════════════════ */
 
-/** Type de profils que le candidat a déjà recrutés (multi-select) */
-export const PROFILE_TYPES_PRESETS = {
-  Sales: ["SDR / BDR", "Account Executive", "Account Manager", "Sales Manager", "VP Sales", "CRO", "Sales Engineer"],
-  Tech: ["Dev front", "Dev back", "Fullstack", "DevOps / SRE", "Data Engineer", "Data Scientist / ML", "Engineering Manager", "CTO"],
-  Product: ["Product Manager", "Product Owner", "Product Designer", "UX / UI", "Head of Product", "CPO"],
-  Marketing: ["Growth", "Content", "Brand", "Acquisition / SEA", "SEO", "CMO"],
-  "Customer & Ops": ["Customer Success", "Pre-Sales / Solutions", "RevOps", "SalesOps", "People Ops / RH"],
-  "Direction & C-level": ["C-level (CEO/CFO/COO)", "VP / Head of", "Director", "Founder / Co-founder"],
-  Finance: ["Finance / Controlling", "FP&A", "CFO"],
-} as const;
-
-/** Type de boîte pour laquelle il a travaillé (multi-select, groupé maturité + secteur) */
-export const COMPANY_TYPES_PRESETS = {
-  "Maturité": [
-    "Pré-seed / Seed (<10p)",
-    "Série A (10-50p)",
-    "Série B/C (50-300p)",
-    "Série D+ / Licorne (300+p)",
-    "ETI Tech française",
-    "Grand groupe / corporate",
-  ],
-  "Modèle business": [
-    "SaaS B2B",
-    "SaaS B2C",
-    "Marketplace",
-    "E-commerce / DTC",
-    "Services / ESN",
-    "Cabinet conseil",
-    "Cabinet recrutement",
-    "RPO / Embedded",
-  ],
-  "Secteur": [
-    "Fintech",
-    "HealthTech / BioTech",
-    "DeepTech / AI",
-    "Cybersecurity",
-    "AdTech / MarTech",
-    "EdTech",
-    "HR Tech",
-    "Mobility",
-    "GreenTech / ClimateTech",
-    "Gaming",
-    "Crypto / Web3",
-  ],
-} as const;
-
-/** Style / personnalité du recruteur (multi-select) */
-export const PROFILE_STYLE_PRESETS = [
-  "Sharp (intellectuellement brillant)",
-  "Hunter (chasse agressive)",
-  "Farmer (relation long terme)",
-  "Architecte (très structuré)",
-  "Operator (très opérationnel)",
-  "Senior calme et posé",
-  "Junior à fort potentiel",
-  "Profil consultant",
-  "Profil entrepreneur",
-  "Profil corporate",
-  "People-first / soft-skills",
-  "Data-driven / analytical",
-  "Hands-on / get-things-done",
-  "Mentor / pédagogue",
-  "Profil premium / haut de gamme",
+/** Type de profils que le candidat a déjà recrutés (multi-select, flat, haut niveau) */
+export const PROFILE_TYPES_PRESETS = [
+  "Sales",
+  "Tech",
+  "Data & ML",
+  "Product & Design",
+  "Marketing",
+  "Customer Success",
+  "Ops / RevOps",
+  "Finance",
+  "Direction / C-level",
+  "International",
 ] as const;
 
-/** Type d'intelligence dominante (multi-select) */
+/** Type de boîte pour laquelle il a travaillé (multi-select, flat, haut niveau) */
+export const COMPANY_TYPES_PRESETS = [
+  "Startup (<50p)",
+  "Scale-up (50-300p)",
+  "Licorne / 300+p",
+  "ETI / Grand groupe",
+  "SaaS / Tech produit",
+  "Services / Conseil / ESN",
+  "RPO / Recrutement",
+] as const;
+
+/** Style / personnalité du recruteur (multi-select, flat, haut niveau) */
+export const PROFILE_STYLE_PRESETS = [
+  "Sharp",
+  "Hunter",
+  "Farmer",
+  "Structuré",
+  "Hands-on",
+  "Premium / Senior",
+] as const;
+
+/** Type d'intelligence dominante (multi-select, flat, haut niveau) */
 export const INTELLIGENCE_TYPES_PRESETS = [
-  "Analytique (raisonnement, data)",
-  "Émotionnelle (lecture EQ, empathie)",
-  "Stratégique (vision, anticipation)",
-  "Relationnelle (réseau, charisme)",
-  "Politique (navigation orga complexe)",
-  "Opérationnelle (exécution, delivery)",
-  "Créative (idées originales)",
-  "Apprentissage rapide (curiosité)",
-  "Vision business / commerciale",
-  "Sens du détail / craftsmanship",
-  "Pragmatique (priorisation)",
-  "Synthèse (capte l'essentiel)",
+  "Analytique",
+  "Émotionnelle",
+  "Stratégique",
+  "Relationnelle",
+  "Opérationnelle",
 ] as const;
 
 export const SCORE_COLORS = ["#EF9A9A", "#FFD54F", "#AED581", "#66BB6A", "#124944"] as const;

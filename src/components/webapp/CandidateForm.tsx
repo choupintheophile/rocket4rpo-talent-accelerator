@@ -589,13 +589,13 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         </div>
       </section>
 
-      {/* v17 — Profils recrutés (multi-select groupé) */}
+      {/* v17 — Profils recrutés (flat, haut niveau) */}
       <section>
         <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
             Profils déjà recrutés
             <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · cochez tous les types de postes que le candidat a déjà chassés
+              · familles de postes déjà chassées
             </span>
           </h3>
           {profileTypes.size > 0 && (
@@ -604,37 +604,30 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             </span>
           )}
         </div>
-        <div className="space-y-3">
-          {Object.entries(PROFILE_TYPES_PRESETS).map(([groupName, items]) => (
-            <div key={groupName}>
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">{groupName}</div>
-              <div className="flex flex-wrap gap-1.5">
-                {items.map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => toggleProfileType(tag)}
-                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                      profileTypes.has(tag)
-                        ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal font-medium"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
+        <div className="flex flex-wrap gap-1.5">
+          {PROFILE_TYPES_PRESETS.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => toggleProfileType(tag)}
+              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                profileTypes.has(tag)
+                  ? "bg-rocket-teal/10 border-rocket-teal text-rocket-teal font-medium"
+                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+              }`}
+            >
+              {tag}
+            </button>
           ))}
         </div>
       </section>
 
-      {/* v17 — Type de boîte (multi-select groupé) */}
+      {/* v17 — Type de boîte (flat, haut niveau) */}
       <section>
         <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
             Type de boîte
             <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · environnements dans lesquels le candidat a évolué
+              · maturité & modèle des entreprises clientes
             </span>
           </h3>
           {companyTypes.size > 0 && (
@@ -643,37 +636,30 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
             </span>
           )}
         </div>
-        <div className="space-y-3">
-          {Object.entries(COMPANY_TYPES_PRESETS).map(([groupName, items]) => (
-            <div key={groupName}>
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">{groupName}</div>
-              <div className="flex flex-wrap gap-1.5">
-                {items.map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => toggleCompanyType(tag)}
-                    className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
-                      companyTypes.has(tag)
-                        ? "bg-blue-50 border-blue-400 text-blue-700 font-medium"
-                        : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
-                    }`}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
+        <div className="flex flex-wrap gap-1.5">
+          {COMPANY_TYPES_PRESETS.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => toggleCompanyType(tag)}
+              className={`text-[12px] px-3 py-1.5 rounded-full border transition-colors ${
+                companyTypes.has(tag)
+                  ? "bg-blue-50 border-blue-400 text-blue-700 font-medium"
+                  : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+              }`}
+            >
+              {tag}
+            </button>
           ))}
         </div>
       </section>
 
-      {/* v17 — Style de profil (multi-select flat) */}
+      {/* v17 — Style de profil (flat, haut niveau) */}
       <section>
         <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
             Style de profil
             <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · personnalité et posture du candidat (multi-select)
+              · posture dominante
             </span>
           </h3>
           {profileStyle.size > 0 && (
@@ -699,13 +685,13 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         </div>
       </section>
 
-      {/* v17 — Type d'intelligence (multi-select flat) */}
+      {/* v17 — Type d'intelligence (flat, haut niveau) */}
       <section>
         <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
           <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
             Type d&apos;intelligence
             <span className="ml-2 font-normal text-gray-400 normal-case tracking-normal">
-              · nature de l&apos;intelligence dominante perçue en entretien
+              · intelligence dominante
             </span>
           </h3>
           {intelligenceTypes.size > 0 && (
