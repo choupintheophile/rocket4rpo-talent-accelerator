@@ -1,14 +1,28 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { CRITERIA, NB_CRIT, FORCE_PRESETS, RISK_PRESETS, SCORE_COLORS, calcScore, getVerdict, autoScore } from "@/lib/r4rpo-constants";
+import {
+  CRITERIA,
+  NB_CRIT,
+  FORCE_PRESETS,
+  RISK_PRESETS,
+  SCORE_COLORS,
+  calcScore,
+  getVerdict,
+  autoScore,
+  exportScoringText,
+  type AutoScoreDetails,
+} from "@/lib/r4rpo-constants";
 import { createCandidate, updateCandidate, deleteCandidate } from "@/lib/candidates";
 import type { Candidate } from "@prisma/client";
 
 interface CandidateFormProps {
   candidate?: Candidate | null;
 }
+
+const MIN_CHARS = 150;
+const LS_KEY = "r4rpo_last_resume_v1";
 
 export function CandidateForm({ candidate }: CandidateFormProps) {
   const router = useRouter();
@@ -47,9 +61,55 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
   const [forces, setForces] = useState<Set<string>>(() => new Set((candidate?.forces as string[]) || []));
   const [risks, setRisks] = useState<Set<string>>(() => new Set((candidate?.risks as string[]) || []));
 
+  // v16 — UX analyse
+  const [skipInternational, setSkipInternational] = useState(false);
+  const [showDebug, setShowDebug] = useState(false);
+  const [lastAnalysis, setLastAnalysis] = useState<AutoScoreDetails | null>(null);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "ok">("idle");
+  const [lsLoaded, setLsLoaded] = useState(false);
+
+  // Persistance localStorage — restauration au mount uniquement pour "nouveau" (pas édition)
+  useEffect(() => {
+    if (isEdit) {
+      setLsLoaded(true);
+      return;
+    }
+    try {
+      const stored = window.localStorage.getItem(LS_KEY);
+      if (stored && !resumeText) {
+        const parsed = JSON.parse(stored);
+        if (parsed.resumeText && typeof parsed.resumeText === "string") {
+          setResumeText(parsed.resumeText);
+        }
+      }
+    } catch {
+      // ignore
+    }
+    setLsLoaded(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isEdit]);
+
+  // Sauvegarde localStorage (throttled via useEffect normal, updates quick)
+  useEffect(() => {
+    if (!lsLoaded || isEdit) return;
+    if (!resumeText) {
+      try {
+        window.localStorage.removeItem(LS_KEY);
+      } catch {}
+      return;
+    }
+    try {
+      window.localStorage.setItem(LS_KEY, JSON.stringify({ resumeText, updatedAt: Date.now() }));
+    } catch {}
+  }, [resumeText, lsLoaded, isEdit]);
+
   // Computed score
   const sc = calcScore(scores);
   const verdict = getVerdict(sc.pct, sc.filled);
+
+  const charCount = resumeText.trim().length;
+  const canAnalyze = charCount >= MIN_CHARS;
+  const progressPct = Math.min(100, Math.round((charCount / MIN_CHARS) * 100));
 
   function setScore(critIdx: number, value: number) {
     const key = `c${critIdx}`;
@@ -78,6 +138,75 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       next.has(tag) ? next.delete(tag) : next.add(tag);
       return next;
     });
+  }
+
+  function handleAnalyze() {
+    if (!canAnalyze) return;
+    const result = autoScore(resumeText, { skipInternational });
+
+    // Merge scores — priorise l'écriture pour qu'aucune valeur résiduelle ne persiste (Fix Bug 4)
+    setScores((prev) => {
+      const merged = { ...prev };
+      for (const [key, val] of Object.entries(result.scores)) {
+        // Override seulement si l'utilisateur n'a pas manuellement défini un score
+        const manual = prev[key];
+        if (!manual || manual === 0) {
+          if (val > 0) merged[key] = val;
+          else delete merged[key];
+        }
+      }
+      return merged;
+    });
+
+    // Merge forces (remplace — les forces sont auto-détectées)
+    if (result.forces.length > 0) {
+      setForces((prev) => {
+        const next = new Set(prev);
+        result.forces.forEach((f) => next.add(f));
+        return next;
+      });
+    }
+
+    // Merge risks
+    if (result.risks.length > 0) {
+      setRisks((prev) => {
+        const next = new Set(prev);
+        result.risks.forEach((r) => next.add(r));
+        return next;
+      });
+    }
+
+    // Auto-fill identity — n'écrase JAMAIS les champs déjà remplis
+    const id = result.identity;
+    if (id.email && !email.trim()) setEmail(id.email);
+    if (id.phone && !phone.trim()) setPhone(id.phone);
+    if (id.linkedin && !linkedin.trim()) setLinkedin(id.linkedin);
+    if (id.tjm && !tjm.trim()) setTjm(id.tjm);
+    if (id.loc && !loc.trim()) setLoc(id.loc);
+    if (id.prenom && !prenom.trim()) setPrenom(id.prenom);
+    if (id.nom && !nom.trim()) setNom(id.nom);
+
+    setLastAnalysis(result);
+  }
+
+  async function handleCopyScoring() {
+    const text = exportScoringText(scores, Array.from(forces), Array.from(risks), {
+      prenom,
+      nom,
+      email,
+      phone,
+      linkedin,
+      loc,
+      tjm,
+    });
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyStatus("ok");
+      setTimeout(() => setCopyStatus("idle"), 2200);
+    } catch {
+      // Fallback : ouvrir une alerte avec le texte
+      alert(text);
+    }
   }
 
   function handleSave() {
@@ -111,6 +240,10 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
         await updateCandidate(candidate.id, data);
       } else {
         await createCandidate(data);
+        // Clean localStorage after successful creation
+        try {
+          window.localStorage.removeItem(LS_KEY);
+        } catch {}
       }
       router.push("/webapp-testing/vivier");
       router.refresh();
@@ -125,6 +258,18 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       router.refresh();
     });
   }
+
+  // Nombre de matches/non-matches pour l'affichage du panneau debug
+  const debugStats = useMemo(() => {
+    if (!lastAnalysis) return null;
+    let totalMatched = 0;
+    let totalGroups = 0;
+    Object.values(lastAnalysis.matchedKeywords).forEach((v) => {
+      totalMatched += v.matched.length;
+      totalGroups += v.matched.length + v.missing.length;
+    });
+    return { totalMatched, totalGroups };
+  }, [lastAnalysis]);
 
   const inputCls = "px-3 py-2 text-[13px] border border-gray-300 rounded-lg w-full focus:outline-none focus:border-rocket-teal transition-colors";
   const labelCls = "text-[11px] text-gray-500 font-medium";
@@ -192,54 +337,169 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
 
       {/* Resume + Auto-scoring */}
       <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
-          Résumé d&apos;entretien
-        </h3>
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Résumé d&apos;entretien
+          </h3>
+          <label className="flex items-center gap-1.5 text-[11px] text-gray-500 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={skipInternational}
+              onChange={(e) => setSkipInternational(e.target.checked)}
+              className="accent-rocket-teal"
+            />
+            Profil France-only (skip International)
+          </label>
+        </div>
+
         <textarea
           value={resumeText}
           onChange={(e) => setResumeText(e.target.value)}
-          placeholder={"Collez ici le compte-rendu d'entretien, vos notes ou tout contexte sur le candidat...\n\nExemple : \"Profil senior avec 8 ans d'expérience en sourcing SaaS. Maîtrise Sales Navigator et boolean search. Autonome, a géré des missions RPO chez 3 clients. TTF moyen de 25 jours. Closing efficace, a géré plusieurs contre-offres.\""}
-          className={`${inputCls} min-h-[140px] resize-y`}
+          placeholder={"Collez ici le compte-rendu d'entretien, vos notes ou tout contexte sur le candidat...\n\nExemple : \"Jean Dupont — jean.dupont@email.com — Paris — 600 €/j. Profil senior avec 8 ans d'expérience en sourcing SaaS. Maîtrise Sales Navigator et booléen. Autonome, a géré des missions RPO chez 3 clients. TTF moyen de 25 jours. Closing efficace, a géré plusieurs contre-offres.\""}
+          className={`${inputCls} min-h-[160px] resize-y font-mono text-[12px]`}
         />
-        {resumeText.trim().length > 30 && (
+
+        {/* Progress bar + compteur */}
+        <div className="mt-2 flex items-center gap-3">
+          <div className="flex-1 h-1 rounded-full bg-gray-200 overflow-hidden">
+            <div
+              className={`h-full transition-all ${canAnalyze ? "bg-rocket-teal" : "bg-amber-400"}`}
+              style={{ width: `${progressPct}%` }}
+            />
+          </div>
+          <span className={`text-[10px] font-mono tabular-nums ${canAnalyze ? "text-rocket-teal" : "text-gray-400"}`}>
+            {charCount} / {MIN_CHARS}
+          </span>
+        </div>
+
+        {/* Bouton analyse + aide contextuelle */}
+        <div className="mt-3 flex flex-wrap items-center gap-2">
           <button
             type="button"
-            onClick={() => {
-              const result = autoScore(resumeText);
-              // Merge scores (don't override manually set ones)
-              setScores((prev) => {
-                const merged = { ...prev };
-                for (const [key, val] of Object.entries(result.scores)) {
-                  if (!merged[key] || merged[key] === 0) {
-                    merged[key] = val;
-                  }
-                }
-                return merged;
-              });
-              // Merge forces
-              if (result.forces.length > 0) {
-                setForces((prev) => {
-                  const next = new Set(prev);
-                  result.forces.forEach((f) => next.add(f));
-                  return next;
-                });
-              }
-              // Merge risks
-              if (result.risks.length > 0) {
-                setRisks((prev) => {
-                  const next = new Set(prev);
-                  result.risks.forEach((r) => next.add(r));
-                  return next;
-                });
-              }
-            }}
-            className="mt-2 inline-flex items-center gap-2 px-4 py-2 text-[12px] font-semibold rounded-lg bg-rocket-teal text-white hover:bg-rocket-teal/90 transition-colors"
+            onClick={handleAnalyze}
+            disabled={!canAnalyze}
+            className={`inline-flex items-center gap-2 px-4 py-2 text-[12px] font-semibold rounded-lg transition-all ${
+              canAnalyze
+                ? "bg-rocket-teal text-white hover:bg-rocket-teal/90 hover:scale-[1.02]"
+                : "bg-gray-100 text-gray-400 cursor-not-allowed"
+            }`}
           >
             ⚡ Analyser et pré-remplir le scoring
           </button>
+          {!canAnalyze && charCount > 0 && (
+            <span className="text-[10px] text-gray-400">
+              Ajoutez {MIN_CHARS - charCount} caractère{MIN_CHARS - charCount > 1 ? "s" : ""} pour activer l&apos;analyse
+            </span>
+          )}
+          {lastAnalysis && (
+            <button
+              type="button"
+              onClick={() => setShowDebug((v) => !v)}
+              className="text-[11px] text-gray-500 hover:text-rocket-teal underline decoration-dotted"
+            >
+              {showDebug ? "Masquer" : "Voir"} les mots-clés détectés
+            </button>
+          )}
+        </div>
+
+        {/* Résultat dernière analyse — bandeau compact */}
+        {lastAnalysis && (
+          <div className="mt-3 rounded-lg border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-[11px]">
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Confiance</div>
+                <div className="flex items-center gap-2">
+                  <div
+                    className={`w-2.5 h-2.5 rounded-full ${
+                      lastAnalysis.confidenceLevel === "haute"
+                        ? "bg-emerald-500"
+                        : lastAnalysis.confidenceLevel === "moyenne"
+                        ? "bg-amber-400"
+                        : "bg-red-400"
+                    }`}
+                  />
+                  <span className="font-medium capitalize">{lastAnalysis.confidenceLevel}</span>
+                  <span className="text-gray-400">({lastAnalysis.wordCount} mots)</span>
+                </div>
+              </div>
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Groupes matchés</div>
+                <div className="font-mono tabular-nums">
+                  {debugStats?.totalMatched || 0} / {debugStats?.totalGroups || 0}
+                </div>
+              </div>
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Forces détectées</div>
+                <div className="font-mono tabular-nums">{lastAnalysis.forces.length} / 5</div>
+              </div>
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Alertes détectées</div>
+                <div className="font-mono tabular-nums">{lastAnalysis.risks.length}</div>
+              </div>
+            </div>
+            {lastAnalysis.confidenceLevel === "faible" && (
+              <p className="mt-2 text-[11px] text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-1">
+                ⚠ Résumé court — fiabilité du scoring limitée. Complétez pour un résultat plus précis.
+              </p>
+            )}
+          </div>
         )}
-        {resumeText.trim().length > 0 && resumeText.trim().length <= 30 && (
-          <p className="mt-1.5 text-[10px] text-gray-400">Ajoutez au moins 30 caractères pour activer l&apos;analyse automatique</p>
+
+        {/* Panneau debug mots-clés rétractable */}
+        {lastAnalysis && showDebug && (
+          <div className="mt-3 rounded-lg border border-gray-200 bg-white p-4 max-h-[360px] overflow-y-auto">
+            <h4 className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-3">
+              Détection mot-clés par critère
+            </h4>
+            <div className="space-y-2.5">
+              {CRITERIA.map((crit, i) => {
+                const km = lastAnalysis.matchedKeywords[`c${i}`];
+                if (!km) return null;
+                const score = lastAnalysis.scores[`c${i}`] || 0;
+                const isSkipped = skipInternational && i === 3;
+                return (
+                  <div key={i} className="text-[11px]">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-semibold text-gray-700">{crit.name}</span>
+                      {isSkipped ? (
+                        <span className="text-[9px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">Skipped</span>
+                      ) : (
+                        <span
+                          className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded"
+                          style={{
+                            background: score > 0 ? SCORE_COLORS[score - 1] : "#f3f4f6",
+                            color: score >= 4 ? "#fff" : "#444",
+                          }}
+                        >
+                          {score}/5
+                        </span>
+                      )}
+                    </div>
+                    {!isSkipped && (
+                      <div className="flex flex-wrap gap-1">
+                        {km.matched.map((kw, j) => (
+                          <span
+                            key={`m-${j}`}
+                            className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 border border-emerald-200"
+                          >
+                            ✓ {kw}
+                          </span>
+                        ))}
+                        {km.missing.map((kw, j) => (
+                          <span
+                            key={`miss-${j}`}
+                            className="text-[10px] px-1.5 py-0.5 rounded bg-gray-50 text-gray-400 border border-gray-200 line-through"
+                          >
+                            {kw}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         )}
       </section>
 
@@ -335,16 +595,42 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
 
       {/* Scoring */}
       <section>
-        <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-2.5 pb-2 border-b border-gray-200">
-          Scoring — <span className="font-normal text-gray-400">Cliquer une note 1→5 · recliquer pour effacer</span>
-        </h3>
+        <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-gray-200">
+          <h3 className="text-[11px] font-semibold uppercase tracking-wider text-gray-400">
+            Scoring — <span className="font-normal text-gray-400">Cliquer une note 1→5 · recliquer pour effacer</span>
+          </h3>
+          <button
+            type="button"
+            onClick={handleCopyScoring}
+            disabled={sc.filled === 0}
+            className={`text-[11px] font-semibold px-3 py-1 rounded-md border transition-colors ${
+              sc.filled === 0
+                ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                : copyStatus === "ok"
+                ? "border-emerald-300 bg-emerald-50 text-emerald-700"
+                : "border-gray-300 text-gray-600 hover:border-rocket-teal hover:text-rocket-teal"
+            }`}
+          >
+            {copyStatus === "ok" ? "✓ Copié !" : "📋 Copier le scoring"}
+          </button>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-4">
           {CRITERIA.map((crit, i) => {
             const currentScore = scores[`c${i}`] || 0;
+            const isIntl = i === 3;
+            const isSkipped = skipInternational && isIntl;
             return (
-              <div key={i} className="flex items-center gap-3 px-3 py-2.5 border border-gray-200 rounded-lg bg-white hover:border-gray-300 transition-colors">
+              <div
+                key={i}
+                className={`flex items-center gap-3 px-3 py-2.5 border rounded-lg transition-colors ${
+                  isSkipped ? "border-gray-200 bg-gray-50 opacity-60" : "border-gray-200 bg-white hover:border-gray-300"
+                }`}
+              >
                 <div className="flex-1 min-w-0">
-                  <div className="text-[12px] font-medium truncate">{crit.name}</div>
+                  <div className="text-[12px] font-medium truncate flex items-center gap-1.5">
+                    {crit.name}
+                    {isSkipped && <span className="text-[9px] px-1.5 py-0.5 rounded bg-gray-200 text-gray-500">Skipped</span>}
+                  </div>
                   <div className="text-[10px] text-gray-400 truncate">{crit.desc}</div>
                 </div>
                 <div className="flex gap-0.5 flex-shrink-0">
@@ -356,7 +642,8 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                       <button
                         key={v}
                         onClick={() => setScore(i, v)}
-                        className="w-[26px] h-[26px] rounded-md border text-[11px] font-mono flex items-center justify-center transition-all hover:border-rocket-teal hover:text-rocket-teal"
+                        disabled={isSkipped}
+                        className="w-[26px] h-[26px] rounded-md border text-[11px] font-mono flex items-center justify-center transition-all hover:border-rocket-teal hover:text-rocket-teal disabled:cursor-not-allowed"
                         style={{
                           background: bg,
                           color,

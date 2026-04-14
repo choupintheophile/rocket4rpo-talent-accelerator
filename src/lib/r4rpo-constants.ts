@@ -1,4 +1,6 @@
-// R4RPO v15 — 15 universal criteria, preset tags, interview questions
+// R4RPO v16 — 15 universal criteria, preset tags, interview questions
+// v16 : refonte du moteur autoScore — bugs fixés + matching tolérant + extraction identité
+//        + forces conditionnelles + score de confiance + debug matches + export texte
 
 export const CRITERIA = [
   { name: "Sourcing & identification", desc: "Volume, approche directe, booléen, multicanal" },
@@ -259,162 +261,400 @@ export function initials(prenom: string, nom: string): string {
   return ((prenom?.[0] || "").toUpperCase() + (nom?.[0] || "").toUpperCase()) || "?";
 }
 
-/* ── Auto-scoring engine (keyword-based) ── */
+/* ═══════════════════════════════════════════════════════════════════════
+   AUTO-SCORING ENGINE v16 — keyword matching avec tolérance + extraction
+   ═══════════════════════════════════════════════════════════════════════ */
 
-const SCORING_KEYWORDS: { keywords: string[]; weight: number }[][] = [
-  // c0: Sourcing & identification
+/**
+ * Normalise un texte pour un matching tolérant :
+ * - lowercase
+ * - enlève les accents (à → a, é → e, etc.)
+ * - supprime le "s" final des mots de 4+ caractères (stemming minimal)
+ */
+function normalize(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // accents
+    .replace(/\b(\w{4,})s\b/g, "$1"); // pluriels simples
+}
+
+const SCORING_KEYWORDS: { keywords: string[] }[][] = [
+  // c0: Sourcing & identification (3 groupes)
   [
-    { keywords: ["sourcing", "approche directe", "chasse", "booléen", "boolean", "linkedin recruiter", "multicanal", "vivier", "inmail", "approche proactive"], weight: 1 },
-    { keywords: ["volume", "taux de retour", "messages par semaine", "pipe", "pipeline sourcing"], weight: 1 },
-    { keywords: ["github", "stackoverflow", "meetup", "cooptation", "réseau"], weight: 1 },
+    { keywords: ["sourcing", "approche directe", "chasse", "booleen", "linkedin recruiter", "multicanal", "vivier", "inmail", "approche proactive"] },
+    { keywords: ["volume", "taux de retour", "messages par semaine", "pipe", "pipeline sourcing"] },
+    { keywords: ["github", "stackoverflow", "meetup", "cooptation", "reseau"] },
   ],
-  // c1: Qualification candidat
+  // c1: Qualification candidat (3 groupes)
   [
-    { keywords: ["qualification", "grille", "scorecard", "évaluer", "calibr", "entretien structuré", "fit culturel", "soft skills"], weight: 1 },
-    { keywords: ["technique", "test technique", "case study", "mise en situation"], weight: 1 },
-    { keywords: ["hiring manager", "brief", "calibration", "profil idéal"], weight: 1 },
+    { keywords: ["qualification", "grille", "scorecard", "evaluer", "calibr", "entretien structure", "fit culturel", "soft skill"] },
+    { keywords: ["technique", "test technique", "case study", "mise en situation"] },
+    { keywords: ["hiring manager", "brief", "calibration", "profil ideal"] },
   ],
-  // c2: Spécialisation sectorielle
+  // c2: Spécialisation sectorielle (3 groupes)
   [
-    { keywords: ["saas", "esn", "fintech", "healthtech", "hr tech", "biotech", "edtech", "cybersécurité"], weight: 1 },
-    { keywords: ["secteur", "industrie", "vertical", "marché", "spécialisé", "expertise sectorielle"], weight: 1 },
-    { keywords: ["startup", "scale-up", "grand compte", "pme", "licorne"], weight: 1 },
+    { keywords: ["saas", "esn", "fintech", "healthtech", "hr tech", "biotech", "edtech", "cybersecurite"] },
+    { keywords: ["secteur", "industrie", "vertical", "marche", "specialise", "expertise sectorielle"] },
+    { keywords: ["startup", "scale-up", "scale up", "grand compte", "pme", "licorne"] },
   ],
-  // c3: International
+  // c3: International (3 groupes — AJOUT du 3e groupe pour fix Bug 2)
   [
-    { keywords: ["international", "anglais", "bilingue", "multilingue", "cross-border", "europe", "us", "uk", "remote international"], weight: 1 },
-    { keywords: ["langue", "espagnol", "allemand", "marché étranger", "recrutement international"], weight: 1 },
+    { keywords: ["international", "anglais", "bilingue", "multilingue", "cross-border", "cross border", "europe", "remote international"] },
+    { keywords: ["langue", "espagnol", "allemand", "italien", "portugais", "marche etranger", "recrutement international"] },
+    { keywords: ["pays nordique", "dach", "benelux", "expansion geographique", "relocation", "us", "uk", "usa", "etats-unis", "royaume-uni"] },
   ],
-  // c4: Structure de chasse
+  // c4: Structure de chasse (3 groupes)
   [
-    { keywords: ["process", "méthodologie", "structuré", "étapes", "workflow", "process de chasse", "plan de chasse"], weight: 1 },
-    { keywords: ["réplicable", "scalable", "template", "playbook", "système"], weight: 1 },
-    { keywords: ["autonome", "organisé", "rigueur", "planification", "priorisation"], weight: 1 },
+    { keywords: ["process", "methodologie", "structure", "etape", "workflow", "process de chasse", "plan de chasse"] },
+    { keywords: ["replicable", "scalable", "template", "playbook", "systeme"] },
+    { keywords: ["autonome", "organise", "rigueur", "planification", "priorisation"] },
   ],
-  // c5: Outils & stack
+  // c5: Outils & stack (3 groupes)
   [
-    { keywords: ["ats", "crm", "sales navigator", "linkedin recruiter", "salesforce", "hubspot", "lever", "greenhouse", "workable"], weight: 1 },
-    { keywords: ["automatisation", "zapier", "make", "lemlist", "la growth machine", "phantom", "waalaxy"], weight: 1 },
-    { keywords: ["configuré", "paramétré", "maîtrise", "stack", "outil"], weight: 1 },
+    { keywords: ["ats", "crm", "sales navigator", "linkedin recruiter", "salesforce", "hubspot", "lever", "greenhouse", "workable"] },
+    { keywords: ["automatisation", "zapier", "make", "lemlist", "la growth machine", "phantom", "waalaxy"] },
+    { keywords: ["configure", "parametre", "maitrise", "stack", "outil"] },
   ],
-  // c6: Connaissance marché
+  // c6: Connaissance marché (3 groupes)
   [
-    { keywords: ["marché", "benchmark", "salaire", "rémunération", "fourchette", "grille salariale"], weight: 1 },
-    { keywords: ["leader", "top boîte", "concurrence", "tendance", "veille"], weight: 1 },
-    { keywords: ["crédible", "connaissance", "réseau sectoriel", "écosystème"], weight: 1 },
+    { keywords: ["marche", "benchmark", "salaire", "remuneration", "fourchette", "grille salariale"] },
+    { keywords: ["leader", "top boite", "concurrence", "tendance", "veille"] },
+    { keywords: ["credible", "connaissance", "reseau sectoriel", "ecosysteme"] },
   ],
-  // c7: Autonomie & ownership
+  // c7: Autonomie & ownership (3 groupes)
   [
-    { keywords: ["autonome", "décision", "initiative", "ownership", "proactif", "sans supervision"], weight: 1 },
-    { keywords: ["pushback", "challenger", "refusé", "assumé", "conviction"], weight: 1 },
-    { keywords: ["responsable", "prise de décision", "seul", "indépendant"], weight: 1 },
+    { keywords: ["autonome", "decision", "initiative", "ownership", "proactif", "sans supervision"] },
+    { keywords: ["pushback", "challenger", "refuse", "assume", "conviction"] },
+    { keywords: ["responsable", "prise de decision", "seul", "independant"] },
   ],
-  // c8: Pilotage & KPIs
+  // c8: Pilotage & KPIs (3 groupes)
   [
-    { keywords: ["kpi", "reporting", "ttf", "time to fill", "time to hire", "taux de conversion", "pipe", "dashboard"], weight: 1 },
-    { keywords: ["chiffre", "métrique", "data", "suivi", "sla", "objectif"], weight: 1 },
-    { keywords: ["postes closés", "recrutements réalisés", "ratio", "taux d'acceptation", "volume"], weight: 1 },
+    { keywords: ["kpi", "reporting", "ttf", "time to fill", "time to hire", "taux de conversion", "pipe", "dashboard"] },
+    { keywords: ["chiffre", "metrique", "data", "suivi", "sla", "objectif"] },
+    { keywords: ["poste close", "recrutement realise", "ratio", "taux d'acceptation", "volume"] },
   ],
-  // c9: Closing & négo
+  // c9: Closing & négo (3 groupes)
   [
-    { keywords: ["closing", "négociation", "offre", "contre-offre", "package", "rémunération"], weight: 1 },
-    { keywords: ["convaincre", "pitch", "vendre", "closer", "signer", "acceptation"], weight: 1 },
-    { keywords: ["conseil", "accompagn", "hiring manager", "aide à la décision"], weight: 1 },
+    { keywords: ["closing", "negociation", "offre", "contre-offre", "contre offre", "package", "remuneration"] },
+    { keywords: ["convaincre", "pitch", "vendre", "closer", "signer", "acceptation"] },
+    { keywords: ["conseil", "accompagn", "hiring manager", "aide a la decision"] },
   ],
-  // c10: Expérience RPO/embedded
+  // c10: Expérience RPO/embedded (3 groupes)
   [
-    { keywords: ["rpo", "embedded", "intégré", "chez le client", "mission", "externalisé"], weight: 1 },
-    { keywords: ["cabinet", "freelance", "différence", "modèle rpo", "plug and play", "plug & play"], weight: 1 },
-    { keywords: ["jour 1", "j1", "démarrage", "onboarding client", "immersion"], weight: 1 },
+    { keywords: ["rpo", "embedded", "integre chez", "chez le client", "mission externalisee", "externalise"] },
+    { keywords: ["cabinet", "freelance", "difference", "modele rpo", "plug and play", "plug & play"] },
+    { keywords: ["jour 1", "j1", "demarrage", "onboarding client", "immersion"] },
   ],
-  // c11: Storytelling & exemples
+  // c11: Storytelling & exemples (3 groupes)
   [
-    { keywords: ["exemple", "raconte", "histoire", "anecdote", "cas concret", "meilleur recrutement"], weight: 1 },
-    { keywords: ["étape par étape", "step by step", "du brief au closing", "succès"], weight: 1 },
-    { keywords: ["échec", "appris", "leçon", "erreur", "expérience marquante"], weight: 1 },
+    { keywords: ["exemple", "raconte", "histoire", "anecdote", "cas concret", "meilleur recrutement"] },
+    { keywords: ["etape par etape", "step by step", "du brief au closing", "succe"] },
+    { keywords: ["echec", "appris", "lecon", "erreur", "experience marquante"] },
   ],
-  // c12: Disponibilité & flexibilité
+  // c12: Disponibilité & flexibilité (3 groupes)
   [
-    { keywords: ["disponible", "immédiat", "dès maintenant", "libre", "dispo"], weight: 1 },
-    { keywords: ["jours par semaine", "temps partiel", "temps plein", "flexible", "adaptable"], weight: 1 },
-    { keywords: ["démarrage rapide", "préavis", "1 semaine", "sous 15 jours"], weight: 1 },
+    { keywords: ["disponible", "immediat", "des maintenant", "libre", "dispo"] },
+    { keywords: ["jours par semaine", "temps partiel", "temps plein", "flexible", "adaptable"] },
+    { keywords: ["demarrage rapide", "preavis", "1 semaine", "sous 15 jour"] },
   ],
-  // c13: Type de profils recrutés
+  // c13: Type de profils recrutés (3 groupes)
   [
-    { keywords: ["sales", "tech", "dev", "product", "marketing", "ops", "sdr", "account executive", "csm"], weight: 1 },
-    { keywords: ["cycle de vente", "panier moyen", "b2b", "b2c", "enterprise", "mid-market", "smb"], weight: 1 },
-    { keywords: ["profil senior", "management", "c-level", "head of", "vp", "directeur"], weight: 1 },
+    { keywords: ["sales", "tech", "dev", "product", "marketing", "ops", "sdr", "account executive", "csm"] },
+    { keywords: ["cycle de vente", "panier moyen", "b2b", "b2c", "enterprise", "mid-market", "smb"] },
+    { keywords: ["profil senior", "management", "c-level", "head of", "vp", "directeur"] },
   ],
-  // c14: Fit culturel R4RPO
+  // c14: Fit culturel R4RPO (3 groupes)
   [
-    { keywords: ["motivé", "énergie", "passionné", "engagé", "drive", "ambition"], weight: 1 },
-    { keywords: ["premium", "exigent", "qualité", "excellence", "top", "haut niveau"], weight: 1 },
-    { keywords: ["structuré", "organisé", "professionnel", "fiable", "transparent"], weight: 1 },
+    { keywords: ["motive", "energie", "passionne", "engage", "drive", "ambition"] },
+    { keywords: ["premium", "exigent", "qualite", "excellence", "top", "haut niveau"] },
+    { keywords: ["structure", "organise", "professionnel", "fiable", "transparent"] },
   ],
 ];
 
+export interface AutoScoreDetails {
+  scores: Record<string, number>;
+  forces: string[];
+  risks: string[];
+  /** Mots-clés matchés par critère (index c0..c14) — pour panneau debug */
+  matchedKeywords: Record<string, { matched: string[]; missing: string[] }>;
+  /** Champs identité extraits du texte */
+  identity: {
+    email?: string;
+    phone?: string;
+    linkedin?: string;
+    tjm?: string;
+    loc?: string;
+    prenom?: string;
+    nom?: string;
+  };
+  /** Score de confiance 0-100 basé sur la longueur du texte */
+  confidence: number;
+  /** Niveau de confiance lisible */
+  confidenceLevel: "faible" | "moyenne" | "haute";
+  /** Nombre de mots du texte analysé */
+  wordCount: number;
+}
+
+export interface AutoScoreOptions {
+  /** Si true, le critère "International" (c3) est considéré optionnel (profils France-only) */
+  skipInternational?: boolean;
+}
+
 /**
- * Analyse un résumé d'entretien et retourne un scoring automatique
- * pour les 15 critères (1-5 chacun).
+ * Extrait les champs identité (email, téléphone, LinkedIn, TJM, localisation, prénom/nom)
  */
-export function autoScore(text: string): { scores: Record<string, number>; forces: string[]; risks: string[] } {
-  const lower = text.toLowerCase();
+function extractIdentity(text: string): AutoScoreDetails["identity"] {
+  const out: AutoScoreDetails["identity"] = {};
+
+  // Email
+  const emailMatch = text.match(/[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}/);
+  if (emailMatch) out.email = emailMatch[0].trim();
+
+  // Téléphone (FR — 0X XX XX XX XX, +33 X XX XX XX XX)
+  const phoneMatch = text.match(/(?:\+33|0)\s?[1-9](?:[\s.-]?\d{2}){4}/);
+  if (phoneMatch) out.phone = phoneMatch[0].replace(/\s+/g, " ").trim();
+
+  // LinkedIn (lien complet ou slug)
+  const linkedinMatch = text.match(/(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/[\w\-À-ÿ]+\/?/i);
+  if (linkedinMatch) out.linkedin = linkedinMatch[0].trim();
+
+  // TJM (500€/j, 650 € / jour, 700/j, 800 EUR jour, etc.)
+  const tjmMatch = text.match(/(\d{3,4})\s*(?:€|eur|euros?)?\s*[/\\-]?\s*j(?:our|\b)/i);
+  if (tjmMatch) out.tjm = `${tjmMatch[1]} €/j`;
+
+  // Localisation (villes françaises principales)
+  const villes = [
+    "Paris", "Lyon", "Marseille", "Bordeaux", "Toulouse", "Nantes", "Lille", "Nice",
+    "Strasbourg", "Rennes", "Montpellier", "Grenoble", "Aix-en-Provence", "Aix",
+    "Dijon", "Angers", "Reims", "Le Havre", "Saint-Étienne", "Brest", "Clermont-Ferrand",
+    "Tours", "Toulon", "Nancy", "Orléans", "Caen", "Besançon", "Perpignan", "Metz",
+    "Nîmes", "Rouen", "Mulhouse", "Limoges", "Annecy", "Avignon", "Biarritz", "La Rochelle",
+  ];
+  for (const ville of villes) {
+    const re = new RegExp(`\\b${ville.replace(/-/g, "[-\\s]")}\\b`, "i");
+    if (re.test(text)) {
+      out.loc = ville;
+      break;
+    }
+  }
+
+  // Prénom/Nom — formats : "Je m'appelle X Y" / "Prénom Nom —" / "Candidat : X Y"
+  const nameMatch =
+    text.match(/(?:je\s+m['']appelle|candidat\s*:?\s*|je\s+suis)\s+([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)/) ||
+    text.match(/^([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)\s*[—\-|,]/m);
+  if (nameMatch) {
+    out.prenom = nameMatch[1];
+    out.nom = nameMatch[2];
+  }
+
+  return out;
+}
+
+/**
+ * Analyse un résumé d'entretien et retourne un scoring détaillé.
+ * v16 : matching tolérant (accents, pluriels), extraction identité, forces
+ * conditionnelles au score du critère, score de confiance, debug matches.
+ */
+export function autoScore(text: string, options: AutoScoreOptions = {}): AutoScoreDetails {
+  const normalized = normalize(text);
+  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+
   const scores: Record<string, number> = {};
-  const detectedForces: string[] = [];
-  const detectedRisks: string[] = [];
+  const matchedKeywords: AutoScoreDetails["matchedKeywords"] = {};
 
-  // Score each criterion based on keyword matches
+  // Scoring par critère
   for (let i = 0; i < SCORING_KEYWORDS.length; i++) {
-    const groups = SCORING_KEYWORDS[i];
-    let matchCount = 0;
-    let totalGroups = groups.length;
-
-    for (const group of groups) {
-      const hasMatch = group.keywords.some((kw) => lower.includes(kw.toLowerCase()));
-      if (hasMatch) matchCount++;
+    // Skip International si option activée
+    if (i === 3 && options.skipInternational) {
+      matchedKeywords[`c${i}`] = { matched: [], missing: [] };
+      continue;
     }
 
-    // Convert match ratio to 1-5 score
-    const ratio = matchCount / totalGroups;
-    let score = 0;
+    const groups = SCORING_KEYWORDS[i];
+    let matchCount = 0;
+    const matched: string[] = [];
+    const missing: string[] = [];
+
+    for (const group of groups) {
+      const normalizedKws = group.keywords.map((kw) => normalize(kw));
+      const found = group.keywords.find((_, idx) => normalized.includes(normalizedKws[idx]));
+      if (found) {
+        matchCount++;
+        matched.push(found);
+      } else {
+        // Ajouter le premier mot-clé du groupe manquant comme référence
+        missing.push(group.keywords[0]);
+      }
+    }
+
+    matchedKeywords[`c${i}`] = { matched, missing };
+
+    // Convert match ratio to 0-5 score
+    // Fix Bug 1 (score 2 mort) : supprimé — on saute directement de 1 à 3
+    // Fix Bug 4 : on écrit TOUJOURS un score (0 inclus) pour éviter résidu React
+    const ratio = matchCount / groups.length;
+    let score: number;
     if (ratio >= 0.9) score = 5;
     else if (ratio >= 0.66) score = 4;
     else if (ratio >= 0.33) score = 3;
     else if (ratio > 0) score = 2;
-    // 0 = no match, leave unscored
+    else score = 0;
 
-    if (score > 0) {
-      scores[`c${i}`] = score;
-    }
+    scores[`c${i}`] = score;
   }
 
-  // Auto-detect forces
-  const forceKeywords: [string, string][] = [
-    ["sourcing proactif", "Sourcing proactif fort"],
-    ["chiffres précis", "Chiffres précis spontanés"],
-    ["autonome", "Autonomie démontrée"],
-    ["closing", "Closing efficace"],
-    ["rpo", "Fit RPO évident"],
+  // Fix Bug 3 : Forces conditionnelles — liées au score du critère correspondant
+  // Chaque force n'est déclenchée que si le critère lié a un score ≥ 4
+  const detectedForces: string[] = [];
+  // Tableau : [phrase_trigger_normalisée, label, critère_min_score ≥ 4]
+  const forceTriggers: [string, string, number][] = [
+    ["sourcing proactif", "Sourcing proactif fort", 0],
+    ["chiffre precis", "Chiffres précis spontanés", 8],
+    ["demontre son autonomie", "Autonomie démontrée", 7],
+    ["closing reussi", "Closing efficace", 9],
+    ["experience rpo", "Fit RPO évident", 10],
   ];
-  for (const [kw, tag] of forceKeywords) {
-    if (lower.includes(kw) && detectedForces.length < 5) {
-      detectedForces.push(tag);
+
+  for (const [trigger, label, critIdx] of forceTriggers) {
+    const triggerNormalized = normalize(trigger);
+    if (normalized.includes(triggerNormalized) && scores[`c${critIdx}`] >= 4) {
+      detectedForces.push(label);
     }
   }
 
-  // Auto-detect risks (negative signals)
-  const riskKeywords: [string, string][] = [
+  // Fallback : si aucune force conditionnelle mais mots simples présents + score c14 ≥ 4
+  if (detectedForces.length === 0) {
+    if (normalized.includes(normalize("autonome")) && scores.c7 >= 4) {
+      detectedForces.push("Autonomie démontrée");
+    }
+    if (normalized.includes("closing") && scores.c9 >= 4) {
+      detectedForces.push("Closing efficace");
+    }
+  }
+
+  // Risques : triggers plus spécifiques (phrases) pour éviter faux positifs
+  const detectedRisks: string[] = [];
+  const riskTriggers: [string, string][] = [
     ["pas de chiffre", "Manque de chiffres"],
-    ["vague", "Communication floue"],
+    ["aucun chiffre", "Manque de chiffres"],
+    ["communication floue", "Communication floue"],
+    ["reponse vague", "Communication floue"],
+    ["reste vague", "Communication floue"],
     ["peu autonome", "Peu autonome"],
-    ["ne connaît pas", "Pas de fit RPO"],
-    ["mal maîtrisé", "Outils mal maîtrisés"],
+    ["manque d'autonomie", "Peu autonome"],
+    ["ne connait pas le rpo", "Pas de fit RPO"],
+    ["pas fait de rpo", "Pas de fit RPO"],
+    ["outil mal maitrise", "Outils mal maîtrisés"],
+    ["stack mal maitrisee", "Outils mal maîtrisés"],
   ];
-  for (const [kw, tag] of riskKeywords) {
-    if (lower.includes(kw) && detectedRisks.length < 5) {
-      detectedRisks.push(tag);
+
+  const uniqueRisks = new Set<string>();
+  for (const [trigger, label] of riskTriggers) {
+    if (normalized.includes(normalize(trigger))) {
+      uniqueRisks.add(label);
     }
   }
+  detectedRisks.push(...uniqueRisks);
 
-  return { scores, forces: detectedForces, risks: detectedRisks };
+  // Extraction identité
+  const identity = extractIdentity(text);
+
+  // Score de confiance
+  const confidence = Math.min(
+    100,
+    Math.round((wordCount / 250) * 100) // 250 mots = 100%
+  );
+  const confidenceLevel: "faible" | "moyenne" | "haute" =
+    wordCount < 80 ? "faible" : wordCount < 200 ? "moyenne" : "haute";
+
+  return {
+    scores,
+    forces: detectedForces,
+    risks: detectedRisks,
+    matchedKeywords,
+    identity,
+    confidence,
+    confidenceLevel,
+    wordCount,
+  };
+}
+
+/**
+ * Génère un résumé texte structuré du scoring pour export / copier-coller.
+ */
+export function exportScoringText(
+  scores: Record<string, number>,
+  forces: string[],
+  risks: string[],
+  identity: {
+    prenom?: string;
+    nom?: string;
+    email?: string;
+    phone?: string;
+    linkedin?: string;
+    loc?: string;
+    tjm?: string;
+  } = {}
+): string {
+  const sc = calcScore(scores);
+  const verdict = getVerdict(sc.pct, sc.filled);
+
+  const lines: string[] = [];
+
+  // Header
+  const fullName = [identity.prenom, identity.nom].filter(Boolean).join(" ");
+  if (fullName) lines.push(`CANDIDAT : ${fullName}`);
+  lines.push(`SCORE GLOBAL : ${sc.total}/${sc.max} (${sc.pct}%) — ${verdict.label}`);
+  if (verdict.description) lines.push(`${verdict.description}`);
+  lines.push("");
+
+  // Identity
+  const idLines: string[] = [];
+  if (identity.email) idLines.push(`Email : ${identity.email}`);
+  if (identity.phone) idLines.push(`Téléphone : ${identity.phone}`);
+  if (identity.linkedin) idLines.push(`LinkedIn : ${identity.linkedin}`);
+  if (identity.loc) idLines.push(`Localisation : ${identity.loc}`);
+  if (identity.tjm) idLines.push(`TJM : ${identity.tjm}`);
+  if (idLines.length > 0) {
+    lines.push("━━━ IDENTITÉ ━━━");
+    lines.push(...idLines);
+    lines.push("");
+  }
+
+  // Scores par critère
+  lines.push("━━━ SCORING DÉTAILLÉ ━━━");
+  CRITERIA.forEach((crit, i) => {
+    const score = scores[`c${i}`] || 0;
+    if (score > 0) {
+      const stars = "★".repeat(score) + "☆".repeat(5 - score);
+      lines.push(`${crit.name.padEnd(32)} ${stars} (${score}/5)`);
+    }
+  });
+  lines.push("");
+
+  // Forces
+  if (forces.length > 0) {
+    lines.push("━━━ POINTS POSITIFS ━━━");
+    forces.forEach((f) => lines.push(`✓ ${f}`));
+    lines.push("");
+  }
+
+  // Risques
+  if (risks.length > 0) {
+    lines.push("━━━ ALERTES ━━━");
+    risks.forEach((r) => lines.push(`⚠ ${r}`));
+    lines.push("");
+  }
+
+  // Footer
+  lines.push(
+    `Généré par Rocket4RPO · ${new Date().toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })}`
+  );
+
+  return lines.join("\n");
 }
