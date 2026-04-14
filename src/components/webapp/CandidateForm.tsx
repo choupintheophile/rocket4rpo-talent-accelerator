@@ -214,6 +214,39 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
     if (id.prenom && !prenom.trim()) setPrenom(id.prenom);
     if (id.nom && !nom.trim()) setNom(id.nom);
 
+    // v17 — Auto-fill contrat (single-select) — uniquement si vide
+    if (result.contrat && !contrat) setContrat(result.contrat);
+
+    // v17 — Merger les 4 taxonomies (ADD sans remove, préserve les choix manuels)
+    if (result.profileTypes.length > 0) {
+      setProfileTypes((prev) => {
+        const next = new Set(prev);
+        result.profileTypes.forEach((t) => next.add(t));
+        return next;
+      });
+    }
+    if (result.companyTypes.length > 0) {
+      setCompanyTypes((prev) => {
+        const next = new Set(prev);
+        result.companyTypes.forEach((t) => next.add(t));
+        return next;
+      });
+    }
+    if (result.profileStyle.length > 0) {
+      setProfileStyle((prev) => {
+        const next = new Set(prev);
+        result.profileStyle.forEach((t) => next.add(t));
+        return next;
+      });
+    }
+    if (result.intelligenceTypes.length > 0) {
+      setIntelligenceTypes((prev) => {
+        const next = new Set(prev);
+        result.intelligenceTypes.forEach((t) => next.add(t));
+        return next;
+      });
+    }
+
     setLastAnalysis(result);
   }
 
@@ -463,6 +496,29 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
               <div>
                 <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Alertes détectées</div>
                 <div className="font-mono tabular-nums">{lastAnalysis.risks.length}</div>
+              </div>
+            </div>
+            {/* v17 — Récap des taxonomies détectées */}
+            <div className="mt-2 pt-2 border-t border-gray-100 grid grid-cols-2 md:grid-cols-5 gap-3 text-[11px]">
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Contrat</div>
+                <div className="font-medium">{lastAnalysis.contrat || "—"}</div>
+              </div>
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Profils recrutés</div>
+                <div className="font-mono tabular-nums">{lastAnalysis.profileTypes.length} / 10</div>
+              </div>
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Type de boîte</div>
+                <div className="font-mono tabular-nums">{lastAnalysis.companyTypes.length} / 7</div>
+              </div>
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Style</div>
+                <div className="font-mono tabular-nums">{lastAnalysis.profileStyle.length} / 6</div>
+              </div>
+              <div>
+                <div className="text-gray-400 uppercase tracking-wider font-semibold text-[9px] mb-1">Intelligence</div>
+                <div className="font-mono tabular-nums">{lastAnalysis.intelligenceTypes.length} / 5</div>
               </div>
             </div>
             {lastAnalysis.confidenceLevel === "faible" && (

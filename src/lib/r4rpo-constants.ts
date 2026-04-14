@@ -482,6 +482,13 @@ export interface AutoScoreDetails {
     prenom?: string;
     nom?: string;
   };
+  /** v17 — Type de contrat détecté (single) */
+  contrat?: "TJM Freelance" | "CDI" | "CDD" | "Les deux";
+  /** v17 — Taxonomies multi-select détectées */
+  profileTypes: string[];
+  companyTypes: string[];
+  profileStyle: string[];
+  intelligenceTypes: string[];
   /** Score de confiance 0-100 basé sur la longueur du texte */
   confidence: number;
   /** Niveau de confiance lisible */
@@ -513,9 +520,28 @@ function extractIdentity(text: string): AutoScoreDetails["identity"] {
   const linkedinMatch = text.match(/(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/[\w\-À-ÿ]+\/?/i);
   if (linkedinMatch) out.linkedin = linkedinMatch[0].trim();
 
-  // TJM (500€/j, 650 € / jour, 700/j, 800 EUR jour, etc.)
-  const tjmMatch = text.match(/(\d{3,4})\s*(?:€|eur|euros?)?\s*[/\\-]?\s*j(?:our|\b)/i);
-  if (tjmMatch) out.tjm = `${tjmMatch[1]} €/j`;
+  // TJM — v17 : matching élargi
+  // Priorité 1 : "500€/j", "650 €/jour", "700/j", "800 EUR jour"
+  let tjmValue: string | undefined;
+  const tjmSlashMatch = text.match(/(\d{3,4})\s*(?:€|eur|euros?)?\s*[/\\-]?\s*j(?:our|\b)/i);
+  if (tjmSlashMatch) tjmValue = tjmSlashMatch[1];
+
+  // Priorité 2 : "TJM ... 550", "TJM de 600", "TJM à 500", "tarif journalier ... 450"
+  if (!tjmValue) {
+    const tjmCtxMatch = text.match(/(?:tjm|tarif\s+journalier|taux\s+journalier|tgm|t\.j\.m)[^0-9€]{0,30}(\d{3,4})/i);
+    if (tjmCtxMatch) tjmValue = tjmCtxMatch[1];
+  }
+
+  // Priorité 3 : "je suis à 550", "à 500 euros", "autour de 600" — uniquement si contexte freelance
+  if (!tjmValue && /(?:freelance|independ|à mon compte|auto.entrepreneur|tjm)/i.test(text)) {
+    const tjmAroundMatch = text.match(/(?:a|à|autour de|plutot a|idealement|ideal(?:ement)?|environ|minimum|max(?:imum)?)\s+(\d{3,4})\s*(?:€|eur|euros)?/i);
+    if (tjmAroundMatch) {
+      const n = parseInt(tjmAroundMatch[1], 10);
+      if (n >= 200 && n <= 1500) tjmValue = tjmAroundMatch[1];
+    }
+  }
+
+  if (tjmValue) out.tjm = `${tjmValue} €/j`;
 
   // Localisation (villes françaises principales)
   const villes = [
@@ -545,10 +571,229 @@ function extractIdentity(text: string): AutoScoreDetails["identity"] {
   return out;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   v17 — Détection des taxonomies multi-select + type de contrat
+   Match par any-keyword (seuil : 1 match → tag appliqué) sur texte normalisé
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/** Keywords pour détecter le type de contrat (single-select) */
+const CONTRAT_DETECTION: { label: "TJM Freelance" | "CDI" | "CDD"; keywords: string[] }[] = [
+  {
+    label: "TJM Freelance",
+    keywords: [
+      "freelance", "independant", "a mon compte", "a mon propre compte",
+      "auto-entrepreneur", "auto entrepreneur", "tjm", "tarif journalier",
+      "taux journalier", "ma societe", "ma boite", "mon cabinet",
+      "je suis en mission", "en freelance", "en independ", "portage salarial",
+    ],
+  },
+  {
+    label: "CDI",
+    keywords: [
+      "en cdi", "contrat a duree indeterminee", "en poste chez",
+      "salarie en interne", "en interne chez",
+    ],
+  },
+  {
+    label: "CDD",
+    keywords: ["en cdd", "contrat a duree determinee", "cdd de"],
+  },
+];
+
+/** Keywords pour les 10 familles de profils recrutés (multi-select) */
+const PROFILE_TYPES_DETECTION: Record<string, string[]> = {
+  "Sales": [
+    "sales", "commercial", "commerciale", "sdr", "bdr", "account executive",
+    "account manager", "business developer", "vp sales", "cro",
+    "ingenieur commercial", "inside sales", "sales manager", "sales engineer",
+  ],
+  "Tech": [
+    "developpeur", "dev front", "dev back", "fullstack", "full stack",
+    "devops", "sre ", "cybersecurite", "ingenieur logiciel", "ingenieur systeme",
+    "ingenieur reseau", "j2ee", "javascript", "python", "linux",
+    "embarque", "infrastructure", "back-end", "front-end", "qa ",
+  ],
+  "Data & ML": [
+    "data analyst", "data scientist", "data engineer", "data manager",
+    "machine learning", "dba", "intelligence artificielle", "data science",
+    "analyst data",
+  ],
+  "Product & Design": [
+    "product manager", "product owner", "product designer", " ux ", " ui ",
+    "cpo", "head of product", "directeur produit", "chef de produit",
+  ],
+  "Marketing": [
+    "marketing", "growth", "cmo", " seo ", " sea ", "content manager",
+    "brand manager", "acquisition",
+  ],
+  "Customer Success": [
+    "customer success", "csm", "pre-sales", "presales", "solutions engineer",
+    "pre sales",
+  ],
+  "Ops / RevOps": [
+    "revops", "salesops", "people ops", "operations manager",
+  ],
+  "Finance": [
+    "daf", "cfo", "controleur de gestion", "controleur gestion", "fp&a",
+    "compliance", "conformite", "controlling", "finance",
+  ],
+  "Direction / C-level": [
+    "c-level", "ceo", "cto", "coo", "vp ", "head of", "director",
+    "directeur", "founder", "cofounder", "co-founder", "top management",
+    "middle management", "executive search",
+  ],
+  "International": [
+    "international", "cross-border", "cross border", " uk ", "dach",
+    "nordics", " usa", "etats-unis", "royaume-uni", "continent africain",
+    "afrique", " chine", "expatriation", "multilingue", "bilingue",
+  ],
+};
+
+/** Keywords pour les 7 types de boîte (multi-select) */
+const COMPANY_TYPES_DETECTION: Record<string, string[]> = {
+  "Startup (<50p)": [
+    "startup", "start-up", "start up", "seed", "pre-seed", "pre seed",
+    "early stage", "jeune pousse", "amorcage",
+  ],
+  "Scale-up (50-300p)": [
+    "scale-up", "scale up", "scaleup", "serie a", "serie b",
+    "levee de fonds", "levee de fond", "post-levee", "post levee",
+    "hyper-croissance", "hyper croissance",
+  ],
+  "Licorne / 300+p": [
+    "licorne", "unicorn", "serie c", "serie d", "post-ipo",
+  ],
+  "ETI / Grand groupe": [
+    "grand groupe", "grand compte", "corporate", "eti ", "groupe cote",
+    "cote en bourse", "bourse de paris", "multinationale", "entreprise familiale",
+  ],
+  "SaaS / Tech produit": [
+    "saas", "editeur de logiciel", "editeur logiciel", "software",
+    "produit software", "plateforme saas", "entreprise tech",
+  ],
+  "Services / Conseil / ESN": [
+    " esn ", "ss2i", "ssii", "societe de service", "societe de conseil",
+    "cabinet de conseil", "consulting", "prestation de service",
+    "assistance technique",
+  ],
+  "RPO / Recrutement": [
+    " rpo ", "cabinet de recrutement", "chasse de tete", "executive search",
+    "mission rpo", "modele rpo", "cabinet recrutement",
+  ],
+};
+
+/** Keywords pour les 6 styles de profil (multi-select) */
+const PROFILE_STYLE_DETECTION: Record<string, string[]> = {
+  "Sharp": [
+    "sharp", "brillant", "intellectuel", "vif d'esprit", "vive d'esprit",
+    "analytique pointu", "esprit affute",
+  ],
+  "Hunter": [
+    "chasse de tete", "chasseur", "chasseuse", "hunter",
+    "chasse agressive", "prospection intensive", "new business",
+    "sales hunter", "chasse proactive",
+  ],
+  "Farmer": [
+    "farmer", "relation long terme", "fidelisation", "account management",
+    "gestion de compte", "suivi clientele", "gestion portefeuille",
+  ],
+  "Structuré": [
+    "structure", "methodique", "rigoureux", "rigoureuse", "rigueur",
+    "organise", "organisee", "process", "methodologie", "planification",
+    "scorecard", "tableau kpi", "reporting hebdo",
+  ],
+  "Hands-on": [
+    "hands-on", "hands on", "operationnel", "operationnelle",
+    "pragmatique", "terrain", "execution", "get things done",
+    "pragmatique pragmatique",
+  ],
+  "Premium / Senior": [
+    "senior", "experimente", "experimentee", "expertise confirmee",
+    "expert metier", "15 ans d'experience", "20 ans d'experience",
+    "10 ans d'experience", "haut de gamme", "premium",
+  ],
+};
+
+/** Keywords pour les 5 types d'intelligence (multi-select) */
+const INTELLIGENCE_TYPES_DETECTION: Record<string, string[]> = {
+  "Analytique": [
+    "analytique", "data-driven", "data driven", "chiffre precis",
+    "raisonnement", "metrique", "tableau kpi", "kpi",
+    "data analysis",
+  ],
+  "Émotionnelle": [
+    "empathie", "empathique", "empathiquement", "lecture",
+    "ecoute active", "ressenti", "soft skill",
+    "intelligence emotionnelle", "humain avant tout",
+    "ecouter", "bienveillance",
+  ],
+  "Stratégique": [
+    "strategie", "vision strategique", "anticipation", "long terme",
+    "strategique", "vision long terme", "reflexion strategique",
+    "business partner", "enjeu strategique",
+  ],
+  "Relationnelle": [
+    "reseau", "charisme", "networking", "contact humain",
+    "relation client", "capacite relationnelle",
+    "intelligence relationnelle", "cercle de contact",
+  ],
+  "Opérationnelle": [
+    "execution", "delivery", "operationnel", "operationnelle",
+    "action", "mise en oeuvre", "exemple concret", "sur le terrain",
+    "en mode operationnel",
+  ],
+};
+
+/**
+ * Détection du type de contrat — single-select avec règles de priorité :
+ * - freelance + CDI → "Les deux"
+ * - freelance seul → "TJM Freelance"
+ * - CDI seul → "CDI"
+ * - CDD seul → "CDD"
+ */
+function detectContrat(normalized: string): AutoScoreDetails["contrat"] {
+  const matches = new Set<string>();
+  for (const { label, keywords } of CONTRAT_DETECTION) {
+    for (const kw of keywords) {
+      if (normalized.includes(normalize(kw))) {
+        matches.add(label);
+        break;
+      }
+    }
+  }
+  if (matches.has("TJM Freelance") && matches.has("CDI")) return "Les deux";
+  if (matches.has("TJM Freelance")) return "TJM Freelance";
+  if (matches.has("CDI")) return "CDI";
+  if (matches.has("CDD")) return "CDD";
+  return undefined;
+}
+
+/**
+ * Détection multi-select générique : 1 keyword matché → tag appliqué.
+ * Retourne la liste des tags détectés dans l'ordre de la map.
+ */
+function detectMultiSelect(
+  normalized: string,
+  keywordMap: Record<string, string[]>,
+): string[] {
+  const detected: string[] = [];
+  for (const [tag, keywords] of Object.entries(keywordMap)) {
+    for (const kw of keywords) {
+      const normalizedKw = normalize(kw);
+      if (normalized.includes(normalizedKw)) {
+        detected.push(tag);
+        break;
+      }
+    }
+  }
+  return detected;
+}
+
 /**
  * Analyse un résumé d'entretien et retourne un scoring détaillé.
  * v16 : matching tolérant (accents, pluriels), extraction identité, forces
  * conditionnelles au score du critère, score de confiance, debug matches.
+ * v17 : + détection contrat + 4 taxonomies multi-select.
  */
 export function autoScore(text: string, options: AutoScoreOptions = {}): AutoScoreDetails {
   const normalized = normalize(text);
@@ -654,6 +899,13 @@ export function autoScore(text: string, options: AutoScoreOptions = {}): AutoSco
   // Extraction identité
   const identity = extractIdentity(text);
 
+  // v17 — Détection contrat + 4 taxonomies multi-select
+  const contrat = detectContrat(normalized);
+  const profileTypes = detectMultiSelect(normalized, PROFILE_TYPES_DETECTION);
+  const companyTypes = detectMultiSelect(normalized, COMPANY_TYPES_DETECTION);
+  const profileStyle = detectMultiSelect(normalized, PROFILE_STYLE_DETECTION);
+  const intelligenceTypes = detectMultiSelect(normalized, INTELLIGENCE_TYPES_DETECTION);
+
   // Score de confiance
   const confidence = Math.min(
     100,
@@ -668,6 +920,11 @@ export function autoScore(text: string, options: AutoScoreOptions = {}): AutoSco
     risks: detectedRisks,
     matchedKeywords,
     identity,
+    contrat,
+    profileTypes,
+    companyTypes,
+    profileStyle,
+    intelligenceTypes,
     confidence,
     confidenceLevel,
     wordCount,
