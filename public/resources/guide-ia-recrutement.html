@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Guide IA et Recrutement : 20 Prompts — Rocket4RPO</title>
+  <link rel="stylesheet" href="style-premium.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -94,6 +95,20 @@
       <div class="type">Guide IA Recrutement</div>
     </div>
 
+    <div class="quick-start">
+      <h4>📖 Comment utiliser ce guide</h4>
+      <ol>
+        <li>Choisir la catégorie de prompt (rédaction, sourcing, qualification, reporting) selon la tâche du jour</li>
+        <li>Copier le prompt et remplacer les variables [MAJUSCULES] par votre contexte concret</li>
+        <li>Itérer 2-3 fois et documenter les prompts efficaces dans la bibliothèque équipe</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>⏱ Temps :</strong> 10 min par prompt</span>
+        <span><strong>🎯 Pour qui :</strong> Recruteurs, TA Specialists, freelances RPO</span>
+        <span><strong>📊 Niveau :</strong> Débutant à Intermédiaire</span>
+      </div>
+    </div>
+
     <div class="stats">
       <div class="stat"><div class="val">+40%</div><div class="lbl">Gain de productivité moyen</div></div>
       <div class="stat"><div class="val">20</div><div class="lbl">Prompts prêts à l'emploi</div></div>
@@ -101,6 +116,25 @@
     </div>
 
     <p>L'IA générative est un accélérateur pour les recruteurs. Ce guide propose 20 prompts concrets, testés sur des missions réelles, pour les principales t&acirc;ches du quotidien : rédaction d'offres, génération de requêtes booléennes, screening de CV, personnalisation de messages et préparation d'entretiens.</p>
+
+    <div class="example-block">
+      <h5>Exemple avant / après — Prompt de qualification CV</h5>
+      <p><strong>❌ Prompt faible :</strong></p>
+      <div class="formula">Analyse ce CV et dis-moi si le candidat est bon.</div>
+      <p style="margin-top:10px;"><strong>✅ Prompt structuré :</strong></p>
+      <div class="formula">Tu es recruteur senior tech. J'évalue un(e) [POSTE] pour une scale-up SaaS.
+
+Critères must-have : [3-5 compétences] · Nice-to-have : [2-3]
+
+Analyse ce CV et fournis :
+1. Score match / 10 sur chaque critère must-have
+2. Red flags éventuels (gaps, job hopping &gt; pattern)
+3. 5 questions d'entretien ciblées sur les zones d'ombre
+4. Verdict : go / no-go / à creuser (1 phrase)
+
+CV : [COLLER CV anonymisé]</div>
+      <p style="margin-top:8px;"><strong>Résultat :</strong> Qualification 8 min/CV au lieu de 30, décision documentée, biais réduits.</p>
+    </div>
 
     <div class="warn">
       <strong>Rappel éthique et légal :</strong> L'IA est un outil d'aide, pas un décideur. Ne l'utilisez jamais pour prendre une décision de recrutement automatique (Art. 22 RGPD). Relisez et adaptez toujours les outputs. Anonymisez les données candidats avant de les saisir dans un outil d'IA externe. Informez les candidats si vous utilisez des outils d'IA dans votre process (AI Act, catégorie « haut risque »).
@@ -515,6 +549,52 @@ Fournis :
         <li><strong>Copilot (Microsoft)</strong> — intégré à Teams et Outlook</li>
       </ul>
       <p style="margin-top: 8px;">Coût moyen : 20-25 EUR/mois par licence. ROI estimé : 8-12h de temps gagné par mois et par recruteur.</p>
+    </div>
+
+    <div class="case-study">
+      <h4>TA Specialist freelance — 5 postes ouverts en simultané</h4>
+      <p class="cs-context">Recruteur solo gérant 5 ouvertures (tech, sales, product) sans équipe de soutien.</p>
+      <div class="cs-grid">
+        <div class="cs-block">
+          <div class="cs-label">Avant — Sans IA</div>
+          <div class="cs-value">Offres : 4h/poste<br>Qualification CV : 30 min/CV</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">Après — Prompts structurés</div>
+          <div class="cs-value">Offres : 45 min/poste (-80%)<br>Qualification : 8 min/CV (-73%)</div>
+        </div>
+      </div>
+      <div class="cs-result">
+        <strong>Résultat :</strong> +30 candidats traités/semaine et capacité à gérer 2 postes supplémentaires sans renfort.
+      </div>
+    </div>
+
+    <div class="related-resources">
+      <h4>🔗 Continuer avec</h4>
+      <div class="rr-grid">
+        <a class="rr-card" href="/ressources/guide-sourcing-multicanal.pdf">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">Sourcing multicanal : 15 canaux</div>
+        </a>
+        <a class="rr-card" href="/ressources/template-brief-poste.pdf">
+          <div class="rr-type">Template</div>
+          <div class="rr-title">Brief de poste structuré</div>
+        </a>
+        <a class="rr-card" href="/ressources/scorecard-recrutement.pdf">
+          <div class="rr-type">Template</div>
+          <div class="rr-title">Scorecard recrutement</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sources-list">
+      <h4>📚 Sources & méthodologie</h4>
+      <ol>
+        <li>Données internes Rocket4RPO — 200+ recrutements 2024–2026 avec mesure d'adoption IA</li>
+        <li>APEC, études sur les pratiques de recrutement : <a href="https://corporate.apec.fr/home/nos-etudes.html" target="_blank" rel="noopener">corporate.apec.fr</a></li>
+        <li>LinkedIn Talent Blog, adoption IA chez les recruteurs : <a href="https://www.linkedin.com/business/talent/blog" target="_blank" rel="noopener">linkedin.com/business/talent</a></li>
+        <li>RGPD Art. 22 & AI Act — cadre européen sur les décisions automatisées</li>
+      </ol>
     </div>
 
     <div class="footer">

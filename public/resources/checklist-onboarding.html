@@ -56,6 +56,48 @@
     .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
     .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
     .footer .logo .accent { color: #0d9373; }
+    /* ── Ajouts : composants enrichis ── */
+    .quick-start{background:linear-gradient(135deg,#f8fafc 0%,#fff 100%);border:1px solid #e5e7eb;border-left:4px solid #0d9373;border-radius:16px;padding:24px 28px;margin:24px 0 28px;position:relative}
+    .quick-start::before{content:"MODE D'EMPLOI";position:absolute;top:-10px;left:24px;background:#0d9373;color:#fff;font-size:9px;font-weight:800;letter-spacing:0.12em;padding:4px 10px;border-radius:4px}
+    .quick-start h4{font-size:15px;font-weight:700;color:#111827;margin:0 0 14px}
+    .quick-start ol{margin:0;padding-left:0;list-style:none;counter-reset:qs-counter}
+    .quick-start ol li{counter-increment:qs-counter;position:relative;padding:8px 0 8px 38px;font-size:12.5px;color:#374151;line-height:1.55}
+    .quick-start ol li::before{content:counter(qs-counter);position:absolute;left:0;top:8px;width:26px;height:26px;background:#0d9373;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+    .quick-start .qs-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;padding-top:14px;border-top:1px dashed #e5e7eb;font-size:11px;color:#6b7280}
+    .quick-start .qs-meta strong{color:#111827}
+    .sources-list{margin:32px 0 24px;padding:18px 22px;background:#f8fafc;border-radius:10px;font-size:11.5px;color:#6b7280}
+    .sources-list h4{font-size:10.5px;font-weight:800;letter-spacing:0.1em;color:#111827;text-transform:uppercase;margin:0 0 10px}
+    .sources-list ol{margin:0;padding-left:22px}
+    .sources-list li{padding:4px 0;line-height:1.55}
+    .sources-list a{color:#0d9373;border-bottom:1px dotted #0d9373;text-decoration:none}
+    .related-resources{margin:40px 0 24px;padding:26px;background:linear-gradient(135deg,#faf8f5 0%,#fff 100%);border:1px solid #e5e7eb;border-radius:16px}
+    .related-resources h4{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#087a60;margin:0 0 16px}
+    .related-resources .rr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .related-resources .rr-card{display:block;padding:14px 16px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none}
+    .related-resources .rr-card .rr-type{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0d9373;margin-bottom:6px}
+    .related-resources .rr-card .rr-title{font-size:12px;font-weight:600;color:#111827;line-height:1.35}
+    .calculator-cta{margin:32px 0;padding:24px 28px;background:linear-gradient(135deg,#0d9373 0%,#087a60 100%);color:#fff;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.08)}
+    .calculator-cta .cc-text{flex:1}
+    .calculator-cta .cc-text h4{font-size:15px;font-weight:700;margin:0 0 4px;color:#fff}
+    .calculator-cta .cc-text p{font-size:12px;color:rgba(255,255,255,0.85);margin:0}
+    .calculator-cta .cc-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#fff;color:#087a60;border-radius:100px;font-weight:700;font-size:11.5px;text-decoration:none;white-space:nowrap}
+    .action-callout{margin:28px 0;padding:18px 22px;background:#f0faf6;border:1px solid rgba(13,147,115,0.2);border-radius:10px;display:flex;align-items:flex-start;gap:14px}
+    .action-callout .ac-icon{flex-shrink:0;width:32px;height:32px;background:#0d9373;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+    .action-callout .ac-content{flex:1;font-size:12.5px;color:#374151;line-height:1.55}
+    .action-callout .ac-content strong{color:#087a60}
+    .example-block{margin:24px 0;padding:20px 22px;background:#faf8f5;border:1px dashed #9ca3af;border-radius:10px;position:relative}
+    .example-block::before{content:'EXEMPLE PRÉ-REMPLI';position:absolute;top:-10px;left:18px;background:#faf8f5;padding:0 8px;font-size:9px;font-weight:800;letter-spacing:0.1em;color:#6b7280}
+    .example-block h5{font-size:12.5px;font-weight:700;color:#111827;margin:0 0 8px}
+    .timeline-h{margin:32px 0;padding:26px 20px 22px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;position:relative}
+    .timeline-h .tl-track{position:relative;height:4px;background:#e5e7eb;border-radius:2px;margin:14px 0 26px}
+    .timeline-h .tl-fill{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,#0d9373,#10b981);border-radius:2px}
+    .timeline-h .tl-steps{display:flex;justify-content:space-between;position:relative}
+    .timeline-h .tl-step{flex:1;text-align:center;position:relative}
+    .timeline-h .tl-step::before{content:'';position:absolute;top:-32px;left:50%;transform:translateX(-50%);width:16px;height:16px;background:#fff;border:3px solid #0d9373;border-radius:50%}
+    .timeline-h .tl-step.tl-done::before{background:#0d9373}
+    .timeline-h .tl-step .tl-label{font-size:10px;font-weight:700;color:#087a60;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}
+    .timeline-h .tl-step .tl-desc{font-size:10.5px;color:#6b7280;line-height:1.4}
+    @media print{.quick-start,.calculator-cta,.related-resources,.timeline-h,.example-block,.action-callout,.sources-list{break-inside:avoid}}
   </style>
 </head>
 <body>
@@ -92,6 +134,42 @@
     <div class="page-header">
       <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
       <div class="type">Checklist</div>
+    </div>
+
+    <div class="quick-start">
+      <h4>📖 Comment utiliser cette checklist</h4>
+      <ol>
+        <li>Parcourez la timeline J-7 → J+90 pour identifier la phase de votre prochaine arrivée.</li>
+        <li>Attribuez un responsable à chaque ligne (RH, Manager, Buddy, IT) et cochez au fur et à mesure.</li>
+        <li>Mesurez votre onboarding avec les KPIs de la fin (NPS, time-to-productivity, rétention 12 mois).</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>⏱ Lecture :</strong> 10 min</span>
+        <span><strong>🎯 Pour qui :</strong> DRH, People Ops, Managers d'équipe</span>
+        <span><strong>📊 Maturité :</strong> Tous niveaux</span>
+      </div>
+    </div>
+
+    <div class="timeline-h">
+      <div class="tl-track"><div class="tl-fill" style="width: 100%"></div></div>
+      <div class="tl-steps">
+        <div class="tl-step tl-done">
+          <div class="tl-label">J-7</div>
+          <div class="tl-desc">Pré-boarding</div>
+        </div>
+        <div class="tl-step tl-done">
+          <div class="tl-label">J0</div>
+          <div class="tl-desc">Arrivée</div>
+        </div>
+        <div class="tl-step tl-done">
+          <div class="tl-label">J+30</div>
+          <div class="tl-desc">Premier feedback</div>
+        </div>
+        <div class="tl-step tl-done">
+          <div class="tl-label">J+90</div>
+          <div class="tl-desc">Bilan final</div>
+        </div>
+      </div>
     </div>
 
     <div class="stats">
@@ -157,6 +235,51 @@
       <li>Planifier les 1:1 avec les membres clés de l'équipe et les parties prenantes</li>
       <li>Préparer le plan 30-60-90 jours en draft (à finaliser avec le collaborateur)</li>
     </ul>
+
+    <div class="example-block">
+      <h5>📧 Email de bienvenue J-7</h5>
+      <p style="font-style: italic; background: white; padding: 14px; border-left: 3px solid #0d9373; border-radius: 4px; font-size: 12px;">
+        « Bonjour [Prénom],<br><br>
+        Plus que 7 jours avant ton arrivée chez [Entreprise] — toute l'équipe a hâte de t'accueillir !<br><br>
+        <strong>Infos pratiques pour J0</strong> :<br>
+        • RDV à 9h30 au [adresse], accueil par [Nom, Manager]<br>
+        • Code d'accès immeuble : [code] — Parking disponible<br>
+        • Dress code : smart casual<br>
+        • Ton poste, ton matériel et tes accès sont prêts<br><br>
+        Ta buddy [Nom] te contactera dans la semaine pour se présenter. Si tu as la moindre question d'ici là, réponds-moi directement.<br><br>
+        À très vite,<br>[Signature RH] »
+      </p>
+
+      <h5 style="margin-top: 18px;">👥 Brief buddy (5 min avant J0)</h5>
+      <p style="font-style: italic; background: white; padding: 14px; border-left: 3px solid #0d9373; border-radius: 4px; font-size: 12px;">
+        « Bonjour [Buddy], merci d'accompagner [Prénom du nouveau] sur ses 30 premiers jours.<br><br>
+        <strong>Ton rôle</strong> :<br>
+        • Point quotidien informel semaine 1 (15 min, café)<br>
+        • Point hebdo semaine 2-4<br>
+        • Répondre aux questions "bêtes" qu'on n'ose pas poser au manager<br>
+        • Signaler au manager tout signal faible (doute, démotivation)<br><br>
+        <strong>Ton n'est pas</strong> : formateur, manager ni RH. Tu es un pair bienveillant.<br><br>
+        Durée : 30 jours actifs, puis allégé jusqu'à J+90. »
+      </p>
+
+      <h5 style="margin-top: 18px;">📅 Agenda J0 type</h5>
+      <p style="font-style: italic; background: white; padding: 14px; border-left: 3px solid #0d9373; border-radius: 4px; font-size: 12px;">
+        9h30 — Accueil + tour locaux ([Manager])<br>
+        10h00 — Set-up matériel + comptes ([IT])<br>
+        10h45 — Présentation entreprise (mission, vision, valeurs)<br>
+        12h30 — Déjeuner d'équipe<br>
+        14h00 — Présentation de l'équipe et des rôles<br>
+        15h00 — Tour des outils (Slack, ATS, gestion projet)<br>
+        16h30 — 1:1 avec le buddy (café)<br>
+        17h00 — Point manager (15 min) : ressenti + questions<br>
+        17h30 — Fin de journée
+      </p>
+    </div>
+
+    <div class="action-callout">
+      <div class="ac-icon">!</div>
+      <div class="ac-content"><strong>Pièges courants :</strong> si le buddy est en mission ou débordé sur J0-J5, le turnover sur la période d'essai est significativement plus élevé. Prévois systématiquement un buddy backup qui peut prendre le relais en cas d'imprévu.</div>
+    </div>
 
     <h2><span class="bar"></span> Phase 2 : Jour 1 (J0)</h2>
     <p><strong>Objectif :</strong> Créer une première impression positive et rassurante.</p>
@@ -312,6 +435,41 @@
     <div class="big-stat">
       <div class="val">91%</div>
       <div class="lbl">Taux de rétention à 12 mois avec un onboarding structuré sur 90 jours (vs 68% sans processus formel)</div>
+    </div>
+
+    <div class="calculator-cta">
+      <div class="cc-text">
+        <h4>🎯 Besoin d'aide pour onboarder vos talents ?</h4>
+        <p>Nos TA Specialists structurent vos process onboarding complets.</p>
+      </div>
+      <a class="cc-btn" href="https://rocket4rpo.com/rdv">Échanger 30 min →</a>
+    </div>
+
+    <div class="related-resources">
+      <h4>📚 Ressources complémentaires</h4>
+      <div class="rr-grid">
+        <a class="rr-card" href="/resources/guide-plan-30-60-90.html">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">Plan 30-60-90 jours</div>
+        </a>
+        <a class="rr-card" href="/resources/scorecard-recrutement.html">
+          <div class="rr-type">Template</div>
+          <div class="rr-title">Scorecard recrutement</div>
+        </a>
+        <a class="rr-card" href="/resources/guide-kpis-recrutement.html">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">KPIs recrutement</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sources-list">
+      <h4>📚 Sources & références</h4>
+      <ol>
+        <li>Bersin by Deloitte — Research on onboarding impact on retention et productivity : <a href="https://www2.deloitte.com/us/en/insights.html">Deloitte Insights</a></li>
+        <li>Données internes Rocket4RPO — 200+ recrutements 2024-2026</li>
+        <li>SHRM — Guide pratique sur la période d'essai et l'intégration des nouveaux collaborateurs</li>
+      </ol>
     </div>
 
     <div class="footer">

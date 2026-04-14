@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Template Reporting Recrutement COMEX — Rocket4RPO</title>
+  <link rel="stylesheet" href="style-premium.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     *{box-sizing:border-box;margin:0;padding:0}@page{size:A4;margin:0}body{font-family:'Inter',system-ui,sans-serif;font-size:13px;color:#374151;line-height:1.7;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.cover{width:100%;min-height:100vh;background:#0c111d;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 60px;page-break-after:always;position:relative}.cover .orb1{position:absolute;top:60px;right:60px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(16,185,129,0.15)}.cover .orb2{position:absolute;top:80px;right:80px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(16,185,129,0.1)}.cover .orb3{position:absolute;bottom:80px;left:60px;width:120px;height:120px;border-radius:50%;background:rgba(16,185,129,0.06)}.cover .line-top{position:absolute;top:40px;left:50%;transform:translateX(-50%);width:50px;height:3px;background:#10b981;border-radius:2px}.cover .line-bottom{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:50px;height:3px;background:rgba(16,185,129,0.3);border-radius:2px}.cover-logo{display:flex;align-items:center;gap:4px;font-size:14px;font-weight:900;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:60px;position:relative}.cover-logo .dot{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:#10b981;border-radius:6px;font-size:14px;font-weight:900;letter-spacing:0}.cover-badge{display:inline-block;padding:8px 28px;border:1px solid rgba(16,185,129,0.3);border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:#10b981;margin-bottom:32px}.cover h1{font-size:42px;font-weight:900;line-height:1.1;max-width:500px;margin-bottom:20px;letter-spacing:-0.02em}.cover h1 em{font-style:normal;color:#10b981}.cover-sub{font-size:15px;color:rgba(255,255,255,0.5);max-width:420px;line-height:1.6}.cover-stats{display:flex;gap:40px;margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08)}.cover-stat-value{font-size:24px;font-weight:800;color:#10b981}.cover-stat-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px}.cover-foot{position:absolute;bottom:30px;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:0.08em}.content{padding:40px 50px;max-width:800px;margin:0 auto}.page-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:2px solid #0c111d;margin-bottom:32px}.page-header .logo{font-size:11px;font-weight:900;letter-spacing:0.2em;text-transform:uppercase;color:#111827}.page-header .logo .accent{color:#0d9373}.page-header .type{font-size:10px;font-weight:700;color:white;background:#0d9373;padding:4px 14px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em}h2{font-size:16px;font-weight:800;color:white;background:#0c111d;padding:12px 20px;border-radius:8px;margin-top:36px;margin-bottom:16px;display:flex;align-items:center;gap:10px}h2 .bar{display:inline-block;width:4px;height:18px;background:#10b981;border-radius:2px}h3{font-size:14px;font-weight:700;color:#0d9373;margin-top:24px;margin-bottom:8px;padding-left:12px;border-left:3px solid #0d9373}p{margin-bottom:12px}ul,ol{margin-bottom:12px;padding-left:20px}li{margin-bottom:4px}table{width:100%;border-collapse:collapse;margin:16px 0;font-size:12px;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}th{background:#0c111d;color:white;font-weight:600;padding:10px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:0.06em}td{padding:9px 14px;border-bottom:1px solid #f3f4f6}tr:nth-child(even) td{background:#f8fafc}td:first-child{font-weight:500;color:#111827}.teal-row td{background:#e6f7f2!important;font-weight:700;color:#087a60}.info{background:#f0faf6;border-left:4px solid #0d9373;border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:12.5px}.info strong{color:#087a60}.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:12.5px}.stats{display:flex;gap:12px;margin:20px 0}.stat{flex:1;background:#f8fafc;border:1px solid #e5e7eb;border-top:3px solid #0d9373;border-radius:8px;padding:16px;text-align:center}.stat .val{font-size:28px;font-weight:900;color:#0d9373;line-height:1}.stat .lbl{font-size:10px;color:#6b7280;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em}.formula{background:#0c111d;color:#10b981;border-radius:8px;padding:14px 20px;margin:14px 0;font-family:'Courier New',monospace;font-size:13px;font-weight:600;white-space:pre-wrap}.check{list-style:none;padding:0}.check li{padding:10px 14px;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:6px;display:flex;align-items:flex-start;gap:10px;font-size:12.5px}.check li::before{content:'\2610';color:#0d9373;font-size:16px;flex-shrink:0}.footer{margin-top:40px;padding-top:16px;border-top:2px solid #0c111d;text-align:center;font-size:11px;color:#9ca3af}.footer .logo{font-weight:900;letter-spacing:0.15em;text-transform:uppercase;color:#111827;font-size:11px;margin-bottom:4px}.footer .logo .accent{color:#0d9373}
@@ -28,7 +29,111 @@
       <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
       <div class="type">Reporting COMEX</div>
     </div>
+
+    <div class="quick-start">
+      <h4>📖 Comment utiliser ce template</h4>
+      <ol>
+        <li>Remplissez les 8 KPIs essentiels en fin de mois (export ATS + saisie manuelle 30 min)</li>
+        <li>Codez chaque ligne en feu tricolore : vert / orange / rouge selon les seuils définis section 1</li>
+        <li>Préparez 3 slides pour le COMEX : executive summary, alertes, décisions requises</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>⏱ Remplissage :</strong> 45-60 min / mois</span>
+        <span><strong>🎯 Pour qui :</strong> Head of TA / CHRO / COMEX</span>
+        <span><strong>🔧 Format :</strong> Imprimable / Adaptable</span>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <h5>📋 Exemple : Reporting Mensuel Type — 8 postes ouverts, scale-up 50 pers.</h5>
+      <p><strong>Avril 2026.</strong> 3 embauches confirmées, time-to-hire moyen 28 jours (cible 35j ✅), cost-per-hire 4 200€ (cible 5K€ ✅).</p>
+      <ul>
+        <li><strong>Sources :</strong> LinkedIn 50% · cooptation 25% · vivier 15% · jobboards 10%</li>
+        <li><strong>Pipeline 30j :</strong> 12 finalistes en process, 3 offres en cours</li>
+        <li><strong>Alerte rouge :</strong> 1 poste ouvert depuis 52j (Lead Data), pipeline faible — escalade budget chasse</li>
+        <li><strong>Win :</strong> 1 cooptation convertie en 11 jours (profil Product Manager)</li>
+        <li><strong>Décision requise :</strong> budget chasse +8K€ sur Lead Data</li>
+      </ul>
+    </div>
+
     <p>Ce template structure le reporting recrutement destiné au comité de direction. Format synthétique, visuel, actionnable. À compléter chaque mois. Objectif : 10 minutes de présentation + 5 minutes de Q&amp;A.</p>
+
+    <h2><span class="bar"></span> Dashboard mockup — Vue d'ensemble du mois</h2>
+    <p>Aperçu visuel type : une page qui concentre funnel + KPIs clés + niveau de maturité TA. À reproduire dans vos slides COMEX.</p>
+
+    <div class="stats">
+      <div class="stat"><div class="val">8</div><div class="lbl">Postes ouverts</div></div>
+      <div class="stat"><div class="val">28 j</div><div class="lbl">Time-to-hire moyen</div></div>
+      <div class="stat"><div class="val">91%</div><div class="lbl">Offer Acceptance Rate</div></div>
+    </div>
+
+    <div class="svg-chart">
+      <p class="chart-title">Pipeline du mois — Funnel de conversion</p>
+      <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="funnelGradComex" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#0d9373"/>
+          </linearGradient>
+        </defs>
+        <g font-family="Inter, sans-serif">
+          <rect x="50" y="40" width="500" height="32" rx="4" fill="url(#funnelGradComex)" opacity="0.95"/>
+          <text x="60" y="61" font-size="13" font-weight="700" fill="white">Candidatures sourcing</text>
+          <text x="540" y="61" font-size="13" font-weight="700" fill="white" text-anchor="end">240</text>
+          <rect x="100" y="80" width="400" height="32" rx="4" fill="url(#funnelGradComex)" opacity="0.85"/>
+          <text x="110" y="101" font-size="13" font-weight="700" fill="white">Screenés</text>
+          <text x="490" y="101" font-size="13" font-weight="700" fill="white" text-anchor="end">60</text>
+          <rect x="150" y="120" width="300" height="32" rx="4" fill="url(#funnelGradComex)" opacity="0.75"/>
+          <text x="160" y="141" font-size="13" font-weight="700" fill="white">Entretien 1 (HM)</text>
+          <text x="440" y="141" font-size="13" font-weight="700" fill="white" text-anchor="end">24</text>
+          <rect x="200" y="160" width="200" height="32" rx="4" fill="url(#funnelGradComex)" opacity="0.65"/>
+          <text x="210" y="181" font-size="13" font-weight="700" fill="white">Entretien 2 / Case</text>
+          <text x="390" y="181" font-size="13" font-weight="700" fill="white" text-anchor="end">10</text>
+          <rect x="240" y="200" width="120" height="32" rx="4" fill="url(#funnelGradComex)" opacity="0.55"/>
+          <text x="250" y="221" font-size="13" font-weight="700" fill="white">Offres</text>
+          <text x="350" y="221" font-size="13" font-weight="700" fill="white" text-anchor="end">3</text>
+          <rect x="270" y="240" width="60" height="32" rx="4" fill="#0d9373"/>
+          <text x="280" y="261" font-size="13" font-weight="800" fill="white">Embauches</text>
+          <text x="320" y="261" font-size="13" font-weight="800" fill="white" text-anchor="end">3</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Conversion globale : 1.25% (240 candidats → 3 embauches). À comparer avec benchmark 2-5%.</p>
+    </div>
+
+    <div class="svg-chart">
+      <p class="chart-title">Diagnostic maturité TA — score type</p>
+      <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <g transform="translate(250,200)">
+          <path d="M -180,0 A 180,180 0 0,1 180,0" fill="none" stroke="#e5e7eb" stroke-width="32" stroke-linecap="round"/>
+          <path d="M -180,0 A 180,180 0 0,1 -90,-156" fill="none" stroke="#dc2626" stroke-width="32"/>
+          <path d="M -90,-156 A 180,180 0 0,1 0,-180" fill="none" stroke="#f59e0b" stroke-width="32"/>
+          <path d="M 0,-180 A 180,180 0 0,1 90,-156" fill="none" stroke="#10b981" stroke-width="32"/>
+          <path d="M 90,-156 A 180,180 0 0,1 180,0" fill="none" stroke="#0d9373" stroke-width="32"/>
+          <line x1="0" y1="0" x2="65" y2="-156" stroke="#0c111d" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="0" cy="0" r="10" fill="#0c111d"/>
+          <circle cx="0" cy="0" r="4" fill="white"/>
+          <text x="0" y="-50" font-size="44" font-weight="900" fill="#111827" text-anchor="middle" font-variant-numeric="tabular-nums">62</text>
+          <text x="0" y="-25" font-size="13" font-weight="600" fill="#6b7280" text-anchor="middle">/ 100</text>
+          <text x="-180" y="20" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">Débutant</text>
+          <text x="-95" y="-180" font-size="10" font-weight="700" fill="#92400e" text-anchor="middle">Initié</text>
+          <text x="0" y="-200" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Solide</text>
+          <text x="95" y="-180" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Avancé</text>
+          <text x="180" y="20" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Excellence</text>
+        </g>
+        <g transform="translate(140,250)">
+          <text x="0" y="0" font-size="12" font-weight="700" fill="#0d9373">Niveau "Solide"</text>
+          <text x="0" y="20" font-size="10" fill="#6b7280">Process structuré · 3 axes à muscler : sourcing, scoring, KPIs</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Gauge de maturité — à intégrer dans le slide d'ouverture du COMEX.</p>
+    </div>
+
+    <div class="action-callout">
+      <div class="ac-icon">!</div>
+      <div class="ac-content">
+        <strong>À faire avant le COMEX :</strong> envoyez le reporting 24h avant la réunion. Le COMEX arrive préparé, vous gagnez 5 min de présentation et vous concentrez sur les décisions.
+      </div>
+    </div>
 
     <h2><span class="bar"></span> 0. Executive Summary (format type)</h2>
     <div class="info">
@@ -55,14 +160,43 @@
       <tr><td>Satisfaction Hiring Manager</td><td>Enquête post-recrutement (note /5)</td><td>3.5/5</td><td>> 4/5</td><td>___/5</td><td>___/5</td></tr>
     </table>
 
+    <h3>Formules détaillées des KPIs clés (avec exemple chiffré)</h3>
+
+    <div class="formula" style="background: var(--dark, #0c111d); color: white; padding: 16px; border-radius: 8px; font-family: monospace; margin: 16px 0;">
+      <div style="font-size: 0.7rem; color: #10b981; margin-bottom: 4px;">FORMULE</div>
+      <div>Time-to-Hire = (Date offre acceptée − Date brief) en jours</div>
+      <div style="font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Exemple : Brief 1er mars, offre acceptée 28 mars → TTH = 27 jours ✅ (cible 35j)</div>
+    </div>
+
+    <div class="formula" style="background: var(--dark, #0c111d); color: white; padding: 16px; border-radius: 8px; font-family: monospace; margin: 16px 0;">
+      <div style="font-size: 0.7rem; color: #10b981; margin-bottom: 4px;">FORMULE</div>
+      <div>Offer Acceptance Rate = (Offres acceptées / Offres émises) × 100</div>
+      <div style="font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Exemple : 10 offres émises, 9 acceptées → OAR = 90% ✅ (cible &gt;88%)</div>
+    </div>
+
+    <div class="formula" style="background: var(--dark, #0c111d); color: white; padding: 16px; border-radius: 8px; font-family: monospace; margin: 16px 0;">
+      <div style="font-size: 0.7rem; color: #10b981; margin-bottom: 4px;">FORMULE</div>
+      <div>Cost-per-Hire = (Coûts directs + indirects) / Nb embauches du mois</div>
+      <div style="font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Exemple : 12 600€ coûts / 3 embauches → CPH = 4 200€ ✅ (cible &lt;5K€)</div>
+    </div>
+
+    <div class="formula" style="background: var(--dark, #0c111d); color: white; padding: 16px; border-radius: 8px; font-family: monospace; margin: 16px 0;">
+      <div style="font-size: 0.7rem; color: #10b981; margin-bottom: 4px;">FORMULE</div>
+      <div>Taux de candidatures qualifiées = (Passés screening / Total) × 100</div>
+      <div style="font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Exemple : 60 screenings validés / 240 candidatures → 25% ✅ (cible &gt;20%)</div>
+    </div>
+
     <h3>Critères du feu tricolore pour chaque KPI</h3>
     <table>
-      <tr><th>KPI</th><th>VERT (on track)</th><th>ORANGE (attention)</th><th>ROUGE (action requise)</th></tr>
-      <tr><td>Time-to-Fill</td><td>&lt; 40 jours</td><td>40-55 jours</td><td>> 55 jours</td></tr>
-      <tr><td>Offer Acceptance Rate</td><td>> 88%</td><td>80-88%</td><td>&lt; 80%</td></tr>
-      <tr><td>Cost-per-Hire</td><td>&lt; 6 000 €</td><td>6 000-9 000 €</td><td>> 9 000 €</td></tr>
-      <tr><td>Candidatures qualifiées</td><td>> 25%</td><td>15-25%</td><td>&lt; 15%</td></tr>
-      <tr><td>Satisfaction HM</td><td>> 4.2/5</td><td>3.5-4.2/5</td><td>&lt; 3.5/5</td></tr>
+      <tr><th>KPI</th><th>🔴 Rouge</th><th>🟠 Orange</th><th>🟢 Vert</th></tr>
+      <tr><td>Time-to-Hire</td><td>&gt; 55 jours</td><td>40-55 jours</td><td>&lt; 40 jours</td></tr>
+      <tr><td>Time-to-Fill</td><td>&gt; 60 jours</td><td>45-60 jours</td><td>&lt; 45 jours</td></tr>
+      <tr><td>Offer Acceptance Rate</td><td>&lt; 80%</td><td>80-88%</td><td>&gt; 88%</td></tr>
+      <tr><td>Cost-per-Hire</td><td>&gt; 9 000 €</td><td>6 000-9 000 €</td><td>&lt; 6 000 €</td></tr>
+      <tr><td>Candidatures qualifiées</td><td>&lt; 15%</td><td>15-25%</td><td>&gt; 25%</td></tr>
+      <tr><td>Satisfaction HM</td><td>&lt; 3.5/5</td><td>3.5-4.2/5</td><td>&gt; 4.2/5</td></tr>
+      <tr><td>Taux de rétention 12 mois</td><td>&lt; 75%</td><td>75-85%</td><td>&gt; 85%</td></tr>
+      <tr><td>NPS candidat</td><td>&lt; 20</td><td>20-40</td><td>&gt; 40</td></tr>
     </table>
 
     <h2><span class="bar"></span> 2. Funnel de recrutement (pipeline)</h2>
@@ -273,6 +407,36 @@ Exemple : (3 candidats E2 x 0.45) + (2 candidats offre x 0.88)
         <li><strong>Envoyez le reporting 24h avant :</strong> les membres du COMEX arrivent informés, le temps de présentation est optimisé</li>
         <li><strong>Format :</strong> un slide par section maximum, pas de texte dense, uniquement des tableaux et des chiffres clés</li>
       </ul>
+    </div>
+
+    <div class="calculator-cta">
+      <div class="cc-text">
+        <h4>📊 Vous voulez un dashboard automatisé ?</h4>
+        <p>Nos TA Specialists structurent vos KPIs et reporting COMEX.</p>
+      </div>
+      <a class="cc-btn" href="https://rocket4rpo.com/rdv">Discuter de votre besoin →</a>
+    </div>
+
+    <div class="related-resources">
+      <h4>🔗 Continuer avec</h4>
+      <div class="rr-grid">
+        <a class="rr-card" href="/ressources/guide-kpis-recrutement.pdf">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">KPIs recrutement — Le guide complet</div>
+        </a>
+        <a class="rr-card" href="/ressources/etude-time-to-hire-france-2026.pdf">
+          <div class="rr-type">Étude</div>
+          <div class="rr-title">Time-to-hire France 2026</div>
+        </a>
+        <a class="rr-card" href="/ressources/benchmark-rpo-france-2026.pdf">
+          <div class="rr-type">Benchmark</div>
+          <div class="rr-title">RPO France 2026</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="info">
+      <strong>💡 Version interactive :</strong> Pour utiliser ce template en mode collaboratif, dupliquez-le dans Notion, Google Docs ou Airtable. <a href="https://rocket4rpo.com/rdv" target="_blank">Demandez la version Notion prête à l'emploi</a> lors de votre diagnostic gratuit.
     </div>
 
     <div class="footer">

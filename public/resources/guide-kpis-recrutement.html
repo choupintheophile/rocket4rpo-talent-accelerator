@@ -53,6 +53,47 @@
     .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
     .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
     .footer .logo .accent { color: #0d9373; }
+    .quick-start{background:linear-gradient(135deg,#f8fafc 0%,#fff 100%);border:1px solid #e5e7eb;border-left:4px solid #0d9373;border-radius:16px;padding:24px 28px;margin:24px 0 28px;position:relative}
+    .quick-start::before{content:"MODE D'EMPLOI";position:absolute;top:-10px;left:24px;background:#0d9373;color:#fff;font-size:9px;font-weight:800;letter-spacing:0.12em;padding:4px 10px;border-radius:4px}
+    .quick-start h4{font-size:15px;font-weight:700;color:#111827;margin:0 0 14px}
+    .quick-start ol{margin:0;padding-left:0;list-style:none;counter-reset:qs-counter}
+    .quick-start ol li{counter-increment:qs-counter;position:relative;padding:8px 0 8px 38px;font-size:12.5px;color:#374151;line-height:1.55}
+    .quick-start ol li::before{content:counter(qs-counter);position:absolute;left:0;top:8px;width:26px;height:26px;background:#0d9373;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+    .quick-start .qs-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;padding-top:14px;border-top:1px dashed #e5e7eb;font-size:11px;color:#6b7280}
+    .quick-start .qs-meta strong{color:#111827}
+    .source-cite{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;color:#6b7280;font-weight:500;margin-left:2px;vertical-align:super}
+    .source-cite a{color:#0d9373;border-bottom:1px dotted #0d9373;text-decoration:none;padding:0 2px}
+    .sources-list{margin:32px 0 24px;padding:18px 22px;background:#f8fafc;border-radius:10px;font-size:11.5px;color:#6b7280}
+    .sources-list h4{font-size:10.5px;font-weight:800;letter-spacing:0.1em;color:#111827;text-transform:uppercase;margin:0 0 10px}
+    .sources-list ol{margin:0;padding-left:22px}
+    .sources-list li{padding:4px 0;line-height:1.55}
+    .sources-list a{color:#0d9373;border-bottom:1px dotted #0d9373;text-decoration:none}
+    .case-study{background:linear-gradient(135deg,#0c111d 0%,#151c2c 100%);color:#fff;border-radius:16px;padding:28px 32px;margin:32px 0;position:relative;overflow:hidden}
+    .case-study::before{content:"CAS RÉEL";position:absolute;top:18px;right:18px;background:rgba(16,185,129,0.18);color:#10b981;font-size:9px;font-weight:800;letter-spacing:0.12em;padding:4px 10px;border-radius:4px}
+    .case-study h4{font-size:15px;font-weight:700;margin:0 0 6px;color:#fff}
+    .case-study .cs-context{font-size:11.5px;color:rgba(255,255,255,0.55);margin-bottom:18px;font-style:italic}
+    .case-study .cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+    .case-study .cs-block{background:rgba(255,255,255,0.04);border-radius:10px;padding:14px 16px;border-left:3px solid #10b981}
+    .case-study .cs-block .cs-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.5);margin-bottom:4px}
+    .case-study .cs-block .cs-value{font-size:13px;color:#fff;line-height:1.45}
+    .case-study .cs-result{margin-top:18px;padding:14px 18px;background:rgba(16,185,129,0.12);border-radius:10px;border-left:4px solid #10b981;font-size:13px;color:#fff}
+    .case-study .cs-result strong{color:#10b981}
+    .related-resources{margin:40px 0 24px;padding:26px;background:linear-gradient(135deg,#faf8f5 0%,#fff 100%);border:1px solid #e5e7eb;border-radius:16px}
+    .related-resources h4{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#087a60;margin:0 0 16px}
+    .related-resources .rr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .related-resources .rr-card{display:block;padding:14px 16px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none}
+    .related-resources .rr-card .rr-type{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0d9373;margin-bottom:6px}
+    .related-resources .rr-card .rr-title{font-size:12px;font-weight:600;color:#111827;line-height:1.35}
+    .calculator-cta{margin:32px 0;padding:24px 28px;background:linear-gradient(135deg,#0d9373 0%,#087a60 100%);color:#fff;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.08)}
+    .calculator-cta .cc-text{flex:1}
+    .calculator-cta .cc-text h4{font-size:15px;font-weight:700;margin:0 0 4px;color:#fff}
+    .calculator-cta .cc-text p{font-size:12px;color:rgba(255,255,255,0.85);margin:0}
+    .calculator-cta .cc-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#fff;color:#087a60;border-radius:100px;font-weight:700;font-size:11.5px;text-decoration:none;white-space:nowrap}
+    .svg-chart{margin:28px 0;padding:22px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,0.05)}
+    .svg-chart .chart-title{font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;margin:0 0 14px}
+    .svg-chart svg{width:100%;height:auto;display:block}
+    .svg-chart .chart-caption{margin-top:12px;font-size:10.5px;color:#6b7280;font-style:italic;text-align:center}
+    @media print{.quick-start,.case-study,.calculator-cta,.related-resources,.svg-chart,.sources-list{break-inside:avoid}}
   </style>
 </head>
 <body>
@@ -91,11 +132,62 @@
       <div class="type">Guide PDF</div>
     </div>
 
+    <div class="quick-start">
+      <h4>📖 Comment utiliser ce guide</h4>
+      <ol>
+        <li>Évaluez votre maturité TA puis sélectionnez 5 KPIs prioritaires parmi les 12 (commencez par TTF, OAR, Quality of Hire, CPH, HM Sat).</li>
+        <li>Construisez votre dashboard mensuel avec le layout recommandé en fin de guide et partagez-le aux hiring managers.</li>
+        <li>Itérez chaque trimestre : ajoutez 1-2 nouveaux KPIs au fur et à mesure que la collecte se fiabilise.</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>⏱ Temps de lecture :</strong> 11 min</span>
+        <span><strong>🎯 Pour qui :</strong> TA Manager, Head of TA, DRH</span>
+        <span><strong>📊 Niveau :</strong> Intermédiaire à Expert</span>
+      </div>
+    </div>
+
     <h2><span class="bar"></span> Pourquoi mesurer ?</h2>
-    <p>Piloter le recrutement sans KPIs, c'est conduire sans tableau de bord. Les entreprises qui mesurent leurs KPIs recrutement ont un time-to-fill 23% plus court et un taux de rétention 15% supérieur.</p>
+    <p>Piloter le recrutement sans KPIs, c'est conduire sans tableau de bord. Les entreprises qui mesurent leurs KPIs recrutement ont un time-to-fill 23% plus court et un taux de rétention 15% supérieur.<sup class="source-cite">[<a href="https://www.linkedin.com/business/talent/blog" target="_blank" rel="noopener">5</a>]</sup></p>
 
     <div class="info">
       <strong>Comment utiliser ce guide :</strong> Sélectionnez 5 à 7 KPIs adaptés à votre maturité. Mesurez-les mensuellement. Partagez un dashboard avec vos stakeholders. Itérez chaque trimestre.
+    </div>
+
+    <div class="svg-chart">
+      <p class="chart-title">Pipeline de conversion type — du sourcing à l'embauche</p>
+      <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="funnelGradKPI" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#10b981"/>
+            <stop offset="100%" stop-color="#0d9373"/>
+          </linearGradient>
+        </defs>
+        <g font-family="Inter, sans-serif">
+          <rect x="50" y="40" width="500" height="32" rx="4" fill="url(#funnelGradKPI)" opacity="0.95"/>
+          <text x="60" y="61" font-size="13" font-weight="700" fill="white">Sourcés</text>
+          <text x="540" y="61" font-size="13" font-weight="700" fill="white" text-anchor="end">100</text>
+          <rect x="100" y="80" width="400" height="32" rx="4" fill="url(#funnelGradKPI)" opacity="0.85"/>
+          <text x="110" y="101" font-size="13" font-weight="700" fill="white">Contactés</text>
+          <text x="490" y="101" font-size="13" font-weight="700" fill="white" text-anchor="end">25</text>
+          <text x="510" y="101" font-size="11" fill="#9ca3af">−75%</text>
+          <rect x="150" y="120" width="300" height="32" rx="4" fill="url(#funnelGradKPI)" opacity="0.75"/>
+          <text x="160" y="141" font-size="13" font-weight="700" fill="white">Screenés</text>
+          <text x="440" y="141" font-size="13" font-weight="700" fill="white" text-anchor="end">12</text>
+          <text x="460" y="141" font-size="11" fill="#9ca3af">−52%</text>
+          <rect x="200" y="160" width="200" height="32" rx="4" fill="url(#funnelGradKPI)" opacity="0.65"/>
+          <text x="210" y="181" font-size="13" font-weight="700" fill="white">Entretiens</text>
+          <text x="390" y="181" font-size="13" font-weight="700" fill="white" text-anchor="end">5</text>
+          <text x="410" y="181" font-size="11" fill="#9ca3af">−58%</text>
+          <rect x="240" y="200" width="120" height="32" rx="4" fill="url(#funnelGradKPI)" opacity="0.55"/>
+          <text x="250" y="221" font-size="13" font-weight="700" fill="white">Finalistes</text>
+          <text x="350" y="221" font-size="13" font-weight="700" fill="white" text-anchor="end">2</text>
+          <text x="370" y="221" font-size="11" fill="#9ca3af">−60%</text>
+          <rect x="270" y="240" width="60" height="32" rx="4" fill="#0d9373"/>
+          <text x="280" y="261" font-size="13" font-weight="800" fill="white">Embauche</text>
+          <text x="320" y="261" font-size="13" font-weight="800" fill="white" text-anchor="end">1</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Taux de conversion global : 1% (100 sourcés → 1 embauche). Sert de base au calcul du Pipeline Velocity.</p>
     </div>
 
     <h2><span class="bar"></span> Vue d'ensemble des 12 KPIs</h2>
@@ -261,6 +353,34 @@
       <tr><td>Cabinet de recrutement</td><td>8 000 - 25 000 €</td><td>Variable</td></tr>
     </table>
 
+    <div class="svg-chart">
+      <p class="chart-title">Diagnostic de maturité TA — score type startup Série A</p>
+      <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <g transform="translate(250,200)">
+          <path d="M -180,0 A 180,180 0 0,1 180,0" fill="none" stroke="#e5e7eb" stroke-width="32" stroke-linecap="round"/>
+          <path d="M -180,0 A 180,180 0 0,1 -90,-156" fill="none" stroke="#dc2626" stroke-width="32"/>
+          <path d="M -90,-156 A 180,180 0 0,1 0,-180" fill="none" stroke="#f59e0b" stroke-width="32"/>
+          <path d="M 0,-180 A 180,180 0 0,1 90,-156" fill="none" stroke="#10b981" stroke-width="32"/>
+          <path d="M 90,-156 A 180,180 0 0,1 180,0" fill="none" stroke="#0d9373" stroke-width="32"/>
+          <line x1="0" y1="0" x2="65" y2="-156" stroke="#0c111d" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="0" cy="0" r="10" fill="#0c111d"/>
+          <circle cx="0" cy="0" r="4" fill="white"/>
+          <text x="0" y="-50" font-size="44" font-weight="900" fill="#111827" text-anchor="middle" font-variant-numeric="tabular-nums">62</text>
+          <text x="0" y="-25" font-size="13" font-weight="600" fill="#6b7280" text-anchor="middle">/ 100</text>
+          <text x="-180" y="20" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">Débutant</text>
+          <text x="-95" y="-180" font-size="10" font-weight="700" fill="#92400e" text-anchor="middle">Initié</text>
+          <text x="0" y="-200" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Solide</text>
+          <text x="95" y="-180" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Avancé</text>
+          <text x="180" y="20" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Excellence</text>
+        </g>
+        <g transform="translate(140,250)">
+          <text x="0" y="0" font-size="12" font-weight="700" fill="#0d9373">Niveau "Solide"</text>
+          <text x="0" y="20" font-size="10" fill="#6b7280">Process structuré · 3 axes à muscler : sourcing, scoring, KPIs</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Issu du diagnostic interactif — 10 questions, score automatique, plan d'action personnalisé.</p>
+    </div>
+
     <h2><span class="bar"></span> Dashboard récapitulatif</h2>
 
     <div class="info">
@@ -286,6 +406,62 @@
 
     <div class="warn">
       <strong>Erreur fréquente :</strong> Ne mesurez pas tout en même temps. Commencez par 5 KPIs, stabilisez la collecte, puis ajoutez progressivement. Un KPI mal mesuré est pire qu'un KPI absent : il donne une fausse confiance.
+    </div>
+
+    <div class="case-study">
+      <h4>Scale-up Tech Lyon — Mise en place du dashboard KPIs</h4>
+      <p class="cs-context">Éditeur SaaS B2B 65 collaborateurs, équipe TA de 1 personne, aucun KPI suivi régulièrement, COMEX réclame de la visibilité.</p>
+      <div class="cs-grid">
+        <div class="cs-block">
+          <div class="cs-label">Avant (T0)</div>
+          <div class="cs-value">TTF non mesuré, OAR estimé à "70%", 3 départs PE inexpliqués sur 12 derniers recrutements</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">Après 6 mois (5 KPIs suivis)</div>
+          <div class="cs-value">TTF mesuré 38j, OAR réel 84%, identification cause principale des départs PE (brief HM trop vague)</div>
+        </div>
+      </div>
+      <div class="cs-result">
+        <strong>Résultat :</strong> Process brief renforcé, OAR à 91% sur les 8 recrutements suivants, 0 départ PE, et reporting mensuel automatisé partagé au COMEX.
+      </div>
+    </div>
+
+    <div class="calculator-cta">
+      <div class="cc-text">
+        <h4>🧮 Calculez votre situation</h4>
+        <p>Estimez vos économies avec notre simulateur ROI personnalisé.</p>
+      </div>
+      <a class="cc-btn" href="https://rocket4rpo.com/calculateur">Lancer le calculateur →</a>
+    </div>
+
+    <div class="related-resources">
+      <h4>🔗 Continuer avec</h4>
+      <div class="rr-grid">
+        <a class="rr-card" href="/ressources/template-reporting-comex.pdf">
+          <div class="rr-type">Template</div>
+          <div class="rr-title">Template reporting recrutement COMEX</div>
+        </a>
+        <a class="rr-card" href="/ressources/etude-time-to-hire-france-2026.pdf">
+          <div class="rr-type">Étude</div>
+          <div class="rr-title">Time-to-Hire France 2026</div>
+        </a>
+        <a class="rr-card" href="/ressources/guide-rpo-vs-cabinet.pdf">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">RPO vs Cabinet — quel modèle ?</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sources-list">
+      <h4>📚 Sources & méthodologie</h4>
+      <ol>
+        <li>LinkedIn Talent Insights — <a href="https://www.linkedin.com/business/talent/blog" target="_blank" rel="noopener">Hiring trends &amp; benchmarks</a></li>
+        <li>Figures.hr — <a href="https://figures.hr" target="_blank" rel="noopener">Salary &amp; Hiring Reports France 2026</a></li>
+        <li>APEC — <a href="https://corporate.apec.fr/home/nos-etudes.html" target="_blank" rel="noopener">Études cadres</a></li>
+        <li>France Travail — <a href="https://www.francetravail.fr/statistiques-analyses/" target="_blank" rel="noopener">Statistiques marché</a></li>
+        <li>Défenseur des Droits — <a href="https://www.defenseurdesdroits.fr/" target="_blank" rel="noopener">Discrimination &amp; D&amp;I</a></li>
+        <li>Données internes Rocket4RPO — 200+ recrutements 2024–2026</li>
+      </ol>
     </div>
 
     <div class="footer">

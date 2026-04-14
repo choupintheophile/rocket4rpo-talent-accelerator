@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>SVG Library v1 — Rocket4RPO</title>
+<link rel="stylesheet" href="style-premium.css">
+<style>
+  body { padding: 40px; max-width: 900px; }
+  .lib-section { margin-bottom: 60px; }
+  .lib-section h2 { margin-top: 0; }
+  .lib-section .lib-meta {
+    font-size: 0.8rem; color: var(--ink3); margin-bottom: 16px;
+    background: var(--bg-alt); padding: 10px 14px; border-radius: 6px;
+  }
+  .lib-section .lib-meta code { background: white; padding: 2px 6px; border-radius: 3px; font-size: 0.8em; }
+</style>
+</head>
+<body>
+
+<h1>📊 Librairie SVG Rocket4RPO v1</h1>
+<p class="quick-start" style="border-left-color:#7c3aed;">
+  <strong>Usage :</strong> Copier les blocs SVG et les coller dans les ressources HTML. Tous sont 100% scalables, fonctionnent en print, sans dépendance externe.
+</p>
+
+<!-- ════════ 1. FUNNEL CHART ════════ -->
+<div class="lib-section">
+  <h2>1. Funnel — Pipeline recrutement</h2>
+  <div class="lib-meta">Usage typique : afficher 100→25→12→5→2→1 candidats. Class <code>.svg-chart</code></div>
+  <div class="svg-chart">
+    <p class="chart-title">Pipeline de conversion type</p>
+    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="funnelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#10b981"/>
+          <stop offset="100%" stop-color="#0d9373"/>
+        </linearGradient>
+      </defs>
+      <!-- Bars -->
+      <g font-family="Inter, sans-serif">
+        <!-- Step 1: 100 -->
+        <rect x="50" y="40" width="500" height="32" rx="4" fill="url(#funnelGrad)" opacity="0.95"/>
+        <text x="60" y="61" font-size="13" font-weight="700" fill="white">Sourcés</text>
+        <text x="540" y="61" font-size="13" font-weight="700" fill="white" text-anchor="end">100</text>
+        <!-- Step 2: 25 -->
+        <rect x="100" y="80" width="400" height="32" rx="4" fill="url(#funnelGrad)" opacity="0.85"/>
+        <text x="110" y="101" font-size="13" font-weight="700" fill="white">Contactés</text>
+        <text x="490" y="101" font-size="13" font-weight="700" fill="white" text-anchor="end">25</text>
+        <text x="510" y="101" font-size="11" fill="#9ca3af">−75%</text>
+        <!-- Step 3: 12 -->
+        <rect x="150" y="120" width="300" height="32" rx="4" fill="url(#funnelGrad)" opacity="0.75"/>
+        <text x="160" y="141" font-size="13" font-weight="700" fill="white">Screenés</text>
+        <text x="440" y="141" font-size="13" font-weight="700" fill="white" text-anchor="end">12</text>
+        <text x="460" y="141" font-size="11" fill="#9ca3af">−52%</text>
+        <!-- Step 4: 5 -->
+        <rect x="200" y="160" width="200" height="32" rx="4" fill="url(#funnelGrad)" opacity="0.65"/>
+        <text x="210" y="181" font-size="13" font-weight="700" fill="white">Entretiens</text>
+        <text x="390" y="181" font-size="13" font-weight="700" fill="white" text-anchor="end">5</text>
+        <text x="410" y="181" font-size="11" fill="#9ca3af">−58%</text>
+        <!-- Step 5: 2 -->
+        <rect x="240" y="200" width="120" height="32" rx="4" fill="url(#funnelGrad)" opacity="0.55"/>
+        <text x="250" y="221" font-size="13" font-weight="700" fill="white">Finalistes</text>
+        <text x="350" y="221" font-size="13" font-weight="700" fill="white" text-anchor="end">2</text>
+        <text x="370" y="221" font-size="11" fill="#9ca3af">−60%</text>
+        <!-- Step 6: 1 -->
+        <rect x="270" y="240" width="60" height="32" rx="4" fill="#0d9373"/>
+        <text x="280" y="261" font-size="13" font-weight="800" fill="white">Embauche</text>
+        <text x="320" y="261" font-size="13" font-weight="800" fill="white" text-anchor="end">1</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Taux de conversion global : 1% (100 sourcés → 1 embauche)</p>
+  </div>
+</div>
+
+<!-- ════════ 2. RADAR CHART ════════ -->
+<div class="lib-section">
+  <h2>2. Radar — RPO vs Cabinet vs Interne</h2>
+  <div class="lib-meta">Usage typique : comparer 3 modèles sur 6 critères. Adapter les <code>polygon points</code> et labels.</div>
+  <div class="svg-chart">
+    <p class="chart-title">Comparaison multi-critères des modèles de recrutement</p>
+    <svg viewBox="0 0 500 380" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(250,180)" font-family="Inter, sans-serif">
+        <!-- Background hexagon levels -->
+        <polygon points="0,-150 130,-75 130,75 0,150 -130,75 -130,-75" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+        <polygon points="0,-100 87,-50 87,50 0,100 -87,50 -87,-50" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+        <polygon points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+        <!-- Axes -->
+        <line x1="0" y1="0" x2="0" y2="-150" stroke="#e5e7eb"/>
+        <line x1="0" y1="0" x2="130" y2="-75" stroke="#e5e7eb"/>
+        <line x1="0" y1="0" x2="130" y2="75" stroke="#e5e7eb"/>
+        <line x1="0" y1="0" x2="0" y2="150" stroke="#e5e7eb"/>
+        <line x1="0" y1="0" x2="-130" y2="75" stroke="#e5e7eb"/>
+        <line x1="0" y1="0" x2="-130" y2="-75" stroke="#e5e7eb"/>
+        <!-- RPO (best - teal, score 5/4/5/5/4/5) -->
+        <polygon points="0,-150 130,-60 108,62 0,150 -104,60 -130,-75" fill="#10b981" fill-opacity="0.25" stroke="#0d9373" stroke-width="2.5"/>
+        <!-- Cabinet (amber, score 3/4/2/3/2/4) -->
+        <polygon points="0,-90 130,-75 52,30 0,90 -52,30 -104,-60" fill="#f59e0b" fill-opacity="0.18" stroke="#d97706" stroke-width="2"/>
+        <!-- Interne (gray, score 4/2/3/4/4/3) -->
+        <polygon points="0,-120 65,-37 78,45 0,120 -87,50 -78,-45" fill="#6b7280" fill-opacity="0.15" stroke="#4b5563" stroke-width="2" stroke-dasharray="4,3"/>
+        <!-- Labels -->
+        <text x="0" y="-165" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">Vitesse</text>
+        <text x="146" y="-78" font-size="11" font-weight="700" fill="#111827">Qualité</text>
+        <text x="146" y="80" font-size="11" font-weight="700" fill="#111827">Coût</text>
+        <text x="0" y="170" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">Flexibilité</text>
+        <text x="-146" y="80" font-size="11" font-weight="700" fill="#111827" text-anchor="end">Intégration</text>
+        <text x="-146" y="-78" font-size="11" font-weight="700" fill="#111827" text-anchor="end">Rétention</text>
+      </g>
+      <!-- Legend -->
+      <g transform="translate(20,330)" font-family="Inter, sans-serif" font-size="11">
+        <rect x="0" y="0" width="14" height="10" fill="#10b981" fill-opacity="0.6" stroke="#0d9373" stroke-width="2"/>
+        <text x="20" y="9" font-weight="600" fill="#111827">RPO Rocket4RPO</text>
+        <rect x="160" y="0" width="14" height="10" fill="#f59e0b" fill-opacity="0.4" stroke="#d97706" stroke-width="2"/>
+        <text x="180" y="9" font-weight="600" fill="#111827">Cabinet</text>
+        <rect x="280" y="0" width="14" height="10" fill="#6b7280" fill-opacity="0.4" stroke="#4b5563" stroke-width="2" stroke-dasharray="3,2"/>
+        <text x="300" y="9" font-weight="600" fill="#111827">Recruteur interne</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Échelle 0-5. Sources : 200+ recrutements Rocket4RPO + benchmarks Figures.hr 2026.</p>
+  </div>
+</div>
+
+<!-- ════════ 3. HORIZONTAL BAR CHART (canaux/sources) ════════ -->
+<div class="lib-section">
+  <h2>3. Bar chart horizontal — Canaux de sourcing</h2>
+  <div class="svg-chart">
+    <p class="chart-title">Time-to-hire moyen par canal de sourcing</p>
+    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <!-- Grid lines -->
+      <g stroke="#e5e7eb" stroke-width="1">
+        <line x1="180" y1="20" x2="180" y2="260"/>
+        <line x1="280" y1="20" x2="280" y2="260"/>
+        <line x1="380" y1="20" x2="380" y2="260"/>
+        <line x1="480" y1="20" x2="480" y2="260"/>
+      </g>
+      <!-- X axis labels -->
+      <g font-size="10" fill="#6b7280">
+        <text x="180" y="275" text-anchor="middle">10j</text>
+        <text x="280" y="275" text-anchor="middle">20j</text>
+        <text x="380" y="275" text-anchor="middle">30j</text>
+        <text x="480" y="275" text-anchor="middle">40j</text>
+      </g>
+      <!-- Bars -->
+      <g>
+        <text x="170" y="42" text-anchor="end" font-size="12" font-weight="600" fill="#111827">Cooptation</text>
+        <rect x="180" y="30" width="60" height="22" fill="#10b981" rx="3"/>
+        <text x="248" y="46" font-size="11" font-weight="700" fill="#0d9373">8j</text>
+
+        <text x="170" y="72" text-anchor="end" font-size="12" font-weight="600" fill="#111827">LinkedIn direct</text>
+        <rect x="180" y="60" width="105" height="22" fill="#10b981" rx="3"/>
+        <text x="293" y="76" font-size="11" font-weight="700" fill="#0d9373">14j</text>
+
+        <text x="170" y="102" text-anchor="end" font-size="12" font-weight="600" fill="#111827">Vivier RPO</text>
+        <rect x="180" y="90" width="115" height="22" fill="#10b981" rx="3"/>
+        <text x="303" y="106" font-size="11" font-weight="700" fill="#0d9373">15j</text>
+
+        <text x="170" y="132" text-anchor="end" font-size="12" font-weight="600" fill="#111827">Communautés</text>
+        <rect x="180" y="120" width="180" height="22" fill="#10b981" opacity="0.75" rx="3"/>
+        <text x="368" y="136" font-size="11" font-weight="700" fill="#374151">22j</text>
+
+        <text x="170" y="162" text-anchor="end" font-size="12" font-weight="600" fill="#111827">Site carrière</text>
+        <rect x="180" y="150" width="220" height="22" fill="#9ca3af" rx="3"/>
+        <text x="408" y="166" font-size="11" font-weight="700" fill="#374151">26j</text>
+
+        <text x="170" y="192" text-anchor="end" font-size="12" font-weight="600" fill="#111827">Cabinet</text>
+        <rect x="180" y="180" width="290" height="22" fill="#9ca3af" rx="3"/>
+        <text x="478" y="196" font-size="11" font-weight="700" fill="#374151">35j</text>
+
+        <text x="170" y="222" text-anchor="end" font-size="12" font-weight="600" fill="#111827">Jobboards</text>
+        <rect x="180" y="210" width="345" height="22" fill="#f59e0b" rx="3"/>
+        <text x="533" y="226" font-size="11" font-weight="700" fill="#92400e">42j</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Vert = canaux à privilégier · Orange = canaux lents (bruit / mauvais signal/ratio)</p>
+  </div>
+</div>
+
+<!-- ════════ 4. ESCALIER PROGRESSION (career ladder) ════════ -->
+<div class="lib-section">
+  <h2>4. Escalier — Career ladder / progression salariale</h2>
+  <div class="svg-chart">
+    <p class="chart-title">Progression salariale Sales SaaS — OTE par niveau (Île-de-France)</p>
+    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <!-- Y axis -->
+      <g stroke="#e5e7eb" font-size="10" fill="#6b7280">
+        <line x1="60" y1="20" x2="60" y2="240" stroke-width="1.5"/>
+        <text x="50" y="50" text-anchor="end">160K€</text>
+        <text x="50" y="100" text-anchor="end">120K€</text>
+        <text x="50" y="150" text-anchor="end">80K€</text>
+        <text x="50" y="200" text-anchor="end">40K€</text>
+        <text x="50" y="240" text-anchor="end">0</text>
+        <line x1="60" y1="240" x2="580" y2="240" stroke-width="1.5"/>
+      </g>
+      <!-- Bars stairs -->
+      <g>
+        <rect x="80" y="200" width="80" height="40" fill="#0d9373" rx="3"/>
+        <text x="120" y="225" text-anchor="middle" font-size="11" font-weight="800" fill="white">35-50K</text>
+        <text x="120" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">SDR</text>
+
+        <rect x="180" y="160" width="80" height="80" fill="#0d9373" rx="3"/>
+        <text x="220" y="205" text-anchor="middle" font-size="11" font-weight="800" fill="white">55-75K</text>
+        <text x="220" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">AE Mid</text>
+
+        <rect x="280" y="120" width="80" height="120" fill="#10b981" rx="3"/>
+        <text x="320" y="185" text-anchor="middle" font-size="11" font-weight="800" fill="white">90-130K</text>
+        <text x="320" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">AE Senior</text>
+
+        <rect x="380" y="60" width="80" height="180" fill="#10b981" rx="3"/>
+        <text x="420" y="155" text-anchor="middle" font-size="11" font-weight="800" fill="white">120-160K</text>
+        <text x="420" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">Enterprise AE</text>
+
+        <rect x="480" y="30" width="80" height="210" fill="#34d399" rx="3"/>
+        <text x="520" y="140" text-anchor="middle" font-size="11" font-weight="800" fill="white">180-260K</text>
+        <text x="520" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">VP Sales</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Fourchette OTE (fixe + variable). Source : 200+ recrutements Rocket4RPO + Figures.hr 2026.</p>
+  </div>
+</div>
+
+<!-- ════════ 5. HEATMAP (région × métier) ════════ -->
+<div class="lib-section">
+  <h2>5. Heatmap — Time-to-hire par région et métier</h2>
+  <div class="svg-chart">
+    <p class="chart-title">Time-to-hire moyen (jours) — France 2026</p>
+    <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <!-- Headers row -->
+      <g font-size="10" font-weight="700" fill="#111827">
+        <text x="170" y="40" text-anchor="middle">Île-de-France</text>
+        <text x="280" y="40" text-anchor="middle">Lyon/Lille</text>
+        <text x="390" y="40" text-anchor="middle">Bordeaux/Nantes</text>
+        <text x="500" y="40" text-anchor="middle">Autres</text>
+      </g>
+      <!-- Rows -->
+      <g font-size="11" font-weight="600" fill="#111827">
+        <!-- Dev Senior -->
+        <text x="20" y="76" fill="#374151">Dev Senior</text>
+        <rect x="120" y="60" width="100" height="32" fill="#fee2e2" stroke="#fff" stroke-width="2"/><text x="170" y="80" text-anchor="middle">42j</text>
+        <rect x="230" y="60" width="100" height="32" fill="#fef3c7" stroke="#fff" stroke-width="2"/><text x="280" y="80" text-anchor="middle">36j</text>
+        <rect x="340" y="60" width="100" height="32" fill="#d1fae5" stroke="#fff" stroke-width="2"/><text x="390" y="80" text-anchor="middle">28j</text>
+        <rect x="450" y="60" width="100" height="32" fill="#a7f3d0" stroke="#fff" stroke-width="2"/><text x="500" y="80" text-anchor="middle">24j</text>
+        <!-- AE Sales -->
+        <text x="20" y="108" fill="#374151">AE Sales</text>
+        <rect x="120" y="92" width="100" height="32" fill="#fef3c7" stroke="#fff" stroke-width="2"/><text x="170" y="112" text-anchor="middle">30j</text>
+        <rect x="230" y="92" width="100" height="32" fill="#d1fae5" stroke="#fff" stroke-width="2"/><text x="280" y="112" text-anchor="middle">26j</text>
+        <rect x="340" y="92" width="100" height="32" fill="#a7f3d0" stroke="#fff" stroke-width="2"/><text x="390" y="112" text-anchor="middle">22j</text>
+        <rect x="450" y="92" width="100" height="32" fill="#a7f3d0" stroke="#fff" stroke-width="2"/><text x="500" y="112" text-anchor="middle">21j</text>
+        <!-- Product -->
+        <text x="20" y="140" fill="#374151">Product Manager</text>
+        <rect x="120" y="124" width="100" height="32" fill="#fee2e2" stroke="#fff" stroke-width="2"/><text x="170" y="144" text-anchor="middle">45j</text>
+        <rect x="230" y="124" width="100" height="32" fill="#fef3c7" stroke="#fff" stroke-width="2"/><text x="280" y="144" text-anchor="middle">38j</text>
+        <rect x="340" y="124" width="100" height="32" fill="#d1fae5" stroke="#fff" stroke-width="2"/><text x="390" y="144" text-anchor="middle">32j</text>
+        <rect x="450" y="124" width="100" height="32" fill="#d1fae5" stroke="#fff" stroke-width="2"/><text x="500" y="144" text-anchor="middle">29j</text>
+        <!-- Designer -->
+        <text x="20" y="172" fill="#374151">Designer</text>
+        <rect x="120" y="156" width="100" height="32" fill="#d1fae5" stroke="#fff" stroke-width="2"/><text x="170" y="176" text-anchor="middle">28j</text>
+        <rect x="230" y="156" width="100" height="32" fill="#a7f3d0" stroke="#fff" stroke-width="2"/><text x="280" y="176" text-anchor="middle">24j</text>
+        <rect x="340" y="156" width="100" height="32" fill="#a7f3d0" stroke="#fff" stroke-width="2"/><text x="390" y="176" text-anchor="middle">22j</text>
+        <rect x="450" y="156" width="100" height="32" fill="#a7f3d0" stroke="#fff" stroke-width="2"/><text x="500" y="176" text-anchor="middle">20j</text>
+        <!-- Manager -->
+        <text x="20" y="204" fill="#374151">Manager</text>
+        <rect x="120" y="188" width="100" height="32" fill="#fee2e2" stroke="#fff" stroke-width="2"/><text x="170" y="208" text-anchor="middle">52j</text>
+        <rect x="230" y="188" width="100" height="32" fill="#fee2e2" stroke="#fff" stroke-width="2"/><text x="280" y="208" text-anchor="middle">48j</text>
+        <rect x="340" y="188" width="100" height="32" fill="#fef3c7" stroke="#fff" stroke-width="2"/><text x="390" y="208" text-anchor="middle">42j</text>
+        <rect x="450" y="188" width="100" height="32" fill="#fef3c7" stroke="#fff" stroke-width="2"/><text x="500" y="208" text-anchor="middle">38j</text>
+      </g>
+      <!-- Color legend -->
+      <g font-size="9" fill="#6b7280" transform="translate(120,228)">
+        <text x="0" y="0">Rapide</text>
+        <rect x="40" y="-8" width="20" height="10" fill="#a7f3d0"/>
+        <rect x="60" y="-8" width="20" height="10" fill="#d1fae5"/>
+        <rect x="80" y="-8" width="20" height="10" fill="#fef3c7"/>
+        <rect x="100" y="-8" width="20" height="10" fill="#fee2e2"/>
+        <text x="125" y="0">Lent</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Source : Étude TTH France 2026 (Rocket4RPO + Figures.hr).</p>
+  </div>
+</div>
+
+<!-- ════════ 6. STACKED BAR (variable/fixe sales) ════════ -->
+<div class="lib-section">
+  <h2>6. Stacked bar — Ratio fixe/variable Sales</h2>
+  <div class="svg-chart">
+    <p class="chart-title">Structure de rémunération par rôle Sales</p>
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <g>
+        <!-- SDR -->
+        <text x="20" y="50" font-size="11" font-weight="700" fill="#111827">SDR</text>
+        <rect x="100" y="38" width="324" height="22" fill="#0d9373" rx="3 0 0 3"/>
+        <rect x="424" y="38" width="76" height="22" fill="#9ca3af" rx="0 3 3 0"/>
+        <text x="262" y="54" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 80%</text>
+        <text x="462" y="54" font-size="10" font-weight="700" fill="white" text-anchor="middle">Var 20%</text>
+        <!-- BDR -->
+        <text x="20" y="85" font-size="11" font-weight="700" fill="#111827">BDR</text>
+        <rect x="100" y="73" width="280" height="22" fill="#0d9373" rx="3 0 0 3"/>
+        <rect x="380" y="73" width="120" height="22" fill="#9ca3af" rx="0 3 3 0"/>
+        <text x="240" y="89" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 70%</text>
+        <text x="440" y="89" font-size="10" font-weight="700" fill="white" text-anchor="middle">Var 30%</text>
+        <!-- AE Mid -->
+        <text x="20" y="120" font-size="11" font-weight="700" fill="#111827">AE Mid</text>
+        <rect x="100" y="108" width="248" height="22" fill="#0d9373" rx="3 0 0 3"/>
+        <rect x="348" y="108" width="152" height="22" fill="#10b981" rx="0 3 3 0"/>
+        <text x="224" y="124" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 62%</text>
+        <text x="424" y="124" font-size="11" font-weight="700" fill="white" text-anchor="middle">Var 38%</text>
+        <!-- AE Senior -->
+        <text x="20" y="155" font-size="11" font-weight="700" fill="#111827">AE Senior</text>
+        <rect x="100" y="143" width="220" height="22" fill="#0d9373" rx="3 0 0 3"/>
+        <rect x="320" y="143" width="180" height="22" fill="#10b981" rx="0 3 3 0"/>
+        <text x="210" y="159" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 55%</text>
+        <text x="410" y="159" font-size="11" font-weight="700" fill="white" text-anchor="middle">Var 45%</text>
+        <!-- Enterprise -->
+        <text x="20" y="190" font-size="11" font-weight="700" fill="#111827">Enterprise</text>
+        <rect x="100" y="178" width="200" height="22" fill="#0d9373" rx="3 0 0 3"/>
+        <rect x="300" y="178" width="200" height="22" fill="#10b981" rx="0 3 3 0"/>
+        <text x="200" y="194" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 50%</text>
+        <text x="400" y="194" font-size="11" font-weight="700" fill="white" text-anchor="middle">Var 50%</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Plus le rôle est senior, plus la part variable augmente. Pression performance.</p>
+  </div>
+</div>
+
+<!-- ════════ 7. FLOWCHART décisionnel ════════ -->
+<div class="lib-section">
+  <h2>7. Flowchart — Arbre de décision RPO/Cabinet/Interne</h2>
+  <div class="svg-chart">
+    <p class="chart-title">Quel modèle de recrutement choisir ?</p>
+    <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <!-- Connecting lines -->
+      <g stroke="#0d9373" stroke-width="2" fill="none">
+        <path d="M350 60 L350 110"/>
+        <path d="M350 150 L150 195 L150 230"/>
+        <path d="M350 150 L350 230"/>
+        <path d="M350 150 L550 195 L550 230"/>
+        <path d="M150 270 L150 295"/>
+        <path d="M350 270 L350 295"/>
+        <path d="M550 270 L550 295"/>
+      </g>
+
+      <!-- Start -->
+      <g>
+        <rect x="270" y="20" width="160" height="40" rx="20" fill="#0c111d"/>
+        <text x="350" y="46" font-size="13" font-weight="700" fill="white" text-anchor="middle">Combien de postes/an ?</text>
+      </g>
+
+      <!-- Decision branches -->
+      <g font-size="11" font-weight="700" fill="#0d9373">
+        <text x="180" y="180" text-anchor="middle">&lt; 5 postes</text>
+        <text x="340" y="180" text-anchor="middle">5–20 postes</text>
+        <text x="540" y="180" text-anchor="middle">&gt; 20 postes</text>
+      </g>
+
+      <!-- Q2 boxes -->
+      <g>
+        <rect x="40" y="230" width="220" height="40" rx="6" fill="#fff" stroke="#0d9373" stroke-width="1.5"/>
+        <text x="150" y="255" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">Profil rare/C-level ?</text>
+        <rect x="240" y="230" width="220" height="40" rx="6" fill="#fff" stroke="#0d9373" stroke-width="1.5"/>
+        <text x="350" y="255" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">Besoin récurrent ?</text>
+        <rect x="440" y="230" width="220" height="40" rx="6" fill="#fff" stroke="#0d9373" stroke-width="1.5"/>
+        <text x="550" y="255" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">Équipe TA en place ?</text>
+      </g>
+
+      <!-- Final answers -->
+      <g>
+        <rect x="40" y="295" width="220" height="60" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+        <text x="150" y="320" font-size="14" font-weight="800" fill="#92400e" text-anchor="middle">CABINET</text>
+        <text x="150" y="340" font-size="10" fill="#92400e" text-anchor="middle">profils rares ponctuels</text>
+
+        <rect x="240" y="295" width="220" height="60" rx="8" fill="#d1fae5" stroke="#0d9373" stroke-width="2.5"/>
+        <text x="350" y="320" font-size="14" font-weight="800" fill="#0d9373" text-anchor="middle">RPO ⭐</text>
+        <text x="350" y="340" font-size="10" fill="#0d9373" text-anchor="middle">le mieux ROI / flexibilité</text>
+
+        <rect x="440" y="295" width="220" height="60" rx="8" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
+        <text x="550" y="320" font-size="14" font-weight="800" fill="#4338ca" text-anchor="middle">INTERNE + RPO</text>
+        <text x="550" y="340" font-size="10" fill="#4338ca" text-anchor="middle">hybride scaleup</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Arbre de décision en 2 étapes pour identifier le bon modèle selon volume + contexte.</p>
+  </div>
+</div>
+
+<!-- ════════ 8. GAUGE / Maturity ════════ -->
+<div class="lib-section">
+  <h2>8. Gauge — Niveau de maturité Talent Acquisition</h2>
+  <div class="svg-chart">
+    <p class="chart-title">Diagnostic de maturité TA — score type startup série A</p>
+    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <!-- Arc background -->
+      <g transform="translate(250,200)">
+        <!-- Background arc -->
+        <path d="M -180,0 A 180,180 0 0,1 180,0" fill="none" stroke="#e5e7eb" stroke-width="32" stroke-linecap="round"/>
+        <!-- Colored segments -->
+        <path d="M -180,0 A 180,180 0 0,1 -90,-156" fill="none" stroke="#dc2626" stroke-width="32"/>
+        <path d="M -90,-156 A 180,180 0 0,1 0,-180" fill="none" stroke="#f59e0b" stroke-width="32"/>
+        <path d="M 0,-180 A 180,180 0 0,1 90,-156" fill="none" stroke="#10b981" stroke-width="32"/>
+        <path d="M 90,-156 A 180,180 0 0,1 180,0" fill="none" stroke="#0d9373" stroke-width="32"/>
+        <!-- Needle (at 62%) -->
+        <line x1="0" y1="0" x2="65" y2="-156" stroke="#0c111d" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="0" cy="0" r="10" fill="#0c111d"/>
+        <circle cx="0" cy="0" r="4" fill="white"/>
+        <!-- Score -->
+        <text x="0" y="-50" font-size="44" font-weight="900" fill="#111827" text-anchor="middle" font-variant-numeric="tabular-nums">62</text>
+        <text x="0" y="-25" font-size="13" font-weight="600" fill="#6b7280" text-anchor="middle">/ 100</text>
+        <!-- Labels -->
+        <text x="-180" y="20" font-size="10" font-weight="700" fill="#dc2626" text-anchor="middle">Débutant</text>
+        <text x="-95" y="-180" font-size="10" font-weight="700" fill="#92400e" text-anchor="middle">Initié</text>
+        <text x="0" y="-200" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Solide</text>
+        <text x="95" y="-180" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Avancé</text>
+        <text x="180" y="20" font-size="10" font-weight="700" fill="#0d9373" text-anchor="middle">Excellence</text>
+      </g>
+      <!-- Diagnostic info -->
+      <g transform="translate(140,250)">
+        <text x="0" y="0" font-size="12" font-weight="700" fill="#0d9373">Niveau "Solide"</text>
+        <text x="0" y="20" font-size="10" fill="#6b7280">Process structuré · 3 axes à muscler : sourcing, scoring, KPIs</text>
+      </g>
+    </svg>
+    <p class="chart-caption">Issu du diagnostic interactif — 10 questions, score automatique, plan d'action personnalisé.</p>
+  </div>
+</div>
+
+</body>
+</html>

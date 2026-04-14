@@ -770,3 +770,514 @@ blockquote::before, .pull-quote::before {
   h2 { break-after: avoid; }
   h3 { break-after: avoid; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   v4 — NEW COMPONENTS (Quick-start, Sources, Case studies, etc.)
+   Ajouts pour porter les ressources au niveau "consulting-grade"
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Quick-start panel — 1-page mode d'emploi en début de ressource ── */
+.quick-start {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin: 32px 0 40px;
+  position: relative;
+}
+.quick-start::before {
+  content: 'MODE D\'EMPLOI';
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  background: var(--teal);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.quick-start h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+.quick-start ol {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: qs-counter;
+}
+.quick-start ol li {
+  counter-increment: qs-counter;
+  position: relative;
+  padding: 8px 0 8px 38px;
+  font-size: 0.9rem;
+  color: var(--ink2);
+  line-height: 1.55;
+}
+.quick-start ol li::before {
+  content: counter(qs-counter);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 26px;
+  height: 26px;
+  background: var(--teal);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+.quick-start .qs-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+  font-size: 0.75rem;
+  color: var(--ink3);
+}
+.quick-start .qs-meta strong { color: var(--ink); }
+
+/* ── Source citations (hyperliens crédibilisants) ── */
+.source-cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--ink3);
+  font-weight: 500;
+  margin-left: 4px;
+  vertical-align: super;
+}
+.source-cite a {
+  color: var(--teal);
+  border-bottom: 1px dotted var(--teal);
+  text-decoration: none;
+}
+.source-cite a:hover { background: var(--teal-bg); }
+.sources-list {
+  margin: 32px 0 24px;
+  padding: 18px 22px;
+  background: var(--bg-alt);
+  border-radius: var(--radius);
+  font-size: 0.78rem;
+  color: var(--ink3);
+}
+.sources-list h4 {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+.sources-list ol {
+  margin: 0;
+  padding-left: 22px;
+}
+.sources-list li {
+  padding: 4px 0;
+  line-height: 1.55;
+}
+.sources-list a { color: var(--teal); border-bottom: 1px dotted var(--teal); }
+
+/* ── Case study — Mini étude de cas ── */
+.case-study {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--dark-soft) 100%);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin: 36px 0;
+  position: relative;
+  overflow: hidden;
+}
+.case-study::before {
+  content: 'CAS RÉEL';
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(16,185,129,0.18);
+  color: var(--teal-glow);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.case-study h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: white;
+}
+.case-study .cs-context {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 18px;
+  font-style: italic;
+}
+.case-study .cs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 16px 0;
+}
+.case-study .cs-block {
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  border-left: 3px solid var(--teal-glow);
+}
+.case-study .cs-block .cs-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 4px;
+}
+.case-study .cs-block .cs-value {
+  font-size: 0.92rem;
+  color: white;
+  line-height: 1.45;
+}
+.case-study .cs-result {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: rgba(16,185,129,0.12);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--teal-glow);
+  font-size: 0.92rem;
+  color: white;
+}
+.case-study .cs-result strong { color: var(--teal-glow); }
+
+/* ── Related resources block (cross-linking en fin de doc) ── */
+.related-resources {
+  margin: 48px 0 32px;
+  padding: 26px;
+  background: linear-gradient(135deg, var(--bg-warm) 0%, #ffffff 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+.related-resources h4 {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  margin: 0 0 16px;
+}
+.related-resources .rr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.related-resources .rr-card {
+  display: block;
+  padding: 14px 16px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.related-resources .rr-card:hover {
+  border-color: var(--teal);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.related-resources .rr-card .rr-type {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.related-resources .rr-card .rr-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+/* ── Calculator CTA — Pointer vers un outil interactif ── */
+.calculator-cta {
+  margin: 36px 0;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  color: white;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--shadow-lg);
+}
+.calculator-cta .cc-text {
+  flex: 1;
+}
+.calculator-cta .cc-text h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: white;
+}
+.calculator-cta .cc-text p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+.calculator-cta .cc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: white;
+  color: var(--teal-dark);
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.2s;
+}
+.calculator-cta .cc-btn:hover { transform: scale(1.04); }
+
+/* ── Action callout — "À faire maintenant" ── */
+.action-callout {
+  margin: 28px 0;
+  padding: 18px 22px;
+  background: var(--teal-bg);
+  border: 1px solid rgba(13,147,115,0.2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.action-callout .ac-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: var(--teal);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.action-callout .ac-content {
+  flex: 1;
+  font-size: 0.88rem;
+  color: var(--ink2);
+  line-height: 1.55;
+}
+.action-callout .ac-content strong { color: var(--teal-dark); }
+
+/* ── Tags & badges (catégorisation visuelle) ── */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border-radius: 100px;
+  background: var(--teal-bg);
+  color: var(--teal-dark);
+  margin: 2px 4px 2px 0;
+  letter-spacing: 0.02em;
+}
+.tag.tag-warning { background: var(--amber-light); color: #92400e; }
+.tag.tag-info { background: var(--blue-light); color: var(--blue); }
+.tag.tag-purple { background: var(--purple-light); color: var(--purple); }
+
+/* ── SVG chart wrapper ── */
+.svg-chart {
+  margin: 28px 0;
+  padding: 22px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.svg-chart .chart-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin: 0 0 14px;
+}
+.svg-chart svg { width: 100%; height: auto; display: block; }
+.svg-chart .chart-caption {
+  margin-top: 12px;
+  font-size: 0.72rem;
+  color: var(--ink3);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ── Timeline horizontale (pour J-7 → J+90, 30/60/90, etc.) ── */
+.timeline-h {
+  margin: 32px 0;
+  padding: 26px 20px 22px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+.timeline-h .tl-track {
+  position: relative;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 14px 0 26px;
+}
+.timeline-h .tl-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--teal-glow));
+  border-radius: 2px;
+}
+.timeline-h .tl-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.timeline-h .tl-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+.timeline-h .tl-step::before {
+  content: '';
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 3px solid var(--teal);
+  border-radius: 50%;
+}
+.timeline-h .tl-step.tl-done::before {
+  background: var(--teal);
+}
+.timeline-h .tl-step .tl-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--teal-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.timeline-h .tl-step .tl-desc {
+  font-size: 0.72rem;
+  color: var(--ink3);
+  line-height: 1.4;
+}
+
+/* ── Comparison cards (RPO vs Cabinet vs Interne) ── */
+.comparison-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 28px 0;
+}
+.comparison-cards .cc-card {
+  padding: 18px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+}
+.comparison-cards .cc-card.cc-best {
+  border-color: var(--teal);
+  background: linear-gradient(180deg, var(--teal-bg) 0%, white 100%);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+.comparison-cards .cc-card.cc-best::before {
+  content: 'RECOMMANDÉ';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+.comparison-cards .cc-card .cc-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.comparison-cards .cc-card.cc-best .cc-title { color: var(--teal-dark); }
+.comparison-cards .cc-card .cc-metric {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.comparison-cards .cc-card.cc-best .cc-metric { color: var(--teal); }
+.comparison-cards .cc-card .cc-sub {
+  font-size: 0.7rem;
+  color: var(--ink3);
+  text-align: center;
+}
+
+/* ── Pré-rempli example block ── */
+.example-block {
+  margin: 24px 0;
+  padding: 20px 22px;
+  background: var(--bg-warm);
+  border: 1px dashed var(--ink4);
+  border-radius: var(--radius);
+  position: relative;
+}
+.example-block::before {
+  content: 'EXEMPLE PRÉ-REMPLI';
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  background: var(--bg-warm);
+  padding: 0 8px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--ink2);
+}
+.example-block h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+
+/* ── Print adjustments for new components ── */
+@media print {
+  .quick-start, .case-study, .calculator-cta, .related-resources,
+  .timeline-h, .svg-chart, .example-block, .action-callout,
+  .comparison-cards { break-inside: avoid; }
+  .calculator-cta .cc-btn::after { content: ' (' attr(href) ')'; font-size: 0.65rem; }
+}

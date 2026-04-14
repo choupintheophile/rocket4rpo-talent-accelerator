@@ -631,6 +631,95 @@ export default function RessourcesClient() {
         </div>
       </section>
 
+      {/* ── INTERACTIVE TOOLS ── */}
+      <section className="section-padding bg-gradient-to-b from-rocket-dark to-[hsl(220,20%,10%)] text-white">
+        <div className="container-wide">
+          <div className="text-center mb-10">
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
+              <Zap className="w-3 h-3" />
+              Nouveau · Outils interactifs
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold mt-3">
+              Calculez, diagnostiquez, comparez en temps réel
+            </h2>
+            <p className="text-base text-white/60 mt-3 max-w-2xl mx-auto">
+              4 outils gratuits pour passer du téléchargement à l'action immédiate. Sans création de compte.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            {[
+              {
+                href: "/outils/diagnostic-ta",
+                icon: ClipboardCheck,
+                badge: "5 min",
+                title: "Diagnostic Talent Acquisition",
+                desc: "10 questions, score sur 100, plan d'action personnalisé.",
+                accent: "from-emerald-500 to-teal-500",
+                accentText: "text-emerald-400",
+                accentBg: "bg-emerald-500/10",
+                accentBorder: "border-emerald-500/30",
+              },
+              {
+                href: "/calculateur",
+                icon: Calculator,
+                badge: "30 sec",
+                title: "ROI RPO vs Cabinet vs Interne",
+                desc: "Comparez les coûts pour votre volume réel de recrutements.",
+                accent: "from-blue-500 to-indigo-500",
+                accentText: "text-blue-400",
+                accentBg: "bg-blue-500/10",
+                accentBorder: "border-blue-500/30",
+              },
+              {
+                href: "/outils/cout-recrutement-rate",
+                icon: TrendingUp,
+                badge: "1 min",
+                title: "Coût d'un recrutement raté",
+                desc: "Estimez les 7 coûts cachés (DARES + données internes).",
+                accent: "from-rose-500 to-orange-500",
+                accentText: "text-rose-400",
+                accentBg: "bg-rose-500/10",
+                accentBorder: "border-rose-500/30",
+              },
+              {
+                href: "/outils/tjm-freelance",
+                icon: Briefcase,
+                badge: "1 min",
+                title: "Calculateur TJM Freelance",
+                desc: "Quel TJM viser selon votre revenu cible et vos charges.",
+                accent: "from-violet-500 to-purple-500",
+                accentText: "text-violet-400",
+                accentBg: "bg-violet-500/10",
+                accentBorder: "border-violet-500/30",
+              },
+            ].map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                className={`group relative rounded-2xl border ${tool.accentBorder} bg-white/[0.03] backdrop-blur-xl p-6 hover:bg-white/[0.06] hover:scale-[1.02] transition-all`}
+              >
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${tool.accentBg} ${tool.accentText} mb-4`}>
+                  <tool.icon className="w-6 h-6" />
+                </div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className={`text-[10px] font-bold ${tool.accentText} uppercase tracking-wider px-2 py-0.5 rounded-full ${tool.accentBg}`}>
+                    {tool.badge}
+                  </span>
+                  <ArrowRight className={`w-4 h-4 ${tool.accentText} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                </div>
+                <h3 className="font-bold text-base text-white mb-2 leading-tight">
+                  {tool.title}
+                </h3>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  {tool.desc}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── FEATURED RESOURCES ── */}
       <section id="ressources" className="section-padding bg-gradient-to-b from-gray-50 to-white">
         <div className="container-wide">

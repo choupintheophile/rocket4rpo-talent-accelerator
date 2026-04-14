@@ -406,6 +406,44 @@
     }
 
     .footer .logo .accent { color: #0d9373; }
+    /* ── Composants enrichis ── */
+    .quick-start{background:linear-gradient(135deg,#f8fafc 0%,#fff 100%);border:1px solid #e5e7eb;border-left:4px solid #0d9373;border-radius:16px;padding:24px 28px;margin:24px 0 28px;position:relative}
+    .quick-start::before{content:"MODE D'EMPLOI";position:absolute;top:-10px;left:24px;background:#0d9373;color:#fff;font-size:9px;font-weight:800;letter-spacing:0.12em;padding:4px 10px;border-radius:4px}
+    .quick-start h4{font-size:15px;font-weight:700;color:#111827;margin:0 0 14px}
+    .quick-start ol{margin:0;padding-left:0;list-style:none;counter-reset:qs-counter}
+    .quick-start ol li{counter-increment:qs-counter;position:relative;padding:8px 0 8px 38px;font-size:12.5px;color:#374151;line-height:1.55}
+    .quick-start ol li::before{content:counter(qs-counter);position:absolute;left:0;top:8px;width:26px;height:26px;background:#0d9373;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+    .quick-start .qs-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;padding-top:14px;border-top:1px dashed #e5e7eb;font-size:11px;color:#6b7280}
+    .quick-start .qs-meta strong{color:#111827}
+    .sources-list{margin:32px 0 24px;padding:18px 22px;background:#f8fafc;border-radius:10px;font-size:11.5px;color:#6b7280}
+    .sources-list h4{font-size:10.5px;font-weight:800;letter-spacing:0.1em;color:#111827;text-transform:uppercase;margin:0 0 10px}
+    .sources-list ol{margin:0;padding-left:22px}
+    .sources-list li{padding:4px 0;line-height:1.55}
+    .sources-list a{color:#0d9373;border-bottom:1px dotted #0d9373;text-decoration:none}
+    .related-resources{margin:40px 0 24px;padding:26px;background:linear-gradient(135deg,#faf8f5 0%,#fff 100%);border:1px solid #e5e7eb;border-radius:16px}
+    .related-resources h4{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#087a60;margin:0 0 16px}
+    .related-resources .rr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .related-resources .rr-card{display:block;padding:14px 16px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none}
+    .related-resources .rr-card .rr-type{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0d9373;margin-bottom:6px}
+    .related-resources .rr-card .rr-title{font-size:12px;font-weight:600;color:#111827;line-height:1.35}
+    .calculator-cta{margin:32px 0;padding:24px 28px;background:linear-gradient(135deg,#0d9373 0%,#087a60 100%);color:#fff;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.08)}
+    .calculator-cta .cc-text{flex:1}
+    .calculator-cta .cc-text h4{font-size:15px;font-weight:700;margin:0 0 4px;color:#fff}
+    .calculator-cta .cc-text p{font-size:12px;color:rgba(255,255,255,0.85);margin:0}
+    .calculator-cta .cc-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#fff;color:#087a60;border-radius:100px;font-weight:700;font-size:11.5px;text-decoration:none;white-space:nowrap}
+    .action-callout{margin:28px 0;padding:18px 22px;background:#f0faf6;border:1px solid rgba(13,147,115,0.2);border-radius:10px;display:flex;align-items:flex-start;gap:14px}
+    .action-callout .ac-icon{flex-shrink:0;width:32px;height:32px;background:#0d9373;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+    .action-callout .ac-content{flex:1;font-size:12.5px;color:#374151;line-height:1.55}
+    .action-callout .ac-content strong{color:#087a60}
+    .example-block{margin:24px 0;padding:20px 22px;background:#faf8f5;border:1px dashed #9ca3af;border-radius:10px;position:relative}
+    .example-block::before{content:'EXEMPLE PRÉ-REMPLI';position:absolute;top:-10px;left:18px;background:#faf8f5;padding:0 8px;font-size:9px;font-weight:800;letter-spacing:0.1em;color:#6b7280}
+    .example-block h5{font-size:12.5px;font-weight:700;color:#111827;margin:0 0 8px}
+    .audit-grid{margin:20px 0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .audit-item{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;background:#f8fafc;border-left:2px solid #0d9373;border-radius:4px;font-size:11.5px;color:#374151;line-height:1.45}
+    .audit-item::before{content:'☐';color:#0d9373;font-size:14px;flex-shrink:0;font-weight:700}
+    .audit-cat{grid-column:1/-1;margin-top:12px;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#087a60;padding:6px 0 2px;border-bottom:1px solid #d1d5db}
+    .audit-cat:first-child{margin-top:0}
+    @media print{.quick-start,.calculator-cta,.related-resources,.example-block,.action-callout,.sources-list{break-inside:avoid}}
   </style>
 </head>
 <body>
@@ -452,6 +490,20 @@
     <div class="page-header">
       <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
       <div class="type">Checklist RGPD</div>
+    </div>
+
+    <div class="quick-start">
+      <h4>📖 Comment utiliser cette checklist</h4>
+      <ol>
+        <li>Parcourez les 9 sections thématiques pour identifier vos écarts de conformité actuels.</li>
+        <li>Servez-vous des tableaux de référence (bases légales, durées, droits) pour cadrer votre politique candidat.</li>
+        <li>Utilisez l'audit 40 points final comme contrôle annuel DPO (fiche de synthèse imprimable).</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>⏱ Lecture :</strong> 18 min</span>
+        <span><strong>🎯 Pour qui :</strong> DPO, DRH, TA Manager, Legal Ops</span>
+        <span><strong>📊 Maturité :</strong> Senior — connaissances RGPD préalables utiles</span>
+      </div>
     </div>
 
     <div class="stats">
@@ -527,6 +579,22 @@
       <li>En cas de sourcing (LinkedIn, GitHub), le candidat est informé dans le premier message (Art. 14.3 : délai max 1 mois)</li>
       <li>Les mentions légales sont présentées sur chaque formulaire de candidature</li>
     </ul>
+
+    <div class="example-block">
+      <h5>📄 Extrait type — politique de confidentialité candidat (3 articles essentiels)</h5>
+      <p style="font-style: italic; background: white; padding: 14px; border-left: 3px solid #0d9373; border-radius: 4px; font-size: 12px;">
+        <strong>Article 1 — Finalité du traitement</strong><br>
+        Les données personnelles que vous nous transmettez (identité, coordonnées, CV, lettre de motivation, notes d'entretien, résultats d'évaluation) sont collectées par [Nom de l'entreprise], responsable de traitement, dans le cadre exclusif du traitement de votre candidature et, le cas échéant, de la gestion de la relation contractuelle en cas d'embauche. Base légale : intérêt légitime (Art. 6.1.f RGPD) pour le process de recrutement ; consentement (Art. 6.1.a) pour la conservation dans notre vivier au-delà.
+      </p>
+      <p style="font-style: italic; background: white; padding: 14px; border-left: 3px solid #0d9373; border-radius: 4px; font-size: 12px; margin-top: 10px;">
+        <strong>Article 2 — Durée de conservation</strong><br>
+        Vos données sont conservées pendant toute la durée du processus de recrutement. Si votre candidature n'aboutit pas, vos données sont supprimées au plus tard 24 mois après notre dernier contact, conformément aux recommandations de la CNIL (délibération n°2002-17). Avec votre consentement explicite, nous pouvons les conserver plus longtemps dans notre vivier pour vous proposer d'autres opportunités — durée renouvelable par reconsentement.
+      </p>
+      <p style="font-style: italic; background: white; padding: 14px; border-left: 3px solid #0d9373; border-radius: 4px; font-size: 12px; margin-top: 10px;">
+        <strong>Article 3 — Vos droits</strong><br>
+        Conformément aux articles 15 à 22 du RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition sur vos données, ainsi que du droit de retirer votre consentement à tout moment. Vous pouvez exercer ces droits en écrivant à [email DPO/recrutement] ; nous répondons sous 1 mois (prolongeable de 2 mois si la demande est complexe). Vous avez également le droit d'introduire une réclamation auprès de la CNIL (www.cnil.fr).
+      </p>
+    </div>
 
     <!-- SECTION 3 -->
     <h2><span class="bar"></span> Données collectées — Principe de minimisation (Art. 5.1.c)</h2>
@@ -689,6 +757,11 @@
       <li>Le registre est accessible au DPO et à la CNIL en cas de contrôle</li>
     </ul>
 
+    <div class="action-callout">
+      <div class="ac-icon">!</div>
+      <div class="ac-content"><strong>Audit annuel obligatoire :</strong> le registre des traitements doit être tenu à jour et révisé au moins une fois par an (Art. 30 RGPD). Les sanctions en cas de manquement peuvent atteindre jusqu'à 4% du chiffre d'affaires annuel mondial ou 20 M€ (Art. 83 RGPD) — la valeur la plus élevée étant retenue.</div>
+    </div>
+
     <!-- SECTION 10 -->
     <h2><span class="bar"></span> Modèle de formulaire de consentement (vivier)</h2>
 
@@ -698,36 +771,107 @@
       <p><strong>Signature :</strong> _________________ <strong>Date :</strong> __ / __ / ____</p>
     </div>
 
-    <!-- SECTION 11 -->
-    <h2><span class="bar"></span> Checklist DPO — 10 points de contrôle annuel</h2>
+    <!-- SECTION 11 — AUDIT 40 POINTS (remplace l'ancienne checklist DPO + synthèse redondantes) -->
+    <h2><span class="bar"></span> Audit RGPD — 40 points de contrôle booléens</h2>
 
-    <ul class="check">
-      <li>Le registre des traitements « recrutement » est à jour (Art. 30)</li>
-      <li>Les politiques de confidentialité candidat sont publiées et accessibles</li>
-      <li>Les durées de conservation sont respectées — purge effectuée</li>
-      <li>Les contrats sous-traitants incluent les clauses Art. 28</li>
-      <li>Les outils d'IA sont documentés (AI Act) et les candidats informés</li>
-      <li>Les demandes d'exercice de droits ont été traitées dans les délais (registre à jour)</li>
-      <li>Les mesures de sécurité sont adéquates (audit annuel)</li>
-      <li>Les formulaires de candidature ont été audités (minimisation des données)</li>
-      <li>Les hiring managers sont formés aux bonnes pratiques RGPD (au moins 1x/an)</li>
-      <li>Aucune violation de données non signalée n'est identifiée</li>
-    </ul>
+    <p>Grille de contrôle synthétique à parcourir annuellement ou avant un audit CNIL. Chaque item renvoie aux sections précédentes pour le détail. Objectif : statut conforme / non conforme, sans re-explication.</p>
 
-    <h2><span class="bar"></span> Synthèse : les 10 réflexes RGPD du recruteur</h2>
+    <div class="audit-grid">
+      <div class="audit-cat">§ 1 — Base légale (Art. 6)</div>
+      <div class="audit-item">Base légale identifiée par finalité</div>
+      <div class="audit-item">Test de mise en balance documenté (Art. 6.1.f)</div>
+      <div class="audit-item">Consentement recueilli uniquement pour le vivier</div>
+      <div class="audit-item">Consentement libre, spécifique, éclairé, univoque</div>
 
-    <div class="info">
-      <ol style="padding-left: 18px; margin: 0;">
-        <li><strong>Informer</strong> le candidat dès la collecte (Art. 13)</li>
-        <li><strong>Minimiser</strong> : ne collecter que les données nécessaires (Art. 5.1.c)</li>
-        <li><strong>Supprimer</strong> les données après 24 mois (recommandation CNIL)</li>
-        <li><strong>Sécuriser</strong> le stockage des CV (Art. 32)</li>
-        <li><strong>Limiter</strong> l'accès aux personnes habilitées</li>
-        <li><strong>Consentir</strong> : obtenir un consentement explicite pour le vivier (Art. 6.1.a)</li>
-        <li><strong>Répondre</strong> aux demandes d'accès sous 1 mois (Art. 12.3)</li>
-        <li><strong>Encadrer</strong> les sous-traitants par contrat (Art. 28)</li>
-        <li><strong>Documenter</strong> l'utilisation d'outils d'IA (AI Act)</li>
-        <li><strong>Former</strong> les hiring managers aux bonnes pratiques RGPD</li>
+      <div class="audit-cat">§ 2 — Information candidats (Art. 13/14)</div>
+      <div class="audit-item">Politique confidentialité publiée site carrière</div>
+      <div class="audit-item">12 mentions obligatoires présentes (Art. 13.1-2)</div>
+      <div class="audit-item">Info sourcing LinkedIn dans 1er message (Art. 14.3)</div>
+      <div class="audit-item">Mentions légales sur chaque formulaire</div>
+
+      <div class="audit-cat">§ 3 — Minimisation (Art. 5.1.c)</div>
+      <div class="audit-item">Aucun champ discriminatoire dans les formulaires</div>
+      <div class="audit-item">Notes d'entretien sans donnée sensible</div>
+      <div class="audit-item">Audit annuel des champs collectés réalisé</div>
+      <div class="audit-item">Photo non demandée sauf métier justifié</div>
+
+      <div class="audit-cat">§ 4 — Conservation (Art. 5.1.e / 17)</div>
+      <div class="audit-item">Purge automatique ATS paramétrée à 24 mois</div>
+      <div class="audit-item">Candidats informés de la durée dans la politique</div>
+      <div class="audit-item">Process de reconsentement vivier en place</div>
+      <div class="audit-item">CV imprimés détruits par broyage + registre suppression</div>
+
+      <div class="audit-cat">§ 5 — Droits candidats (Art. 15-22)</div>
+      <div class="audit-item">Process interne de traitement des demandes 1 mois</div>
+      <div class="audit-item">Coordonnées d'exercice publiées</div>
+      <div class="audit-item">Registre des demandes de droits tenu</div>
+      <div class="audit-item">Identité demandeur systématiquement vérifiée</div>
+
+      <div class="audit-cat">§ 6 — Sécurité (Art. 32)</div>
+      <div class="audit-item">Stockage dans ATS sécurisé uniquement</div>
+      <div class="audit-item">Accès limité aux personnes habilitées</div>
+      <div class="audit-item">MFA/2FA activé sur l'ATS</div>
+      <div class="audit-item">Mots de passe conformes recommandations CNIL 2022</div>
+      <div class="audit-item">Aucun CV sur espaces non sécurisés (WhatsApp, Drive public)</div>
+      <div class="audit-item">Registre des violations tenu (notification 72h)</div>
+
+      <div class="audit-cat">§ 7 — Sous-traitants (Art. 28 / 44-49)</div>
+      <div class="audit-item">Registre des sous-traitants à jour</div>
+      <div class="audit-item">Clauses Art. 28.3 dans tous les contrats</div>
+      <div class="audit-item">CCT ou adéquation pour transferts hors UE</div>
+      <div class="audit-item">Pas de données candidat dans IA sans anonymisation</div>
+
+      <div class="audit-cat">§ 8 — IA recrutement (AI Act)</div>
+      <div class="audit-item">Outils IA documentés (registre + AI Act)</div>
+      <div class="audit-item">AIPD/DPIA réalisée si applicable</div>
+      <div class="audit-item">Candidats informés de l'utilisation d'IA</div>
+      <div class="audit-item">Intervention humaine garantie dans décision finale</div>
+      <div class="audit-item">Biais algorithmiques audités annuellement</div>
+
+      <div class="audit-cat">§ 9 — Registre (Art. 30) + gouvernance</div>
+      <div class="audit-item">Traitement « recrutement » inscrit au registre</div>
+      <div class="audit-item">Registre révisé au moins 1x/an</div>
+      <div class="audit-item">Registre accessible au DPO et à la CNIL</div>
+      <div class="audit-item">Hiring managers formés au RGPD (1x/an min)</div>
+      <div class="audit-item">Aucune violation non signalée identifiée</div>
+    </div>
+
+    <p style="font-size: 11px; color: #6b7280; font-style: italic; margin-top: 8px;">Score cible : 40/40. En dessous de 36/40, engager un plan de remédiation sous 30 jours avec le DPO. En dessous de 30/40, risque élevé en cas de contrôle CNIL.</p>
+
+    <div class="calculator-cta">
+      <div class="cc-text">
+        <h4>🛡 Audit RGPD recrutement complet</h4>
+        <p>Diagnostic gratuit : on passe en revue votre conformité et livrons un plan de remédiation chiffré.</p>
+      </div>
+      <a class="cc-btn" href="https://rocket4rpo.com/diagnostic">Lancer le diagnostic →</a>
+    </div>
+
+    <div class="related-resources">
+      <h4>📚 Ressources complémentaires</h4>
+      <div class="rr-grid">
+        <a class="rr-card" href="/resources/guide-recrutement-inclusif.html">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">Recrutement inclusif</div>
+        </a>
+        <a class="rr-card" href="/resources/template-offre-emploi.html">
+          <div class="rr-type">Template</div>
+          <div class="rr-title">Offre d'emploi</div>
+        </a>
+        <a class="rr-card" href="/resources/guide-ia-recrutement.html">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">IA et recrutement</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sources-list">
+      <h4>📚 Sources & références</h4>
+      <ol>
+        <li>CNIL — Fiche pratique recrutement et protection des données : <a href="https://www.cnil.fr/fr/recrutement">cnil.fr/fr/recrutement</a></li>
+        <li>RGPD — Règlement (UE) 2016/679, texte de référence</li>
+        <li>AI Act — Règlement (UE) 2024/1689 relatif à l'intelligence artificielle (Annexe III, point 4 : recrutement haut risque)</li>
+        <li>Défenseur des Droits — Guide pour prévenir les discriminations à l'embauche : <a href="https://www.defenseurdesdroits.fr/">defenseurdesdroits.fr</a></li>
+        <li>Données internes Rocket4RPO — 200+ recrutements 2024-2026</li>
       </ol>
     </div>
 

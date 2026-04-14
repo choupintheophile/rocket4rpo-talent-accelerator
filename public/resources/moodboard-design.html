@@ -51,12 +51,53 @@
 
     /* Separator */
     hr { border: none; border-top: 2px solid #eee; margin: 50px 0; }
+
+    /* ── Composants additionnels ── */
+    .quick-start{background:linear-gradient(135deg,#f8fafc 0%,#fff 100%);border:1px solid #e5e7eb;border-left:4px solid #0cc77e;border-radius:16px;padding:24px 28px;margin:24px 0 40px;position:relative}
+    .quick-start::before{content:"MODE D'EMPLOI";position:absolute;top:-10px;left:24px;background:#0cc77e;color:#fff;font-size:9px;font-weight:800;letter-spacing:0.12em;padding:4px 10px;border-radius:4px}
+    .quick-start h4{font-size:1rem;font-weight:700;color:#1a1d2b;margin:0 0 14px}
+    .quick-start ol{margin:0;padding-left:0;list-style:none;counter-reset:qs-counter}
+    .quick-start ol li{counter-increment:qs-counter;position:relative;padding:8px 0 8px 38px;font-size:0.9rem;color:#374151;line-height:1.55}
+    .quick-start ol li::before{content:counter(qs-counter);position:absolute;left:0;top:8px;width:26px;height:26px;background:#0cc77e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:800}
+    .quick-start .qs-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;padding-top:14px;border-top:1px dashed #e5e7eb;font-size:0.78rem;color:#6b7280}
+    .quick-start .qs-meta strong{color:#1a1d2b}
+
+    .matrix-table, .backlog-table{width:100%;border-collapse:collapse;margin:20px 0 40px;font-size:0.85rem;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden}
+    .matrix-table th, .backlog-table th{background:#1a1d2b;color:#fff;text-align:left;padding:12px 14px;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em}
+    .matrix-table td, .backlog-table td{padding:10px 14px;border-bottom:1px solid #f3f4f6;vertical-align:top}
+    .matrix-table tr:nth-child(even) td, .backlog-table tr:nth-child(even) td{background:#fafafa}
+    .matrix-table td:first-child{font-weight:600;color:#1a1d2b}
+    .backlog-table td:last-child{font-weight:600;color:#0cc77e;text-align:center;white-space:nowrap}
   </style>
 </head>
 <body>
   <div class="page">
     <h1>🎨 Moodboard Design — Rocket4RPO</h1>
     <p class="subtitle">3 directions de couleur + 3 ambiances visuelles. Choisissez vos préférences.</p>
+
+    <div class="quick-start">
+      <h4>📖 Comment utiliser ce moodboard</h4>
+      <ol>
+        <li>Choisir le feeling correspondant au type de document (voir matrice ci-dessous).</li>
+        <li>Appliquer la palette + typographie + composants associés.</li>
+        <li>Cohérence : 1 doc = 1 feeling, ne pas mixer.</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>🎨 Pour qui :</strong> Designers + équipe contenu</span>
+        <span><strong>📊 Statut :</strong> Document interne</span>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.4rem; margin-bottom:10px; color:#1a1d2b;">🎯 Quelle direction visuelle pour quel type de document ?</h2>
+    <p style="font-size:0.9rem; color:#555; margin-bottom:10px;">Règle d'application : associer chaque ressource à un feeling unique selon sa finalité éditoriale et son audience.</p>
+    <table class="matrix-table">
+      <tr><th>Type de ressource</th><th>Feeling recommandé</th><th>Palette</th><th>Pourquoi</th></tr>
+      <tr><td>Checklists onboarding, prise de références</td><td>Humain / Chaleureux</td><td>Teal + Terracotta</td><td>Côté humain, parcours collaborateur</td></tr>
+      <tr><td>Templates (brief, offre, scorecard, processus)</td><td>Tech / Moderne</td><td>Teal + Violet</td><td>Outils opérationnels</td></tr>
+      <tr><td>Études, benchmarks, RGPD, reporting COMEX</td><td>Premium / Sérieux</td><td>Teal + Or</td><td>Crédibilité, autorité, exécutifs</td></tr>
+      <tr><td>Guides expertise (sourcing, IA, KPIs, plan 30-60-90)</td><td>Tech / Moderne</td><td>Teal + Violet</td><td>Méthodologie, savoir-faire</td></tr>
+      <tr><td>Documents commerciaux, présentations clients</td><td>Premium / Sérieux</td><td>Teal + Or</td><td>Image marque, leadgen</td></tr>
+    </table>
 
     <!-- ═══════════════════════════════════ -->
     <!-- PARTIE 1 : COULEURS -->
@@ -398,6 +439,19 @@
       <p style="font-size:1rem; color:#666;">2. Quel feeling ? (1 / 2 / 3)</p>
       <p style="font-size:0.85rem; color:#999; margin-top:15px;">Tu peux aussi mixer : par exemple "Couleur A + Feeling 2"</p>
     </div>
+
+    <hr>
+
+    <h2 style="font-size:1.4rem; margin-bottom:10px; color:#1a1d2b;">🔧 Pour aller plus loin (backlog design)</h2>
+    <p style="font-size:0.9rem; color:#555; margin-bottom:10px;">Items identifiés pour renforcer l'identité visuelle et la cohérence du système. Priorisation libre selon les besoins produit et commerciaux.</p>
+    <table class="backlog-table">
+      <tr><th>Item</th><th>Pourquoi</th><th>Effort</th></tr>
+      <tr><td>Librairie d'icônes propriétaires (15-20 icons)</td><td>Cohérence vs emojis sporadiques. Renforce la reconnaissance visuelle de la marque sur toutes les ressources.</td><td>2 jours</td></tr>
+      <tr><td>3-5 illustrations propriétaires (scènes recrutement)</td><td>Unicité visuelle vs sites RPO génériques qui recyclent les mêmes stock illustrations.</td><td>5 jours</td></tr>
+      <tr><td>Photos d'équipe authentiques (10-15 portraits)</td><td>Crédibilité accrue, différenciation vs stock photos. Humanise la marque auprès des prospects.</td><td>1 shooting</td></tr>
+      <tr><td>Système de composants Figma exporté</td><td>Réutilisation, vélocité de production sur les nouveaux documents (gain d'un facteur 2-3 en phase de création).</td><td>3 jours</td></tr>
+      <tr><td>Motion micro-interactions (hover, scroll reveal)</td><td>Engagement accru sur ressources HTML interactives, perception de modernité renforcée.</td><td>2 jours</td></tr>
+    </table>
 
     <div style="text-align:center; color:#999; font-size:0.8rem; margin-top:30px; padding-top:20px; border-top:1px solid #eee;">
       Rocket4RPO — Moodboard Design — Avril 2026

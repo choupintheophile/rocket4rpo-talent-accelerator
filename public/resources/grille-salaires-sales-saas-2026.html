@@ -55,6 +55,47 @@
     .footer { margin-top: 40px; padding-top: 16px; border-top: 2px solid #0c111d; text-align: center; font-size: 11px; color: #9ca3af; }
     .footer .logo { font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #111827; font-size: 11px; margin-bottom: 4px; }
     .footer .logo .accent { color: #0d9373; }
+    .quick-start{background:linear-gradient(135deg,#f8fafc 0%,#fff 100%);border:1px solid #e5e7eb;border-left:4px solid #0d9373;border-radius:16px;padding:24px 28px;margin:24px 0 28px;position:relative}
+    .quick-start::before{content:"MODE D'EMPLOI";position:absolute;top:-10px;left:24px;background:#0d9373;color:#fff;font-size:9px;font-weight:800;letter-spacing:0.12em;padding:4px 10px;border-radius:4px}
+    .quick-start h4{font-size:15px;font-weight:700;color:#111827;margin:0 0 14px}
+    .quick-start ol{margin:0;padding-left:0;list-style:none;counter-reset:qs-counter}
+    .quick-start ol li{counter-increment:qs-counter;position:relative;padding:8px 0 8px 38px;font-size:12.5px;color:#374151;line-height:1.55}
+    .quick-start ol li::before{content:counter(qs-counter);position:absolute;left:0;top:8px;width:26px;height:26px;background:#0d9373;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+    .quick-start .qs-meta{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;padding-top:14px;border-top:1px dashed #e5e7eb;font-size:11px;color:#6b7280}
+    .quick-start .qs-meta strong{color:#111827}
+    .source-cite{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;color:#6b7280;font-weight:500;margin-left:2px;vertical-align:super}
+    .source-cite a{color:#0d9373;border-bottom:1px dotted #0d9373;text-decoration:none;padding:0 2px}
+    .sources-list{margin:32px 0 24px;padding:18px 22px;background:#f8fafc;border-radius:10px;font-size:11.5px;color:#6b7280}
+    .sources-list h4{font-size:10.5px;font-weight:800;letter-spacing:0.1em;color:#111827;text-transform:uppercase;margin:0 0 10px}
+    .sources-list ol{margin:0;padding-left:22px}
+    .sources-list li{padding:4px 0;line-height:1.55}
+    .sources-list a{color:#0d9373;border-bottom:1px dotted #0d9373;text-decoration:none}
+    .case-study{background:linear-gradient(135deg,#0c111d 0%,#151c2c 100%);color:#fff;border-radius:16px;padding:28px 32px;margin:32px 0;position:relative;overflow:hidden}
+    .case-study::before{content:"CAS RÉEL";position:absolute;top:18px;right:18px;background:rgba(16,185,129,0.18);color:#10b981;font-size:9px;font-weight:800;letter-spacing:0.12em;padding:4px 10px;border-radius:4px}
+    .case-study h4{font-size:15px;font-weight:700;margin:0 0 6px;color:#fff}
+    .case-study .cs-context{font-size:11.5px;color:rgba(255,255,255,0.55);margin-bottom:18px;font-style:italic}
+    .case-study .cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+    .case-study .cs-block{background:rgba(255,255,255,0.04);border-radius:10px;padding:14px 16px;border-left:3px solid #10b981}
+    .case-study .cs-block .cs-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.5);margin-bottom:4px}
+    .case-study .cs-block .cs-value{font-size:13px;color:#fff;line-height:1.45}
+    .case-study .cs-result{margin-top:18px;padding:14px 18px;background:rgba(16,185,129,0.12);border-radius:10px;border-left:4px solid #10b981;font-size:13px;color:#fff}
+    .case-study .cs-result strong{color:#10b981}
+    .related-resources{margin:40px 0 24px;padding:26px;background:linear-gradient(135deg,#faf8f5 0%,#fff 100%);border:1px solid #e5e7eb;border-radius:16px}
+    .related-resources h4{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#087a60;margin:0 0 16px}
+    .related-resources .rr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .related-resources .rr-card{display:block;padding:14px 16px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none}
+    .related-resources .rr-card .rr-type{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#0d9373;margin-bottom:6px}
+    .related-resources .rr-card .rr-title{font-size:12px;font-weight:600;color:#111827;line-height:1.35}
+    .calculator-cta{margin:32px 0;padding:24px 28px;background:linear-gradient(135deg,#0d9373 0%,#087a60 100%);color:#fff;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.08)}
+    .calculator-cta .cc-text{flex:1}
+    .calculator-cta .cc-text h4{font-size:15px;font-weight:700;margin:0 0 4px;color:#fff}
+    .calculator-cta .cc-text p{font-size:12px;color:rgba(255,255,255,0.85);margin:0}
+    .calculator-cta .cc-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:#fff;color:#087a60;border-radius:100px;font-weight:700;font-size:11.5px;text-decoration:none;white-space:nowrap}
+    .svg-chart{margin:28px 0;padding:22px;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,0.05)}
+    .svg-chart .chart-title{font-size:11px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:#6b7280;margin:0 0 14px}
+    .svg-chart svg{width:100%;height:auto;display:block}
+    .svg-chart .chart-caption{margin-top:12px;font-size:10.5px;color:#6b7280;font-style:italic;text-align:center}
+    @media print{.quick-start,.case-study,.calculator-cta,.related-resources,.svg-chart,.sources-list{break-inside:avoid}}
   </style>
 </head>
 <body>
@@ -80,8 +121,22 @@
       <div class="type">Étude salariale</div>
     </div>
 
+    <div class="quick-start">
+      <h4>📖 Comment utiliser cette grille</h4>
+      <ol>
+        <li>Repérez le rôle (SDR / AE / CSM / Sales Mgmt) et le stade de votre entreprise pour cibler la fourchette OTE et le ratio fixe/variable.</li>
+        <li>Vérifiez la structure de variable type pour calibrer quotas, accélérateurs et kickers cohérents avec le marché.</li>
+        <li>Construisez votre offre globale : OTE + equity + avantages — un package P75 attire 2,5× plus de top performers.</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>⏱ Temps de lecture :</strong> 9 min</span>
+        <span><strong>🎯 Pour qui :</strong> CRO, Head of Sales, Founder</span>
+        <span><strong>📊 Niveau :</strong> Intermédiaire</span>
+      </div>
+    </div>
+
     <div class="stats">
-      <div class="stat"><div class="val">+6.3%</div><div class="lbl">Hausse OTE Sales SaaS 2026</div></div>
+      <div class="stat"><div class="val">+6.3%</div><div class="lbl">Hausse OTE Sales SaaS 2026<sup class="source-cite">[<a href="https://figures.hr" target="_blank" rel="noopener">1</a>]</sup></div></div>
       <div class="stat"><div class="val">62/38</div><div class="lbl">Ratio fixe/variable médian AE</div></div>
       <div class="stat"><div class="val">42%</div><div class="lbl">AE senior dépassent leur quota</div></div>
     </div>
@@ -98,6 +153,39 @@
         <li><strong>Ratio F/V</strong> — Répartition fixe / variable (ex: 60/40 = 60% fixe, 40% variable)</li>
         <li><strong>Accélérateur</strong> — Multiplicateur du variable au-delà de 100% d'atteinte (ex: 1.5x au-dessus de 120%)</li>
       </ul>
+    </div>
+
+    <div class="svg-chart">
+      <p class="chart-title">Progression salariale Sales SaaS — OTE par niveau (Île-de-France)</p>
+      <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <g stroke="#e5e7eb" font-size="10" fill="#6b7280">
+          <line x1="60" y1="20" x2="60" y2="240" stroke-width="1.5"/>
+          <text x="50" y="50" text-anchor="end">160K€</text>
+          <text x="50" y="100" text-anchor="end">120K€</text>
+          <text x="50" y="150" text-anchor="end">80K€</text>
+          <text x="50" y="200" text-anchor="end">40K€</text>
+          <text x="50" y="240" text-anchor="end">0</text>
+          <line x1="60" y1="240" x2="580" y2="240" stroke-width="1.5"/>
+        </g>
+        <g>
+          <rect x="80" y="200" width="80" height="40" fill="#0d9373" rx="3"/>
+          <text x="120" y="225" text-anchor="middle" font-size="11" font-weight="800" fill="white">35-50K</text>
+          <text x="120" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">SDR</text>
+          <rect x="180" y="160" width="80" height="80" fill="#0d9373" rx="3"/>
+          <text x="220" y="205" text-anchor="middle" font-size="11" font-weight="800" fill="white">55-75K</text>
+          <text x="220" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">AE Mid</text>
+          <rect x="280" y="120" width="80" height="120" fill="#10b981" rx="3"/>
+          <text x="320" y="185" text-anchor="middle" font-size="11" font-weight="800" fill="white">90-130K</text>
+          <text x="320" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">AE Senior</text>
+          <rect x="380" y="60" width="80" height="180" fill="#10b981" rx="3"/>
+          <text x="420" y="155" text-anchor="middle" font-size="11" font-weight="800" fill="white">120-160K</text>
+          <text x="420" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">Enterprise AE</text>
+          <rect x="480" y="30" width="80" height="210" fill="#34d399" rx="3"/>
+          <text x="520" y="140" text-anchor="middle" font-size="11" font-weight="800" fill="white">180-260K</text>
+          <text x="520" y="258" text-anchor="middle" font-size="10" font-weight="700" fill="#111827">VP Sales</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Fourchette OTE (fixe + variable). Source : 200+ recrutements Rocket4RPO + Figures.hr 2026.</p>
     </div>
 
     <h2><span class="bar"></span> 1. SDR / BDR (Sales Development Representative)</h2>
@@ -220,6 +308,40 @@
       <tr><td>Scale-up / pré-IPO</td><td>+5% à +15%</td><td>RSU / AGA</td><td>Packages premium, liquidité proche</td></tr>
     </table>
 
+    <div class="svg-chart">
+      <p class="chart-title">Structure de rémunération par rôle Sales (ratio fixe/variable)</p>
+      <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+        <g>
+          <text x="20" y="50" font-size="11" font-weight="700" fill="#111827">SDR</text>
+          <rect x="100" y="38" width="324" height="22" fill="#0d9373" rx="3 0 0 3"/>
+          <rect x="424" y="38" width="76" height="22" fill="#9ca3af" rx="0 3 3 0"/>
+          <text x="262" y="54" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 80%</text>
+          <text x="462" y="54" font-size="10" font-weight="700" fill="white" text-anchor="middle">Var 20%</text>
+          <text x="20" y="85" font-size="11" font-weight="700" fill="#111827">BDR</text>
+          <rect x="100" y="73" width="280" height="22" fill="#0d9373" rx="3 0 0 3"/>
+          <rect x="380" y="73" width="120" height="22" fill="#9ca3af" rx="0 3 3 0"/>
+          <text x="240" y="89" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 70%</text>
+          <text x="440" y="89" font-size="10" font-weight="700" fill="white" text-anchor="middle">Var 30%</text>
+          <text x="20" y="120" font-size="11" font-weight="700" fill="#111827">AE Mid</text>
+          <rect x="100" y="108" width="248" height="22" fill="#0d9373" rx="3 0 0 3"/>
+          <rect x="348" y="108" width="152" height="22" fill="#10b981" rx="0 3 3 0"/>
+          <text x="224" y="124" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 62%</text>
+          <text x="424" y="124" font-size="11" font-weight="700" fill="white" text-anchor="middle">Var 38%</text>
+          <text x="20" y="155" font-size="11" font-weight="700" fill="#111827">AE Senior</text>
+          <rect x="100" y="143" width="220" height="22" fill="#0d9373" rx="3 0 0 3"/>
+          <rect x="320" y="143" width="180" height="22" fill="#10b981" rx="0 3 3 0"/>
+          <text x="210" y="159" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 55%</text>
+          <text x="410" y="159" font-size="11" font-weight="700" fill="white" text-anchor="middle">Var 45%</text>
+          <text x="20" y="190" font-size="11" font-weight="700" fill="#111827">Enterprise</text>
+          <rect x="100" y="178" width="200" height="22" fill="#0d9373" rx="3 0 0 3"/>
+          <rect x="300" y="178" width="200" height="22" fill="#10b981" rx="0 3 3 0"/>
+          <text x="200" y="194" font-size="11" font-weight="700" fill="white" text-anchor="middle">Fixe 50%</text>
+          <text x="400" y="194" font-size="11" font-weight="700" fill="white" text-anchor="middle">Var 50%</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Plus le rôle est senior, plus la part variable augmente. Pression performance.<sup class="source-cite">[<a href="https://figures.hr" target="_blank" rel="noopener">1</a>]</sup></p>
+    </div>
+
     <h2><span class="bar"></span> 9. Structure de variable type</h2>
     <div class="formula"><strong>SDR :</strong> Variable basé sur le nombre de RDV qualifiés générés. Quota type : 12-18 RDV qualifiés / mois. Variable payé mensuellement ou trimestriellement.</div>
     <div class="formula"><strong>AE Mid-Market :</strong> Variable basé sur le new ARR signé. Quota type : 300-500K € ARR / an. Variable payé trimestriellement. Accélérateur 1.3x au-dessus de 110%, 1.5x au-dessus de 130%.</div>
@@ -245,6 +367,61 @@
 
     <div class="warn">
       <strong>Attention :</strong> Ces données sont des fourchettes indicatives. Les salaires réels varient selon le secteur (FinTech et CyberSec paient +10-15%), la taille des deals, le quota et la performance individuelle. Validez toujours avec des données actualisées (Figures.hr, Glassdoor, WTJ Salary).
+    </div>
+
+    <div class="case-study">
+      <h4>Scale-up SaaS B2B Paris — Restructuration équipe Sales</h4>
+      <p class="cs-context">Éditeur SaaS Series B (12M ARR), équipe Sales de 14 personnes, OAR sur les Senior AE à 64%, 3 départs en 6 mois.</p>
+      <div class="cs-grid">
+        <div class="cs-block">
+          <div class="cs-label">Avant rebench</div>
+          <div class="cs-value">OTE Senior AE à 78K€ (60/40), accélérateurs flat, pas de kicker. 28% au-dessus du quota.</div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">Après rebench</div>
+          <div class="cs-value">OTE 105K€ (60/40), accélérateurs 1.5x &gt;120%, kickers deals stratégiques. 47% au-dessus du quota.</div>
+        </div>
+      </div>
+      <div class="cs-result">
+        <strong>Résultat :</strong> +27K€/AE × 6 AE = 162 K€ d'investissement, mais ARR signé +1.8 M€ sur 9 mois et 0 départ après le rebench.
+      </div>
+    </div>
+
+    <div class="calculator-cta">
+      <div class="cc-text">
+        <h4>💼 Besoin d'un avis d'expert ?</h4>
+        <p>30 min de diagnostic gratuit pour cadrer votre stratégie de recrutement.</p>
+      </div>
+      <a class="cc-btn" href="https://rocket4rpo.com/rdv">Réserver un créneau →</a>
+    </div>
+
+    <div class="related-resources">
+      <h4>🔗 Continuer avec</h4>
+      <div class="rr-grid">
+        <a class="rr-card" href="/ressources/grille-remuneration-tech-2026.pdf">
+          <div class="rr-type">Étude</div>
+          <div class="rr-title">Grille rémunération Tech France 2026</div>
+        </a>
+        <a class="rr-card" href="/ressources/template-offre-emploi.pdf">
+          <div class="rr-type">Template</div>
+          <div class="rr-title">Template offre d'emploi Sales</div>
+        </a>
+        <a class="rr-card" href="/ressources/questions-entretien-structure.pdf">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">Questions d'entretien structurées</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sources-list">
+      <h4>📚 Sources & méthodologie</h4>
+      <ol>
+        <li>Figures.hr — <a href="https://figures.hr" target="_blank" rel="noopener">Salary Reports France 2026</a></li>
+        <li>Welcome to the Jungle — <a href="https://www.welcometothejungle.com/fr/articles/etude-salaires" target="_blank" rel="noopener">WTTJ Salary Report</a></li>
+        <li>Glassdoor — <a href="https://www.glassdoor.fr/Salaires/index.htm" target="_blank" rel="noopener">Salaires Sales SaaS France</a></li>
+        <li>APEC — <a href="https://corporate.apec.fr/home/nos-etudes.html" target="_blank" rel="noopener">Études cadres commerciaux</a></li>
+        <li>Données internes Rocket4RPO — 200+ recrutements 2024–2026</li>
+      </ol>
     </div>
 
     <div class="footer">

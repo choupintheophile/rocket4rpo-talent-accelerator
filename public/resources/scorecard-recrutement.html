@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Scorecard de recrutement — Rocket4RPO</title>
+  <link rel="stylesheet" href="style-premium.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -92,6 +93,27 @@
     <div class="page-header">
       <div class="logo">ROCKET<span class="accent">4</span>RPO</div>
       <div class="type">Template</div>
+    </div>
+
+    <div class="quick-start">
+      <h4>📖 Comment utiliser ce template</h4>
+      <ol>
+        <li>Remplissez la scorecard <strong>pendant</strong> ou dans les 2h après l'entretien (le biais de mémoire altère 25% des notes au-delà de 24h)</li>
+        <li>Notez chaque critère de 1 à 5 en vous appuyant strictement sur le rubric (page suivante)</li>
+        <li>Comparez les scores pondérés entre candidats pour objectiver la décision — évitez le « feeling »</li>
+      </ol>
+      <div class="qs-meta">
+        <span><strong>⏱ Remplissage :</strong> 15-20 min</span>
+        <span><strong>🎯 Pour qui :</strong> Hiring Manager + équipe d'évaluateurs</span>
+        <span><strong>🔧 Format :</strong> Imprimable / Adaptable</span>
+      </div>
+    </div>
+
+    <div class="action-callout">
+      <div class="ac-icon">!</div>
+      <div class="ac-content">
+        <strong>À faire avant l'entretien :</strong> calibrez les critères et les poids avec le hiring manager. Tous les évaluateurs doivent utiliser la même grille pour un même poste, sinon la comparaison des scores ne veut rien dire.
+      </div>
     </div>
 
     <div class="stats">
@@ -243,6 +265,18 @@
       <tr><td>Raisons de quitter le poste actuel (cohérentes et positives)</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     </table>
 
+    <div class="example-block">
+      <h5>📋 Exemple : Scorecard remplie — John Doe / Lead Developer</h5>
+      <p>Synthèse d'une scorecard type après entretien manager + cas pratique.</p>
+      <ul>
+        <li><strong>A. Compétences techniques (x2) :</strong> 4.2/5 — Backend 5/5, System Design 4/5, résolution problèmes 4/5, impact réalisations 4/5, veille 4/5</li>
+        <li><strong>B. Soft skills (x1.5) :</strong> 4.5/5 — Communication 5/5, Leadership 4/5, adaptabilité 5/5, stress 4/5, collaboration 4/5</li>
+        <li><strong>C. Culture fit (x1.5) :</strong> 4/5 — alignement valeurs 4/5, remote 4/5, diversité perspective 4/5</li>
+        <li><strong>D. Motivation (x1) :</strong> 4.5/5 — intérêt genuine, projection claire à 12 mois, raison départ cohérente</li>
+      </ul>
+      <p><strong>Score pondéré global : 4.31/5 → Top tier · Décision : OFFRE sous 48h.</strong></p>
+    </div>
+
     <h2><span class="bar"></span> Synthèse et scoring</h2>
 
     <div class="formula">Score pondéré = (Moy. Techniques x 2) + (Moy. Soft skills x 1.5) + (Moy. Culture fit x 1.5) + (Moy. Motivation x 1) / 6</div>
@@ -301,6 +335,61 @@
 
     <div class="warn">
       <strong>Rappel :</strong> Remplissez la scorecard pendant ou immédiatement après l'entretien (sous 2h maximum). Le biais de mémoire altère les évaluations de 25% au-delà de 24h. Utilisez les mêmes critères pour tous les candidats d'un même poste.
+    </div>
+
+    <div class="svg-chart">
+      <p class="chart-title">Visualisation — Radar d'évaluation (exemple candidat "Top tier")</p>
+      <svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(200,180)" font-family="Inter, sans-serif">
+          <polygon points="0,-120 104,-60 104,60 0,120 -104,60 -104,-60" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+          <polygon points="0,-80 69,-40 69,40 0,80 -69,40 -69,-40" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+          <polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" fill="none" stroke="#e5e7eb" stroke-width="1"/>
+          <line x1="0" y1="0" x2="0" y2="-120" stroke="#e5e7eb"/>
+          <line x1="0" y1="0" x2="104" y2="-60" stroke="#e5e7eb"/>
+          <line x1="0" y1="0" x2="104" y2="60" stroke="#e5e7eb"/>
+          <line x1="0" y1="0" x2="0" y2="120" stroke="#e5e7eb"/>
+          <line x1="0" y1="0" x2="-104" y2="60" stroke="#e5e7eb"/>
+          <line x1="0" y1="0" x2="-104" y2="-60" stroke="#e5e7eb"/>
+          <polygon points="0,-100 94,-54 83,48 0,108 -94,54 -94,-54" fill="#10b981" fill-opacity="0.25" stroke="#0d9373" stroke-width="2.5"/>
+          <text x="0" y="-135" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">Tech (4.2)</text>
+          <text x="120" y="-63" font-size="11" font-weight="700" fill="#111827">Soft (4.5)</text>
+          <text x="120" y="65" font-size="11" font-weight="700" fill="#111827">Culture (4)</text>
+          <text x="0" y="140" font-size="11" font-weight="700" fill="#111827" text-anchor="middle">Motivation (4.5)</text>
+          <text x="-120" y="65" font-size="11" font-weight="700" fill="#111827" text-anchor="end">Impact (4.2)</text>
+          <text x="-120" y="-63" font-size="11" font-weight="700" fill="#111827" text-anchor="end">Potentiel (4.4)</text>
+        </g>
+      </svg>
+      <p class="chart-caption">Échelle 0-5. Un profil équilibré sur les 4 axes prédit mieux la réussite qu'un profil "pic" déséquilibré.</p>
+    </div>
+
+    <div class="calculator-cta">
+      <div class="cc-text">
+        <h4>📊 Besoin de scorecards sur-mesure par poste ?</h4>
+        <p>Nos TA Specialists construisent vos scorecards calibrées et entraînent vos hiring managers.</p>
+      </div>
+      <a class="cc-btn" href="https://rocket4rpo.com/rdv">Discuter de votre besoin →</a>
+    </div>
+
+    <div class="related-resources">
+      <h4>🔗 Continuer avec</h4>
+      <div class="rr-grid">
+        <a class="rr-card" href="/ressources/template-brief-poste.pdf">
+          <div class="rr-type">Template</div>
+          <div class="rr-title">Brief de poste complet</div>
+        </a>
+        <a class="rr-card" href="/ressources/questions-entretien-structure.pdf">
+          <div class="rr-type">Guide</div>
+          <div class="rr-title">50 questions d'entretien structuré</div>
+        </a>
+        <a class="rr-card" href="/ressources/checklist-prise-references.pdf">
+          <div class="rr-type">Checklist</div>
+          <div class="rr-title">Prise de références</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="info">
+      <strong>💡 Version interactive :</strong> Pour utiliser ce template en mode collaboratif, dupliquez-le dans Notion, Google Docs ou Airtable. <a href="https://rocket4rpo.com/rdv" target="_blank">Demandez la version Notion prête à l'emploi</a> lors de votre diagnostic gratuit.
     </div>
 
     <div class="footer">
