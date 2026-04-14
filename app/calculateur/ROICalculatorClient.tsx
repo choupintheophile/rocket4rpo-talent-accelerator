@@ -519,7 +519,17 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
 
   return (
     <>
-      {/* Calculator starts directly */}
+      {/* H1 sémantique (SEO) — Calculator starts directly */}
+      <section className="pt-6 pb-2 bg-[hsl(var(--rocket-cream))]">
+        <div className="container-wide">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+            Calculateur ROI RPO — estimez vos économies
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground max-w-2xl">
+            Comparez en temps réel le coût d&apos;un recrutement via RPO, cabinet ou recrutement interne. Estimation en 30 secondes.
+          </p>
+        </div>
+      </section>
       <section className="pt-2 pb-8 md:pb-12 bg-[hsl(var(--rocket-cream))]">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-6 lg:gap-10">

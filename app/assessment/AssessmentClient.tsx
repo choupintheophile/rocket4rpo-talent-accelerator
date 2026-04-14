@@ -1005,6 +1005,11 @@ export default function AssessmentClient() {
 
   return (
     <main className="min-h-screen bg-background">
+      {/* SEO H1 — toujours rendu en SSR, invisible visuellement. Le H1 visible */}
+      {/* ci-dessous passe en H2 pour éviter le double-H1 sur la page. */}
+      <h1 className="sr-only">
+        Diagnostic recrutement — Évaluez la maturité de votre Talent Acquisition en 2 minutes
+      </h1>
       {showConfetti && <Confetti count={40} />}
       <Toast message={toastMessage} visible={toastVisible} />
       <ColorFlash score={flashScore} />
@@ -1079,14 +1084,14 @@ export default function AssessmentClient() {
                     <Target className="w-3 h-3" /> Diagnostic gratuit
                   </span>
 
-                  {/* Title */}
-                  <h1 className="mt-2 text-2xl md:text-3xl font-bold leading-[1.12] text-white">
+                  {/* Visible title — downgraded to H2 to avoid duplicate H1 */}
+                  <h2 className="mt-2 text-2xl md:text-3xl font-bold leading-[1.12] text-white">
                     Votre recrutement est-il{" "}
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rocket-teal-glow to-emerald-400">
                       à la hauteur
                     </span>{" "}
                     ?
-                  </h1>
+                  </h2>
 
                   {/* Subtitle */}
                   <p className="mt-2 text-sm text-white/70 leading-relaxed max-w-xl mx-auto">
