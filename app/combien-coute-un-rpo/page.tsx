@@ -3,7 +3,7 @@ import { faqSchema, breadcrumbSchema } from "@/lib/seo";
 import CombienCouteUnRpoClient from "./CombienCouteUnRpoClient";
 
 export const metadata: Metadata = {
-  title: "Combien coûte un RPO en France ? Prix et modèles (2026)",
+  title: "Combien coûte un RPO ? Prix France 2026",
   description:
     "Combien coûte un RPO en France ? Modèles de facturation, prix par taille d'entreprise, scénario 10 recrutements vs cabinet. Guide tarifs RPO 2026.",
   alternates: { canonical: "/combien-coute-un-rpo" },

@@ -4,9 +4,9 @@ import GlossaireRpoClient from "./GlossaireRpoClient";
 import { GLOSSARY_TERMS } from "./terms";
 
 export const metadata: Metadata = {
-  title: "Glossaire RPO & Recrutement — 15 termes essentiels (2026)",
+  title: "Glossaire RPO & Recrutement — 15 termes (2026)",
   description:
-    "Glossaire complet RPO et recrutement : RPO, TA, time-to-hire, sourcing, ATS, cooptation, scorecard... 15 définitions essentielles pour comprendre le recrutement.",
+    "Glossaire RPO : 15 définitions essentielles (RPO, TA, time-to-hire, sourcing, ATS, cooptation, scorecard) pour comprendre le recrutement moderne.",
   alternates: { canonical: "/glossaire-rpo" },
 };
 

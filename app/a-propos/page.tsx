@@ -3,9 +3,9 @@ import { faqSchema, breadcrumbSchema, organizationSchema } from "@/lib/seo";
 import AProposClient from "./AProposClient";
 
 export const metadata: Metadata = {
-  title: "À propos — Rocket4RPO, cabinet RPO France (2026)",
+  title: "À propos — Cabinet RPO France (2026)",
   description:
-    "Rocket4RPO : cabinet spécialisé en Recruitment Process Outsourcing. Fondé en 2020, 200+ recrutements, 50+ clients. Notre équipe, notre méthodologie, notre mission.",
+    "Rocket4RPO : cabinet spécialisé en Recruitment Process Outsourcing. Fondé en 2020, 200+ recrutements, 50+ clients. Notre équipe et méthodologie.",
   alternates: { canonical: "/a-propos" },
 };
 

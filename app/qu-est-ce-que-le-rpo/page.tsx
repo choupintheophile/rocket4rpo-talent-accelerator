@@ -3,9 +3,9 @@ import { faqSchema, breadcrumbSchema } from "@/lib/seo";
 import QuEstCeQueLeRpoClient from "./QuEstCeQueLeRpoClient";
 
 export const metadata: Metadata = {
-  title: "Qu'est-ce que le RPO ? Définition, coût et fonctionnement (2026)",
+  title: "Qu'est-ce que le RPO ? Définition et coût (2026)",
   description:
-    "Le RPO (Recruitment Process Outsourcing) : définition, fonctionnement, coût et cas d'usage. Guide complet 2026 pour bien choisir son modèle de recrutement.",
+    "RPO (Recruitment Process Outsourcing) : définition, fonctionnement, coût et cas d'usage. Guide 2026 pour choisir son modèle de recrutement.",
   alternates: { canonical: "/qu-est-ce-que-le-rpo" },
 };
 
