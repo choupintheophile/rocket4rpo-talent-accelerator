@@ -363,14 +363,21 @@ export function initials(prenom: string, nom: string): string {
  * Normalise un texte pour un matching tolérant :
  * - lowercase
  * - enlève les accents (à → a, é → e, etc.)
+ * - remplace ponctuation par espaces (pour matches de mots courts : "dev,", "tech.")
  * - supprime le "s" final des mots de 4+ caractères (stemming minimal)
+ * - collapse les espaces multiples
+ * - ajoute un espace au début et à la fin pour matches avec bordure
  */
 function normalize(text: string): string {
-  return text
+  const normalized = text
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "") // accents
-    .replace(/\b(\w{4,})s\b/g, "$1"); // pluriels simples
+    .replace(/[.,;:!?()[\]{}"'`]/g, " ") // ponctuation → espace
+    .replace(/\b(\w{4,})s\b/g, "$1") // pluriels simples
+    .replace(/\s+/g, " ") // collapse espaces
+    .trim();
+  return ` ${normalized} `;
 }
 
 const SCORING_KEYWORDS: { keywords: string[] }[][] = [
@@ -576,109 +583,135 @@ function extractIdentity(text: string): AutoScoreDetails["identity"] {
    Match par any-keyword (seuil : 1 match → tag appliqué) sur texte normalisé
    ═══════════════════════════════════════════════════════════════════════ */
 
-/** Keywords pour détecter le type de contrat (single-select) */
+/** Keywords pour détecter le type de contrat (single-select)
+ *  Note : pour bien capturer le freelance ACTUEL (vs un CDI historique),
+ *  on prioritise les indicateurs forts comme "TJM", "à mon compte", "auto-entrepreneur". */
 const CONTRAT_DETECTION: { label: "TJM Freelance" | "CDI" | "CDD"; keywords: string[] }[] = [
   {
     label: "TJM Freelance",
     keywords: [
-      "freelance", "independant", "a mon compte", "a mon propre compte",
-      "auto-entrepreneur", "auto entrepreneur", "tjm", "tarif journalier",
-      "taux journalier", "ma societe", "ma boite", "mon cabinet",
-      "je suis en mission", "en freelance", "en independ", "portage salarial",
+      " freelance ", " independant ", " independante ", "a mon compte",
+      "a mon propre compte", "mon propre compte", "auto-entrepreneur",
+      "auto entrepreneur", " tjm ", " t j m ", "tarif journalier",
+      "taux journalier", " tgm ", " t g m ", "ma societe",
+      " ma boite ", " mon cabinet ", "en freelance", "en independ",
+      "portage salarial", "je suis en mission", "euros au jour",
+      "euros par jour", "€/j", "euros la journee", "a la journee",
+      "ma structure", "tarif de",
     ],
   },
   {
     label: "CDI",
     keywords: [
-      "en cdi", "contrat a duree indeterminee", "en poste chez",
-      "salarie en interne", "en interne chez",
+      "je suis en cdi", "je suis salarie", "je suis salariee",
+      "en poste chez", "salarie en interne", "en interne chez",
+      "ma derniere experience en cdi", "mon cdi",
     ],
   },
   {
     label: "CDD",
-    keywords: ["en cdd", "contrat a duree determinee", "cdd de"],
+    keywords: ["je suis en cdd", "contrat a duree determinee", "cdd de"],
   },
 ];
 
-/** Keywords pour les 10 familles de profils recrutés (multi-select) */
+/** Keywords pour les 10 familles de profils recrutés (multi-select)
+ *  Format : mots entourés d'espaces = mot entier (ex: " tech " matche "tech" mais pas "technique") */
 const PROFILE_TYPES_DETECTION: Record<string, string[]> = {
   "Sales": [
-    "sales", "commercial", "commerciale", "sdr", "bdr", "account executive",
-    "account manager", "business developer", "vp sales", "cro",
-    "ingenieur commercial", "inside sales", "sales manager", "sales engineer",
+    " sales ", " commercial ", " commerciale ", " sdr ", " bdr ",
+    "account executive", "account manager", "business developer",
+    "vp sales", " cro ", "ingenieur commercial", "inside sales",
+    "sales manager", "sales engineer", "profil sales",
   ],
   "Tech": [
-    "developpeur", "dev front", "dev back", "fullstack", "full stack",
-    "devops", "sre ", "cybersecurite", "ingenieur logiciel", "ingenieur systeme",
-    "ingenieur reseau", "j2ee", "javascript", "python", "linux",
-    "embarque", "infrastructure", "back-end", "front-end", "qa ",
+    " tech ", " dev ", " devs ", " it ", "developpeur", "dev front",
+    "dev back", "fullstack", "full stack", "devops", " sre ",
+    "cybersecurite", "ingenieur logiciel", "ingenieur systeme",
+    "ingenieur reseau", "j2ee", "javascript", " java ", " python ",
+    " linux ", "embarque", "infrastructure", "back-end", "front-end",
+    " qa ", "software engineering", " sde ",
   ],
   "Data & ML": [
     "data analyst", "data scientist", "data engineer", "data manager",
-    "machine learning", "dba", "intelligence artificielle", "data science",
-    "analyst data",
+    "machine learning", " dba ", "intelligence artificielle", "data science",
+    "analyst data", " data ", " ia ", " ml ",
   ],
   "Product & Design": [
     "product manager", "product owner", "product designer", " ux ", " ui ",
-    "cpo", "head of product", "directeur produit", "chef de produit",
+    " cpo ", "head of product", "directeur produit", "chef de produit",
+    " po ", " pm ",
   ],
   "Marketing": [
-    "marketing", "growth", "cmo", " seo ", " sea ", "content manager",
-    "brand manager", "acquisition",
+    " growth ", " cmo ", " seo ", " sea ", "content manager",
+    "brand manager", "growth marketing", "acquisition paye",
+    "marketing digital", "marketing produit", "marketing operationnel",
+    "inbound marketing", "outbound marketing",
   ],
   "Customer Success": [
-    "customer success", "csm", "pre-sales", "presales", "solutions engineer",
+    "customer success", " csm ", "pre-sales", "presales", "solutions engineer",
     "pre sales",
   ],
   "Ops / RevOps": [
-    "revops", "salesops", "people ops", "operations manager",
+    " revops ", " salesops ", "people ops", "operations manager",
+    "operations engineer",
   ],
   "Finance": [
-    "daf", "cfo", "controleur de gestion", "controleur gestion", "fp&a",
-    "compliance", "conformite", "controlling", "finance",
+    " daf ", " cfo ", "controleur de gestion", "controleur gestion",
+    " fp&a ", "compliance", "conformite", "controlling", " finance ",
+    " financier ", " financiere ",
   ],
   "Direction / C-level": [
-    "c-level", "ceo", "cto", "coo", "vp ", "head of", "director",
-    "directeur", "founder", "cofounder", "co-founder", "top management",
-    "middle management", "executive search",
+    "c-level", " ceo ", " cto ", " coo ", " vp ", "head of", " director ",
+    " directeur ", " directrice ", " founder ", " cofounder ", " co-founder ",
+    "cofondateur", "cofondatrice", "top management", "middle management",
+    "executive search", "comite de direction", " comex ", "hiring manager",
+    " drh ",
   ],
   "International": [
-    "international", "cross-border", "cross border", " uk ", "dach",
-    "nordics", " usa", "etats-unis", "royaume-uni", "continent africain",
-    "afrique", " chine", "expatriation", "multilingue", "bilingue",
+    "international", "cross-border", "cross border", " uk ", " dach ",
+    "nordics", " usa ", "etats-unis", "royaume-uni", "continent africain",
+    " afrique ", " chine ", " inde ", "expatriation", "multilingue",
+    "bilingue", " anglais ", "angleterre", " londres ", "luxembourg",
+    "benelux", " europe ", "marche americain", "marche us",
   ],
 };
 
 /** Keywords pour les 7 types de boîte (multi-select) */
 const COMPANY_TYPES_DETECTION: Record<string, string[]> = {
   "Startup (<50p)": [
-    "startup", "start-up", "start up", "seed", "pre-seed", "pre seed",
-    "early stage", "jeune pousse", "amorcage",
+    " startup ", " startups ", "start-up", "start up", " seed ", "pre-seed",
+    "pre seed", "early stage", "jeune pousse", "amorcage",
   ],
   "Scale-up (50-300p)": [
-    "scale-up", "scale up", "scaleup", "serie a", "serie b",
+    "scale-up", "scale up", " scaleup ", "serie a", "serie b",
     "levee de fonds", "levee de fond", "post-levee", "post levee",
     "hyper-croissance", "hyper croissance",
   ],
   "Licorne / 300+p": [
-    "licorne", "unicorn", "serie c", "serie d", "post-ipo",
+    " licorne ", " unicorn ", "serie c", "serie d", "post-ipo",
   ],
   "ETI / Grand groupe": [
-    "grand groupe", "grand compte", "corporate", "eti ", "groupe cote",
-    "cote en bourse", "bourse de paris", "multinationale", "entreprise familiale",
+    "grand groupe", "grand compte", "grands groupe", " corporate ",
+    " eti ", "groupe cote", "cote en bourse", "bourse de paris",
+    "multinationale", "entreprise familiale",
+    " lvmh ", " amazon ", " adobe ", " accor ", " publicis ", " allianz ",
+    " alstom ", " roquette ", " capgemini ", " microsoft ", " google ",
+    " oracle ", " bnp ", " orange ",
   ],
   "SaaS / Tech produit": [
-    "saas", "editeur de logiciel", "editeur logiciel", "software",
-    "produit software", "plateforme saas", "entreprise tech",
+    " saas ", "editeur de logiciel", "editeur logiciel",
+    "editeur de logiciels", " software ", "produit software",
+    "plateforme saas", "entreprise tech",
   ],
   "Services / Conseil / ESN": [
-    " esn ", "ss2i", "ssii", "societe de service", "societe de conseil",
-    "cabinet de conseil", "consulting", "prestation de service",
-    "assistance technique",
+    " esn ", " ss2i ", " ssii ", "societe de service", "societe de conseil",
+    "cabinet de conseil", " consulting ", "prestation de service",
+    "assistance technique", " sopra ", " accenture ",
   ],
   "RPO / Recrutement": [
     " rpo ", "cabinet de recrutement", "chasse de tete", "executive search",
     "mission rpo", "modele rpo", "cabinet recrutement",
+    "cabinet de chasse", "boutique de recrutement",
   ],
 };
 
