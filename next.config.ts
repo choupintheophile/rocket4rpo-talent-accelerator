@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
       { source: "/recrutement-tech-startup", destination: "/offre", permanent: true },
       // Rename /outils → /simulateurs
       { source: "/outils", destination: "/simulateurs", permanent: true },
+      // Outils retirés / fusionnés
+      { source: "/outils/diagnostic-ta", destination: "/assessment", permanent: true },
+      { source: "/outils/tjm-freelance", destination: "/ressources", permanent: true },
+      { source: "/outils/cout-recrutement-rate", destination: "/calculateur", permanent: true },
       // Fix 404 from old site / external links
       { source: "/metiers/recrutement-it", destination: "/offre", permanent: true },
       { source: "/metiers/:slug*", destination: "/offre", permanent: true },

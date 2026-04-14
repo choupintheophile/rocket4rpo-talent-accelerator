@@ -637,25 +637,24 @@ export default function RessourcesClient() {
           <div className="text-center mb-10">
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
               <Zap className="w-3 h-3" />
-              Nouveau · Outils interactifs
+              Outils interactifs
             </span>
             <h2 className="text-2xl md:text-3xl font-bold mt-3">
-              Calculez, diagnostiquez, comparez en temps réel
+              Diagnostiquez et calculez en temps réel
             </h2>
             <p className="text-base text-white/60 mt-3 max-w-2xl mx-auto">
-              4 outils gratuits pour passer du téléchargement à l'action immédiate. Sans création de compte.
+              2 outils gratuits pour passer du téléchargement à l'action immédiate. Sans création de compte.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
             {[
               {
-                href: "/outils/diagnostic-ta",
+                href: "/assessment",
                 icon: ClipboardCheck,
-                badge: "5 min",
-                title: "Diagnostic Talent Acquisition",
-                desc: "10 questions, score sur 100, plan d'action personnalisé.",
-                accent: "from-emerald-500 to-teal-500",
+                badge: "2 min",
+                title: "Diagnostic recrutement",
+                desc: "7 questions pour évaluer votre maturité TA. Score sur 21, niveau, recommandations.",
                 accentText: "text-emerald-400",
                 accentBg: "bg-emerald-500/10",
                 accentBorder: "border-emerald-500/30",
@@ -666,32 +665,9 @@ export default function RessourcesClient() {
                 badge: "30 sec",
                 title: "ROI RPO vs Cabinet vs Interne",
                 desc: "Comparez les coûts pour votre volume réel de recrutements.",
-                accent: "from-blue-500 to-indigo-500",
                 accentText: "text-blue-400",
                 accentBg: "bg-blue-500/10",
                 accentBorder: "border-blue-500/30",
-              },
-              {
-                href: "/outils/cout-recrutement-rate",
-                icon: TrendingUp,
-                badge: "1 min",
-                title: "Coût d'un recrutement raté",
-                desc: "Estimez les 7 coûts cachés (DARES + données internes).",
-                accent: "from-rose-500 to-orange-500",
-                accentText: "text-rose-400",
-                accentBg: "bg-rose-500/10",
-                accentBorder: "border-rose-500/30",
-              },
-              {
-                href: "/outils/tjm-freelance",
-                icon: Briefcase,
-                badge: "1 min",
-                title: "Calculateur TJM Freelance",
-                desc: "Quel TJM viser selon votre revenu cible et vos charges.",
-                accent: "from-violet-500 to-purple-500",
-                accentText: "text-violet-400",
-                accentBg: "bg-violet-500/10",
-                accentBorder: "border-violet-500/30",
               },
             ].map((tool) => (
               <Link
