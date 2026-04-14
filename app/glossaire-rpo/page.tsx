@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { breadcrumbSchema } from "@/lib/seo";
-import GlossaireRpoClient, { GLOSSARY_TERMS } from "./GlossaireRpoClient";
+import GlossaireRpoClient from "./GlossaireRpoClient";
+import { GLOSSARY_TERMS } from "./terms";
 
 export const metadata: Metadata = {
   title: "Glossaire RPO & Recrutement — 15 termes essentiels (2026)",
