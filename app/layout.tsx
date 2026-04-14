@@ -44,14 +44,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     siteName: "Rocket4RPO",
-    images: [
-      {
-        url: "/og-default.png",
-        width: 1200,
-        height: 630,
-        alt: "Rocket4RPO — Recrutement externalisé sur-mesure pour startups, scale-ups et ETI",
-      },
-    ],
+    // images: auto-détecté depuis app/opengraph-image.tsx (génère OG dynamique)
   },
   twitter: {
     card: "summary_large_image",
