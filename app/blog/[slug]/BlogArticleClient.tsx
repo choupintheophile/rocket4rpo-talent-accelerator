@@ -7,6 +7,13 @@ import { CTASection } from "@/components/shared/CTASection";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Calendar, Clock, Linkedin, Share2, ChevronRight } from "lucide-react";
 
+interface RelatedPost {
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+}
+
 interface BlogPost {
   slug: string;
   title: string;
@@ -17,6 +24,8 @@ interface BlogPost {
   content: string;
   imageUrl?: string | null;
   author?: string | null;
+  relatedPosts?: RelatedPost[];
+  hasFaqs?: boolean;
 }
 
 export default function BlogArticleClient({ post }: { post: BlogPost }) {
@@ -82,11 +91,16 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="rounded-2xl overflow-hidden shadow-2xl shadow-black/20 border border-border/30"
           >
+            {/* v22 — LCP optimization : fetchPriority high + decoding sync + width/height pour éviter CLS */}
             <img
               src={post.imageUrl}
               alt={post.title}
               className="w-full h-[260px] md:h-[400px] lg:h-[440px] object-cover"
               loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              width={1200}
+              height={440}
             />
           </motion.div>
         </div>
@@ -237,6 +251,41 @@ export default function BlogArticleClient({ post }: { post: BlogPost }) {
           </motion.div>
         </div>
       </article>
+
+      {/* v22 — Articles associés (topic cluster SEO + engagement) */}
+      {post.relatedPosts && post.relatedPosts.length > 0 && (
+        <section className="bg-gray-50/70 border-t border-gray-200">
+          <div className="container-tight py-16">
+            <div className="flex items-center gap-2 mb-6">
+              <BookOpen className="w-4 h-4 text-rocket-teal" />
+              <h2 className="text-[11px] font-semibold uppercase tracking-wider text-gray-500">
+                Articles associés
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {post.relatedPosts.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  href={`/blog/${rp.slug}`}
+                  className="group bg-white rounded-2xl p-5 border border-gray-200 hover:border-rocket-teal/40 hover:shadow-md transition-all"
+                >
+                  <span className="inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider rounded bg-rocket-teal/10 text-rocket-teal mb-3">
+                    {rp.category}
+                  </span>
+                  <h3 className="text-[14px] font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-rocket-teal transition-colors">
+                    {rp.title}
+                  </h3>
+                  <p className="text-[12px] text-gray-500 line-clamp-3">{rp.excerpt}</p>
+                  <div className="mt-3 inline-flex items-center gap-1 text-[11px] font-medium text-rocket-teal">
+                    Lire l&apos;article
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <CTASection />
     </>

@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 export const revalidate = 3600;
 import { notFound } from "next/navigation";
-import { getBlogPostBySlug } from "@/lib/db";
+import { getBlogPostBySlug, getBlogPosts } from "@/lib/db";
 import { getCanonicalForSlug, isAutoGenThin } from "@/lib/blog-canonicals";
+import {
+  extractFAQs,
+  faqPageSchema,
+  breadcrumbSchemaForBlog,
+  findRelatedArticles,
+} from "@/lib/blog-seo-helpers";
 import BlogArticleClient from "./BlogArticleClient";
 
 interface Props {
@@ -62,7 +68,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date.toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
       authors: ["Clément Martin"],
+      siteName: "Rocket4RPO",
+      locale: "fr_FR",
       ...(ogImage && { images: ogImage }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      ...(ogImage && { images: ogImage.map((i) => i.url) }),
     },
     ...(shouldNoindex && { robots: { index: false, follow: true } }),
   };
@@ -76,7 +90,8 @@ export default async function BlogArticlePage({ params }: Props) {
   const plainText = stripHtml(post.content || "");
   const wordCount = countWords(plainText);
 
-  const schema = {
+  // v22 — Schemas SEO enrichis : BlogPosting + BreadcrumbList + FAQPage (si Q/A détectées)
+  const blogPostingSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
@@ -85,7 +100,14 @@ export default async function BlogArticlePage({ params }: Props) {
     dateModified: post.updatedAt.toISOString(),
     inLanguage: "fr-FR",
     wordCount,
-    ...(post.imageUrl && { image: post.imageUrl }),
+    ...(post.imageUrl && {
+      image: {
+        "@type": "ImageObject",
+        url: post.imageUrl,
+        width: 1200,
+        height: 630,
+      },
+    }),
     author: {
       "@type": "Person",
       name: "Clément Martin",
@@ -96,12 +118,46 @@ export default async function BlogArticlePage({ params }: Props) {
       "@type": "Organization",
       name: "Rocket4RPO",
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo-rocket4rpo.webp`,
+        width: 600,
+        height: 60,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${post.slug}`,
     },
+    keywords: post.category,
   };
+
+  const breadcrumb = breadcrumbSchemaForBlog(
+    SITE_URL,
+    post.title,
+    post.slug,
+    post.category,
+  );
+
+  const faqs = extractFAQs(post.content || "");
+  const faqSchema = faqPageSchema(faqs);
+
+  const schemas = [blogPostingSchema, breadcrumb, ...(faqSchema ? [faqSchema] : [])];
+
+  // v22 — Articles similaires (topic cluster) — améliore le maillage interne SEO
+  let relatedPosts: Array<{ slug: string; title: string; category: string; excerpt: string }> = [];
+  try {
+    const allPosts = await getBlogPosts();
+    const pool = allPosts.map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      category: p.category,
+      excerpt: p.excerpt,
+    }));
+    relatedPosts = findRelatedArticles(post.slug, post.category, pool, 4);
+  } catch {
+    // Silencieux : pas de related en cas d'erreur DB
+  }
 
   const serializedPost = {
     slug: post.slug,
@@ -113,11 +169,16 @@ export default async function BlogArticlePage({ params }: Props) {
     content: post.content,
     imageUrl: post.imageUrl || null,
     author: post.author || "Clément Martin",
+    relatedPosts,
+    hasFaqs: faqs.length >= 2,
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+      />
       <BlogArticleClient post={serializedPost} />
     </>
   );
