@@ -1612,17 +1612,18 @@ function parseStructuredSummary(text: string): StructuredParse {
   out.qualifRecruitedTypes = Array.from(foundTypes);
 
   // ─── 4. Contexte détaillé (cycle de vente, stack, taille entreprise, etc.) ───
+  // v21.1 — Anti-faux-positif : si toutes les options d'un groupe matchent, c'est
+  // probablement parce que l'IA a cité la liste exhaustive du prompt. On filtre alors :
+  // - on ignore le groupe si toutes les options sont matchées
+  // - on cap à 3 valeurs max par groupe (au-delà, on garde les plus spécifiques en premier)
   const lowerText = text.toLowerCase();
   const context: Record<string, string[]> = {};
-
-  // Détection pour chaque profil des 3 branches
   const profileForContext = out.qualifProfile as keyof typeof QUALIF_CONTEXT_BY_PROFILE;
   if (profileForContext && QUALIF_CONTEXT_BY_PROFILE[profileForContext]) {
     for (const group of QUALIF_CONTEXT_BY_PROFILE[profileForContext]) {
       const matches: string[] = [];
       for (const opt of group.options) {
         const optLow = opt.toLowerCase();
-        // Chercher la phrase exacte OU ses composants clés
         if (lowerText.includes(optLow)) {
           matches.push(opt);
         } else {
@@ -1634,7 +1635,13 @@ function parseStructuredSummary(text: string): StructuredParse {
           }
         }
       }
-      if (matches.length > 0) context[group.title] = matches;
+      // Filtre 1 : si toutes les options matchent, on ne garde rien (faux positif liste exhaustive)
+      if (matches.length === group.options.length && group.options.length >= 4) {
+        continue;
+      }
+      // Filtre 2 : cap à 3 max
+      const limited = matches.slice(0, 3);
+      if (limited.length > 0) context[group.title] = limited;
     }
   }
   out.qualifContext = context;
@@ -1683,7 +1690,9 @@ function parseStructuredSummary(text: string): StructuredParse {
   ];
   const normalText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   const foundLangs: { lang: string; level: string }[] = [];
-  // Pour limiter la fenêtre de recherche : stop à la prochaine virgule, point, ou nom d'une autre langue
+  // v21.1 — Anti-faux-positif : si la phrase contient "non communiqué/non parlé"
+  // pour une langue, on l'ignore. Détectable par le pattern "Langue : non communiqué"
+  // ou "Langue non parlé".
   const langPresetsNorm = langPresets.map((l) => l.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
   for (const lang of langPresets) {
     const langNorm = lang.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -1719,17 +1728,31 @@ function parseStructuredSummary(text: string): StructuredParse {
         }
       }
 
+      // v21.1 — Anti-faux-positif : ne pas ajouter si "non communiqué", "non parlé",
+      // "pas de niveau", "—" dans la fenêtre stricte
+      const negativeRe = /non\s+communiqu|non\s+parl|pas\s+de\s+niveau|\s—\s|:\s*—|\bxx\b/i;
+      if (negativeRe.test(strictWindow)) continue;
+
       foundLangs.push({ lang, level });
     }
   }
-  // Garde-fou : retire les doublons (au cas où)
   void langPresetsNorm;
+  // Dédupe
   const seen = new Set<string>();
-  out.languagesSpoken = foundLangs.filter((l) => {
+  let result = foundLangs.filter((l) => {
     if (seen.has(l.lang)) return false;
     seen.add(l.lang);
     return true;
   });
+
+  // v21.1 — Anti "liste exhaustive" : si on a >5 langues toutes en "Notions",
+  // c'est probablement une liste générée par l'IA pour les langues NON parlées.
+  // On garde uniquement les langues avec un niveau > Notions, plus Français/Anglais.
+  const allNotions = result.filter((l) => l.level === "Notions");
+  if (result.length >= 6 && allNotions.length >= 5) {
+    result = result.filter((l) => l.level !== "Notions" || l.lang === "Français" || l.lang === "Anglais");
+  }
+  out.languagesSpoken = result;
 
   // ─── 7. Section explicite [Profil recruté détecté] ───
   const profileSectionMatch = text.match(/\[\s*Profil\s+recrut[eé]\s+d[eé]tect[eé]\s*\]\s*[:\n]?([^[\n]+)/i);
@@ -1772,6 +1795,8 @@ function parseStructuredSummary(text: string): StructuredParse {
   }
 
   // ─── 11. Section explicite [Forces détectées] ───
+  // v21.1 — Anti-faux-positif : ignorer les lignes contenant "non confirmé",
+  // "non démontré", "partiellement", "probable", "non" devant le mot-clé.
   const forcesSectionMatch = text.match(/\[\s*Forces\s+d[eé]tect[eé]e?s?\s*\]\s*[:\n]?([\s\S]*?)(?=\[|\n\s*\n|$)/i);
   if (forcesSectionMatch) {
     const section = forcesSectionMatch[1];
@@ -1784,12 +1809,18 @@ function parseStructuredSummary(text: string): StructuredParse {
       "Bilingue / profil international", "Senior 15+ ans",
       "Expertise executive search",
     ];
+    // Split par lignes pour vérifier la négation localement
+    const lines = section.split("\n");
     for (const force of forcesCatalog) {
-      // Match par keywords principaux (minuscule, tolérant)
       const core = force.toLowerCase().split(/[()/'-]/)[0].trim();
-      if (core.length > 3 && section.toLowerCase().includes(core)) {
-        out.explicitForces.push(force);
-      }
+      if (core.length <= 3) continue;
+      // Trouver la ligne contenant le mot-clé
+      const matchedLine = lines.find((l) => l.toLowerCase().includes(core));
+      if (!matchedLine) continue;
+      // Filtrer les négations / incertitudes
+      const negativeRe = /\bnon\s+(?:confirm|d[eé]montr|verbalis|certain|pr[eé]cis)|\bpartiellement|\bprobable|\bimplicite|\bplut[oô]t|\bpas\s+(?:r[eé]ellement|encore|de)|:\s*non/i;
+      if (negativeRe.test(matchedLine)) continue;
+      out.explicitForces.push(force);
     }
   }
 
@@ -1815,9 +1846,14 @@ function parseStructuredSummary(text: string): StructuredParse {
   }
 
   // ─── 13. Ouverture CDD/CDI ───
-  if (/ouvert[e]?\s+au\s+c?di|les\s+deux\s+m['']int[eé]ressent|ouverte?\s+(?:aussi\s+)?au\s+(?:cdd|cdi)/i.test(text)) {
+  // v21.1 — Anti-faux-positif : si "Ouverture CDI : —" / "Ouverture CDI : non communiqué"
+  // ou similaire, on laisse undefined (champ vide → "—" dans l'UI)
+  const explicitUndefined = /ouverture\s+(?:au\s+)?c?di\s*[:\-—]\s*(?:—|non\s+communiqu|non\s+pr[eé]cis|ind[eé]termin)/i.test(text);
+  if (explicitUndefined) {
+    // Ne rien mettre — laisse undefined
+  } else if (/(?:je\s+suis\s+)?ouvert[e]?\s+(?:au|à\s+un)\s+c?di|les\s+deux\s+m['']int[eé]ressent|ouverte?\s+(?:aussi\s+)?au\s+(?:cdd|cdi)\s+si|si\s+c['']est\s+une\s+belle\s+bo[iî]te/i.test(text)) {
     out.openCddCdi = true;
-  } else if (/uniquement\s+freelance|que\s+du\s+freelance|pas\s+de\s+cdi|ferm[eé]\s+au\s+cdi/i.test(text)) {
+  } else if (/uniquement\s+freelance|que\s+du\s+freelance|pas\s+de\s+cdi|ferm[eé]\s+au\s+cdi|pas\s+ouvert\s+au\s+cdi/i.test(text)) {
     out.openCddCdi = false;
   }
 
