@@ -31,11 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Canonical: override → pillar URL (absolute), otherwise /blog/{slug}
   const canonical = canonicalOverride ?? `/blog/${post.slug}`;
 
-  // Robots:
-  //   - Thin / auto-gen → noindex, follow (let link juice flow, don't index)
-  //   - Canonical-override → also noindex, follow (canonical alone is not
-  //     always respected by Google on thin duplicates; belt-and-suspenders)
-  const shouldNoindex = thin || !!canonicalOverride;
+  // Robots (v22 — SEO assoupli) :
+  //   - Thin (<300 mots) → noindex, follow (vrais stubs, pas de valeur)
+  //   - Canonical-override → INDEXABLE (canonical tag seul suffit pour Google
+  //     à signaler la page pilier comme version primaire — cf. Google Search
+  //     Central: "canonical is a strong hint, not a directive")
+  const shouldNoindex = thin;
 
   const ogImage = post.imageUrl
     ? [

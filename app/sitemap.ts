@@ -27,33 +27,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await getBlogPosts();
     blogRoutes = posts
       .filter((post) => {
-        // Exclude articles whose canonical points to a pillar page —
-        // Google shouldn't discover the blog URL at all.
-        if (getCanonicalForSlug(post.slug)) return false;
-
-        // Exclude thin / auto-generated articles (noindex anyway).
+        // v22 — Inclut tous les articles SAUF les vrais stubs (<300 mots).
+        // Les articles avec canonical override RESTENT dans le sitemap :
+        // Google les découvre, voit le canonical tag et priorise la page pilier.
+        // Ça évite les "Detected but not indexed" de Google Search Console.
         const plainText = stripHtml(post.content || "");
         if (isAutoGenThin(post.slug, plainText)) return false;
-
         return true;
       })
-      .map((post) => ({
-        url: `${SITE_URL}/blog/${post.slug}`,
-        lastModified: post.updatedAt || post.date,
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-      }));
+      .map((post) => {
+        const hasCanonical = !!getCanonicalForSlug(post.slug);
+        return {
+          url: `${SITE_URL}/blog/${post.slug}`,
+          lastModified: post.updatedAt || post.date,
+          changeFrequency: "monthly" as const,
+          // Priorité réduite pour canonical-override (la page pilier est
+          // la cible principale, l'article blog est secondaire)
+          priority: hasCanonical ? 0.3 : 0.6,
+        };
+      });
   } catch {
     // Fallback to static blog list if the DB is unreachable at build time.
     const { blogPosts } = await import("@/data/blog");
-    blogRoutes = blogPosts
-      .filter((post) => !getCanonicalForSlug(post.slug))
-      .map((post) => ({
-        url: `${SITE_URL}/blog/${post.slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-      }));
+    blogRoutes = blogPosts.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: getCanonicalForSlug(post.slug) ? 0.3 : 0.6,
+    }));
   }
 
   return [...staticRoutes, ...blogRoutes];

@@ -92,23 +92,23 @@ export function getCanonicalForSlug(slug: string): string | null {
 }
 
 /**
- * Detects auto-generated thin content that should be excluded from the sitemap
- * and flagged with `noindex, follow` in robots metadata.
+ * v22 — Detects VERY thin content only (editorial threshold).
+ * Previously flagged by slug patterns `p2-*` or `*-N` (seed batches), but
+ * these are false positives : the slug pattern alone doesn't indicate
+ * low quality. Seed articles with 500+ words are perfectly indexable.
  *
- * Rules:
- *   - Slug ends with `-N` (single digit) — seed-blog-massive.ts pattern
- *   - Slug ends with `-NN`, `-NNN` — also massive seed (indexes 10-999)
- *   - Slug starts with `p2-` — seed-blog-part2.ts pattern
- *   - Word count of `plainText` below 600 words — editorial thin content
+ * Rules (kept minimal to maximize indexable content while protecting
+ * against cannibalization) :
+ *   - Word count of plainText < 300 words → noindex (truly empty / stub)
+ *
+ * Slug patterns (`p2-*`, `*-N`) are NO LONGER auto-flagged as thin.
+ * Canonical-override articles are also now indexable (canonical tag
+ * alone handles cannibalization per Google's own guidelines).
  */
 export function isAutoGenThin(slug: string, plainText: string): boolean {
-  // Auto-gen slug patterns
-  if (/-\d+$/.test(slug)) return true;
-  if (slug.startsWith("p2-")) return true;
-
-  // Thin content threshold (strip HTML before counting)
+  void slug; // kept for API compat; no longer used
   const wordCount = plainText.split(/\s+/).filter(Boolean).length;
-  if (wordCount < 600) return true;
-
+  // Seuil assoupli de 600 → 300. Articles <300 mots = probablement stubs.
+  if (wordCount < 300) return true;
   return false;
 }
