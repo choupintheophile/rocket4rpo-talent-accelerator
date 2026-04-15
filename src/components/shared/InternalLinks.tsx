@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, ClipboardCheck, Play, GitCompare, FileText, BookOpen, ArrowRight } from "lucide-react";
+import { Calculator, ClipboardCheck, Play, GitCompare, FileText, BookOpen, ArrowRight, HelpCircle, Coins, Library } from "lucide-react";
 
 const ALL_LINKS = [
   { href: "/calculateur", label: "Calculateur ROI RPO", desc: "Estimez vos économies en passant au RPO", icon: Calculator, color: "text-emerald-400" },
@@ -11,6 +11,10 @@ const ALL_LINKS = [
   { href: "/offre", label: "Notre offre RPO", desc: "TA intégrés à vos équipes en 1 semaine", icon: FileText, color: "text-teal-400" },
   { href: "/blog", label: "Blog & conseils", desc: "Articles et bonnes pratiques recrutement", icon: BookOpen, color: "text-cyan-400" },
   { href: "/ressources", label: "Guides & templates", desc: "Ressources gratuites à télécharger", icon: FileText, color: "text-indigo-400" },
+  // v22.3 — Pages piliers SEO (ajoutées au pool d'internal links)
+  { href: "/qu-est-ce-que-le-rpo", label: "Qu'est-ce que le RPO ?", desc: "Guide complet : définition, fonctionnement, avantages", icon: HelpCircle, color: "text-sky-400" },
+  { href: "/combien-coute-un-rpo", label: "Combien coûte un RPO ?", desc: "Tarifs détaillés et calcul du ROI", icon: Coins, color: "text-yellow-400" },
+  { href: "/glossaire-rpo", label: "Glossaire RPO", desc: "15 termes essentiels du recrutement", icon: Library, color: "text-fuchsia-400" },
 ] as const;
 
 interface InternalLinksProps {
