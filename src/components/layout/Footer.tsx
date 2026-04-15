@@ -50,10 +50,23 @@ export const Footer = () => (
           <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Découvrir</h4>
           <ul className="space-y-3 text-sm text-background/70">
             <li><Link href="/offre" className="hover:text-primary transition-colors">Notre offre RPO</Link></li>
+            <li><Link href="/a-propos" className="hover:text-primary transition-colors">À propos</Link></li>
             <li><Link href="/rdv" className="hover:text-primary transition-colors">Parler à un expert</Link></li>
             <li><Link href="/contact" className="hover:text-primary transition-colors">Nous contacter</Link></li>
             <li><Link href="/recrutement" className="hover:text-primary transition-colors">Devenir freelance TA</Link></li>
             <li><Link href="/rocket4gtm" className="hover:text-primary transition-colors">Le groupe Rocket4GTM</Link></li>
+          </ul>
+        </div>
+
+        {/* Guides RPO — pages piliers SEO */}
+        <div>
+          <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Guides RPO</h4>
+          <ul className="space-y-3 text-sm text-background/70">
+            <li><Link href="/qu-est-ce-que-le-rpo" className="hover:text-primary transition-colors">Qu&apos;est-ce que le RPO ?</Link></li>
+            <li><Link href="/combien-coute-un-rpo" className="hover:text-primary transition-colors">Combien coûte un RPO ?</Link></li>
+            <li><Link href="/glossaire-rpo" className="hover:text-primary transition-colors">Glossaire RPO</Link></li>
+            <li><Link href="/blog" className="hover:text-primary transition-colors">Blog & conseils</Link></li>
+            <li><Link href="/ressources" className="hover:text-primary transition-colors">Guides & templates</Link></li>
           </ul>
         </div>
 
@@ -65,8 +78,6 @@ export const Footer = () => (
             <li><Link href="/assessment" className="hover:text-primary transition-colors">Diagnostic recrutement</Link></li>
             <li><Link href="/demo" className="hover:text-primary transition-colors">Démo interactive</Link></li>
             <li><Link href="/simulateurs" className="hover:text-primary transition-colors">Tous les simulateurs</Link></li>
-            <li><Link href="/ressources" className="hover:text-primary transition-colors">Guides & templates</Link></li>
-            <li><Link href="/blog" className="hover:text-primary transition-colors">Blog & conseils</Link></li>
           </ul>
         </div>
 

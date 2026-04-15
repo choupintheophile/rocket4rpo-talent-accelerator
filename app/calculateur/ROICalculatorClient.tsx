@@ -32,6 +32,7 @@ import { Input } from "@/components/ui/input";
 import { CTASection } from "@/components/shared/CTASection";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { InternalLinks } from "@/components/shared/InternalLinks";
+import { EnBref } from "@/components/shared/EnBref";
 
 /* ── helpers ────────────────────────────────────────────── */
 
@@ -528,6 +529,17 @@ export default function ROICalculatorClient({ faqs }: { faqs: FAQ[] }) {
           <p className="mt-1 text-sm text-muted-foreground max-w-2xl">
             Comparez en temps réel le coût d&apos;un recrutement via RPO, cabinet ou recrutement interne. Estimation en 30 secondes.
           </p>
+
+          <EnBref
+            theme="light"
+            className="mt-4 max-w-3xl"
+            bullets={[
+              "Le RPO coûte en moyenne 2 à 5 fois moins cher qu'un cabinet classique sur 10 recrutements annuels.",
+              "Coût moyen d'un cabinet : 18-22% du salaire brut par placement — soit 12-20K€ par recrutement.",
+              "Coût moyen d'un RPO embedded : 4-7K€ par recrutement sur volume (3+ postes/mois).",
+              "Le recrutement interne reste pertinent ≥15 postes/an ; en-dessous, le RPO est plus rentable.",
+            ]}
+          />
         </div>
       </section>
       <section className="pt-2 pb-8 md:pb-12 bg-[hsl(var(--rocket-cream))]">

@@ -40,6 +40,15 @@ export const metadata: Metadata = {
   description:
     "Recruteur senior intégré en 1 semaine, 5x moins cher qu'un cabinet. 200+ recrutements réalisés. Diagnostic gratuit →",
   metadataBase: new URL("https://rocket4rpo.com"),
+  alternates: {
+    canonical: "/",
+    // v22.2 — Hreflang : signaler au moteur que le site est FR-FR par défaut
+    // Si expansion internationale : ajouter "en-US": "https://rocket4rpo.com/en" etc.
+    languages: {
+      "fr-FR": "https://rocket4rpo.com",
+      "x-default": "https://rocket4rpo.com",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",

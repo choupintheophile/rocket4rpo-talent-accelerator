@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { InternalLinks } from "@/components/shared/InternalLinks";
+import { EnBref } from "@/components/shared/EnBref";
 import { ArrowRight, BookOpen, Hash, Link2 } from "lucide-react";
 
 const HUBSPOT = "/rdv";
@@ -63,6 +64,16 @@ export default function GlossaireRpoClient() {
               Talent Acquisition et du recrutement en entreprise. Pour parler le bon langage avec
               vos équipes et vos prestataires.
             </p>
+
+            <EnBref
+              theme="dark"
+              bullets={[
+                "15 termes clés du RPO et du recrutement, définis en 1-2 phrases chacun.",
+                "Acronymes essentiels : RPO, TA, ATS, TTF, TTH, NPS, scorecard, cooptation.",
+                "Couvre les 3 niveaux : stratégique (marque employeur, talent review), tactique (plan de chasse, pipeline) et opérationnel (booléen, sourcing multicanal).",
+                "Ressource de référence utilisée par les équipes RH, DRH et managers en recrutement.",
+              ]}
+            />
           </motion.div>
         </div>
       </section>
