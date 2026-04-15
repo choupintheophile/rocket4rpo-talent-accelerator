@@ -1079,10 +1079,16 @@ function extractIdentity(text: string): AutoScoreDetails["identity"] {
   if (linkedinMatch) out.linkedin = linkedinMatch[0].trim();
 
   // TJM — v17 : matching élargi
-  // Priorité 1 : "500€/j", "650 €/jour", "700/j", "800 EUR jour"
+  // Priorité 1 : "500€/j", "650 €/jour", "700/j", "800 EUR jour", "550 euros au jour"
   let tjmValue: string | undefined;
   const tjmSlashMatch = text.match(/(\d{3,4})\s*(?:€|eur|euros?)?\s*[/\\-]?\s*j(?:our|\b)/i);
   if (tjmSlashMatch) tjmValue = tjmSlashMatch[1];
+
+  // Priorité 1.5 : "550 euros au jour", "650 euros par jour", "700 euros la journée"
+  if (!tjmValue) {
+    const tjmAuJourMatch = text.match(/(\d{3,4})\s*euros?\s+(?:au|par|la)\s+(?:jour|journ[eé]e)/i);
+    if (tjmAuJourMatch) tjmValue = tjmAuJourMatch[1];
+  }
 
   // Priorité 2 : "TJM ... 550", "TJM de 600", "TJM à 500", "tarif journalier ... 450"
   if (!tjmValue) {
@@ -1162,11 +1168,13 @@ function extractIdentity(text: string): AutoScoreDetails["identity"] {
 
   // v17.4 — Années d'expérience
   // "X ans d'expérience", "ça fait X ans", "depuis X ans", "plus de X ans"
+  // Note : (c|ç)a pour matcher "ca" et "ça" (utilisateur peut avoir l'accent ou non)
   const yearsPatterns = [
     /(\d{1,2})\s+ans?\s+d['']exp(?:erience)?/i,
-    /ca\s+fait\s+(\d{1,2})\s+ans?/i,
-    /depuis\s+(\d{1,2})\s+an(?:nee)?s?/i,
+    /[cç]a\s+fait\s+(\d{1,2})\s+ans?/i,
+    /depuis\s+(\d{1,2})\s+an(?:nee|née)?s?/i,
     /plus\s+de\s+(\d{1,2})\s+ans?/i,
+    /j['']ai\s+(\d{1,2})\s+ans?\s+d['']ancien/i,
   ];
   let yearsExp: number | null = null;
   for (const pattern of yearsPatterns) {
@@ -1570,12 +1578,15 @@ function parseStructuredSummary(text: string): StructuredParse {
   }
 
   // ─── 2. Niveau d'expertise ───
-  // "Niveau Senior (6-10 ans)" / "niveau Expert" / "Senior (6-10 ans)"
+  // Patterns stricts pour éviter faux positifs (ex: "niveau expert" dans
+  // "LinkedIn Recruiter niveau expert" matchait "Expert"). Exige soit le
+  // libellé complet entre parenthèses "(10+ ans)" / "(6-10 ans)" / "(3-5 ans)",
+  // soit "Niveau Junior" exactement (Junior n'a pas de range).
   const levelPatterns: { re: RegExp; value: string }[] = [
-    { re: /\bniveau\s+expert\b|\bexpert\s*\(10\+\s*an/i, value: "Expert (10+ ans)" },
-    { re: /\bniveau\s+senior\b|\bsenior\s*\(6-10\s*an/i, value: "Senior (6-10 ans)" },
-    { re: /\bniveau\s+mid\b|\bmid\s*\(3-5\s*an/i, value: "Mid (3-5 ans)" },
-    { re: /\bniveau\s+junior\b/i, value: "Junior" },
+    { re: /\bexpert\s*\(10\+\s*an/i, value: "Expert (10+ ans)" },
+    { re: /\bsenior\s*\(6-10\s*an/i, value: "Senior (6-10 ans)" },
+    { re: /\bmid\s*\(3-5\s*an/i, value: "Mid (3-5 ans)" },
+    { re: /\bniveau\s+junior\b|\bjunior\s*\(0-2\s*an/i, value: "Junior" },
   ];
   for (const p of levelPatterns) {
     if (p.re.test(text)) {
@@ -1679,20 +1690,35 @@ function parseStructuredSummary(text: string): StructuredParse {
     const reLang = new RegExp(`\\b${langNorm}\\b`, "i");
     const match = reLang.exec(normalText);
     if (match) {
-      // Fenêtre = depuis la langue jusqu'à : virgule, point, prochaine langue, ou max 35 chars
       const startIdx = match.index + langNorm.length;
-      const remaining = normalText.slice(startIdx, Math.min(normalText.length, startIdx + 50));
-      // Trouver la position du prochain stopper
-      const stopRe = /[,.;()]|\b(francai|anglai|espagnol|allemand|italien|portugai|neerlandai|arabe|chinoi|russe)\b/i;
+      const remaining = normalText.slice(startIdx, Math.min(normalText.length, startIdx + 80));
+      const stopRe = /[,.;]|\b(francai|anglai|espagnol|allemand|italien|portugai|neerlandai|arabe|chinoi|russe)\b/i;
       const stopMatch = stopRe.exec(remaining);
-      const window = stopMatch ? remaining.slice(0, stopMatch.index) : remaining.slice(0, 35);
+
+      // Pass 1 : fenêtre stricte (jusqu'au prochain stop ou 50 chars)
+      const strictWindow = stopMatch ? remaining.slice(0, stopMatch.index) : remaining.slice(0, 50);
       let level = "";
       for (const lvl of levelKeywords) {
-        if (lvl.re.test(window)) {
+        if (lvl.re.test(strictWindow)) {
           level = lvl.level;
           break;
         }
       }
+
+      // Pass 2 (fallback) : si pas de niveau trouvé dans la fenêtre stricte,
+      // élargir jusqu'à la prochaine langue uniquement (jusqu'à 80 chars)
+      if (!level) {
+        const wideStopRe = /\b(francai|anglai|espagnol|allemand|italien|portugai|neerlandai|arabe|chinoi|russe)\b/i;
+        const wideStop = wideStopRe.exec(remaining);
+        const wideWindow = wideStop ? remaining.slice(0, wideStop.index) : remaining;
+        for (const lvl of levelKeywords) {
+          if (lvl.re.test(wideWindow)) {
+            level = lvl.level;
+            break;
+          }
+        }
+      }
+
       foundLangs.push({ lang, level });
     }
   }

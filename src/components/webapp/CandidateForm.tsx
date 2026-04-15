@@ -688,7 +688,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
               </div>
             </div>
 
-            {/* v17.4 — Highlights : infos extraites détaillées */}
+            {/* v17.4 + v20 — Highlights : infos extraites détaillées */}
             {(lastAnalysis.identity.age ||
               lastAnalysis.identity.yearsExperience ||
               lastAnalysis.identity.mobility ||
@@ -698,7 +698,13 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
               lastAnalysis.identity.tools.length > 0 ||
               lastAnalysis.identity.methodologies.length > 0 ||
               lastAnalysis.identity.companies.length > 0 ||
-              lastAnalysis.speakerSegmented) && (
+              lastAnalysis.speakerSegmented ||
+              lastAnalysis.qualifProfile ||
+              lastAnalysis.intelligenceLevel ||
+              lastAnalysis.motivationLevel ||
+              lastAnalysis.sympathyLevel ||
+              lastAnalysis.languagesSpoken.length > 0 ||
+              typeof lastAnalysis.openCddCdi === "boolean") && (
               <div className="mt-3 pt-3 border-t border-gray-100 space-y-2">
                 <div className="text-[9px] font-semibold uppercase tracking-wider text-gray-500">
                   Highlights extraits
@@ -733,6 +739,49 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                   {lastAnalysis.identity.availability && (
                     <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-200">
                       📅 Dispo : {lastAnalysis.identity.availability}
+                    </span>
+                  )}
+                  {/* v20 — champs structurés du parser */}
+                  {lastAnalysis.qualifProfile && (
+                    <span className="px-2 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">
+                      🧭 Qualif : {lastAnalysis.qualifProfile}
+                      {lastAnalysis.qualifLevel && ` · ${lastAnalysis.qualifLevel}`}
+                    </span>
+                  )}
+                  {lastAnalysis.qualifRecruitedTypes.length > 0 && (
+                    <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+                      👥 {lastAnalysis.qualifRecruitedTypes.length} types recrutés
+                    </span>
+                  )}
+                  {lastAnalysis.intelligenceLevel && (
+                    <span className="px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
+                      🧠 Intel : {lastAnalysis.intelligenceLevel}
+                    </span>
+                  )}
+                  {lastAnalysis.motivationLevel && (
+                    <span className="px-2 py-0.5 rounded bg-orange-50 text-orange-700 border border-orange-200">
+                      🔥 Moti : {lastAnalysis.motivationLevel}
+                    </span>
+                  )}
+                  {lastAnalysis.sympathyLevel && (
+                    <span className="px-2 py-0.5 rounded bg-pink-50 text-pink-700 border border-pink-200">
+                      💓 Symp : {lastAnalysis.sympathyLevel}
+                    </span>
+                  )}
+                  {typeof lastAnalysis.openCddCdi === "boolean" && (
+                    <span className={`px-2 py-0.5 rounded border ${
+                      lastAnalysis.openCddCdi
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                        : "bg-red-50 text-red-700 border-red-200"
+                    }`}>
+                      ✓ Ouvert CDI : {lastAnalysis.openCddCdi ? "Oui" : "Non"}
+                    </span>
+                  )}
+                  {lastAnalysis.languagesSpoken.length > 0 && (
+                    <span className="px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">
+                      🌐 {lastAnalysis.languagesSpoken.length} langue{lastAnalysis.languagesSpoken.length > 1 ? "s" : ""}
+                      {" "}
+                      ({lastAnalysis.languagesSpoken.filter((l) => l.level).length} avec niveau)
                     </span>
                   )}
                 </div>
