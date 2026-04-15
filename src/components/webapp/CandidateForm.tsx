@@ -129,6 +129,8 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
   const [hasCv, setHasCv] = useState(candidate?.hasCv || false);
   const [cvPath, setCvPath] = useState(candidate?.cvPath || "");
   const [cvUploading, setCvUploading] = useState(false);
+  // v21 — id du draft CV (uploadé en DB AWS avant que le candidat soit créé)
+  const [cvDraftId, setCvDraftId] = useState<string | null>(null);
 
   // Tags
   const [forces, setForces] = useState<Set<string>>(() => new Set((candidate?.forces as string[]) || []));
@@ -434,6 +436,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
       languagesSpoken: languagesSpoken.filter((l) => l.lang),
       hasCv,
       cvPath: cvPath || null,
+      cvDraftId: cvDraftId || undefined,
     };
 
     startTransition(async () => {
@@ -519,6 +522,7 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                 await fetch("/api/upload", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ cvPath }) });
                 setHasCv(false);
                 setCvPath("");
+                setCvDraftId(null);
               }}
               className="text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors"
             >
@@ -544,6 +548,8 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
                   if (res.ok && data.cvPath) {
                     setCvPath(data.cvPath);
                     setHasCv(true);
+                    // v21 — Mémorise l'id du draft pour l'attacher au save
+                    if (data.cvDraftId) setCvDraftId(data.cvDraftId);
                   } else {
                     alert(data.error || "Erreur upload");
                   }

@@ -119,9 +119,26 @@ model Candidate {
   pct               Int      @default(0)
   filled            Int      @default(0)
   hasCv             Boolean  @default(false)
-  cvPath            String?
+  cvPath            String?  // legacy : URL relative (ex: /cv/xxx.pdf) — conservé rétro-compat
+  // v21 — CV stocké directement dans la DB AWS (plus de filesystem éphémère)
+  cvData            Bytes?   // binaire du fichier
+  cvMimeType        String?  // ex: application/pdf
+  cvFilename        String?  // nom original du fichier
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
   @@map("candidates")
+}
+
+// v21 — Drafts CV uploadés avant que le candidat ne soit sauvegardé
+// Permet d'attacher un CV au save final via cvDraftId
+// Cleanup automatique : un cron supprime les CvUpload de plus de 24h
+model CvUpload {
+  id        String   @id @default(cuid())
+  filename  String
+  mimeType  String
+  data      Bytes
+  createdAt DateTime @default(now())
+
+  @@map("cv_uploads")
 }

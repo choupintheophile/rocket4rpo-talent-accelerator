@@ -77,8 +77,28 @@ export async function createCandidate(data: {
   languagesSpoken?: { lang: string; level: string }[];
   hasCv?: boolean;
   cvPath?: string;
+  // v21 — si un CV draft a été uploadé avant le save, on le transfère
+  cvDraftId?: string;
 }): Promise<Candidate> {
   const sc = calcScore(data.scores || null);
+
+  // v21 — Récupère le CV draft s'il existe, pour le transférer dans le candidat
+  // Cast explicite vers Uint8Array<ArrayBuffer> requis par Prisma 7
+  let cvData: Uint8Array<ArrayBuffer> | null = null;
+  let cvMimeType: string | null = null;
+  let cvFilename: string | null = null;
+  if (data.cvDraftId) {
+    const draft = await prisma.cvUpload.findUnique({ where: { id: data.cvDraftId } });
+    if (draft) {
+      // Copie dans un ArrayBuffer pur pour satisfaire le type strict de Prisma
+      const ab = new ArrayBuffer(draft.data.byteLength);
+      const view = new Uint8Array(ab);
+      view.set(draft.data);
+      cvData = view;
+      cvMimeType = draft.mimeType;
+      cvFilename = draft.filename;
+    }
+  }
 
   return prisma.candidate.create({
     data: {
@@ -115,9 +135,23 @@ export async function createCandidate(data: {
       maxScore: sc.max,
       pct: sc.pct,
       filled: sc.filled,
-      hasCv: data.hasCv || false,
+      hasCv: data.hasCv || !!cvData,
       cvPath: data.cvPath || null,
+      // v21 — Bin du CV transféré depuis le draft (si présent)
+      cvData,
+      cvMimeType,
+      cvFilename,
     },
+  }).then(async (created) => {
+    // Si on a transféré un draft, on peut le supprimer (cleanup) + mettre à jour cvPath
+    if (data.cvDraftId && cvData) {
+      await prisma.cvUpload.delete({ where: { id: data.cvDraftId } }).catch(() => null);
+      await prisma.candidate.update({
+        where: { id: created.id },
+        data: { cvPath: `/api/cv/${created.id}` },
+      });
+    }
+    return created;
   });
 }
 
@@ -158,9 +192,32 @@ export async function updateCandidate(
     languagesSpoken?: { lang: string; level: string }[];
     hasCv?: boolean;
     cvPath?: string | null;
+    // v21 — transfert depuis CvUpload draft si fourni
+    cvDraftId?: string;
   }
 ): Promise<Candidate> {
   const sc = data.scores ? calcScore(data.scores) : null;
+
+  // v21 — Si un cvDraftId est fourni, lit le binaire et l'attache au candidat
+  if (data.cvDraftId) {
+    const draft = await prisma.cvUpload.findUnique({ where: { id: data.cvDraftId } });
+    if (draft) {
+      const ab = new ArrayBuffer(draft.data.byteLength);
+      const view = new Uint8Array(ab);
+      view.set(draft.data);
+      await prisma.candidate.update({
+        where: { id },
+        data: {
+          cvData: view,
+          cvMimeType: draft.mimeType,
+          cvFilename: draft.filename,
+          hasCv: true,
+          cvPath: `/api/cv/${id}`,
+        },
+      });
+      await prisma.cvUpload.delete({ where: { id: data.cvDraftId } }).catch(() => null);
+    }
+  }
 
   const updateData: Record<string, unknown> = {};
 
