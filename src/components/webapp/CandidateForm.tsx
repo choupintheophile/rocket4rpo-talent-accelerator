@@ -295,12 +295,51 @@ export function CandidateForm({ candidate }: CandidateFormProps) {
     if (id.prenom && !prenom.trim()) setPrenom(id.prenom);
     if (id.nom && !nom.trim()) setNom(id.nom);
 
-    // v18 — Auto-fill openCddCdi selon le contrat détecté par autoScore
+    // v20 — openCddCdi prioritaire depuis le parser structuré si présent
     if (openCddCdi === null) {
-      if (result.contrat === "CDI" || result.contrat === "CDD" || result.contrat === "Les deux") {
+      if (typeof result.openCddCdi === "boolean") {
+        setOpenCddCdi(result.openCddCdi);
+      } else if (result.contrat === "CDI" || result.contrat === "CDD" || result.contrat === "Les deux") {
         setOpenCddCdi(true);
       }
-      // Si "TJM Freelance" seul, on laisse null (indéterminé sans info explicite)
+      // Si "TJM Freelance" seul sans mention explicite d'ouverture → laisser null
+    }
+
+    // v20 — Qualification path (depuis le parser structuré)
+    if (result.qualifProfile && !qualifProfile) setQualifProfile(result.qualifProfile);
+    if (result.qualifLevel && !qualifLevel) setQualifLevel(result.qualifLevel);
+    if (result.qualifRecruitedTypes.length > 0) {
+      setQualifRecruitedTypes((prev) => {
+        const next = new Set(prev);
+        result.qualifRecruitedTypes.forEach((t) => next.add(t));
+        return next;
+      });
+    }
+    if (Object.keys(result.qualifContext).length > 0) {
+      setQualifContext((prev) => {
+        const next = { ...prev };
+        for (const [group, values] of Object.entries(result.qualifContext)) {
+          const prevSet = next[group] || new Set<string>();
+          const nextSet = new Set(prevSet);
+          values.forEach((v) => nextSet.add(v));
+          next[group] = nextSet;
+        }
+        return next;
+      });
+    }
+
+    // v20 — Évaluation humaine : Intelligence / Motivation / Sympathie (niveaux)
+    if (result.intelligenceLevel && !intelligenceLevel) setIntelligenceLevel(result.intelligenceLevel);
+    if (result.motivationLevel && !motivationLevel) setMotivationLevel(result.motivationLevel);
+    if (result.sympathyLevel && !sympathyLevel) setSympathyLevel(result.sympathyLevel);
+
+    // v20 — Langues parlées (avec niveau) : merge avec l'existant, pas d'écrasement
+    if (result.languagesSpoken.length > 0) {
+      setLanguagesSpoken((prev) => {
+        const existingLangs = new Set(prev.map((l) => l.lang));
+        const toAdd = result.languagesSpoken.filter((l) => !existingLangs.has(l.lang));
+        return [...prev, ...toAdd.map((l) => ({ lang: l.lang, level: l.level as SpokenLanguage["level"] }))];
+      });
     }
 
     // v17 — Merger les 4 taxonomies (ADD sans remove, préserve les choix manuels)

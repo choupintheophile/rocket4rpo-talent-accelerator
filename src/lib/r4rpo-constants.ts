@@ -933,6 +933,25 @@ export interface AutoScoreDetails {
   speakerSegmented: boolean;
   /** v17.4 — Ratio 0-1 du texte attribué au recruteur (Théophile) */
   recruiterRatio: number;
+  /** v20 — Parser de résumé structuré (sections [Critère XX], [Ressenti], etc.) */
+  /** Ouverture CDD/CDI dérivée du contrat ou des formulations explicites */
+  openCddCdi?: boolean;
+  /** Qualification — profil (Généraliste / Sales / IT) */
+  qualifProfile?: string;
+  /** Qualification — niveau (Junior / Mid... / Senior... / Expert...) */
+  qualifLevel?: string;
+  /** Qualification — types recrutés (SDR, AE, DevOps, etc.) */
+  qualifRecruitedTypes: string[];
+  /** Qualification — contexte (Record<groupe, valeurs[]>) */
+  qualifContext: Record<string, string[]>;
+  /** Niveau global Intelligence (Faible / Moyen / Fort / Exceptionnel) */
+  intelligenceLevel?: string;
+  /** Niveau global Motivation */
+  motivationLevel?: string;
+  /** Niveau global Sympathie */
+  sympathyLevel?: string;
+  /** Langues parlées avec niveau (depuis identity.languages → structuré) */
+  languagesSpoken: { lang: string; level: string }[];
   /** Score de confiance 0-100 basé sur la longueur du texte */
   confidence: number;
   /** Niveau de confiance lisible */
@@ -1499,6 +1518,286 @@ function detectMultiSelect(
   return detected;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   v20 — Parser de résumé structuré
+   Reconnaît explicitement les sections du prompt Rocket4RPO :
+   - "Profil de recruteur : [Sales/IT/Généraliste]"
+   - "Niveau [Junior/Mid/Senior/Expert]"
+   - Liste de types recrutés après "J'ai recruté des X, Y, Z"
+   - "Contexte : cycle de vente X, taille contrats Y, ..."
+   - Section [Ressenti] : "Intelligence [X]", "Motivation [X]", "Sympathie [X]"
+   - "Langues : français (natif), anglais courant (C1), espagnol bilingue..."
+   - [Profil recruté détecté] / [Type de boîte] / [Mobilité & dispo]
+   - "Ouvert(e) au CDI" / "les deux m'intéressent"
+   ═══════════════════════════════════════════════════════════════════════ */
+
+interface StructuredParse {
+  openCddCdi?: boolean;
+  qualifProfile?: string;
+  qualifLevel?: string;
+  qualifRecruitedTypes: string[];
+  qualifContext: Record<string, string[]>;
+  intelligenceLevel?: string;
+  motivationLevel?: string;
+  sympathyLevel?: string;
+  languagesSpoken: { lang: string; level: string }[];
+  explicitProfileTypes: string[];
+  explicitCompanyTypes: string[];
+  explicitMobility?: "Full remote" | "Hybride" | "Présentiel";
+  explicitAvailability?: "Immédiate" | "Court-terme (<1 mois)" | "Moyen-terme (1-3 mois)" | "Long-terme (3 mois+)";
+  explicitForces: string[];
+  explicitRisks: string[];
+}
+
+function parseStructuredSummary(text: string): StructuredParse {
+  const out: StructuredParse = {
+    qualifRecruitedTypes: [],
+    qualifContext: {},
+    languagesSpoken: [],
+    explicitProfileTypes: [],
+    explicitCompanyTypes: [],
+    explicitForces: [],
+    explicitRisks: [],
+  };
+
+  // ─── 1. Profil de recruteur ───
+  const profileMatch = text.match(/profil(?:\s+de\s+recruteur)?\s*:\s*(g[eé]n[eé]raliste|sales|it)\b/i);
+  if (profileMatch) {
+    const p = profileMatch[1].toLowerCase();
+    if (p.includes("g") && p.includes("n")) out.qualifProfile = "Généraliste";
+    else if (p === "sales") out.qualifProfile = "Sales";
+    else if (p === "it") out.qualifProfile = "IT";
+  }
+
+  // ─── 2. Niveau d'expertise ───
+  // "Niveau Senior (6-10 ans)" / "niveau Expert" / "Senior (6-10 ans)"
+  const levelPatterns: { re: RegExp; value: string }[] = [
+    { re: /\bniveau\s+expert\b|\bexpert\s*\(10\+\s*an/i, value: "Expert (10+ ans)" },
+    { re: /\bniveau\s+senior\b|\bsenior\s*\(6-10\s*an/i, value: "Senior (6-10 ans)" },
+    { re: /\bniveau\s+mid\b|\bmid\s*\(3-5\s*an/i, value: "Mid (3-5 ans)" },
+    { re: /\bniveau\s+junior\b/i, value: "Junior" },
+  ];
+  for (const p of levelPatterns) {
+    if (p.re.test(text)) {
+      out.qualifLevel = p.value;
+      break;
+    }
+  }
+
+  // ─── 3. Types recrutés (cherche dans "J'ai recruté des X, des Y") ───
+  const allTypes = Array.from(
+    new Set([
+      ...QUALIF_RECRUITED_TYPES["Généraliste"],
+      ...QUALIF_RECRUITED_TYPES["Sales"],
+      ...QUALIF_RECRUITED_TYPES["IT"],
+    ]),
+  );
+  const foundTypes = new Set<string>();
+  for (const type of allTypes) {
+    // Match tolérant : "SDR", "Account Executive", "Dev front", etc.
+    const re = new RegExp(`\\b${type.replace(/[.&+*?^$()[\]{}|\\/-]/g, "\\$&")}\\b`, "i");
+    if (re.test(text)) foundTypes.add(type);
+  }
+  out.qualifRecruitedTypes = Array.from(foundTypes);
+
+  // ─── 4. Contexte détaillé (cycle de vente, stack, taille entreprise, etc.) ───
+  const lowerText = text.toLowerCase();
+  const context: Record<string, string[]> = {};
+
+  // Détection pour chaque profil des 3 branches
+  const profileForContext = out.qualifProfile as keyof typeof QUALIF_CONTEXT_BY_PROFILE;
+  if (profileForContext && QUALIF_CONTEXT_BY_PROFILE[profileForContext]) {
+    for (const group of QUALIF_CONTEXT_BY_PROFILE[profileForContext]) {
+      const matches: string[] = [];
+      for (const opt of group.options) {
+        const optLow = opt.toLowerCase();
+        // Chercher la phrase exacte OU ses composants clés
+        if (lowerText.includes(optLow)) {
+          matches.push(opt);
+        } else {
+          // Match par keywords essentiels (ex: "cycle long" matche "Enterprise (cycle long)")
+          const coreKeywords = opt.match(/\w+/g) || [];
+          const significantKws = coreKeywords.filter((k) => k.length > 3);
+          if (significantKws.length >= 1 && significantKws.every((k) => lowerText.includes(k.toLowerCase()))) {
+            matches.push(opt);
+          }
+        }
+      }
+      if (matches.length > 0) context[group.title] = matches;
+    }
+  }
+  out.qualifContext = context;
+
+  // ─── 5. Évaluation humaine (Intelligence / Motivation / Sympathie) ───
+  const levelWords = ["Faible", "Moyen", "Fort", "Exceptionnel"];
+  function findLevel(dimension: string): string | undefined {
+    // Pattern 1 : "Intelligence Fort", "Motivation : Exceptionnel"
+    const re1 = new RegExp(
+      `${dimension}\\s*(?::|—|-)?\\s*(${levelWords.join("|")})\\b`,
+      "i",
+    );
+    const m1 = text.match(re1);
+    if (m1) {
+      const found = m1[1];
+      return levelWords.find((l) => l.toLowerCase() === found.toLowerCase());
+    }
+    // Pattern 2 : "Intelligence [Fort]"
+    const re2 = new RegExp(
+      `${dimension}\\s*\\[(${levelWords.join("|")})\\]`,
+      "i",
+    );
+    const m2 = text.match(re2);
+    if (m2) {
+      return levelWords.find((l) => l.toLowerCase() === m2[1].toLowerCase());
+    }
+    return undefined;
+  }
+  out.intelligenceLevel = findLevel("Intelligence");
+  out.motivationLevel = findLevel("Motivation");
+  out.sympathyLevel = findLevel("Sympathie");
+
+  // ─── 6. Langues parlées avec niveau ───
+  // Format attendu : "français (natif), anglais courant (C1), espagnol bilingue, italien notions"
+  const langPresets = [
+    "Français", "Anglais", "Espagnol", "Allemand", "Italien",
+    "Portugais", "Néerlandais", "Arabe", "Chinois", "Russe",
+  ];
+  const levelKeywords: { re: RegExp; level: string }[] = [
+    { re: /natif|natal/i, level: "Natif" },
+    { re: /bilingue/i, level: "Bilingue" },
+    { re: /c1|c2|courant(?:e)?|fluent/i, level: "Courant (C1-C2)" },
+    { re: /b2|op[eé]rationnel/i, level: "Opérationnel (B2)" },
+    { re: /b1|interm[eé]diaire/i, level: "Intermédiaire (B1)" },
+    { re: /notion|scolaire|d[eé]butant/i, level: "Notions" },
+  ];
+  const normalText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  const foundLangs: { lang: string; level: string }[] = [];
+  // Pour limiter la fenêtre de recherche : stop à la prochaine virgule, point, ou nom d'une autre langue
+  const langPresetsNorm = langPresets.map((l) => l.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+  for (const lang of langPresets) {
+    const langNorm = lang.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const reLang = new RegExp(`\\b${langNorm}\\b`, "i");
+    const match = reLang.exec(normalText);
+    if (match) {
+      // Fenêtre = depuis la langue jusqu'à : virgule, point, prochaine langue, ou max 35 chars
+      const startIdx = match.index + langNorm.length;
+      const remaining = normalText.slice(startIdx, Math.min(normalText.length, startIdx + 50));
+      // Trouver la position du prochain stopper
+      const stopRe = /[,.;()]|\b(francai|anglai|espagnol|allemand|italien|portugai|neerlandai|arabe|chinoi|russe)\b/i;
+      const stopMatch = stopRe.exec(remaining);
+      const window = stopMatch ? remaining.slice(0, stopMatch.index) : remaining.slice(0, 35);
+      let level = "";
+      for (const lvl of levelKeywords) {
+        if (lvl.re.test(window)) {
+          level = lvl.level;
+          break;
+        }
+      }
+      foundLangs.push({ lang, level });
+    }
+  }
+  // Garde-fou : retire les doublons (au cas où)
+  void langPresetsNorm;
+  const seen = new Set<string>();
+  out.languagesSpoken = foundLangs.filter((l) => {
+    if (seen.has(l.lang)) return false;
+    seen.add(l.lang);
+    return true;
+  });
+
+  // ─── 7. Section explicite [Profil recruté détecté] ───
+  const profileSectionMatch = text.match(/\[\s*Profil\s+recrut[eé]\s+d[eé]tect[eé]\s*\]\s*[:\n]?([^[\n]+)/i);
+  if (profileSectionMatch) {
+    const section = profileSectionMatch[1];
+    for (const tag of PROFILE_TYPES_PRESETS) {
+      const re = new RegExp(`\\b${tag.replace(/[.&+*?^$()[\]{}|\\/-]/g, "\\$&")}\\b`, "i");
+      if (re.test(section)) out.explicitProfileTypes.push(tag);
+    }
+  }
+
+  // ─── 8. Section explicite [Type de boîte] ───
+  const companySectionMatch = text.match(/\[\s*Type\s+de\s+bo[iî]te\s*\]\s*[:\n]?([^[\n]+)/i);
+  if (companySectionMatch) {
+    const section = companySectionMatch[1];
+    for (const tag of COMPANY_TYPES_PRESETS) {
+      const re = new RegExp(`\\b${tag.replace(/[.&+*?^$()[\]{}|\\/-]/g, "\\$&")}\\b`, "i");
+      if (re.test(section)) out.explicitCompanyTypes.push(tag);
+    }
+  }
+
+  // ─── 9. Mobilité explicite ───
+  if (/full\s*remote|100\s*%\s*t[eé]l[eé]travail|full\s*t[eé]l[eé]travail/i.test(text)) {
+    out.explicitMobility = "Full remote";
+  } else if (/hybride|mix\s*bureau|2\s+jours\s+sur\s+place|3\s+jours\s+sur\s+place|2-3\s+jours/i.test(text)) {
+    out.explicitMobility = "Hybride";
+  } else if (/full\s*pr[eé]sentiel|5\s+jours\s+sur\s+place/i.test(text)) {
+    out.explicitMobility = "Présentiel";
+  }
+
+  // ─── 10. Disponibilité explicite ───
+  if (/imm[eé]diate|dispo\s+(?:de\s+suite|imm[eé]diat)|asap|d[eè]s\s+maintenant/i.test(text)) {
+    out.explicitAvailability = "Immédiate";
+  } else if (/court[\s-]terme|sous\s+(?:une?\s+semaine|2\s+semaines|15\s+jours)|pr[eé]avis\s+(?:court|\d+\s+semaines?)/i.test(text)) {
+    out.explicitAvailability = "Court-terme (<1 mois)";
+  } else if (/moyen[\s-]terme|1-3\s+mois|dans\s+(?:un|1|2|3)\s+mois|pr[eé]avis\s+de\s+(?:1|2|3)\s+mois/i.test(text)) {
+    out.explicitAvailability = "Moyen-terme (1-3 mois)";
+  } else if (/long[\s-]terme|3\s+mois\+|long\s+pr[eé]avis/i.test(text)) {
+    out.explicitAvailability = "Long-terme (3 mois+)";
+  }
+
+  // ─── 11. Section explicite [Forces détectées] ───
+  const forcesSectionMatch = text.match(/\[\s*Forces\s+d[eé]tect[eé]e?s?\s*\]\s*[:\n]?([\s\S]*?)(?=\[|\n\s*\n|$)/i);
+  if (forcesSectionMatch) {
+    const section = forcesSectionMatch[1];
+    const forcesCatalog = [
+      "Sourcing proactif fort", "Chiffres précis spontanés", "Autonomie démontrée",
+      "Closing efficace", "Fit RPO évident", "Management d'équipe",
+      "Leadership TA senior", "Profil élite", "Fort réseau mobilisable",
+      "Structurateur de process", "Fort volume de placement",
+      "Deliverer (atteint ses KPI)", "Expérience en top boîte",
+      "Bilingue / profil international", "Senior 15+ ans",
+      "Expertise executive search",
+    ];
+    for (const force of forcesCatalog) {
+      // Match par keywords principaux (minuscule, tolérant)
+      const core = force.toLowerCase().split(/[()/'-]/)[0].trim();
+      if (core.length > 3 && section.toLowerCase().includes(core)) {
+        out.explicitForces.push(force);
+      }
+    }
+  }
+
+  // ─── 12. Section explicite [Alertes] ou [Red flags] ───
+  const risksSectionMatch = text.match(/\[\s*(?:Alertes|Red\s*flags|Risques)\s*\]\s*[:\n]?([\s\S]*?)(?=\[|\n\s*\n|$)/i);
+  if (risksSectionMatch) {
+    const section = risksSectionMatch[1];
+    const risksCatalog = [
+      "Manque de chiffres", "Communication floue", "Peu autonome",
+      "Pas de fit RPO", "Outils mal maîtrisés", "Reconversion (profil à valider)",
+      "Rupture conventionnelle récente", "Mission courte (< 3 mois)",
+      "Echec de placement récent", "Expérience négative récente",
+      "Contexte difficile évoqué", "Poste supprimé récemment",
+      "Manque de budget/outils", "Refus client(s) reporté(s)",
+      "Pipe commercial faible", "Activité irrégulière", "Marché limité",
+    ];
+    for (const risk of risksCatalog) {
+      const core = risk.toLowerCase().split(/[()/'-]/)[0].trim();
+      if (core.length > 3 && section.toLowerCase().includes(core)) {
+        out.explicitRisks.push(risk);
+      }
+    }
+  }
+
+  // ─── 13. Ouverture CDD/CDI ───
+  if (/ouvert[e]?\s+au\s+c?di|les\s+deux\s+m['']int[eé]ressent|ouverte?\s+(?:aussi\s+)?au\s+(?:cdd|cdi)/i.test(text)) {
+    out.openCddCdi = true;
+  } else if (/uniquement\s+freelance|que\s+du\s+freelance|pas\s+de\s+cdi|ferm[eé]\s+au\s+cdi/i.test(text)) {
+    out.openCddCdi = false;
+  }
+
+  return out;
+}
+
 /**
  * Analyse un résumé d'entretien et retourne un scoring détaillé.
  * v16 : matching tolérant (accents, pluriels), extraction identité, forces
@@ -1506,6 +1805,8 @@ function detectMultiSelect(
  * v17 : + détection contrat + 4 taxonomies multi-select.
  * v17.4 : + séparation candidat/recruteur, extraction étendue (âge, exp, langues,
  *          outils, méthodologies, entreprises, mobilité, dispo).
+ * v20 : + parseStructuredSummary() qui reconnaît le format du prompt structuré
+ *        et pré-remplit qualif path, levels I/M/S, langues avec niveau, etc.
  */
 export function autoScore(text: string, options: AutoScoreOptions = {}): AutoScoreDetails {
   // v17.4 — Sépare candidat vs Théophile si structure détectée
@@ -1727,6 +2028,41 @@ export function autoScore(text: string, options: AutoScoreOptions = {}): AutoSco
   const profileStyle = detectMultiSelect(normalized, PROFILE_STYLE_DETECTION);
   const intelligenceTypes = detectMultiSelect(normalized, INTELLIGENCE_TYPES_DETECTION);
 
+  // v20 — Parser de résumé structuré (priorité sur détections génériques)
+  const structured = parseStructuredSummary(text);
+
+  // Merge : les profileTypes/companyTypes explicites complètent les détections auto
+  const finalProfileTypes = Array.from(new Set([...profileTypes, ...structured.explicitProfileTypes]));
+  const finalCompanyTypes = Array.from(new Set([...companyTypes, ...structured.explicitCompanyTypes]));
+
+  // Mobilité / dispo explicites écrasent les détections d'extractIdentity
+  if (structured.explicitMobility) identity.mobility = structured.explicitMobility;
+  if (structured.explicitAvailability) identity.availability = structured.explicitAvailability;
+
+  // Langues structurées si disponibles, sinon fallback sur identity.languages (format "Lang (niveau)")
+  const languagesSpokenFinal: { lang: string; level: string }[] =
+    structured.languagesSpoken.length > 0
+      ? structured.languagesSpoken
+      : identity.languages.map((l) => {
+          const m = l.match(/^(.+?)\s*\((.+)\)$/);
+          if (m) {
+            const levelRaw = m[2].toLowerCase();
+            let level = "";
+            if (levelRaw.includes("natif")) level = "Natif";
+            else if (levelRaw.includes("bilingue")) level = "Bilingue";
+            else if (levelRaw.includes("courant")) level = "Courant (C1-C2)";
+            else if (levelRaw.includes("op")) level = "Opérationnel (B2)";
+            else if (levelRaw.includes("interm")) level = "Intermédiaire (B1)";
+            else if (levelRaw.includes("notion")) level = "Notions";
+            return { lang: m[1], level };
+          }
+          return { lang: l, level: "" };
+        });
+
+  // Merge forces/risques explicites (du parser) avec ceux détectés automatiquement
+  const finalForces = Array.from(new Set([...detectedForces, ...structured.explicitForces]));
+  const finalRisks = Array.from(new Set([...detectedRisks, ...structured.explicitRisks]));
+
   // Score de confiance
   const confidence = Math.min(
     100,
@@ -1737,17 +2073,27 @@ export function autoScore(text: string, options: AutoScoreOptions = {}): AutoSco
 
   return {
     scores,
-    forces: detectedForces,
-    risks: detectedRisks,
+    forces: finalForces,
+    risks: finalRisks,
     matchedKeywords,
     identity,
     contrat,
-    profileTypes,
-    companyTypes,
+    profileTypes: finalProfileTypes,
+    companyTypes: finalCompanyTypes,
     profileStyle,
     intelligenceTypes,
     speakerSegmented: split.hasSpeakers,
     recruiterRatio: split.recruiterRatio,
+    // v20 — Champs structurés
+    openCddCdi: structured.openCddCdi,
+    qualifProfile: structured.qualifProfile,
+    qualifLevel: structured.qualifLevel,
+    qualifRecruitedTypes: structured.qualifRecruitedTypes,
+    qualifContext: structured.qualifContext,
+    intelligenceLevel: structured.intelligenceLevel,
+    motivationLevel: structured.motivationLevel,
+    sympathyLevel: structured.sympathyLevel,
+    languagesSpoken: languagesSpokenFinal,
     confidence,
     confidenceLevel,
     wordCount,
