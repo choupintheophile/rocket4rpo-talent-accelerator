@@ -3,18 +3,17 @@ import { getBlogPostBySlug } from "@/lib/db";
 
 /**
  * v22 — OG image dynamique par article de blog.
- * Générée par edge runtime avec un design premium (gradient teal, titre,
- * catégorie, badge Rocket4RPO). Bien mieux qu'une image statique partagée.
+ * Runtime Node.js (pas edge) car Prisma nécessite le module crypto.
  */
 
-export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export const alt = "Rocket4RPO — Article de blog";
 
-export default async function OGImage({ params }: { params: { slug: string } }) {
-  const post = await getBlogPostBySlug(params.slug).catch(() => null);
+export default async function OGImage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug).catch(() => null);
 
   const title = post?.title?.slice(0, 120) || "Rocket4RPO — Blog";
   const category = post?.category || "RPO";
