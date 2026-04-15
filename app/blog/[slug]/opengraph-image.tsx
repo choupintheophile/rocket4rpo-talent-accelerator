@@ -1,23 +1,41 @@
 import { ImageResponse } from "next/og";
-import { getBlogPostBySlug } from "@/lib/db";
 
 /**
- * v22 — OG image dynamique par article de blog.
- * Runtime Node.js (pas edge) car Prisma nécessite le module crypto.
+ * v22.3 — OG image dynamique par article de blog.
+ *
+ * Runtime edge : plus rapide et moins coûteux.
+ * Pas de dépendance Prisma (évite les 500 en prod causés par le bundling
+ * de Prisma dans une route image). Le titre est dérivé du slug.
  */
 
+export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export const alt = "Rocket4RPO — Article de blog";
 
+/**
+ * Convertit un slug en titre lisible.
+ * Ex: "rpo-definition-complete-2026-0" → "RPO Definition Complete 2026"
+ */
+function slugToTitle(slug: string): string {
+  return slug
+    .replace(/-\d+$/, "") // retire suffix numérique -0, -1
+    .replace(/^(p2|p3|extra)-/, "") // retire préfixes autogen
+    .split("-")
+    .map((w) => {
+      // Mots en majuscules
+      if (["rpo", "ta", "ats", "crm", "b2b", "b2c", "rh", "drh", "kpi", "ia"].includes(w.toLowerCase())) {
+        return w.toUpperCase();
+      }
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    })
+    .join(" ");
+}
+
 export default async function OGImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getBlogPostBySlug(slug).catch(() => null);
-
-  const title = post?.title?.slice(0, 120) || "Rocket4RPO — Blog";
-  const category = post?.category || "RPO";
-  const readTime = post?.readTime || "5 min";
+  const title = slugToTitle(slug).slice(0, 120) || "Rocket4RPO — Blog";
 
   return new ImageResponse(
     (
@@ -117,11 +135,11 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
               width: "fit-content",
             }}
           >
-            📖 {category}
+            📖 Article RPO
           </div>
           <div
             style={{
-              fontSize: 64,
+              fontSize: 60,
               fontWeight: 800,
               lineHeight: 1.15,
               letterSpacing: -1,
@@ -147,7 +165,7 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <span style={{ fontSize: 24 }}>⚡</span>
               <span style={{ fontSize: 20, fontWeight: 600 }}>
-                {readTime} de lecture
+                Recruteur intégré en 1 semaine
               </span>
             </div>
           </div>

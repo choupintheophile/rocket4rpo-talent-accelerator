@@ -79,6 +79,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${spaceGrotesk.variable} ${dmSerif.variable}`}>
       <head>
+        {/* v22.3 — Perf hints : preconnect + dns-prefetch pour les origins tiers critiques */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://meetings.hubspot.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://meetings.hubspot.com" />
+
         {/* Global structured data (Organization + ProfessionalService) — crawled on every page */}
         <script
           type="application/ld+json"

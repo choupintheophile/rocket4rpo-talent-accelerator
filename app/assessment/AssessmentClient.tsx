@@ -25,6 +25,7 @@ import {
   Check,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { EnBref } from "@/components/shared/EnBref";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -1110,6 +1111,19 @@ export default function AssessmentClient() {
                       <CheckCircle2 className="w-3 h-3 text-primary/60" />
                       200+ entreprises diagnostiquées
                     </span>
+                  </div>
+
+                  {/* v22.3 — EnBref AEO (citable par ChatGPT / Perplexity) */}
+                  <div className="mt-5 max-w-2xl mx-auto text-left">
+                    <EnBref
+                      theme="dark"
+                      bullets={[
+                        "Diagnostic gratuit en 1 minute : 7 questions sur le processus, les délais, le sourcing, l'expérience candidat, le reporting, le budget et la qualité d'embauche.",
+                        "Résultat immédiat avec score de maturité Talent Acquisition et recommandations personnalisées par dimension.",
+                        "Basé sur 200+ entreprises diagnostiquées (ETI, scale-up, start-up tech, industrie, services B2B).",
+                        "Sans inscription, sans engagement : outil utilisé par DRH, Head of Talent et managers recruteurs pour benchmarker leur pratique.",
+                      ]}
+                    />
                   </div>
 
                   {/* CTA — visible immediately */}

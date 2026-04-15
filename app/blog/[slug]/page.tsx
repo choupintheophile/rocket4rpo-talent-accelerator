@@ -108,11 +108,26 @@ export default async function BlogArticlePage({ params }: Props) {
         height: 630,
       },
     }),
+    // v22.3 — Author schema enrichi (E-E-A-T : Expertise, Authoritativeness, Trust)
     author: {
       "@type": "Person",
       name: "Clément Martin",
       jobTitle: "CEO, Rocket4Sales",
       url: "https://www.linkedin.com/in/clement-martin-rocket4sales/",
+      sameAs: [
+        "https://www.linkedin.com/in/clement-martin-rocket4sales/",
+      ],
+      worksFor: {
+        "@type": "Organization",
+        name: "Rocket4RPO",
+        url: SITE_URL,
+      },
+      knowsAbout: [
+        "Recruitment Process Outsourcing",
+        "Talent Acquisition",
+        "Recrutement B2B",
+        "RPO France",
+      ],
     },
     publisher: {
       "@type": "Organization",

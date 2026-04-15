@@ -16,7 +16,9 @@ function stripHtml(html: string): string {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = sitemapRoutes.map((route) => ({
     url: `${SITE_URL}${route.path}`,
-    lastModified: new Date(),
+    // v22.3 — lastmod explicite par route (signal fiable pour Google)
+    // Fallback vers now() si la route n'a pas encore de date déclarée.
+    lastModified: route.lastModified ? new Date(route.lastModified) : new Date(),
     changeFrequency:
       route.priority && route.priority >= 0.8 ? "weekly" : "monthly",
     priority: route.priority ?? 0.5,

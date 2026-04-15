@@ -63,26 +63,44 @@ console.log(`🔎 Fichiers scannés : ${allFiles.length}\n`);
 
 // Regex pour détecter les <Link href="..."> et href="/..." (pas externes)
 const hrefRe = /href\s*=\s*["']([^"']+)["']/g;
+// v22.3 — Aussi les paths={["...", "..."]} du composant InternalLinks
+const pathsArrayRe = /paths\s*=\s*\{\s*\[([^\]]+)\]\s*\}/g;
+// v22.3 — Aussi les href dans les arrays d'objets : { href: "/..." }
+const objHrefRe = /href:\s*["']([^"']+)["']/g;
+
+function addLink(href, file) {
+  if (
+    !href ||
+    href.startsWith("http") ||
+    href.startsWith("#") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:")
+  ) {
+    return;
+  }
+  const clean = href.split("?")[0].split("#")[0].replace(/\/$/, "") || "/";
+  if (!linkMap.has(clean)) linkMap.set(clean, new Set());
+  linkMap.get(clean).add(path.relative(ROOT, file));
+}
 
 for (const file of allFiles) {
   const content = fs.readFileSync(file, "utf-8");
-  const matches = [...content.matchAll(hrefRe)];
-  for (const m of matches) {
-    const href = m[1];
-    // Ignore external, anchors, mailto, tel
-    if (
-      href.startsWith("http") ||
-      href.startsWith("#") ||
-      href.startsWith("mailto:") ||
-      href.startsWith("tel:")
-    ) {
-      continue;
-    }
-    // Normalise : retire query string et hash
-    const clean = href.split("?")[0].split("#")[0].replace(/\/$/, "") || "/";
-    if (!linkMap.has(clean)) linkMap.set(clean, new Set());
-    linkMap.get(clean).add(path.relative(ROOT, file));
+  const rel = path.relative(ROOT, file);
+
+  // href="..."
+  for (const m of content.matchAll(hrefRe)) addLink(m[1], file);
+
+  // { href: "..." }
+  for (const m of content.matchAll(objHrefRe)) addLink(m[1], file);
+
+  // paths={["/a", "/b"]}
+  for (const m of content.matchAll(pathsArrayRe)) {
+    const inner = m[1];
+    const stringRe = /["']([^"']+)["']/g;
+    for (const s of inner.matchAll(stringRe)) addLink(s[1], file);
   }
+
+  void rel; // silence unused
 }
 
 // ----------------------------------------------------------------------------
