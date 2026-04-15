@@ -1123,30 +1123,51 @@ function extractIdentity(text: string): AutoScoreDetails["identity"] {
     }
   }
 
-  // Prénom/Nom — formats : "Je m'appelle X Y" / "Prénom Nom —" / "Candidat : X Y"
-  // v17.4 : + détection via pattern "Speaker à HH:MM" si transcription structurée
-  const nameMatch =
-    text.match(/(?:je\s+m['']appelle|candidat\s*:?\s*|je\s+suis)\s+([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)/) ||
-    text.match(/^([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)\s*[—\-|,]/m);
-  if (nameMatch) {
-    out.prenom = nameMatch[1];
-    out.nom = nameMatch[2];
-  } else {
-    // Fallback : premier speaker "Nom Prénom à HH:MM" qui n'est PAS Théophile
-    const speakerMatches = [...text.matchAll(/^(.+?)\s+à\s+\d{1,2}:\d{2}\s*$/gm)];
-    for (const m of speakerMatches) {
-      const name = m[1].trim();
-      const normalized = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      if (!normalized.includes("theo")) {
-        const parts = name.split(/\s+/);
-        if (parts.length >= 2) {
-          out.prenom = parts[0];
-          out.nom = parts.slice(1).join(" ");
-          break;
-        }
+  // Prénom/Nom — v21.2 : PRIORITÉ ABSOLUE au speaker name "X Y à HH:MM"
+  // (super fiable si format respecté), puis fallbacks heuristiques.
+  // L'ancien pattern "^X Y —" était trop laxiste et matchait par exemple
+  // "Chez Objectware, ..." → faux positif "Chez Objectware".
+
+  // Priorité 1 : speaker name "Prénom Nom à HH:MM" (≠ Théophile)
+  const speakerMatches = [...text.matchAll(/^(.+?)\s+à\s+\d{1,2}:\d{2}\s*$/gm)];
+  for (const m of speakerMatches) {
+    const name = m[1].trim();
+    const normalized = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (!normalized.includes("theo")) {
+      const parts = name.split(/\s+/);
+      if (parts.length >= 2) {
+        out.prenom = parts[0];
+        // Si le nom contient des MAJUSCULES, on les normalise (Title Case)
+        out.nom = parts
+          .slice(1)
+          .map((p) => (p === p.toUpperCase() ? p.charAt(0) + p.slice(1).toLowerCase() : p))
+          .join(" ");
+        break;
       }
     }
   }
+
+  // Priorité 2 (fallback uniquement si speaker name pas trouvé) :
+  // "Je m'appelle X Y" / "Candidat : X Y"
+  if (!out.prenom) {
+    const m1 = text.match(/(?:je\s+m['']appelle|candidat\s*:?\s*|je\s+suis)\s+([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)/);
+    if (m1) {
+      out.prenom = m1[1];
+      out.nom = m1[2];
+    }
+  }
+
+  // Priorité 3 (fallback) : "Prénom Nom : Claire LACHAT" en début de section identité
+  if (!out.prenom) {
+    const m2 = text.match(/Pr[eé]nom\s*Nom\s*:\s*([A-ZÀ-ÿ][a-zà-ÿ]+)\s+([A-ZÀ-ÿ][A-Za-zà-ÿ\-]+)/);
+    if (m2) {
+      out.prenom = m2[1];
+      out.nom = m2[2].charAt(0) + m2[2].slice(1).toLowerCase();
+    }
+  }
+
+  // ⚠ Le pattern "^X Y —" est volontairement supprimé car trop dangereux
+  // (matchait "Chez Objectware,", "Mon onboarding type", etc.)
 
   // v17.4 — Fourchette TJM (ex: "entre 500 et 600", "500 à 600")
   const tjmRangeMatch = text.match(/entre\s+(\d{3,4})\s+et\s+(\d{3,4})|(\d{3,4})\s*[-à]\s*(\d{3,4})\s*(?:€|eur|euros)?\s*(?:\/|par|au)\s*j/i);
@@ -1576,6 +1597,23 @@ function parseStructuredSummary(text: string): StructuredParse {
     else if (p === "sales") out.qualifProfile = "Sales";
     else if (p === "it") out.qualifProfile = "IT";
   }
+  // v21.2 — Heuristique fallback si pas d'attribution explicite :
+  // Compte les occurrences de keywords sales/IT/généraliste dans le texte
+  if (!out.qualifProfile) {
+    const lowerForHeuristic = text.toLowerCase();
+    const itHits = (lowerForHeuristic.match(
+      /\b(?:dev|d[eé]veloppeur|devops|sre|fullstack|back-?end|front-?end|data\s+(?:engineer|scientist)|cto|engineering\s+manager|cybers[eé]curit|tech|product\s+manager|esn|ssii|ss2i)\b/g
+    ) || []).length;
+    const salesHits = (lowerForHeuristic.match(
+      /\b(?:sales|sdr|bdr|account\s+executive|account\s+manager|sales\s+manager|vp\s+sales|cro|sales\s+engineer|business\s+developer|commercia[ul])\b/g
+    ) || []).length;
+    const genHits = (lowerForHeuristic.match(
+      /\b(?:finance|comptab|rh\s|people|legal|juridique|marketing|administratif|ops\b)\b/g
+    ) || []).length;
+    if (itHits >= 3 && itHits > salesHits && itHits > genHits) out.qualifProfile = "IT";
+    else if (salesHits >= 3 && salesHits > itHits && salesHits > genHits) out.qualifProfile = "Sales";
+    else if (genHits >= 3 && genHits > itHits && genHits > salesHits) out.qualifProfile = "Généraliste";
+  }
 
   // ─── 2. Niveau d'expertise ───
   // Patterns stricts pour éviter faux positifs (ex: "niveau expert" dans
@@ -1647,6 +1685,8 @@ function parseStructuredSummary(text: string): StructuredParse {
   out.qualifContext = context;
 
   // ─── 5. Évaluation humaine (Intelligence / Motivation / Sympathie) ───
+  // v21.2 — Patterns élargis pour capter aussi les formats narratifs
+  // ("Niveau global perçu : senior" → Fort, "discours structuré" → Fort, etc.)
   const levelWords = ["Faible", "Moyen", "Fort", "Exceptionnel"];
   function findLevel(dimension: string): string | undefined {
     // Pattern 1 : "Intelligence Fort", "Motivation : Exceptionnel"
@@ -1673,6 +1713,31 @@ function parseStructuredSummary(text: string): StructuredParse {
   out.intelligenceLevel = findLevel("Intelligence");
   out.motivationLevel = findLevel("Motivation");
   out.sympathyLevel = findLevel("Sympathie");
+
+  // v21.2 — Heuristique narratif si pas de format explicite trouvé
+  // Cherche les évaluations qualitatives et infère le niveau
+  const narrativeText = text.toLowerCase();
+  if (!out.intelligenceLevel) {
+    if (/discours\s+structur|niveau\s+global\s+per[cç]u\s*:\s*senior|raisonnement\s+(?:clair|fin|structur)|capacit[eé]\s+d['']analyse|finesse|crédible/i.test(narrativeText)) {
+      out.intelligenceLevel = "Fort";
+    } else if (/r[eé]ponses\s+(?:vagues|floues)|peu\s+de\s+recul|vocabulaire\s+pauvre/i.test(narrativeText)) {
+      out.intelligenceLevel = "Faible";
+    }
+  }
+  if (!out.motivationLevel) {
+    if (/posture\s+(?:engag|tr[eè]s\s+motiv)|drive\s+palpable|hungry|drive|tr[eè]s\s+motiv|orient[eé]e?\s+r[eé]sultats/i.test(narrativeText)) {
+      out.motivationLevel = "Fort";
+    } else if (/passi[fv]|attend\s+les\s+propositions|recherche\s+par\s+d[eé]faut/i.test(narrativeText)) {
+      out.motivationLevel = "Faible";
+    }
+  }
+  if (!out.sympathyLevel) {
+    if (/ton\s+pos[eé]|humble|coop[eé]rati|chaleureu|bienveillan|écoute\s+active|bon\s+feeling|fluide\s+et\s+professionn|professionn(?:el|elle)|cordial/i.test(narrativeText)) {
+      out.sympathyLevel = "Fort";
+    } else if (/froid|condescendant|arrogant|cassant/i.test(narrativeText)) {
+      out.sympathyLevel = "Faible";
+    }
+  }
 
   // ─── 6. Langues parlées avec niveau ───
   // Format attendu : "français (natif), anglais courant (C1), espagnol bilingue, italien notions"
@@ -1745,12 +1810,30 @@ function parseStructuredSummary(text: string): StructuredParse {
     return true;
   });
 
-  // v21.1 — Anti "liste exhaustive" : si on a >5 langues toutes en "Notions",
-  // c'est probablement une liste générée par l'IA pour les langues NON parlées.
-  // On garde uniquement les langues avec un niveau > Notions, plus Français/Anglais.
+  // v21.1 + v21.2 — Anti "liste exhaustive" : 2 cas filtrés :
+  //   a) ≥6 langues toutes en "Notions" → IA a généré la liste des langues non parlées
+  //   b) ≥6 langues toutes SANS niveau → IA a juste cité la liste du prompt
+  // Dans les 2 cas, on garde uniquement Français/Anglais (langues quasi obligatoires
+  // d'un profil français à l'écrit) ou les langues avec un niveau précis (≠ vide / Notions).
   const allNotions = result.filter((l) => l.level === "Notions");
-  if (result.length >= 6 && allNotions.length >= 5) {
-    result = result.filter((l) => l.level !== "Notions" || l.lang === "Français" || l.lang === "Anglais");
+  const allEmpty = result.filter((l) => !l.level || l.level === "");
+  const isExhaustiveList =
+    result.length >= 6 && (allNotions.length >= 5 || allEmpty.length >= 5);
+  if (isExhaustiveList) {
+    result = result.filter(
+      (l) =>
+        // Garde si niveau précis (Bilingue, Courant, Opérationnel, Intermédiaire, Natif)
+        (l.level && l.level !== "Notions") ||
+        // OU si Français/Anglais (obligatoires pour profil français) MAIS uniquement avec niveau
+        ((l.lang === "Français" || l.lang === "Anglais") && l.level)
+    );
+    // Si après filtrage il ne reste rien, on ne garde que Français + Anglais sans niveau
+    if (result.length === 0) {
+      result = [
+        { lang: "Français", level: "" },
+        { lang: "Anglais", level: "" },
+      ];
+    }
   }
   out.languagesSpoken = result;
 
@@ -1843,6 +1926,78 @@ function parseStructuredSummary(text: string): StructuredParse {
         out.explicitRisks.push(risk);
       }
     }
+  }
+
+  // ─── 12.5 — Scoring explicite Gabriel (override le keyword matching) ───
+  // v21.2 : Détecte les notes explicites X/5 par critère depuis le résumé v3
+  // Format 1 : "[Critère 01 — Sourcing & identification]\n... Note proposée : 4/5"
+  // Format 2 : tableau "Critère\tScore\nSourcing\t4/5\nQualification\t3/5"
+  const explicitScores: Record<string, number> = {};
+
+  // Map nom de critère → index c0-c14 (selon SCORING_VISIBLE_ORDER)
+  const critNameToIdx: Record<string, number> = {
+    "sourcing": 0,
+    "qualification candidat": 1,
+    "qualification": 1,
+    "outils": 5,
+    "stack": 5,
+    "outils & stack": 5,
+    "autonomie": 7,
+    "ownership": 7,
+    "autonomie & ownership": 7,
+    "pilotage": 8,
+    "kpi": 8,
+    "pilotage & kpis": 8,
+    "closing": 9,
+    "negociation": 9,
+    "négo": 9,
+    "closing & négo": 9,
+    "storytelling": 11,
+    "exemples": 11,
+    "rpo": 10,
+    "embedded": 10,
+    "experience rpo": 10,
+    "expérience rpo/embedded": 10,
+  };
+
+  // Pattern 1 : "Note proposée : N/5" précédé du nom du critère
+  const noteProposedRe = /(?:cri?t[eè]re\s*0?(\d{1,2})[\s\S]{0,80}?|cri?t[eè]re\s+(?:01\s*[—-])?\s*([a-zà-ÿ\s&\/]+?)[\s\S]{0,80}?)note\s+propos[eé]e?\s*[:\-]\s*([0-5])\s*\/\s*5/gi;
+  let m: RegExpExecArray | null;
+  while ((m = noteProposedRe.exec(text)) !== null) {
+    const critIdx = m[1] ? parseInt(m[1], 10) - 1 : null;
+    const score = parseInt(m[3], 10);
+    if (critIdx !== null && critIdx >= 0 && critIdx < 15) {
+      const realIdx = SCORING_VISIBLE_ORDER[critIdx]; // mapper vers vrai index c
+      if (realIdx !== undefined) explicitScores[`c${realIdx}`] = score;
+    } else if (m[2]) {
+      const name = m[2].toLowerCase().trim();
+      for (const [key, idx] of Object.entries(critNameToIdx)) {
+        if (name.includes(key)) {
+          explicitScores[`c${idx}`] = score;
+          break;
+        }
+      }
+    }
+  }
+
+  // Pattern 2 : tableau "Sourcing & identification\t4/5" ou "Sourcing | 4/5"
+  const tableRowRe = /^([a-zà-ÿ\s&\/]+?)\s*[\t|│]\s*([0-5])\s*\/\s*5/gim;
+  while ((m = tableRowRe.exec(text)) !== null) {
+    const name = m[1].toLowerCase().trim();
+    const score = parseInt(m[2], 10);
+    for (const [key, idx] of Object.entries(critNameToIdx)) {
+      if (name.includes(key)) {
+        explicitScores[`c${idx}`] = score;
+        break;
+      }
+    }
+  }
+
+  // Stocker dans qualifContext (transitoirement) — sera mergé dans autoScore()
+  if (Object.keys(explicitScores).length > 0) {
+    out.qualifContext["__explicitScores"] = Object.entries(explicitScores).map(
+      ([k, v]) => `${k}=${v}`,
+    );
   }
 
   // ─── 13. Ouverture CDD/CDI ───
@@ -2092,6 +2247,21 @@ export function autoScore(text: string, options: AutoScoreOptions = {}): AutoSco
 
   // v20 — Parser de résumé structuré (priorité sur détections génériques)
   const structured = parseStructuredSummary(text);
+
+  // v21.2 — Override scoring : si Gabriel a explicité des notes "Note proposée : X/5"
+  // ou un tableau, on les utilise plutôt que le keyword matching qui peut sur-noter
+  const explicitScoresEntries = structured.qualifContext["__explicitScores"] || [];
+  if (explicitScoresEntries.length > 0) {
+    for (const entry of explicitScoresEntries) {
+      const [key, val] = entry.split("=");
+      const score = parseInt(val, 10);
+      if (!isNaN(score) && score >= 0 && score <= 5) {
+        scores[key] = score;
+      }
+    }
+    // Cleanup : retire la clé technique de qualifContext
+    delete structured.qualifContext["__explicitScores"];
+  }
 
   // Merge : les profileTypes/companyTypes explicites complètent les détections auto
   const finalProfileTypes = Array.from(new Set([...profileTypes, ...structured.explicitProfileTypes]));
