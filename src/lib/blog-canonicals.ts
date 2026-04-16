@@ -92,23 +92,37 @@ export function getCanonicalForSlug(slug: string): string | null {
 }
 
 /**
- * v22 — Detects VERY thin content only (editorial threshold).
- * Previously flagged by slug patterns `p2-*` or `*-N` (seed batches), but
- * these are false positives : the slug pattern alone doesn't indicate
- * low quality. Seed articles with 500+ words are perfectly indexable.
+ * v23 — Détection du contenu auto-généré / thin.
  *
- * Rules (kept minimal to maximize indexable content while protecting
- * against cannibalization) :
- *   - Word count of plainText < 300 words → noindex (truly empty / stub)
+ * CONTEXTE CRITIQUE (GSC 10/04/2026) :
+ *   - 726 URLs en sitemap → seulement 5 indexées (0.7%)
+ *   - 37 pages "Crawled, not indexed" = Google a rejeté les p2-/extra-
+ *   - 43 pages "Detected, not indexed" incluant des pages core (/offre, /assessment)
  *
- * Slug patterns (`p2-*`, `*-N`) are NO LONGER auto-flagged as thin.
- * Canonical-override articles are also now indexable (canonical tag
- * alone handles cannibalization per Google's own guidelines).
+ * STRATÉGIE v23 :
+ *   Pour un site neuf sans autorité de domaine, MOINS = MIEUX.
+ *   On noindex les articles auto-générés (p2-*, extra-*, slugs avec suffixe numérique)
+ *   pour que Google concentre son crawl budget sur les ~50 pages de qualité.
+ *
+ *   C'est un RETOUR EN ARRIÈRE volontaire par rapport à v22 qui avait tout débloqué.
+ *   v22 partait du principe que "plus = mieux" mais les données GSC prouvent le contraire.
+ *
+ * Critères :
+ *   1. Slugs p2-* ou extra-* (lots auto-générés)
+ *   2. Slugs avec suffixe numérique -N (ex: article-123) = généré par seed
+ *   3. Contenu < 300 mots = stub
  */
 export function isAutoGenThin(slug: string, plainText: string): boolean {
-  void slug; // kept for API compat; no longer used
   const wordCount = plainText.split(/\s+/).filter(Boolean).length;
-  // Seuil assoupli de 600 → 300. Articles <300 mots = probablement stubs.
+
+  // Stubs vrais (<300 mots)
   if (wordCount < 300) return true;
+
+  // Auto-gen batch : p2-* ou extra-*
+  if (/^(p2|extra)-/.test(slug)) return true;
+
+  // Seed batch : slug se termine par -N (nombre)
+  if (/^.+-\d{1,4}$/.test(slug)) return true;
+
   return false;
 }

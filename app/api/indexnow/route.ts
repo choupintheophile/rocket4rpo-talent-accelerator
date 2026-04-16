@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { submitToIndexNow } from "@/lib/indexnow";
+import { getBlogPosts } from "@/lib/db";
+import { isAutoGenThin } from "@/lib/blog-canonicals";
 
 /**
  * POST /api/indexnow
  *
  * Body : { urls: string[] } — liste d'URLs absolues à soumettre à IndexNow
- *
- * Usage : appeler depuis un webhook de publication / cron / admin UI.
- * Pas d'authentification stricte (IndexNow filtre les URLs hors domaine).
  */
 export async function POST(request: NextRequest) {
   try {
@@ -33,13 +32,23 @@ export async function POST(request: NextRequest) {
   }
 }
 
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
 /**
- * GET /api/indexnow — ping automatique de toutes les pages importantes
- * (sitemap + 10 derniers articles). Appelable via curl ou Vercel Cron.
+ * GET /api/indexnow — v23 : soumet TOUTES les pages qui méritent d'être indexées.
+ *
+ * Stratégie :
+ *   - 19 pages statiques (core business)
+ *   - Tous les articles éditoriaux (pas p2-*, extra-*, -N)
+ *   - Exclut le thin content pour ne pas polluer le signal
+ *
+ * Appelable via Vercel Cron (lundis 9h17) ou manuellement.
  */
 export async function GET() {
   try {
-    // Liste des pages clés à pinger (pages piliers + homepage)
+    // ── Pages statiques prioritaires ──
     const coreUrls = [
       "https://rocket4rpo.com/",
       "https://rocket4rpo.com/offre",
@@ -51,20 +60,43 @@ export async function GET() {
       "https://rocket4rpo.com/rpo-vs-interim",
       "https://rocket4rpo.com/rpo-vs-recrutement-interne",
       "https://rocket4rpo.com/comparateur",
+      "https://rocket4rpo.com/simulateurs",
       "https://rocket4rpo.com/ressources",
       "https://rocket4rpo.com/blog",
       "https://rocket4rpo.com/a-propos",
-      "https://rocket4rpo.com/rdv",
       "https://rocket4rpo.com/glossaire-rpo",
+      "https://rocket4rpo.com/contact",
+      "https://rocket4rpo.com/recrutement",
+      "https://rocket4rpo.com/demo",
+      "https://rocket4rpo.com/rdv",
     ];
 
-    const result = await submitToIndexNow(coreUrls);
+    // ── Articles éditoriaux (exclut thin content) ──
+    let editorialUrls: string[] = [];
+    try {
+      const posts = await getBlogPosts();
+      editorialUrls = posts
+        .filter((post) => {
+          const plain = stripHtml(post.content || "");
+          return !isAutoGenThin(post.slug, plain);
+        })
+        .map((post) => `https://rocket4rpo.com/blog/${post.slug}`);
+    } catch {
+      // DB indisponible — on soumet quand même les pages statiques
+    }
+
+    const allUrls = [...coreUrls, ...editorialUrls];
+    const result = await submitToIndexNow(allUrls);
+
     return NextResponse.json({
       ok: result.ok,
       submitted: result.submitted,
+      corePages: coreUrls.length,
+      editorialArticles: editorialUrls.length,
+      total: allUrls.length,
       status: result.status,
       message: result.ok
-        ? "Pages clés soumises à IndexNow"
+        ? `${allUrls.length} URLs de qualité soumises (${coreUrls.length} core + ${editorialUrls.length} articles)`
         : `Erreur : ${result.error || result.status}`,
     });
   } catch (e) {

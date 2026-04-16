@@ -1,5 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.rocket4rpo.com" }],
+      "destination": "https://rocket4rpo.com/:path",
+      "permanent": true
+    }
+  ],
   "crons": [
     {
       "path": "/api/indexnow",
