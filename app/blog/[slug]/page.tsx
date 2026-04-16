@@ -144,7 +144,19 @@ export default async function BlogArticlePage({ params }: Props) {
       "@type": "WebPage",
       "@id": `${SITE_URL}/blog/${post.slug}`,
     },
-    keywords: post.category,
+    // v23.3 — keywords enrichis (catégorie + mots-clés extraits du slug)
+    keywords: [
+      post.category,
+      "RPO",
+      "recrutement",
+      "Talent Acquisition",
+      ...post.slug
+        .replace(/^(p2|extra)-/, "")
+        .replace(/-\d+$/, "")
+        .split("-")
+        .filter((w: string) => w.length > 3)
+        .slice(0, 5),
+    ].join(", "),
   };
 
   const breadcrumb = breadcrumbSchemaForBlog(

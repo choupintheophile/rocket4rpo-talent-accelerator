@@ -5,7 +5,7 @@ import { breadcrumbSchema } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Simulateurs RPO gratuits — Calculez votre ROI",
   description:
-    "3 outils RPO gratuits : démo interactive, calculateur ROI, diagnostic recrutement. Évaluez vos besoins en 5 min →",
+    "3 outils RPO gratuits : calculateur ROI recrutement, diagnostic Talent Acquisition, démo interactive du processus RPO. Résultats immédiats, sans inscription.",
   alternates: { canonical: "/simulateurs" },
 };
 

@@ -7,12 +7,13 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { CTASection } from "@/components/shared/CTASection";
+import { InternalLinks } from "@/components/shared/InternalLinks";
 import HomepageSections from "./HomepageSections";
 
 export const metadata: Metadata = {
   title: { absolute: "RPO France — Recruteur intégré en 1 semaine | Rocket4RPO" },
   description:
-    "Recruteur senior intégré en 1 semaine, 5x moins cher qu'un cabinet. 200+ recrutements réalisés. Diagnostic gratuit →",
+    "Recruteur senior intégré en 1 semaine, 5x moins cher qu'un cabinet. 200+ recrutements réalisés pour startups, scale-ups et ETI tech. Diagnostic gratuit.",
   alternates: { canonical: "/" },
 };
 
@@ -56,6 +57,13 @@ export default async function HomePage() {
       <section className="bg-rocket-cream">
         <FAQSection faqs={homepageFaqs} />
       </section>
+      {/* v23.3 SEO — Homepage distribue le link equity vers les pages piliers */}
+      <InternalLinks
+        currentPath="/"
+        paths={["/qu-est-ce-que-le-rpo", "/combien-coute-un-rpo", "/calculateur", "/assessment"]}
+        title="Explorez nos ressources"
+      />
+
       <CTASection
         title="Votre prochain recrutement commence ici"
         subtitle="30 min de diagnostic gratuit avec un expert RPO. On analyse votre besoin, on vous dit honnêtement si le RPO est fait pour vous."

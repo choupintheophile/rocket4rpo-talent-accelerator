@@ -5,7 +5,7 @@ import RpoVsCabinetClient from "./RpoVsCabinetClient";
 export const metadata: Metadata = {
   title: "RPO vs Cabinet — Comparatif recrutement 2026",
   description:
-    "RPO vs cabinet de recrutement : coûts, délais, flexibilité et intégration. Quel modèle choisir pour vos recrutements ?",
+    "RPO vs cabinet de recrutement : comparatif détaillé des coûts, délais, flexibilité et intégration. Chiffres 2026 pour choisir le bon modèle de recrutement.",
   alternates: { canonical: "/rpo-vs-cabinet" },
 };
 
