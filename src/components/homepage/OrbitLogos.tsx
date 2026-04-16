@@ -23,7 +23,7 @@ export function OrbitLogos() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div ref={ref} className="relative w-[340px] h-[340px] md:w-[500px] md:h-[500px] mx-auto">
+    <div ref={ref} className="relative w-[380px] h-[380px] md:w-[600px] md:h-[600px] mx-auto">
       {/* Orbit rings */}
       <div className="absolute inset-0 rounded-full border border-white/5" />
       <div className="absolute inset-8 md:inset-12 rounded-full border border-white/5" />
@@ -33,7 +33,7 @@ export function OrbitLogos() {
       {ORBIT_ITEMS.map((item, i) => {
         const angle = (360 / ORBIT_ITEMS.length) * i;
         const duration = 30 + i * 2; // Slightly different speeds
-        const radius = 42; // % from center
+        const radius = 48; // % from center (larger to avoid overlap)
 
         return (
           <motion.div
@@ -79,8 +79,8 @@ export function OrbitLogos() {
         ${ORBIT_ITEMS.map(
           (_, i) => `
           @keyframes orbit-${i} {
-            from { transform: rotate(${(360 / ORBIT_ITEMS.length) * i}deg) translateX(42%) rotate(-${(360 / ORBIT_ITEMS.length) * i}deg); }
-            to { transform: rotate(${(360 / ORBIT_ITEMS.length) * i + 360}deg) translateX(42%) rotate(-${(360 / ORBIT_ITEMS.length) * i + 360}deg); }
+            from { transform: rotate(${(360 / ORBIT_ITEMS.length) * i}deg) translateX(48%) rotate(-${(360 / ORBIT_ITEMS.length) * i}deg); }
+            to { transform: rotate(${(360 / ORBIT_ITEMS.length) * i + 360}deg) translateX(48%) rotate(-${(360 / ORBIT_ITEMS.length) * i + 360}deg); }
           }`,
         ).join("\n")}
       `}</style>

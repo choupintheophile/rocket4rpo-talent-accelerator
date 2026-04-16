@@ -46,6 +46,9 @@ export default async function HomePage() {
       {/* v25 — Homepage immersive : 5 actes narratifs avec starfield 3D */}
       <HomepageImmersive />
 
+      {/* Gradient transition dark → light */}
+      <div className="relative z-10 h-32 bg-gradient-to-b from-black to-background" />
+
       {/* Sections classiques sous l'expérience immersive */}
       <div className="relative z-10 bg-background">
         <BlogPreview posts={serializedPosts} />

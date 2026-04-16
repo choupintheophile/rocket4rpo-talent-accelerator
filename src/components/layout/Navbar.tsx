@@ -55,7 +55,15 @@ export const Navbar = () => {
     }`}>
       <div className="container-wide flex items-center justify-between h-20 lg:h-24">
         <Link href="/" onClick={handleNav("/")} className="flex items-center">
-          <Image src="/logo-rocket4rpo.webp" alt="Rocket4RPO — Accueil" width={384} height={256} sizes="(max-width: 1024px) 160px, 200px" className="h-28 lg:h-32 w-auto" priority />
+          <Image
+            src={isHome ? "/logo-rocket4rpo-white.webp" : "/logo-rocket4rpo.webp"}
+            alt="Rocket4RPO — Accueil"
+            width={384}
+            height={256}
+            sizes="(max-width: 1024px) 160px, 200px"
+            className="h-28 lg:h-32 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop nav — liens principaux */}
@@ -72,7 +80,7 @@ export const Navbar = () => {
               key={l.href}
               href={l.href}
               onClick={handleNav(l.href)}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${isActive(l.href) ? "text-primary" : "text-foreground/70 hover:text-foreground"}`}
+              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${isActive(l.href) ? "text-primary" : isHome ? "text-white/70 hover:text-white" : "text-foreground/70 hover:text-foreground"}`}
             >
               {l.label}
             </Link>

@@ -13,7 +13,90 @@ import { StarField } from "@/components/homepage/StarField";
 import { RocketSVG } from "@/components/homepage/RocketSVG";
 import { TypewriterText } from "@/components/homepage/TypewriterText";
 import { OrbitLogos } from "@/components/homepage/OrbitLogos";
+import { MagneticButton } from "@/components/homepage/MagneticButton";
 import { trackHeroCTAClick, trackCTAClick } from "@/lib/analytics";
+
+/* ====================================================================== */
+/*  COUNTDOWN T-10                                                        */
+/* ====================================================================== */
+
+function LaunchCountdown({ onComplete }: { onComplete: () => void }) {
+  const [count, setCount] = useState<number | null>(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStarted(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+    const sequence = [3, 2, 1];
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < sequence.length) {
+        setCount(sequence[i]);
+        i++;
+      } else {
+        clearInterval(interval);
+        setCount(0);
+        onComplete();
+      }
+    }, 600);
+    return () => clearInterval(interval);
+  }, [started, onComplete]);
+
+  if (count === null) return null;
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={count}
+        initial={{ scale: 2, opacity: 0 }}
+        animate={{ scale: 1, opacity: count === 0 ? 0 : 0.15 }}
+        exit={{ scale: 0.5, opacity: 0 }}
+        transition={{ duration: 0.4 }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none z-5"
+      >
+        <span className="text-[200px] md:text-[300px] font-bold font-mono text-rocket-teal-glow/20 tabular-nums">
+          {count === 0 ? "🚀" : count}
+        </span>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
+/* ====================================================================== */
+/*  GLITCH TEXT                                                           */
+/* ====================================================================== */
+
+function GlitchText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <span className={`relative inline-block ${className}`}>
+      <span className="relative z-10">{children}</span>
+      <span
+        className="absolute top-0 left-0 w-full h-full z-0"
+        style={{
+          textShadow: "2px 0 rgba(239,68,68,0.5), -2px 0 rgba(59,130,246,0.5)",
+          animation: "glitch 3s infinite",
+          clipPath: "inset(0 0 50% 0)",
+        }}
+        aria-hidden="true"
+      >
+        {children}
+      </span>
+      <style>{`
+        @keyframes glitch {
+          0%, 90%, 100% { transform: translate(0); }
+          92% { transform: translate(-2px, 1px); }
+          94% { transform: translate(2px, -1px); }
+          96% { transform: translate(-1px, 2px); }
+          98% { transform: translate(1px, -2px); }
+        }
+      `}</style>
+    </span>
+  );
+}
 
 /* ====================================================================== */
 /*  ANIMATED COUNTER (reusable)                                           */
@@ -140,6 +223,9 @@ export default function HomepageImmersive() {
   // Hero opacity: fades out as rocket launches
   const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
+  // Countdown state
+  const [countdownDone, setCountdownDone] = useState(false);
+
   // Section refs for in-view detection
   const act2Ref = useRef(null);
   const act3Ref = useRef(null);
@@ -196,15 +282,18 @@ export default function HomepageImmersive() {
           className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden"
           style={{ opacity: heroOpacity }}
         >
+          {/* Countdown T-3, 2, 1 before title appears */}
+          <LaunchCountdown onComplete={() => setCountdownDone(true)} />
+
           {/* Rocket */}
           <RocketSVG launchProgress={launch} className="mb-8" />
 
-          {/* Title */}
+          {/* Title — appears after countdown */}
           <motion.div
             className="text-center px-4 z-10"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
+            animate={{ opacity: countdownDone ? 1 : 0 }}
+            transition={{ delay: 0.2, duration: 1 }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display leading-[1.05] tracking-tight">
               <TypewriterText
@@ -267,7 +356,7 @@ export default function HomepageImmersive() {
 
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold font-display text-white mb-16">
               Le recrutement traditionnel est{" "}
-              <span className="text-red-400">cassé.</span>
+              <GlitchText className="text-red-400">cassé.</GlitchText>
             </h2>
           </motion.div>
 
@@ -446,28 +535,45 @@ export default function HomepageImmersive() {
       {/* ════════════════════════════════════════════════════════════════ */}
       {/*  ACT 5 — "LE DÉCOLLAGE" (CTA final)                           */}
       {/* ════════════════════════════════════════════════════════════════ */}
-      <section ref={act5Ref} className="relative min-h-[80vh] flex items-center justify-center py-20 bg-black/80">
+      <section ref={act5Ref} className="relative min-h-screen flex items-center justify-center py-24 bg-black/80">
         <div className="relative z-10 text-center px-6">
+          {/* Decorative rings */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={act5InView ? { opacity: 1 } : {}}
+            transition={{ duration: 1 }}
+          >
+            <div className="w-[600px] h-[600px] rounded-full border border-rocket-teal/5 animate-spin" style={{ animationDuration: "60s" }} />
+            <div className="absolute w-[400px] h-[400px] rounded-full border border-rocket-teal/10 animate-spin" style={{ animationDuration: "40s", animationDirection: "reverse" }} />
+            <div className="absolute w-[200px] h-[200px] rounded-full border border-rocket-teal/15 animate-spin" style={{ animationDuration: "20s" }} />
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={act5InView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, type: "spring" }}
           >
-            <Sparkles className="w-12 h-12 text-rocket-teal-glow mx-auto mb-6" />
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <Sparkles className="w-14 h-14 text-rocket-teal-glow mx-auto mb-8" />
+            </motion.div>
 
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-display text-white mb-6">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display text-white mb-8">
               Prêt à{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
                 décoller ?
               </span>
             </h2>
 
-            <p className="text-lg md:text-xl text-white/50 max-w-xl mx-auto mb-10">
+            <p className="text-xl md:text-2xl text-white/50 max-w-xl mx-auto mb-14">
               30 minutes pour comprendre votre besoin et vous proposer le TA idéal. Sans engagement.
             </p>
           </motion.div>
 
-          {/* CTA button with glow */}
+          {/* Magnetic CTA button with glow */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={act5InView ? { opacity: 1, y: 0 } : {}}
@@ -476,19 +582,20 @@ export default function HomepageImmersive() {
           >
             {/* Glow ring */}
             <motion.div
-              className="absolute -inset-3 rounded-2xl bg-gradient-to-r from-rocket-teal/40 to-emerald-500/40 blur-xl"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
+              className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-rocket-teal/40 to-emerald-500/40 blur-2xl"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.8, 0.4] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
 
-            <a
+            <MagneticButton
               href="/rdv"
               onClick={() => { trackHeroCTAClick("Réserver mon diagnostic gratuit", "/rdv"); trackCTAClick("Réserver mon diagnostic gratuit", "/rdv"); }}
-              className="relative inline-flex items-center gap-3 px-10 py-5 text-lg font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:from-rocket-teal-glow hover:to-emerald-400 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl shadow-rocket-teal/30"
+              className="relative inline-flex items-center gap-3 px-12 py-6 text-xl font-bold rounded-2xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:from-rocket-teal-glow hover:to-emerald-400 active:scale-95 transition-all duration-300 shadow-2xl shadow-rocket-teal/40"
+              strength={0.25}
             >
               Réserver mon diagnostic gratuit
-              <ArrowRight className="w-5 h-5" />
-            </a>
+              <ArrowRight className="w-6 h-6" />
+            </MagneticButton>
           </motion.div>
 
           <motion.p
