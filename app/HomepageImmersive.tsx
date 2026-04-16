@@ -106,13 +106,28 @@ export default function HomepageImmersive() {
   // Global scroll progress (0 to 1 over the full page)
   const { scrollYProgress } = useScroll({ target: containerRef });
 
-  // Warp factor: ramps up between 5% and 20% scroll
-  const warpFactor = useTransform(scrollYProgress, [0.02, 0.15], [0, 1]);
+  // Warp factor: ramps UP 3-10% scroll, then back DOWN 10-18%
+  const warpFactor = useTransform(scrollYProgress, [0.03, 0.08, 0.12, 0.18], [0, 1, 1, 0]);
   const [warp, setWarp] = useState(0);
   useEffect(() => {
     const unsub = warpFactor.on("change", (v) => setWarp(Math.min(1, Math.max(0, v))));
     return unsub;
   }, [warpFactor]);
+
+  // Custom cursor glow
+  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const move = (e: MouseEvent) => setCursor({ x: e.clientX, y: e.clientY });
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  // Scroll progress for progress bar
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const unsub = scrollYProgress.on("change", (v) => setProgress(v));
+    return unsub;
+  }, [scrollYProgress]);
 
   // Rocket launch: 0 at top, 1 at 15% scroll
   const rocketLaunch = useTransform(scrollYProgress, [0, 0.12], [0, 1]);
@@ -137,10 +152,40 @@ export default function HomepageImmersive() {
   const act5InView = useInView(act5Ref, { once: true, margin: "-150px" });
 
   return (
-    <div ref={containerRef} className="relative">
-      {/* ════════════════════════════════════════════════════════════════ */}
-      {/*  STARFIELD (fixed background, persists across all acts)        */}
-      {/* ════════════════════════════════════════════════════════════════ */}
+    <div ref={containerRef} className="relative bg-black">
+      {/* ═══ Custom cursor glow (desktop only) ═══ */}
+      <div
+        className="fixed pointer-events-none z-[100] hidden lg:block"
+        style={{
+          left: cursor.x - 150,
+          top: cursor.y - 150,
+          width: 300,
+          height: 300,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(20,184,166,0.06) 0%, transparent 70%)",
+          transition: "left 0.1s ease-out, top 0.1s ease-out",
+        }}
+      />
+
+      {/* ═══ Scroll progress bar (right side) ═══ */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
+        <div className="relative w-[3px] h-[200px] bg-white/10 rounded-full overflow-hidden">
+          <motion.div
+            className="absolute top-0 left-0 w-full rounded-full bg-gradient-to-b from-rocket-teal to-emerald-400"
+            style={{ height: `${progress * 100}%` }}
+          />
+        </div>
+        {/* Act indicators */}
+        <div className="absolute left-3 top-0 h-full flex flex-col justify-between text-[10px] text-white/30 font-mono">
+          <span>01</span>
+          <span>02</span>
+          <span>03</span>
+          <span>04</span>
+          <span>05</span>
+        </div>
+      </div>
+
+      {/* ═══ STARFIELD (fixed background) ═══ */}
       <StarField warpFactor={warp} />
 
       {/* ════════════════════════════════════════════════════════════════ */}
@@ -209,7 +254,7 @@ export default function HomepageImmersive() {
       {/* ════════════════════════════════════════════════════════════════ */}
       {/*  ACT 2 — "LE PROBLÈME"                                        */}
       {/* ════════════════════════════════════════════════════════════════ */}
-      <section ref={act2Ref} className="relative min-h-screen flex items-center justify-center py-20 md:py-32">
+      <section ref={act2Ref} className="relative min-h-screen flex items-center justify-center py-20 md:py-32 bg-black/90">
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -261,7 +306,7 @@ export default function HomepageImmersive() {
       {/* ════════════════════════════════════════════════════════════════ */}
       {/*  ACT 3 — "LA SOLUTION" (the twist)                             */}
       {/* ════════════════════════════════════════════════════════════════ */}
-      <section ref={act3Ref} className="relative min-h-screen flex items-center justify-center py-20 md:py-32">
+      <section ref={act3Ref} className="relative min-h-screen flex items-center justify-center py-20 md:py-32 bg-black/90">
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -335,7 +380,7 @@ export default function HomepageImmersive() {
       {/* ════════════════════════════════════════════════════════════════ */}
       {/*  ACT 4 — "LA PREUVE" (social proof immersif)                   */}
       {/* ════════════════════════════════════════════════════════════════ */}
-      <section ref={act4Ref} className="relative min-h-screen flex items-center justify-center py-20 md:py-32">
+      <section ref={act4Ref} className="relative min-h-screen flex items-center justify-center py-20 md:py-32 bg-black/90">
         <div className="relative z-10 max-w-5xl mx-auto px-6">
           <motion.div
             className="text-center mb-16"
@@ -401,7 +446,7 @@ export default function HomepageImmersive() {
       {/* ════════════════════════════════════════════════════════════════ */}
       {/*  ACT 5 — "LE DÉCOLLAGE" (CTA final)                           */}
       {/* ════════════════════════════════════════════════════════════════ */}
-      <section ref={act5Ref} className="relative min-h-[80vh] flex items-center justify-center py-20">
+      <section ref={act5Ref} className="relative min-h-[80vh] flex items-center justify-center py-20 bg-black/80">
         <div className="relative z-10 text-center px-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}

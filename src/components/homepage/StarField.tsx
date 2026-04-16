@@ -57,11 +57,12 @@ export function StarField({ warpFactor = 0, count = 600, className = "" }: StarF
     let running = true;
     const draw = () => {
       if (!running) return;
-      ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+      // Full black background (opaque) — never transparent
+      ctx.fillStyle = `rgba(0, 0, 0, ${0.15 + (1 - warpFactor) * 0.1})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Speed based on warp factor: normal = 2, warp = 30
-      const speed = 2 + warpFactor * 28;
+      // Speed: normal=1.5 (slow drift), warp=25 (hyperspace)
+      const speed = 1.5 + warpFactor * 23;
 
       for (const star of stars) {
         star.pz = star.z;
