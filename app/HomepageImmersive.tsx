@@ -222,32 +222,14 @@ export default function HomepageImmersive() {
         }}
       />
 
-      {/* ═══ Progress bar ═══ */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-3">
-        <div className="relative w-[2px] h-[180px] bg-white/5 rounded-full overflow-hidden">
-          <motion.div
-            className="absolute top-0 left-0 w-full rounded-full bg-gradient-to-b from-rocket-teal to-emerald-400"
-            style={{ height: `${progress * 100}%` }}
-          />
-          {/* Glow dot at progress tip */}
-          <motion.div
-            className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-rocket-teal-glow shadow-[0_0_10px_rgba(20,184,166,0.8)]"
-            style={{ top: `${progress * 100}%` }}
-          />
-        </div>
-      </div>
-
       {/* ═══ Starfield ═══ */}
       <StarField warpFactor={warp} />
 
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/*  ACTE 1 — OUVERTURE                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
-      <section className="relative h-[120vh]">
-        <motion.div
-          className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-0"
-          style={{ opacity: heroOpacity }}
-        >
+      <section className="relative h-screen">
+        <div className="h-screen flex flex-col items-center justify-center overflow-hidden gap-0">
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
 
           {/* Rocket — tiny */}
@@ -322,22 +304,7 @@ export default function HomepageImmersive() {
             </motion.div>
           </motion.div>
 
-          {/* Scroll hint */}
-          <motion.div
-            className="absolute bottom-10 flex flex-col items-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 3, duration: 1 }}
-          >
-            <div className="w-5 h-8 rounded-full border border-white/15 flex justify-center pt-1.5">
-              <motion.div
-                className="w-1 h-2 rounded-full bg-white/30"
-                animate={{ y: [0, 8, 0], opacity: [1, 0, 1] }}
-                transition={{ duration: 1.8, repeat: Infinity }}
-              />
-            </div>
-          </motion.div>
-        </motion.div>
+        </div>
       </section>
     </div>
   );
