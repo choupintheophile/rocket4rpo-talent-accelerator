@@ -157,7 +157,7 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
   return (
     <section
       id={id}
-      className={`relative flex items-center justify-center py-20 md:py-28 ${className}`}
+      className={`relative flex items-center justify-center py-12 md:py-16 ${className}`}
     >
       {children}
     </section>
@@ -243,7 +243,7 @@ export default function HomepageImmersive() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/*  ACTE 1 — OUVERTURE                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
-      <section className="relative h-[140vh]">
+      <section className="relative h-[120vh]">
         <motion.div
           className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-0"
           style={{ opacity: heroOpacity }}

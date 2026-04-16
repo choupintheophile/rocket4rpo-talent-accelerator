@@ -61,8 +61,8 @@ export function StarField({ warpFactor = 0, count = 600, className = "" }: StarF
       ctx.fillStyle = `rgba(0, 0, 0, ${0.15 + (1 - warpFactor) * 0.1})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Speed: normal=1.5 (slow drift), warp=25 (hyperspace)
-      const speed = 1.5 + warpFactor * 23;
+      // Speed: normal=1 (slow drift), warp=15 (subtler hyperspace)
+      const speed = 1 + warpFactor * 14;
 
       for (const star of stars) {
         star.pz = star.z;
@@ -91,9 +91,9 @@ export function StarField({ warpFactor = 0, count = 600, className = "" }: StarF
         const b = Math.round(brightness * (1 - warpFactor * 0.5));
 
         // Draw trail (longer during warp)
-        if (warpFactor > 0.1) {
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.3 + warpFactor * 0.5})`;
-          ctx.lineWidth = size * 0.5;
+        if (warpFactor > 0.2) {
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.15 + warpFactor * 0.3})`;
+          ctx.lineWidth = size * 0.3;
           ctx.beginPath();
           ctx.moveTo(px, py);
           ctx.lineTo(sx, sy);

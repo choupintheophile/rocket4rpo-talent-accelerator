@@ -50,7 +50,7 @@ export const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isHome
-        ? "bg-transparent border-b border-transparent"
+        ? "bg-black/60 backdrop-blur-md border-b border-white/5"
         : "bg-background/85 backdrop-blur-xl border-b border-border/50 shadow-[0_1px_3px_0_rgb(0_0_0/0.02)]"
     }`}>
       <div className="container-wide flex items-center justify-between h-20 lg:h-24">
