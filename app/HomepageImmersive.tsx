@@ -157,7 +157,7 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
   return (
     <section
       id={id}
-      className={`relative min-h-screen flex items-center justify-center py-24 md:py-32 ${className}`}
+      className={`relative flex items-center justify-center py-20 md:py-28 ${className}`}
     >
       {children}
     </section>
@@ -243,56 +243,77 @@ export default function HomepageImmersive() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/*  ACTE 1 — OUVERTURE                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
-      <section className="relative h-[160vh]">
+      <section className="relative h-[140vh]">
         <motion.div
-          className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden"
+          className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden gap-0"
           style={{ opacity: heroOpacity }}
         >
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
-          <RocketSVG launchProgress={launch} className="mb-4 scale-75 md:scale-90" />
 
+          {/* Rocket — smaller, tighter */}
+          <RocketSVG launchProgress={launch} className="scale-[0.6] md:scale-75" />
+
+          {/* Title — VISIBLE IMMEDIATELY, no delay */}
           <motion.div
-            className="text-center px-6 z-10"
-            initial={{ opacity: 0, y: 30 }}
+            className="text-center px-6 z-10 -mt-2"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-bold font-display leading-[1.02] tracking-tight">
-              <TextReveal
-                text="Vos meilleurs recrutements"
-                className="text-white"
-                delay={0}
-              />
+            <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-display leading-[1.05] tracking-tight">
+              <span className="text-white">Vos meilleurs recrutements</span>
               <br />
-              <TextReveal
-                text="commencent ici."
-                className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400"
-                delay={0.8}
-              />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+                commencent ici.
+              </span>
             </h1>
 
             <motion.p
-              className="mt-8 text-lg md:text-xl text-white/40 max-w-lg mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 3.5, duration: 1 }}
+              className="mt-5 text-base md:text-lg text-white/40 max-w-lg mx-auto leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
             >
               Un recruteur d&apos;élite rejoint votre équipe en 7 jours.
               <br className="hidden md:block" />
-              Pas un cabinet. Pas un chasseur. Votre TA.
+              Pas un cabinet. Pas un chasseur. <span className="text-white/60 font-medium">Votre TA.</span>
             </motion.p>
+
+            {/* CTA buttons — visible in hero */}
+            <motion.div
+              className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.7 }}
+            >
+              <a
+                href="/rdv"
+                onClick={() => trackHeroCTAClick("Réserver mon diagnostic", "/rdv")}
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:from-rocket-teal-glow hover:to-emerald-400 hover:scale-[1.03] active:scale-95 transition-all shadow-xl shadow-rocket-teal/20"
+              >
+                Réserver mon diagnostic
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="/calculateur"
+                onClick={() => trackCTAClick("Calculer mes économies", "/calculateur")}
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border border-white/15 text-white/70 hover:bg-white/5 hover:text-white hover:border-white/25 transition-all"
+              >
+                Calculer mes économies
+              </a>
+            </motion.div>
           </motion.div>
 
           {/* Scroll hint */}
           <motion.div
-            className="absolute bottom-16 flex flex-col items-center gap-3"
+            className="absolute bottom-10 flex flex-col items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 5, duration: 1 }}
+            transition={{ delay: 3, duration: 1 }}
           >
-            <div className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5">
+            <div className="w-5 h-8 rounded-full border border-white/15 flex justify-center pt-1.5">
               <motion.div
-                className="w-1 h-2 rounded-full bg-white/40"
+                className="w-1 h-2 rounded-full bg-white/30"
                 animate={{ y: [0, 8, 0], opacity: [1, 0, 1] }}
                 transition={{ duration: 1.8, repeat: Infinity }}
               />

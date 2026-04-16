@@ -10,6 +10,9 @@ export const ExitIntentPopup = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
+    // v27 — Disable exit popup on homepage (interferes with immersive experience)
+    if (typeof window !== "undefined" && window.location.pathname === "/") return;
+
     const shown = sessionStorage.getItem("exit-popup-shown");
     if (shown) return;
 

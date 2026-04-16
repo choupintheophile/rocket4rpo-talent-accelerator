@@ -38,7 +38,7 @@ export function TextReveal({ text, className = "", delay = 0, blurReveal = true 
           } : {}}
           transition={{
             duration: 0.6,
-            delay: delay + i * 0.08,
+            delay: delay + i * 0.04,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
