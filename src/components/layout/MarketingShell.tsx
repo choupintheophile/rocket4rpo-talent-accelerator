@@ -15,9 +15,20 @@ export function MarketingShell({
 }) {
   const pathname = usePathname();
   const isWebapp = pathname.startsWith("/webapp-testing");
+  const isHome = pathname === "/";
 
   if (isWebapp) {
     return <>{children}</>;
+  }
+
+  // v29 — Homepage = vitrine pure : pas de footer, pas d'extras (StickyCTA, ConversationalCTA, ExitIntentPopup, CookieBanner)
+  if (isHome) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        {navbar}
+        <main id="main-content" className="flex-1">{children}</main>
+      </div>
+    );
   }
 
   return (
