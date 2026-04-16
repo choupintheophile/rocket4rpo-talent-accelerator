@@ -344,101 +344,11 @@ export default function HomepageImmersive() {
       <MarqueeLogos />
 
       {/* ══════════════════════════════════════════════════════════════════ */}
-      {/*  ACTE 2 — LA RÉPONSE (ancien acte 3, acte 2 supprimé)            */}
-      {/* ══════════════════════════════════════════════════════════════════ */}
-      <Section className="bg-black/90">
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <motion.span
-            className="inline-block px-4 py-1.5 rounded-full bg-rocket-teal/10 border border-rocket-teal/20 text-xs font-semibold tracking-wider uppercase text-rocket-teal-glow/80 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            La réponse
-          </motion.span>
-
-          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-bold font-display text-white mb-6 leading-[1.08]">
-            <TextReveal text="Un TA senior. Dans vos murs." className="text-white" />
-            <br />
-            <TextReveal text="En 7 jours." className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal to-emerald-400" delay={0.5} />
-          </h2>
-
-          <motion.p
-            className="text-base md:text-lg text-white/35 max-w-2xl mx-auto mb-8 leading-relaxed"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8 }}
-          >
-            Il utilise votre Slack, votre ATS, votre marque employeur.
-            Vos candidats ne savent même pas qu&apos;il est externe.
-          </motion.p>
-
-          {/* Transformed stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
-            {[
-              { old: "84 jours", value: 28, suffix: "j", label: "Time-to-hire moyen" },
-              { old: "200K€", value: 44, suffix: "K€", label: "Pour 10 recrutements" },
-              { old: "15% d'échec", value: 94, suffix: "%", label: "Taux de rétention à 12 mois" },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 + i * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <GlowCard className="p-8 md:p-10">
-                  <div className="text-xs text-white/20 line-through mb-3 tracking-wide">{stat.old}</div>
-                  <div className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-rocket-teal-glow to-emerald-400 mb-3 tabular-nums">
-                    <Counter target={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <p className="text-sm text-white/40 leading-relaxed">{stat.label}</p>
-                </GlowCard>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Process cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { icon: Search, title: "Sourcing", desc: "LinkedIn, GitHub, vivier privé, cooptation. Première shortlist en 48h. Sourcing multicanal intensif." },
-              { icon: FileCheck, title: "Évaluation", desc: "Scorecard structurée. Compétences, motivation, culture fit. Zéro CV touriste, zéro compromis." },
-              { icon: CheckCircle2, title: "Closing", desc: "Négociation, onboarding, suivi d'intégration. Du brief à la signature, votre TA gère tout." },
-            ].map((card, i) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8 + i * 0.15, duration: 0.6 }}
-              >
-                <GlowCard className="p-8 text-left h-full">
-                  <card.icon className="w-8 h-8 text-rocket-teal-glow/70 mb-5" />
-                  <h3 className="text-xl font-bold text-white mb-3">{card.title}</h3>
-                  <p className="text-sm text-white/40 leading-relaxed">{card.desc}</p>
-                </GlowCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ══════════════════════════════════════════════════════════════════ */}
-      {/*  ACTE 4 — LA PREUVE                                              */}
+      {/*  ACTE 2 — LA PREUVE (ancien acte 4, la r\u00e9ponse supprim\u00e9)            */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       <Section className="bg-black/90">
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
-            <motion.span
-              className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold tracking-wider uppercase text-amber-400/80 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              La preuve
-            </motion.span>
-
             <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-bold font-display text-white leading-[1.08]">
               <TextReveal text="200+ recrutements signés." className="text-white" />
               <br />
