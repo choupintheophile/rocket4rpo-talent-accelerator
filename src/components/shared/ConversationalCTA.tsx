@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, ArrowRight, CheckCircle } from "lucide-react";
 
 import { usePathname } from "next/navigation";
+import { trackConversationalStart, trackConversationalComplete } from "@/lib/analytics";
 
 const steps = [
   {
@@ -95,6 +96,10 @@ export function ConversationalCTA() {
   }, []);
 
   const handleAnswer = (value: string, nextStep: number) => {
+    if (currentStep === 0 && answers.length === 0) {
+      trackConversationalStart();
+    }
+
     const newAnswers = [...answers, value];
     setAnswers(newAnswers);
 
@@ -105,6 +110,8 @@ export function ConversationalCTA() {
         "conversational-cta-answers",
         JSON.stringify(newAnswers)
       );
+      const recommendation = getRecommendation(newAnswers);
+      trackConversationalComplete(recommendation.title);
     } else {
       setCurrentStep(nextStep);
     }

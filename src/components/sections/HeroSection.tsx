@@ -14,6 +14,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 import type { HeroContent } from "@/lib/personalization";
+import { trackHeroCTAClick } from "@/lib/analytics";
 
 /* ─── defaults ─── */
 const defaultContent: HeroContent = {
@@ -343,6 +344,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             >
               <a
                 href="/rdv"
+                onClick={() => trackHeroCTAClick("Réserver un diagnostic gratuit", "/rdv")}
                 className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl bg-white text-[hsl(220,20%,10%)] hover:bg-white/90 shadow-lg shadow-white/10 hover:shadow-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
               >
                 Réserver un diagnostic gratuit
@@ -350,6 +352,7 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
               </a>
               <a
                 href="/calculateur"
+                onClick={() => trackHeroCTAClick("Calculer mes économies", "/calculateur")}
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold rounded-xl border border-white/15 text-white hover:bg-white/[0.06] hover:border-white/25 transition-all duration-200"
               >
                 <Calculator className="w-4 h-4" />

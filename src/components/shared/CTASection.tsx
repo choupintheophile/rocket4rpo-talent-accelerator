@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import { trackCTAClick } from "@/lib/analytics";
 
 interface Props {
   title?: string;
@@ -38,6 +39,7 @@ export const CTASection = ({
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="/rdv"
+            onClick={() => trackCTAClick(ctaLabel || "Réserver", "/rdv")}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-rocket-navy-soft"
           >
             {ctaLabel}

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { trackStickyCTAClick } from "@/lib/analytics";
 
 const EXCLUDED_PATHS = ["/contact", "/calculateur"];
 const SCROLL_THRESHOLD = 300;
@@ -42,12 +43,14 @@ export const StickyCTA = () => {
           >
             <a
               href="/rdv"
+              onClick={() => trackStickyCTAClick("Diagnostic gratuit", "/rdv")}
               className="flex-1 inline-flex items-center justify-center h-10 px-4 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
             >
               Diagnostic gratuit
             </a>
             <Link
               href="/calculateur"
+              onClick={() => trackStickyCTAClick("Calculer ROI", "/calculateur")}
               className="flex-1 inline-flex items-center justify-center h-10 px-4 text-sm font-semibold rounded-lg border border-border text-foreground hover:bg-secondary transition-colors"
             >
               Calculer ROI

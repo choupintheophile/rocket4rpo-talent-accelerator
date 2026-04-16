@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { trackInternalLinkClick } from "@/lib/analytics";
 import { Calculator, ClipboardCheck, Play, GitCompare, FileText, BookOpen, ArrowRight, HelpCircle, Coins, Library } from "lucide-react";
 
 const ALL_LINKS = [
@@ -48,6 +51,7 @@ export function InternalLinks({ currentPath, title = "À découvrir aussi", max 
             <Link
               key={link.href}
               href={link.href}
+              onClick={() => trackInternalLinkClick(link.label, link.href)}
               className="group p-5 rounded-xl border border-border/40 bg-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1"
             >
               <link.icon className={`w-5 h-5 ${link.color} mb-3`} />

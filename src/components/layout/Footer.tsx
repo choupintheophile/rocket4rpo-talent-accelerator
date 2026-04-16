@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { trackFooterLinkClick } from "@/lib/analytics";
 import Image from "next/image";
 import { MapPin, Mail, ArrowRight, Linkedin } from "lucide-react";
 
@@ -49,12 +52,12 @@ export const Footer = () => (
         <div>
           <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Découvrir</h4>
           <ul className="space-y-3 text-sm text-background/70">
-            <li><Link href="/offre" className="hover:text-primary transition-colors">Notre offre RPO</Link></li>
-            <li><Link href="/a-propos" className="hover:text-primary transition-colors">À propos</Link></li>
-            <li><Link href="/rdv" className="hover:text-primary transition-colors">Parler à un expert</Link></li>
-            <li><Link href="/contact" className="hover:text-primary transition-colors">Nous contacter</Link></li>
-            <li><Link href="/recrutement" className="hover:text-primary transition-colors">Devenir freelance TA</Link></li>
-            <li><Link href="/rocket4gtm" className="hover:text-primary transition-colors">Le groupe Rocket4GTM</Link></li>
+            <li><Link href="/offre" onClick={() => trackFooterLinkClick("Notre offre RPO", "/offre")} className="hover:text-primary transition-colors">Notre offre RPO</Link></li>
+            <li><Link href="/a-propos" onClick={() => trackFooterLinkClick("À propos", "/a-propos")} className="hover:text-primary transition-colors">À propos</Link></li>
+            <li><Link href="/rdv" onClick={() => trackFooterLinkClick("Parler à un expert", "/rdv")} className="hover:text-primary transition-colors">Parler à un expert</Link></li>
+            <li><Link href="/contact" onClick={() => trackFooterLinkClick("Nous contacter", "/contact")} className="hover:text-primary transition-colors">Nous contacter</Link></li>
+            <li><Link href="/recrutement" onClick={() => trackFooterLinkClick("Devenir freelance TA", "/recrutement")} className="hover:text-primary transition-colors">Devenir freelance TA</Link></li>
+            <li><Link href="/rocket4gtm" onClick={() => trackFooterLinkClick("Le groupe Rocket4GTM", "/rocket4gtm")} className="hover:text-primary transition-colors">Le groupe Rocket4GTM</Link></li>
           </ul>
         </div>
 
@@ -62,11 +65,11 @@ export const Footer = () => (
         <div>
           <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Guides RPO</h4>
           <ul className="space-y-3 text-sm text-background/70">
-            <li><Link href="/qu-est-ce-que-le-rpo" className="hover:text-primary transition-colors">Qu&apos;est-ce que le RPO ?</Link></li>
-            <li><Link href="/combien-coute-un-rpo" className="hover:text-primary transition-colors">Combien coûte un RPO ?</Link></li>
-            <li><Link href="/glossaire-rpo" className="hover:text-primary transition-colors">Glossaire RPO</Link></li>
-            <li><Link href="/blog" className="hover:text-primary transition-colors">Blog & conseils</Link></li>
-            <li><Link href="/ressources" className="hover:text-primary transition-colors">Guides & templates</Link></li>
+            <li><Link href="/qu-est-ce-que-le-rpo" onClick={() => trackFooterLinkClick("Qu'est-ce que le RPO ?", "/qu-est-ce-que-le-rpo")} className="hover:text-primary transition-colors">Qu&apos;est-ce que le RPO ?</Link></li>
+            <li><Link href="/combien-coute-un-rpo" onClick={() => trackFooterLinkClick("Combien coûte un RPO ?", "/combien-coute-un-rpo")} className="hover:text-primary transition-colors">Combien coûte un RPO ?</Link></li>
+            <li><Link href="/glossaire-rpo" onClick={() => trackFooterLinkClick("Glossaire RPO", "/glossaire-rpo")} className="hover:text-primary transition-colors">Glossaire RPO</Link></li>
+            <li><Link href="/blog" onClick={() => trackFooterLinkClick("Blog & conseils", "/blog")} className="hover:text-primary transition-colors">Blog & conseils</Link></li>
+            <li><Link href="/ressources" onClick={() => trackFooterLinkClick("Guides & templates", "/ressources")} className="hover:text-primary transition-colors">Guides & templates</Link></li>
           </ul>
         </div>
 
@@ -74,10 +77,10 @@ export const Footer = () => (
         <div>
           <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Outils gratuits</h4>
           <ul className="space-y-3 text-sm text-background/70">
-            <li><Link href="/calculateur" className="hover:text-primary transition-colors">Calculateur ROI RPO</Link></li>
-            <li><Link href="/assessment" className="hover:text-primary transition-colors">Diagnostic recrutement</Link></li>
-            <li><Link href="/demo" className="hover:text-primary transition-colors">Démo interactive</Link></li>
-            <li><Link href="/simulateurs" className="hover:text-primary transition-colors">Tous les simulateurs</Link></li>
+            <li><Link href="/calculateur" onClick={() => trackFooterLinkClick("Calculateur ROI RPO", "/calculateur")} className="hover:text-primary transition-colors">Calculateur ROI RPO</Link></li>
+            <li><Link href="/assessment" onClick={() => trackFooterLinkClick("Diagnostic recrutement", "/assessment")} className="hover:text-primary transition-colors">Diagnostic recrutement</Link></li>
+            <li><Link href="/demo" onClick={() => trackFooterLinkClick("Démo interactive", "/demo")} className="hover:text-primary transition-colors">Démo interactive</Link></li>
+            <li><Link href="/simulateurs" onClick={() => trackFooterLinkClick("Tous les simulateurs", "/simulateurs")} className="hover:text-primary transition-colors">Tous les simulateurs</Link></li>
           </ul>
         </div>
 
@@ -85,16 +88,16 @@ export const Footer = () => (
         <div>
           <h4 className="font-display text-sm font-semibold mb-5 text-background/90">Comparer</h4>
           <ul className="space-y-3 text-sm text-background/70">
-            <li><Link href="/comparateur" className="hover:text-primary transition-colors">RPO vs Cabinet vs Interne</Link></li>
-            <li><Link href="/rpo-vs-cabinet" className="hover:text-primary transition-colors">RPO vs Cabinet</Link></li>
-            <li><Link href="/rpo-vs-interim" className="hover:text-primary transition-colors">RPO vs Intérim</Link></li>
-            <li><Link href="/rpo-vs-recrutement-interne" className="hover:text-primary transition-colors">RPO vs Recrutement interne</Link></li>
+            <li><Link href="/comparateur" onClick={() => trackFooterLinkClick("RPO vs Cabinet vs Interne", "/comparateur")} className="hover:text-primary transition-colors">RPO vs Cabinet vs Interne</Link></li>
+            <li><Link href="/rpo-vs-cabinet" onClick={() => trackFooterLinkClick("RPO vs Cabinet", "/rpo-vs-cabinet")} className="hover:text-primary transition-colors">RPO vs Cabinet</Link></li>
+            <li><Link href="/rpo-vs-interim" onClick={() => trackFooterLinkClick("RPO vs Intérim", "/rpo-vs-interim")} className="hover:text-primary transition-colors">RPO vs Intérim</Link></li>
+            <li><Link href="/rpo-vs-recrutement-interne" onClick={() => trackFooterLinkClick("RPO vs Recrutement interne", "/rpo-vs-recrutement-interne")} className="hover:text-primary transition-colors">RPO vs Recrutement interne</Link></li>
           </ul>
           <h4 className="font-display text-sm font-semibold mb-4 mt-8 text-background/90">Légal</h4>
           <ul className="space-y-3 text-sm text-background/70">
-            <li><Link href="/mentions-legales" className="hover:text-primary transition-colors">Mentions légales</Link></li>
-            <li><Link href="/politique-confidentialite" className="hover:text-primary transition-colors">Confidentialité</Link></li>
-            <li><Link href="/cgu" className="hover:text-primary transition-colors">CGU</Link></li>
+            <li><Link href="/mentions-legales" onClick={() => trackFooterLinkClick("Mentions légales", "/mentions-legales")} className="hover:text-primary transition-colors">Mentions légales</Link></li>
+            <li><Link href="/politique-confidentialite" onClick={() => trackFooterLinkClick("Confidentialité", "/politique-confidentialite")} className="hover:text-primary transition-colors">Confidentialité</Link></li>
+            <li><Link href="/cgu" onClick={() => trackFooterLinkClick("CGU", "/cgu")} className="hover:text-primary transition-colors">CGU</Link></li>
           </ul>
         </div>
       </div>
@@ -115,7 +118,7 @@ export const Footer = () => (
           <a href="https://www.rocket4sales.com" target="_blank" rel="noopener noreferrer" className="text-background/50 hover:text-primary transition-colors text-xs">
             Rocket4Sales
           </a>
-          <Link href="/sitemap.xml" className="text-background/50 hover:text-primary transition-colors text-xs">
+          <Link href="/sitemap.xml" onClick={() => trackFooterLinkClick("Sitemap", "/sitemap.xml")} className="text-background/50 hover:text-primary transition-colors text-xs">
             Sitemap
           </Link>
         </div>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Link from "next/link";
+import { trackExitIntentShown, trackExitIntentClick } from "@/lib/analytics";
 
 export const ExitIntentPopup = () => {
   const [show, setShow] = useState(false);
@@ -15,6 +16,7 @@ export const ExitIntentPopup = () => {
     const docHandler = (e: MouseEvent) => {
       if (e.clientY <= 0) {
         setShow(true);
+        trackExitIntentShown();
         sessionStorage.setItem("exit-popup-shown", "true");
         document.removeEventListener("mouseout", docHandler);
       }
@@ -70,14 +72,14 @@ export const ExitIntentPopup = () => {
             <div className="flex gap-3">
               <Link
                 href="/assessment"
-                onClick={() => setShow(false)}
+                onClick={() => { trackExitIntentClick("Faire le diagnostic (2 min)", "/assessment"); setShow(false); }}
                 className="flex-1 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90"
               >
                 Faire le diagnostic (2 min)
               </Link>
               <a
                 href="/rdv"
-                onClick={() => setShow(false)}
+                onClick={() => { trackExitIntentClick("Parler à un expert", "/rdv"); setShow(false); }}
                 className="flex-1 inline-flex items-center justify-center px-4 py-3 text-sm font-semibold rounded-lg border border-border hover:bg-secondary"
               >
                 Parler à un expert

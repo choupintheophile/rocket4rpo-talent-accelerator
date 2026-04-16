@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackNavbarCTAClick } from "@/lib/analytics";
 
 const HUBSPOT = "/rdv";
 
@@ -54,7 +55,7 @@ export const Navbar = () => {
         <div className="hidden lg:flex items-center gap-1">
           <Link
             href="/rdv"
-            onClick={handleNav("/rdv")}
+            onClick={(e) => { handleNav("/rdv")(e); trackNavbarCTAClick("Nos talents"); }}
             className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             Nos talents
