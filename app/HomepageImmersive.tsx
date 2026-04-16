@@ -532,7 +532,7 @@ export default function HomepageImmersive() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/*  ACTE 5 — LE DÉCOLLAGE                                           */}
       {/* ══════════════════════════════════════════════════════════════════ */}
-      <Section className="bg-black/80 min-h-screen">
+      <Section className="bg-black/80">
         <div className="relative z-10 text-center px-6">
           {/* Concentric rings */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
@@ -552,9 +552,8 @@ export default function HomepageImmersive() {
             </motion.div>
 
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-[1.02]">
-              <TextReveal text="Prêt à" className="text-white" />
-              {" "}
-              <TextReveal text="décoller ?" className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400" delay={0.3} />
+              <span className="text-white">Prêt à </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">décoller ?</span>
             </h2>
 
             <motion.p
