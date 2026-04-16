@@ -250,12 +250,12 @@ export default function HomepageImmersive() {
         >
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
 
-          {/* Rocket — smaller, tighter */}
-          <RocketSVG launchProgress={launch} className="scale-[0.6] md:scale-75" />
+          {/* Rocket — tiny */}
+          <RocketSVG launchProgress={launch} className="scale-50 md:scale-[0.6]" />
 
-          {/* Title — VISIBLE IMMEDIATELY, no delay */}
+          {/* Title — VISIBLE IMMEDIATELY */}
           <motion.div
-            className="text-center px-6 z-10 -mt-2"
+            className="text-center px-6 z-10 -mt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -263,36 +263,38 @@ export default function HomepageImmersive() {
             <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-display leading-[1.05] tracking-tight">
               <span className="text-white">Vos meilleurs recrutements</span>
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400 text-gradient-animated">
                 commencent ici.
               </span>
             </h1>
 
             <motion.p
-              className="mt-5 text-base md:text-lg text-white/40 max-w-lg mx-auto leading-relaxed"
+              className="mt-4 text-base md:text-lg text-white/40 max-w-lg mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
             >
               Un recruteur d&apos;élite rejoint votre équipe en 7 jours.
               <br className="hidden md:block" />
               Pas un cabinet. Pas un chasseur. <span className="text-white/60 font-medium">Votre TA.</span>
             </motion.p>
 
-            {/* CTA buttons — visible in hero */}
+            {/* CTA buttons */}
             <motion.div
-              className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
+              className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.7 }}
+              transition={{ delay: 1.2, duration: 0.7 }}
             >
               <a
                 href="/rdv"
                 onClick={() => trackHeroCTAClick("Réserver mon diagnostic", "/rdv")}
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:from-rocket-teal-glow hover:to-emerald-400 hover:scale-[1.03] active:scale-95 transition-all shadow-xl shadow-rocket-teal/20"
+                className="group relative inline-flex items-center gap-2 px-8 py-4 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-xl shadow-rocket-teal/20 overflow-hidden"
               >
-                Réserver mon diagnostic
-                <ArrowRight className="w-4 h-4" />
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <span className="relative">Réserver mon diagnostic</span>
+                <ArrowRight className="w-4 h-4 relative" />
               </a>
               <a
                 href="/calculateur"
@@ -301,6 +303,22 @@ export default function HomepageImmersive() {
               >
                 Calculer mes économies
               </a>
+            </motion.div>
+
+            {/* Trust bar */}
+            <motion.div
+              className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-white/25"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.8, duration: 0.8 }}
+            >
+              <span>🚀 200+ recrutements</span>
+              <span className="w-1 h-1 rounded-full bg-white/15" />
+              <span>⚡ Opérationnel en 7j</span>
+              <span className="w-1 h-1 rounded-full bg-white/15" />
+              <span>💰 5x moins cher</span>
+              <span className="w-1 h-1 rounded-full bg-white/15" />
+              <span>🏆 Top 1% des TA</span>
             </motion.div>
           </motion.div>
 
@@ -584,11 +602,12 @@ export default function HomepageImmersive() {
             <MagneticButton
               href="/rdv"
               onClick={() => { trackHeroCTAClick("Réserver mon diagnostic", "/rdv"); trackCTAClick("Réserver mon diagnostic", "/rdv"); }}
-              className="relative inline-flex items-center gap-3 px-14 py-7 text-xl font-bold rounded-2xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white active:scale-95 transition-all duration-300 shadow-2xl shadow-rocket-teal/30"
+              className="group relative inline-flex items-center gap-3 px-14 py-7 text-xl font-bold rounded-2xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white active:scale-95 transition-all duration-300 shadow-2xl shadow-rocket-teal/30 overflow-hidden"
               strength={0.2}
             >
-              Réserver mon diagnostic
-              <ArrowRight className="w-6 h-6" />
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <span className="relative">Réserver mon diagnostic</span>
+              <ArrowRight className="w-6 h-6 relative" />
             </MagneticButton>
           </motion.div>
 
