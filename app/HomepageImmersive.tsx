@@ -276,7 +276,7 @@ export default function HomepageImmersive() {
             >
               Un recruteur d&apos;élite rejoint votre équipe en 7 jours.
               <br className="hidden md:block" />
-              Pas un cabinet. Pas un chasseur. <span className="text-white/60 font-medium">Votre TA.</span>
+              Pas un cabinet. Pas un CDI. <span className="text-white/60 font-medium">Votre TA.</span>
             </motion.p>
 
             {/* CTA buttons */}
@@ -293,7 +293,7 @@ export default function HomepageImmersive() {
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                <span className="relative">Réserver mon diagnostic</span>
+                <span className="relative">Décollage</span>
                 <ArrowRight className="w-4 h-4 relative" />
               </a>
               <a
@@ -344,65 +344,7 @@ export default function HomepageImmersive() {
       <MarqueeLogos />
 
       {/* ══════════════════════════════════════════════════════════════════ */}
-      {/*  ACTE 2 — LE CONSTAT                                             */}
-      {/* ══════════════════════════════════════════════════════════════════ */}
-      <Section className="bg-black/90">
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <motion.span
-            className="inline-block px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-semibold tracking-wider uppercase text-red-400/80 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            Le constat
-          </motion.span>
-
-          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-bold font-display text-white mb-6 leading-[1.08]">
-            <TextReveal text="Chaque poste ouvert vous coûte" className="text-white" />
-            <br />
-            <TextReveal text="1 500€ par semaine." className="text-red-400" delay={0.5} />
-          </h2>
-
-          <motion.p
-            className="text-base md:text-lg text-white/35 max-w-2xl mx-auto mb-8 leading-relaxed"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1 }}
-          >
-            Salaire non-productif, surcharge managers, opportunités business manquées.
-            Le recrutement classique est <GlitchText className="text-red-400/80">lent, cher, incertain.</GlitchText>
-          </motion.p>
-
-          {/* Stats grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {[
-              { value: 84, suffix: "j", label: "Délai moyen d'embauche en France", icon: Clock },
-              { value: 15, suffix: "%", label: "Des recrutements échouent dans les 12 mois", icon: Shield },
-              { value: 200, suffix: "K€", label: "Coût d'un cabinet pour 10 postes", icon: Zap },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.8 + i * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <GlowCard className="p-8 md:p-10">
-                  <stat.icon className="w-6 h-6 text-red-400/60 mb-6" />
-                  <div className="text-5xl md:text-6xl font-bold text-red-400 mb-3 tabular-nums">
-                    <Counter target={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <p className="text-sm text-white/40 leading-relaxed">{stat.label}</p>
-                </GlowCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ══════════════════════════════════════════════════════════════════ */}
-      {/*  ACTE 3 — LA RÉPONSE                                             */}
+      {/*  ACTE 2 — LA RÉPONSE (ancien acte 3, acte 2 supprimé)            */}
       {/* ══════════════════════════════════════════════════════════════════ */}
       <Section className="bg-black/90">
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
@@ -606,7 +548,7 @@ export default function HomepageImmersive() {
               strength={0.2}
             >
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              <span className="relative">Réserver mon diagnostic</span>
+              <span className="relative">Décollage</span>
               <ArrowRight className="w-6 h-6 relative" />
             </MagneticButton>
           </motion.div>
