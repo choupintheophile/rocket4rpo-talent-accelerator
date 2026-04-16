@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-export const revalidate = 3600; // revalidate every hour
+export const revalidate = 3600;
 import { faqSchema } from "@/lib/seo";
 import { getLatestBlogPosts } from "@/lib/db";
-import { heroContent } from "@/lib/personalization";
-import { HeroSection } from "@/components/sections/HeroSection";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { CTASection } from "@/components/shared/CTASection";
 import { InternalLinks } from "@/components/shared/InternalLinks";
-import HomepageSections from "./HomepageSections";
+import HomepageImmersive from "./HomepageImmersive";
 
 export const metadata: Metadata = {
   title: { absolute: "RPO France — Recruteur intégré en 1 semaine | Rocket4RPO" },
@@ -26,11 +23,6 @@ const homepageFaqs = [
 ];
 
 export default async function HomePage() {
-  // Use "default" segment for SSG/ISR — no searchParams access so the page
-  // can be statically generated and cached on the CDN (was: force-dynamic
-  // because `await searchParams` opts into dynamic rendering).
-  const hero = heroContent["default"];
-
   const blogPosts = await getLatestBlogPosts(3);
 
   const serializedPosts = blogPosts.map((p) => ({
@@ -51,24 +43,21 @@ export default async function HomePage() {
         }}
       />
 
-      <HeroSection content={hero} />
-      <HomepageSections />
-      <BlogPreview posts={serializedPosts} />
-      <section className="bg-rocket-cream">
-        <FAQSection faqs={homepageFaqs} />
-      </section>
-      {/* v23.3 SEO — Homepage distribue le link equity vers les pages piliers */}
-      <InternalLinks
-        currentPath="/"
-        paths={["/qu-est-ce-que-le-rpo", "/combien-coute-un-rpo", "/calculateur", "/assessment"]}
-        title="Explorez nos ressources"
-      />
+      {/* v25 — Homepage immersive : 5 actes narratifs avec starfield 3D */}
+      <HomepageImmersive />
 
-      <CTASection
-        title="Votre prochain recrutement commence ici"
-        subtitle="30 min de diagnostic gratuit avec un expert RPO. On analyse votre besoin, on vous dit honnêtement si le RPO est fait pour vous."
-        ctaLabel="Réserver mon créneau"
-      />
+      {/* Sections classiques sous l'expérience immersive */}
+      <div className="relative z-10 bg-background">
+        <BlogPreview posts={serializedPosts} />
+        <section className="bg-rocket-cream">
+          <FAQSection faqs={homepageFaqs} />
+        </section>
+        <InternalLinks
+          currentPath="/"
+          paths={["/qu-est-ce-que-le-rpo", "/combien-coute-un-rpo", "/calculateur", "/assessment"]}
+          title="Explorez nos ressources"
+        />
+      </div>
     </>
   );
 }
