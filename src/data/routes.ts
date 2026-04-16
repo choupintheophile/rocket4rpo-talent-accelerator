@@ -35,4 +35,6 @@ export const sitemapRoutes: SitemapRoute[] = [
   { path: "/combien-coute-un-rpo", label: "Combien coûte un RPO", category: "Ressources", priority: 0.9, lastModified: DATE_V22_1 },
   { path: "/a-propos", label: "À propos", category: "Principal", priority: 0.8, lastModified: DATE_V22_1 },
   { path: "/glossaire-rpo", label: "Glossaire RPO", category: "Ressources", priority: 0.7, lastModified: DATE_V22_2 },
+  // v23.1 SEO audit — /rdv était absent du sitemap
+  { path: "/rdv", label: "Diagnostic gratuit", category: "Contact", priority: 0.8, lastModified: DATE_V22_3 },
 ];

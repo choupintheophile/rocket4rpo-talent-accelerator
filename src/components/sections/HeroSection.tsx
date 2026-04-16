@@ -296,16 +296,20 @@ export const HeroSection = ({ content }: { content?: HeroContent }) => {
             {/* Headline */}
             <h1 className="mt-6 text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold leading-[1.08] tracking-tight">
               {headlineWords.map((word, i) => (
-                <motion.span
-                  key={i}
-                  className="inline-block mr-[0.3em]"
-                  variants={fadeUp}
-                  initial="hidden"
-                  animate="visible"
-                  custom={i * 0.12 + 0.3}
-                >
-                  {word}
-                </motion.span>
+                <span key={i}>
+                  <motion.span
+                    className="inline-block mr-[0.3em]"
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    custom={i * 0.12 + 0.3}
+                  >
+                    {word}
+                  </motion.span>
+                  {/* v23 SEO fix — espace texte entre les spans pour que Google
+                      lise "Vos recrutements freinent" au lieu de "Vosrecrutementsfreinent" */}
+                  {" "}
+                </span>
               ))}
               <motion.span
                 className="inline-block bg-gradient-to-r from-[hsl(160,84%,50%)] via-[hsl(150,70%,55%)] to-[hsl(140,90%,45%)] bg-clip-text text-transparent"
