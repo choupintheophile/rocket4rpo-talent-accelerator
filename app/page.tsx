@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 export const revalidate = 3600; // revalidate every hour
-import { organizationSchema, professionalServiceSchema, faqSchema } from "@/lib/seo";
+import { faqSchema } from "@/lib/seo";
 import { getLatestBlogPosts } from "@/lib/db";
-import { detectSegment, heroContent } from "@/lib/personalization";
+import { heroContent } from "@/lib/personalization";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { BlogPreview } from "@/components/sections/BlogPreview";
 import { FAQSection } from "@/components/shared/FAQSection";
@@ -24,14 +24,11 @@ const homepageFaqs = [
   { question: "Et si le recruteur ne convient pas ?", answer: "On le remplace sous 1 semaine. Notre réseau de freelances TA seniors nous permet de réagir immédiatement." },
 ];
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | undefined>>;
-}) {
-  const params = await searchParams;
-  const segment = detectSegment(params);
-  const hero = heroContent[segment];
+export default async function HomePage() {
+  // Use "default" segment for SSG/ISR — no searchParams access so the page
+  // can be statically generated and cached on the CDN (was: force-dynamic
+  // because `await searchParams` opts into dynamic rendering).
+  const hero = heroContent["default"];
 
   const blogPosts = await getLatestBlogPosts(3);
 
@@ -46,12 +43,6 @@ export default async function HomePage({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([organizationSchema, professionalServiceSchema]),
-        }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

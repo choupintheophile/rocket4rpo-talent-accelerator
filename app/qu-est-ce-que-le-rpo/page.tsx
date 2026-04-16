@@ -3,7 +3,8 @@ import { faqSchema, breadcrumbSchema } from "@/lib/seo";
 import QuEstCeQueLeRpoClient from "./QuEstCeQueLeRpoClient";
 
 export const metadata: Metadata = {
-  title: "Qu'est-ce que le RPO ? Définition et coût (2026)",
+  // v23 SEO — retiré "et coût" pour éviter cannibalization avec /combien-coute-un-rpo
+  title: "Qu'est-ce que le RPO ? Définition et guide (2026)",
   description:
     "RPO (Recruitment Process Outsourcing) : définition, fonctionnement, coût et cas d'usage. Guide 2026 pour choisir son modèle de recrutement.",
   alternates: { canonical: "/qu-est-ce-que-le-rpo" },
@@ -86,9 +87,11 @@ export default function Page() {
         "@id": "https://rocket4rpo.com/qu-est-ce-que-le-rpo",
       },
       author: {
-        "@type": "Organization",
-        name: "Rocket4RPO",
-        url: "https://rocket4rpo.com",
+        "@type": "Person",
+        name: "Clément Martin",
+        jobTitle: "CEO, Rocket4Sales",
+        url: "https://www.linkedin.com/in/clement-martin-rocket4sales/",
+        worksFor: { "@type": "Organization", name: "Rocket4RPO" },
       },
       publisher: {
         "@type": "Organization",

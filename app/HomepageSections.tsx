@@ -401,6 +401,7 @@ export default function HomepageSections() {
                   alt="Un TA Specialist Rocket4RPO collabore avec un manager client"
                   width={1200}
                   height={600}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1200px"
                   className="w-full h-[280px] md:h-[340px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/10" />
@@ -714,6 +715,7 @@ export default function HomepageSections() {
                   alt="L'équipe Rocket4RPO"
                   width={560}
                   height={560}
+                  sizes="(max-width: 768px) 100vw, 280px"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
@@ -840,6 +842,7 @@ export default function HomepageSections() {
                   alt="Recrutement signé — mission accomplie"
                   width={1000}
                   height={500}
+                  sizes="(max-width: 768px) 100vw, 672px"
                   className="w-full h-[200px] md:h-[240px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />

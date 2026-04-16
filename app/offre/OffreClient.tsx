@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { CTASection } from "@/components/shared/CTASection";
 import { EnBref } from "@/components/shared/EnBref";
 import { FAQSection } from "@/components/shared/FAQSection";
+import { InternalLinks } from "@/components/shared/InternalLinks";
 import {
   ArrowRight,
   CheckCircle,
@@ -1013,6 +1014,13 @@ export default function OffreClient() {
 
       {/* ══ SECTION 10 — FAQ + CTA ══ */}
       <FAQSection faqs={faqs} className="bg-rocket-cream" />
+
+      {/* v23 SEO audit — InternalLinks pour redistribuer le link equity */}
+      <InternalLinks
+        currentPath="/offre"
+        paths={["/qu-est-ce-que-le-rpo", "/combien-coute-un-rpo", "/calculateur", "/comparateur"]}
+        title="Aller plus loin"
+      />
 
       <CTASection
         title="Arrêtez de perdre du temps et de l'argent. Passez au RPO."

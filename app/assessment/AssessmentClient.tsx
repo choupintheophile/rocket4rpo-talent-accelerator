@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EnBref } from "@/components/shared/EnBref";
+import { CTASection } from "@/components/shared/CTASection";
+import { InternalLinks } from "@/components/shared/InternalLinks";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -1795,6 +1797,19 @@ export default function AssessmentClient() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* v23 SEO audit — InternalLinks + CTASection (étaient absents) */}
+      <InternalLinks
+        currentPath="/assessment"
+        paths={["/calculateur", "/offre", "/qu-est-ce-que-le-rpo", "/comparateur"]}
+        title="Aller plus loin"
+      />
+
+      <CTASection
+        title="Besoin d'un expert pour vos recrutements ?"
+        gradientWord="expert"
+        subtitle="30 minutes de diagnostic gratuit avec un Talent Acquisition senior. Sans engagement."
+      />
     </main>
   );
 }

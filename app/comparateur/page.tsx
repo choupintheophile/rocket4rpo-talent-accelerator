@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import ComparateurClient from "./ComparateurClient";
 
 export const metadata: Metadata = {
-  title: "RPO vs Cabinet vs Interne — Comparatif 2026",
+  // v23 SEO — différencié de /rpo-vs-cabinet pour éviter cannibalization
+  title: "Comparateur recrutement : RPO, Cabinet, Interne (2026)",
   description:
     "Comparez coût, flexibilité et efficacité du RPO vs cabinet et recrutement interne. Chiffres concrets, calculateur inclus.",
   alternates: { canonical: "/comparateur" },

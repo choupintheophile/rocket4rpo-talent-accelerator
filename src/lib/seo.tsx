@@ -5,6 +5,7 @@
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://rocket4rpo.com/#organization",
   name: "Rocket4RPO",
   alternateName: ["Rocket 4 RPO", "R4RPO"],
   url: "https://rocket4rpo.com",
@@ -21,6 +22,14 @@ export const organizationSchema = {
     name: "Rocket4GTM",
     url: "https://rocket4rpo.com/rocket4gtm",
   },
+  // v23 SEO audit — telephone + contactPoint (Rich Results)
+  telephone: "+33-1-00-00-00-00",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: "contact@rocket4rpo.com",
+    availableLanguage: ["French", "English"],
+  },
   address: {
     "@type": "PostalAddress",
     streetAddress: "22 rue de l'Échiquier",
@@ -28,6 +37,13 @@ export const organizationSchema = {
     addressLocality: "Paris",
     addressCountry: "FR",
   },
+  // v23 SEO audit — knowsAbout pour E-E-A-T
+  knowsAbout: [
+    "Recruitment Process Outsourcing",
+    "Talent Acquisition",
+    "Sourcing Tech",
+    "Recrutement B2B SaaS",
+  ],
   areaServed: { "@type": "Country", name: "France" },
   sameAs: [
     "https://www.linkedin.com/company/rocket4rpo",
@@ -38,11 +54,13 @@ export const organizationSchema = {
 export const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://rocket4rpo.com/#service",
   name: "Rocket4RPO",
   description: "Cabinet spécialisé en Recruitment Process Outsourcing (RPO). Talent Acquisition externalisé à temps partagé ou à temps plein pour startups, scale-ups et entreprises tech.",
   url: "https://rocket4rpo.com",
   logo: "https://rocket4rpo.com/logo-rocket4rpo.webp",
   image: "https://rocket4rpo.com/logo-rocket4rpo.webp",
+  // v23 SEO audit — geo coordinates pour Google Maps / Local SEO
   address: [
     {
       "@type": "PostalAddress",
@@ -58,6 +76,10 @@ export const professionalServiceSchema = {
       addressLocality: "Villeurbanne",
       addressCountry: "FR",
     },
+  ],
+  geo: [
+    { "@type": "GeoCoordinates", latitude: 48.8716, longitude: 2.3514 },
+    { "@type": "GeoCoordinates", latitude: 45.7676, longitude: 4.8788 },
   ],
   areaServed: {
     "@type": "Country",
@@ -86,12 +108,20 @@ export const professionalServiceSchema = {
 export const breadcrumbSchema = (items: { name: string; url: string }[]) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  itemListElement: items.map((item, i) => ({
-    "@type": "ListItem",
-    position: i + 1,
-    name: item.name,
-    item: `https://rocket4rpo.com${item.url}`,
-  })),
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Accueil",
+      item: "https://rocket4rpo.com/",
+    },
+    ...items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 2,
+      name: item.name,
+      item: `https://rocket4rpo.com${item.url}`,
+    })),
+  ],
 });
 
 export const faqSchema = (faqs: { question: string; answer: string }[]) => ({
@@ -110,7 +140,8 @@ export const serviceSchema = (name: string, description: string, url: string) =>
   name,
   description,
   url: `https://rocket4rpo.com${url}`,
-  provider: organizationSchema,
+  // v23 SEO fix — référence par @id au lieu d'imbriquer le @context
+  provider: { "@type": "Organization", "@id": "https://rocket4rpo.com/#organization" },
 });
 
 export const personSchema = (name: string, jobTitle: string, description: string, linkedin?: string) => ({

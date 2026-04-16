@@ -62,9 +62,11 @@ export default function Page() {
         "@id": "https://rocket4rpo.com/combien-coute-un-rpo",
       },
       author: {
-        "@type": "Organization",
-        name: "Rocket4RPO",
-        url: "https://rocket4rpo.com",
+        "@type": "Person",
+        name: "Clément Martin",
+        jobTitle: "CEO, Rocket4Sales",
+        url: "https://www.linkedin.com/in/clement-martin-rocket4sales/",
+        worksFor: { "@type": "Organization", name: "Rocket4RPO" },
       },
       publisher: {
         "@type": "Organization",

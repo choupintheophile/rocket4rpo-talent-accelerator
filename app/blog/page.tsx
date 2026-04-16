@@ -34,7 +34,12 @@ export default async function Page() {
   // the UI — they're noindexed but still browsable by users.
   const visiblePosts = posts.filter((p) => !getCanonicalForSlug(p.slug));
 
-  const serializedPosts = visiblePosts.map((p) => ({
+  // SSR: only send the first 24 posts to reduce initial HTML payload (~490 KB → ~30 KB).
+  // The client component still handles "load more" but starts from this subset.
+  const SSR_LIMIT = 24;
+  const limitedPosts = visiblePosts.slice(0, SSR_LIMIT);
+
+  const serializedPosts = limitedPosts.map((p) => ({
     slug: p.slug,
     title: p.title,
     excerpt: p.excerpt,
