@@ -331,7 +331,7 @@ export default function HomepageImmersive() {
       <Section className="bg-black/90">
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
           <motion.span
-            className="inline-block px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-semibold tracking-wider uppercase text-red-400/80 mb-10"
+            className="inline-block px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-xs font-semibold tracking-wider uppercase text-red-400/80 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -346,7 +346,7 @@ export default function HomepageImmersive() {
           </h2>
 
           <motion.p
-            className="text-base md:text-lg text-white/35 max-w-2xl mx-auto mb-20 leading-relaxed"
+            className="text-base md:text-lg text-white/35 max-w-2xl mx-auto mb-8 leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -389,7 +389,7 @@ export default function HomepageImmersive() {
       <Section className="bg-black/90">
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
           <motion.span
-            className="inline-block px-4 py-1.5 rounded-full bg-rocket-teal/10 border border-rocket-teal/20 text-xs font-semibold tracking-wider uppercase text-rocket-teal-glow/80 mb-10"
+            className="inline-block px-4 py-1.5 rounded-full bg-rocket-teal/10 border border-rocket-teal/20 text-xs font-semibold tracking-wider uppercase text-rocket-teal-glow/80 mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -404,7 +404,7 @@ export default function HomepageImmersive() {
           </h2>
 
           <motion.p
-            className="text-base md:text-lg text-white/35 max-w-2xl mx-auto mb-20 leading-relaxed"
+            className="text-base md:text-lg text-white/35 max-w-2xl mx-auto mb-8 leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -415,7 +415,7 @@ export default function HomepageImmersive() {
           </motion.p>
 
           {/* Transformed stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
             {[
               { old: "84 jours", value: 28, suffix: "j", label: "Time-to-hire moyen" },
               { old: "200K€", value: 44, suffix: "K€", label: "Pour 10 recrutements" },
@@ -469,9 +469,9 @@ export default function HomepageImmersive() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       <Section className="bg-black/90">
         <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <motion.span
-              className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold tracking-wider uppercase text-amber-400/80 mb-10"
+              className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-xs font-semibold tracking-wider uppercase text-amber-400/80 mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -548,7 +548,7 @@ export default function HomepageImmersive() {
             transition={{ duration: 1, type: "spring" }}
           >
             <motion.div animate={{ rotate: [0, 15, -15, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>
-              <Sparkles className="w-12 h-12 text-rocket-teal-glow/60 mx-auto mb-10" />
+              <Sparkles className="w-12 h-12 text-rocket-teal-glow/60 mx-auto mb-6" />
             </motion.div>
 
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display leading-[1.02]">
