@@ -16,7 +16,8 @@ import { OrbitLogos } from "@/components/homepage/OrbitLogos";
 import { MagneticButton } from "@/components/homepage/MagneticButton";
 import { MarqueeLogos } from "@/components/homepage/MarqueeLogos";
 import { GlowCard } from "@/components/homepage/GlowCard";
-import { SmoothScroll } from "@/components/homepage/SmoothScroll";
+// Lenis retiré — interfère avec Framer Motion whileInView (sections invisibles)
+// import { SmoothScroll } from "@/components/homepage/SmoothScroll";
 import { trackHeroCTAClick, trackCTAClick } from "@/lib/analytics";
 
 /* ====================================================================== */
@@ -153,20 +154,13 @@ function NoiseOverlay() {
 /* ====================================================================== */
 
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-15%" });
-
   return (
-    <motion.section
-      ref={ref}
+    <section
       id={id}
-      initial={{ opacity: 0 }}
-      animate={inView ? { opacity: 1 } : {}}
-      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className={`relative min-h-screen flex items-center justify-center py-24 md:py-32 ${className}`}
     >
       {children}
-    </motion.section>
+    </section>
   );
 }
 
@@ -208,8 +202,8 @@ export default function HomepageImmersive() {
 
   return (
     <div ref={containerRef} className="relative bg-black">
-      {/* ═══ Smooth scroll ═══ */}
-      <SmoothScroll />
+      {/* Smooth scroll CSS natif (Lenis retiré — cassait whileInView) */}
+      <style>{`html { scroll-behavior: smooth; }`}</style>
 
       {/* ═══ Film grain ═══ */}
       <NoiseOverlay />
@@ -249,19 +243,19 @@ export default function HomepageImmersive() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/*  ACTE 1 — OUVERTURE                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
-      <section className="relative h-[180vh]">
+      <section className="relative h-[160vh]">
         <motion.div
           className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden"
           style={{ opacity: heroOpacity }}
         >
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
-          <RocketSVG launchProgress={launch} className="mb-6" />
+          <RocketSVG launchProgress={launch} className="mb-4 scale-75 md:scale-90" />
 
           <motion.div
             className="text-center px-6 z-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: countdownDone ? 1 : 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-bold font-display leading-[1.02] tracking-tight">
               <TextReveal
@@ -280,8 +274,8 @@ export default function HomepageImmersive() {
             <motion.p
               className="mt-8 text-lg md:text-xl text-white/40 max-w-lg mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
-              animate={countdownDone ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 2.5, duration: 1 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 3.5, duration: 1 }}
             >
               Un recruteur d&apos;élite rejoint votre équipe en 7 jours.
               <br className="hidden md:block" />
@@ -293,8 +287,8 @@ export default function HomepageImmersive() {
           <motion.div
             className="absolute bottom-16 flex flex-col items-center gap-3"
             initial={{ opacity: 0 }}
-            animate={countdownDone ? { opacity: 1 } : {}}
-            transition={{ delay: 3.5, duration: 1 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 5, duration: 1 }}
           >
             <div className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5">
               <motion.div
