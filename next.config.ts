@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    // v23.6 — AVIF en priorité puis WebP, fallback JPEG/PNG automatique.
+    // Next négocie via Accept header : -30 à -50% de poids vs JPEG sur navigateurs modernes.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "plus.unsplash.com" },
@@ -54,6 +57,20 @@ const nextConfig: NextConfig = {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
           },
+        ],
+      },
+      // v23.6 — Cache long pour les assets statiques (PDFs, logos, favicon)
+      // Ces fichiers sont immuables entre les deploys → 1 an + immutable.
+      {
+        source: "/resources/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/:file(favicon\\.ico|favicon\\.svg|favicon-32x32\\.png|logo-rocket4rpo.*\\.webp|og-default\\.(?:png|svg))",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
     ];
