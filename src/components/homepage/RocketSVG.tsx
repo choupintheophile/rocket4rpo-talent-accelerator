@@ -23,12 +23,15 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
   const glowSize = 20 + launchProgress * 60;
 
   return (
+    // v24.5.2 — wrapper porte uniquement les classes Tailwind (scale responsive
+    // passées par le parent) + le filter glow. La transform de lancement est
+    // appliquée au <svg> à l'intérieur pour éviter le conflit avec les classes
+    // Tailwind qui écrasent la transform inline via --tw-scale-x/y.
     <div
       className={`relative ${className}`}
       style={{
-        transform: `translateY(${y}px) scale(${scale})`,
         filter: `drop-shadow(0 0 ${glowSize}px rgba(20, 184, 166, ${0.3 + launchProgress * 0.5}))`,
-        transition: "filter 0.3s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
+        transition: "filter 0.3s ease",
       }}
     >
       <svg
@@ -38,6 +41,11 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-20 h-30 md:w-28 md:h-42"
+        style={{
+          transform: `translateY(${y}px) scale(${scale})`,
+          transformOrigin: "center bottom",
+          transition: "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
       >
         {/* Body */}
         <path
