@@ -221,16 +221,14 @@ export default function HomepageImmersive() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/*  ACTE 1 — OUVERTURE                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
-      {/* v23.9 — min-h-screen (au lieu de h-screen strict) + padding navbar
-          → évite le clipping du contenu sur viewports courts (laptop 13",
-          Windows + barre des tâches visible). Countdown est absolute donc
-          pas besoin de overflow-hidden pour le contenir. */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-10 lg:pt-28 lg:pb-16">
+      {/* v24.1 — h-screen strict + overflow-hidden : pas de scroll, tout le
+          contenu doit tenir dans la viewport. Padding top = hauteur navbar fixed. */}
+      <section className="relative h-screen flex flex-col items-center justify-center px-4 pt-20 pb-4 lg:pt-24 lg:pb-8 overflow-hidden">
         <div className="w-full flex flex-col items-center justify-center">
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
 
-          {/* Rocket — tiny */}
-          <RocketSVG launchProgress={launch} className="scale-50 md:scale-[0.6]" />
+          {/* Rocket — v24.1 réduit pour tenir sans scroll, caché sur très petits écrans */}
+          <RocketSVG launchProgress={launch} className="hidden sm:block scale-[0.35] md:scale-[0.5]" />
 
           {/* Title — VISIBLE IMMEDIATELY */}
           <motion.div
@@ -239,12 +237,13 @@ export default function HomepageImmersive() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* v23.8 — Chip de contexte : différenciation vs offshore, factuel */}
+            {/* v23.8 — Chip de contexte : différenciation vs offshore, factuel
+                v24.1 — mb-5 → mb-3 (densité verticale) */}
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15, duration: 0.6 }}
-              className="mb-5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-sm"
+              className="mb-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-sm"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-rocket-teal opacity-75 animate-ping" />
@@ -264,7 +263,7 @@ export default function HomepageImmersive() {
             </h1>
 
             <motion.p
-              className="mt-4 text-base md:text-lg text-white/40 max-w-lg mx-auto leading-relaxed"
+              className="mt-3 text-sm md:text-lg text-white/40 max-w-lg mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -274,9 +273,10 @@ export default function HomepageImmersive() {
               Pas un cabinet. Pas un CDI. <span className="text-white/60 font-medium">Votre TA.</span>
             </motion.p>
 
-            {/* CTA cluster — primary dominant, secondary en lien discret */}
+            {/* CTA cluster — primary dominant, secondary en lien discret
+                v24.1 — mt-7 → mt-5, gap-3 → gap-2 (serré) */}
             <motion.div
-              className="mt-7 flex flex-col items-center justify-center gap-3"
+              className="mt-5 flex flex-col items-center justify-center gap-2"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.7 }}
@@ -284,7 +284,7 @@ export default function HomepageImmersive() {
               <a
                 href="/rdv"
                 onClick={() => trackHeroCTAClick("Réserver mon diagnostic", "/rdv")}
-                className="group relative inline-flex items-center gap-2.5 px-9 py-4 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-[0_10px_40px_-10px_rgba(20,184,166,0.6)] hover:shadow-[0_10px_45px_-5px_rgba(20,184,166,0.75)] overflow-hidden"
+                className="group relative inline-flex items-center gap-2.5 px-8 py-3.5 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-[0_10px_40px_-10px_rgba(20,184,166,0.6)] hover:shadow-[0_10px_45px_-5px_rgba(20,184,166,0.75)] overflow-hidden"
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
@@ -302,16 +302,16 @@ export default function HomepageImmersive() {
               <a
                 href="/calculateur"
                 onClick={() => trackCTAClick("Calculer mes économies", "/calculateur")}
-                className="mt-1 inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white/85 transition-colors underline-offset-4 decoration-white/20 hover:decoration-rocket-teal/60 hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white/85 transition-colors underline-offset-4 decoration-white/20 hover:decoration-rocket-teal/60 hover:underline"
               >
                 ou estimer mes économies
                 <ArrowRight className="w-3.5 h-3.5 opacity-60" />
               </a>
             </motion.div>
 
-            {/* Trust bar — v24.0 : retire "5x moins cher qu'un cabinet" (demande user) */}
+            {/* Trust bar — v24.1 : mt-8 → mt-5 */}
             <motion.div
-              className="mt-8 flex flex-wrap items-center justify-center gap-5 md:gap-6 text-xs text-white/30"
+              className="mt-5 flex flex-wrap items-center justify-center gap-5 md:gap-6 text-xs text-white/30"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.8 }}
@@ -321,12 +321,10 @@ export default function HomepageImmersive() {
               <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🏆</span> Top 1% des TA</span>
             </motion.div>
 
-            {/* v23.8 — Testimonial 1-liner compressé depuis HomepageSections existant.
-                Source originale : "En 4 mois, 8 postes pourvus. On a divisé notre
-                time-to-hire par deux." — VP People, Scale-up SaaS (120p.)
-                v23.9 — margin top réduit (mt-7→mt-5) pour tenir sur viewports courts */}
+            {/* Testimonial compressé (source: ancien HomepageSections).
+                v24.1 — caché si viewport trop court pour garantir no-scroll strict */}
             <motion.figure
-              className="mt-5 max-w-md mx-auto"
+              className="hidden [@media(min-height:720px)]:block mt-3 max-w-md mx-auto"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2.2, duration: 0.8 }}

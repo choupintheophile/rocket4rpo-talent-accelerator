@@ -87,7 +87,9 @@ export const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop nav — liens secondaires */}
+        {/* Desktop nav — liens secondaires
+            v24.1 — contraste homepage : text-white/bg-white au lieu des vars
+            foreground/border qui se retrouvent trop pâles sur bg noir du hero */}
         <div className="hidden lg:flex items-center gap-2">
           <Link
             href="/recrutement"
@@ -100,7 +102,11 @@ export const Navbar = () => {
           <Link
             href="/webapp-testing"
             onClick={handleNav("/webapp-testing")}
-            className="px-4 py-2 text-sm font-medium rounded-lg bg-foreground/[0.06] border border-border/40 text-foreground/80 hover:text-foreground hover:bg-foreground/[0.1] hover:border-primary/30 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+              isHome
+                ? "bg-white/[0.06] border-white/20 text-white/85 hover:text-white hover:bg-white/[0.12] hover:border-rocket-teal/50"
+                : "bg-foreground/[0.06] border-border/40 text-foreground/80 hover:text-foreground hover:bg-foreground/[0.1] hover:border-primary/30"
+            }`}
           >
             Se connecter
           </Link>
