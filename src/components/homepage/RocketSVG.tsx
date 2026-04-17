@@ -1,36 +1,23 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
-
 interface RocketSVGProps {
-  /** 0 = grounded, 1 = launched */
-  launchProgress: number;
+  /** @deprecated v24.5.8 — utilisé uniquement pour la flamme/glow statique,
+      le décollage est maintenant purement CSS via :has() au niveau section */
+  launchProgress?: number;
   className?: string;
 }
 
 /**
- * Stylized rocket SVG that launches on scroll or on CTA hover.
+ * Stylized rocket SVG.
  *
- * v24.5.7 — après 6 échecs (CSS inline React, motion.div, motion animate,
- * !important class), on force la transform via ref.current.style dans un
- * useLayoutEffect. Contourne les conflits entre React DOM updates et le
- * rendu Chrome (probable interaction avec l'extension Claude in Chrome).
+ * v24.5.8 — on revient à une version statique. Le décollage au hover du CTA
+ * est géré en CSS pur (`section:has(.cta-hero:hover) .rocket-inner { ... }`)
+ * dans HomepageImmersive, via une classe `.rocket-inner` sur le wrapper.
  */
-export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
+export function RocketSVG({ launchProgress = 0, className = "" }: RocketSVGProps) {
   const flameOpacity = 0.3 + launchProgress * 0.7;
   const flameScale = 1 + launchProgress * 2;
   const glowSize = 20 + launchProgress * 60;
-  const innerRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    const el = innerRef.current;
-    if (!el) return;
-    const y = -launchProgress * 600;
-    const scale = 1 + launchProgress * 0.3;
-    el.style.setProperty("transform", `translateY(${y}px) scale(${scale})`, "important");
-    el.style.setProperty("transform-origin", "center bottom");
-    el.style.setProperty("transition", "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)");
-  }, [launchProgress]);
 
   return (
     <div
@@ -40,7 +27,7 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
         transition: "filter 0.3s ease",
       }}
     >
-      <div ref={innerRef}>
+      <div className="rocket-inner">
       <svg
         width="120"
         height="180"

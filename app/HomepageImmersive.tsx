@@ -165,10 +165,9 @@ export default function HomepageImmersive() {
   // v24.3 — page hero-only + h-screen strict : scrollYProgress devenait 1
   // dès le load et envoyait la fusée à -600px hors viewport. warp figé à 0.
   const warp = 0;
-
-  // v24.5 — fusée décolle au hover sur le CTA primary "Réserver 15 min"
-  const [ctaHover, setCtaHover] = useState(false);
-  const launch = ctaHover ? 1 : 0;
+  // v24.5.8 — décollage géré en CSS pur via :has() (voir <style> dans JSX).
+  // launch statique à 0 (flamme/glow de repos).
+  const launch = 0;
 
   // Countdown
   const [countdownDone, setCountdownDone] = useState(false);
@@ -212,6 +211,20 @@ export default function HomepageImmersive() {
       {/* v24.1 — h-screen strict + overflow-hidden : pas de scroll, tout le
           contenu doit tenir dans la viewport. Padding top = hauteur navbar fixed. */}
       <section className="relative h-screen flex flex-col items-center justify-center px-4 pt-20 pb-4 lg:pt-24 lg:pb-8 overflow-hidden">
+        {/* v24.5.8 — Décollage en CSS pur via :has(). Quand l'utilisateur
+            hover le CTA .cta-hero, le .rocket-inner décolle. Zéro état React,
+            zéro interaction avec le DOM (évite les 7 problèmes précédents). */}
+        <style>{`
+          .rocket-inner {
+            transform: translateY(0) scale(1);
+            transform-origin: center bottom;
+            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+          }
+          section:has(.cta-hero:hover) .rocket-inner,
+          section:has(.cta-hero:focus-visible) .rocket-inner {
+            transform: translateY(-110vh) scale(1.3);
+          }
+        `}</style>
         <div className="w-full flex flex-col items-center justify-center">
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
 
@@ -257,11 +270,7 @@ export default function HomepageImmersive() {
               <a
                 href="/rdv"
                 onClick={() => trackHeroCTAClick("Réserver mon diagnostic", "/rdv")}
-                onMouseEnter={() => setCtaHover(true)}
-                onMouseLeave={() => setCtaHover(false)}
-                onFocus={() => setCtaHover(true)}
-                onBlur={() => setCtaHover(false)}
-                className="group relative inline-flex items-center gap-2.5 px-8 py-3.5 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-[0_10px_40px_-10px_rgba(20,184,166,0.6)] hover:shadow-[0_10px_45px_-5px_rgba(20,184,166,0.75)] overflow-hidden"
+                className="cta-hero group relative inline-flex items-center gap-2.5 px-8 py-3.5 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-[0_10px_40px_-10px_rgba(20,184,166,0.6)] hover:shadow-[0_10px_45px_-5px_rgba(20,184,166,0.75)] overflow-hidden"
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
