@@ -24,7 +24,9 @@ import {
   DollarSign,
   ThumbsUp,
   Play,
+  ChevronDown,
 } from "lucide-react";
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -1979,8 +1981,14 @@ export default function DemoClient() {
   // Generate candidates based on the job title (memoized)
   const candidates = useMemo(() => generateCandidates(jobTitle), [jobTitle]);
 
+  // v25.2 — scroll à la simulation (pas au hero) quand on passe d'étape en étape
   const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const el = document.getElementById("demo-simulation");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }, []);
 
   const goToStep = useCallback(
@@ -2017,25 +2025,119 @@ export default function DemoClient() {
     }, 250);
   };
 
-  const handleStart = () => {
-    setStarted(true);
-    scrollToTop();
-  };
-
-  // Auto-start the demo + force scroll to top
+  // Auto-start la demo + scroll au top (au hero) sur mount
+  // v25.2 — on scroll à top=0 pour voir le hero, pas à la simulation
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    // Also force after a small delay (for client-side nav)
     const t = setTimeout(() => window.scrollTo({ top: 0, behavior: "instant" }), 100);
-    if (!started) handleStart();
+    if (!started) setStarted(true);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <main className="min-h-0 pt-2">
+    <>
+      {/* v25.2 — Breadcrumb cohérent avec les autres pages du site */}
+      <Breadcrumbs items={[{ label: "Démo interactive" }]} />
 
-      {/* Demo starts directly — no hero */}
+      {/* v25.2 — HERO : contexte + promesse éducative
+          Le but de la page = montrer comment on bosse. Le hero le dit clairement
+          avant que le visiteur ne plonge dans la simulation. */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-rocket-dark via-rocket-navy-soft to-rocket-dark" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-[8%] w-[400px] h-[400px] rounded-full bg-rocket-teal/8 blur-[120px]" />
+          <div className="absolute bottom-0 right-[15%] w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[100px]" />
+        </div>
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        <div className="relative container-wide py-14 md:py-16 lg:py-20 text-center">
+          <motion.span
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rocket-teal/20 border border-rocket-teal/30 text-sm text-rocket-teal-glow font-medium mb-5"
+          >
+            <Play className="w-3.5 h-3.5" /> Démo interactive · 2 min
+          </motion.span>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.08] text-white max-w-3xl mx-auto"
+          >
+            Voyez exactement{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rocket-teal via-rocket-teal-glow to-emerald-400">
+              comment on recrute
+            </span>{" "}
+            pour vous.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-5 text-base md:text-lg text-white/65 leading-relaxed max-w-2xl mx-auto"
+          >
+            Une simulation interactive de notre processus en 4 étapes : du brief
+            initial aux candidats shortlistés. Ce que vous voyez ici, c&apos;est
+            exactement ce qui se passe quand vos équipes travaillent avec nous.
+          </motion.p>
+
+          {/* Pastille de steps en aperçu */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-7 flex flex-wrap justify-center gap-2 md:gap-3 text-xs md:text-sm"
+          >
+            {[
+              { label: "Brief", icon: FileText },
+              { label: "Sourcing", icon: Search },
+              { label: "Shortlist", icon: Users },
+              { label: "Résultats", icon: Award },
+            ].map((s, i, arr) => (
+              <span key={s.label} className="inline-flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/75 font-medium">
+                  <s.icon className="w-3.5 h-3.5 text-rocket-teal-glow" /> {s.label}
+                </span>
+                {i < arr.length - 1 && <ArrowRight className="w-3.5 h-3.5 text-white/25" aria-hidden="true" />}
+              </span>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-8 flex flex-col items-center gap-1"
+          >
+            <span className="text-xs uppercase tracking-[0.14em] text-white/40">
+              Commencez ci-dessous
+            </span>
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ChevronDown className="w-5 h-5 text-white/40" />
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Fade vers le fond clair de la simulation en dessous */}
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent" />
+      </section>
+
+      {/* v25.2 — Simulation (4 étapes) dans un section séparé */}
+      <section id="demo-simulation" className="py-8 md:py-10 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 pb-4 relative">
           {/* Step transition shimmer */}
           <AnimatePresence>
@@ -2071,6 +2173,7 @@ export default function DemoClient() {
             {currentStep === 3 && <StepResults key="results" onRestart={restart} />}
           </AnimatePresence>
         </div>
-    </main>
+      </section>
+    </>
   );
 }

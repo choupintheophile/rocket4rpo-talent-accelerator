@@ -28,8 +28,7 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }} />
-      {/* v23 SEO audit fix — H1 sémantique (était absent → signal négatif) */}
-      <h1 className="sr-only">Démo interactive RPO — Simulez un recrutement en 4 étapes</h1>
+      {/* v25.2 — H1 déplacé dans DemoClient (visible, pas sr-only) */}
       <DemoClient />
     </>
   );
