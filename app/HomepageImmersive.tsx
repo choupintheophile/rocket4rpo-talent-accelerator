@@ -3,8 +3,6 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import {
   motion,
-  useScroll,
-  useTransform,
   useInView,
   AnimatePresence,
 } from "framer-motion";
@@ -163,20 +161,12 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
 
 export default function HomepageImmersive() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
 
-  // Warp: ramps UP then DOWN
-  const warpFactor = useTransform(scrollYProgress, [0.02, 0.06, 0.10, 0.16], [0, 1, 1, 0]);
-  const [warp, setWarp] = useState(0);
-  useEffect(() => warpFactor.on("change", (v) => setWarp(Math.min(1, Math.max(0, v)))), [warpFactor]);
-
-  // Rocket launch
-  const rocketLaunch = useTransform(scrollYProgress, [0, 0.10], [0, 1]);
-  const [launch, setLaunch] = useState(0);
-  useEffect(() => rocketLaunch.on("change", (v) => setLaunch(Math.min(1, Math.max(0, v)))), [rocketLaunch]);
-
-  // Hero opacity
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
+  // v24.3 — Page hero-only + h-screen strict : scrollYProgress devenait 1
+  // dès le load et envoyait la fusée à -600px hors viewport. On figerait
+  // warp et launch à 0 : fusée stationnaire, starfield calme.
+  const warp = 0;
+  const launch = 0;
 
   // Countdown
   const [countdownDone, setCountdownDone] = useState(false);
@@ -188,10 +178,6 @@ export default function HomepageImmersive() {
     window.addEventListener("mousemove", move, { passive: true });
     return () => window.removeEventListener("mousemove", move);
   }, []);
-
-  // Progress
-  const [progress, setProgress] = useState(0);
-  useEffect(() => scrollYProgress.on("change", (v) => setProgress(v)), [scrollYProgress]);
 
   return (
     <div ref={containerRef} className="relative bg-black">
