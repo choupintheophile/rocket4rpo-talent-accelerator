@@ -249,7 +249,7 @@ export default function HomepageImmersive() {
             </h1>
 
             <motion.p
-              className="mt-3 text-sm md:text-lg text-white/40 max-w-lg mx-auto leading-relaxed"
+              className="mt-3 text-sm md:text-lg text-white/40 max-w-lg mx-auto leading-relaxed text-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
