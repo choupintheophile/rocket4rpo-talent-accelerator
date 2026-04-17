@@ -64,17 +64,36 @@ export default function RdvClient() {
               </div>
             </div>
 
-            {/* Right — Image (v24.7 remplace la Steps card) */}
+            {/* Right — Photo de l'expert qui mène le diagnostic
+                v24.8 — Théophile Choupin est la personne qui reçoit les RDV
+                via l'URL HubSpot. Montrer son visage = confiance + pertinence. */}
             <div className="lg:w-[45%] w-full">
-              <Image
-                src="/photos/reunion.webp"
-                alt="Réunion de diagnostic RPO avec un expert Rocket4RPO"
-                width={600}
-                height={400}
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="rounded-2xl shadow-2xl border border-white/10 object-cover w-full h-auto"
-                priority
-              />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <Image
+                  src="/team/theophile-choupin.webp"
+                  alt="Théophile Choupin, Sales Director Rocket4RPO — votre interlocuteur pour le diagnostic"
+                  width={600}
+                  height={600}
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="w-full h-auto object-cover aspect-[4/5] lg:aspect-[3/4]"
+                  priority
+                />
+                {/* Overlay gradient + carte expert en bas */}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-white/60 font-medium">
+                      Votre interlocuteur
+                    </span>
+                  </div>
+                  <p className="mt-1.5 text-lg font-bold text-white leading-tight">
+                    Théophile Choupin
+                  </p>
+                  <p className="text-sm text-white/65">
+                    Sales Director · Rocket4RPO
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
