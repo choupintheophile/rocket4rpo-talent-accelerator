@@ -235,6 +235,22 @@ export default function HomepageImmersive() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
+            {/* v23.8 — Chip de contexte : différenciation vs offshore, factuel */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.6 }}
+              className="mb-5 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-sm"
+            >
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-rocket-teal opacity-75 animate-ping" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-rocket-teal" />
+              </span>
+              <span className="text-[11px] md:text-xs tracking-[0.14em] uppercase text-white/60 font-medium">
+                Équipe <span className="text-white/85">France</span> · Prêts à recruter
+              </span>
+            </motion.div>
+
             <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-display leading-[1.05] tracking-tight">
               <span className="text-white">Vos meilleurs recrutements</span>
               <br />
@@ -268,7 +284,7 @@ export default function HomepageImmersive() {
               >
                 {/* Shimmer effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-                <span className="relative">Décollage</span>
+                <span className="relative">Réserver 15 min</span>
                 <ArrowRight className="w-4 h-4 relative transition-transform group-hover:translate-x-0.5" />
               </a>
 
@@ -301,6 +317,25 @@ export default function HomepageImmersive() {
               <span className="w-1 h-1 rounded-full bg-white/15" aria-hidden="true" />
               <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🏆</span> Top 1% des TA</span>
             </motion.div>
+
+            {/* v23.8 — Testimonial 1-liner compressé depuis HomepageSections existant.
+                Source originale : "En 4 mois, 8 postes pourvus. On a divisé notre
+                time-to-hire par deux." — VP People, Scale-up SaaS (120p.) */}
+            <motion.figure
+              className="mt-7 max-w-md mx-auto"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.2, duration: 0.8 }}
+            >
+              <blockquote className="text-xs md:text-[13px] text-white/45 italic leading-relaxed">
+                <span className="text-rocket-teal/60 font-serif text-base align-[-2px] mr-0.5">&ldquo;</span>
+                Time-to-hire divisé par 2. 8 postes signés en 4 mois.
+                <span className="text-rocket-teal/60 font-serif text-base align-[-2px] ml-0.5">&rdquo;</span>
+              </blockquote>
+              <figcaption className="mt-1.5 text-[10px] tracking-[0.1em] uppercase text-white/25">
+                VP People · Scale-up SaaS, 120 pers.
+              </figcaption>
+            </motion.figure>
           </motion.div>
 
         </div>
