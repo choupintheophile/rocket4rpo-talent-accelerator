@@ -25,7 +25,8 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
       style={{
         transform: `translateY(${y}px) scale(${scale})`,
         filter: `drop-shadow(0 0 ${glowSize}px rgba(20, 184, 166, ${0.3 + launchProgress * 0.5}))`,
-        transition: "filter 0.3s ease",
+        // v24.5 — transition sur transform pour lancement fluide sur hover CTA
+        transition: "filter 0.3s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
       }}
     >
       <svg

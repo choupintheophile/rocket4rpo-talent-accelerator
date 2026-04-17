@@ -162,11 +162,13 @@ function Section({ children, className = "", id }: { children: React.ReactNode; 
 export default function HomepageImmersive() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // v24.3 — Page hero-only + h-screen strict : scrollYProgress devenait 1
-  // dès le load et envoyait la fusée à -600px hors viewport. On figerait
-  // warp et launch à 0 : fusée stationnaire, starfield calme.
+  // v24.3 — page hero-only + h-screen strict : scrollYProgress devenait 1
+  // dès le load et envoyait la fusée à -600px hors viewport. warp figé à 0.
   const warp = 0;
-  const launch = 0;
+
+  // v24.5 — fusée décolle au hover sur le CTA primary "Réserver 15 min"
+  const [ctaHover, setCtaHover] = useState(false);
+  const launch = ctaHover ? 1 : 0;
 
   // Countdown
   const [countdownDone, setCountdownDone] = useState(false);
@@ -255,6 +257,10 @@ export default function HomepageImmersive() {
               <a
                 href="/rdv"
                 onClick={() => trackHeroCTAClick("Réserver mon diagnostic", "/rdv")}
+                onMouseEnter={() => setCtaHover(true)}
+                onMouseLeave={() => setCtaHover(false)}
+                onFocus={() => setCtaHover(true)}
+                onBlur={() => setCtaHover(false)}
                 className="group relative inline-flex items-center gap-2.5 px-8 py-3.5 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-[0_10px_40px_-10px_rgba(20,184,166,0.6)] hover:shadow-[0_10px_45px_-5px_rgba(20,184,166,0.75)] overflow-hidden"
               >
                 {/* Shimmer effect */}
