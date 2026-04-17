@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 interface RocketSVGProps {
   /** 0 = grounded, 1 = launched */
   launchProgress: number;
@@ -8,12 +10,12 @@ interface RocketSVGProps {
 
 /**
  * Stylized rocket SVG that launches on scroll or on CTA hover.
- * Animates: translateY, scale, glow, flame intensity.
  *
- * v24.5.1 — passé de motion.div à <div> natif : framer-motion interceptait
- * la prop `style.transform` et overridait avec son état interne, résultat
- * la transform inline n'était pas appliquée réellement (computed = identity
- * malgré inline = translateY(-600px)).
+ * v24.5.4 — après 3 tentatives CSS inline infructueuses (computed transform
+ * restait identity malgré style attribute correct, origine encore non
+ * identifiée), on passe sur motion.div avec `animate` prop. Framer Motion
+ * utilise l'API Web Animations (WAAPI), ce qui contourne les conflits
+ * inline/classes CSS.
  */
 export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
   const y = -launchProgress * 600;
@@ -23,10 +25,6 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
   const glowSize = 20 + launchProgress * 60;
 
   return (
-    // v24.5.3 — double wrapper pour éviter le conflit Tailwind vs inline transform :
-    //   outer : classes Tailwind (scale responsive, mb-2, etc.) passées par parent
-    //   inner : launch transform inline (pas de classes Tailwind transform ici)
-    //   svg   : rendu pur, pas de CSS transform
     <div
       className={`relative ${className}`}
       style={{
@@ -34,13 +32,10 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
         transition: "filter 0.3s ease",
       }}
     >
-      <div
-        style={{
-          transform: `translateY(${y}px) scale(${scale})`,
-          transformOrigin: "center bottom",
-          transition: "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
-          willChange: "transform",
-        }}
+      <motion.div
+        animate={{ y, scale }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        style={{ transformOrigin: "center bottom" }}
       >
       <svg
         width="120"
@@ -112,7 +107,7 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
           </radialGradient>
         </defs>
       </svg>
-      </div>
+      </motion.div>
     </div>
   );
 }
