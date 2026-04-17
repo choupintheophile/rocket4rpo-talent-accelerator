@@ -221,8 +221,12 @@ export default function HomepageImmersive() {
       {/* ══════════════════════════════════════════════════════════════════ */}
       {/*  ACTE 1 — OUVERTURE                                              */}
       {/* ══════════════════════════════════════════════════════════════════ */}
-      <section className="relative h-screen">
-        <div className="h-screen flex flex-col items-center justify-center overflow-hidden gap-0">
+      {/* v23.9 — min-h-screen (au lieu de h-screen strict) + padding navbar
+          → évite le clipping du contenu sur viewports courts (laptop 13",
+          Windows + barre des tâches visible). Countdown est absolute donc
+          pas besoin de overflow-hidden pour le contenir. */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-10 lg:pt-28 lg:pb-16">
+        <div className="w-full flex flex-col items-center justify-center">
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
 
           {/* Rocket — tiny */}
@@ -320,9 +324,10 @@ export default function HomepageImmersive() {
 
             {/* v23.8 — Testimonial 1-liner compressé depuis HomepageSections existant.
                 Source originale : "En 4 mois, 8 postes pourvus. On a divisé notre
-                time-to-hire par deux." — VP People, Scale-up SaaS (120p.) */}
+                time-to-hire par deux." — VP People, Scale-up SaaS (120p.)
+                v23.9 — margin top réduit (mt-7→mt-5) pour tenir sur viewports courts */}
             <motion.figure
-              className="mt-7 max-w-md mx-auto"
+              className="mt-5 max-w-md mx-auto"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2.2, duration: 0.8 }}
