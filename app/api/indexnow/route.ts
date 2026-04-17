@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { submitToIndexNow } from "@/lib/indexnow";
 import { getBlogPosts } from "@/lib/db";
 import { isAutoGenThin } from "@/lib/blog-canonicals";
+import { sitemapRoutes } from "@/data/routes";
+
+const SITE_URL = "https://rocket4rpo.com";
 
 /**
  * POST /api/indexnow
@@ -40,36 +43,16 @@ function stripHtml(html: string): string {
  * GET /api/indexnow — v23 : soumet TOUTES les pages qui méritent d'être indexées.
  *
  * Stratégie :
- *   - 19 pages statiques (core business)
- *   - Tous les articles éditoriaux (pas p2-*, extra-*, -N)
- *   - Exclut le thin content pour ne pas polluer le signal
+ *   - Pages statiques = sitemapRoutes (single source of truth)
+ *   - Articles éditoriaux (pas p2-*, extra-*, -N, <300 mots)
  *
  * Appelable via Vercel Cron (lundis 9h17) ou manuellement.
  */
 export async function GET() {
   try {
     // ── Pages statiques prioritaires ──
-    const coreUrls = [
-      "https://rocket4rpo.com/",
-      "https://rocket4rpo.com/offre",
-      "https://rocket4rpo.com/calculateur",
-      "https://rocket4rpo.com/assessment",
-      "https://rocket4rpo.com/qu-est-ce-que-le-rpo",
-      "https://rocket4rpo.com/combien-coute-un-rpo",
-      "https://rocket4rpo.com/rpo-vs-cabinet",
-      "https://rocket4rpo.com/rpo-vs-interim",
-      "https://rocket4rpo.com/rpo-vs-recrutement-interne",
-      "https://rocket4rpo.com/comparateur",
-      "https://rocket4rpo.com/simulateurs",
-      "https://rocket4rpo.com/ressources",
-      "https://rocket4rpo.com/blog",
-      "https://rocket4rpo.com/a-propos",
-      "https://rocket4rpo.com/glossaire-rpo",
-      "https://rocket4rpo.com/contact",
-      "https://rocket4rpo.com/recrutement",
-      "https://rocket4rpo.com/demo",
-      "https://rocket4rpo.com/rdv",
-    ];
+    // v23.4 — Single source of truth : sitemapRoutes (évite la dérive manuelle).
+    const coreUrls = sitemapRoutes.map((r) => `${SITE_URL}${r.path}`);
 
     // ── Articles éditoriaux (exclut thin content) ──
     let editorialUrls: string[] = [];
@@ -80,7 +63,7 @@ export async function GET() {
           const plain = stripHtml(post.content || "");
           return !isAutoGenThin(post.slug, plain);
         })
-        .map((post) => `https://rocket4rpo.com/blog/${post.slug}`);
+        .map((post) => `${SITE_URL}/blog/${post.slug}`);
     } catch {
       // DB indisponible — on soumet quand même les pages statiques
     }
