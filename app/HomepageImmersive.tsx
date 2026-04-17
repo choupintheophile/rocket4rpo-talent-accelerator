@@ -227,8 +227,8 @@ export default function HomepageImmersive() {
         <div className="w-full flex flex-col items-center justify-center">
           <LaunchCountdown onComplete={() => setCountdownDone(true)} />
 
-          {/* Rocket — v24.1 réduit pour tenir sans scroll, caché sur très petits écrans */}
-          <RocketSVG launchProgress={launch} className="hidden sm:block scale-[0.35] md:scale-[0.5]" />
+          {/* Rocket — v24.2 agrandi (demande user) + toujours visible */}
+          <RocketSVG launchProgress={launch} className="scale-[0.7] md:scale-[0.9] lg:scale-[1] mb-2" />
 
           {/* Title — VISIBLE IMMEDIATELY */}
           <motion.div
