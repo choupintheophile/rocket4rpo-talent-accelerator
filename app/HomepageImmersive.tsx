@@ -286,11 +286,11 @@ export default function HomepageImmersive() {
 
               {/* Secondary en lien discret (réduit l'attention split) */}
               <a
-                href="/calculateur"
-                onClick={() => trackCTAClick("Calculer mes économies", "/calculateur")}
+                href="/demo"
+                onClick={() => trackCTAClick("Simulation de votre voyage chez nous", "/demo")}
                 className="inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white/85 transition-colors underline-offset-4 decoration-white/20 hover:decoration-rocket-teal/60 hover:underline"
               >
-                ou estimer mes économies
+                Simulation de votre voyage chez nous
                 <ArrowRight className="w-3.5 h-3.5 opacity-60" />
               </a>
             </motion.div>
