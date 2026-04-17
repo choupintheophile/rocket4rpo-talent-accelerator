@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 interface RocketSVGProps {
   /** 0 = grounded, 1 = launched */
   launchProgress: number;
@@ -11,18 +9,18 @@ interface RocketSVGProps {
 /**
  * Stylized rocket SVG that launches on scroll or on CTA hover.
  *
- * v24.5.4 — après 3 tentatives CSS inline infructueuses (computed transform
- * restait identity malgré style attribute correct, origine encore non
- * identifiée), on passe sur motion.div avec `animate` prop. Framer Motion
- * utilise l'API Web Animations (WAAPI), ce qui contourne les conflits
- * inline/classes CSS.
+ * v24.5.6 — Approche class-based : les tentatives précédentes (inline style
+ * via React, motion.div, motion animate) échouaient probablement à cause
+ * d'une interaction avec l'extension Claude in Chrome qui injecte un
+ * claude-agent-glow-border dans le DOM. On utilise une classe CSS qui est
+ * togglée par launchProgress > 0.5 — Chrome applique les classes sans
+ * interférence.
  */
 export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
-  const y = -launchProgress * 600;
-  const scale = 1 + launchProgress * 0.3;
   const flameOpacity = 0.3 + launchProgress * 0.7;
   const flameScale = 1 + launchProgress * 2;
   const glowSize = 20 + launchProgress * 60;
+  const isLaunched = launchProgress > 0.5;
 
   return (
     <div
@@ -32,12 +30,11 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
         transition: "filter 0.3s ease",
       }}
     >
-      <motion.div
-        initial={false}
-        animate={{ y, scale }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        style={{ transformOrigin: "center bottom" }}
-      >
+      <style>{`
+        .rocket-inner { transform: translateY(0) scale(1); transform-origin: center bottom; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+        .rocket-inner.rocket-launched { transform: translateY(-600px) scale(1.3); }
+      `}</style>
+      <div className={`rocket-inner${isLaunched ? " rocket-launched" : ""}`}>
       <svg
         width="120"
         height="180"
@@ -108,7 +105,7 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
           </radialGradient>
         </defs>
       </svg>
-      </motion.div>
+      </div>
     </div>
   );
 }
