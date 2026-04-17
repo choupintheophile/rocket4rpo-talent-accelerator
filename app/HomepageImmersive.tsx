@@ -8,16 +8,9 @@ import {
   useInView,
   AnimatePresence,
 } from "framer-motion";
-import { ArrowRight, ArrowDown, Search, FileCheck, CheckCircle2, Sparkles, Zap, Shield, Clock } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { StarField } from "@/components/homepage/StarField";
 import { RocketSVG } from "@/components/homepage/RocketSVG";
-import { TextReveal } from "@/components/homepage/TextReveal";
-import { OrbitLogos } from "@/components/homepage/OrbitLogos";
-import { MagneticButton } from "@/components/homepage/MagneticButton";
-import { MarqueeLogos } from "@/components/homepage/MarqueeLogos";
-import { GlowCard } from "@/components/homepage/GlowCard";
-// Lenis retiré — interfère avec Framer Motion whileInView (sections invisibles)
-// import { SmoothScroll } from "@/components/homepage/SmoothScroll";
 import { trackHeroCTAClick, trackCTAClick } from "@/lib/analytics";
 
 /* ====================================================================== */
@@ -261,9 +254,9 @@ export default function HomepageImmersive() {
               Pas un cabinet. Pas un CDI. <span className="text-white/60 font-medium">Votre TA.</span>
             </motion.p>
 
-            {/* CTA buttons */}
+            {/* CTA cluster — primary dominant, secondary en lien discret */}
             <motion.div
-              className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3"
+              className="mt-7 flex flex-col items-center justify-center gap-3"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.7 }}
@@ -271,36 +264,42 @@ export default function HomepageImmersive() {
               <a
                 href="/rdv"
                 onClick={() => trackHeroCTAClick("Réserver mon diagnostic", "/rdv")}
-                className="group relative inline-flex items-center gap-2 px-8 py-4 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-xl shadow-rocket-teal/20 overflow-hidden"
+                className="group relative inline-flex items-center gap-2.5 px-9 py-4 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-[0_10px_40px_-10px_rgba(20,184,166,0.6)] hover:shadow-[0_10px_45px_-5px_rgba(20,184,166,0.75)] overflow-hidden"
               >
                 {/* Shimmer effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
                 <span className="relative">Décollage</span>
-                <ArrowRight className="w-4 h-4 relative" />
+                <ArrowRight className="w-4 h-4 relative transition-transform group-hover:translate-x-0.5" />
               </a>
+
+              {/* v23.7 — microcopy risk-reversal sous le CTA primary */}
+              <p className="text-[11px] md:text-xs text-white/35 tracking-wide">
+                Gratuit <span className="text-white/20 mx-1">·</span> 15 min <span className="text-white/20 mx-1">·</span> Sans engagement
+              </p>
+
+              {/* Secondary en lien discret (réduit l'attention split) */}
               <a
                 href="/calculateur"
                 onClick={() => trackCTAClick("Calculer mes économies", "/calculateur")}
-                className="inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-xl border border-white/15 text-white/70 hover:bg-white/5 hover:text-white hover:border-white/25 transition-all"
+                className="mt-1 inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white/85 transition-colors underline-offset-4 decoration-white/20 hover:decoration-rocket-teal/60 hover:underline"
               >
-                Calculer mes économies
+                ou estimer mes économies
+                <ArrowRight className="w-3.5 h-3.5 opacity-60" />
               </a>
             </motion.div>
 
-            {/* Trust bar */}
+            {/* Trust bar — 3 preuves chiffrées, chacune self-contained */}
             <motion.div
-              className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-white/25"
+              className="mt-8 flex flex-wrap items-center justify-center gap-5 md:gap-6 text-xs text-white/30"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.8, duration: 0.8 }}
             >
-              <span>🚀 200+ recrutements</span>
-              <span className="w-1 h-1 rounded-full bg-white/15" />
-              <span>⚡ Opérationnel en 7j</span>
-              <span className="w-1 h-1 rounded-full bg-white/15" />
-              <span>💰 5x moins cher</span>
-              <span className="w-1 h-1 rounded-full bg-white/15" />
-              <span>🏆 Top 1% des TA</span>
+              <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🚀</span> 200+ recrutements</span>
+              <span className="w-1 h-1 rounded-full bg-white/15" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">💰</span> 5x moins cher qu&apos;un cabinet</span>
+              <span className="w-1 h-1 rounded-full bg-white/15" aria-hidden="true" />
+              <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🏆</span> Top 1% des TA</span>
             </motion.div>
           </motion.div>
 
