@@ -1,5 +1,7 @@
 "use client";
 
+import { useLayoutEffect, useRef } from "react";
+
 interface RocketSVGProps {
   /** 0 = grounded, 1 = launched */
   launchProgress: number;
@@ -9,18 +11,26 @@ interface RocketSVGProps {
 /**
  * Stylized rocket SVG that launches on scroll or on CTA hover.
  *
- * v24.5.6 — Approche class-based : les tentatives précédentes (inline style
- * via React, motion.div, motion animate) échouaient probablement à cause
- * d'une interaction avec l'extension Claude in Chrome qui injecte un
- * claude-agent-glow-border dans le DOM. On utilise une classe CSS qui est
- * togglée par launchProgress > 0.5 — Chrome applique les classes sans
- * interférence.
+ * v24.5.7 — après 6 échecs (CSS inline React, motion.div, motion animate,
+ * !important class), on force la transform via ref.current.style dans un
+ * useLayoutEffect. Contourne les conflits entre React DOM updates et le
+ * rendu Chrome (probable interaction avec l'extension Claude in Chrome).
  */
 export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
   const flameOpacity = 0.3 + launchProgress * 0.7;
   const flameScale = 1 + launchProgress * 2;
   const glowSize = 20 + launchProgress * 60;
-  const isLaunched = launchProgress > 0.5;
+  const innerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    const y = -launchProgress * 600;
+    const scale = 1 + launchProgress * 0.3;
+    el.style.setProperty("transform", `translateY(${y}px) scale(${scale})`, "important");
+    el.style.setProperty("transform-origin", "center bottom");
+    el.style.setProperty("transition", "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)");
+  }, [launchProgress]);
 
   return (
     <div
@@ -30,11 +40,7 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
         transition: "filter 0.3s ease",
       }}
     >
-      <style>{`
-        .rocket-inner { transform: translateY(0) scale(1); transform-origin: center bottom; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
-        .rocket-inner.rocket-launched { transform: translateY(-600px) scale(1.3); }
-      `}</style>
-      <div className={`rocket-inner${isLaunched ? " rocket-launched" : ""}`}>
+      <div ref={innerRef}>
       <svg
         width="120"
         height="180"
