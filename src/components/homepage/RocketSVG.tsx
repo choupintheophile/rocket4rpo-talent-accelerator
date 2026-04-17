@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 interface RocketSVGProps {
   /** 0 = grounded, 1 = launched */
   launchProgress: number;
@@ -9,8 +7,13 @@ interface RocketSVGProps {
 }
 
 /**
- * Stylized rocket SVG that launches on scroll.
+ * Stylized rocket SVG that launches on scroll or on CTA hover.
  * Animates: translateY, scale, glow, flame intensity.
+ *
+ * v24.5.1 — passé de motion.div à <div> natif : framer-motion interceptait
+ * la prop `style.transform` et overridait avec son état interne, résultat
+ * la transform inline n'était pas appliquée réellement (computed = identity
+ * malgré inline = translateY(-600px)).
  */
 export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
   const y = -launchProgress * 600;
@@ -20,12 +23,11 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
   const glowSize = 20 + launchProgress * 60;
 
   return (
-    <motion.div
+    <div
       className={`relative ${className}`}
       style={{
         transform: `translateY(${y}px) scale(${scale})`,
         filter: `drop-shadow(0 0 ${glowSize}px rgba(20, 184, 166, ${0.3 + launchProgress * 0.5}))`,
-        // v24.5 — transition sur transform pour lancement fluide sur hover CTA
         transition: "filter 0.3s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
       }}
     >
@@ -99,6 +101,6 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
           </radialGradient>
         </defs>
       </svg>
-    </motion.div>
+    </div>
   );
 }
