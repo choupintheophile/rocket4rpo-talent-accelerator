@@ -292,9 +292,10 @@ export default function HomepageImmersive() {
                 <ArrowRight className="w-4 h-4 relative transition-transform group-hover:translate-x-0.5" />
               </a>
 
-              {/* v23.7 — microcopy risk-reversal sous le CTA primary */}
+              {/* v23.7 — microcopy risk-reversal sous le CTA primary
+                  v24.0 — retire "Gratuit" (demande user) */}
               <p className="text-[11px] md:text-xs text-white/35 tracking-wide">
-                Gratuit <span className="text-white/20 mx-1">·</span> 15 min <span className="text-white/20 mx-1">·</span> Sans engagement
+                15 min <span className="text-white/20 mx-1">·</span> Sans engagement
               </p>
 
               {/* Secondary en lien discret (réduit l'attention split) */}
@@ -308,7 +309,7 @@ export default function HomepageImmersive() {
               </a>
             </motion.div>
 
-            {/* Trust bar — 3 preuves chiffrées, chacune self-contained */}
+            {/* Trust bar — v24.0 : retire "5x moins cher qu'un cabinet" (demande user) */}
             <motion.div
               className="mt-8 flex flex-wrap items-center justify-center gap-5 md:gap-6 text-xs text-white/30"
               initial={{ opacity: 0 }}
@@ -316,8 +317,6 @@ export default function HomepageImmersive() {
               transition={{ delay: 1.8, duration: 0.8 }}
             >
               <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🚀</span> 200+ recrutements</span>
-              <span className="w-1 h-1 rounded-full bg-white/15" aria-hidden="true" />
-              <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">💰</span> 5x moins cher qu&apos;un cabinet</span>
               <span className="w-1 h-1 rounded-full bg-white/15" aria-hidden="true" />
               <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🏆</span> Top 1% des TA</span>
             </motion.div>
