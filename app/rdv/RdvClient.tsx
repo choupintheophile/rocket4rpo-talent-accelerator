@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
-import { Clock, Shield, CheckCircle2, MessageSquare, Search, Rocket } from "lucide-react";
+import { Clock, Shield, MessageSquare } from "lucide-react";
 
 const HUBSPOT_URL = "https://meetings.hubspot.com/theophile-choupin/rpo";
 
@@ -63,37 +64,17 @@ export default function RdvClient() {
               </div>
             </div>
 
-            {/* Right — Steps card */}
+            {/* Right — Image (v24.7 remplace la Steps card) */}
             <div className="lg:w-[45%] w-full">
-              <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-6 shadow-2xl">
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-8 h-8 rounded-full bg-rocket-teal/20 flex items-center justify-center">
-                    <Rocket className="w-4 h-4 text-rocket-teal-glow" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-white">Comment ça marche</div>
-                    <div className="text-[10px] text-white/40">3 étapes simples</div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  {[
-                    { step: "1", title: "On échange sur vos besoins", icon: Search, desc: "Postes ouverts, enjeux, délais, budget — on fait le point ensemble." },
-                    { step: "2", title: "On identifie le TA idéal", icon: CheckCircle2, desc: "Parmi 300+ experts évalués, on vous recommande le profil parfait." },
-                    { step: "3", title: "Démarrage en 1 semaine", icon: Rocket, desc: "Votre TA Specialist rejoint vos équipes et vos outils dès J+7." },
-                  ].map((item) => (
-                    <div key={item.step} className="flex gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-rocket-teal/15 border border-rocket-teal/20 flex items-center justify-center">
-                        <span className="text-sm font-bold text-rocket-teal-glow">{item.step}</span>
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-white">{item.title}</p>
-                        <p className="text-xs text-white/45 mt-0.5 leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <Image
+                src="/photos/reunion.webp"
+                alt="Réunion de diagnostic RPO avec un expert Rocket4RPO"
+                width={600}
+                height={400}
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="rounded-2xl shadow-2xl border border-white/10 object-cover w-full h-auto"
+                priority
+              />
             </div>
           </div>
         </div>
