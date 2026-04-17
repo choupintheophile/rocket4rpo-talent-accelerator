@@ -33,6 +33,7 @@ export function RocketSVG({ launchProgress, className = "" }: RocketSVGProps) {
       }}
     >
       <motion.div
+        initial={false}
         animate={{ y, scale }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         style={{ transformOrigin: "center bottom" }}
