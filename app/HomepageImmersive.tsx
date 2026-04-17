@@ -269,13 +269,13 @@ export default function HomepageImmersive() {
             >
               <a
                 href="/rdv"
-                onClick={() => trackHeroCTAClick("Réserver mon diagnostic", "/rdv")}
-                className="cta-hero group relative inline-flex items-center gap-2.5 px-8 py-3.5 text-base font-bold rounded-xl bg-gradient-to-r from-rocket-teal to-emerald-500 text-white hover:scale-[1.03] active:scale-95 transition-all shadow-[0_10px_40px_-10px_rgba(20,184,166,0.6)] hover:shadow-[0_10px_45px_-5px_rgba(20,184,166,0.75)] overflow-hidden"
+                onClick={() => trackHeroCTAClick("Monter à bord", "/rdv")}
+                className="cta-hero group relative inline-flex items-center gap-2.5 px-9 py-4 text-base font-bold rounded-xl bg-white text-rocket-dark hover:scale-[1.03] active:scale-95 transition-all shadow-[0_0_0_1px_rgba(255,255,255,0.4),0_0_40px_-5px_rgba(255,255,255,0.35),0_10px_40px_-10px_rgba(20,184,166,0.5)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.6),0_0_50px_-5px_rgba(94,234,212,0.5),0_12px_45px_-5px_rgba(20,184,166,0.6)] overflow-hidden"
               >
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-                <span className="relative">Réserver 15 min</span>
-                <ArrowRight className="w-4 h-4 relative transition-transform group-hover:translate-x-0.5" />
+                {/* Shimmer teal qui glisse sur le blanc */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-rocket-teal/20 to-transparent" />
+                <span className="relative">Monter à bord</span>
+                <ArrowRight className="w-4 h-4 relative text-rocket-teal transition-transform group-hover:translate-x-0.5" />
               </a>
 
               {/* v23.7 — microcopy risk-reversal sous le CTA primary
