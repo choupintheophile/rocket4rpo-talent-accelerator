@@ -223,22 +223,7 @@ export default function HomepageImmersive() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* v23.8 — Chip de contexte : différenciation vs offshore, factuel
-                v24.1 — mb-5 → mb-3 (densité verticale) */}
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.6 }}
-              className="mb-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-sm"
-            >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-rocket-teal opacity-75 animate-ping" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-rocket-teal" />
-              </span>
-              <span className="text-[11px] md:text-xs tracking-[0.14em] uppercase text-white/60 font-medium">
-                Équipe <span className="text-white/85">France</span> · Prêts à recruter
-              </span>
-            </motion.div>
+            {/* v24.4 — chip retirée (demande user) */}
 
             <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold font-display leading-[1.05] tracking-tight">
               <span className="text-white">Vos meilleurs recrutements</span>
@@ -295,17 +280,7 @@ export default function HomepageImmersive() {
               </a>
             </motion.div>
 
-            {/* Trust bar — v24.1 : mt-8 → mt-5 */}
-            <motion.div
-              className="mt-5 flex flex-wrap items-center justify-center gap-5 md:gap-6 text-xs text-white/30"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.8, duration: 0.8 }}
-            >
-              <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🚀</span> 200+ recrutements</span>
-              <span className="w-1 h-1 rounded-full bg-white/15" aria-hidden="true" />
-              <span className="inline-flex items-center gap-1.5"><span className="text-rocket-teal/90">🏆</span> Top 1% des TA</span>
-            </motion.div>
+            {/* v24.4 — trust bar retirée (demande user) */}
 
             {/* Testimonial compressé (source: ancien HomepageSections).
                 v24.1 — caché si viewport trop court pour garantir no-scroll strict */}
