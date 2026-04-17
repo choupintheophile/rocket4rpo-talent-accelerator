@@ -218,7 +218,7 @@ export default function HomepageImmersive() {
           .rocket-inner {
             transform: translateY(0) scale(1);
             transform-origin: center bottom;
-            transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 2.8s cubic-bezier(0.55, 0, 0.4, 1);
           }
           section:has(.cta-hero:hover) .rocket-inner,
           section:has(.cta-hero:focus-visible) .rocket-inner {

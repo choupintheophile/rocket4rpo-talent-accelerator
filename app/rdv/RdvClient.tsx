@@ -8,7 +8,7 @@ const HUBSPOT_URL = "https://meetings.hubspot.com/theophile-choupin/rpo";
 export default function RdvClient() {
   return (
     <>
-      <Breadcrumbs items={[{ label: "Trouver votre TA" }]} />
+      <Breadcrumbs items={[{ label: "Diagnostic gratuit" }]} />
 
       {/* ── HERO — dark gradient, split layout ── */}
       <section className="relative overflow-hidden">
